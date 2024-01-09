@@ -20,7 +20,7 @@ Amount _$AmountFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Amount {
-  double? get amount => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ abstract class $AmountCopyWith<$Res> {
   factory $AmountCopyWith(Amount value, $Res Function(Amount) then) =
       _$AmountCopyWithImpl<$Res, Amount>;
   @useResult
-  $Res call({double? amount, String currency});
+  $Res call({double amount, String currency});
 }
 
 /// @nodoc
@@ -49,14 +49,14 @@ class _$AmountCopyWithImpl<$Res, $Val extends Amount>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = freezed,
+    Object? amount = null,
     Object? currency = null,
   }) {
     return _then(_value.copyWith(
-      amount: freezed == amount
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -72,7 +72,7 @@ abstract class _$$AmountImplCopyWith<$Res> implements $AmountCopyWith<$Res> {
       __$$AmountImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double? amount, String currency});
+  $Res call({double amount, String currency});
 }
 
 /// @nodoc
@@ -86,14 +86,14 @@ class __$$AmountImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = freezed,
+    Object? amount = null,
     Object? currency = null,
   }) {
     return _then(_$AmountImpl(
-      amount: freezed == amount
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ class _$AmountImpl extends _Amount {
 
   @override
   @JsonKey()
-  final double? amount;
+  final double amount;
   @override
   @JsonKey()
   final String currency;
@@ -151,14 +151,14 @@ class _$AmountImpl extends _Amount {
 }
 
 abstract class _Amount extends Amount {
-  const factory _Amount({final double? amount, final String currency}) =
+  const factory _Amount({final double amount, final String currency}) =
       _$AmountImpl;
   const _Amount._() : super._();
 
   factory _Amount.fromJson(Map<String, dynamic> json) = _$AmountImpl.fromJson;
 
   @override
-  double? get amount;
+  double get amount;
   @override
   String get currency;
   @override

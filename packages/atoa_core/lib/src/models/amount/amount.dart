@@ -6,7 +6,7 @@ part 'amount.g.dart';
 @freezed
 class Amount with _$Amount {
   const factory Amount({
-    @Default(0.0) double? amount,
+    @Default(0.0) double amount,
     @Default('GBP') String currency,
   }) = _Amount;
 

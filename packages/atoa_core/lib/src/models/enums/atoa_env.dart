@@ -1,0 +1,1 @@
+enum AtoaEnv { sandbox, prod }
