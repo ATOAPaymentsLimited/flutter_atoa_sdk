@@ -31,7 +31,7 @@ class SampleCommand extends Command<int> {
   Future<int> run() async {
     var output = 'Which unicorn has a cold? The Achoo-nicorn!';
     if (argResults?['cyan'] == true) {
-      output = lightCyan.wrap(output)!;
+      output = '${backgroundRed.wrap(output)!} by aman';
     }
     _logger.info(output);
     return ExitCode.success.code;

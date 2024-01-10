@@ -7,8 +7,8 @@ class Endpoints {
   static const String institutions = 'institutions/customer';
 
   /// Secure Payment Auth Url
-  String get securedAuthUrl => 'payments/v1/secure-payment-auth';
+  static const securedAuthUrl = 'payments/v1/secure-payment-auth';
 
   /// Payment Request
-  String get getPaymentDetails => 'payments/get-payment-details';
+  static const getPaymentDetails = 'payments/get-payment-details';
 }

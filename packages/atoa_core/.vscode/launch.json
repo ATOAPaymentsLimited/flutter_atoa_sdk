@@ -10,7 +10,8 @@
             "request": "launch",
             "type": "dart",
             "args": [
-                "fetch"
+                "sample",
+                "cyan"
             ]
         }
     ]

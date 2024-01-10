@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_setters_without_getters
 
+import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/exceptions/atoa_exception.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
@@ -70,5 +71,25 @@ class Atoa {
     return data
         .map((e) => BankInstitution.fromJson(e as Map<String, dynamic>))
         .toList();
+  }
+
+  Future<PaymentRequestData> getPaymentDetails(String paymentRequestId) async {
+    _dioCheck();
+
+    final res = await _atoaDio!.post<Map<String, dynamic>>(
+      Endpoints.getPaymentDetails,
+      data: {
+        'data': paymentRequestId,
+        'source': 'EXTERNAL_MERCHANT',
+      },
+    );
+
+    final data = res.data;
+
+    if (data == null) {
+      throw const AtoaException(AtoaExceptionType.noDataFound);
+    }
+
+    return PaymentRequestData.fromJson(data);
   }
 }

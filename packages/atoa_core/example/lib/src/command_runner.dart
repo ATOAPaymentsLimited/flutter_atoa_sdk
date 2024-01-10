@@ -3,7 +3,6 @@ import 'package:args/command_runner.dart';
 import 'package:atoa_core/atoa_core.dart';
 import 'package:cli_completion/cli_completion.dart';
 import 'package:example/src/commands/commands.dart';
-import 'package:example/src/commands/fetch_banks_command.dart';
 import 'package:example/src/version.dart';
 import 'package:mason_logger/mason_logger.dart';
 
@@ -42,6 +41,7 @@ class ExampleCommandRunner extends CompletionCommandRunner<int> {
     // Add sub commands
     addCommand(SampleCommand(logger: _logger));
     addCommand(FetchBanksCommand(logger: _logger, atoa: _atoa));
+    addCommand(PaymentDetailsCommand(logger: _logger, atoa: _atoa));
   }
 
   @override
