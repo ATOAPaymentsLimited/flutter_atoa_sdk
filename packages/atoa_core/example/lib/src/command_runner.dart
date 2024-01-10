@@ -1,5 +1,6 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:atoa_core/atoa_core.dart';
 import 'package:cli_completion/cli_completion.dart';
 import 'package:example/src/commands/commands.dart';
 import 'package:example/src/commands/fetch_banks_command.dart';
@@ -21,7 +22,9 @@ class ExampleCommandRunner extends CompletionCommandRunner<int> {
   /// {@macro example_command_runner}
   ExampleCommandRunner({
     Logger? logger,
+    Atoa? atoa,
   })  : _logger = logger ?? Logger(),
+        _atoa = atoa ?? Atoa(),
         super(executableName, description) {
     // Add root options and flags
     argParser
@@ -45,6 +48,7 @@ class ExampleCommandRunner extends CompletionCommandRunner<int> {
   void printUsage() => _logger.info(usage);
 
   final Logger _logger;
+  final Atoa _atoa;
 
   @override
   Future<int> run(Iterable<String> args) async {
@@ -104,14 +108,43 @@ class ExampleCommandRunner extends CompletionCommandRunner<int> {
     }
 
     // Run the command or show version
-    final int? exitCode;
+    int? exitCode;
     if (topLevelResults['version'] == true) {
       _logger.info(packageVersion);
       exitCode = ExitCode.success.code;
     } else {
+      exitCode = await _initializeAtoaClient();
+
+      if (exitCode != null) {
+        return exitCode;
+      }
+
       exitCode = await super.runCommand(topLevelResults);
     }
 
     return exitCode;
+  }
+
+  Future<int?> _initializeAtoaClient() async {
+    final initializingClientProgress =
+        _logger.progress('Initializing Atoa client...');
+
+    try {
+      Atoa.apiKey = 'test-key';
+      Atoa.env = AtoaEnv.sandbox;
+
+      await _atoa.initialize();
+      initializingClientProgress.complete('Atoa Client intialized');
+    } on AtoaException catch (e) {
+      initializingClientProgress.fail();
+      _logger.err(e.message);
+      return ExitCode.software.code;
+    } catch (error) {
+      initializingClientProgress.fail();
+      _logger.err('$error');
+      return ExitCode.software.code;
+    }
+
+    return null;
   }
 }

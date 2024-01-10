@@ -28,27 +28,6 @@ class FetchBanksCommand extends Command<int> {
   Future<int> run() async {
     final fetchingBanksProgress = _logger.progress('Fetching banks...');
 
-    final initializingClientProgress =
-        _logger.progress('Initializing Atoa client...');
-
-    try {
-      Atoa.apiKey = 'test-key';
-      Atoa.env = AtoaEnv.sandbox;
-
-      await _atoa.initialize();
-      initializingClientProgress.complete('Atoa Client intialized');
-    } on AtoaException catch (e) {
-      initializingClientProgress.fail();
-      fetchingBanksProgress.fail();
-      _logger.err(e.message);
-      return ExitCode.software.code;
-    } catch (error) {
-      initializingClientProgress.fail();
-      fetchingBanksProgress.fail();
-      _logger.err('$error');
-      return ExitCode.software.code;
-    }
-
     try {
       final res = await _atoa.fetchInstitutions();
 
