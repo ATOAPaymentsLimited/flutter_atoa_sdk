@@ -2,10 +2,7 @@
 
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
-import 'package:atoa_core/src/exceptions/atoa_exception.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
-import 'package:atoa_core/src/models/enums/atoa_env.dart';
-import 'package:atoa_core/src/models/institution/bank_institution.dart';
 
 /// {@template atoa_core}
 /// Atoa Flutter SDK
@@ -91,5 +88,24 @@ class Atoa {
     }
 
     return PaymentRequestData.fromJson(data);
+  }
+
+  Future<PaymentAuthResponse> getPaymentAuth({
+    required PaymentAuthPaymentRequest paymentAuthRequest,
+  }) async {
+    _dioCheck();
+
+    final res = await _atoaDio!.post<Map<String, dynamic>>(
+      Endpoints.securedAuthUrl,
+      data: paymentAuthRequest.toJson(),
+    );
+
+    final data = res.data;
+
+    if (data == null) {
+      throw const AtoaException(AtoaExceptionType.noDataFound);
+    }
+
+    return PaymentAuthResponse.fromJson(data);
   }
 }
