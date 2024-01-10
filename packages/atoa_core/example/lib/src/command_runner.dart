@@ -133,7 +133,7 @@ class ExampleCommandRunner extends CompletionCommandRunner<int> {
       Atoa.apiKey = 'test-key';
       Atoa.env = AtoaEnv.sandbox;
 
-      await _atoa.initialize();
+      _atoa.initialize();
       initializingClientProgress.complete('Atoa Client intialized');
     } on AtoaException catch (e) {
       initializingClientProgress.fail();

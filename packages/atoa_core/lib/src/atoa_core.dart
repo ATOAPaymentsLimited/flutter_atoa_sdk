@@ -28,9 +28,9 @@ class Atoa {
   AtoaEnv? _atoaEnv;
   AtoaDio? _atoaDio;
 
-  Future<void> initialize([
+  void initialize([
     Duration connectionTimeout = const Duration(seconds: 20),
-  ]) async {
+  ]) {
     if (_apiKey == null) {
       throw const AtoaException(
         AtoaExceptionType.apiKeyNotProvided,
