@@ -9,8 +9,9 @@ class FetchBanksCommand extends Command<int> {
   /// {@macro fetch_banks}
   FetchBanksCommand({
     required Logger logger,
+    required Atoa atoa,
   })  : _logger = logger,
-        _atoa = Atoa();
+        _atoa = atoa;
 
   final Logger _logger;
 

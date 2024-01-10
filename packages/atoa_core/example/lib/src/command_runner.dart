@@ -41,7 +41,7 @@ class ExampleCommandRunner extends CompletionCommandRunner<int> {
 
     // Add sub commands
     addCommand(SampleCommand(logger: _logger));
-    addCommand(FetchBanksCommand(logger: _logger));
+    addCommand(FetchBanksCommand(logger: _logger, atoa: _atoa));
   }
 
   @override
