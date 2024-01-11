@@ -10,6 +10,7 @@ export 'institution/bank_institution.dart';
 export 'institution/bank_media/bank_media.dart';
 export 'merchant_payee_address/merchant_payee_address.dart';
 export 'payer_bank_details/payer_bank_details.dart';
+export 'payment_auth/payment_auth_request_body/payment_auth_request_body.dart';
 export 'payment_auth/payment_auth_response.dart';
 export 'payment_auth_payment_request/payment_auth_payment_request.dart';
 export 'payment_request_data.dart';

@@ -21,7 +21,6 @@ PaymentAuthPaymentRequest _$PaymentAuthPaymentRequestFromJson(
 
 /// @nodoc
 mixin _$PaymentAuthPaymentRequest {
-  PayerBankDetails get payer => throw _privateConstructorUsedError;
   String? get paymentType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,9 +35,7 @@ abstract class $PaymentAuthPaymentRequestCopyWith<$Res> {
           $Res Function(PaymentAuthPaymentRequest) then) =
       _$PaymentAuthPaymentRequestCopyWithImpl<$Res, PaymentAuthPaymentRequest>;
   @useResult
-  $Res call({PayerBankDetails payer, String? paymentType});
-
-  $PayerBankDetailsCopyWith<$Res> get payer;
+  $Res call({String? paymentType});
 }
 
 /// @nodoc
@@ -55,27 +52,14 @@ class _$PaymentAuthPaymentRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? payer = null,
     Object? paymentType = freezed,
   }) {
     return _then(_value.copyWith(
-      payer: null == payer
-          ? _value.payer
-          : payer // ignore: cast_nullable_to_non_nullable
-              as PayerBankDetails,
       paymentType: freezed == paymentType
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PayerBankDetailsCopyWith<$Res> get payer {
-    return $PayerBankDetailsCopyWith<$Res>(_value.payer, (value) {
-      return _then(_value.copyWith(payer: value) as $Val);
-    });
   }
 }
 
@@ -88,10 +72,7 @@ abstract class _$$PaymentAuthPaymentRequestImplCopyWith<$Res>
       __$$PaymentAuthPaymentRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PayerBankDetails payer, String? paymentType});
-
-  @override
-  $PayerBankDetailsCopyWith<$Res> get payer;
+  $Res call({String? paymentType});
 }
 
 /// @nodoc
@@ -107,14 +88,9 @@ class __$$PaymentAuthPaymentRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? payer = null,
     Object? paymentType = freezed,
   }) {
     return _then(_$PaymentAuthPaymentRequestImpl(
-      payer: null == payer
-          ? _value.payer
-          : payer // ignore: cast_nullable_to_non_nullable
-              as PayerBankDetails,
       paymentType: freezed == paymentType
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
@@ -126,20 +102,17 @@ class __$$PaymentAuthPaymentRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PaymentAuthPaymentRequestImpl extends _PaymentAuthPaymentRequest {
-  const _$PaymentAuthPaymentRequestImpl({required this.payer, this.paymentType})
-      : super._();
+  const _$PaymentAuthPaymentRequestImpl({this.paymentType}) : super._();
 
   factory _$PaymentAuthPaymentRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaymentAuthPaymentRequestImplFromJson(json);
 
   @override
-  final PayerBankDetails payer;
-  @override
   final String? paymentType;
 
   @override
   String toString() {
-    return 'PaymentAuthPaymentRequest(payer: $payer, paymentType: $paymentType)';
+    return 'PaymentAuthPaymentRequest(paymentType: $paymentType)';
   }
 
   @override
@@ -147,14 +120,13 @@ class _$PaymentAuthPaymentRequestImpl extends _PaymentAuthPaymentRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentAuthPaymentRequestImpl &&
-            (identical(other.payer, payer) || other.payer == payer) &&
             (identical(other.paymentType, paymentType) ||
                 other.paymentType == paymentType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, payer, paymentType);
+  int get hashCode => Object.hash(runtimeType, paymentType);
 
   @JsonKey(ignore: true)
   @override
@@ -172,16 +144,13 @@ class _$PaymentAuthPaymentRequestImpl extends _PaymentAuthPaymentRequest {
 }
 
 abstract class _PaymentAuthPaymentRequest extends PaymentAuthPaymentRequest {
-  const factory _PaymentAuthPaymentRequest(
-      {required final PayerBankDetails payer,
-      final String? paymentType}) = _$PaymentAuthPaymentRequestImpl;
+  const factory _PaymentAuthPaymentRequest({final String? paymentType}) =
+      _$PaymentAuthPaymentRequestImpl;
   const _PaymentAuthPaymentRequest._() : super._();
 
   factory _PaymentAuthPaymentRequest.fromJson(Map<String, dynamic> json) =
       _$PaymentAuthPaymentRequestImpl.fromJson;
 
-  @override
-  PayerBankDetails get payer;
   @override
   String? get paymentType;
   @override

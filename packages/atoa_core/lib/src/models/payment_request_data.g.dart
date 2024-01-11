@@ -46,7 +46,6 @@ _$PaymentRequestDataImpl _$$PaymentRequestDataImplFromJson(
       strictExpiry: json['strictExpiry'] as bool?,
       allowSdkRetry: json['allowSdkRetry'] as bool?,
       splitBill: json['splitBill'] as bool? ?? false,
-      totalAmountDue: (json['totalAmountDue'] as num?)?.toDouble(),
       options: json['options'] as Map<String, dynamic>?,
     );
 

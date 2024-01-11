@@ -90,14 +90,14 @@ class Atoa {
     return PaymentRequestData.fromJson(data);
   }
 
-  Future<PaymentAuthResponse> getPaymentAuth({
-    required PaymentAuthPaymentRequest paymentAuthRequest,
-  }) async {
+  Future<PaymentAuthResponse> getPaymentAuth(
+    PaymentAuthRequestBody payRequestBody,
+  ) async {
     _dioCheck();
 
     final res = await _atoaDio!.post<Map<String, dynamic>>(
       Endpoints.securedAuthUrl,
-      data: paymentAuthRequest.toJson(),
+      data: payRequestBody.toJson(),
     );
 
     final data = res.data;

@@ -15,3 +15,5 @@ analyzer:
 linter:
   rules:
     public_member_api_docs: false
+    prefer_expression_function_bodies: true
+    no_default_cases: false

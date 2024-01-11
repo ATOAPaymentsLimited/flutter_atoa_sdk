@@ -55,9 +55,6 @@ mixin _$PaymentRequestData {
   bool? get strictExpiry => throw _privateConstructorUsedError;
   bool? get allowSdkRetry => throw _privateConstructorUsedError;
   bool get splitBill => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false, includeToJson: false)
-  @JsonKey(includeIfNull: false)
-  double? get totalAmountDue => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get options => throw _privateConstructorUsedError;
 
@@ -103,9 +100,6 @@ abstract class $PaymentRequestDataCopyWith<$Res> {
       bool? strictExpiry,
       bool? allowSdkRetry,
       bool splitBill,
-      @JsonKey(includeIfNull: false, includeToJson: false)
-      @JsonKey(includeIfNull: false)
-      double? totalAmountDue,
       @JsonKey(includeIfNull: false) Map<String, dynamic>? options});
 
   $AmountCopyWith<$Res> get amount;
@@ -157,7 +151,6 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     Object? strictExpiry = freezed,
     Object? allowSdkRetry = freezed,
     Object? splitBill = null,
-    Object? totalAmountDue = freezed,
     Object? options = freezed,
   }) {
     return _then(_value.copyWith(
@@ -273,10 +266,6 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
           ? _value.splitBill
           : splitBill // ignore: cast_nullable_to_non_nullable
               as bool,
-      totalAmountDue: freezed == totalAmountDue
-          ? _value.totalAmountDue
-          : totalAmountDue // ignore: cast_nullable_to_non_nullable
-              as double?,
       options: freezed == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
@@ -392,9 +381,6 @@ abstract class _$$PaymentRequestDataImplCopyWith<$Res>
       bool? strictExpiry,
       bool? allowSdkRetry,
       bool splitBill,
-      @JsonKey(includeIfNull: false, includeToJson: false)
-      @JsonKey(includeIfNull: false)
-      double? totalAmountDue,
       @JsonKey(includeIfNull: false) Map<String, dynamic>? options});
 
   @override
@@ -450,7 +436,6 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
     Object? strictExpiry = freezed,
     Object? allowSdkRetry = freezed,
     Object? splitBill = null,
-    Object? totalAmountDue = freezed,
     Object? options = freezed,
   }) {
     return _then(_$PaymentRequestDataImpl(
@@ -566,10 +551,6 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
           ? _value.splitBill
           : splitBill // ignore: cast_nullable_to_non_nullable
               as bool,
-      totalAmountDue: freezed == totalAmountDue
-          ? _value.totalAmountDue
-          : totalAmountDue // ignore: cast_nullable_to_non_nullable
-              as double?,
       options: freezed == options
           ? _value._options
           : options // ignore: cast_nullable_to_non_nullable
@@ -611,9 +592,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
       this.strictExpiry,
       this.allowSdkRetry,
       this.splitBill = false,
-      @JsonKey(includeIfNull: false, includeToJson: false)
-      @JsonKey(includeIfNull: false)
-      this.totalAmountDue,
       @JsonKey(includeIfNull: false) final Map<String, dynamic>? options})
       : _options = options,
         super._();
@@ -684,10 +662,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
   @override
   @JsonKey()
   final bool splitBill;
-  @override
-  @JsonKey(includeIfNull: false, includeToJson: false)
-  @JsonKey(includeIfNull: false)
-  final double? totalAmountDue;
   final Map<String, dynamic>? _options;
   @override
   @JsonKey(includeIfNull: false)
@@ -701,7 +675,7 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
 
   @override
   String toString() {
-    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, tipInfo: $tipInfo, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, totalAmountDue: $totalAmountDue, options: $options)';
+    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, tipInfo: $tipInfo, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, options: $options)';
   }
 
   @override
@@ -760,8 +734,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
                 other.allowSdkRetry == allowSdkRetry) &&
             (identical(other.splitBill, splitBill) ||
                 other.splitBill == splitBill) &&
-            (identical(other.totalAmountDue, totalAmountDue) ||
-                other.totalAmountDue == totalAmountDue) &&
             const DeepCollectionEquality().equals(other._options, _options));
   }
 
@@ -797,7 +769,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
         strictExpiry,
         allowSdkRetry,
         splitBill,
-        totalAmountDue,
         const DeepCollectionEquality().hash(_options)
       ]);
 
@@ -847,9 +818,6 @@ abstract class _PaymentRequestData extends PaymentRequestData {
           final bool? strictExpiry,
           final bool? allowSdkRetry,
           final bool splitBill,
-          @JsonKey(includeIfNull: false, includeToJson: false)
-          @JsonKey(includeIfNull: false)
-          final double? totalAmountDue,
           @JsonKey(includeIfNull: false) final Map<String, dynamic>? options}) =
       _$PaymentRequestDataImpl;
   const _PaymentRequestData._() : super._();
@@ -919,10 +887,6 @@ abstract class _PaymentRequestData extends PaymentRequestData {
   bool? get allowSdkRetry;
   @override
   bool get splitBill;
-  @override
-  @JsonKey(includeIfNull: false, includeToJson: false)
-  @JsonKey(includeIfNull: false)
-  double? get totalAmountDue;
   @override
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get options;

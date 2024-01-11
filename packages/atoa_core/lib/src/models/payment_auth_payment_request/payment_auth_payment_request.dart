@@ -7,7 +7,6 @@ part 'payment_auth_payment_request.g.dart';
 @freezed
 class PaymentAuthPaymentRequest with _$PaymentAuthPaymentRequest {
   const factory PaymentAuthPaymentRequest({
-    required PayerBankDetails payer,
     String? paymentType,
   }) = _PaymentAuthPaymentRequest;
 

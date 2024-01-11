@@ -44,12 +44,6 @@ class PaymentRequestData with _$PaymentRequestData {
     bool? strictExpiry,
     bool? allowSdkRetry,
     @Default(false) bool splitBill,
-    @JsonKey(
-      includeIfNull: false,
-      includeToJson: false,
-    )
-    @JsonKey(includeIfNull: false)
-    double? totalAmountDue,
     @JsonKey(includeIfNull: false) Map<String, dynamic>? options,
   }) = _PaymentRequestData;
 
