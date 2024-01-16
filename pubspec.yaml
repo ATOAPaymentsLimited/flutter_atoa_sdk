@@ -1,6 +1,7 @@
 name: atoa_sdk
 description: Atoa Flutter SDK
 version: 0.1.0+1
+publish_to: none
 
 
 environment:
@@ -8,6 +9,8 @@ environment:
   flutter: ">=3.10.0"
 
 dependencies:
+  atoa_core:
+    path: packages/atoa_core
   flutter:
     sdk: flutter
 
