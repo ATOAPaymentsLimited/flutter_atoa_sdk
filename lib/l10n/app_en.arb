@@ -1,0 +1,46 @@
+{
+    "continueBtnText": "Continue",
+    "send": "Send",
+    "selectBank": "Select Bank",
+    "primary": "Primary",
+    "download": "Download",
+    "skip": "Skip",
+    "less": "Less",
+    "more": "more",
+    "to": "To",
+    "get": "Get",
+    "from": "From",
+    "all": "All",
+    "connectYourBank": "Connect Your Bank",
+    "connect": "Connect",
+    "sendReceivePaymentWithAtoa": "To send and receive payments using Atoa",
+    "atoa": "Atoa",
+    "and": "and",
+    "support": "Support",
+    "downloadAppDesc": "Please download and install your bank app to\nconnect your bank and use Atoa seamlessly",
+    "ensureBankAppIsInstalled": "Please make sure you have a Bank App installed on your Phone in order to use Atoa Pay.",
+    "downloadBankApp": "Download the Bank App Now",
+    "bankAppNotFound": "Bank App Not Found",
+    "now": "now",
+    "you": "You",
+    "remove": "Remove",
+    "member": "Member",
+    "here": "here",
+    "custom": "Custom",
+    "business": "Business",
+    "light": "Light",
+    "bankCard": "Bank Card",
+    "loading": "Loading",
+    "required": "{field} *",
+    "@required": {
+        "placeholders": {
+            "field": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    },
+    "bankTabBar": "Bank Tab Bar",
+    "personalBanks": "Personal Banks",
+    "businessBanks": "Business Banks"
+}
