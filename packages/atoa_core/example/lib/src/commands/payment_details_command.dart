@@ -48,7 +48,62 @@ class PaymentDetailsCommand extends Command<int> {
 
       final res = await _atoa.getPaymentDetails(paymentId);
 
-      _logger.write(res.toString());
+      _logger.progress('Getting payment auth...');
+
+      final body = PaymentAuthRequestBody(
+        merchantId: res.merchantId,
+        uniqueUserId: 'flutter-sdk',
+        merchantName: res.merchantBusinessName,
+        totalAmountDue: res.amount.amount,
+        amount: res.amount,
+        applicationUserId: 'flutter-sdk',
+        institutionId: 'lloyds-sandbox',
+        taxPercentage: res.taxPercentage,
+        servicePercentage: res.servicePercentage,
+        features: [
+          'ACCOUNTS',
+          'ACCOUNT_REQUEST_DETAILS',
+          'INITIATE_DOMESTIC_PERIODIC_PAYMENT',
+          'ACCOUNT_DIRECT_DEBITS',
+          'INITIATE_SINGLE_PAYMENT_SORTCODE',
+          'READ_DOMESTIC_SINGLE_REFUND',
+          'ACCOUNT_STATEMENTS',
+          'ACCOUNT_TRANSACTIONS',
+          'INITIATE_DOMESTIC_SINGLE_PAYMENT',
+          'CREATE_DOMESTIC_SCHEDULED_PAYMENT',
+          'INITIATE_ACCOUNT_REQUEST',
+          'EXISTING_PAYMENTS_DETAILS',
+          'ACCOUNT_TRANSACTIONS_WITH_MERCHANT',
+          'READ_DOMESTIC_PERIODIC_PAYMENT_REFUND',
+          'CREATE_SINGLE_PAYMENT_SORTCODE',
+          'PERIODIC_PAYMENT_FREQUENCY_EXTENDED',
+          'CREATE_DOMESTIC_PERIODIC_PAYMENT',
+          'INITIATE_DOMESTIC_SCHEDULED_PAYMENT',
+          'READ_DOMESTIC_SCHEDULED_REFUND',
+          'ACCOUNT_SCHEDULED_PAYMENTS',
+          'ACCOUNT',
+          'ACCOUNT_PERIODIC_PAYMENTS',
+          'EXISTING_PAYMENT_INITIATION_DETAILS',
+          'CREATE_DOMESTIC_SINGLE_PAYMENT',
+          'ACCOUNT_STATEMENT_FILE',
+        ],
+        deviceOrigin: '',
+        callbackParams: res.callbackParams,
+        contextType: res.contextType,
+        employeeId: res.employeeId,
+        encryptedNotesDetails: res.encryptedNotesDetails,
+        merchantPaymentOptions: res.options,
+        notes: res.notes,
+        paymentRequestSource: res.paymentRequestSource,
+        paymentSourceType: 3,
+      );
+
+      final authRes = await _atoa.getPaymentAuth(body);
+
+      _logger
+        ..write(res.toString())
+        ..write('\nAuth Res...\n')
+        ..write(authRes.toString());
     } on AtoaException catch (e) {
       fetchingPaymentProgress.fail();
       _logger.err(e.message);
