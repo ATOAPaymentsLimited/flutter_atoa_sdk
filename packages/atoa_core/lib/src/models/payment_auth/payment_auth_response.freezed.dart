@@ -31,6 +31,8 @@ mixin _$PaymentAuthResponse {
       throw _privateConstructorUsedError;
   String? get deepLinkAuthorisationUrlIOS => throw _privateConstructorUsedError;
   String? get appStoreLink => throw _privateConstructorUsedError;
+  String? get androidPackageName => throw _privateConstructorUsedError;
+  String? get iOSPackageName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +56,9 @@ abstract class $PaymentAuthResponseCopyWith<$Res> {
       String? deepLinkAuthorisationUrl,
       String? deepLinkAndroidAuthorisationUrl,
       String? deepLinkAuthorisationUrlIOS,
-      String? appStoreLink});
+      String? appStoreLink,
+      String? androidPackageName,
+      String? iOSPackageName});
 }
 
 /// @nodoc
@@ -80,6 +84,8 @@ class _$PaymentAuthResponseCopyWithImpl<$Res, $Val extends PaymentAuthResponse>
     Object? deepLinkAndroidAuthorisationUrl = freezed,
     Object? deepLinkAuthorisationUrlIOS = freezed,
     Object? appStoreLink = freezed,
+    Object? androidPackageName = freezed,
+    Object? iOSPackageName = freezed,
   }) {
     return _then(_value.copyWith(
       authorisationUrl: null == authorisationUrl
@@ -123,6 +129,14 @@ class _$PaymentAuthResponseCopyWithImpl<$Res, $Val extends PaymentAuthResponse>
           ? _value.appStoreLink
           : appStoreLink // ignore: cast_nullable_to_non_nullable
               as String?,
+      androidPackageName: freezed == androidPackageName
+          ? _value.androidPackageName
+          : androidPackageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iOSPackageName: freezed == iOSPackageName
+          ? _value.iOSPackageName
+          : iOSPackageName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -145,7 +159,9 @@ abstract class _$$PaymentAuthResponseImplCopyWith<$Res>
       String? deepLinkAuthorisationUrl,
       String? deepLinkAndroidAuthorisationUrl,
       String? deepLinkAuthorisationUrlIOS,
-      String? appStoreLink});
+      String? appStoreLink,
+      String? androidPackageName,
+      String? iOSPackageName});
 }
 
 /// @nodoc
@@ -169,6 +185,8 @@ class __$$PaymentAuthResponseImplCopyWithImpl<$Res>
     Object? deepLinkAndroidAuthorisationUrl = freezed,
     Object? deepLinkAuthorisationUrlIOS = freezed,
     Object? appStoreLink = freezed,
+    Object? androidPackageName = freezed,
+    Object? iOSPackageName = freezed,
   }) {
     return _then(_$PaymentAuthResponseImpl(
       authorisationUrl: null == authorisationUrl
@@ -212,6 +230,14 @@ class __$$PaymentAuthResponseImplCopyWithImpl<$Res>
           ? _value.appStoreLink
           : appStoreLink // ignore: cast_nullable_to_non_nullable
               as String?,
+      androidPackageName: freezed == androidPackageName
+          ? _value.androidPackageName
+          : androidPackageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iOSPackageName: freezed == iOSPackageName
+          ? _value.iOSPackageName
+          : iOSPackageName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -229,7 +255,9 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
       this.deepLinkAuthorisationUrl,
       this.deepLinkAndroidAuthorisationUrl,
       this.deepLinkAuthorisationUrlIOS,
-      this.appStoreLink})
+      this.appStoreLink,
+      this.androidPackageName,
+      this.iOSPackageName})
       : _featureScope = featureScope,
         super._();
 
@@ -264,10 +292,14 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
   final String? deepLinkAuthorisationUrlIOS;
   @override
   final String? appStoreLink;
+  @override
+  final String? androidPackageName;
+  @override
+  final String? iOSPackageName;
 
   @override
   String toString() {
-    return 'PaymentAuthResponse(authorisationUrl: $authorisationUrl, paymentIdempotencyId: $paymentIdempotencyId, userUuid: $userUuid, status: $status, featureScope: $featureScope, tracingId: $tracingId, deepLinkAuthorisationUrl: $deepLinkAuthorisationUrl, deepLinkAndroidAuthorisationUrl: $deepLinkAndroidAuthorisationUrl, deepLinkAuthorisationUrlIOS: $deepLinkAuthorisationUrlIOS, appStoreLink: $appStoreLink)';
+    return 'PaymentAuthResponse(authorisationUrl: $authorisationUrl, paymentIdempotencyId: $paymentIdempotencyId, userUuid: $userUuid, status: $status, featureScope: $featureScope, tracingId: $tracingId, deepLinkAuthorisationUrl: $deepLinkAuthorisationUrl, deepLinkAndroidAuthorisationUrl: $deepLinkAndroidAuthorisationUrl, deepLinkAuthorisationUrlIOS: $deepLinkAuthorisationUrlIOS, appStoreLink: $appStoreLink, androidPackageName: $androidPackageName, iOSPackageName: $iOSPackageName)';
   }
 
   @override
@@ -298,7 +330,11 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
                 other.deepLinkAuthorisationUrlIOS ==
                     deepLinkAuthorisationUrlIOS) &&
             (identical(other.appStoreLink, appStoreLink) ||
-                other.appStoreLink == appStoreLink));
+                other.appStoreLink == appStoreLink) &&
+            (identical(other.androidPackageName, androidPackageName) ||
+                other.androidPackageName == androidPackageName) &&
+            (identical(other.iOSPackageName, iOSPackageName) ||
+                other.iOSPackageName == iOSPackageName));
   }
 
   @JsonKey(ignore: true)
@@ -314,7 +350,9 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
       deepLinkAuthorisationUrl,
       deepLinkAndroidAuthorisationUrl,
       deepLinkAuthorisationUrlIOS,
-      appStoreLink);
+      appStoreLink,
+      androidPackageName,
+      iOSPackageName);
 
   @JsonKey(ignore: true)
   @override
@@ -342,7 +380,9 @@ abstract class _PaymentAuthResponse extends PaymentAuthResponse {
       final String? deepLinkAuthorisationUrl,
       final String? deepLinkAndroidAuthorisationUrl,
       final String? deepLinkAuthorisationUrlIOS,
-      final String? appStoreLink}) = _$PaymentAuthResponseImpl;
+      final String? appStoreLink,
+      final String? androidPackageName,
+      final String? iOSPackageName}) = _$PaymentAuthResponseImpl;
   const _PaymentAuthResponse._() : super._();
 
   factory _PaymentAuthResponse.fromJson(Map<String, dynamic> json) =
@@ -368,6 +408,10 @@ abstract class _PaymentAuthResponse extends PaymentAuthResponse {
   String? get deepLinkAuthorisationUrlIOS;
   @override
   String? get appStoreLink;
+  @override
+  String? get androidPackageName;
+  @override
+  String? get iOSPackageName;
   @override
   @JsonKey(ignore: true)
   _$$PaymentAuthResponseImplCopyWith<_$PaymentAuthResponseImpl> get copyWith =>

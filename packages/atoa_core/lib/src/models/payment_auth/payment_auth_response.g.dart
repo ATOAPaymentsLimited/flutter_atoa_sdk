@@ -23,6 +23,8 @@ _$PaymentAuthResponseImpl _$$PaymentAuthResponseImplFromJson(
       deepLinkAuthorisationUrlIOS:
           json['deepLinkAuthorisationUrlIOS'] as String?,
       appStoreLink: json['appStoreLink'] as String?,
+      androidPackageName: json['androidPackageName'] as String?,
+      iOSPackageName: json['iOSPackageName'] as String?,
     );
 
 Map<String, dynamic> _$$PaymentAuthResponseImplToJson(
@@ -39,4 +41,6 @@ Map<String, dynamic> _$$PaymentAuthResponseImplToJson(
           instance.deepLinkAndroidAuthorisationUrl,
       'deepLinkAuthorisationUrlIOS': instance.deepLinkAuthorisationUrlIOS,
       'appStoreLink': instance.appStoreLink,
+      'androidPackageName': instance.androidPackageName,
+      'iOSPackageName': instance.iOSPackageName,
     };
