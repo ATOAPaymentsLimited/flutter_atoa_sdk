@@ -27,6 +27,7 @@ dependencies:
       ref: v3.2.1
       path: packages/regal
   state_notifier: ^1.0.0
+  url_launcher: ^6.2.3
 
 dev_dependencies:
   build_runner: ^2.4.8
