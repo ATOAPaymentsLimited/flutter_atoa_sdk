@@ -12,23 +12,28 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
     // merchantId is RecieverId
     required String merchantId,
     // consumerId is Senderid
-    required String consumerId,
+    @JsonKey(name: 'consumerId') required String uniqueUserId,
     required String merchantName,
-    required String consumerName,
     required Amount amount,
     required String applicationUserId,
     required String institutionId,
     required double taxPercentage,
     required double servicePercentage,
     required List<String>? features,
-    @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
-    required PaymentDeviceOriginEnum deviceOrigin,
+    required String deviceOrigin,
+    required num totalAmountDue,
+    @JsonKey(name: 'consumerName') @Default('') String userName,
     @Default(PaymentAuthPaymentRequest(paymentType: 'TRANSACTION'))
     PaymentAuthPaymentRequest paymentRequest,
     String? employeeId,
     String? encryptedNotesDetails,
     String? callbackParams,
     @JsonKey(includeIfNull: false) String? paymentLinkId,
+    @Default(
+      PaymentRequestWithSource(
+        paymentRequestSourcetype: PaymentRequestSourceEnum.EXTERNAL_MERCHANT,
+      ),
+    )
     PaymentRequestWithSource? paymentRequestSource,
     int? paymentSourceType,
     double? tipAmount,
@@ -42,9 +47,6 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
   factory PaymentAuthRequestBody.fromJson(Map<String, dynamic> json) =>
       _$PaymentAuthRequestBodyFromJson(json);
 }
-
-String _toJsonFromPaymentDeviceOriginEnum(PaymentDeviceOriginEnum type) =>
-    type.name;
 
 enum PaymentDeviceOriginEnum {
   CONSUMER_APP_ANDROID,

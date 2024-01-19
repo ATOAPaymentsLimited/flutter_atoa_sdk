@@ -13,14 +13,13 @@ class CotinueButton extends StatelessWidget {
         width: double.infinity,
         child: Consumer<BankInstitutionsState>(
           builder: (_, state, child) => RegalButton.primary(
-            trackLabel:
-                '${state.isAppInstalled ? 'Continue' : 'Download Bank App'} Button',
+            onPressed: state.paymentAuth == null
+                ? null
+                : context.read<BankInstitutionsController>().authorizeBank,
+            trackLabel: 'Continue Button',
             enableTracking: false,
-            onPressed: state.isLoading ? () {} : null,
             loading: state.isLoading,
-            label: state.isAppInstalled
-                ? context.l10n.continueBtnText
-                : context.l10n.downloadBankApp,
+            label: context.l10n.continueBtnText,
           ),
         ),
       );

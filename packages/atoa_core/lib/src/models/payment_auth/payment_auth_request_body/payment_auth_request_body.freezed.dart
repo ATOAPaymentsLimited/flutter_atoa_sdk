@@ -24,18 +24,19 @@ mixin _$PaymentAuthRequestBody {
 // merchantId is RecieverId
   String get merchantId =>
       throw _privateConstructorUsedError; // consumerId is Senderid
-  String get consumerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'consumerId')
+  String get uniqueUserId => throw _privateConstructorUsedError;
   String get merchantName => throw _privateConstructorUsedError;
-  String get consumerName => throw _privateConstructorUsedError;
   Amount get amount => throw _privateConstructorUsedError;
   String get applicationUserId => throw _privateConstructorUsedError;
   String get institutionId => throw _privateConstructorUsedError;
   double get taxPercentage => throw _privateConstructorUsedError;
   double get servicePercentage => throw _privateConstructorUsedError;
   List<String>? get features => throw _privateConstructorUsedError;
-  @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
-  PaymentDeviceOriginEnum get deviceOrigin =>
-      throw _privateConstructorUsedError;
+  String get deviceOrigin => throw _privateConstructorUsedError;
+  num get totalAmountDue => throw _privateConstructorUsedError;
+  @JsonKey(name: 'consumerName')
+  String get userName => throw _privateConstructorUsedError;
   PaymentAuthPaymentRequest get paymentRequest =>
       throw _privateConstructorUsedError;
   String? get employeeId => throw _privateConstructorUsedError;
@@ -69,17 +70,17 @@ abstract class $PaymentAuthRequestBodyCopyWith<$Res> {
   @useResult
   $Res call(
       {String merchantId,
-      String consumerId,
+      @JsonKey(name: 'consumerId') String uniqueUserId,
       String merchantName,
-      String consumerName,
       Amount amount,
       String applicationUserId,
       String institutionId,
       double taxPercentage,
       double servicePercentage,
       List<String>? features,
-      @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
-      PaymentDeviceOriginEnum deviceOrigin,
+      String deviceOrigin,
+      num totalAmountDue,
+      @JsonKey(name: 'consumerName') String userName,
       PaymentAuthPaymentRequest paymentRequest,
       String? employeeId,
       String? encryptedNotesDetails,
@@ -114,9 +115,8 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
   @override
   $Res call({
     Object? merchantId = null,
-    Object? consumerId = null,
+    Object? uniqueUserId = null,
     Object? merchantName = null,
-    Object? consumerName = null,
     Object? amount = null,
     Object? applicationUserId = null,
     Object? institutionId = null,
@@ -124,6 +124,8 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     Object? servicePercentage = null,
     Object? features = freezed,
     Object? deviceOrigin = null,
+    Object? totalAmountDue = null,
+    Object? userName = null,
     Object? paymentRequest = null,
     Object? employeeId = freezed,
     Object? encryptedNotesDetails = freezed,
@@ -142,17 +144,13 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String,
-      consumerId: null == consumerId
-          ? _value.consumerId
-          : consumerId // ignore: cast_nullable_to_non_nullable
+      uniqueUserId: null == uniqueUserId
+          ? _value.uniqueUserId
+          : uniqueUserId // ignore: cast_nullable_to_non_nullable
               as String,
       merchantName: null == merchantName
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
-              as String,
-      consumerName: null == consumerName
-          ? _value.consumerName
-          : consumerName // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -181,7 +179,15 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
       deviceOrigin: null == deviceOrigin
           ? _value.deviceOrigin
           : deviceOrigin // ignore: cast_nullable_to_non_nullable
-              as PaymentDeviceOriginEnum,
+              as String,
+      totalAmountDue: null == totalAmountDue
+          ? _value.totalAmountDue
+          : totalAmountDue // ignore: cast_nullable_to_non_nullable
+              as num,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentRequest: null == paymentRequest
           ? _value.paymentRequest
           : paymentRequest // ignore: cast_nullable_to_non_nullable
@@ -275,17 +281,17 @@ abstract class _$$PaymentAuthRequestBodyImplCopyWith<$Res>
   @useResult
   $Res call(
       {String merchantId,
-      String consumerId,
+      @JsonKey(name: 'consumerId') String uniqueUserId,
       String merchantName,
-      String consumerName,
       Amount amount,
       String applicationUserId,
       String institutionId,
       double taxPercentage,
       double servicePercentage,
       List<String>? features,
-      @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
-      PaymentDeviceOriginEnum deviceOrigin,
+      String deviceOrigin,
+      num totalAmountDue,
+      @JsonKey(name: 'consumerName') String userName,
       PaymentAuthPaymentRequest paymentRequest,
       String? employeeId,
       String? encryptedNotesDetails,
@@ -322,9 +328,8 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? merchantId = null,
-    Object? consumerId = null,
+    Object? uniqueUserId = null,
     Object? merchantName = null,
-    Object? consumerName = null,
     Object? amount = null,
     Object? applicationUserId = null,
     Object? institutionId = null,
@@ -332,6 +337,8 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
     Object? servicePercentage = null,
     Object? features = freezed,
     Object? deviceOrigin = null,
+    Object? totalAmountDue = null,
+    Object? userName = null,
     Object? paymentRequest = null,
     Object? employeeId = freezed,
     Object? encryptedNotesDetails = freezed,
@@ -350,17 +357,13 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String,
-      consumerId: null == consumerId
-          ? _value.consumerId
-          : consumerId // ignore: cast_nullable_to_non_nullable
+      uniqueUserId: null == uniqueUserId
+          ? _value.uniqueUserId
+          : uniqueUserId // ignore: cast_nullable_to_non_nullable
               as String,
       merchantName: null == merchantName
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
-              as String,
-      consumerName: null == consumerName
-          ? _value.consumerName
-          : consumerName // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
           ? _value.amount
@@ -389,7 +392,15 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
       deviceOrigin: null == deviceOrigin
           ? _value.deviceOrigin
           : deviceOrigin // ignore: cast_nullable_to_non_nullable
-              as PaymentDeviceOriginEnum,
+              as String,
+      totalAmountDue: null == totalAmountDue
+          ? _value.totalAmountDue
+          : totalAmountDue // ignore: cast_nullable_to_non_nullable
+              as num,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentRequest: null == paymentRequest
           ? _value.paymentRequest
           : paymentRequest // ignore: cast_nullable_to_non_nullable
@@ -447,24 +458,25 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
 class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   _$PaymentAuthRequestBodyImpl(
       {required this.merchantId,
-      required this.consumerId,
+      @JsonKey(name: 'consumerId') required this.uniqueUserId,
       required this.merchantName,
-      required this.consumerName,
       required this.amount,
       required this.applicationUserId,
       required this.institutionId,
       required this.taxPercentage,
       required this.servicePercentage,
       required final List<String>? features,
-      @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
       required this.deviceOrigin,
+      required this.totalAmountDue,
+      @JsonKey(name: 'consumerName') this.userName = '',
       this.paymentRequest =
           const PaymentAuthPaymentRequest(paymentType: 'TRANSACTION'),
       this.employeeId,
       this.encryptedNotesDetails,
       this.callbackParams,
       @JsonKey(includeIfNull: false) this.paymentLinkId,
-      this.paymentRequestSource,
+      this.paymentRequestSource = const PaymentRequestWithSource(
+          paymentRequestSourcetype: PaymentRequestSourceEnum.EXTERNAL_MERCHANT),
       this.paymentSourceType,
       this.tipAmount,
       @JsonKey(includeIfNull: false) this.notes,
@@ -484,11 +496,10 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   final String merchantId;
 // consumerId is Senderid
   @override
-  final String consumerId;
+  @JsonKey(name: 'consumerId')
+  final String uniqueUserId;
   @override
   final String merchantName;
-  @override
-  final String consumerName;
   @override
   final Amount amount;
   @override
@@ -510,8 +521,12 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   }
 
   @override
-  @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
-  final PaymentDeviceOriginEnum deviceOrigin;
+  final String deviceOrigin;
+  @override
+  final num totalAmountDue;
+  @override
+  @JsonKey(name: 'consumerName')
+  final String userName;
   @override
   @JsonKey()
   final PaymentAuthPaymentRequest paymentRequest;
@@ -525,6 +540,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   @JsonKey(includeIfNull: false)
   final String? paymentLinkId;
   @override
+  @JsonKey()
   final PaymentRequestWithSource? paymentRequestSource;
   @override
   final int? paymentSourceType;
@@ -551,7 +567,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
 
   @override
   String toString() {
-    return 'PaymentAuthRequestBody(merchantId: $merchantId, consumerId: $consumerId, merchantName: $merchantName, consumerName: $consumerName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions)';
+    return 'PaymentAuthRequestBody(merchantId: $merchantId, uniqueUserId: $uniqueUserId, merchantName: $merchantName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, totalAmountDue: $totalAmountDue, userName: $userName, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions)';
   }
 
   @override
@@ -561,12 +577,10 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
             other is _$PaymentAuthRequestBodyImpl &&
             (identical(other.merchantId, merchantId) ||
                 other.merchantId == merchantId) &&
-            (identical(other.consumerId, consumerId) ||
-                other.consumerId == consumerId) &&
+            (identical(other.uniqueUserId, uniqueUserId) ||
+                other.uniqueUserId == uniqueUserId) &&
             (identical(other.merchantName, merchantName) ||
                 other.merchantName == merchantName) &&
-            (identical(other.consumerName, consumerName) ||
-                other.consumerName == consumerName) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.applicationUserId, applicationUserId) ||
                 other.applicationUserId == applicationUserId) &&
@@ -579,6 +593,10 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
             const DeepCollectionEquality().equals(other._features, _features) &&
             (identical(other.deviceOrigin, deviceOrigin) ||
                 other.deviceOrigin == deviceOrigin) &&
+            (identical(other.totalAmountDue, totalAmountDue) ||
+                other.totalAmountDue == totalAmountDue) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
             (identical(other.paymentRequest, paymentRequest) ||
                 other.paymentRequest == paymentRequest) &&
             (identical(other.employeeId, employeeId) ||
@@ -608,9 +626,8 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   int get hashCode => Object.hashAll([
         runtimeType,
         merchantId,
-        consumerId,
+        uniqueUserId,
         merchantName,
-        consumerName,
         amount,
         applicationUserId,
         institutionId,
@@ -618,6 +635,8 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
         servicePercentage,
         const DeepCollectionEquality().hash(_features),
         deviceOrigin,
+        totalAmountDue,
+        userName,
         paymentRequest,
         employeeId,
         encryptedNotesDetails,
@@ -650,17 +669,17 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
 abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   factory _PaymentAuthRequestBody(
           {required final String merchantId,
-          required final String consumerId,
+          @JsonKey(name: 'consumerId') required final String uniqueUserId,
           required final String merchantName,
-          required final String consumerName,
           required final Amount amount,
           required final String applicationUserId,
           required final String institutionId,
           required final double taxPercentage,
           required final double servicePercentage,
           required final List<String>? features,
-          @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
-          required final PaymentDeviceOriginEnum deviceOrigin,
+          required final String deviceOrigin,
+          required final num totalAmountDue,
+          @JsonKey(name: 'consumerName') final String userName,
           final PaymentAuthPaymentRequest paymentRequest,
           final String? employeeId,
           final String? encryptedNotesDetails,
@@ -683,11 +702,10 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   @override // merchantId is RecieverId
   String get merchantId;
   @override // consumerId is Senderid
-  String get consumerId;
+  @JsonKey(name: 'consumerId')
+  String get uniqueUserId;
   @override
   String get merchantName;
-  @override
-  String get consumerName;
   @override
   Amount get amount;
   @override
@@ -701,8 +719,12 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   @override
   List<String>? get features;
   @override
-  @JsonKey(toJson: _toJsonFromPaymentDeviceOriginEnum)
-  PaymentDeviceOriginEnum get deviceOrigin;
+  String get deviceOrigin;
+  @override
+  num get totalAmountDue;
+  @override
+  @JsonKey(name: 'consumerName')
+  String get userName;
   @override
   PaymentAuthPaymentRequest get paymentRequest;
   @override

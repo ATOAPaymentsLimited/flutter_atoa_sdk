@@ -10,7 +10,10 @@ class AtoaSdk {
   /// {@macro atoa_sdk}
   const AtoaSdk();
 
-  static Future<void> show(BuildContext context) async {
+  static Future<void> show(
+    BuildContext context, {
+    required String paymentId,
+  }) async {
     final atoa = Atoa();
 
     Atoa.apiKey = 'test-key';
@@ -22,7 +25,10 @@ class AtoaSdk {
       context: context,
       builder: (context) => StateNotifierProvider<BankInstitutionsController,
           BankInstitutionsState>(
-        create: (context) => BankInstitutionsController(atoa),
+        create: (context) => BankInstitutionsController(
+          atoa: atoa,
+          paymentId: paymentId,
+        ),
         builder: (context, child) => const ConnectBankPage(),
       ),
     );

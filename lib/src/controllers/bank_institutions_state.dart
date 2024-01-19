@@ -5,10 +5,12 @@ class BankInstitutionsState with _$BankInstitutionsState {
   const factory BankInstitutionsState({
     @Default([]) List<BankInstitution> bankList,
     String? errorMessage,
-    @Default(false) bool isAppInstalled,
+    @Default(false) bool isBankAppInstalled,
     @Default(false) bool isLoading,
     @Default(false) bool showPersonal,
     BankInstitution? selectedBank,
+    PaymentRequestData? paymentDetails,
+    PaymentAuthResponse? paymentAuth,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();

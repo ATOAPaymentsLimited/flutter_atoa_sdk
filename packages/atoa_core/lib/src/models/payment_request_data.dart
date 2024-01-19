@@ -1,12 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:atoa_core/src/models/amount/amount.dart';
-import 'package:atoa_core/src/models/decorators/decorators.dart';
-import 'package:atoa_core/src/models/fraud/fraud_details.dart';
-import 'package:atoa_core/src/models/merchant_payee_address/merchant_payee_address.dart';
-import 'package:atoa_core/src/models/payment_request_with_source/payment_request_with_source.dart';
-import 'package:atoa_core/src/models/store_details/store_details.dart';
-import 'package:atoa_core/src/models/tips/tips_info.dart';
+import 'package:atoa_core/atoa_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_request_data.freezed.dart';
@@ -51,4 +45,30 @@ class PaymentRequestData with _$PaymentRequestData {
 
   factory PaymentRequestData.fromJson(Map<String, dynamic> json) =>
       _$PaymentRequestDataFromJson(json);
+}
+
+extension PaymentRequestDataX on PaymentRequestData {
+  PaymentAuthRequestBody toBody({
+    required String institutionId,
+    required List<String> features,
+  }) =>
+      PaymentAuthRequestBody(
+        merchantId: merchantId,
+        uniqueUserId: consumerId ?? '',
+        merchantName: merchantBusinessName,
+        amount: amount,
+        applicationUserId: consumerId ?? '',
+        institutionId: institutionId,
+        taxPercentage: taxPercentage,
+        servicePercentage: servicePercentage,
+        features: features,
+        deviceOrigin: 'DESKTOP',
+        totalAmountDue: amount.amount,
+        employeeId: employeeId,
+        callbackParams: callbackParams,
+        contextType: contextType,
+        merchantPaymentOptions: options,
+        encryptedNotesDetails: encryptedNotesDetails,
+        paymentSourceType: PaymentRequestSourceEnum.EXTERNAL_MERCHANT.index,
+      );
 }

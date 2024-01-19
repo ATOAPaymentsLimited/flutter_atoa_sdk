@@ -18,10 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BankInstitutionsState {
   List<BankInstitution> get bankList => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
-  bool get isAppInstalled => throw _privateConstructorUsedError;
+  bool get isBankAppInstalled => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get showPersonal => throw _privateConstructorUsedError;
   BankInstitution? get selectedBank => throw _privateConstructorUsedError;
+  PaymentRequestData? get paymentDetails => throw _privateConstructorUsedError;
+  PaymentAuthResponse? get paymentAuth => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BankInstitutionsStateCopyWith<BankInstitutionsState> get copyWith =>
@@ -37,12 +39,16 @@ abstract class $BankInstitutionsStateCopyWith<$Res> {
   $Res call(
       {List<BankInstitution> bankList,
       String? errorMessage,
-      bool isAppInstalled,
+      bool isBankAppInstalled,
       bool isLoading,
       bool showPersonal,
-      BankInstitution? selectedBank});
+      BankInstitution? selectedBank,
+      PaymentRequestData? paymentDetails,
+      PaymentAuthResponse? paymentAuth});
 
   $BankInstitutionCopyWith<$Res>? get selectedBank;
+  $PaymentRequestDataCopyWith<$Res>? get paymentDetails;
+  $PaymentAuthResponseCopyWith<$Res>? get paymentAuth;
 }
 
 /// @nodoc
@@ -61,10 +67,12 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
   $Res call({
     Object? bankList = null,
     Object? errorMessage = freezed,
-    Object? isAppInstalled = null,
+    Object? isBankAppInstalled = null,
     Object? isLoading = null,
     Object? showPersonal = null,
     Object? selectedBank = freezed,
+    Object? paymentDetails = freezed,
+    Object? paymentAuth = freezed,
   }) {
     return _then(_value.copyWith(
       bankList: null == bankList
@@ -75,9 +83,9 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAppInstalled: null == isAppInstalled
-          ? _value.isAppInstalled
-          : isAppInstalled // ignore: cast_nullable_to_non_nullable
+      isBankAppInstalled: null == isBankAppInstalled
+          ? _value.isBankAppInstalled
+          : isBankAppInstalled // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -91,6 +99,14 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
           ? _value.selectedBank
           : selectedBank // ignore: cast_nullable_to_non_nullable
               as BankInstitution?,
+      paymentDetails: freezed == paymentDetails
+          ? _value.paymentDetails
+          : paymentDetails // ignore: cast_nullable_to_non_nullable
+              as PaymentRequestData?,
+      paymentAuth: freezed == paymentAuth
+          ? _value.paymentAuth
+          : paymentAuth // ignore: cast_nullable_to_non_nullable
+              as PaymentAuthResponse?,
     ) as $Val);
   }
 
@@ -103,6 +119,30 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
 
     return $BankInstitutionCopyWith<$Res>(_value.selectedBank!, (value) {
       return _then(_value.copyWith(selectedBank: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PaymentRequestDataCopyWith<$Res>? get paymentDetails {
+    if (_value.paymentDetails == null) {
+      return null;
+    }
+
+    return $PaymentRequestDataCopyWith<$Res>(_value.paymentDetails!, (value) {
+      return _then(_value.copyWith(paymentDetails: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PaymentAuthResponseCopyWith<$Res>? get paymentAuth {
+    if (_value.paymentAuth == null) {
+      return null;
+    }
+
+    return $PaymentAuthResponseCopyWith<$Res>(_value.paymentAuth!, (value) {
+      return _then(_value.copyWith(paymentAuth: value) as $Val);
     });
   }
 }
@@ -119,13 +159,19 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
   $Res call(
       {List<BankInstitution> bankList,
       String? errorMessage,
-      bool isAppInstalled,
+      bool isBankAppInstalled,
       bool isLoading,
       bool showPersonal,
-      BankInstitution? selectedBank});
+      BankInstitution? selectedBank,
+      PaymentRequestData? paymentDetails,
+      PaymentAuthResponse? paymentAuth});
 
   @override
   $BankInstitutionCopyWith<$Res>? get selectedBank;
+  @override
+  $PaymentRequestDataCopyWith<$Res>? get paymentDetails;
+  @override
+  $PaymentAuthResponseCopyWith<$Res>? get paymentAuth;
 }
 
 /// @nodoc
@@ -142,10 +188,12 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? bankList = null,
     Object? errorMessage = freezed,
-    Object? isAppInstalled = null,
+    Object? isBankAppInstalled = null,
     Object? isLoading = null,
     Object? showPersonal = null,
     Object? selectedBank = freezed,
+    Object? paymentDetails = freezed,
+    Object? paymentAuth = freezed,
   }) {
     return _then(_$BankInstitutionsStateImpl(
       bankList: null == bankList
@@ -156,9 +204,9 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      isAppInstalled: null == isAppInstalled
-          ? _value.isAppInstalled
-          : isAppInstalled // ignore: cast_nullable_to_non_nullable
+      isBankAppInstalled: null == isBankAppInstalled
+          ? _value.isBankAppInstalled
+          : isBankAppInstalled // ignore: cast_nullable_to_non_nullable
               as bool,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -172,20 +220,31 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
           ? _value.selectedBank
           : selectedBank // ignore: cast_nullable_to_non_nullable
               as BankInstitution?,
+      paymentDetails: freezed == paymentDetails
+          ? _value.paymentDetails
+          : paymentDetails // ignore: cast_nullable_to_non_nullable
+              as PaymentRequestData?,
+      paymentAuth: freezed == paymentAuth
+          ? _value.paymentAuth
+          : paymentAuth // ignore: cast_nullable_to_non_nullable
+              as PaymentAuthResponse?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$BankInstitutionsStateImpl extends _BankInstitutionsState {
+class _$BankInstitutionsStateImpl extends _BankInstitutionsState
+    with DiagnosticableTreeMixin {
   const _$BankInstitutionsStateImpl(
       {final List<BankInstitution> bankList = const [],
       this.errorMessage,
-      this.isAppInstalled = false,
+      this.isBankAppInstalled = false,
       this.isLoading = false,
       this.showPersonal = false,
-      this.selectedBank})
+      this.selectedBank,
+      this.paymentDetails,
+      this.paymentAuth})
       : _bankList = bankList,
         super._();
 
@@ -202,7 +261,7 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState {
   final String? errorMessage;
   @override
   @JsonKey()
-  final bool isAppInstalled;
+  final bool isBankAppInstalled;
   @override
   @JsonKey()
   final bool isLoading;
@@ -211,10 +270,29 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState {
   final bool showPersonal;
   @override
   final BankInstitution? selectedBank;
+  @override
+  final PaymentRequestData? paymentDetails;
+  @override
+  final PaymentAuthResponse? paymentAuth;
 
   @override
-  String toString() {
-    return 'BankInstitutionsState(bankList: $bankList, errorMessage: $errorMessage, isAppInstalled: $isAppInstalled, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'BankInstitutionsState(bankList: $bankList, errorMessage: $errorMessage, isBankAppInstalled: $isBankAppInstalled, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BankInstitutionsState'))
+      ..add(DiagnosticsProperty('bankList', bankList))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage))
+      ..add(DiagnosticsProperty('isBankAppInstalled', isBankAppInstalled))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('showPersonal', showPersonal))
+      ..add(DiagnosticsProperty('selectedBank', selectedBank))
+      ..add(DiagnosticsProperty('paymentDetails', paymentDetails))
+      ..add(DiagnosticsProperty('paymentAuth', paymentAuth));
   }
 
   @override
@@ -225,14 +303,18 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState {
             const DeepCollectionEquality().equals(other._bankList, _bankList) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.isAppInstalled, isAppInstalled) ||
-                other.isAppInstalled == isAppInstalled) &&
+            (identical(other.isBankAppInstalled, isBankAppInstalled) ||
+                other.isBankAppInstalled == isBankAppInstalled) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.showPersonal, showPersonal) ||
                 other.showPersonal == showPersonal) &&
             (identical(other.selectedBank, selectedBank) ||
-                other.selectedBank == selectedBank));
+                other.selectedBank == selectedBank) &&
+            (identical(other.paymentDetails, paymentDetails) ||
+                other.paymentDetails == paymentDetails) &&
+            (identical(other.paymentAuth, paymentAuth) ||
+                other.paymentAuth == paymentAuth));
   }
 
   @override
@@ -240,10 +322,12 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState {
       runtimeType,
       const DeepCollectionEquality().hash(_bankList),
       errorMessage,
-      isAppInstalled,
+      isBankAppInstalled,
       isLoading,
       showPersonal,
-      selectedBank);
+      selectedBank,
+      paymentDetails,
+      paymentAuth);
 
   @JsonKey(ignore: true)
   @override
@@ -257,10 +341,12 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   const factory _BankInstitutionsState(
       {final List<BankInstitution> bankList,
       final String? errorMessage,
-      final bool isAppInstalled,
+      final bool isBankAppInstalled,
       final bool isLoading,
       final bool showPersonal,
-      final BankInstitution? selectedBank}) = _$BankInstitutionsStateImpl;
+      final BankInstitution? selectedBank,
+      final PaymentRequestData? paymentDetails,
+      final PaymentAuthResponse? paymentAuth}) = _$BankInstitutionsStateImpl;
   const _BankInstitutionsState._() : super._();
 
   @override
@@ -268,13 +354,17 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   @override
   String? get errorMessage;
   @override
-  bool get isAppInstalled;
+  bool get isBankAppInstalled;
   @override
   bool get isLoading;
   @override
   bool get showPersonal;
   @override
   BankInstitution? get selectedBank;
+  @override
+  PaymentRequestData? get paymentDetails;
+  @override
+  PaymentAuthResponse? get paymentAuth;
   @override
   @JsonKey(ignore: true)
   _$$BankInstitutionsStateImplCopyWith<_$BankInstitutionsStateImpl>

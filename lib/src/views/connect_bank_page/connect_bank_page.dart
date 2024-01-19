@@ -14,26 +14,15 @@ class ConnectBankPage extends StatefulWidget {
 
 class _ConnectBankPageState extends State<ConnectBankPage>
     with WidgetsBindingObserver {
-  late BankInstitutionsController _bankInstitutionsController;
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _bankInstitutionsController = context.read<BankInstitutionsController>();
-      _bankInstitutionsController
+      context.read<BankInstitutionsController>()
         ..selectBank(null)
         ..fetchBanks();
     });
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      _bankInstitutionsController.checkBankAppAvailability();
-    }
-    super.didChangeAppLifecycleState(state);
   }
 
   @override

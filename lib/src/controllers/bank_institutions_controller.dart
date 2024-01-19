@@ -1,17 +1,23 @@
+import 'dart:developer';
+
 import 'package:atoa_core/atoa_core.dart';
-// import 'package:atoa_sdk/atoa_sdk.dart';
-// import 'package:external_app_launcher/external_app_launcher.dart';
-// import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_notifier/state_notifier.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'bank_institutions_state.dart';
 part 'bank_institutions_controller.freezed.dart';
 
 class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
-  BankInstitutionsController(this._atoa) : super(const BankInstitutionsState());
+  BankInstitutionsController({
+    required this.paymentId,
+    required Atoa atoa,
+  })  : _atoa = atoa,
+        super(const BankInstitutionsState());
 
   final Atoa _atoa;
+  final String paymentId;
 
   Future<void> fetchBanks() async {
     state = state.copyWith(isLoading: true);
@@ -21,37 +27,78 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       bankList: res,
       isLoading: false,
     );
+
+    final paymentRes = await _atoa.getPaymentDetails(paymentId);
+
+    state = state.copyWith(
+      paymentDetails: paymentRes,
+      isLoading: false,
+    );
   }
 
-  // bool _urlSchemeEmptyFromApi = false;
+  void authorizeBank() {
+    final paymentAuth = state.paymentAuth;
 
-  Future<void> checkBankAppAvailability() async {
-    // if (_bankAccountAuthorization == null) return;
+    if (paymentAuth == null) return;
 
-    // if (defaultTargetPlatform == TargetPlatform.iOS) {
-    //   final bundleId = _bankAccountAuthorization!.iOSPackageName;
-    //   _urlSchemeEmptyFromApi = !(bundleId != null && bundleId.isNotEmpty);
-    // }
+    try {
+      switch (defaultTargetPlatform) {
+        case TargetPlatform.android:
+          final androidUrl = paymentAuth.deepLinkAndroidAuthorisationUrl ??
+              paymentAuth.authorisationUrl;
 
-    // if (defaultTargetPlatform == TargetPlatform.android) {
-    //   final pkgName = _bankAccountAuthorization!.androidPackageName;
-    //   _urlSchemeEmptyFromApi = !(pkgName != null && pkgName.isNotEmpty);
-    // }
+          final androidUri = Uri.tryParse(androidUrl);
+          if (androidUri == null) {
+            throw Exception('Invalid Android URL: $androidUrl');
+          }
 
-    // if (_urlSchemeEmptyFromApi) {
-    //   state = state.copyWith(isAppInstalled: true);
-    //   return;
-    // }
+          launchUrl(
+            androidUri,
+            mode: LaunchMode.externalApplication,
+          );
 
-    // final dynamic result = await LaunchApp.isAppInstalled(
-    //   androidPackageName: _bankAccountAuthorization!.androidPackageName,
-    //   iosUrlScheme: _bankAccountAuthorization!.iOSPackageName,
-    // );
+        case TargetPlatform.iOS:
+          final iosUrl = paymentAuth.deepLinkAuthorisationUrlIOS ??
+              paymentAuth.authorisationUrl;
 
-    // state = state.copyWith(isAppInstalled: result is bool && result);
+          final iosUri = Uri.tryParse(iosUrl);
+          if (iosUri == null) {
+            throw Exception('Invalid iOS URL: $iosUrl');
+          }
+
+          launchUrl(
+            iosUri,
+            mode: LaunchMode.externalApplication,
+          );
+
+        default:
+          break;
+      }
+    } catch (e) {
+      state = state.copyWith(errorMessage: e.toString());
+    }
   }
 
-  void selectBank(BankInstitution? selectedBank) {
-    state = state.copyWith(selectedBank: selectedBank);
+  Future<void> selectBank(BankInstitution? selectedBank) async {
+    state = state.copyWith(selectedBank: selectedBank, paymentAuth: null);
+
+    final paymentDetails = state.paymentDetails;
+
+    if (paymentDetails == null || selectedBank == null) {
+      return;
+    }
+
+    final body = paymentDetails.toBody(
+      institutionId: selectedBank.id,
+      features: selectedBank.features,
+    );
+
+    try {
+      final paymentAuth = await _atoa.getPaymentAuth(body);
+
+      state = state.copyWith(paymentAuth: paymentAuth);
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

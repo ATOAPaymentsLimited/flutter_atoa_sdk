@@ -10,9 +10,8 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentAuthRequestBodyImpl(
       merchantId: json['merchantId'] as String,
-      consumerId: json['consumerId'] as String,
+      uniqueUserId: json['consumerId'] as String,
       merchantName: json['merchantName'] as String,
-      consumerName: json['consumerName'] as String,
       amount: Amount.fromJson(json['amount'] as Map<String, dynamic>),
       applicationUserId: json['applicationUserId'] as String,
       institutionId: json['institutionId'] as String,
@@ -21,8 +20,9 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
       features: (json['features'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      deviceOrigin:
-          $enumDecode(_$PaymentDeviceOriginEnumEnumMap, json['deviceOrigin']),
+      deviceOrigin: json['deviceOrigin'] as String,
+      totalAmountDue: json['totalAmountDue'] as num,
+      userName: json['consumerName'] as String? ?? '',
       paymentRequest: json['paymentRequest'] == null
           ? const PaymentAuthPaymentRequest(paymentType: 'TRANSACTION')
           : PaymentAuthPaymentRequest.fromJson(
@@ -32,7 +32,9 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
       callbackParams: json['callbackParams'] as String?,
       paymentLinkId: json['paymentLinkId'] as String?,
       paymentRequestSource: json['paymentRequestSource'] == null
-          ? null
+          ? const PaymentRequestWithSource(
+              paymentRequestSourcetype:
+                  PaymentRequestSourceEnum.EXTERNAL_MERCHANT)
           : PaymentRequestWithSource.fromJson(
               json['paymentRequestSource'] as Map<String, dynamic>),
       paymentSourceType: json['paymentSourceType'] as int?,
@@ -48,20 +50,29 @@ Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
     _$PaymentAuthRequestBodyImpl instance) {
   final val = <String, dynamic>{
     'merchantId': instance.merchantId,
-    'consumerId': instance.consumerId,
+    'consumerId': instance.uniqueUserId,
     'merchantName': instance.merchantName,
-    'consumerName': instance.consumerName,
     'amount': instance.amount,
     'applicationUserId': instance.applicationUserId,
     'institutionId': instance.institutionId,
     'taxPercentage': instance.taxPercentage,
     'servicePercentage': instance.servicePercentage,
     'features': instance.features,
-    'deviceOrigin': _toJsonFromPaymentDeviceOriginEnum(instance.deviceOrigin),
+    'deviceOrigin': instance.deviceOrigin,
+    'totalAmountDue': instance.totalAmountDue,
+    'consumerName': instance.userName,
     'paymentRequest': instance.paymentRequest,
     'employeeId': instance.employeeId,
     'encryptedNotesDetails': instance.encryptedNotesDetails,
     'callbackParams': instance.callbackParams,
+    'paymentDevice': {
+      "platform": "MacIntel",
+      "osVersion": null,
+      "browser": "Chrome",
+      "manufacturer": null,
+      "model": null,
+      "deviceMemory": 8
+    }
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -80,8 +91,3 @@ Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
   writeNotNull('merchantPaymentOptions', instance.merchantPaymentOptions);
   return val;
 }
-
-const _$PaymentDeviceOriginEnumEnumMap = {
-  PaymentDeviceOriginEnum.CONSUMER_APP_ANDROID: 'CONSUMER_APP_ANDROID',
-  PaymentDeviceOriginEnum.CONSUMER_APP_IOS: 'CONSUMER_APP_IOS',
-};
