@@ -37,7 +37,15 @@ class _ConnectBankPageState extends State<ConnectBankPage>
         canPop: !context.read<BankInstitutionsState>().isLoading,
         child:
             FailureListener<BankInstitutionsController, BankInstitutionsState>(
-          message: (state) => state.errorMessage,
+          message: (state) {
+            final e = state.error;
+
+            if (e is AtoaException) {
+              return e.message;
+            }
+
+            return e?.toString();
+          },
           child: Scaffold(
             backgroundColor: context.regalColor.snowWhite,
             body: Column(

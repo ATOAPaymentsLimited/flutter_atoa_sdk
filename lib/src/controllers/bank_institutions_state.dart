@@ -4,7 +4,7 @@ part of 'bank_institutions_controller.dart';
 class BankInstitutionsState with _$BankInstitutionsState {
   const factory BankInstitutionsState({
     @Default([]) List<BankInstitution> bankList,
-    String? errorMessage,
+    Exception? error,
     bool? isBankAppInstalled,
     @Default(false) bool isLoading,
     @Default(false) bool showPersonal,

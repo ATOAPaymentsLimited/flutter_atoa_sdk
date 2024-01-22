@@ -29,15 +29,11 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         isLoading: false,
       );
     } on AtoaException catch (e) {
-      state = state.copyWith(
-        errorMessage: e.message,
-      );
-    } catch (e) {
-      state = state.copyWith(
-        errorMessage: e.toString(),
-      );
+      state = state.copyWith(error: e, isLoading: false);
+    } on Exception catch (e) {
+      state = state.copyWith(error: e, isLoading: false);
     } finally {
-      state = state.copyWith(errorMessage: null, isLoading: false);
+      state = state.copyWith(error: null, isLoading: false);
     }
 
     try {
@@ -48,16 +44,16 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(
         isBankAppInstalled: null,
         paymentDetails: null,
-        errorMessage: e.message,
+        error: e,
       );
-    } catch (e) {
+    } on Exception catch (e) {
       state = state.copyWith(
         isBankAppInstalled: null,
         paymentDetails: null,
-        errorMessage: e.toString(),
+        error: e,
       );
     } finally {
-      state = state.copyWith(errorMessage: null);
+      state = state.copyWith(error: null, isLoading: false);
     }
   }
 
@@ -99,13 +95,18 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         default:
           break;
       }
-    } catch (e) {
-      state = state.copyWith(errorMessage: e.toString());
+    } on Exception catch (e) {
+      state = state.copyWith(error: e);
+    } finally {
+      state = state.copyWith(error: null, isLoading: false);
     }
   }
 
   Future<void> selectBank(BankInstitution? selectedBank) async {
-    state = state.copyWith(selectedBank: selectedBank, paymentAuth: null);
+    state = state.copyWith(
+      selectedBank: selectedBank,
+      paymentAuth: null,
+    );
 
     final paymentDetails = state.paymentDetails;
 
@@ -127,16 +128,16 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(
         selectedBank: null,
         paymentAuth: null,
-        errorMessage: e.message,
+        error: e,
       );
-    } catch (e) {
+    } on Exception catch (e) {
       state = state.copyWith(
         selectedBank: null,
         paymentAuth: null,
-        errorMessage: e.toString(),
+        error: e,
       );
     } finally {
-      state = state.copyWith(errorMessage: null);
+      state = state.copyWith(error: null, isLoading: false);
     }
   }
 
