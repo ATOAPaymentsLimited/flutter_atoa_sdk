@@ -42,7 +42,7 @@ class AppCheckWarningCard extends StatelessWidget {
               ? null
               : state.urlSchemeEmptyFromApi && state.isBankAppInstalled!
                   ? _containerCard(
-                      margin: Spacing.large.top + Spacing.xtraLarge.top,
+                      margin: Spacing.small.top,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -64,7 +64,7 @@ class AppCheckWarningCard extends StatelessWidget {
                     )
                   : !state.isBankAppInstalled!
                       ? _containerCard(
-                          margin: Spacing.large.top,
+                          margin: Spacing.small.top,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [

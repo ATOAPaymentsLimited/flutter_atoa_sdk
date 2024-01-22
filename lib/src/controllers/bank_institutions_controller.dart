@@ -46,11 +46,13 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(paymentDetails: paymentRes);
     } on AtoaException catch (e) {
       state = state.copyWith(
+        isBankAppInstalled: null,
         paymentDetails: null,
         errorMessage: e.message,
       );
     } catch (e) {
       state = state.copyWith(
+        isBankAppInstalled: null,
         paymentDetails: null,
         errorMessage: e.toString(),
       );
