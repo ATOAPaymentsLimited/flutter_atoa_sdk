@@ -26,12 +26,12 @@ class RequestInterceptor extends QueuedInterceptor {
         ...options.headers,
         HttpHeaders.authorizationHeader: 'Bearer $_apiKey',
       },
-      path: isInstitutionEndpoing
-          ? null
-          : switch (_env) {
-              AtoaEnv.sandbox => '${options.path}&env=SANDBOX',
-              AtoaEnv.prod => null,
-            },
+      // path: isInstitutionEndpoing
+      //     ? null
+      //     : switch (_env) {
+      //         AtoaEnv.sandbox => '${options.path}&env=SANDBOX',
+      //         AtoaEnv.prod => null,
+      //       },
     );
 
     return handler.next(newOptions);

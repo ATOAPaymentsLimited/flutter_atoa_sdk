@@ -16,18 +16,29 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  MaterialApp getApp(BuildContext context, bool hasTheme) {
+  final textController = TextEditingController();
+  MaterialApp getApp(BuildContext context) {
     return MaterialApp(
       theme: kThemeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      home: Builder(builder: (context) {
-        return Scaffold(
-          body: const Center(
-            child: Text('Hello World!'),
+      home: Builder(
+        builder: (context) => Scaffold(
+          body: Center(
+            child: Padding(
+              padding: Spacing.medium.x,
+              child: TextField(
+                controller: textController,
+                decoration: const InputDecoration(hintText: 'Payment ID'),
+              ),
+            ),
           ),
-          floatingActionButton: hasTheme ? const ActionButton() : null,
-        );
-      }),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: ActionButton(
+            controller: textController,
+          ),
+        ),
+      ),
     );
   }
 
@@ -43,46 +54,53 @@ class _MainAppState extends State<MainApp> {
                 prefs: snapshot.data!,
                 builder: (context, themeMode, child) => Builder(
                   builder: (context) {
-                    return getApp(context, true);
+                    return getApp(context);
                   },
                 ),
               );
             }
-            return getApp(context, false);
+            return getApp(context);
           },
         ),
       );
-}
-
-class ActionButton extends StatefulWidget {
-  const ActionButton({Key? key}) : super(key: key);
 
   @override
-  State<ActionButton> createState() => _ActionButtonState();
-}
-
-class _ActionButtonState extends State<ActionButton> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future<void>.delayed(
-        const Duration(seconds: 1),
-        () => _showSheet(context),
-      );
-    });
+  void dispose() {
+    textController.dispose();
+    super.dispose();
   }
+}
+
+class ActionButton extends StatelessWidget {
+  const ActionButton({
+    super.key,
+    required this.controller,
+  });
+
+  final TextEditingController controller;
 
   void _showSheet(BuildContext context) {
     AtoaSdk.show(
       context,
-      paymentId: 'f7f76918-8b9c-43ef-be4e-526a30ca0851',
+      paymentId: controller.text.trim(),
     );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(onPressed: () => _showSheet(context));
-  }
+  Widget build(BuildContext context) => ValueListenableBuilder(
+        valueListenable: controller,
+        child: Text(
+          'Initiate Payment',
+          style: context.montserrat.headlineSmall.copyWith(
+            color: RegalColors.snowWhite,
+          ),
+        ),
+        builder: (context, value, child) {
+          return ElevatedButton(
+            onPressed:
+                value.text.trim().isEmpty ? null : () => _showSheet(context),
+            child: child!,
+          );
+        },
+      );
 }

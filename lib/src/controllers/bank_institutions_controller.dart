@@ -20,19 +20,43 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
   Future<void> fetchBanks() async {
     state = state.copyWith(isLoading: true);
-    final res = await _atoa.fetchInstitutions();
 
-    state = state.copyWith(
-      bankList: res,
-      isLoading: false,
-    );
+    try {
+      final res = await _atoa.fetchInstitutions();
 
-    final paymentRes = await _atoa.getPaymentDetails(paymentId);
+      state = state.copyWith(
+        bankList: res,
+        isLoading: false,
+      );
+    } on AtoaException catch (e) {
+      state = state.copyWith(
+        errorMessage: e.message,
+      );
+    } catch (e) {
+      state = state.copyWith(
+        errorMessage: e.toString(),
+      );
+    } finally {
+      state = state.copyWith(errorMessage: null, isLoading: false);
+    }
 
-    state = state.copyWith(
-      paymentDetails: paymentRes,
-      isLoading: false,
-    );
+    try {
+      final paymentRes = await _atoa.getPaymentDetails(paymentId);
+
+      state = state.copyWith(paymentDetails: paymentRes);
+    } on AtoaException catch (e) {
+      state = state.copyWith(
+        paymentDetails: null,
+        errorMessage: e.message,
+      );
+    } catch (e) {
+      state = state.copyWith(
+        paymentDetails: null,
+        errorMessage: e.toString(),
+      );
+    } finally {
+      state = state.copyWith(errorMessage: null);
+    }
   }
 
   void authorizeBank() {
