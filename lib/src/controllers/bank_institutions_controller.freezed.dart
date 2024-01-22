@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BankInstitutionsState {
   List<BankInstitution> get bankList => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
-  bool get isBankAppInstalled => throw _privateConstructorUsedError;
+  bool? get isBankAppInstalled => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get showPersonal => throw _privateConstructorUsedError;
   BankInstitution? get selectedBank => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $BankInstitutionsStateCopyWith<$Res> {
   $Res call(
       {List<BankInstitution> bankList,
       String? errorMessage,
-      bool isBankAppInstalled,
+      bool? isBankAppInstalled,
       bool isLoading,
       bool showPersonal,
       BankInstitution? selectedBank,
@@ -67,7 +67,7 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
   $Res call({
     Object? bankList = null,
     Object? errorMessage = freezed,
-    Object? isBankAppInstalled = null,
+    Object? isBankAppInstalled = freezed,
     Object? isLoading = null,
     Object? showPersonal = null,
     Object? selectedBank = freezed,
@@ -83,10 +83,10 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      isBankAppInstalled: null == isBankAppInstalled
+      isBankAppInstalled: freezed == isBankAppInstalled
           ? _value.isBankAppInstalled
           : isBankAppInstalled // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
   $Res call(
       {List<BankInstitution> bankList,
       String? errorMessage,
-      bool isBankAppInstalled,
+      bool? isBankAppInstalled,
       bool isLoading,
       bool showPersonal,
       BankInstitution? selectedBank,
@@ -188,7 +188,7 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? bankList = null,
     Object? errorMessage = freezed,
-    Object? isBankAppInstalled = null,
+    Object? isBankAppInstalled = freezed,
     Object? isLoading = null,
     Object? showPersonal = null,
     Object? selectedBank = freezed,
@@ -204,10 +204,10 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      isBankAppInstalled: null == isBankAppInstalled
+      isBankAppInstalled: freezed == isBankAppInstalled
           ? _value.isBankAppInstalled
           : isBankAppInstalled // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -239,7 +239,7 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
   const _$BankInstitutionsStateImpl(
       {final List<BankInstitution> bankList = const [],
       this.errorMessage,
-      this.isBankAppInstalled = false,
+      this.isBankAppInstalled,
       this.isLoading = false,
       this.showPersonal = false,
       this.selectedBank,
@@ -260,8 +260,7 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
   @override
   final String? errorMessage;
   @override
-  @JsonKey()
-  final bool isBankAppInstalled;
+  final bool? isBankAppInstalled;
   @override
   @JsonKey()
   final bool isLoading;
@@ -341,7 +340,7 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   const factory _BankInstitutionsState(
       {final List<BankInstitution> bankList,
       final String? errorMessage,
-      final bool isBankAppInstalled,
+      final bool? isBankAppInstalled,
       final bool isLoading,
       final bool showPersonal,
       final BankInstitution? selectedBank,
@@ -354,7 +353,7 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   @override
   String? get errorMessage;
   @override
-  bool get isBankAppInstalled;
+  bool? get isBankAppInstalled;
   @override
   bool get isLoading;
   @override

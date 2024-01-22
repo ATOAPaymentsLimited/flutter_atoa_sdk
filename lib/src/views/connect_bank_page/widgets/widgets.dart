@@ -5,3 +5,6 @@ export 'bank_tab_bar.dart';
 export 'banks_grid_view.dart';
 export 'connect_bank_body.dart';
 export 'continue_button.dart';
+export 'legal_text.dart';
+export 'payment_page_app_bar.dart';
+export 'terms_and_privacy_text.dart';

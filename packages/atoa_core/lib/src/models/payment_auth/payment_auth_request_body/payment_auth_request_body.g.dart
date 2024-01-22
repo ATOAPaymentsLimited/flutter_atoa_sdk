@@ -65,14 +65,6 @@ Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
     'employeeId': instance.employeeId,
     'encryptedNotesDetails': instance.encryptedNotesDetails,
     'callbackParams': instance.callbackParams,
-    'paymentDevice': {
-      "platform": "MacIntel",
-      "osVersion": null,
-      "browser": "Chrome",
-      "manufacturer": null,
-      "model": null,
-      "deviceMemory": 8
-    }
   };
 
   void writeNotNull(String key, dynamic value) {

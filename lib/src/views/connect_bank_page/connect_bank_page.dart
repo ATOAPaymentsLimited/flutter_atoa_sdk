@@ -1,3 +1,4 @@
+import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_sdk/atoa_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,58 +35,22 @@ class _ConnectBankPageState extends State<ConnectBankPage>
   @override
   Widget build(BuildContext context) => PopScope(
         canPop: !context.read<BankInstitutionsState>().isLoading,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Scaffold(
-              backgroundColor: context.regalColor.snowWhite,
-              // appBar: AppBar(
-              //   automaticallyImplyLeading: false,
-              //   leading: showBackButton
-              //       ? Builder(
-              //           builder: (context) {
-              //             final isProcessing = context.select(
-              //               (BankInstitutionsController controller) =>
-              //                   controller.isLoading,
-              //             );
-              //             return CustomBackButton(isActive: !isProcessing);
-              //           },
-              //         )
-              //       : null,
-              //   title: CustomText.semantics(
-              //     context.l10n.connectYourBank,
-              //     style: context.montserrat.headlineSmall.copyWith(
-              //       fontSize: 20.sp,
-              //     ),
-              //   ),
-              //   centerTitle: true,
-              //   actions: widget.onSkip != null
-              //       ? [
-              //           Center(
-              //             child: CustomInkWell(
-              //               semanticsLabel: context.l10n.skip,
-              //               context: context,
-              //               trackLabel: 'Skip',
-              //               onTap: () => widget.onSkip?.call(context),
-              //               borderRadius:
-              //                   BorderRadius.circular(Spacing.small.value),
-              //               child: Padding(
-              //                 padding: Spacing.xtraLarge.x + Spacing.mini.y,
-              //                 child: CustomText.semantics(
-              //                   context.l10n.skip,
-              //                   style: context.labelMedium?.copyWith(
-              //                     color: context.regalColor.vividRed,
-              //                   ),
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //         ]
-              //       : null,
-              // ),
-              body: const ConnectBankBody(),
+        child:
+            FailureListener<BankInstitutionsController, BankInstitutionsState>(
+          message: (state) => state.errorMessage,
+          child: Scaffold(
+            backgroundColor: context.regalColor.snowWhite,
+            body: Column(
+              children: [
+                Selector<BankInstitutionsState, PaymentRequestData?>(
+                  selector: (_, state) => state.paymentDetails,
+                  builder: (context, paymentDetails, child) =>
+                      PaymentPageAppBar(paymentRequestData: paymentDetails),
+                ),
+                const Expanded(child: ConnectBankBody()),
+              ],
             ),
-          ],
+          ),
         ),
       );
 }
