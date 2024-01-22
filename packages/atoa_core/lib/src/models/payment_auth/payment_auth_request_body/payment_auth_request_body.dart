@@ -47,8 +47,3 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
   factory PaymentAuthRequestBody.fromJson(Map<String, dynamic> json) =>
       _$PaymentAuthRequestBodyFromJson(json);
 }
-
-enum PaymentDeviceOriginEnum {
-  CONSUMER_APP_ANDROID,
-  CONSUMER_APP_IOS,
-}
