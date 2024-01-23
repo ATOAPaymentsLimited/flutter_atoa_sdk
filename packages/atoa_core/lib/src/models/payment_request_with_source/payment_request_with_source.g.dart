@@ -9,10 +9,9 @@ part of 'payment_request_with_source.dart';
 _$PaymentRequestWithSourceImpl _$$PaymentRequestWithSourceImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentRequestWithSourceImpl(
-      paymentRequestSourcetype:
-          _jsonToEnum(json['paymentRequestSourcetype'] as int),
+      paymentRequestId: json['paymentRequestId'] as String,
+      paymentRequestSourcetype: json['paymentRequestSourcetype'] as int? ?? 3,
       qrId: json['qrId'] as String?,
-      paymentRequestId: json['paymentRequestId'] as String?,
       paymentLinkId: json['paymentLinkId'] as String?,
       paymentRequest: json['paymentRequest'] as String?,
       auditTrailDetails: json['auditTrailDetails'] == null
@@ -29,8 +28,8 @@ _$PaymentRequestWithSourceImpl _$$PaymentRequestWithSourceImplFromJson(
 Map<String, dynamic> _$$PaymentRequestWithSourceImplToJson(
     _$PaymentRequestWithSourceImpl instance) {
   final val = <String, dynamic>{
-    'paymentRequestSourcetype':
-        _parseEnumToIndex(instance.paymentRequestSourcetype),
+    'paymentRequestId': instance.paymentRequestId,
+    'paymentRequestSourcetype': instance.paymentRequestSourcetype,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -40,7 +39,6 @@ Map<String, dynamic> _$$PaymentRequestWithSourceImplToJson(
   }
 
   writeNotNull('qrId', instance.qrId);
-  writeNotNull('paymentRequestId', instance.paymentRequestId);
   writeNotNull('paymentLinkId', instance.paymentLinkId);
   writeNotNull('paymentRequest', instance.paymentRequest);
   writeNotNull('auditTrailDetails', instance.auditTrailDetails);

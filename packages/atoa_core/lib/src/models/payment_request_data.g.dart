@@ -24,9 +24,6 @@ _$PaymentRequestDataImpl _$$PaymentRequestDataImplFromJson(
       splitOutstandingAmount:
           (json['splitOutstandingAmount'] as num?)?.toDouble(),
       callbackParams: json['callbackParams'] as String?,
-      tipInfo: json['tipInfo'] == null
-          ? null
-          : TipsInfo.fromJson(json['tipInfo'] as Map<String, dynamic>),
       notes: json['notes'] as String?,
       storeImg: json['storeImg'] as String?,
       contextType: json['contextType'] as String?,
@@ -66,7 +63,6 @@ Map<String, dynamic> _$$PaymentRequestDataImplToJson(
     'merchantNotes': instance.merchantNotes,
     'splitOutstandingAmount': instance.splitOutstandingAmount,
     'callbackParams': instance.callbackParams,
-    'tipInfo': instance.tipInfo,
     'notes': instance.notes,
     'storeImg': instance.storeImg,
     'contextType': instance.contextType,

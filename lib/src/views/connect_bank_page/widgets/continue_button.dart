@@ -4,9 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-class CotinueButton extends StatelessWidget {
+class CotinueButton extends StatefulWidget {
   const CotinueButton({super.key});
 
+  @override
+  State<CotinueButton> createState() => _CotinueButtonState();
+}
+
+class _CotinueButtonState extends State<CotinueButton> {
   @override
   Widget build(BuildContext context) => SizedBox(
         height: 60.sp,
@@ -15,7 +20,15 @@ class CotinueButton extends StatelessWidget {
           builder: (_, state, child) => RegalButton.primary(
             onPressed: state.paymentAuth == null
                 ? null
-                : context.read<BankInstitutionsController>().authorizeBank,
+                : () async {
+                    final launchApp = await context
+                        .read<BankInstitutionsController>()
+                        .authorizeBank();
+
+                    if ((launchApp ?? false) && mounted) {
+                      Navigator.pop(context);
+                    }
+                  },
             trackLabel: 'Continue Button',
             enableTracking: false,
             loading: state.isLoading,

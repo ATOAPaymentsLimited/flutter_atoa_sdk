@@ -37,7 +37,6 @@ mixin _$PaymentRequestData {
   @JsonKey(includeFromJson: false, includeToJson: false)
   PaymentRequestWithSource? get paymentRequestSource =>
       throw _privateConstructorUsedError;
-  TipsInfo? get tipInfo => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   String? get storeImg => throw _privateConstructorUsedError;
   String? get contextType => throw _privateConstructorUsedError;
@@ -87,7 +86,6 @@ abstract class $PaymentRequestDataCopyWith<$Res> {
       String? callbackParams,
       @JsonKey(includeFromJson: false, includeToJson: false)
       PaymentRequestWithSource? paymentRequestSource,
-      TipsInfo? tipInfo,
       String? notes,
       String? storeImg,
       String? contextType,
@@ -104,7 +102,6 @@ abstract class $PaymentRequestDataCopyWith<$Res> {
 
   $AmountCopyWith<$Res> get amount;
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
-  $TipsInfoCopyWith<$Res>? get tipInfo;
   $FraudDetailsCopyWith<$Res>? get fraudDetails;
   $StoreDetailsCopyWith<$Res>? get storeDetails;
   $MerchantPayeeAddressCopyWith<$Res>? get address;
@@ -138,7 +135,6 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     Object? splitOutstandingAmount = freezed,
     Object? callbackParams = freezed,
     Object? paymentRequestSource = freezed,
-    Object? tipInfo = freezed,
     Object? notes = freezed,
     Object? storeImg = freezed,
     Object? contextType = freezed,
@@ -214,10 +210,6 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
           ? _value.paymentRequestSource
           : paymentRequestSource // ignore: cast_nullable_to_non_nullable
               as PaymentRequestWithSource?,
-      tipInfo: freezed == tipInfo
-          ? _value.tipInfo
-          : tipInfo // ignore: cast_nullable_to_non_nullable
-              as TipsInfo?,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -296,18 +288,6 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
 
   @override
   @pragma('vm:prefer-inline')
-  $TipsInfoCopyWith<$Res>? get tipInfo {
-    if (_value.tipInfo == null) {
-      return null;
-    }
-
-    return $TipsInfoCopyWith<$Res>(_value.tipInfo!, (value) {
-      return _then(_value.copyWith(tipInfo: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $FraudDetailsCopyWith<$Res>? get fraudDetails {
     if (_value.fraudDetails == null) {
       return null;
@@ -368,7 +348,6 @@ abstract class _$$PaymentRequestDataImplCopyWith<$Res>
       String? callbackParams,
       @JsonKey(includeFromJson: false, includeToJson: false)
       PaymentRequestWithSource? paymentRequestSource,
-      TipsInfo? tipInfo,
       String? notes,
       String? storeImg,
       String? contextType,
@@ -387,8 +366,6 @@ abstract class _$$PaymentRequestDataImplCopyWith<$Res>
   $AmountCopyWith<$Res> get amount;
   @override
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
-  @override
-  $TipsInfoCopyWith<$Res>? get tipInfo;
   @override
   $FraudDetailsCopyWith<$Res>? get fraudDetails;
   @override
@@ -423,7 +400,6 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
     Object? splitOutstandingAmount = freezed,
     Object? callbackParams = freezed,
     Object? paymentRequestSource = freezed,
-    Object? tipInfo = freezed,
     Object? notes = freezed,
     Object? storeImg = freezed,
     Object? contextType = freezed,
@@ -499,10 +475,6 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
           ? _value.paymentRequestSource
           : paymentRequestSource // ignore: cast_nullable_to_non_nullable
               as PaymentRequestWithSource?,
-      tipInfo: freezed == tipInfo
-          ? _value.tipInfo
-          : tipInfo // ignore: cast_nullable_to_non_nullable
-              as TipsInfo?,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -579,7 +551,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
       this.callbackParams,
       @JsonKey(includeFromJson: false, includeToJson: false)
       this.paymentRequestSource,
-      this.tipInfo,
       this.notes,
       this.storeImg,
       this.contextType,
@@ -631,8 +602,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
   @JsonKey(includeFromJson: false, includeToJson: false)
   final PaymentRequestWithSource? paymentRequestSource;
   @override
-  final TipsInfo? tipInfo;
-  @override
   final String? notes;
   @override
   final String? storeImg;
@@ -675,7 +644,7 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
 
   @override
   String toString() {
-    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, tipInfo: $tipInfo, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, options: $options)';
+    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, options: $options)';
   }
 
   @override
@@ -711,7 +680,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
                 other.callbackParams == callbackParams) &&
             (identical(other.paymentRequestSource, paymentRequestSource) ||
                 other.paymentRequestSource == paymentRequestSource) &&
-            (identical(other.tipInfo, tipInfo) || other.tipInfo == tipInfo) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.storeImg, storeImg) ||
                 other.storeImg == storeImg) &&
@@ -756,7 +724,6 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
         splitOutstandingAmount,
         callbackParams,
         paymentRequestSource,
-        tipInfo,
         notes,
         storeImg,
         contextType,
@@ -805,7 +772,6 @@ abstract class _PaymentRequestData extends PaymentRequestData {
           final String? callbackParams,
           @JsonKey(includeFromJson: false, includeToJson: false)
           final PaymentRequestWithSource? paymentRequestSource,
-          final TipsInfo? tipInfo,
           final String? notes,
           final String? storeImg,
           final String? contextType,
@@ -856,8 +822,6 @@ abstract class _PaymentRequestData extends PaymentRequestData {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   PaymentRequestWithSource? get paymentRequestSource;
-  @override
-  TipsInfo? get tipInfo;
   @override
   String? get notes;
   @override

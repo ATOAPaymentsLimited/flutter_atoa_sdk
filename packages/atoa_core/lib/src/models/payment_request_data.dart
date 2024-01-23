@@ -25,7 +25,6 @@ class PaymentRequestData with _$PaymentRequestData {
     String? callbackParams,
     @JsonKey(includeFromJson: false, includeToJson: false)
     PaymentRequestWithSource? paymentRequestSource,
-    TipsInfo? tipInfo,
     String? notes,
     String? storeImg,
     String? contextType,
@@ -50,9 +49,11 @@ class PaymentRequestData with _$PaymentRequestData {
 extension PaymentRequestDataX on PaymentRequestData {
   PaymentAuthRequestBody toBody({
     required String institutionId,
+    required String paymentRequestId,
     required List<String> features,
   }) =>
       PaymentAuthRequestBody(
+        storeDetails: storeDetails,
         merchantId: merchantId,
         uniqueUserId: consumerId ?? '',
         merchantName: merchantBusinessName,
@@ -69,6 +70,13 @@ extension PaymentRequestDataX on PaymentRequestData {
         contextType: contextType,
         merchantPaymentOptions: options,
         encryptedNotesDetails: encryptedNotesDetails,
-        paymentSourceType: PaymentRequestSourceEnum.EXTERNAL_MERCHANT.index,
+        paymentSourceType: 3,
+        paymentRequestSource: PaymentRequestWithSource(
+          splitBill: splitBill,
+          allowSdkRetry: allowSdkRetry?.toString(),
+          strictExpiry: strictExpiry?.toString(),
+          expiresIn: expiresIn?.toString(),
+          paymentRequestId: paymentRequestId,
+        ),
       );
 }

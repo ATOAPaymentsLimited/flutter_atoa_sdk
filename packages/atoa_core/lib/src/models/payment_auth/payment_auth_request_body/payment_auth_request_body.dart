@@ -27,13 +27,10 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
     PaymentAuthPaymentRequest paymentRequest,
     String? employeeId,
     String? encryptedNotesDetails,
+    @JsonKey(includeIfNull: false) StoreDetails? storeDetails,
     String? callbackParams,
     @JsonKey(includeIfNull: false) String? paymentLinkId,
-    @Default(
-      PaymentRequestWithSource(
-        paymentRequestSourcetype: PaymentRequestSourceEnum.EXTERNAL_MERCHANT,
-      ),
-    )
+   
     PaymentRequestWithSource? paymentRequestSource,
     int? paymentSourceType,
     double? tipAmount,

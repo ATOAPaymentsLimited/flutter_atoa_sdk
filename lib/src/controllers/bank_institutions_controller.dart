@@ -57,10 +57,10 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     }
   }
 
-  void authorizeBank() {
+  Future<bool?> authorizeBank() async {
     final paymentAuth = state.paymentAuth;
 
-    if (paymentAuth == null) return;
+    if (paymentAuth == null) return null;
 
     try {
       switch (defaultTargetPlatform) {
@@ -73,7 +73,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
             throw Exception('Invalid Android URL: $androidUrl');
           }
 
-          launchUrl(
+          return await launchUrl(
             androidUri,
             mode: LaunchMode.externalApplication,
           );
@@ -87,7 +87,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
             throw Exception('Invalid iOS URL: $iosUrl');
           }
 
-          launchUrl(
+          return await launchUrl(
             iosUri,
             mode: LaunchMode.externalApplication,
           );
@@ -100,6 +100,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     } finally {
       state = state.copyWith(error: null, isLoading: false);
     }
+    return null;
   }
 
   Future<void> selectBank(BankInstitution? selectedBank) async {
@@ -116,6 +117,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     final body = paymentDetails.toBody(
       institutionId: selectedBank.id,
+      paymentRequestId: paymentId,
       features: selectedBank.features,
     );
 

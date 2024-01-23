@@ -41,6 +41,8 @@ mixin _$PaymentAuthRequestBody {
       throw _privateConstructorUsedError;
   String? get employeeId => throw _privateConstructorUsedError;
   String? get encryptedNotesDetails => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  StoreDetails? get storeDetails => throw _privateConstructorUsedError;
   String? get callbackParams => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get paymentLinkId => throw _privateConstructorUsedError;
@@ -84,6 +86,7 @@ abstract class $PaymentAuthRequestBodyCopyWith<$Res> {
       PaymentAuthPaymentRequest paymentRequest,
       String? employeeId,
       String? encryptedNotesDetails,
+      @JsonKey(includeIfNull: false) StoreDetails? storeDetails,
       String? callbackParams,
       @JsonKey(includeIfNull: false) String? paymentLinkId,
       PaymentRequestWithSource? paymentRequestSource,
@@ -97,6 +100,7 @@ abstract class $PaymentAuthRequestBodyCopyWith<$Res> {
 
   $AmountCopyWith<$Res> get amount;
   $PaymentAuthPaymentRequestCopyWith<$Res> get paymentRequest;
+  $StoreDetailsCopyWith<$Res>? get storeDetails;
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
 }
 
@@ -129,6 +133,7 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     Object? paymentRequest = null,
     Object? employeeId = freezed,
     Object? encryptedNotesDetails = freezed,
+    Object? storeDetails = freezed,
     Object? callbackParams = freezed,
     Object? paymentLinkId = freezed,
     Object? paymentRequestSource = freezed,
@@ -200,6 +205,10 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
           ? _value.encryptedNotesDetails
           : encryptedNotesDetails // ignore: cast_nullable_to_non_nullable
               as String?,
+      storeDetails: freezed == storeDetails
+          ? _value.storeDetails
+          : storeDetails // ignore: cast_nullable_to_non_nullable
+              as StoreDetails?,
       callbackParams: freezed == callbackParams
           ? _value.callbackParams
           : callbackParams // ignore: cast_nullable_to_non_nullable
@@ -258,6 +267,18 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
+  $StoreDetailsCopyWith<$Res>? get storeDetails {
+    if (_value.storeDetails == null) {
+      return null;
+    }
+
+    return $StoreDetailsCopyWith<$Res>(_value.storeDetails!, (value) {
+      return _then(_value.copyWith(storeDetails: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource {
     if (_value.paymentRequestSource == null) {
       return null;
@@ -295,6 +316,7 @@ abstract class _$$PaymentAuthRequestBodyImplCopyWith<$Res>
       PaymentAuthPaymentRequest paymentRequest,
       String? employeeId,
       String? encryptedNotesDetails,
+      @JsonKey(includeIfNull: false) StoreDetails? storeDetails,
       String? callbackParams,
       @JsonKey(includeIfNull: false) String? paymentLinkId,
       PaymentRequestWithSource? paymentRequestSource,
@@ -310,6 +332,8 @@ abstract class _$$PaymentAuthRequestBodyImplCopyWith<$Res>
   $AmountCopyWith<$Res> get amount;
   @override
   $PaymentAuthPaymentRequestCopyWith<$Res> get paymentRequest;
+  @override
+  $StoreDetailsCopyWith<$Res>? get storeDetails;
   @override
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
 }
@@ -342,6 +366,7 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
     Object? paymentRequest = null,
     Object? employeeId = freezed,
     Object? encryptedNotesDetails = freezed,
+    Object? storeDetails = freezed,
     Object? callbackParams = freezed,
     Object? paymentLinkId = freezed,
     Object? paymentRequestSource = freezed,
@@ -413,6 +438,10 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
           ? _value.encryptedNotesDetails
           : encryptedNotesDetails // ignore: cast_nullable_to_non_nullable
               as String?,
+      storeDetails: freezed == storeDetails
+          ? _value.storeDetails
+          : storeDetails // ignore: cast_nullable_to_non_nullable
+              as StoreDetails?,
       callbackParams: freezed == callbackParams
           ? _value.callbackParams
           : callbackParams // ignore: cast_nullable_to_non_nullable
@@ -473,10 +502,10 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
           const PaymentAuthPaymentRequest(paymentType: 'TRANSACTION'),
       this.employeeId,
       this.encryptedNotesDetails,
+      @JsonKey(includeIfNull: false) this.storeDetails,
       this.callbackParams,
       @JsonKey(includeIfNull: false) this.paymentLinkId,
-      this.paymentRequestSource = const PaymentRequestWithSource(
-          paymentRequestSourcetype: PaymentRequestSourceEnum.EXTERNAL_MERCHANT),
+      this.paymentRequestSource,
       this.paymentSourceType,
       this.tipAmount,
       @JsonKey(includeIfNull: false) this.notes,
@@ -535,12 +564,14 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   @override
   final String? encryptedNotesDetails;
   @override
+  @JsonKey(includeIfNull: false)
+  final StoreDetails? storeDetails;
+  @override
   final String? callbackParams;
   @override
   @JsonKey(includeIfNull: false)
   final String? paymentLinkId;
   @override
-  @JsonKey()
   final PaymentRequestWithSource? paymentRequestSource;
   @override
   final int? paymentSourceType;
@@ -567,7 +598,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
 
   @override
   String toString() {
-    return 'PaymentAuthRequestBody(merchantId: $merchantId, uniqueUserId: $uniqueUserId, merchantName: $merchantName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, totalAmountDue: $totalAmountDue, userName: $userName, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions)';
+    return 'PaymentAuthRequestBody(merchantId: $merchantId, uniqueUserId: $uniqueUserId, merchantName: $merchantName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, totalAmountDue: $totalAmountDue, userName: $userName, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, storeDetails: $storeDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions)';
   }
 
   @override
@@ -603,6 +634,8 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
                 other.employeeId == employeeId) &&
             (identical(other.encryptedNotesDetails, encryptedNotesDetails) ||
                 other.encryptedNotesDetails == encryptedNotesDetails) &&
+            (identical(other.storeDetails, storeDetails) ||
+                other.storeDetails == storeDetails) &&
             (identical(other.callbackParams, callbackParams) ||
                 other.callbackParams == callbackParams) &&
             (identical(other.paymentLinkId, paymentLinkId) ||
@@ -640,6 +673,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
         paymentRequest,
         employeeId,
         encryptedNotesDetails,
+        storeDetails,
         callbackParams,
         paymentLinkId,
         paymentRequestSource,
@@ -683,6 +717,7 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
           final PaymentAuthPaymentRequest paymentRequest,
           final String? employeeId,
           final String? encryptedNotesDetails,
+          @JsonKey(includeIfNull: false) final StoreDetails? storeDetails,
           final String? callbackParams,
           @JsonKey(includeIfNull: false) final String? paymentLinkId,
           final PaymentRequestWithSource? paymentRequestSource,
@@ -731,6 +766,9 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   String? get employeeId;
   @override
   String? get encryptedNotesDetails;
+  @override
+  @JsonKey(includeIfNull: false)
+  StoreDetails? get storeDetails;
   @override
   String? get callbackParams;
   @override

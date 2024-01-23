@@ -21,13 +21,10 @@ PaymentRequestWithSource _$PaymentRequestWithSourceFromJson(
 
 /// @nodoc
 mixin _$PaymentRequestWithSource {
-  @JsonKey(toJson: _parseEnumToIndex, fromJson: _jsonToEnum)
-  PaymentRequestSourceEnum get paymentRequestSourcetype =>
-      throw _privateConstructorUsedError;
+  String get paymentRequestId => throw _privateConstructorUsedError;
+  int get paymentRequestSourcetype => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get qrId => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false)
-  String? get paymentRequestId => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get paymentLinkId => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
@@ -54,10 +51,9 @@ abstract class $PaymentRequestWithSourceCopyWith<$Res> {
       _$PaymentRequestWithSourceCopyWithImpl<$Res, PaymentRequestWithSource>;
   @useResult
   $Res call(
-      {@JsonKey(toJson: _parseEnumToIndex, fromJson: _jsonToEnum)
-      PaymentRequestSourceEnum paymentRequestSourcetype,
+      {String paymentRequestId,
+      int paymentRequestSourcetype,
       @JsonKey(includeIfNull: false) String? qrId,
-      @JsonKey(includeIfNull: false) String? paymentRequestId,
       @JsonKey(includeIfNull: false) String? paymentLinkId,
       @JsonKey(includeIfNull: false) String? paymentRequest,
       @JsonKey(includeIfNull: false) AuditTrailDetails? auditTrailDetails,
@@ -84,9 +80,9 @@ class _$PaymentRequestWithSourceCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? paymentRequestId = null,
     Object? paymentRequestSourcetype = null,
     Object? qrId = freezed,
-    Object? paymentRequestId = freezed,
     Object? paymentLinkId = freezed,
     Object? paymentRequest = freezed,
     Object? auditTrailDetails = freezed,
@@ -97,17 +93,17 @@ class _$PaymentRequestWithSourceCopyWithImpl<$Res,
     Object? allowSdkRetry = freezed,
   }) {
     return _then(_value.copyWith(
+      paymentRequestId: null == paymentRequestId
+          ? _value.paymentRequestId
+          : paymentRequestId // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentRequestSourcetype: null == paymentRequestSourcetype
           ? _value.paymentRequestSourcetype
           : paymentRequestSourcetype // ignore: cast_nullable_to_non_nullable
-              as PaymentRequestSourceEnum,
+              as int,
       qrId: freezed == qrId
           ? _value.qrId
           : qrId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      paymentRequestId: freezed == paymentRequestId
-          ? _value.paymentRequestId
-          : paymentRequestId // ignore: cast_nullable_to_non_nullable
               as String?,
       paymentLinkId: freezed == paymentLinkId
           ? _value.paymentLinkId
@@ -167,10 +163,9 @@ abstract class _$$PaymentRequestWithSourceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(toJson: _parseEnumToIndex, fromJson: _jsonToEnum)
-      PaymentRequestSourceEnum paymentRequestSourcetype,
+      {String paymentRequestId,
+      int paymentRequestSourcetype,
       @JsonKey(includeIfNull: false) String? qrId,
-      @JsonKey(includeIfNull: false) String? paymentRequestId,
       @JsonKey(includeIfNull: false) String? paymentLinkId,
       @JsonKey(includeIfNull: false) String? paymentRequest,
       @JsonKey(includeIfNull: false) AuditTrailDetails? auditTrailDetails,
@@ -197,9 +192,9 @@ class __$$PaymentRequestWithSourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? paymentRequestId = null,
     Object? paymentRequestSourcetype = null,
     Object? qrId = freezed,
-    Object? paymentRequestId = freezed,
     Object? paymentLinkId = freezed,
     Object? paymentRequest = freezed,
     Object? auditTrailDetails = freezed,
@@ -210,17 +205,17 @@ class __$$PaymentRequestWithSourceImplCopyWithImpl<$Res>
     Object? allowSdkRetry = freezed,
   }) {
     return _then(_$PaymentRequestWithSourceImpl(
+      paymentRequestId: null == paymentRequestId
+          ? _value.paymentRequestId
+          : paymentRequestId // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentRequestSourcetype: null == paymentRequestSourcetype
           ? _value.paymentRequestSourcetype
           : paymentRequestSourcetype // ignore: cast_nullable_to_non_nullable
-              as PaymentRequestSourceEnum,
+              as int,
       qrId: freezed == qrId
           ? _value.qrId
           : qrId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      paymentRequestId: freezed == paymentRequestId
-          ? _value.paymentRequestId
-          : paymentRequestId // ignore: cast_nullable_to_non_nullable
               as String?,
       paymentLinkId: freezed == paymentLinkId
           ? _value.paymentLinkId
@@ -262,10 +257,9 @@ class __$$PaymentRequestWithSourceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
   const _$PaymentRequestWithSourceImpl(
-      {@JsonKey(toJson: _parseEnumToIndex, fromJson: _jsonToEnum)
-      required this.paymentRequestSourcetype,
+      {required this.paymentRequestId,
+      this.paymentRequestSourcetype = 3,
       @JsonKey(includeIfNull: false) this.qrId,
-      @JsonKey(includeIfNull: false) this.paymentRequestId,
       @JsonKey(includeIfNull: false) this.paymentLinkId,
       @JsonKey(includeIfNull: false) this.paymentRequest,
       @JsonKey(includeIfNull: false) this.auditTrailDetails,
@@ -280,14 +274,13 @@ class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
       _$$PaymentRequestWithSourceImplFromJson(json);
 
   @override
-  @JsonKey(toJson: _parseEnumToIndex, fromJson: _jsonToEnum)
-  final PaymentRequestSourceEnum paymentRequestSourcetype;
+  final String paymentRequestId;
+  @override
+  @JsonKey()
+  final int paymentRequestSourcetype;
   @override
   @JsonKey(includeIfNull: false)
   final String? qrId;
-  @override
-  @JsonKey(includeIfNull: false)
-  final String? paymentRequestId;
   @override
   @JsonKey(includeIfNull: false)
   final String? paymentLinkId;
@@ -310,7 +303,7 @@ class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
 
   @override
   String toString() {
-    return 'PaymentRequestWithSource(paymentRequestSourcetype: $paymentRequestSourcetype, qrId: $qrId, paymentRequestId: $paymentRequestId, paymentLinkId: $paymentLinkId, paymentRequest: $paymentRequest, auditTrailDetails: $auditTrailDetails, splitBill: $splitBill, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry)';
+    return 'PaymentRequestWithSource(paymentRequestId: $paymentRequestId, paymentRequestSourcetype: $paymentRequestSourcetype, qrId: $qrId, paymentLinkId: $paymentLinkId, paymentRequest: $paymentRequest, auditTrailDetails: $auditTrailDetails, splitBill: $splitBill, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry)';
   }
 
   @override
@@ -318,12 +311,12 @@ class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentRequestWithSourceImpl &&
+            (identical(other.paymentRequestId, paymentRequestId) ||
+                other.paymentRequestId == paymentRequestId) &&
             (identical(
                     other.paymentRequestSourcetype, paymentRequestSourcetype) ||
                 other.paymentRequestSourcetype == paymentRequestSourcetype) &&
             (identical(other.qrId, qrId) || other.qrId == qrId) &&
-            (identical(other.paymentRequestId, paymentRequestId) ||
-                other.paymentRequestId == paymentRequestId) &&
             (identical(other.paymentLinkId, paymentLinkId) ||
                 other.paymentLinkId == paymentLinkId) &&
             (identical(other.paymentRequest, paymentRequest) ||
@@ -346,9 +339,9 @@ class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      paymentRequestId,
       paymentRequestSourcetype,
       qrId,
-      paymentRequestId,
       paymentLinkId,
       paymentRequest,
       auditTrailDetails,
@@ -375,10 +368,9 @@ class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
 
 abstract class _PaymentRequestWithSource extends PaymentRequestWithSource {
   const factory _PaymentRequestWithSource(
-      {@JsonKey(toJson: _parseEnumToIndex, fromJson: _jsonToEnum)
-      required final PaymentRequestSourceEnum paymentRequestSourcetype,
+      {required final String paymentRequestId,
+      final int paymentRequestSourcetype,
       @JsonKey(includeIfNull: false) final String? qrId,
-      @JsonKey(includeIfNull: false) final String? paymentRequestId,
       @JsonKey(includeIfNull: false) final String? paymentLinkId,
       @JsonKey(includeIfNull: false) final String? paymentRequest,
       @JsonKey(includeIfNull: false) final AuditTrailDetails? auditTrailDetails,
@@ -393,14 +385,12 @@ abstract class _PaymentRequestWithSource extends PaymentRequestWithSource {
       _$PaymentRequestWithSourceImpl.fromJson;
 
   @override
-  @JsonKey(toJson: _parseEnumToIndex, fromJson: _jsonToEnum)
-  PaymentRequestSourceEnum get paymentRequestSourcetype;
+  String get paymentRequestId;
+  @override
+  int get paymentRequestSourcetype;
   @override
   @JsonKey(includeIfNull: false)
   String? get qrId;
-  @override
-  @JsonKey(includeIfNull: false)
-  String? get paymentRequestId;
   @override
   @JsonKey(includeIfNull: false)
   String? get paymentLinkId;

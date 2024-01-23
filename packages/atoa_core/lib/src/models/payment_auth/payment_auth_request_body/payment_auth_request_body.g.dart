@@ -29,12 +29,13 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
               json['paymentRequest'] as Map<String, dynamic>),
       employeeId: json['employeeId'] as String?,
       encryptedNotesDetails: json['encryptedNotesDetails'] as String?,
+      storeDetails: json['storeDetails'] == null
+          ? null
+          : StoreDetails.fromJson(json['storeDetails'] as Map<String, dynamic>),
       callbackParams: json['callbackParams'] as String?,
       paymentLinkId: json['paymentLinkId'] as String?,
       paymentRequestSource: json['paymentRequestSource'] == null
-          ? const PaymentRequestWithSource(
-              paymentRequestSourcetype:
-                  PaymentRequestSourceEnum.EXTERNAL_MERCHANT)
+          ? null
           : PaymentRequestWithSource.fromJson(
               json['paymentRequestSource'] as Map<String, dynamic>),
       paymentSourceType: json['paymentSourceType'] as int?,
@@ -64,7 +65,6 @@ Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
     'paymentRequest': instance.paymentRequest,
     'employeeId': instance.employeeId,
     'encryptedNotesDetails': instance.encryptedNotesDetails,
-    'callbackParams': instance.callbackParams,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -73,6 +73,8 @@ Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
     }
   }
 
+  writeNotNull('storeDetails', instance.storeDetails);
+  val['callbackParams'] = instance.callbackParams;
   writeNotNull('paymentLinkId', instance.paymentLinkId);
   val['paymentRequestSource'] = instance.paymentRequestSource;
   val['paymentSourceType'] = instance.paymentSourceType;

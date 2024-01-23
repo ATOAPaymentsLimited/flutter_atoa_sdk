@@ -24,9 +24,9 @@ class AtoaSdk {
     await showDialog<void>(
       context: context,
       useRootNavigator: false,
-      builder: (context) => StateNotifierProvider<BankInstitutionsController,
+      builder: (_) => StateNotifierProvider<BankInstitutionsController,
           BankInstitutionsState>(
-        create: (context) => BankInstitutionsController(
+        create: (_) => BankInstitutionsController(
           atoa: atoa,
           paymentId: paymentId,
         ),
