@@ -5,6 +5,12 @@ class AtoaException implements Exception {
   final String? _message;
 
   String get message => _message ?? type.message;
+
+  @override
+  String toString() => switch (type) {
+      AtoaExceptionType.custom => _message ?? AtoaExceptionType.custom.message,
+      _ => 'AtoaException(type: $type, _message: $_message)',
+    };
 }
 
 enum AtoaExceptionType {

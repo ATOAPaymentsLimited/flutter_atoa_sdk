@@ -22,7 +22,8 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     state = state.copyWith(isLoading: true);
 
     try {
-      final res = await _atoa.fetchInstitutions();
+      final res =
+          await callServer<List<BankInstitution>>(_atoa.fetchInstitutions);
 
       state = state.copyWith(
         bankList: res,
@@ -37,7 +38,8 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     }
 
     try {
-      final paymentRes = await _atoa.getPaymentDetails(paymentId);
+      final paymentRes =
+          await callServer(() => _atoa.getPaymentDetails(paymentId));
 
       state = state.copyWith(paymentDetails: paymentRes);
     } on AtoaException catch (e) {
@@ -122,7 +124,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     );
 
     try {
-      final paymentAuth = await _atoa.getPaymentAuth(body);
+      final paymentAuth = await callServer(() => _atoa.getPaymentAuth(body));
 
       state = state.copyWith(paymentAuth: paymentAuth);
       await checkBankAppAvailability();

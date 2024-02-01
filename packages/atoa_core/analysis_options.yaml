@@ -17,3 +17,4 @@ linter:
     public_member_api_docs: false
     prefer_expression_function_bodies: true
     no_default_cases: false
+    lines_longer_than_80_chars: false
