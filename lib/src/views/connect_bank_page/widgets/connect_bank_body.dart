@@ -43,8 +43,6 @@ class _ConnectBankBodyState extends State<ConnectBankBody> {
                   RegalDivider(color: context.grey.shade20),
                   Spacing.small.yBox,
                   const LegalText(),
-                  const AppCheckWarningCard(),
-                  Spacing.huge.yBox,
                   const CotinueButton(),
                   const BottomSpacer(),
                 ],

@@ -53,9 +53,7 @@ class _MainAppState extends State<MainApp> {
               return RegalThemeProvider(
                 prefs: snapshot.data!,
                 builder: (context, themeMode, child) => Builder(
-                  builder: (context) {
-                    return getApp(context);
-                  },
+                  builder: (context) => getApp(context),
                 ),
               );
             }

@@ -1,5 +1,4 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -44,13 +43,11 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(paymentDetails: paymentRes);
     } on AtoaException catch (e) {
       state = state.copyWith(
-        isBankAppInstalled: null,
         paymentDetails: null,
         error: e,
       );
     } on Exception catch (e) {
       state = state.copyWith(
-        isBankAppInstalled: null,
         paymentDetails: null,
         error: e,
       );
@@ -127,7 +124,6 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       final paymentAuth = await callServer(() => _atoa.getPaymentAuth(body));
 
       state = state.copyWith(paymentAuth: paymentAuth);
-      await checkBankAppAvailability();
     } on AtoaException catch (e) {
       state = state.copyWith(
         selectedBank: null,
@@ -143,34 +139,5 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     } finally {
       state = state.copyWith(error: null, isLoading: false);
     }
-  }
-
-  bool urlSchemeEmptyFromApi = false;
-
-  Future<void> checkBankAppAvailability() async {
-    final bankAccountAuthorization = state.paymentAuth;
-    if (bankAccountAuthorization == null) return;
-
-    if (defaultTargetPlatform == TargetPlatform.iOS) {
-      final bundleId = bankAccountAuthorization.iOSPackageName;
-      urlSchemeEmptyFromApi = !(bundleId != null && bundleId.isNotEmpty);
-    }
-
-    if (defaultTargetPlatform == TargetPlatform.android) {
-      final pkgName = bankAccountAuthorization.androidPackageName;
-      urlSchemeEmptyFromApi = !(pkgName != null && pkgName.isNotEmpty);
-    }
-
-    if (urlSchemeEmptyFromApi) {
-      state = state.copyWith(isBankAppInstalled: true);
-      return;
-    }
-
-    final result = await LaunchApp.isAppInstalled(
-      androidPackageName: bankAccountAuthorization.androidPackageName,
-      iosUrlScheme: bankAccountAuthorization.iOSPackageName,
-    );
-
-    state = state.copyWith(isBankAppInstalled: result is bool && result);
   }
 }

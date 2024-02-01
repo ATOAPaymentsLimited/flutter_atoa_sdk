@@ -5,7 +5,6 @@ class BankInstitutionsState with _$BankInstitutionsState {
   const factory BankInstitutionsState({
     @Default([]) List<BankInstitution> bankList,
     Exception? error,
-    bool? isBankAppInstalled,
     @Default(false) bool isLoading,
     @Default(false) bool showPersonal,
     BankInstitution? selectedBank,
@@ -22,11 +21,4 @@ class BankInstitutionsState with _$BankInstitutionsState {
 
   List<BankInstitution> get personalBanks =>
       bankList.where((e) => !e.businessBank).toList();
-
-  bool get urlSchemeEmptyFromApi => switch (defaultTargetPlatform) {
-        TargetPlatform.android =>
-          paymentAuth?.androidPackageName?.isEmpty ?? true,
-        TargetPlatform.iOS => paymentAuth?.iOSPackageName?.isEmpty ?? true,
-        _ => true,
-      };
 }

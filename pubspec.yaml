@@ -11,7 +11,6 @@ dependencies:
   atoa_core:
     path: packages/atoa_core
   cached_network_image: ^3.3.1
-  external_app_launcher: ^3.1.0
   flutter:
     sdk: flutter
   flutter_localizations:
