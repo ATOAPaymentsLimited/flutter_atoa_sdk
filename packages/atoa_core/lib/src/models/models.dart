@@ -14,3 +14,4 @@ export 'payment_auth_payment_request/payment_auth_payment_request.dart';
 export 'payment_request_data.dart';
 export 'payment_request_with_source/payment_request_with_source.dart';
 export 'store_details/store_details.dart';
+export 'transaction_details.dart';

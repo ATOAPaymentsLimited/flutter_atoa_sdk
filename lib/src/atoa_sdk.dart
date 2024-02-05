@@ -2,6 +2,7 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_sdk/atoa_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
 
 /// {@template atoa_sdk}
 /// Atoa Flutter SDK
@@ -13,6 +14,7 @@ class AtoaSdk {
   static Future<void> show(
     BuildContext context, {
     required String paymentId,
+    Duration period = const Duration(seconds: 1),
   }) async {
     final atoa = Atoa();
 
@@ -23,13 +25,25 @@ class AtoaSdk {
     await showDialog<void>(
       context: context,
       useRootNavigator: false,
-      builder: (_) => StateNotifierProvider<BankInstitutionsController,
-          BankInstitutionsState>(
-        create: (_) => BankInstitutionsController(
-          atoa: atoa,
-          paymentId: paymentId,
-        ),
-        builder: (context, child) => const ConnectBankPage(),
+      builder: (_) => MultiProvider(
+        providers: [
+          StateNotifierProvider<BankInstitutionsController,
+              BankInstitutionsState>(
+            create: (_) => BankInstitutionsController(
+              atoa: atoa,
+              paymentId: paymentId,
+            ),
+          ),
+          StateNotifierProvider<PaymentStatusController, PaymentStatusState>(
+            create: (_) => PaymentStatusController(
+              atoa: atoa,
+              paymentId: paymentId,
+              period: period,
+            ),
+          ),
+        ],
+        builder: (_, child) => child!,
+        child: const ConnectBankPage(),
       ),
     );
   }
