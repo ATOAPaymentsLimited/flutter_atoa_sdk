@@ -3,6 +3,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
+import 'package:atoa_core/src/models/transaction_details.dart';
 
 /// {@template atoa_core}
 /// Atoa Flutter SDK
@@ -96,5 +97,21 @@ class Atoa {
     }
 
     return PaymentAuthResponse.fromJson(data);
+  }
+
+  Future<TransactionDetails> getPaymentStatus(String paymentRequestId) async {
+    _dioCheck();
+
+    final res = await _atoaDio!.get<Map<String, dynamic>>(
+      Endpoints.getPaymentStatus(paymentRequestId),
+    );
+
+    final data = res.data;
+
+    if (data == null) {
+      throw const AtoaException(AtoaExceptionType.noDataFound);
+    }
+
+    return TransactionDetails.fromJson(data);
   }
 }
