@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:atoa_core/atoa_core.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
@@ -10,7 +11,6 @@ part 'payment_status_controller.freezed.dart';
 class PaymentStatusController extends StateNotifier<PaymentStatusState> {
   PaymentStatusController({
     required Atoa atoa,
-    required this.paymentId,
     Duration period = const Duration(seconds: 1),
   })  : _period = period,
         _atoa = atoa,
@@ -18,22 +18,24 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
 
   final Duration _period;
   final Atoa _atoa;
-  final String paymentId;
 
-  void startListening() {
+  void startListening(String paymentIdempotencyId) {
     _subscription?.cancel();
     _subscription = null;
+
+    state = state.copyWith(started: true);
 
     _subscription = Stream.periodic(
       _period,
       (_) => callServer<TransactionDetails>(
-        () => _atoa.getPaymentStatus(paymentId),
+        () => _atoa.getPaymentStatus(paymentIdempotencyId),
       ),
     ).listen(
       (future) async {
         try {
+          final details = await future;
           state = state.copyWith(
-            details: await future,
+            details: details,
             exception: null,
           );
         } on AtoaException catch (e) {
@@ -49,6 +51,10 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
         }
       },
     );
+  }
+
+  void stop() {
+    _subscription?.cancel();
   }
 
   StreamSubscription<dynamic>? _subscription;

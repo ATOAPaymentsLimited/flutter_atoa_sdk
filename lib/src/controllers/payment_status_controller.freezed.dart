@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PaymentStatusState {
+  bool get started => throw _privateConstructorUsedError;
   TransactionDetails? get details => throw _privateConstructorUsedError;
   Exception? get exception => throw _privateConstructorUsedError;
 
@@ -30,7 +31,7 @@ abstract class $PaymentStatusStateCopyWith<$Res> {
           PaymentStatusState value, $Res Function(PaymentStatusState) then) =
       _$PaymentStatusStateCopyWithImpl<$Res, PaymentStatusState>;
   @useResult
-  $Res call({TransactionDetails? details, Exception? exception});
+  $Res call({bool started, TransactionDetails? details, Exception? exception});
 
   $TransactionDetailsCopyWith<$Res>? get details;
 }
@@ -48,10 +49,15 @@ class _$PaymentStatusStateCopyWithImpl<$Res, $Val extends PaymentStatusState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? started = null,
     Object? details = freezed,
     Object? exception = freezed,
   }) {
     return _then(_value.copyWith(
+      started: null == started
+          ? _value.started
+          : started // ignore: cast_nullable_to_non_nullable
+              as bool,
       details: freezed == details
           ? _value.details
           : details // ignore: cast_nullable_to_non_nullable
@@ -84,7 +90,7 @@ abstract class _$$PaymentStatusStateImplCopyWith<$Res>
       __$$PaymentStatusStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TransactionDetails? details, Exception? exception});
+  $Res call({bool started, TransactionDetails? details, Exception? exception});
 
   @override
   $TransactionDetailsCopyWith<$Res>? get details;
@@ -101,10 +107,15 @@ class __$$PaymentStatusStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? started = null,
     Object? details = freezed,
     Object? exception = freezed,
   }) {
     return _then(_$PaymentStatusStateImpl(
+      started: null == started
+          ? _value.started
+          : started // ignore: cast_nullable_to_non_nullable
+              as bool,
       details: freezed == details
           ? _value.details
           : details // ignore: cast_nullable_to_non_nullable
@@ -120,8 +131,13 @@ class __$$PaymentStatusStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PaymentStatusStateImpl extends _PaymentStatusState {
-  const _$PaymentStatusStateImpl({this.details, this.exception}) : super._();
+  const _$PaymentStatusStateImpl(
+      {this.started = false, this.details, this.exception})
+      : super._();
 
+  @override
+  @JsonKey()
+  final bool started;
   @override
   final TransactionDetails? details;
   @override
@@ -129,7 +145,7 @@ class _$PaymentStatusStateImpl extends _PaymentStatusState {
 
   @override
   String toString() {
-    return 'PaymentStatusState(details: $details, exception: $exception)';
+    return 'PaymentStatusState(started: $started, details: $details, exception: $exception)';
   }
 
   @override
@@ -137,13 +153,14 @@ class _$PaymentStatusStateImpl extends _PaymentStatusState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentStatusStateImpl &&
+            (identical(other.started, started) || other.started == started) &&
             (identical(other.details, details) || other.details == details) &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, details, exception);
+  int get hashCode => Object.hash(runtimeType, started, details, exception);
 
   @JsonKey(ignore: true)
   @override
@@ -155,10 +172,13 @@ class _$PaymentStatusStateImpl extends _PaymentStatusState {
 
 abstract class _PaymentStatusState extends PaymentStatusState {
   const factory _PaymentStatusState(
-      {final TransactionDetails? details,
+      {final bool started,
+      final TransactionDetails? details,
       final Exception? exception}) = _$PaymentStatusStateImpl;
   const _PaymentStatusState._() : super._();
 
+  @override
+  bool get started;
   @override
   TransactionDetails? get details;
   @override

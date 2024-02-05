@@ -98,11 +98,11 @@ class Atoa {
     return PaymentAuthResponse.fromJson(data);
   }
 
-  Future<TransactionDetails> getPaymentStatus(String paymentRequestId) async {
+  Future<TransactionDetails> getPaymentStatus(String paymentIdempotencyId) async {
     _dioCheck();
 
     final res = await _atoaDio!.get<Map<String, dynamic>>(
-      Endpoints.getPaymentStatus(paymentRequestId),
+      Endpoints.getPaymentStatus(paymentIdempotencyId),
     );
 
     final data = res.data;

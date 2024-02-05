@@ -14,7 +14,7 @@ class AtoaSdk {
   static Future<void> show(
     BuildContext context, {
     required String paymentId,
-    Duration period = const Duration(seconds: 1),
+    Duration period = const Duration(seconds: 5),
   }) async {
     final atoa = Atoa();
 
@@ -37,7 +37,6 @@ class AtoaSdk {
           StateNotifierProvider<PaymentStatusController, PaymentStatusState>(
             create: (_) => PaymentStatusController(
               atoa: atoa,
-              paymentId: paymentId,
               period: period,
             ),
           ),

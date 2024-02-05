@@ -21,12 +21,16 @@ class _CotinueButtonState extends State<CotinueButton> {
             onPressed: state.paymentAuth == null
                 ? null
                 : () async {
+                    final auth =
+                        context.read<BankInstitutionsState>().paymentAuth;
                     final launchApp = await context
                         .read<BankInstitutionsController>()
                         .authorizeBank();
 
-                    if ((launchApp ?? false) && mounted) {
-                      Navigator.pop(context);
+                    if ((launchApp ?? false) && mounted && auth != null) {
+                      context
+                          .read<PaymentStatusController>()
+                          .startListening(auth.paymentIdempotencyId);
                     }
                   },
             trackLabel: 'Continue Button',

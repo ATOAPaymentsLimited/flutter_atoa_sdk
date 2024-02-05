@@ -1,5 +1,4 @@
-import 'package:atoa_core/src/endpoints/endpoints.dart';
-import 'package:atoa_core/src/models/enums/atoa_env.dart';
+import 'package:atoa_core/atoa_core.dart';
 import 'package:dio/dio.dart';
 
 class RequestInterceptor extends QueuedInterceptor {
@@ -14,16 +13,16 @@ class RequestInterceptor extends QueuedInterceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final isInstitutionEndpoing = options.path.contains(Endpoints.institutions);
+    final isPaymentStatus = options.path.contains('payments/payment-status');
 
     final newOptions = options.copyWith(
       headers: {...options.headers},
-      // path: isInstitutionEndpoing
-      //     ? null
-      //     : switch (_env) {
-      //         AtoaEnv.sandbox => '${options.path}&env=SANDBOX',
-      //         AtoaEnv.prod => null,
-      //       },
+      path: isPaymentStatus
+          ? switch (_env) {
+              AtoaEnv.sandbox => '${options.path}?env=SANDBOX',
+              AtoaEnv.prod => null,
+            }
+          : null,
     );
 
     return handler.next(newOptions);

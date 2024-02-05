@@ -55,7 +55,15 @@ class _ConnectBankPageState extends State<ConnectBankPage>
                   builder: (context, paymentDetails, child) =>
                       PaymentPageAppBar(paymentRequestData: paymentDetails),
                 ),
-                const Expanded(child: ConnectBankBody()),
+                const Expanded(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      ConnectBankBody(),
+                      PaymentStatusView(),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
