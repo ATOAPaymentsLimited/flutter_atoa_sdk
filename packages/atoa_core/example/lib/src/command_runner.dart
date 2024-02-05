@@ -130,7 +130,6 @@ class ExampleCommandRunner extends CompletionCommandRunner<int> {
         _logger.progress('Initializing Atoa client...');
 
     try {
-      Atoa.apiKey = 'test-key';
       Atoa.env = AtoaEnv.sandbox;
 
       _atoa.initialize();

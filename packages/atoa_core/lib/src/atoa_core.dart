@@ -14,26 +14,16 @@ class Atoa {
 
   static final _instance = Atoa._();
 
-  static set apiKey(String value) {
-    _instance._apiKey = value;
-  }
-
   static set env(AtoaEnv value) {
     _instance._atoaEnv = value;
   }
 
-  String? _apiKey;
   AtoaEnv? _atoaEnv;
   AtoaDio? _atoaDio;
 
   void initialize([
     Duration connectionTimeout = const Duration(seconds: 20),
   ]) {
-    if (_apiKey == null) {
-      throw const AtoaException(
-        AtoaExceptionType.apiKeyNotProvided,
-      );
-    }
     if (_atoaEnv == null) {
       throw const AtoaException(
         AtoaExceptionType.environmentNotSet,
@@ -43,7 +33,6 @@ class Atoa {
     _atoaDio = AtoaDio(connectionTimeout)
       ..interceptors.add(
         RequestInterceptor(
-          apiKey: _apiKey!,
           env: _atoaEnv!,
         ),
       );

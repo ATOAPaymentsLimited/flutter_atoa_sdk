@@ -16,7 +16,6 @@ class AtoaSdk {
   }) async {
     final atoa = Atoa();
 
-    Atoa.apiKey = 'test-key';
     Atoa.env = AtoaEnv.sandbox;
 
     atoa.initialize();
