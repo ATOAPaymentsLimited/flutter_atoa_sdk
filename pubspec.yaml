@@ -9,7 +9,8 @@ environment:
   flutter: ">=3.10.0"
 
 dependencies:
-  atoa_core: ^1.0.1
+  atoa_core:
+    path: packages/atoa_core
   cached_network_image: ^3.3.1
   flutter:
     sdk: flutter
