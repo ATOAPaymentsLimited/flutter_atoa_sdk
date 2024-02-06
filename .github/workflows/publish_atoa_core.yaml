@@ -33,3 +33,4 @@ jobs:
           credentialJson: ${{ secrets.PUB_CREDENTIALS_JSON }}
           flutter: true
           skipTests: true
+          relativePath: packages/atoa_core

@@ -15,13 +15,8 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^5.9.0
   intl: any
-  regal:
-    git:
-      url: git@github.com:ATOAPaymentsLimited/atoa-flutter-packages.git
-      ref: v3.2.1
-      path: packages/regal
+  regal: ^3.2.3
   shared_preferences: ^2.2.2
-
 
 dev_dependencies:
   flutter_test:
