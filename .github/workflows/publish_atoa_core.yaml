@@ -19,10 +19,10 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - name: Install dependencies
-        run: flutter pub get
       - name: change dir
         run: cd packages/atoa_core
+      - name: Install dependencies
+        run: flutter pub get
       - name: Analyze
         run: flutter analyze
       - name: Format code
