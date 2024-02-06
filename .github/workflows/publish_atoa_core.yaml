@@ -14,6 +14,6 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
     with:
-      flutter_channel: 'stable'
+      dart_sdk: 'stable'
       working_directory: 'packages/atoa_core'
       pub_credentials: secrets.PUB_CREDENTIALS

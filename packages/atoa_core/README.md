@@ -10,7 +10,7 @@ Atoa Flutter SDK
 
 **❗ In order to start using Atoa Core you must have the [Dart SDK][dart_install_link] installed on your machine.**
 
-Install via `dart pub add`
+Install via `dart pub add`:
 
 ```sh
 dart pub add atoa_core
