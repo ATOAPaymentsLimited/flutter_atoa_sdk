@@ -25,6 +25,8 @@ jobs:
         run: cd example && flutter pub get && cd ..
       - name: Install dependencies
         run: flutter pub get
+      - name: Print path
+        run: pwd
       - name: Analyze
         run: flutter analyze
       - name: Format code
