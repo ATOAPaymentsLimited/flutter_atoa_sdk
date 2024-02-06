@@ -5,7 +5,7 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  release:
+  push:
     branches:
       - main
     paths:
