@@ -12,8 +12,13 @@ on:
       - packages/atoa_core/**
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
-    with:
-      dart_sdk: "stable"
-      working_directory: "packages/atoa_core"
-      pub_credentials: ${{ secrets.PUB_CREDENTIALS }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy Credentials
+        run:  echo '${{ secrets.PUB_CREDENTIALS }}' > "$HOME/.config/dart/pub-credentials.json"
+      - name: Publish
+        uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
+        with:
+          dart_sdk: "stable"
+          working_directory: "packages/atoa_core"
+          pub_credentials: secrets.PUB_CREDENTIALS
