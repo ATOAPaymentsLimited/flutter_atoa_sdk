@@ -35,17 +35,31 @@ class _ConnectBankPageState extends State<ConnectBankPage>
   @override
   Widget build(BuildContext context) => PopScope(
         canPop: !context.read<BankInstitutionsState>().isLoading,
-        child:
+        child: MultiFailureListener(
+          listeners: [
             FailureListener<BankInstitutionsController, BankInstitutionsState>(
-          message: (state) {
-            final e = state.error;
+              message: (state) {
+                final e = state.error;
 
-            if (e is AtoaException) {
-              return e.message;
-            }
+                if (e is AtoaException) {
+                  return e.message;
+                }
 
-            return e?.toString();
-          },
+                return e?.toString();
+              },
+            ),
+            FailureListener<PaymentStatusController, PaymentStatusState>(
+              message: (state) {
+                final e = state.exception;
+
+                if (e is AtoaException) {
+                  return e.message;
+                }
+
+                return e?.toString();
+              },
+            ),
+          ],
           child: Scaffold(
             backgroundColor: context.regalColor.snowWhite,
             body: Column(

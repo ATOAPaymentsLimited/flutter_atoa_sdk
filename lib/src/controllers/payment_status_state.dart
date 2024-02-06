@@ -10,5 +10,6 @@ class PaymentStatusState with _$PaymentStatusState {
 
   const PaymentStatusState._();
 
-  bool get isSuccess => details?.status.toLowerCase() == 'completed';
+  bool get isCompleted => details?.status == 'COMPLETED';
+  bool get isFailed => details?.status == 'FAILED';
 }

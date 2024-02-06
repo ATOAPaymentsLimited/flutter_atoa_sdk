@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-class FailureListener<T extends StateNotifier<S>, S> extends StatefulWidget {
+class FailureListener<T extends StateNotifier<S>, S>
+    extends SingleChildStatefulWidget {
   const FailureListener({
-    required this.child,
     required this.message,
+    this.child,
     super.key,
   });
 
-  final Widget child;
+  final Widget? child;
 
   final String? Function(S state) message;
 
   @override
-  State<FailureListener<T, S>> createState() => _FailureListenerState<T, S>();
+  SingleChildState<FailureListener<T, S>> createState() =>
+      _FailureListenerState<T, S>();
 }
 
 class _FailureListenerState<T extends StateNotifier<S>, S>
-    extends State<FailureListener<T, S>> {
+    extends SingleChildState<FailureListener<T, S>> {
   late StateNotifier<S> _controller;
   String? _previousErrorMessage;
 
@@ -30,9 +33,6 @@ class _FailureListenerState<T extends StateNotifier<S>, S>
     _controller = context.read<T>();
     _subscribe();
   }
-
-  @override
-  Widget build(BuildContext context) => widget.child;
 
   void _subscribe() {
     _controller.addListener(_onFailureChanged);
@@ -60,4 +60,8 @@ class _FailureListenerState<T extends StateNotifier<S>, S>
     }
     _previousErrorMessage = message;
   }
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) =>
+      widget.child ?? child ?? const SizedBox.shrink();
 }

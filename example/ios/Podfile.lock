@@ -1,6 +1,4 @@
 PODS:
-  - external_app_launcher (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -18,7 +16,6 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - external_app_launcher (from `.symlinks/plugins/external_app_launcher/ios`)
   - Flutter (from `Flutter`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -30,8 +27,6 @@ SPEC REPOS:
     - FMDB
 
 EXTERNAL SOURCES:
-  external_app_launcher:
-    :path: ".symlinks/plugins/external_app_launcher/ios"
   Flutter:
     :path: Flutter
   path_provider_foundation:
@@ -44,7 +39,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  external_app_launcher: ad55ac844aa21f2d2197d7cec58ff0d0dc40bbc0
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c

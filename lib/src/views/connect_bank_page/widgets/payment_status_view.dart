@@ -19,24 +19,25 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (await _successFuture.future && mounted) {
-        Navigator.pop(context);
+      final res = await _successFuture.future;
+      if (res && mounted) {
+        Navigator.pop(context, res);
       }
     });
   }
 
-  bool _markedSuccess = false;
-  void _markSuccess() {
-    if (_successFuture.isCompleted || _markedSuccess) {
+  bool _markedStatus = false;
+  void _markStatus(bool status) {
+    if (_successFuture.isCompleted || _markedStatus) {
       return;
     }
 
     context.read<PaymentStatusController>().stop();
 
-    _markedSuccess = true;
+    _markedStatus = true;
 
     Future.delayed(const Duration(seconds: 5), () {
-      _successFuture.complete(true);
+      _successFuture.complete(status);
     });
   }
 
@@ -47,14 +48,18 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
             return const SizedBox.shrink();
           }
 
-          if (state.isSuccess) {
-            _markSuccess();
+          if (state.isCompleted) {
+            _markStatus(true);
             return const DecoratedBox(
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
               child: SuccessTick(),
             );
+          }
+
+          if (state.isFailed) {
+            _markStatus(false);
           }
 
           return const DecoratedBox(

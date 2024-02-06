@@ -11,7 +11,7 @@ class AtoaSdk {
   /// {@macro atoa_sdk}
   const AtoaSdk();
 
-  static Future<void> show(
+  static Future<bool?> show(
     BuildContext context, {
     required String paymentId,
     Duration period = const Duration(seconds: 5),
@@ -22,7 +22,7 @@ class AtoaSdk {
 
     atoa.initialize();
 
-    await showDialog<void>(
+    return showDialog<bool>(
       context: context,
       useRootNavigator: false,
       builder: (_) => MultiProvider(
