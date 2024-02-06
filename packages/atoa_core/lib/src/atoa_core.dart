@@ -3,6 +3,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
+import 'package:atoa_core/src/models/models.dart';
 
 /// {@template atoa_core}
 /// Atoa Flutter SDK

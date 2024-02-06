@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:atoa_core/atoa_core.dart';
+import 'package:atoa_core/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_request_data.freezed.dart';

@@ -50,16 +50,8 @@ class PaymentDetailsCommand extends Command<int> {
 
       _logger.progress('Getting payment auth...');
 
-      final body = PaymentAuthRequestBody(
-        merchantId: res.merchantId,
-        uniqueUserId: 'flutter-sdk',
-        merchantName: res.merchantBusinessName,
-        totalAmountDue: res.amount.amount,
-        amount: res.amount,
-        applicationUserId: 'flutter-sdk',
+      final body = res.toBody(
         institutionId: 'lloyds-sandbox',
-        taxPercentage: res.taxPercentage,
-        servicePercentage: res.servicePercentage,
         features: [
           'ACCOUNTS',
           'ACCOUNT_REQUEST_DETAILS',
@@ -87,15 +79,7 @@ class PaymentDetailsCommand extends Command<int> {
           'CREATE_DOMESTIC_SINGLE_PAYMENT',
           'ACCOUNT_STATEMENT_FILE',
         ],
-        deviceOrigin: '',
-        callbackParams: res.callbackParams,
-        contextType: res.contextType,
-        employeeId: res.employeeId,
-        encryptedNotesDetails: res.encryptedNotesDetails,
-        merchantPaymentOptions: res.options,
-        notes: res.notes,
-        paymentRequestSource: res.paymentRequestSource,
-        paymentSourceType: 3,
+        paymentRequestId: paymentId,
       );
 
       final authRes = await _atoa.getPaymentAuth(body);
