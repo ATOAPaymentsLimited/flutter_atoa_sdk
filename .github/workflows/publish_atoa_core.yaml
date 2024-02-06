@@ -12,31 +12,8 @@ on:
       - packages/atoa_core/**
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-      - name: change dir
-        run: cd packages/atoa_core
-      - name: Install dependencies in example 
-        run: cd example && flutter pub get && cd ..
-      - name: Install dependencies
-        run: flutter pub get
-      - name: Print path
-        run: pwd
-      - name: Analyze
-        run: flutter analyze
-      - name: Format code
-        run: dart format --fix .
-      - name: Check Publish Warnings
-        run: dart pub publish --dry-run
-      - name: Publish
-        uses: k-paxian/dart-package-publisher@v1.5.1
-        with:
-          credentialJson: ${{ secrets.PUB_CREDENTIALS_JSON }}
-          flutter: true
-          skipTests: true
-          relativePath: packages/atoa_core
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
+    with:
+      flutter_channel: 'stable'
+      working_directory: 'packages/atoa_core'
+      pub_credentials: secrets.PUB_CREDENTIALS_JSON
