@@ -1,7 +1,9 @@
 name: atoa_sdk
 description: Atoa Flutter SDK
-version: 0.1.0+1
-publish_to: none
+version: 1.0.0
+homepage: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk
+repository: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk
+
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
