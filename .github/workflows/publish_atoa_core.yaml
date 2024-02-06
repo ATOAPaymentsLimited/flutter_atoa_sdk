@@ -12,7 +12,7 @@ on:
       - packages/atoa_core/**
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
     with:
       flutter_channel: 'stable'
       working_directory: 'packages/atoa_core'
