@@ -5,8 +5,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'transaction_details.freezed.dart';
 part 'transaction_details.g.dart';
 
+/// {@template transaction_details}
+/// Transaction Details
+/// {@endtemplate}
 @freezed
 class TransactionDetails with _$TransactionDetails {
+  /// {@macro transaction_details}
   factory TransactionDetails({
     required String paymentIdempotencyId,
     required String applicationUserId,
@@ -34,6 +38,7 @@ class TransactionDetails with _$TransactionDetails {
   }) = _TransactionDetails;
   TransactionDetails._();
 
+  /// {@macro transaction_details}
   factory TransactionDetails.fromJson(Map<String, dynamic> json) =>
       _$TransactionDetailsFromJson(json);
 

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:atoa_core/atoa_core.dart';
 import 'package:dio/dio.dart';
 
+/// method catches [DioException] and converts them into [AtoaException]
 Future<T> callServer<T>(
   FutureOr<T> Function() call,
 ) async {

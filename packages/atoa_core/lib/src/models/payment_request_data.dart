@@ -6,8 +6,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'payment_request_data.freezed.dart';
 part 'payment_request_data.g.dart';
 
+/// {@template payment_request_data}
+/// Payment Request Data
+/// {@endtemplate}
 @freezed
 class PaymentRequestData with _$PaymentRequestData {
+  /// {@macro payment_request_data}
   const factory PaymentRequestData({
     required String merchantBusinessName,
     required String merchantId,
@@ -42,6 +46,7 @@ class PaymentRequestData with _$PaymentRequestData {
 
   const PaymentRequestData._();
 
+  /// {@macro payment_request_data}
   factory PaymentRequestData.fromJson(Map<String, dynamic> json) =>
       _$PaymentRequestDataFromJson(json);
 }

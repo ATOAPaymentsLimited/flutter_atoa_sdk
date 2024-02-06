@@ -4,8 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'bank_institution.freezed.dart';
 part 'bank_institution.g.dart';
 
+/// {@template bank_institution}
+/// Bank institituion
+/// {@endtemplate}
 @freezed
 class BankInstitution with _$BankInstitution {
+  /// {@macro bank_institution}
   const factory BankInstitution({
     required String id,
     required String name,
@@ -18,6 +22,7 @@ class BankInstitution with _$BankInstitution {
 
   const BankInstitution._();
 
+  /// {@macro bank_institution}
   factory BankInstitution.fromJson(Map<String, dynamic> json) =>
       _$BankInstitutionFromJson(json);
 

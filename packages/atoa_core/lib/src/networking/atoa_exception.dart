@@ -1,4 +1,8 @@
+/// {@template atoa_exception}
+/// Atoa Exception
+/// {@endtemplate}
 class AtoaException implements Exception {
+  /// {@macro atoa_exception}
   const AtoaException(this.type, [this._message]);
 
   final AtoaExceptionType type;
@@ -14,12 +18,16 @@ class AtoaException implements Exception {
       };
 }
 
+/// {@template atoa_exception_type}
+/// Atoa Exception Type
+/// {@endtemplate}
 enum AtoaExceptionType {
   custom('you forgot to give custom message'),
   notInitialized('Client not initialized'),
   noDataFound('No data found'),
   environmentNotSet('`AtoaEnv` is not set');
 
+  /// {@macro atoa_exception_type}
   const AtoaExceptionType(this.message);
   final String message;
 }
