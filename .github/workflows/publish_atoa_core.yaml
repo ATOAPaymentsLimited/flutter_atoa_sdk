@@ -21,6 +21,8 @@ jobs:
           channel: 'stable'
       - name: change dir
         run: cd packages/atoa_core
+      - name: Install dependencies in example 
+        run: cd example && flutter pub get && cd ..
       - name: Install dependencies
         run: flutter pub get
       - name: Analyze
