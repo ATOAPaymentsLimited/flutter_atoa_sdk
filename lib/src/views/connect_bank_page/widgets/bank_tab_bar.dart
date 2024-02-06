@@ -1,4 +1,4 @@
-import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,18 +54,18 @@ class BankTabBar extends StatelessWidget {
       );
 }
 
-enum _BankType {
-  personal,
-  business,
-}
+// enum _BankType {
+//   personal,
+//   business,
+// }
 
-extension on _BankType {
-  String toText(BuildContext context) {
-    switch (this) {
-      case _BankType.personal:
-        return context.l10n.personalBanks;
-      case _BankType.business:
-        return context.l10n.businessBanks;
-    }
-  }
-}
+// extension on _BankType {
+//   String toText(BuildContext context) {
+//     switch (this) {
+//       case _BankType.personal:
+//         return context.l10n.personalBanks;
+//       case _BankType.business:
+//         return context.l10n.businessBanks;
+//     }
+//   }
+// }

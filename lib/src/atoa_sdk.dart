@@ -1,5 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
+import 'package:atoa_sdk/src/views/connect_bank_page/connect_bank_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';

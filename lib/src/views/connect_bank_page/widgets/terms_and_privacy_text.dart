@@ -1,4 +1,6 @@
-import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/l10n/l10n.dart';
+import 'package:atoa_sdk/src/static/static.dart';
+import 'package:atoa_sdk/src/views/views.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
 import 'package:atoa_sdk/src/shared_widgets/success_tick.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

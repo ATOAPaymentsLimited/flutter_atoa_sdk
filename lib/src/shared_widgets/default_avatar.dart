@@ -1,4 +1,4 @@
-import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/src/utility/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
