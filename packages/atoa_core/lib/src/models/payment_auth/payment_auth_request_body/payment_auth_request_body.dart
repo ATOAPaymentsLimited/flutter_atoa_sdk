@@ -30,7 +30,6 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
     @JsonKey(includeIfNull: false) StoreDetails? storeDetails,
     String? callbackParams,
     @JsonKey(includeIfNull: false) String? paymentLinkId,
-   
     PaymentRequestWithSource? paymentRequestSource,
     int? paymentSourceType,
     double? tipAmount,

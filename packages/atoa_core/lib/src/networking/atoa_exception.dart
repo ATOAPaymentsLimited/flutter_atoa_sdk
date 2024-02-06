@@ -8,9 +8,10 @@ class AtoaException implements Exception {
 
   @override
   String toString() => switch (type) {
-      AtoaExceptionType.custom => _message ?? AtoaExceptionType.custom.message,
-      _ => 'AtoaException(type: $type, _message: $_message)',
-    };
+        AtoaExceptionType.custom =>
+          _message ?? AtoaExceptionType.custom.message,
+        _ => 'AtoaException(type: $type, _message: $_message)',
+      };
 }
 
 enum AtoaExceptionType {
