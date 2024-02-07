@@ -1,5 +1,13 @@
 include: package:very_good_analysis/analysis_options.5.1.0.yaml
 
+analyzer:
+  language:
+    strict-raw-types: true
+    strict-casts: true
+  exclude:
+    - "lib/l10n/app_localizations_en.dart"
+    - "lib/l10n/app_localizations.dart"
+
 linter:
   rules:
     public_member_api_docs: false
