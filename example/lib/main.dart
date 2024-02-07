@@ -1,5 +1,5 @@
 import 'package:atoa_sdk/atoa_sdk.dart';
-import 'package:example/l10n/l10n.dart';
+import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
@@ -22,6 +22,7 @@ class _MainAppState extends State<MainApp> {
     return MaterialApp(
       theme: kThemeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: Builder(
         builder: (context) => Scaffold(
           body: Center(
