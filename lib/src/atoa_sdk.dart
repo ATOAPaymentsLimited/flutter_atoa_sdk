@@ -16,11 +16,12 @@ class AtoaSdk {
   static Future<bool?> show(
     BuildContext context, {
     required String paymentId,
+    required AtoaEnv env,
     Duration period = const Duration(seconds: 5),
   }) async {
     final atoa = Atoa();
 
-    Atoa.env = AtoaEnv.sandbox;
+    Atoa.env = env;
 
     atoa.initialize();
 

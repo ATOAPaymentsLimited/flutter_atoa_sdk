@@ -25,7 +25,9 @@ enum AtoaExceptionType {
   custom('you forgot to give custom message'),
   notInitialized('Client not initialized'),
   noDataFound('No data found'),
-  environmentNotSet('AtoaEnv is not set\n```Set env by Atoa.env = Atoa.sandbox ```');
+  environmentNotSet(
+    'AtoaEnv is not set\n```Set env by Atoa.env = Atoa.sandbox ```',
+  );
 
   /// {@macro atoa_exception_type}
   const AtoaExceptionType(this.message);

@@ -18,6 +18,13 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   final textController = TextEditingController();
+
+  final _envNotifier = ValueNotifier(AtoaEnv.sandbox);
+
+  AtoaEnv get env => _envNotifier.value;
+
+  set env(AtoaEnv value) => _envNotifier.value = value;
+
   MaterialApp getApp(BuildContext context) {
     return MaterialApp(
       theme: kThemeData,
@@ -26,18 +33,41 @@ class _MainAppState extends State<MainApp> {
       home: Builder(
         builder: (context) => Scaffold(
           body: Center(
-            child: Padding(
-              padding: Spacing.medium.x,
-              child: TextField(
-                controller: textController,
-                decoration: const InputDecoration(hintText: 'Payment ID'),
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: Spacing.medium.x,
+                  child: TextField(
+                    controller: textController,
+                    decoration: const InputDecoration(hintText: 'Payment ID'),
+                  ),
+                ),
+                Spacing.medium.yBox,
+                Padding(
+                  padding: Spacing.medium.x,
+                  child: ValueListenableBuilder(
+                    valueListenable: _envNotifier,
+                    builder: (_, value, Widget? child) => SwitchListTile(
+                      title: const Text('is Sandbox?'),
+                      value: env == AtoaEnv.sandbox,
+                      onChanged: (v) {
+                        env = v ? AtoaEnv.sandbox : AtoaEnv.prod;
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: ActionButton(
-            controller: textController,
+          floatingActionButton: ValueListenableBuilder(
+            valueListenable: _envNotifier,
+            builder: (_, value, Widget? child) => ActionButton(
+              controller: textController,
+              env: value,
+            ),
           ),
         ),
       ),
@@ -75,14 +105,17 @@ class ActionButton extends StatelessWidget {
   const ActionButton({
     super.key,
     required this.controller,
+    required this.env,
   });
 
   final TextEditingController controller;
+  final AtoaEnv env;
 
   void _showSheet(BuildContext context) {
     AtoaSdk.show(
       context,
       paymentId: controller.text.trim(),
+      env: env,
     );
   }
 
