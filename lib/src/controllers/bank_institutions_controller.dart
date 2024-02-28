@@ -17,6 +17,12 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   final Atoa _atoa;
   final String paymentId;
 
+  List<BankInstitution> get personalBanks =>
+      state.bankList.where((bank) => !bank.businessBank).toList();
+
+  List<BankInstitution> get businessBanks =>
+      state.bankList.where((bank) => bank.businessBank).toList();
+
   Future<void> fetchBanks() async {
     state = state.copyWith(isLoading: true);
 
