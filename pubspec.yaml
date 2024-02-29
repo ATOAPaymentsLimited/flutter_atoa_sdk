@@ -1,6 +1,6 @@
 name: atoa_sdk
 description: Atoa Flutter SDK which can be used to initiate open source payment using `paymentRequestId` generated atoa backend.
-version: 1.0.0+2
+version: 1.0.0+1
 homepage: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk
 repository: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk
 
