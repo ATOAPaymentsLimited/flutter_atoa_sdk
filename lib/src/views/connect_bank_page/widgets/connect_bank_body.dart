@@ -13,7 +13,25 @@ class ConnectBankBody extends StatefulWidget {
   State<ConnectBankBody> createState() => _ConnectBankBodyState();
 }
 
-class _ConnectBankBodyState extends State<ConnectBankBody> {
+class _ConnectBankBodyState extends State<ConnectBankBody>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) => Column(
         children: [
@@ -37,8 +55,15 @@ class _ConnectBankBodyState extends State<ConnectBankBody> {
               padding: Spacing.xtraLarge.top + Spacing.xtraLarge.x,
               child: Column(
                 children: [
-                  const Expanded(
-                    child: BanksGridView(),
+                  BankTabBar(tabController: _tabController),
+                  Expanded(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: const [
+                        BanksGridView(),
+                        BanksGridView(isBusinessBanks: true),
+                      ],
+                    ),
                   ),
                   Spacing.medium.yBox,
                   const TermsAndPrivacyText(),
