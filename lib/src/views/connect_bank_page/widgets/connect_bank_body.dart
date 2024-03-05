@@ -40,7 +40,9 @@ class _ConnectBankBodyState extends State<ConnectBankBody>
             selector: (_, state) => state.paymentDetails?.amount.amount,
             builder: (context, amount, child) => CustomText.semantics(
               amount != null ? context.l10n.amountText(amount) : '',
-              style: context.montserrat.displaySmall,
+              style: context.displaySmall!.copyWith(
+                fontFamily: 'Montserrat',
+              ),
             ),
           ),
           CustomText.semantics(

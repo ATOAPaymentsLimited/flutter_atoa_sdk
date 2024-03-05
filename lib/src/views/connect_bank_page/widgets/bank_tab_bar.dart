@@ -31,8 +31,9 @@ class BankTabBar extends StatelessWidget {
                           e,
                           CustomText.semantics(
                             e.toText(context),
-                            style: context.montserrat.bodyLarge.copyWith(
+                            style: context.bodyLarge!.copyWith(
                               fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
                               height: 1.5,
                               color: e.index == tabController.index
                                   ? RegalColors.snowWhite
