@@ -49,8 +49,9 @@ class _FailureListenerState<T extends StateNotifier<S>, S>
               backgroundColor: RegalColors.darkOrange,
               content: Text(
                 message,
-                style: context.montserrat.headlineSmall.copyWith(
+                style: context.headlineSmall?.copyWith(
                   color: Colors.white,
+                  fontFamily: 'Montserrat',
                   fontSize: 14.sp,
                 ),
               ),
