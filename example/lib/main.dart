@@ -1,7 +1,7 @@
-import 'package:atoa_sdk/atoa_sdk.dart';
 import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttersdk/home_page.dart';
 import 'package:regal/regal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,60 +17,322 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  final textController = TextEditingController();
-
-  final _envNotifier = ValueNotifier(AtoaEnv.sandbox);
-
-  AtoaEnv get env => _envNotifier.value;
-
-  set env(AtoaEnv value) => _envNotifier.value = value;
-
-  MaterialApp getApp(BuildContext context) {
+  Widget getApp() {
     return MaterialApp(
-      theme: kThemeData,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: Builder(
-        builder: (context) => Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: Spacing.medium.x,
-                  child: TextField(
-                    controller: textController,
-                    decoration: const InputDecoration(hintText: 'Payment ID'),
-                  ),
-                ),
-                Spacing.medium.yBox,
-                Padding(
-                  padding: Spacing.medium.x,
-                  child: ValueListenableBuilder(
-                    valueListenable: _envNotifier,
-                    builder: (_, value, Widget? child) => SwitchListTile(
-                      title: const Text('is Sandbox?'),
-                      value: env == AtoaEnv.sandbox,
-                      onChanged: (v) {
-                        env = v ? AtoaEnv.sandbox : AtoaEnv.prod;
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+      theme: kThemeData.copyWith(
+        textTheme: TextTheme(
+          displayLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 48.sp,
+            fontWeight: FontWeight.bold,
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: ValueListenableBuilder(
-            valueListenable: _envNotifier,
-            builder: (_, value, Widget? child) => ActionButton(
-              controller: textController,
-              env: value,
+          displayMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 36.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          displaySmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 32.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 32.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 28.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineSmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 24.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          titleLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 24.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          titleMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          titleSmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          labelLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          labelMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          labelSmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          bodySmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 11.sp,
+            fontWeight: FontWeight.w400,
+          ),
+        ).apply(
+          bodyColor: RegalColors.licoriceBlack,
+          displayColor: RegalColors.licoriceBlack,
+          fontFamily: 'Inter',
+          package: 'regal',
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            elevation: 0,
+            shape: const StadiumBorder(),
+            foregroundColor: RegalColors.snowWhite,
+            backgroundColor: RegalColors.vividRed,
+            disabledBackgroundColor: RegalColors.disabledVividRed,
+            disabledForegroundColor: Colors.white,
+            fixedSize: Size.fromHeight(60.sp),
+            textStyle: TextStyle(
+              fontFamily: 'Montserrat',
+              package: 'regal',
+              color: RegalColors.snowWhite,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          isDense: true,
+          contentPadding: Spacing.large.all,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: BorderSide(color: RegalColors.grey.shade10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: BorderSide(color: RegalColors.grey.shade10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: const BorderSide(color: RegalColors.licoriceBlack),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: BorderSide(color: RegalColors.grey.shade10),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: const BorderSide(
+              color: RegalColors.darkOrange,
+            ),
+          ),
+          errorMaxLines: 2,
+          hintStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(
+            color: RegalColors.grey.shade40,
+            height: 1.3,
+          ),
+          errorStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(
+            color: RegalColors.darkOrange,
+          ),
+          isCollapsed: true,
+          labelStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(color: RegalColors.licoriceBlack),
+          floatingLabelStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(color: RegalColors.licoriceBlack),
+        ),
       ),
+      darkTheme: kDarkThemeData.copyWith(
+        textTheme: TextTheme(
+          displayLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 48.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 36.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          displaySmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 32.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 32.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 28.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineSmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 24.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          titleLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 24.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          titleMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          titleSmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          labelLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          labelMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          labelSmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyLarge: TextStyle(
+            letterSpacing: 0,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyMedium: TextStyle(
+            letterSpacing: 0,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          bodySmall: TextStyle(
+            letterSpacing: 0,
+            fontSize: 11.sp,
+            fontWeight: FontWeight.w400,
+          ),
+        ).apply(
+          bodyColor: RegalColors.snowWhite,
+          displayColor: RegalColors.snowWhite,
+          fontFamily: 'Inter',
+          package: 'regal',
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+            backgroundColor: RegalColors.vividRed,
+            disabledBackgroundColor: RegalColors.disabledDarkVividRed,
+            foregroundColor: RegalColors.snowWhite,
+            textStyle: TextStyle(
+              fontFamily: 'Montserrat',
+              package: 'regal',
+              color: RegalColors.snowWhite,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ).copyWith(
+            elevation: const MaterialStatePropertyAll(0),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          isDense: true,
+          contentPadding: Spacing.large.all,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: BorderSide(color: RegalColors.darkGrey.shade10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: BorderSide(color: RegalColors.darkGrey.shade10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: const BorderSide(color: RegalColors.snowWhite),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: BorderSide(color: RegalColors.darkGrey.shade10),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14.sp),
+            borderSide: const BorderSide(
+              color: RegalColors.darkOrange,
+            ),
+          ),
+          errorMaxLines: 2,
+          hintStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(
+            color: RegalColors.darkGrey.shade40,
+            height: 1.3,
+          ),
+          errorStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(
+            color: RegalColors.darkOrange,
+          ),
+          isCollapsed: true,
+          labelStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(
+            color: RegalColors.grey.shade40,
+          ),
+          floatingLabelStyle: TextStyle(
+            letterSpacing: 0,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+          ).copyWith(color: RegalColors.snowWhite),
+        ),
+      ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: const HomePage(),
     );
   }
 
@@ -82,58 +344,19 @@ class _MainAppState extends State<MainApp> {
           future: SharedPreferences.getInstance(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return RegalThemeProvider(
-                prefs: snapshot.data!,
-                builder: (context, themeMode, child) => Builder(
-                  builder: (context) => getApp(context),
+              return Builder(
+                builder: (context) => RegalThemeProvider(
+                  prefs: snapshot.data!,
+                  builder: (context, themeMode, child) => Builder(
+                    builder: (context) => getApp(),
+                  ),
                 ),
               );
             }
-            return getApp(context);
+            return Builder(
+              builder: (context) => getApp(),
+            );
           },
         ),
-      );
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
-}
-
-class ActionButton extends StatelessWidget {
-  const ActionButton({
-    super.key,
-    required this.controller,
-    required this.env,
-  });
-
-  final TextEditingController controller;
-  final AtoaEnv env;
-
-  void _showSheet(BuildContext context) {
-    AtoaSdk.show(
-      context,
-      paymentId: controller.text.trim(),
-      env: env,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) => ValueListenableBuilder(
-        valueListenable: controller,
-        child: Text(
-          'Initiate Payment',
-          style: context.montserrat.headlineSmall.copyWith(
-            color: RegalColors.snowWhite,
-          ),
-        ),
-        builder: (context, value, child) {
-          return ElevatedButton(
-            onPressed:
-                value.text.trim().isEmpty ? null : () => _showSheet(context),
-            child: child!,
-          );
-        },
       );
 }
