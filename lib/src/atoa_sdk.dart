@@ -49,4 +49,15 @@ class AtoaSdk {
       ),
     );
   }
+
+  static Future<String> getPaymentRequestId({required double amount}) async {
+    final atoa = Atoa();
+    Atoa.env = AtoaEnv.prod;
+
+    atoa.initialize();
+    final paymentRequestController = PaymentRequestController(atoa: atoa);
+    final res =
+        await paymentRequestController.getPaymentRequestId(amount: amount);
+    return res;
+  }
 }

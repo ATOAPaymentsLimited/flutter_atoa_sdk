@@ -50,20 +50,16 @@ class SuccessTick extends StatelessWidget {
   final double? size;
 
   @override
-  Widget build(BuildContext context) {
-    final width = size ?? MediaQuery.of(context).size.width;
-
-    return Container(
-      width: width / 2,
-      height: width / 2,
-      padding: EdgeInsets.all(width / 8),
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: RegalColors.darkCyan,
-      ),
-      child: CustomPaint(
-        foregroundPainter: SuccessPainter(),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+        width: Spacing.large.value * 4,
+        height: Spacing.large.value * 4,
+        padding: Spacing.small.all,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: RegalColors.darkCyan,
+        ),
+        child: CustomPaint(
+          foregroundPainter: SuccessPainter(),
+        ),
+      );
 }

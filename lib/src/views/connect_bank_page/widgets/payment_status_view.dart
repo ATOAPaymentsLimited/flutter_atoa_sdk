@@ -2,6 +2,7 @@ import 'package:atoa_sdk/src/controllers/controllers.dart';
 import 'package:atoa_sdk/src/shared_widgets/success_tick.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:regal/regal.dart';
 
 class PaymentStatusView extends StatefulWidget {
   const PaymentStatusView({super.key});
@@ -23,32 +24,29 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           if (state.isCompleted) {
             _isSuccess = true;
 
-            final width = MediaQuery.of(context).size.width;
-            return Container(
-              height: width / 2,
-              width: width / 2,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SuccessTick(),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context, _isSuccess);
-                        },
-                        child: const Text('Go Back'),
-                      ),
-                    ),
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SuccessTick(),
+                Spacing.huge.yBox,
+                CustomText.semantics('£ ${state.details?.paidAmount}'),
+                Spacing.huge.yBox,
+                CustomText.semantics(state.details?.createdAt.toString() ?? ''),
+                Spacing.huge.yBox,
+                const CustomText.semantics('Successful'),
+                Spacing.huge.yBox,
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: RegalButton.primary(
+                    shrink: true,
+                    onPressed: () {
+                      Navigator.pop(context, _isSuccess);
+                    },
+                    trackLabel: 'Go Back',
+                    label: 'Go Back',
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           }
 

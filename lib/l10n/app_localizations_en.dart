@@ -25,12 +25,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
-  String get requestOtpError =>
-      'Oops! We’re having a problem sending you a PIN. Please try again.';
+  String get requestOtpError => 'Oops! We’re having a problem sending you a PIN. Please try again.';
 
   @override
-  String get validateOtpError =>
-      'Sorry, we’re having a problem validating your Secure PIN. Please try again.';
+  String get validateOtpError => 'Sorry, we’re having a problem validating your Secure PIN. Please try again.';
 
   @override
   String get registration => 'Registration';
@@ -96,8 +94,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirm => 'Confirm';
 
   @override
-  String get defaultUnknownError =>
-      'Oops! We’ve encountered a problem. Please try again. If the issue persists please message us at hello@paywithatoa.co.uk.';
+  String get defaultUnknownError => 'Oops! We’ve encountered a problem. Please try again. If the issue persists please message us at hello@paywithatoa.co.uk.';
 
   @override
   String get goBack => 'Go Back';
@@ -121,8 +118,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get offers => 'Offers';
 
   @override
-  String get searchTransactionsNotFound =>
-      'Sorry, we didn’t find any transactions!';
+  String get searchTransactionsNotFound => 'Sorry, we didn’t find any transactions!';
 
   @override
   String get noPaymentsYet => 'No payments yet,\nStart transacting now!';
@@ -158,8 +154,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get setAsPrimaryAccount => 'Set as Default';
 
   @override
-  String get bankAccSetAsPrimary =>
-      'Your Default Bank Account has been updated.';
+  String get bankAccSetAsPrimary => 'Your Default Bank Account has been updated.';
 
   @override
   String get logoutConfirmMsg => 'Are you sure you want to logout?';
@@ -237,8 +232,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get to => 'To';
 
   @override
-  String get couldNotLaunch =>
-      'Sorry, redirection failed. Please try again or email hello@paywithatoa.co.uk';
+  String get couldNotLaunch => 'Sorry, redirection failed. Please try again or email hello@paywithatoa.co.uk';
 
   @override
   String get update => 'Update';
@@ -253,8 +247,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get defaultError => 'Oops, An Error Occurred';
 
   @override
-  String get applicationLegaseeText =>
-      '©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001) and under a commercial agreement with Yapily Ltd (#10842280). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.';
+  String get applicationLegaseeText => '©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001) and under a commercial agreement with Yapily Ltd (#10842280). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.';
 
   @override
   String get instantBankPay => 'Instant Bank Pay';
@@ -266,8 +259,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phoneNumberHint => 'Mobile Number';
 
   @override
-  String get atoaFooterTextHomePage =>
-      '©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.';
+  String get atoaFooterTextHomePage => '©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.';
 
   @override
   String get splitBills => 'Split Bills';
@@ -315,8 +307,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get note => 'Note';
 
   @override
-  String get paymentFailedDesc =>
-      'Oops, this bank app is down at the moment. Atoa is working fine. Please pay with another bank.';
+  String get paymentFailedDesc => 'Oops, this bank app is down at the moment. Atoa is working fine. Please pay with another bank.';
 
   @override
   String get all => 'All';
@@ -397,15 +388,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectYourBankAccount => 'Connect your Bank Account';
 
   @override
-  String get connectYourBankAccountDesc =>
-      'Add your account details\nto receive cashback';
+  String get connectYourBankAccountDesc => 'Add your account details\nto receive cashback';
 
   @override
   String get connect => 'Connect';
 
   @override
-  String get sendReceivePaymentWithAtoa =>
-      'To send and receive payments using Atoa';
+  String get sendReceivePaymentWithAtoa => 'To send and receive payments using Atoa';
 
   @override
   String get selectYourBank => 'Select your Bank';
@@ -423,8 +412,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get and => 'and';
 
   @override
-  String get atoaPoweredByYapily =>
-      'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority';
+  String get atoaPoweredByYapily => 'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority';
 
   @override
   String get legalNameExample => 'eg. John Doe';
@@ -478,8 +466,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eMoneyAccount => 'E-Money Account';
 
   @override
-  String get limitedLiquiditySavingsAccount =>
-      'Limited Liquidity Savings Account';
+  String get limitedLiquiditySavingsAccount => 'Limited Liquidity Savings Account';
 
   @override
   String get loanAccount => 'Loan Account';
@@ -530,8 +517,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forInstantBankTransfer => 'for Instant Bank Transfer';
 
   @override
-  String get pleaseSelectAnotherBankAccount =>
-      'Please select another Bank Account';
+  String get pleaseSelectAnotherBankAccount => 'Please select another Bank Account';
 
   @override
   String get authorizationFailed => 'Authorisation Failed';
@@ -540,8 +526,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failedToConnectToYourBank => 'Failed to connect to your bank.';
 
   @override
-  String get yourBankAppMightBeDown =>
-      'Your Bank App might be down at the moment';
+  String get yourBankAppMightBeDown => 'Your Bank App might be down at the moment';
 
   @override
   String get received => 'Received';
@@ -565,8 +550,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get secureAtoa => 'Secure Atoa';
 
   @override
-  String get secureAtoaDesc =>
-      'Secure Atoa using your existing device biometrics like FaceID or Fingerprint';
+  String get secureAtoaDesc => 'Secure Atoa using your existing device biometrics like FaceID or Fingerprint';
 
   @override
   String get primaryAccount => 'Primary Account';
@@ -593,8 +577,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgetAccount => 'Forget Account';
 
   @override
-  String get cannotForgetPrimary =>
-      'Sorry, you can’t delete your Primary Account.';
+  String get cannotForgetPrimary => 'Sorry, you can’t delete your Primary Account.';
 
   @override
   String get bankAccDeleted => 'Bank Account Deleted';
@@ -621,16 +604,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingTitleStep3 => 'Pay in Store';
 
   @override
-  String get onboardingDescStep1 =>
-      'Send money and get paid back for anything, from nights out to rent!';
+  String get onboardingDescStep1 => 'Send money and get paid back for anything, from nights out to rent!';
 
   @override
-  String get onboardingDescStep2 =>
-      'Split bills equally, unequally, uniquely. Let us do the maths!';
+  String get onboardingDescStep2 => 'Split bills equally, unequally, uniquely. Let us do the maths!';
 
   @override
-  String get onboardingDescStep3 =>
-      'Earn cashback when you\npay in stores that use Atoa!';
+  String get onboardingDescStep3 => 'Earn cashback when you\npay in stores that use Atoa!';
 
   @override
   String get collect => 'Collect';
@@ -720,19 +700,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get waitingForAuthorization => 'Waiting for Authorisation';
 
   @override
-  String get errorOccurredWhileRedirectingToBank =>
-      'Sorry, an error occured while redirecting to your Bank. They may be having technical difficulties.';
+  String get errorOccurredWhileRedirectingToBank => 'Sorry, an error occured while redirecting to your Bank. They may be having technical difficulties.';
 
   @override
-  String get noContactsFoundInContactBook =>
-      'Sorry, no contacts were found in your contact book.';
+  String get noContactsFoundInContactBook => 'Sorry, no contacts were found in your contact book.';
 
   @override
   String get noResultsFor => 'No results for';
 
   @override
-  String get noSearchFoundContactSyncDescription =>
-      'Search by entering a Person’s Name, Phone Number, or Atoa ID';
+  String get noSearchFoundContactSyncDescription => 'Search by entering a Person’s Name, Phone Number, or Atoa ID';
 
   @override
   String get contactsOnAtoa => 'CONTACTS ON ATOA';
@@ -746,7 +723,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String totalAmountShouldNotBeMoreThan(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Please enter an amount below $amountString';
@@ -755,7 +736,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String enterAmountGreaterThan(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Please enter amount greater than $amountString';
@@ -764,7 +749,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String enterAmountSmallerThan(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Please enter an amount below $amountString';
@@ -774,12 +763,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get almostThere => 'Almost There!';
 
   @override
-  String get verifyingYourPaymentStatusText =>
-      'We are verifying your payment status';
+  String get verifyingYourPaymentStatusText => 'We are verifying your payment status';
 
   @override
-  String get oopsErrorOccurred =>
-      'Uh-oh! We’re sorry, an unknown error has occured. Please try again or notify us at hello@paywithatoa.co.uk.';
+  String get oopsErrorOccurred => 'Uh-oh! We’re sorry, an unknown error has occured. Please try again or notify us at hello@paywithatoa.co.uk.';
 
   @override
   String get cashback => 'Cashback';
@@ -791,8 +778,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unlock => 'Unlock';
 
   @override
-  String get blockedUserMsg =>
-      'They won’t be notified that you’ve blocked them. You’ll need to unblock them before being able to send or request payments.';
+  String get blockedUserMsg => 'They won’t be notified that you’ve blocked them. You’ll need to unblock them before being able to send or request payments.';
 
   @override
   String get yesLogoutNow => 'Logout Now';
@@ -804,8 +790,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get atoaIsLocked => 'Atoa is locked';
 
   @override
-  String get securityDesc =>
-      'Just tap your fingerprint or face ID to get started';
+  String get securityDesc => 'Just tap your fingerprint or face ID to get started';
 
   @override
   String get unblock => 'Unblock';
@@ -830,16 +815,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get blockUserDesc =>
-      'They’ll no longer be able to send or request payments from you using Atoa Pay. They won’t be notified that they’ve been blocked.';
+  String get blockUserDesc => 'They’ll no longer be able to send or request payments from you using Atoa Pay. They won’t be notified that they’ve been blocked.';
 
   @override
-  String get youHaveWonAPrizeForDownloadingAtoa =>
-      'You have won a prize\nfor joining Atoa!';
+  String get youHaveWonAPrizeForDownloadingAtoa => 'You have won a prize\nfor joining Atoa!';
 
   @override
-  String get updateDialogText =>
-      'Heads up! It seems like you\'re using an older version of Atoa Pay. Update now to get the most out of our app and enjoy the latest features.';
+  String get updateDialogText => 'Heads up! It seems like you\'re using an older version of Atoa Pay. Update now to get the most out of our app and enjoy the latest features.';
 
   @override
   String get updateAppText => '📢 Update Atoa Pay!';
@@ -853,8 +835,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get coins => 'Coins';
 
   @override
-  String get keepPaying =>
-      'Win rewards every time you\npay in-store with Atoa!';
+  String get keepPaying => 'Win rewards every time you\npay in-store with Atoa!';
 
   @override
   String get currencySymbol => '£';
@@ -866,20 +847,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noInternetConnectivity => 'No Internet Signal';
 
   @override
-  String get noInternetTitle =>
-      'Are you in the Tube? It looks like you have no signal. Please connect to Wi-Fi.';
+  String get noInternetTitle => 'Are you in the Tube? It looks like you have no signal. Please connect to Wi-Fi.';
 
   @override
-  String get serverNotReachableError =>
-      'It seems we can’t connect to our servers right now. Can I borrow some Wi-Fi from you?';
+  String get serverNotReachableError => 'It seems we can’t connect to our servers right now. Can I borrow some Wi-Fi from you?';
 
   @override
-  String get downloadAppDesc =>
-      'Please download and install your bank app to\nconnect your bank and use Atoa seamlessly';
+  String get downloadAppDesc => 'Please download and install your bank app to\nconnect your bank and use Atoa seamlessly';
 
   @override
-  String get ensureBankAppIsInstalled =>
-      'Please make sure you have a Bank App installed on your Phone in order to use Atoa Pay.';
+  String get ensureBankAppIsInstalled => 'Please make sure you have a Bank App installed on your Phone in order to use Atoa Pay.';
 
   @override
   String get downloadBankApp => 'Download the Bank App Now';
@@ -891,19 +868,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bankAppNotFound => 'Bank App Not Found';
 
   @override
-  String get noContactPermissionDesc =>
-      'We require your permission to access contacts in order to carry out payments to your friends';
+  String get noContactPermissionDesc => 'We require your permission to access contacts in order to carry out payments to your friends';
 
   @override
   String get syncContactLabel => 'Sync Contacts';
 
   @override
-  String get contactSyncConsentText =>
-      'We only store details like Name and Number of contacts for letting you do Instant Bank payments to your friends. We do not share your contacts with anyone outside of Atoa and its contracted service providers. You can read more on our ';
+  String get contactSyncConsentText => 'We only store details like Name and Number of contacts for letting you do Instant Bank payments to your friends. We do not share your contacts with anyone outside of Atoa and its contracted service providers. You can read more on our ';
 
   @override
-  String get errorOnContactSync =>
-      'Uh-oh! An error occured while syncing your contacts. Please try again.';
+  String get errorOnContactSync => 'Uh-oh! An error occured while syncing your contacts. Please try again.';
 
   @override
   String get others => 'Others';
@@ -917,13 +891,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String inviteMessageWithReferralAmount(
-      String referralCode, double referralAmount, String referralLink) {
-    final intl.NumberFormat referralAmountNumberFormat =
-        intl.NumberFormat.currency(
-            locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
-    final String referralAmountString =
-        referralAmountNumberFormat.format(referralAmount);
+  String inviteMessageWithReferralAmount(String referralCode, double referralAmount, String referralLink) {
+    final intl.NumberFormat referralAmountNumberFormat = intl.NumberFormat.currency(
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
+    final String referralAmountString = referralAmountNumberFormat.format(referralAmount);
 
     return 'Join me on Atoa Pay! It’s a fast, safe, and free way to pay and get paid for anyone with a UK Bank! Use my referral code: $referralCode and we’ll both get $referralAmountString! Sign up with this link: $referralLink';
   }
@@ -944,8 +919,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get downloadSuccessfulNotificationTitleIos => 'Download Successful';
 
   @override
-  String get downloadSuccessfulNotificationBodyIos =>
-      'File saved to : Atoa Pay>Download';
+  String get downloadSuccessfulNotificationBodyIos => 'File saved to : Atoa Pay>Download';
 
   @override
   String get downloadFailedNotificationTitleIos => 'Download Failed';
@@ -954,8 +928,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get permissionRequiredError => 'Please add the required permissions';
 
   @override
-  String get downloadFailedErrorMessage =>
-      'Oops! An error occured while downloading. Please try again!';
+  String get downloadFailedErrorMessage => 'Oops! An error occured while downloading. Please try again!';
 
   @override
   String get downloadStarted => 'Your download has started.';
@@ -969,30 +942,25 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get hashtagAlreadyExists =>
-      'This Atoa ID already exists! Please choose another.';
+  String get hashtagAlreadyExists => 'This Atoa ID already exists! Please choose another.';
 
   @override
   String get scanThisCodeToPay => 'Scan this code to pay';
 
   @override
-  String get youHaveWonAPrizeForPaying =>
-      'You Have Won a Prize for\nmaking a payment';
+  String get youHaveWonAPrizeForPaying => 'You Have Won a Prize for\nmaking a payment';
 
   @override
-  String get looksLikeYouHaveBeenReferred =>
-      'Looks like you have been invited, would you like to accept ?';
+  String get looksLikeYouHaveBeenReferred => 'Looks like you have been invited, would you like to accept ?';
 
   @override
   String get enterReferralCode => 'Enter Referral Code';
 
   @override
-  String get skipAutoReferralTitle =>
-      'Are you sure you don’t want to accept a referral?';
+  String get skipAutoReferralTitle => 'Are you sure you don’t want to accept a referral?';
 
   @override
-  String get skipAutoReferralDesc =>
-      'You will not be able to undo this action. Your friends will not receive any rewards for referring you.';
+  String get skipAutoReferralDesc => 'You will not be able to undo this action. Your friends will not receive any rewards for referring you.';
 
   @override
   String get skipReferralConfirmation => 'Continue Without Accepting';
@@ -1001,8 +969,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterDateOfBirth => 'Enter Date of Birth';
 
   @override
-  String get weCollectYourDateOfBirth =>
-      'We collect your date of birth to send you and your friends birthday reminders';
+  String get weCollectYourDateOfBirth => 'We collect your date of birth to send you and your friends birthday reminders';
 
   @override
   String get pickADate => 'Pick a date';
@@ -1017,15 +984,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ownQrErrorTitle => 'You can’t pay yourself!';
 
   @override
-  String get ownQrErrorDesc =>
-      'We couldn\'t process your transaction as you\'re trying to send money to your own bank account.';
+  String get ownQrErrorDesc => 'We couldn\'t process your transaction as you\'re trying to send money to your own bank account.';
 
   @override
   String get paymentRequestNotFound => 'Payment request not found';
 
   @override
-  String get wantToEarnMoreFreePaymentsText =>
-      'Want to get more free payments?';
+  String get wantToEarnMoreFreePaymentsText => 'Want to get more free payments?';
 
   @override
   String get referYourFriendsToAtoa => 'Refer your friends to Atoa';
@@ -1043,26 +1008,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get minutesRemaining => 'mins remaining';
 
   @override
-  String get openYourBankAppToApprove =>
-      'Make sure you approve this payment in your banking app before the timer ends';
+  String get openYourBankAppToApprove => 'Make sure you approve this payment in your banking app before the timer ends';
 
   @override
   String get openBankApp => 'Open Bank App';
 
   @override
-  String get dontPressBackOrCloseAppWhileTxn =>
-      'Do not press back or force close this app until the transaction is complete';
+  String get dontPressBackOrCloseAppWhileTxn => 'Do not press back or force close this app until the transaction is complete';
 
   @override
   String get cancelPayment => 'Cancel Payment';
 
   @override
-  String get cancelPaymentConfirmationTile =>
-      'Are you sure you want to\nCancel the payment?';
+  String get cancelPaymentConfirmationTile => 'Are you sure you want to\nCancel the payment?';
 
   @override
-  String get cancelPaymentConfirmationSubtitle =>
-      'The Payment request will get cancelled only if you have not completed the payment in your Bank App';
+  String get cancelPaymentConfirmationSubtitle => 'The Payment request will get cancelled only if you have not completed the payment in your Bank App';
 
   @override
   String get yesCancelPayment => 'Yes, Cancel Payment';
@@ -1074,15 +1035,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorFetchingpaymentStatusTitle => 'Payment Status Error';
 
   @override
-  String get errorFetchingpaymentStatusDescription =>
-      'Sorry, we’ve run into an error while we were fetching your payment status. Please wait a moment and try again.';
+  String get errorFetchingpaymentStatusDescription => 'Sorry, we’ve run into an error while we were fetching your payment status. Please wait a moment and try again.';
 
   @override
   String get cameraAccessDeniedTitle => 'Camera access denied';
 
   @override
-  String get cameraAccessDeniedDescription =>
-      'Please give Atoa access to\nyour camera to continue';
+  String get cameraAccessDeniedDescription => 'Please give Atoa access to\nyour camera to continue';
 
   @override
   String get openSettingsToAllowAccess => 'Open Settings to Allow Access';
@@ -1094,8 +1053,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get successfullyReferredTitle => 'Successfully Referred';
 
   @override
-  String get successfullyReferredDescription =>
-      'Yay! You are one step closer\nto receiving rewards';
+  String get successfullyReferredDescription => 'Yay! You are one step closer\nto receiving rewards';
 
   @override
   String get completed => 'Completed';
@@ -1118,7 +1076,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String friendsHaveJoinedAtoaTxt2(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Your friends have joined Atoa but they need to send $amountString+ in payments to make you a winner!';
@@ -1146,8 +1108,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rewardsProcessing => 'Rewards Processing';
 
   @override
-  String get rewardsProcessingDesc =>
-      'Please give us some time to pay out your reward. You’ll receive a push notification once its done.';
+  String get rewardsProcessingDesc => 'Please give us some time to pay out your reward. You’ll receive a push notification once its done.';
 
   @override
   String get iUnderstand => 'I Understand';
@@ -1219,8 +1180,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get decline => 'Decline';
 
   @override
-  String get declinePayRequestConfirmationTitle =>
-      'Are you sure you want to\ndecline the request?';
+  String get declinePayRequestConfirmationTitle => 'Are you sure you want to\ndecline the request?';
 
   @override
   String cancelPayRequestConfirmationTitle(String amount) {
@@ -1228,12 +1188,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get monthlyReward =>
-      'You have won the prize for using Atoa for a month';
+  String get monthlyReward => 'You have won the prize for using Atoa for a month';
 
   @override
-  String get settlementInProcessInfoText =>
-      'It is taking longer than normal, Please be patient while we check for updated status, in case of discrepancy payment will be refunded';
+  String get settlementInProcessInfoText => 'It is taking longer than normal, Please be patient while we check for updated status, in case of discrepancy payment will be refunded';
 
   @override
   String get dateOfBirth => 'Date of Birth';
@@ -1281,8 +1239,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get you => 'You';
 
   @override
-  String get noSplitAvailable =>
-      'No Splits available\nStart by creating a New Split';
+  String get noSplitAvailable => 'No Splits available\nStart by creating a New Split';
 
   @override
   String get newSplit => 'New Split';
@@ -1296,7 +1253,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String negativeMoney(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return '-$amountString';
@@ -1323,7 +1284,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String youllReceiveAmount(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'You’ll receive $amountString';
@@ -1332,7 +1297,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String youllPayAmount(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'You’ll pay $amountString';
@@ -1435,8 +1404,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get edit => 'Edit';
 
   @override
-  String get splitReqEditTotalAmountLessThanPaidAmountErrorText =>
-      'Total Amount should be greater than or eqaual to the current total received amount';
+  String get splitReqEditTotalAmountLessThanPaidAmountErrorText => 'Total Amount should be greater than or eqaual to the current total received amount';
 
   @override
   String get unpaid => 'Unpaid';
@@ -1456,8 +1424,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sendReminder => 'Send Reminder';
 
   @override
-  String get splitGroupInfoDescText =>
-      'Split and keep track of your expenses here\nand remind your friends to pay on time. ';
+  String get splitGroupInfoDescText => 'Split and keep track of your expenses here\nand remind your friends to pay on time. ';
 
   @override
   String createdGroupAlongWithOtherText(String ownerName, int memberLength) {
@@ -1473,8 +1440,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateRequest => 'Update Request';
 
   @override
-  String get markAsPaidConfirmationDialogTitle =>
-      'Do you want to mark as paid? This action cannot be undone';
+  String get markAsPaidConfirmationDialogTitle => 'Do you want to mark as paid? This action cannot be undone';
 
   @override
   String get editGroupName => 'Edit Group Name';
@@ -1517,15 +1483,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noLongerParticipant => 'You are no longer a participant.';
 
   @override
-  String get noLongerParticipantDesc =>
-      'You can’t create new split requests, but you are\nable to participate in existing split requests.';
+  String get noLongerParticipantDesc => 'You can’t create new split requests, but you are\nable to participate in existing split requests.';
 
   @override
   String get leavingGroupTitle => 'Are you sure you want to leave?';
 
   @override
-  String get leavingGroupDesc =>
-      'This will not allow you to create new split requests, but you will be able to participate in existing split requests.';
+  String get leavingGroupDesc => 'This will not allow you to create new split requests, but you will be able to participate in existing split requests.';
 
   @override
   String get yesSure => 'Yes, sure';
@@ -1546,12 +1510,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get groupFetchError => 'Failed to fetch group details';
 
   @override
-  String get splitReqCantCloseErrorMsg =>
-      'This Split Request cannot be closed, as some payment is still in progress';
+  String get splitReqCantCloseErrorMsg => 'This Split Request cannot be closed, as some payment is still in progress';
 
   @override
-  String get emptyGroupCTA =>
-      'Creating a new split request requires adding members to the group besides yourself';
+  String get emptyGroupCTA => 'Creating a new split request requires adding members to the group besides yourself';
 
   @override
   String get taxCharge => 'Tax Charge';
@@ -1569,12 +1531,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderDetailsNotFound => 'Order Details Not Found';
 
   @override
-  String get orderDetailsNotFoundDescription =>
-      'We’re facing some difficulty fetching the details of your order. You can continue with the payment or ask for support from the staff if you’d like to confirm the details.';
+  String get orderDetailsNotFoundDescription => 'We’re facing some difficulty fetching the details of your order. You can continue with the payment or ask for support from the staff if you’d like to confirm the details.';
 
   @override
-  String get orderAlreadyPaid =>
-      'This Order has already been paid,\nThanks for using Atoa!';
+  String get orderAlreadyPaid => 'This Order has already been paid,\nThanks for using Atoa!';
 
   @override
   String get total => 'Total';
@@ -1589,8 +1549,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kycSuccessTitle => 'ID Verification Successful';
 
   @override
-  String get kycSuccessDesc =>
-      'You can now make as many payments as you need, without limits';
+  String get kycSuccessDesc => 'You can now make as many payments as you need, without limits';
 
   @override
   String get kycProcessingTitle => 'ID Verification Processing';
@@ -1611,19 +1570,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get identityVerification => 'ID Verification';
 
   @override
-  String get identityVerificationDesc =>
-      'Verifying your identity\nhelps us keep Atoa safe for everyone.';
+  String get identityVerificationDesc => 'Verifying your identity\nhelps us keep Atoa safe for everyone.';
 
   @override
   String get verifyingYourDetails => 'Verifying your Details';
 
   @override
-  String get uploadIdentityDocuments =>
-      'Upload Passport / UK Driving License / Biometric Residence Permit and Upload selfie';
+  String get uploadIdentityDocuments => 'Upload Passport / UK Driving License / Biometric Residence Permit and Upload selfie';
 
   @override
-  String get kycDocumentsExplanation =>
-      'We need this information in order to protect merchants and consumers.';
+  String get kycDocumentsExplanation => 'We need this information in order to protect merchants and consumers.';
 
   @override
   String get startVerification => 'Start Verification';
@@ -1632,15 +1588,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get proofOfIdentity => 'Proof of Identity';
 
   @override
-  String get proofOfIdentityDesc =>
-      'Upload a clear picture that includes your\nPhoto and Name on your ID';
+  String get proofOfIdentityDesc => 'Upload a clear picture that includes your\nPhoto and Name on your ID';
 
   @override
   String get verifyDetails => 'Verify Details';
 
   @override
-  String get verifyDetailsDesc =>
-      'Verify that the information in your documents matches the details displayed below';
+  String get verifyDetailsDesc => 'Verify that the information in your documents matches the details displayed below';
 
   @override
   String get passportOrBiometricResidencePermit => 'Passport';
@@ -1655,8 +1609,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aSelfie => 'a Selfie';
 
   @override
-  String get ukDrivingLicense =>
-      'UK Driving License or\nBiometric Residence Permit';
+  String get ukDrivingLicense => 'UK Driving License or\nBiometric Residence Permit';
 
   @override
   String get uploadFailed => 'Upload failed, please retry';
@@ -1673,8 +1626,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get uploaded => 'Uploaded';
 
   @override
-  String get clearSelfieDesc =>
-      'Please ensure your face is clearly visible in the photo, as it will be used for identification purposes.';
+  String get clearSelfieDesc => 'Please ensure your face is clearly visible in the photo, as it will be used for identification purposes.';
 
   @override
   String get proceed => 'Proceed';
@@ -1710,8 +1662,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chooseFromFiles => 'Choose from Files';
 
   @override
-  String get kycSubmittedSuccess =>
-      'Your KYC details have been submitted successfully';
+  String get kycSubmittedSuccess => 'Your KYC details have been submitted successfully';
 
   @override
   String get paymentStarted => 'Payment Started';
@@ -1720,8 +1671,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pageNotFound => 'Page Not Found';
 
   @override
-  String get pageNotFoundDescription =>
-      'Oops! The page you’re looking for was moved, removed or might have never existed';
+  String get pageNotFoundDescription => 'Oops! The page you’re looking for was moved, removed or might have never existed';
 
   @override
   String get ageCTA => 'You need to be 18+ years old to use Atoa';
@@ -1730,8 +1680,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get here => 'here';
 
   @override
-  String get referBusinessPart1 =>
-      'Time to level up? Refer business owners that you know to ';
+  String get referBusinessPart1 => 'Time to level up? Refer business owners that you know to ';
 
   @override
   String get atoaBusiness => 'Atoa Business';
@@ -1751,8 +1700,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmHashIdTitle => 'Please confirm your\nAtoa ID';
 
   @override
-  String get confirmHashIdDesc =>
-      'This ID will be permanent and\ncannot be changed later';
+  String get confirmHashIdDesc => 'This ID will be permanent and\ncannot be changed later';
 
   @override
   String get enterYourMobile => 'Enter your mobile number';
@@ -1776,8 +1724,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get inviteFriends => 'Invite Friends';
 
   @override
-  String get contactsConsentText =>
-      'We only store details like Name and Number of contacts for letting you do Instant Bank payments to your friends and also used for crediting referral bonuses. We do not share your contacts with anyone outside of Atoa and its contracted service providers. You can read more on our';
+  String get contactsConsentText => 'We only store details like Name and Number of contacts for letting you do Instant Bank payments to your friends and also used for crediting referral bonuses. We do not share your contacts with anyone outside of Atoa and its contracted service providers. You can read more on our';
 
   @override
   String get fetchContactFailure => 'Unable to fetch contacts';
@@ -1788,7 +1735,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String rewardText(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Get $amountString';
@@ -1797,7 +1748,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String winText(int amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Win $amountString';
@@ -1809,7 +1764,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String winUpto(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Win upto $amountString';
@@ -1819,24 +1778,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get freePayments => 'Atoa has a free monthly\npayment limit';
 
   @override
-  String get freePaymentsDesc =>
-      'Ditch your wallet and pay for free at any store using Atoa. You can use it unlimited times, but there\'s a limit to the number of free payments you can make to friends. Don\'t worry, it refreshes each month!';
+  String get freePaymentsDesc => 'Ditch your wallet and pay for free at any store using Atoa. You can use it unlimited times, but there\'s a limit to the number of free payments you can make to friends. Don\'t worry, it refreshes each month!';
 
   @override
-  String get freePaymentsReachedMsg =>
-      'You’ve reached your\nfree monthly payment\nlimit';
+  String get freePaymentsReachedMsg => 'You’ve reached your\nfree monthly payment\nlimit';
 
   @override
-  String get freePaymentsReachedDesc =>
-      'Ditch your wallet and pay for free at any store using Atoa. You can use it unlimited times, but there\'s a limit to the number of free payments you can make to friends. Don\'t worry, it refreshes each month!';
+  String get freePaymentsReachedDesc => 'Ditch your wallet and pay for free at any store using Atoa. You can use it unlimited times, but there\'s a limit to the number of free payments you can make to friends. Don\'t worry, it refreshes each month!';
 
   @override
-  String get paymentLimitReachedErrorTitle =>
-      'User has reached\ntheir payment limit';
+  String get paymentLimitReachedErrorTitle => 'User has reached\ntheir payment limit';
 
   @override
-  String get paymentLimitReachedErrorDesc =>
-      'This user has exceeded the monthly payment limit for personal use. Ask them to use the Atoa business app to accept unlimited payments.';
+  String get paymentLimitReachedErrorDesc => 'This user has exceeded the monthly payment limit for personal use. Ask them to use the Atoa business app to accept unlimited payments.';
 
   @override
   String get startPayment => 'Start Payment';
@@ -1855,7 +1809,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String wonText(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Won $amountString';
@@ -1871,28 +1829,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gifsHint => 'Search powered by Tenor GiFs';
 
   @override
-  String get noBankAccountErrorTitle =>
-      'Oops, the receiver’s\naccount is not linked';
+  String get noBankAccountErrorTitle => 'Oops, the receiver’s\naccount is not linked';
 
   @override
-  String get noBankAccountErrorDesc =>
-      'To receive funds, the receiver needs to connect their bank account. Please ask them to link their bank account.';
+  String get noBankAccountErrorDesc => 'To receive funds, the receiver needs to connect their bank account. Please ask them to link their bank account.';
 
   @override
-  String get transactionLimitErrorTitle =>
-      'This user has reached\ntheir payment limit';
+  String get transactionLimitErrorTitle => 'This user has reached\ntheir payment limit';
 
   @override
-  String get transactionLimitErrorDesc =>
-      'Ask them to verify their ID on Atoa to accept payments from anyone.';
+  String get transactionLimitErrorDesc => 'Ask them to verify their ID on Atoa to accept payments from anyone.';
 
   @override
-  String get merchantSuspendedErrorTitle =>
-      'Oops, unable to proceed\nwith payment';
+  String get merchantSuspendedErrorTitle => 'Oops, unable to proceed\nwith payment';
 
   @override
-  String get merchantSuspendedErrorDesc =>
-      'The business you\'re trying to pay has been suspended for unusual payment behaviour.';
+  String get merchantSuspendedErrorDesc => 'The business you\'re trying to pay has been suspended for unusual payment behaviour.';
 
   @override
   String get trustBusinessText => 'I trust this Business and accept';
@@ -1904,17 +1856,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selfTransferErrorTitle => 'You can’t pay yourself!';
 
   @override
-  String get selfTransferErrorDesc =>
-      'We couldn\'t process your transaction as you\'re trying to send money to the same bank account. Please double-check the account details and try again.';
+  String get selfTransferErrorDesc => 'We couldn\'t process your transaction as you\'re trying to send money to the same bank account. Please double-check the account details and try again.';
 
   @override
-  String get potentialConsumerInviteTitle =>
-      'Your friend needs to join\nAtoa to receive payments.';
+  String get potentialConsumerInviteTitle => 'Your friend needs to join\nAtoa to receive payments.';
 
   @override
   String potentialConsumerInviteDesc(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'When they complete their first payment,\nyou\'ll both get $amountString cashback.';
@@ -1923,7 +1877,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String inviteAndWin(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Invite and Win $amountString';
@@ -1933,12 +1891,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get successfullyInvitedTitle => 'Successfully invited';
 
   @override
-  String get successfullyInvitedDesc =>
-      'Yay! You are one step closer to completing your payment and receiving your rewards.';
+  String get successfullyInvitedDesc => 'Yay! You are one step closer to completing your payment and receiving your rewards.';
 
   @override
-  String get unableToProceedPayment =>
-      'Oops, unable to proceed \n with the payment...';
+  String get unableToProceedPayment => 'Oops, unable to proceed \n with the payment...';
 
   @override
   String get inviteBusinesses => 'Invite Businesses';
@@ -1947,8 +1903,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updatedTermsTitle => 'Some Legal Bits...';
 
   @override
-  String get updatedTermsDesc =>
-      'We occasionally have to update our Terms and Conditions. Please read and accept our updated Terms of Use, Terms of Service, and Privacy Policy. You can also access at any time via the Legal section of this App.';
+  String get updatedTermsDesc => 'We occasionally have to update our Terms and Conditions. Please read and accept our updated Terms of Use, Terms of Service, and Privacy Policy. You can also access at any time via the Legal section of this App.';
 
   @override
   String get termsOfUse => 'Terms of Use';
@@ -1968,7 +1923,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String hadRequested(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'had requested $amountString';
@@ -1977,7 +1936,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String getAmountEach(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Get $amountString Each';
@@ -1999,8 +1962,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newRequest => 'New Request';
 
   @override
-  String get newRequestDescription =>
-      'Invite friends and send funds to their bank';
+  String get newRequestDescription => 'Invite friends and send funds to their bank';
 
   @override
   String get searchBarHintText => 'Search by contact or #ID';
@@ -2015,8 +1977,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appUnderMaintenance => 'App Under Maintenance';
 
   @override
-  String get appUnderMaintenanceDesc =>
-      'We\'re sprucing things up to bring you a smoother experience. We\'ll be back before you know it.';
+  String get appUnderMaintenanceDesc => 'We\'re sprucing things up to bring you a smoother experience. We\'ll be back before you know it.';
 
   @override
   String get appUnderMaintenanceThankyou => 'Thank you for your understanding.';
@@ -2025,39 +1986,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get somethingWentWrong => 'Oops! Something Went Wrong';
 
   @override
-  String get lowConnectivityError =>
-      'We\'re having trouble connecting to the server at the moment. Please ensure you have a stable internet connection and try reopening the app.';
+  String get lowConnectivityError => 'We\'re having trouble connecting to the server at the moment. Please ensure you have a stable internet connection and try reopening the app.';
 
   @override
   String get finish => 'Finish';
 
   @override
-  String get homePageCoachMark1Desc =>
-      'No more IOUs! Send instant payments to friends and family across any UK bank account';
+  String get homePageCoachMark1Desc => 'No more IOUs! Send instant payments to friends and family across any UK bank account';
 
   @override
-  String get homePageCoachMark2Desc =>
-      'Scan Atoa QR codes to pay in-store and help local businesses save on card fees. You can win rewards too!';
+  String get homePageCoachMark2Desc => 'Scan Atoa QR codes to pay in-store and help local businesses save on card fees. You can win rewards too!';
 
   @override
-  String get homePageCoachMark3Desc =>
-      'Send money to family and friends for free across any UK Bank';
+  String get homePageCoachMark3Desc => 'Send money to family and friends for free across any UK Bank';
 
   @override
-  String get homePageCoachMark4Desc =>
-      'No bank details, no problem. Split bills with friends and family in seconds...';
+  String get homePageCoachMark4Desc => 'No bank details, no problem. Split bills with friends and family in seconds...';
 
   @override
-  String get homePageCoachMark5Desc =>
-      'Atoa Pay rewards you for just using it! New challenges will appear here, so keep checking back';
+  String get homePageCoachMark5Desc => 'Atoa Pay rewards you for just using it! New challenges will appear here, so keep checking back';
 
   @override
-  String get qrCodePageCoachMark1Desc =>
-      'Friends can use this unique #ID to search for you on Atoa';
+  String get qrCodePageCoachMark1Desc => 'Friends can use this unique #ID to search for you on Atoa';
 
   @override
-  String get qrCodePageCoachMark2Desc =>
-      'Flash this QR code at anyone to get paid instantly... it\'s that easy! ';
+  String get qrCodePageCoachMark2Desc => 'Flash this QR code at anyone to get paid instantly... it\'s that easy! ';
 
   @override
   String get splitBillsCoachMark1Title => 'Split Bill Tracker';
@@ -2069,8 +2022,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get splitBillsCoachMark2Title => 'Your Split Groups';
 
   @override
-  String get splitBillsCoachMark2Desc =>
-      'Stay on top of your group expenses - check and edit the summary or start a new bill ';
+  String get splitBillsCoachMark2Desc => 'Stay on top of your group expenses - check and edit the summary or start a new bill ';
 
   @override
   String shareMyQrDesc(String name, String link) {
@@ -2084,8 +2036,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get permissionRequired => 'Permission Required';
 
   @override
-  String get permissionRequiredDesc =>
-      'To send invites, we need permission\nto access your contacts';
+  String get permissionRequiredDesc => 'To send invites, we need permission\nto access your contacts';
 
   @override
   String get howWeCollectData => 'How we collect data';
@@ -2099,7 +2050,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String winCashbackText(int amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Win $amountString Cashback';
@@ -2124,8 +2079,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get payInStore => 'Pay-in-store';
 
   @override
-  String get sendReferralReminderDesc =>
-      'Send your friends a quick\nnudge to download Atoa';
+  String get sendReferralReminderDesc => 'Send your friends a quick\nnudge to download Atoa';
 
   @override
   String get verify => 'Verify';
@@ -2158,16 +2112,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dark => 'Dark';
 
   @override
-  String get galleryPermission =>
-      'Please grant Atoa permission to access your picture gallery. This can be found in settings.';
+  String get galleryPermission => 'Please grant Atoa permission to access your picture gallery. This can be found in settings.';
 
   @override
-  String get cameraPermission =>
-      'Please grant Atoa permission to access your camera. This can be found in settings.';
+  String get cameraPermission => 'Please grant Atoa permission to access your camera. This can be found in settings.';
 
   @override
-  String get documentsPermission =>
-      'Please grant Atoa permission to access your documents. This can be found in settings.';
+  String get documentsPermission => 'Please grant Atoa permission to access your documents. This can be found in settings.';
 
   @override
   String get invalidQR => 'This QR is invalid now';
@@ -2182,8 +2133,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alreadySelected => 'Already Selected';
 
   @override
-  String get bankIsDown =>
-      'This bank is down at this moment, please try with some different account or try again later';
+  String get bankIsDown => 'This bank is down at this moment, please try with some different account or try again later';
 
   @override
   String get select2Person => 'Select atleast 2 person to create split request';
@@ -2191,7 +2141,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String emptyJoinedReferral(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Make sure your friends join Atoa and make $amountString+ in payments for you to be rewarded ';
@@ -2204,8 +2158,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get userProfileImage => 'User Profile Image';
 
   @override
-  String get payAndRequestContactsSearchBar =>
-      'Pay and Request Contact\'s Search Bar';
+  String get payAndRequestContactsSearchBar => 'Pay and Request Contact\'s Search Bar';
 
   @override
   String get reSyncAllContacts => 'ReSync All Contacts';
@@ -2214,8 +2167,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get countryCodePicker => 'Country code Picker';
 
   @override
-  String get closeFreePaymentInfoDialogIcon =>
-      'Close Free Payment Info Dialog Icon';
+  String get closeFreePaymentInfoDialogIcon => 'Close Free Payment Info Dialog Icon';
 
   @override
   String get payInStoreButton => 'Pay In Store Button';
@@ -2452,12 +2404,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get copyCodeIcon => 'Copy Referral Code Icon';
 
   @override
-  String get inviteFriendDesc =>
-      'To send invites, we need permission\nto access your contacts';
+  String get inviteFriendDesc => 'To send invites, we need permission\nto access your contacts';
 
   @override
-  String get inviteFriendConsent =>
-      'When you invite a contact, we only store their name and number so you can track the referral. We never share your contacts outside of Atoa. Read more in our ';
+  String get inviteFriendConsent => 'When you invite a contact, we only store their name and number so you can track the referral. We never share your contacts outside of Atoa. Read more in our ';
 
   @override
   String get yourInvites => 'Your Invites';
@@ -2469,8 +2419,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get referral => 'referral';
 
   @override
-  String get noPendingReferralMessage =>
-      'You\'re unstoppable! There\'s no limit on invites, so keep sharing to earn more.';
+  String get noPendingReferralMessage => 'You\'re unstoppable! There\'s no limit on invites, so keep sharing to earn more.';
 
   @override
   String get invalidPhoneNumber => 'Please provide a valid phone number';
@@ -2479,8 +2428,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forceAuthorizeBankTitle => 'Having trouble connecting?';
 
   @override
-  String get forceAuthorizeBankDesc =>
-      'Trouble linking your bank account? Tap the button below to connect using your browser.';
+  String get forceAuthorizeBankDesc => 'Trouble linking your bank account? Tap the button below to connect using your browser.';
 
   @override
   String get tryNow => 'Try Now';
@@ -2491,12 +2439,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get paymentWarning =>
-      'This person doesn’t seem to be in your phonebook. Make sure you’re sending money to someone you know and trust.';
+  String get paymentWarning => 'This person doesn’t seem to be in your phonebook. Make sure you’re sending money to someone you know and trust.';
 
   @override
-  String get paymentWarningDesc =>
-      'If you do choose to continue with this payment, Atoa and your Bank will not be able to refund you.';
+  String get paymentWarningDesc => 'If you do choose to continue with this payment, Atoa and your Bank will not be able to refund you.';
 
   @override
   String get cancelThisPayment => 'Cancel This Payment';
@@ -2525,7 +2471,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String proceedToPay(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Proceed to Pay $amountString';
@@ -2534,7 +2484,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String amountText(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return '$amountString';
@@ -2549,7 +2503,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String maxAmountError(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Enter an amount lesser than\nyour bill of $amountString';
@@ -2585,8 +2543,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yes => 'Yes!';
 
   @override
-  String get negativeReviewSorryMessage =>
-      'Oh dear, we’re sorry!\nHow can we make the app better for you?';
+  String get negativeReviewSorryMessage => 'Oh dear, we’re sorry!\nHow can we make the app better for you?';
 
   @override
   String get typeYourFeedbackHere => 'Type your feedback here...';
@@ -2601,16 +2558,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appReviewSubmittedSheetTitle => 'We love hearing from you!';
 
   @override
-  String get appReviewSubmittedSheetDesc =>
-      'Thanks for your feedback – it helps us to make Atoa bigger and better.';
+  String get appReviewSubmittedSheetDesc => 'Thanks for your feedback – it helps us to make Atoa bigger and better.';
 
   @override
   String get loading => 'Loading';
 
   @override
   String timeIn12Hour(DateTime time) {
-    final intl.DateFormat timeDateFormat =
-        intl.DateFormat('hh:mm a', localeName);
+    final intl.DateFormat timeDateFormat = intl.DateFormat('hh:mm a', localeName);
     final String timeString = timeDateFormat.format(time);
 
     return '$timeString';
@@ -2634,15 +2589,18 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String extraDetailsDesc(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'We’re required under law to collect some basic details from you for any payments that exceed $amountString';
   }
 
   @override
-  String get extraDetailsMsg =>
-      'For amounts over £15,000, provide extra details in the next step.';
+  String get extraDetailsMsg => 'For amounts over £15,000, provide extra details in the next step.';
 
   @override
   String get selectNationality => 'Select Nationality';
@@ -2664,7 +2622,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String bankPaymentAmountLimitErrMsg(String name, double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return '$name\'s payment limit is $amountString – please select another bank to pay from.';
@@ -2686,8 +2648,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get amountLeftUpdatedTitle => 'Amount left to pay is Updated';
 
   @override
-  String get amountLeftUpdatedDesc =>
-      'Someone else made a payment, please check again and proceed';
+  String get amountLeftUpdatedDesc => 'Someone else made a payment, please check again and proceed';
 
   @override
   String splittingBy(int count) {
@@ -2705,8 +2666,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String lastPaidDate(DateTime date) {
-    final intl.DateFormat dateDateFormat =
-        intl.DateFormat('MMM d yyyy, hh:mm a', localeName);
+    final intl.DateFormat dateDateFormat = intl.DateFormat('MMM d yyyy, hh:mm a', localeName);
     final String dateString = dateDateFormat.format(date);
 
     return 'Last paid on $dateString';
@@ -2716,16 +2676,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get splitBillPaidErrorTitle => 'Split bill has already been paid';
 
   @override
-  String get splitBillPaidErrorDesc =>
-      'Oops! It looks like the split bill you\'re trying to pay has already been paid.';
+  String get splitBillPaidErrorDesc => 'Oops! It looks like the split bill you\'re trying to pay has already been paid.';
 
   @override
   String leftoverAmountError(double minAmount, double amount) {
     final intl.NumberFormat minAmountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String minAmountString = minAmountNumberFormat.format(minAmount);
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'The leftover amount can\'t be less than $minAmountString,\ntry to pay the full amount of $amountString';
@@ -2737,7 +2704,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String payLeftover(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 2, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 2,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Pay What’s Left $amountString';
@@ -2752,7 +2723,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String inviteFriendsDesc(double amount) {
     final intl.NumberFormat amountNumberFormat = intl.NumberFormat.currency(
-        locale: localeName, decimalDigits: 0, name: 'GBP', symbol: '£');
+      locale: localeName,
+      decimalDigits: 0,
+      name: 'GBP',
+      symbol: '£'
+    );
     final String amountString = amountNumberFormat.format(amount);
 
     return 'Share the love and get $amountString';
@@ -2766,8 +2741,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String paidOn(DateTime date) {
-    final intl.DateFormat dateDateFormat =
-        intl.DateFormat('MMM d yyyy, hh:mm a', localeName);
+    final intl.DateFormat dateDateFormat = intl.DateFormat('MMM d yyyy, hh:mm a', localeName);
     final String dateString = dateDateFormat.format(date);
 
     return 'Paid on $dateString';
