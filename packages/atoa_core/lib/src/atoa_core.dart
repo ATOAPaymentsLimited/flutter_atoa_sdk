@@ -5,6 +5,7 @@ import 'package:atoa_core/src/data/payment_request_data.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
 import 'package:atoa_core/src/models/models.dart';
+import 'package:atoa_core/token.dart';
 import 'package:dio/dio.dart';
 
 /// {@template atoa_core}
@@ -130,8 +131,7 @@ class Atoa {
         headers: {
           'Content-Type': 'application/json',
           'Content-Length': requestData.length,
-          'Authorization':
-              'Bearer NDFhNzdmNzQtOGI2Ny00ZjA0LWJlNTAtYzhkZDVhZDg4MzZmOmU0MzFUN0NyeG85ZTNlcm4=',
+          'Authorization': token,
         },
       ),
     );
