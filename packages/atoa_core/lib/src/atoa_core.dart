@@ -131,7 +131,7 @@ class Atoa {
           'Content-Type': 'application/json',
           'Content-Length': requestData.length,
           'Authorization':
-              'Bearer YmEwZjk5YWEtZGZhMy00NGFiLTliNDEtODU5Yjg3ZmRkY2FlOnduQ2I1V29aV1JNazVYTVE=',
+              'Bearer NDFhNzdmNzQtOGI2Ny00ZjA0LWJlNTAtYzhkZDVhZDg4MzZmOmU0MzFUN0NyeG85ZTNlcm4=',
         },
       ),
     );

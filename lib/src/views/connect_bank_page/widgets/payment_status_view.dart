@@ -1,7 +1,9 @@
+import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:atoa_sdk/src/controllers/controllers.dart';
 import 'package:atoa_sdk/src/shared_widgets/success_tick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
@@ -31,14 +33,15 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
                 children: [
                   const SuccessTick(),
                   Spacing.huge.yBox,
-                  CustomText.semantics(
-                    '£ ${state.details?.paidAmount}',
-                    style: context.headlineLarge!.copyWith(fontSize: 40.sp),
-                  ),
+                  if (state.details?.paidAmount != null)
+                    CustomText.semantics(
+                      context.l10n.amountText(state.details!.paidAmount),
+                      style: context.headlineLarge!.copyWith(fontSize: 40.sp),
+                    ),
                   Spacing.huge.yBox,
                   if (state.details?.createdAt != null)
                     CustomText.semantics(
-                      state.details!.createdAt,
+                      state.details!.createdAt.formattedDateTime(),
                       style: context.bodyLarge!
                           .copyWith(color: context.grey.shade60),
                     ),
@@ -103,4 +106,14 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           );
         },
       );
+}
+
+extension StringExtension on String {
+  String formattedDateTime({
+    bool toLocal = true,
+    String format = 'MMM dd yyyy,',
+  }) =>
+      DateFormat(format).add_jm().format(
+            toLocal ? DateTime.parse(this).toLocal() : DateTime.parse(this),
+          );
 }
