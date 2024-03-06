@@ -1,6 +1,7 @@
 import 'package:atoa_sdk/src/controllers/controllers.dart';
 import 'package:atoa_sdk/src/shared_widgets/success_tick.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
@@ -24,29 +25,54 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           if (state.isCompleted) {
             _isSuccess = true;
 
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SuccessTick(),
-                Spacing.huge.yBox,
-                CustomText.semantics('£ ${state.details?.paidAmount}'),
-                Spacing.huge.yBox,
-                CustomText.semantics(state.details?.createdAt.toString() ?? ''),
-                Spacing.huge.yBox,
-                const CustomText.semantics('Successful'),
-                Spacing.huge.yBox,
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: RegalButton.primary(
-                    shrink: true,
-                    onPressed: () {
-                      Navigator.pop(context, _isSuccess);
-                    },
-                    trackLabel: 'Go Back',
-                    label: 'Go Back',
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SuccessTick(),
+                  Spacing.huge.yBox,
+                  CustomText.semantics(
+                    '£ ${state.details?.paidAmount}',
+                    style: context.headlineLarge!.copyWith(fontSize: 40.sp),
                   ),
-                ),
-              ],
+                  Spacing.huge.yBox,
+                  if (state.details?.createdAt != null)
+                    CustomText.semantics(
+                      state.details!.createdAt,
+                      style: context.bodyLarge!
+                          .copyWith(color: context.grey.shade60),
+                    ),
+                  Spacing.huge.yBox,
+                  Container(
+                    padding: Spacing.medium.y,
+                    width: 220.sp,
+                    decoration: BoxDecoration(
+                      color: RegalColors.darkCyan,
+                      borderRadius: BorderRadius.circular(
+                        Spacing.small.value,
+                      ),
+                    ),
+                    child: CustomText.semantics(
+                      'Successful',
+                      style: context.bodyLarge!
+                          .copyWith(color: RegalColors.snowWhite),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Spacing.huge.yBox,
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: RegalButton.primary(
+                      shrink: true,
+                      onPressed: () {
+                        Navigator.pop(context, _isSuccess);
+                      },
+                      trackLabel: 'Go Back',
+                      label: 'Go Back',
+                    ),
+                  ),
+                ],
+              ),
             );
           }
 

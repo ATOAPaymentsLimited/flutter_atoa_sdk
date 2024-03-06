@@ -53,7 +53,7 @@ class SuccessTick extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         width: Spacing.large.value * 4,
         height: Spacing.large.value * 4,
-        padding: Spacing.small.all,
+        padding: Spacing.large.all,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: RegalColors.darkCyan,
