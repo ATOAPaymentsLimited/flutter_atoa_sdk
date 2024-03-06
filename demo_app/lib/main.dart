@@ -1,5 +1,6 @@
 import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttersdk/home_page.dart';
 import 'package:regal/regal.dart';
@@ -101,6 +102,23 @@ class _MainAppState extends State<MainApp> {
           displayColor: RegalColors.licoriceBlack,
           fontFamily: 'Inter',
           package: 'regal',
+        ),
+        appBarTheme: AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          backgroundColor: RegalColors.snowWhite,
+          centerTitle: true,
+          elevation: 0,
+          iconTheme: const IconThemeData(
+            color: RegalColors.claretRed,
+          ),
+          titleTextStyle: TextStyle(
+            color: RegalColors.licoriceBlack,
+            fontFamily: 'Montserrat',
+            package: 'regal',
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          surfaceTintColor: RegalColors.snowWhite,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -273,6 +291,23 @@ class _MainAppState extends State<MainApp> {
           ).copyWith(
             elevation: const MaterialStatePropertyAll(0),
           ),
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: RegalColors.licoriceBlack,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          actionsIconTheme: const IconThemeData(
+            color: RegalColors.snowWhite,
+          ),
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontFamily: 'Montserrat',
+            package: 'regal',
+            color: RegalColors.snowWhite,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+          ),
+          surfaceTintColor: RegalColors.licoriceBlack,
         ),
         inputDecorationTheme: InputDecorationTheme(
           isDense: true,
