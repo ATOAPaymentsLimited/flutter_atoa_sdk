@@ -26,55 +26,63 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
 
           if (state.isCompleted) {
             _isSuccess = true;
-
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SuccessTick(),
-                  Spacing.huge.yBox,
-                  if (state.details?.paidAmount != null)
-                    CustomText.semantics(
-                      context.l10n.amountText(state.details!.paidAmount),
-                      style: context.headlineLarge!.copyWith(fontSize: 40.sp),
-                    ),
-                  Spacing.huge.yBox,
-                  if (state.details?.createdAt != null)
-                    CustomText.semantics(
-                      state.details!.createdAt.formattedDateTime(),
-                      style: context.bodyLarge!
-                          .copyWith(color: context.grey.shade60),
-                    ),
-                  Spacing.huge.yBox,
-                  Container(
-                    padding: Spacing.medium.y,
-                    width: 220.sp,
-                    decoration: BoxDecoration(
-                      color: RegalColors.darkCyan,
-                      borderRadius: BorderRadius.circular(
-                        Spacing.small.value,
+            final width = MediaQuery.of(context).size.width;
+            return Container(
+              height: width / 2,
+              width: width / 2,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              alignment: Alignment.center,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SuccessTick(),
+                    Spacing.huge.yBox,
+                    if (state.details?.paidAmount != null)
+                      CustomText.semantics(
+                        context.l10n.amountText(state.details!.paidAmount),
+                        style: context.headlineLarge!.copyWith(fontSize: 40.sp),
+                      ),
+                    Spacing.huge.yBox,
+                    if (state.details?.createdAt != null)
+                      CustomText.semantics(
+                        state.details!.createdAt.formattedDateTime(),
+                        style: context.bodyLarge!
+                            .copyWith(color: context.grey.shade60),
+                      ),
+                    Spacing.huge.yBox,
+                    Container(
+                      padding: Spacing.medium.y,
+                      width: 220.sp,
+                      decoration: BoxDecoration(
+                        color: RegalColors.darkCyan,
+                        borderRadius: BorderRadius.circular(
+                          Spacing.small.value,
+                        ),
+                      ),
+                      child: CustomText.semantics(
+                        'Successful',
+                        style: context.bodyLarge!
+                            .copyWith(color: RegalColors.snowWhite),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    child: CustomText.semantics(
-                      'Successful',
-                      style: context.bodyLarge!
-                          .copyWith(color: RegalColors.snowWhite),
-                      textAlign: TextAlign.center,
+                    Spacing.huge.yBox,
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: RegalButton.primary(
+                        shrink: true,
+                        onPressed: () {
+                          Navigator.pop(context, _isSuccess);
+                        },
+                        trackLabel: 'Go Back',
+                        label: 'Go Back',
+                      ),
                     ),
-                  ),
-                  Spacing.huge.yBox,
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: RegalButton.primary(
-                      shrink: true,
-                      onPressed: () {
-                        Navigator.pop(context, _isSuccess);
-                      },
-                      trackLabel: 'Go Back',
-                      label: 'Go Back',
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }
