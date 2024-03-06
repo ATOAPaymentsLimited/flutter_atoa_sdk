@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_setters_without_getters
 
 import 'package:atoa_core/atoa_core.dart';
+import 'package:atoa_core/src/data/payment_request_data.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
 import 'package:atoa_core/src/models/models.dart';
+import 'package:dio/dio.dart';
 
 /// {@template atoa_core}
 /// Atoa Flutter SDK
@@ -115,5 +117,30 @@ class Atoa {
     }
 
     return TransactionDetails.fromJson(data);
+  }
+
+  Future<String?> getPaymentRequestId({required double amount}) async {
+    _dioCheck();
+    final requestData = getRequestData(amount);
+    final res = await _atoaDio!.post<Map<String, dynamic>>(
+      Endpoints.getPaymentId(),
+      data: requestData,
+      options: Options(
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': requestData.length,
+          'Authorization':
+              'Bearer YmEwZjk5YWEtZGZhMy00NGFiLTliNDEtODU5Yjg3ZmRkY2FlOnduQ2I1V29aV1JNazVYTVE=',
+        },
+      ),
+    );
+
+    final data = res.data;
+
+    if (data != null) {
+      return data['paymentRequestId'] as String;
+    }
+    return null;
   }
 }

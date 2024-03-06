@@ -14,4 +14,7 @@ class Endpoints {
 
   /// Payment Status
   static String getPaymentStatus(String id) => 'payments/payment-status/$id';
+
+  //Process Payment
+  static String getPaymentId() => 'payments/process-payment';
 }
