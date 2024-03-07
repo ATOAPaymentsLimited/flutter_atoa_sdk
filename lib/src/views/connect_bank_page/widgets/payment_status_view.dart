@@ -30,8 +30,8 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
             return Container(
               height: width / 2,
               width: width / 2,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: context.regalColor.snowWhite,
               ),
               alignment: Alignment.center,
               child: Center(
@@ -71,7 +71,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
                     ),
                     Spacing.huge.yBox,
                     Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: Spacing.small.all,
                       child: RegalButton.primary(
                         shrink: true,
                         onPressed: () {
