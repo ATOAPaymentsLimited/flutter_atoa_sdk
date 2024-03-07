@@ -367,7 +367,7 @@ class _MainAppState extends State<MainApp> {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 

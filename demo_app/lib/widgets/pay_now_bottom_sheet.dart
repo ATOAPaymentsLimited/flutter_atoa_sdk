@@ -28,6 +28,7 @@ class PayNowBottomSheet extends StatelessWidget {
           children: [
             Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText.semantics(
                   'Total',
@@ -53,13 +54,12 @@ class PayNowBottomSheet extends StatelessWidget {
                 valueListenable: isLoading,
                 builder: (context, value, child) => RegalButton.primary(
                   shrink: true,
-                  onPressed: () => isLoading.value
-                      ? null
-                      : _getPaymentId(context, totalAmount),
+                  onPressed: () =>
+                      value ? null : _getPaymentId(context, totalAmount),
                   label: 'Pay Now',
                   trackLabel: 'Pay Now',
-                  enable: !isLoading.value,
-                  loading: isLoading.value,
+                  enable: !value,
+                  loading: value,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(52, 152, 219, 1),
                     shape: RoundedRectangleBorder(
