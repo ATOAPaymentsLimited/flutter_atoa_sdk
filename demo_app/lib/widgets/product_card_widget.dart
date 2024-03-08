@@ -78,7 +78,7 @@ class ProductCardWidget extends StatelessWidget {
                                 color: const Color.fromRGBO(52, 152, 219, 1),
                               ),
                               onTap: () {
-                                if (totalItems.value > 1) {
+                                if (value > 1) {
                                   totalItems.value -= 1;
                                   totalAmountNotifier.value -= 67;
                                 }
@@ -98,7 +98,7 @@ class ProductCardWidget extends StatelessWidget {
                                 color: const Color.fromRGBO(52, 152, 219, 1),
                               ),
                               onTap: () {
-                                if (totalItems.value < 5) {
+                                if (value < 5) {
                                   totalItems.value += 1;
                                   totalAmountNotifier.value += 67;
                                 }

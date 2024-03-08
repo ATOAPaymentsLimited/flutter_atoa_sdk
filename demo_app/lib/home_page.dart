@@ -3,15 +3,11 @@ import 'package:fluttersdk/widgets/pay_now_bottom_sheet.dart';
 import 'package:fluttersdk/widgets/product_card_widget.dart';
 import 'package:regal/regal.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  final ValueNotifier<double> totalAmountNotifier = ValueNotifier(67.0 * 2);
 
-class _HomePageState extends State<HomePage> {
-  ValueNotifier<double> totalAmountNotifier = ValueNotifier(67.0 * 2);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,8 +76,7 @@ class _HomePageState extends State<HomePage> {
                     groupValue: true,
                     onChanged: (bool? value) {},
                   ),
-                  Spacing.small.yBox,
-                  Spacing.tiny.yBox,
+                  Spacing.medium.xBox,
                   CustomText.semantics(
                     'Atoa - Instant Bank Pay',
                     style: context.bodyLarge!,
@@ -98,7 +93,7 @@ class _HomePageState extends State<HomePage> {
       bottomSheet: ValueListenableBuilder(
         valueListenable: totalAmountNotifier,
         builder: (context, value, Widget? child) => PayNowBottomSheet(
-          totalAmount: totalAmountNotifier.value,
+          totalAmount: value,
         ),
       ),
     );
