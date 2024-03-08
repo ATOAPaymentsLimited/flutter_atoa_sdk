@@ -1,11 +1,7 @@
-import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:atoa_sdk/src/controllers/controllers.dart';
-import 'package:atoa_sdk/src/shared_widgets/success_tick.dart';
+import 'package:atoa_sdk/src/views/connect_bank_page/widgets/payment_status_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:regal/regal.dart';
 
 class PaymentStatusView extends StatefulWidget {
   const PaymentStatusView({super.key});
@@ -26,69 +22,26 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
 
           if (state.isCompleted) {
             _isSuccess = true;
-            final width = MediaQuery.of(context).size.width;
-            return Container(
-              height: width / 2,
-              width: width / 2,
-              decoration: BoxDecoration(
-                color: context.regalColor.snowWhite,
-              ),
-              alignment: Alignment.center,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SuccessTick(),
-                    Spacing.huge.yBox,
-                    if (state.details?.paidAmount != null)
-                      CustomText.semantics(
-                        context.l10n.amountText(state.details!.paidAmount),
-                        style: context.headlineLarge!.copyWith(fontSize: 40.sp),
-                      ),
-                    Spacing.huge.yBox,
-                    if (state.details?.createdAt != null)
-                      CustomText.semantics(
-                        state.details!.createdAt.formattedDateTime(),
-                        style: context.bodyLarge!
-                            .copyWith(color: context.grey.shade60),
-                      ),
-                    Spacing.huge.yBox,
-                    Container(
-                      padding: Spacing.medium.y,
-                      width: 220.sp,
-                      decoration: BoxDecoration(
-                        color: RegalColors.darkCyan,
-                        borderRadius: BorderRadius.circular(
-                          Spacing.small.value,
-                        ),
-                      ),
-                      child: CustomText.semantics(
-                        'Successful',
-                        style: context.bodyLarge!
-                            .copyWith(color: RegalColors.snowWhite),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Spacing.huge.yBox,
-                    Padding(
-                      padding: Spacing.small.all,
-                      child: RegalButton.primary(
-                        shrink: true,
-                        onPressed: () {
-                          Navigator.pop(context, _isSuccess);
-                        },
-                        trackLabel: 'Go Back',
-                        label: 'Go Back',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            return PaymentStatusWidget(
+              isSuccess: _isSuccess,
+              paymentDetails: state.details,
             );
           }
 
           if (state.isFailed) {
             _isSuccess = false;
+            return PaymentStatusWidget(
+              isSuccess: _isSuccess,
+              paymentDetails: state.details,
+            );
+          }
+
+          if (state.isPending) {
+            return PaymentStatusWidget(
+              isSuccess: _isSuccess,
+              paymentDetails: state.details,
+              isPending: true,
+            );
           }
 
           if (_isSuccess == null) {
@@ -114,14 +67,4 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           );
         },
       );
-}
-
-extension StringExtension on String {
-  String formattedDateTime({
-    bool toLocal = true,
-    String format = 'MMM dd yyyy,',
-  }) =>
-      DateFormat(format).add_jm().format(
-            toLocal ? DateTime.parse(this).toLocal() : DateTime.parse(this),
-          );
 }

@@ -12,4 +12,5 @@ class PaymentStatusState with _$PaymentStatusState {
 
   bool get isCompleted => details?.status == 'COMPLETED';
   bool get isFailed => details?.status == 'FAILED';
+  bool get isPending => details?.status == 'PENDING';
 }
