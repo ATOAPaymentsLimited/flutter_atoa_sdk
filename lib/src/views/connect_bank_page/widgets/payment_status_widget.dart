@@ -1,9 +1,9 @@
 import 'package:atoa_sdk/atoa_sdk.dart';
 import 'package:atoa_sdk/l10n/l10n.dart';
+import 'package:atoa_sdk/src/shared_widgets/hour_glass.dart';
 import 'package:atoa_sdk/src/shared_widgets/shared_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:regal/regal.dart';
 
@@ -93,11 +93,7 @@ class PaymentStatusWidget extends StatelessWidget {
 
   Widget _getPaymentStatusIcon() {
     if (isPending) {
-      return SvgPicture.asset(
-        'aasets/images/hourglass_empty.svg',
-        width: Spacing.large.value * 4,
-        height: Spacing.large.value * 4,
-      );
+      return const HourGlass();
     } else if (isSuccess != null && isSuccess!) {
       return const SuccessTick();
     } else {
