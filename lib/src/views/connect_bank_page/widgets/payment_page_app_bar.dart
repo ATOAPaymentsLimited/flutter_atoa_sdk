@@ -2,7 +2,6 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_sdk/atoa_sdk.dart';
 import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:atoa_sdk/src/shared_widgets/shared_widgets.dart';
-import 'package:atoa_sdk/src/utility/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
@@ -51,7 +50,7 @@ class PaymentPageAppBar extends StatelessWidget {
                             ),
                             child: Center(
                               child: CustomText.semantics(
-                                _nameInitial,
+                                'JB',
                                 style: context.labelSmall?.copyWith(
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -145,7 +144,4 @@ class PaymentPageAppBar extends StatelessWidget {
           ],
         ),
       );
-
-  String get _nameInitial =>
-      paymentRequestData?.merchantBusinessName.getInitials() ?? '';
 }
