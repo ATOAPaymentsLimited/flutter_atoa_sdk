@@ -35,7 +35,7 @@ class _ConnectBankBodyState extends State<ConnectBankBody>
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          Spacing.large.yBox,
+          Spacing.small.yBox,
           Selector<BankInstitutionsState, double?>(
             selector: (_, state) => state.paymentDetails?.amount.amount,
             builder: (context, amount, child) => CustomText.semantics(
@@ -45,7 +45,7 @@ class _ConnectBankBodyState extends State<ConnectBankBody>
               ),
             ),
           ),
-          Spacing.medium.yBox,
+          Spacing.small.yBox,
           CustomText.semantics(
             context.l10n.selectBank,
             style: context.labelSmall?.copyWith(
