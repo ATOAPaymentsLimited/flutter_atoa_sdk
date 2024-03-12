@@ -28,7 +28,9 @@ class _CotinueButtonState extends State<CotinueButton> {
                         .read<BankInstitutionsController>()
                         .authorizeBank();
 
-                    if ((launchApp ?? false) && mounted && auth != null) {
+                    if ((launchApp ?? false) &&
+                        context.mounted &&
+                        auth != null) {
                       context
                           .read<PaymentStatusController>()
                           .startListening(auth.paymentIdempotencyId);
