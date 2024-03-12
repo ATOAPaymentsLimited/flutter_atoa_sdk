@@ -90,61 +90,54 @@ class PaymentPageAppBar extends StatelessWidget {
                   ),
                   Spacing.xtraLarge.xBox,
                   if (paymentRequestData == null)
-                    Expanded(
-                      child: Shimmer.fromColors(
-                        baseColor: context.grey.shade10,
-                        highlightColor: context.grey.shade05,
-                        enabled: paymentRequestData == null,
-                        child: Container(
-                          width: 140.sp,
-                          height: 14.sp,
-                          color: context.regalColor.snowWhite,
-                        ),
+                    Shimmer.fromColors(
+                      baseColor: context.grey.shade10,
+                      highlightColor: context.grey.shade05,
+                      enabled: paymentRequestData == null,
+                      child: Container(
+                        width: 140.sp,
+                        height: 14.sp,
+                        color: context.regalColor.snowWhite,
                       ),
                     )
                   else
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText.semantics(
-                            context.l10n.yourArePaying,
-                            style: context.bodyLarge?.copyWith(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText.semantics(
+                          context.l10n.yourArePaying,
+                          style: context.bodyLarge?.copyWith(
+                            color: context.grey.shade40,
+                          ),
+                        ),
+                        CustomText.semantics(
+                          'John’s Barbershop',
+                          style: context.labelSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                          overflow: TextOverflow.clip,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on_outlined,
                               color: context.grey.shade40,
+                              size: Spacing.large.value,
                             ),
-                          ),
-                          CustomText.semantics(
-                            'John’s Barbershop',
-                            style: context.labelSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                            overflow: TextOverflow.clip,
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.location_on_outlined,
-                                color: context.grey.shade40,
-                                size: Spacing.large.value,
-                              ),
-                              Spacing.mini.xBox,
-                              RichText(
-                                text: CustomTextSpan.semantics(
-                                  text: 'Regent Street',
-                                  style: context.bodyLarge?.copyWith(
-                                    color: context.grey.shade40,
-                                  ),
+                            Spacing.mini.xBox,
+                            RichText(
+                              text: CustomTextSpan.semantics(
+                                text: 'Regent Street',
+                                style: context.bodyLarge?.copyWith(
+                                  color: context.grey.shade40,
                                 ),
                               ),
-                            ],
-                          ),
-                          Spacing.mini.yBox,
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                        Spacing.mini.yBox,
+                      ],
                     ),
-                  Spacing.medium.xBox,
-                  const Icon(Icons.more_horiz_outlined),
-                  Spacing.small.xBox,
                 ],
               ),
             ),
