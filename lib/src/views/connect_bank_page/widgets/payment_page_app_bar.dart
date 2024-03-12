@@ -32,31 +32,61 @@ class PaymentPageAppBar extends StatelessWidget {
                     onTap: () => Navigator.pop(context),
                   ),
                   Spacing.medium.xBox,
-                  DecoratedBox(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: UserAvatar(
-                      size: 40.sp,
-                      url: paymentRequestData?.storeImg,
-                      userName: '',
-                      placeholder: Container(
-                        height: 40.sp,
-                        width: 40.sp,
-                        decoration: BoxDecoration(
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      DecoratedBox(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: context.vividRed.tint10,
                         ),
-                        child: Center(
-                          child: CustomText.semantics(
-                            _nameInitial,
-                            style: context.labelSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
+                        child: UserAvatar(
+                          size: 40.sp,
+                          userName: '',
+                          placeholder: Container(
+                            height: 40.sp,
+                            width: 40.sp,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: context.vividRed.tint10,
+                            ),
+                            child: Center(
+                              child: CustomText.semantics(
+                                _nameInitial,
+                                style: context.labelSmall?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: -8.sp,
+                        right: -8.sp,
+                        child: Container(
+                          height: 24.sp,
+                          width: 24.sp,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: context.regalColor.snowWhite,
+                            border: Border.all(
+                              color: context.grey.shade05,
+                              width: 1.sp,
+                            ),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: Spacing.mini.all,
+                              child: Icon(
+                                Icons.storefront_outlined,
+                                color: context.regalColor.licoriceBlack,
+                                size: 16.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Spacing.xtraLarge.xBox,
                   if (paymentRequestData == null)
