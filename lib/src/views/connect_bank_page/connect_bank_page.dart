@@ -38,7 +38,7 @@ class _ConnectBankPageState extends State<ConnectBankPage>
   @override
   Widget build(BuildContext context) => PopScope(
         canPop: !context.read<BankInstitutionsState>().isLoading,
-    child: MultiFailureListener(
+        child: MultiFailureListener(
           listeners: [
             FailureListener<BankInstitutionsController, BankInstitutionsState>(
               message: (state) {
