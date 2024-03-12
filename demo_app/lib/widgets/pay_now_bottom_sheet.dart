@@ -21,55 +21,68 @@ class PayNowBottomSheet extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: Spacing.xtraLarge.x + Spacing.large.bottom,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText.semantics(
-                  'Total',
-                  style: context.bodyLarge!.copyWith(
-                    color: context.grey.shade40,
-                    fontWeight: FontWeight.w600,
+  Widget build(BuildContext context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x07000000),
+              blurRadius: 12,
+              offset: Offset(0, -8),
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: Padding(
+          padding: Spacing.xtraLarge.all,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText.semantics(
+                    'Total',
+                    style: context.bodyLarge!.copyWith(
+                      color: context.grey.shade40,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                Text(
-                  '£ ${totalAmount.toString()}',
-                  style: context.labelMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Montserrat',
+                  Text(
+                    '£ ${totalAmount.toString()}',
+                    style: context.labelMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Spacing.huge.xBox,
-            SizedBox(
-              width: 164.sp,
-              height: 56.sp,
-              child: ValueListenableBuilder(
-                valueListenable: isLoading,
-                builder: (context, value, child) => RegalButton.primary(
-                  shrink: true,
-                  onPressed: () =>
-                      value ? null : _getPaymentId(context, totalAmount),
-                  label: 'Pay Now',
-                  trackLabel: 'Pay Now',
-                  enable: !value,
-                  loading: value,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(52, 152, 219, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(Spacing.mini.value),
+                ],
+              ),
+              Spacing.huge.xBox,
+              SizedBox(
+                width: 164.sp,
+                height: 56.sp,
+                child: ValueListenableBuilder(
+                  valueListenable: isLoading,
+                  builder: (context, value, child) => RegalButton.primary(
+                    shrink: true,
+                    onPressed: () =>
+                        value ? null : _getPaymentId(context, totalAmount),
+                    label: 'Pay Now',
+                    trackLabel: 'Pay Now',
+                    enable: !value,
+                    loading: value,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(52, 152, 219, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(Spacing.mini.value),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 

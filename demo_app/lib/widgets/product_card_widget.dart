@@ -6,11 +6,13 @@ import 'package:regal/regal.dart';
 class ProductCardWidget extends StatelessWidget {
   ProductCardWidget({
     super.key,
+    required this.name,
     required this.totalAmountNotifier,
   });
 
   final ValueNotifier totalAmountNotifier;
   final ValueNotifier<int> totalItems = ValueNotifier(1);
+  final String name;
   @override
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.all,
@@ -34,11 +36,11 @@ class ProductCardWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText.semantics(
-                      'NikeCourt Lite 2',
+                      name,
                       style: context.labelSmall!
                           .copyWith(fontWeight: FontWeight.w600, height: 1.5),
                     ),
-                    Spacing.large.xBox * 2,
+                    Spacing.large.xBox * 2 + Spacing.small.xBox,
                     SvgPicture.asset(
                       'assets/icons/delete.svg',
                       height: Spacing.large.value,

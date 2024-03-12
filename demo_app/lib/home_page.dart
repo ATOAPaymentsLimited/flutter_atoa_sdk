@@ -46,9 +46,13 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               Spacing.medium.yBox,
-              ProductCardWidget(totalAmountNotifier: totalAmountNotifier),
+              ProductCardWidget(
+                  name: 'NikeCourt Lite 1',
+                  totalAmountNotifier: totalAmountNotifier),
               Spacing.medium.yBox,
-              ProductCardWidget(totalAmountNotifier: totalAmountNotifier),
+              ProductCardWidget(
+                  name: 'NikeCourt Lite 2',
+                  totalAmountNotifier: totalAmountNotifier),
               Spacing.small.yBox,
               Spacing.huge.yBox,
               Row(

@@ -38,14 +38,14 @@ class PaymentStatusWidget extends StatelessWidget {
                   context.l10n.amountText(paymentDetails!.paidAmount),
                   style: context.headlineLarge!.copyWith(fontSize: 40.sp),
                 ),
-              Spacing.huge.yBox,
+              Spacing.medium.yBox,
               if (paymentDetails?.createdAt != null)
                 CustomText.semantics(
                   paymentDetails!.createdAt.formattedDateTime(),
                   style:
                       context.bodyLarge!.copyWith(color: context.grey.shade60),
                 ),
-              Spacing.huge.yBox,
+              Spacing.medium.yBox,
               Container(
                 padding: Spacing.medium.y,
                 width: 220.sp,
@@ -82,6 +82,7 @@ class PaymentStatusWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context, isSuccess);
                   },
+                  size: RegalButtonSize.small,
                   trackLabel: 'Go Back',
                   label: 'Go Back',
                 ),

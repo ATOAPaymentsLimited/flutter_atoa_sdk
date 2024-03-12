@@ -18,8 +18,8 @@ class BanksGridView extends StatelessWidget {
             itemCount: isLoading ? 5 : banks.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
+              crossAxisSpacing: 4,
+              mainAxisSpacing: 4,
             ),
             itemBuilder: (_, index) {
               if (isLoading) {

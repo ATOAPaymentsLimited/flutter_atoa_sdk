@@ -27,6 +27,14 @@ class PaymentPageAppBar extends StatelessWidget {
             padding: Spacing.medium.x + Spacing.medium.top,
             child: Row(
               children: [
+                CustomInkWell(
+                  context: context,
+                  trackLabel: 'Back Button',
+                  semanticsLabel: 'BackButton',
+                  child: const Icon(Icons.arrow_back_ios_outlined),
+                  onTap: () => Navigator.pop(context),
+                ),
+                Spacing.medium.xBox,
                 DecoratedBox(
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
@@ -86,8 +94,9 @@ class PaymentPageAppBar extends StatelessWidget {
                           storeLocation != 'DEFAULT') ...[
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.location_on,
+                              color: context.grey.shade40,
                             ),
                             Spacing.mini.xBox,
                             RichText(
@@ -108,11 +117,6 @@ class PaymentPageAppBar extends StatelessWidget {
             ),
           ),
           Spacing.mini.yBox,
-          Container(
-            height: 1.sp,
-            width: double.infinity,
-            color: context.grey.shade05,
-          ),
         ],
       ),
     );
