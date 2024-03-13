@@ -40,7 +40,7 @@ class ProductCardWidget extends StatelessWidget {
                       style: context.labelSmall!
                           .copyWith(fontWeight: FontWeight.w600, height: 1.5),
                     ),
-                    Spacing.large.xBox * 2 + Spacing.small.xBox,
+                    Spacing.large.xBox * 2,
                     SvgPicture.asset(
                       'assets/icons/delete.svg',
                       height: Spacing.large.value,
