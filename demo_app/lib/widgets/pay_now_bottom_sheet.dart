@@ -95,6 +95,7 @@ class PayNowBottomSheet extends StatelessWidget {
         isLoading.value = false;
         _showSheet(context, paymentRequestId);
       } else {
+        isLoading.value = false;
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
