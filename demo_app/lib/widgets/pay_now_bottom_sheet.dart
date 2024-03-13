@@ -22,9 +22,9 @@ class PayNowBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
+        decoration: BoxDecoration(
+          color: context.regalColor.snowWhite,
+          boxShadow: const [
             BoxShadow(
               color: Color(0x07000000),
               blurRadius: 12,
