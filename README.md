@@ -1,102 +1,73 @@
 # Atoa Sdk
 
+Flutter plugin for Atoa SDK.
+
+[![pub package](https://img.shields.io/pub/v/atoa_flutter_sdk.svg)](https://pub.dartlang.org/packages/atoa_flutter_sdk)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
 [![License: MIT][license_badge]][license_link]
 
-## Overview
-The Atoa Payment Client for Flutter platform provides a convenient way to integrate payment functionality into your Flutter applications using Atoa SDK.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Example](https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/tree/main/example)
+- [Complete Demo App](demo_app/lib/main.dart)
+- [Handle Redirection](#handle-redirection-optional) (Optional)
+
+| Please refer our official flutter documentation [here](https://wiki.atoa.me/doc/atoa-flutter-penHLTJz3m).
 
 ## Installation
-To use the Atoa Payment Client in your Flutter project, follow these steps:
 
-Add the following dependency to your pubspec.yaml file:
+Run following to add Atoa SDK to your flutter project
 
-```yaml
-dependencies:
-  flutter_atoa_sdk: ^1.0.0
+```sh
+flutter pub add atoa_flutter_sdk
 ```
 
-Run `flutter pub get` to install the package.
+## Usage
 
-Usage
-Showing Bottom Sheet
-To show the Atoa Payment Client's bottom sheet, call the AtoaSdk.show method. This will display the bottom sheet with payment status.
+Sample code to integrate can be found in [example/lib/main.dart](example/lib/main.dart).
+
+#### Import package
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:atoa_payment_client/atoa_payment_client.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Atoa Payment Client Demo'),
-        ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              bool? paymentStatus = await AtoaSdk.show(
-                context, // BuildContext as the first positional parameter
-                paymentId: 'your_payment_id_here', // paymentId as a named parameter
-                period: Duration(seconds: 5), // interval at which status will be fetched
-              );
-              if (paymentStatus != null) {
-                // Handle payment status
-              } else {
-                // Handle dismissal or error
-              }
-            },
-            child: Text('Show Payment Bottom Sheet'),
-          ),
-        ),
-      ),
-    );
-  }
-}
+import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 ```
 
-## Handling Response
-The bottom sheet returns a response in a nullable bool. You can handle this response accordingly in your application logic.
+#### Show Payment Dialog
+
+It's a full screen dialog which shows all the available bank list then once user selects the bank. They will be redirected to their bank app or website.
 
 ```dart
-bool? paymentStatus = await AtoaSdk.show(
-context,
-paymentId: 'your_payment_id_here',
-period: Duration(seconds: 5),
+final paymentDetails = await AtoaSdk.show(
+  context,
+  paymentId: '<payment-request-id>',
+  env: AtoaEnv.prod, /// or AtoaEnv.sandbox
 );
-if (paymentStatus != null) {
-// Handle the payment status
+```
+
+#### Handle Response
+
+```dart
+if (paymentDetails != null) {
+  if(paymentDetails.isCompleted) {
+    // handle success
+  } else {
+    // handle failure / pending statuses
+  }
 } else {
 // Bottom sheet was dismissed or encountered an error
 }
 ```
 
-## Payment Status Display
-The bottom sheet is responsible for showing the payment status. It will display relevant information regarding the payment process.
+## Handle Redirection (Optional)
 
-## Dismissal Behavior
-The bottom sheet automatically dismisses itself after the latest payment status is fetched. You don't need to manually dismiss it.
+While generating `paymentRequestId` on backend, `redirectUrl` can be passed as body params which redirects to your website then opens your app with deep linking.
 
-## Parameters
-`BuildContext`: This parameter is required and represents the context in which the bottom sheet will be shown.
+#### Resources For deep-linking
 
-`paymentId` (named parameter): This parameter is optional and represents the ID of the payment for which the status is being fetched. If provided, it allows the Atoa SDK to fetch the payment status associated with this ID.
+- [Flutter Docs](https://docs.flutter.dev/ui/navigation/deep-linking)
+- [Code With Andrea](https://codewithandrea.com/articles/flutter-deep-links/)
 
-`period` (named parameter): This parameter is optional and specifies the duration at which intervals the payment status will be fetched regularly. It takes a Duration object, allowing developers to customize the interval as needed. If not provided, the SDK may use a default interval.
-
-Ensure that you provide valid values for these parameters according to your application's requirements.
-
-## Note
-Ensure that you have the necessary configurations set up for Atoa SDK integration, such as API keys and permissions, before using the Atoa Payment Client. Please refer to the official Atoa documentation for more details.
-
-For any issues or inquiries, please contact support@atoa.com.
+For any issues or inquiries, please contact hello@paywithatoa.co.uk.
 
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg

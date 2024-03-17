@@ -12,7 +12,7 @@ part of 'transaction_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TransactionDetails _$TransactionDetailsFromJson(Map<String, dynamic> json) {
   return _TransactionDetails.fromJson(json);
@@ -20,32 +20,77 @@ TransactionDetails _$TransactionDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TransactionDetails {
+  /// Unique identifier for the payment request.
   String get paymentIdempotencyId => throw _privateConstructorUsedError;
+
+  /// Unique identifier for the application user initiating the transaction.
   String get applicationUserId => throw _privateConstructorUsedError;
+
+  /// The amount paid for the transaction.
   @JsonKey(fromJson: _parseAmount)
   double get paidAmount => throw _privateConstructorUsedError;
+
+  /// The currency in which the transaction was made.
   String get currency => throw _privateConstructorUsedError;
+
+  /// Current status of the transaction.
   String get status => throw _privateConstructorUsedError;
+
+  /// The date and time when the transaction was created.
   String get createdAt => throw _privateConstructorUsedError;
+
+  /// Optional: Unique identifier for the payment, if available.
   String? get paymentId => throw _privateConstructorUsedError;
+
+  /// Optional: The date and time when the transaction was last updated.
   String? get updatedAt => throw _privateConstructorUsedError;
+
+  /// Optional: The name of the bank used for the transaction.
   String? get bankName => throw _privateConstructorUsedError;
+
+  /// Optional: The bank account number used for the transaction.
   String? get bankAccountNo => throw _privateConstructorUsedError;
+
+  /// Optional: Additional notes related to the transaction.
   String? get notes => throw _privateConstructorUsedError;
+
+  /// Optional: The tax amount associated with the transaction.
   @JsonKey(fromJson: _parseAmount)
   double? get taxAmount => throw _privateConstructorUsedError;
+
+  /// Optional: The service charge amount associated with the transaction.
   @JsonKey(fromJson: _parseAmount)
   double? get serviceAmount => throw _privateConstructorUsedError;
+
+  /// Optional: The tip amount associated with the transaction.
   @JsonKey(fromJson: _parseAmount)
   double? get tipAmount => throw _privateConstructorUsedError;
+
+  /// Optional: The QR code identifier associated with the transaction.
   String? get qrId => throw _privateConstructorUsedError;
+
+  /// Optional: The store identifier where the transaction took place.
   String? get storeId => throw _privateConstructorUsedError;
+
+  /// Optional: Nickname associated with the QR code used for the transaction.
   String? get qrNickName => throw _privateConstructorUsedError;
+
+  /// Optional: Description of any errors occurred during the transaction.
   String? get errorDescription => throw _privateConstructorUsedError;
+
+  /// Default: 3. Type of payment source used for the transaction.
   int get paymentSourceType => throw _privateConstructorUsedError;
+
+  /// Optional: Unique identifier for linking payments across systems.
   String? get paymentLinkId => throw _privateConstructorUsedError;
+
+  /// Optional: Unique identifier for the employee associated with the transaction.
   String? get employeeId => throw _privateConstructorUsedError;
+
+  /// Optional: Description of any pending transaction errors.
   String? get pendingTrasactionError => throw _privateConstructorUsedError;
+
+  /// Optional: Unique identifier for the order associated with the transaction.
   String? get orderId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -418,55 +463,100 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   factory _$TransactionDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransactionDetailsImplFromJson(json);
 
+  /// Unique identifier for the payment request.
   @override
   final String paymentIdempotencyId;
+
+  /// Unique identifier for the application user initiating the transaction.
   @override
   final String applicationUserId;
+
+  /// The amount paid for the transaction.
   @override
   @JsonKey(fromJson: _parseAmount)
   final double paidAmount;
+
+  /// The currency in which the transaction was made.
   @override
   final String currency;
+
+  /// Current status of the transaction.
   @override
   final String status;
+
+  /// The date and time when the transaction was created.
   @override
   final String createdAt;
+
+  /// Optional: Unique identifier for the payment, if available.
   @override
   final String? paymentId;
+
+  /// Optional: The date and time when the transaction was last updated.
   @override
   final String? updatedAt;
+
+  /// Optional: The name of the bank used for the transaction.
   @override
   final String? bankName;
+
+  /// Optional: The bank account number used for the transaction.
   @override
   final String? bankAccountNo;
+
+  /// Optional: Additional notes related to the transaction.
   @override
   final String? notes;
+
+  /// Optional: The tax amount associated with the transaction.
   @override
   @JsonKey(fromJson: _parseAmount)
   final double? taxAmount;
+
+  /// Optional: The service charge amount associated with the transaction.
   @override
   @JsonKey(fromJson: _parseAmount)
   final double? serviceAmount;
+
+  /// Optional: The tip amount associated with the transaction.
   @override
   @JsonKey(fromJson: _parseAmount)
   final double? tipAmount;
+
+  /// Optional: The QR code identifier associated with the transaction.
   @override
   final String? qrId;
+
+  /// Optional: The store identifier where the transaction took place.
   @override
   final String? storeId;
+
+  /// Optional: Nickname associated with the QR code used for the transaction.
   @override
   final String? qrNickName;
+
+  /// Optional: Description of any errors occurred during the transaction.
   @override
   final String? errorDescription;
+
+  /// Default: 3. Type of payment source used for the transaction.
   @override
   @JsonKey()
   final int paymentSourceType;
+
+  /// Optional: Unique identifier for linking payments across systems.
   @override
   final String? paymentLinkId;
+
+  /// Optional: Unique identifier for the employee associated with the transaction.
   @override
   final String? employeeId;
+
+  /// Optional: Description of any pending transaction errors.
   @override
   final String? pendingTrasactionError;
+
+  /// Optional: Unique identifier for the order associated with the transaction.
   @override
   final String? orderId;
 
@@ -598,54 +688,100 @@ abstract class _TransactionDetails extends TransactionDetails {
       _$TransactionDetailsImpl.fromJson;
 
   @override
+
+  /// Unique identifier for the payment request.
   String get paymentIdempotencyId;
   @override
+
+  /// Unique identifier for the application user initiating the transaction.
   String get applicationUserId;
   @override
+
+  /// The amount paid for the transaction.
   @JsonKey(fromJson: _parseAmount)
   double get paidAmount;
   @override
+
+  /// The currency in which the transaction was made.
   String get currency;
   @override
+
+  /// Current status of the transaction.
   String get status;
   @override
+
+  /// The date and time when the transaction was created.
   String get createdAt;
   @override
+
+  /// Optional: Unique identifier for the payment, if available.
   String? get paymentId;
   @override
+
+  /// Optional: The date and time when the transaction was last updated.
   String? get updatedAt;
   @override
+
+  /// Optional: The name of the bank used for the transaction.
   String? get bankName;
   @override
+
+  /// Optional: The bank account number used for the transaction.
   String? get bankAccountNo;
   @override
+
+  /// Optional: Additional notes related to the transaction.
   String? get notes;
   @override
+
+  /// Optional: The tax amount associated with the transaction.
   @JsonKey(fromJson: _parseAmount)
   double? get taxAmount;
   @override
+
+  /// Optional: The service charge amount associated with the transaction.
   @JsonKey(fromJson: _parseAmount)
   double? get serviceAmount;
   @override
+
+  /// Optional: The tip amount associated with the transaction.
   @JsonKey(fromJson: _parseAmount)
   double? get tipAmount;
   @override
+
+  /// Optional: The QR code identifier associated with the transaction.
   String? get qrId;
   @override
+
+  /// Optional: The store identifier where the transaction took place.
   String? get storeId;
   @override
+
+  /// Optional: Nickname associated with the QR code used for the transaction.
   String? get qrNickName;
   @override
+
+  /// Optional: Description of any errors occurred during the transaction.
   String? get errorDescription;
   @override
+
+  /// Default: 3. Type of payment source used for the transaction.
   int get paymentSourceType;
   @override
+
+  /// Optional: Unique identifier for linking payments across systems.
   String? get paymentLinkId;
   @override
+
+  /// Optional: Unique identifier for the employee associated with the transaction.
   String? get employeeId;
   @override
+
+  /// Optional: Description of any pending transaction errors.
   String? get pendingTrasactionError;
   @override
+
+  /// Optional: Unique identifier for the order associated with the transaction.
   String? get orderId;
   @override
   @JsonKey(ignore: true)

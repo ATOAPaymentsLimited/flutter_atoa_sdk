@@ -1,7 +1,7 @@
-import 'package:atoa_sdk/l10n/l10n.dart';
-import 'package:atoa_sdk/src/controllers/controllers.dart';
-import 'package:atoa_sdk/src/shared_widgets/shared_widgets.dart';
-import 'package:atoa_sdk/src/views/connect_bank_page/widgets/widgets.dart';
+import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
@@ -35,14 +35,17 @@ class _ConnectBankBodyState extends State<ConnectBankBody>
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          Spacing.medium.yBox,
+          Spacing.small.yBox,
           Selector<BankInstitutionsState, double?>(
             selector: (_, state) => state.paymentDetails?.amount.amount,
             builder: (context, amount, child) => CustomText.semantics(
               amount != null ? context.l10n.amountText(amount) : '',
-              style: context.montserrat.displaySmall,
+              style: context.displaySmall!.copyWith(
+                fontFamily: 'Montserrat',
+              ),
             ),
           ),
+          Spacing.small.yBox,
           CustomText.semantics(
             context.l10n.selectBank,
             style: context.labelSmall?.copyWith(
@@ -71,6 +74,7 @@ class _ConnectBankBodyState extends State<ConnectBankBody>
                   RegalDivider(color: context.grey.shade20),
                   Spacing.small.yBox,
                   const LegalText(),
+                  Spacing.medium.yBox,
                   const CotinueButton(),
                   const BottomSpacer(),
                 ],

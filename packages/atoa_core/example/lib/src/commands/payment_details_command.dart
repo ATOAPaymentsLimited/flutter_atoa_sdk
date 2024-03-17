@@ -82,7 +82,7 @@ class PaymentDetailsCommand extends Command<int> {
         paymentRequestId: paymentId,
       );
 
-      final authRes = await _atoa.getPaymentAuth(body);
+    final authRes = await _atoa.getPaymentAuth(body);
 
       _logger
         ..write(res.toString())

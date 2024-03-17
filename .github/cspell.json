@@ -16,6 +16,9 @@
   ],
   "useGitignore": true,
   "words": [
-    "atoa_sdk"
+    "atoa_sdk",
+    "Atoa",
+    "atoa",
+    "fluttersdk"
   ]
 }

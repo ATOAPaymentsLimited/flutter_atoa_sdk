@@ -10,6 +10,7 @@ class PaymentStatusState with _$PaymentStatusState {
 
   const PaymentStatusState._();
 
-  bool get isCompleted => details?.status == 'COMPLETED';
-  bool get isFailed => details?.status == 'FAILED';
+  bool get isCompleted => details?.isCompleted ?? false;
+  bool get isFailed => details?.isFailed ?? false;
+  bool get isPending => details?.isPending ?? false;
 }

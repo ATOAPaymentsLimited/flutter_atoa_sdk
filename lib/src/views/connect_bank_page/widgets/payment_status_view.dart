@@ -1,5 +1,5 @@
-import 'package:atoa_sdk/src/controllers/controllers.dart';
-import 'package:atoa_sdk/src/shared_widgets/success_tick.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/payment_status_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,38 +22,22 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
 
           if (state.isCompleted) {
             _isSuccess = true;
-
-            final width = MediaQuery.of(context).size.width;
-            return Container(
-              height: width / 2,
-              width: width / 2,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SuccessTick(),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context, _isSuccess);
-                        },
-                        child: const Text('Go Back'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            return PaymentStatusWidget(
+              paymentDetails: state.details,
             );
           }
 
           if (state.isFailed) {
             _isSuccess = false;
+            return PaymentStatusWidget(
+              paymentDetails: state.details,
+            );
+          }
+
+          if (state.isPending) {
+            return PaymentStatusWidget(
+              paymentDetails: state.details,
+            );
           }
 
           if (_isSuccess == null) {

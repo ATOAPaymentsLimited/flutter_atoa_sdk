@@ -1,0 +1,34 @@
+name: fluttersdk
+description: "A new Flutter project."
+publish_to: "none"
+version: 1.0.0+16
+
+environment:
+  sdk: ">=3.2.3 <4.0.0"
+
+dependencies:
+  atoa_flutter_sdk:
+    path: ../
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_screenutil: ^5.9.0
+  flutter_svg: ^2.0.10+1
+  intl: any
+  regal: ^3.2.3
+  shared_preferences: ^2.2.2
+  firebase_core: ^2.9.0
+  firebase_crashlytics: ^3.0.3
+  firebase_analytics: ^10.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  assets:
+    - assets/images/
+    - assets/icons/
+  uses-material-design: true

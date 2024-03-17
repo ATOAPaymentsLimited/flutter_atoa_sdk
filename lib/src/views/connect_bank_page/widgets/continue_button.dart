@@ -1,5 +1,5 @@
-import 'package:atoa_sdk/l10n/l10n.dart';
-import 'package:atoa_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,9 @@ class _CotinueButtonState extends State<CotinueButton> {
                         .read<BankInstitutionsController>()
                         .authorizeBank();
 
-                    if ((launchApp ?? false) && mounted && auth != null) {
+                    if ((launchApp ?? false) &&
+                        context.mounted &&
+                        auth != null) {
                       context
                           .read<PaymentStatusController>()
                           .startListening(auth.paymentIdempotencyId);
