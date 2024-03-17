@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/connect_bank_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 /// {@template atoa_flutter_sdk}
@@ -53,13 +57,52 @@ class AtoaSdk {
   }
 
   static Future<String> getPaymentRequestId({required double amount}) async {
-    final atoa = Atoa();
-    Atoa.env = AtoaEnv.prod;
+    final uri = Uri.https(
+      'https://devapi.atoa.me',
+      '/api/process-payment',
+    );
 
-    atoa.initialize();
-    final paymentRequestController = PaymentRequestController(atoa: atoa);
-    final res =
-        await paymentRequestController.getPaymentRequestId(amount: amount);
-    return res;
+    final response = await http.post(
+      uri,
+      headers: {
+        HttpHeaders.authorizationHeader: const String.fromEnvironment(
+          'atoa-token',
+          defaultValue: '<add-token-here>',
+        ),
+      },
+      body: getRequestData(amount),
+    );
+
+    final resMap = jsonDecode(response.body) as Map<String, dynamic>;
+
+    return resMap['paymentRequestId'] as String? ?? '';
   }
+
+  static Map<String, dynamic> getRequestData(double amount) => {
+        'customerId': 'abc123',
+        'consumerDetails': {
+          'phoneCountryCode': '44',
+          'phoneNumber': 7857094720,
+          'email': 'john@deo.com',
+          'firstName': 'John',
+          'lastName': 'Deo',
+        },
+        'orderId': '242u9384jfjkw',
+        'currency': 'GBP',
+        'amount': amount,
+        'institutionId': 'modelo-sandbox',
+        'paymentType': 'TRANSACTION',
+        'autoRedirect': false,
+        'callbackParams': {
+          'deviceId': '{deviceId}',
+          'locationId': '{locationId}',
+        },
+        'expiresIn': 60000000,
+        'enableTips': true,
+        'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',
+        'strictExpiry': false,
+        'allowRetry': true,
+        'template': 'RECEIPT_PNG',
+        'splitBill': false,
+      };
 }
