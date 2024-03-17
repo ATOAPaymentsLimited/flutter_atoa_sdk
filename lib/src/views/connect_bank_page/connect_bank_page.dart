@@ -1,8 +1,8 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_sdk/atoa_sdk.dart';
-import 'package:atoa_sdk/src/controllers/controllers.dart';
-import 'package:atoa_sdk/src/shared_widgets/shared_widgets.dart';
-import 'package:atoa_sdk/src/views/connect_bank_page/widgets/widgets.dart';
+import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';

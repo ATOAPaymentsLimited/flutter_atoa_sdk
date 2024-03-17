@@ -1,7 +1,7 @@
-import 'package:atoa_sdk/atoa_sdk.dart';
-import 'package:atoa_sdk/l10n/l10n.dart';
-import 'package:atoa_sdk/src/shared_widgets/hour_glass.dart';
-import 'package:atoa_sdk/src/shared_widgets/shared_widgets.dart';
+import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/hour_glass.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';

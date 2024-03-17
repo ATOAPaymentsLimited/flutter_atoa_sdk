@@ -1,5 +1,5 @@
-import 'package:atoa_sdk/src/controllers/controllers.dart';
-import 'package:atoa_sdk/src/views/connect_bank_page/widgets/payment_status_widget.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/payment_status_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
