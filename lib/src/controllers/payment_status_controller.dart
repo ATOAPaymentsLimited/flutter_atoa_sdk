@@ -4,18 +4,18 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'payment_status_state.dart';
 part 'payment_status_controller.freezed.dart';
+part 'payment_status_state.dart';
 
 class PaymentStatusController extends StateNotifier<PaymentStatusState> {
   PaymentStatusController({
     required Atoa atoa,
-    Duration period = const Duration(seconds: 1),
-  })  : _period = period,
+    Duration interval = const Duration(seconds: 1),
+  })  : _interval = interval,
         _atoa = atoa,
         super(const PaymentStatusState());
 
-  final Duration _period;
+  final Duration _interval;
   final Atoa _atoa;
 
   void startListening(String paymentIdempotencyId) {
@@ -25,7 +25,7 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
     state = state.copyWith(started: true);
 
     _subscription = Stream.periodic(
-      _period,
+      _interval,
       (_) => callServer<TransactionDetails>(
         () => _atoa.getPaymentStatus(paymentIdempotencyId),
       ),

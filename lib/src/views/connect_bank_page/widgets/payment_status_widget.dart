@@ -10,92 +10,97 @@ import 'package:regal/regal.dart';
 class PaymentStatusWidget extends StatelessWidget {
   const PaymentStatusWidget({
     super.key,
-    this.isSuccess,
     this.paymentDetails,
-    this.isPending = false,
   });
 
-  final bool? isSuccess;
-  final bool isPending;
   final TransactionDetails? paymentDetails;
 
   @override
-  Widget build(BuildContext context) => Container(
-        height: MediaQuery.of(context).size.width / 2,
-        width: MediaQuery.of(context).size.width / 2,
-        decoration: BoxDecoration(
-          color: context.regalColor.snowWhite,
-        ),
-        alignment: Alignment.center,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _getPaymentStatusIcon(),
-              Spacing.huge.yBox,
-              if (paymentDetails?.paidAmount != null)
-                CustomText.semantics(
-                  context.l10n.amountText(paymentDetails!.paidAmount),
-                  style: context.headlineLarge!.copyWith(fontSize: 40.sp),
+  Widget build(BuildContext context) {
+    final isPending = paymentDetails?.isPending ?? false;
+    final isSuccess = paymentDetails?.isCompleted ?? false;
+    return Container(
+      height: MediaQuery.of(context).size.width / 2,
+      width: MediaQuery.of(context).size.width / 2,
+      decoration: BoxDecoration(
+        color: context.regalColor.snowWhite,
+      ),
+      alignment: Alignment.center,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _getPaymentStatusIcon(
+              isPending: isPending,
+              isSuccess: isSuccess,
+            ),
+            Spacing.huge.yBox,
+            if (paymentDetails?.paidAmount != null)
+              CustomText.semantics(
+                context.l10n.amountText(paymentDetails!.paidAmount),
+                style: context.headlineLarge!.copyWith(fontSize: 40.sp),
+              ),
+            Spacing.medium.yBox,
+            if (paymentDetails?.createdAt != null)
+              CustomText.semantics(
+                paymentDetails!.createdAt.formattedDateTime(),
+                style: context.bodyLarge!.copyWith(color: context.grey.shade60),
+              ),
+            Spacing.medium.yBox,
+            Container(
+              padding: Spacing.medium.y,
+              width: 220.sp,
+              decoration: BoxDecoration(
+                color: isPending
+                    ? context.grey.shade20
+                    : isSuccess
+                        ? RegalColors.darkCyan
+                        : RegalColors.brightOrange,
+                borderRadius: BorderRadius.circular(
+                  Spacing.small.value,
                 ),
-              Spacing.medium.yBox,
-              if (paymentDetails?.createdAt != null)
-                CustomText.semantics(
-                  paymentDetails!.createdAt.formattedDateTime(),
-                  style:
-                      context.bodyLarge!.copyWith(color: context.grey.shade60),
-                ),
-              Spacing.medium.yBox,
-              Container(
-                padding: Spacing.medium.y,
-                width: 220.sp,
-                decoration: BoxDecoration(
+              ),
+              child: CustomText.semantics(
+                isPending
+                    ? 'Processing'
+                    : isSuccess
+                        ? 'Successful'
+                        : 'Payment Failed',
+                style: context.bodyLarge!.copyWith(
                   color: isPending
-                      ? context.grey.shade20
-                      : isSuccess != null && isSuccess!
-                          ? RegalColors.darkCyan
-                          : RegalColors.brightOrange,
-                  borderRadius: BorderRadius.circular(
-                    Spacing.small.value,
-                  ),
+                      ? RegalColors.licoriceBlack
+                      : RegalColors.snowWhite,
+                  fontWeight: FontWeight.w600,
                 ),
-                child: CustomText.semantics(
-                  isPending
-                      ? 'Processing'
-                      : isSuccess != null && isSuccess!
-                          ? 'Successful'
-                          : 'Payment Failed',
-                  style: context.bodyLarge!.copyWith(
-                    color: isPending
-                        ? RegalColors.licoriceBlack
-                        : RegalColors.snowWhite,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                textAlign: TextAlign.center,
               ),
-              Spacing.huge.yBox,
-              Padding(
-                padding: Spacing.small.all,
-                child: RegalButton.primary(
-                  shrink: true,
-                  onPressed: () {
-                    Navigator.pop(context, isSuccess);
-                  },
-                  size: RegalButtonSize.small,
-                  trackLabel: 'Go Back',
-                  label: 'Go Back',
-                ),
+            ),
+            Spacing.huge.yBox,
+            Padding(
+              padding: Spacing.small.all,
+              child: RegalButton.primary(
+                shrink: true,
+                onPressed: () {
+                  Navigator.pop(context, isSuccess);
+                },
+                size: RegalButtonSize.small,
+                trackLabel: 'Go Back',
+                label: 'Go Back',
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
-  Widget _getPaymentStatusIcon() {
+  Widget _getPaymentStatusIcon({
+    required bool isPending,
+    required bool isSuccess,
+  }) {
     if (isPending) {
       return const HourGlass();
-    } else if (isSuccess != null && isSuccess!) {
+    } else if (isSuccess) {
       return const SuccessTick();
     } else {
       return Icon(

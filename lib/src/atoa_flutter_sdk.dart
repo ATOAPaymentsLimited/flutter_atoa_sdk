@@ -13,11 +13,13 @@ class AtoaSdk {
   /// {@macro atoa_flutter_sdk}
   const AtoaSdk();
 
-  static Future<bool?> show(
+  static Future<TransactionDetails?> show(
     BuildContext context, {
     required String paymentId,
     required AtoaEnv env,
-    Duration period = const Duration(seconds: 5),
+
+    /// payment status polling interval
+    Duration interval = const Duration(seconds: 5),
   }) async {
     final atoa = Atoa();
 
@@ -25,7 +27,7 @@ class AtoaSdk {
 
     atoa.initialize();
 
-    return showDialog<bool>(
+    return showDialog<TransactionDetails>(
       context: context,
       useRootNavigator: false,
       builder: (_) => MultiProvider(
@@ -40,7 +42,7 @@ class AtoaSdk {
           StateNotifierProvider<PaymentStatusController, PaymentStatusState>(
             create: (_) => PaymentStatusController(
               atoa: atoa,
-              period: period,
+              interval: interval,
             ),
           ),
         ],

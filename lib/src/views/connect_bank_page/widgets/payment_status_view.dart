@@ -23,7 +23,6 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           if (state.isCompleted) {
             _isSuccess = true;
             return PaymentStatusWidget(
-              isSuccess: _isSuccess,
               paymentDetails: state.details,
             );
           }
@@ -31,16 +30,13 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           if (state.isFailed) {
             _isSuccess = false;
             return PaymentStatusWidget(
-              isSuccess: _isSuccess,
               paymentDetails: state.details,
             );
           }
 
           if (state.isPending) {
             return PaymentStatusWidget(
-              isSuccess: _isSuccess,
               paymentDetails: state.details,
-              isPending: true,
             );
           }
 

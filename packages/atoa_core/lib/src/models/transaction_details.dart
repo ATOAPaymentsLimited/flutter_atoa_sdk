@@ -42,14 +42,16 @@ class TransactionDetails with _$TransactionDetails {
   factory TransactionDetails.fromJson(Map<String, dynamic> json) =>
       _$TransactionDetailsFromJson(json);
 
-  bool get isRefunded => status == 'REFUNDED';
-
   bool get hasTip => tipAmount != null && tipAmount! > 0;
 
   double get refundAmount => hasTip ? paidAmount - tipAmount! : paidAmount;
+
   bool get isProcessing =>
       status == 'PENDING' && pendingTrasactionError != null;
+  bool get isRefunded => status == 'REFUNDED';
   bool get isFailed => status == 'FAILED';
+  bool get isPending => status == 'PENDING';
+  bool get isCompleted => status == 'COMPLETED';
 }
 
 double _parseAmount(dynamic amount) {
