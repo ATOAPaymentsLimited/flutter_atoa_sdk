@@ -9,3 +9,7 @@
 # 1.0.0+1
 
 - feat: add personal and business bank tabs
+
+# 1.0.0+3
+
+- feat: UI update
