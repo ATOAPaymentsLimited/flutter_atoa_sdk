@@ -9,3 +9,8 @@
 # 1.0.2
 
 - release workflow
+
+# 1.0.3
+
+- docs
+- status getters
