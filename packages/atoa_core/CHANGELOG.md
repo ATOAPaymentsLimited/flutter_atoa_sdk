@@ -12,5 +12,5 @@
 
 # 1.0.3
 
-- docs
+- documentation
 - status getters
