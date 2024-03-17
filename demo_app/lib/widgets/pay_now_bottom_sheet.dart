@@ -16,7 +16,7 @@ class PayNowBottomSheet extends StatelessWidget {
     AtoaSdk.show(
       context,
       paymentId: paymentId,
-      env: AtoaEnv.prod,
+      env: AtoaEnv.prod, /// or AtoaEnv.sandbox
     );
   }
 
