@@ -1,5 +1,5 @@
-import 'package:atoa_sdk/src/controllers/controllers.dart';
-import 'package:atoa_sdk/src/views/connect_bank_page/widgets/payment_status_widget.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/payment_status_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,6 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           if (state.isCompleted) {
             _isSuccess = true;
             return PaymentStatusWidget(
-              isSuccess: _isSuccess,
               paymentDetails: state.details,
             );
           }
@@ -31,16 +30,13 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           if (state.isFailed) {
             _isSuccess = false;
             return PaymentStatusWidget(
-              isSuccess: _isSuccess,
               paymentDetails: state.details,
             );
           }
 
           if (state.isPending) {
             return PaymentStatusWidget(
-              isSuccess: _isSuccess,
               paymentDetails: state.details,
-              isPending: true,
             );
           }
 

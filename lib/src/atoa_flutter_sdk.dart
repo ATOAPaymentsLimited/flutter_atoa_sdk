@@ -1,23 +1,25 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_sdk/atoa_sdk.dart';
-import 'package:atoa_sdk/src/controllers/controllers.dart';
-import 'package:atoa_sdk/src/views/connect_bank_page/connect_bank_page.dart';
+import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/connect_bank_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
-/// {@template atoa_sdk}
+/// {@template atoa_flutter_sdk}
 /// Atoa Flutter SDK
 /// {@endtemplate}
 class AtoaSdk {
-  /// {@macro atoa_sdk}
+  /// {@macro atoa_flutter_sdk}
   const AtoaSdk();
 
-  static Future<bool?> show(
+  static Future<TransactionDetails?> show(
     BuildContext context, {
     required String paymentId,
     required AtoaEnv env,
-    Duration period = const Duration(seconds: 5),
+
+    /// payment status polling interval
+    Duration interval = const Duration(seconds: 5),
   }) async {
     final atoa = Atoa();
 
@@ -25,7 +27,7 @@ class AtoaSdk {
 
     atoa.initialize();
 
-    return showDialog<bool>(
+    return showDialog<TransactionDetails>(
       context: context,
       useRootNavigator: false,
       builder: (_) => MultiProvider(
@@ -40,7 +42,7 @@ class AtoaSdk {
           StateNotifierProvider<PaymentStatusController, PaymentStatusState>(
             create: (_) => PaymentStatusController(
               atoa: atoa,
-              period: period,
+              interval: interval,
             ),
           ),
         ],
