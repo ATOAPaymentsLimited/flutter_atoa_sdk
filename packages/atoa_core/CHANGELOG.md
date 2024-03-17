@@ -14,3 +14,6 @@
 
 - documentation
 - status getters
+
+# 1.0.4
+- fix: base url
