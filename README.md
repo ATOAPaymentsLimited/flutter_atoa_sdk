@@ -1,6 +1,6 @@
 # Atoa Sdk
 
-Flutter plugin for Atoa SDK.
+Flutter plugin for Atoa SDK. 
 
 [![pub package](https://img.shields.io/pub/v/atoa_flutter_sdk.svg)](https://pub.dartlang.org/packages/atoa_flutter_sdk)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
@@ -10,6 +10,10 @@ Flutter plugin for Atoa SDK.
 - [Usage](#usage)
 - [Example](https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/tree/main/example)
 - [Complete Demo App](demo_app/lib/main.dart)
+- [Handle Redirection](#handle-redirection-optional) (Optional)
+
+| Please refer our official flutter documentation [here](https://wiki.atoa.me/doc/atoa-flutter-penHLTJz3m).
+
 
 ## Installation
 
@@ -59,7 +63,15 @@ if (paymentDetails != null) {
 }
 ```
 
-For any issues or inquiries, please contact support@atoa.com.
+## Handle Redirection (Optional)
+
+While generating `paymentRequestId` on backend, `redirectUrl` can be passed as body params which redirects to your website then opens your app with deep linking.
+
+#### Resources For deep-linking
+- [Flutter Docs](https://docs.flutter.dev/ui/navigation/deep-linking) 
+- [Code With Andrea](https://codewithandrea.com/articles/flutter-deep-links/)
+
+For any issues or inquiries, please contact hello@paywithatoa.co.uk.
 
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
