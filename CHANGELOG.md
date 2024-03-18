@@ -17,3 +17,7 @@
 # 1.0.4
 
 - chore: update docs
+
+# 1.0.5
+
+- chore: update docs

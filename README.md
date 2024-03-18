@@ -5,6 +5,7 @@ Flutter plugin for Atoa SDK.
 [![pub package](https://img.shields.io/pub/v/atoa_flutter_sdk.svg)](https://pub.dartlang.org/packages/atoa_flutter_sdk)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
+<img src="assets/atoa-sdk-flow.png">
 
 - [Installation](#installation)
 - [Usage](#usage)
