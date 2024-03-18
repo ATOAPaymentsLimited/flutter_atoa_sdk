@@ -12,7 +12,7 @@ Flutter plugin for Atoa SDK.
 - [Complete Demo App](demo_app/lib/main.dart)
 - [Handle Redirection](#handle-redirection-optional) (Optional)
 
-| Please refer our official flutter documentation [here](https://wiki.atoa.me/doc/atoa-flutter-penHLTJz3m).
+| Please refer our official flutter documentation [here](https://docs.atoa.me/).
 
 ## Installation
 
@@ -60,7 +60,7 @@ if (paymentDetails != null) {
 
 ## Handle Redirection (Optional)
 
-While generating `paymentRequestId` on backend, `redirectUrl` can be passed as body params which redirects to your website then opens your app with deep linking.
+Call the [payment-process](https://docs.atoa.me/api-reference/Payment/process-payment) API to generate a payment. In response, store the `paymentRequestId` on the backend. The `redirectUrl`, which can be passed as body parameters, redirects to your website and then opens your app via deep linking.
 
 #### Resources For deep-linking
 

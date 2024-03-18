@@ -13,3 +13,7 @@
 # 1.0.3
 
 - feat: UI update
+
+# 1.0.4
+
+- chore: update docs
