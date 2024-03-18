@@ -5,11 +5,11 @@ Flutter plugin for Atoa SDK.
 [![pub package](https://img.shields.io/pub/v/atoa_flutter_sdk.svg)](https://pub.dartlang.org/packages/atoa_flutter_sdk)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
-<img src="assets/atoa-sdk-flow.png">
+![Atoa SDK Flow][atoa_banner]
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Example](https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/tree/main/example)
+- [Example][example]
 - [Complete Demo App](demo_app/lib/main.dart)
 - [Handle Redirection](#handle-redirection-optional) (Optional)
 
@@ -74,3 +74,5 @@ For any issues or inquiries, please contact hello@paywithatoa.co.uk.
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
+[atoa_banner]: https://raw.githubusercontent.com/ATOAPaymentsLimited/flutter_atoa_sdk/main/assets/atoa-sdk-flow.png
+[example]: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/tree/main/example
