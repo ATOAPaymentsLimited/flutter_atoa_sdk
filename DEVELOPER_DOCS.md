@@ -1,22 +1,29 @@
-# Devloper Docs
+# Developer Docs
 
 Steps to integrate Atoa in your Flutter App:
 
-#### 1 [Install Atoa Flutter Package.](#installation)
+#### 0. [Prerequisites](#prerequisites)
 
-#### 2 [Import Package.](#import-package)
+#### 1. [Install Atoa Flutter Package.](#installation)
 
-#### 3 [Create a Payment Request in Server.](#create-a-payment-in-server)
+#### 2. [Import Package.](#import-package)
 
-#### 4 [Open Checkout.](#open-checkout)
+#### 3. [Create a Payment Request in Server.](#create-a-payment-in-server)
 
-#### 5 [Handle Payment Status.](#handle-payment-status)
+#### 4. [Initiate Payment.](#initiate-payment)
 
-#### 6 [Verify Payment Signature.](#verify-payment-signature)
+#### 5. [Handle Payment Status.](#handle-payment-status)
+
+#### 6. [Store Fields in Server.](#store-fields-in-server)
+
+#### 7. [Verify Payment Signature.](#verify-payment-signature)
+
+## Prerequisites
+
+Refer to getting started [here](https://docs.atoa.me/introduction#step-1-sign-up-for-developer-access).
 
 ## Installation
-
-Run following to add Atoa SDK to your flutter project
+Run the following to add Atoa SDK to your Flutter project
 
 ```sh
 flutter pub add atoa_flutter_sdk
@@ -53,9 +60,11 @@ curl --location --request POST 'https://api.atoa.me/api/payments/process-payment
 
 ```
 
-## Open Checkout
+Read more [here](https://docs.atoa.me/api-reference/Payment/process-payment).
 
-Pass the `paymentRequestId` which you will get by calling above [API](#create-a-payment-request-in-server).
+## Initiate Payment
+
+Pass the `paymentRequestId`, which you got by calling the above [API](#create-a-payment-request-in-server).
 
 ```dart
 final transactionDetails = await AtoaSdk.show(
@@ -66,12 +75,11 @@ final transactionDetails = await AtoaSdk.show(
 ```
 
 ## Handle Payment Status
-
-There are two ways to handle payment status: [**Polling**](#polling) and [**Webhook**](#subscribe-to-webhook-optional) (Optional).
+Two ways to handle payment status are **Polling** and **Webhook** (Optional).
 
 ### Polling
 
-Polling is handled out of the box by the package, once status is changed from `PENDING` to `SUCCESS` it closes the dialog with [`TransactionDetails`](https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/blob/main/packages/atoa_core/lib/src/models/transaction_details.dart) which includes `paymentIdempotencyId` and other values.
+Polling is handled out of the box by the package. Once the status is changed from `PENDING` to `SUCCESS`, the dialog with `TransactionDetails`, including `paymentIdempotencyId` and other values, is closed.
 
 ```dart
 if (transactionDetails != null) {
@@ -85,15 +93,15 @@ if (transactionDetails != null) {
 }
 ```
 
-#### Redirection (Optional)
+#### Redirection
 
 Redirection back to your app can be achieved by including `redirectUrl` in [API](#create-a-payment-request-in-server) and setting up **Deep Links** in your app.
-Few resources are given below
+A few resources are given below
 
 - [Flutter Docs](https://docs.flutter.dev/ui/navigation/deep-linking)
 - [Code With Andrea](https://codewithandrea.com/articles/flutter-deep-links/)
 
-That's how redirection link will look like...
+That's how the redirection link will look like
 
 ```md
 https://<yourRedirectUrl>?status=<SUCCESS/FAILURE/PENDING>&paymenRequestId=<paymenRequestId>&paymentIdempotencyId=<paymentIdempotencyId>&orderId=<atoaOrderId>&atoaSignature<atoaSignature>
@@ -101,14 +109,27 @@ https://<yourRedirectUrl>?status=<SUCCESS/FAILURE/PENDING>&paymenRequestId=<paym
 
 ### Subscribe to webhook (Optional)
 
-Atoa uses webhooks to notify your application whenever an event happens in your account. Webhooks are particularly useful for events such as changes in payment status like completion, failure, or pending.
+Atoa uses webhooks to notify your application whenever an event happens in your account. Webhooks are particularly useful for events such as changes in payment status, such as completion, failure, or pending.
 
-To get started, you need to [Register your webhook endpoint](https://docs.atoa.me/api-reference/Webhook/CreateWebhookEvent) so Atoa knows where to deliver events.
+To get started, you must [Register your webhook endpoint](https://docs.atoa.me/api-reference/Webhook/CreateWebhookEvent) so Atoa knows where to deliver events.
 
 After registration, your endpoint will start receiving detailed webhook payloads. These will inform you of payment status updates, such as `COMPLETED`, `PENDING`, or `FAILED`.
 
+## Store Fields in Server
+
+Store the following in your backend once the transaction is complete.
+```sh
+ "signatureHash": string
+ "paymentIdempotencyId": string
+```
+
+
 ## Verify Payment Signature
 
-You verify the signature by doing the [this](https://docs.atoa.me/introduction#step-4-verify-signature).
+This is a mandatory step to confirm the authenticity of the details returned to the Checkout form for successful payments.
 
-For any issues or inquiries, please contact hello@paywithatoa.co.uk.
+You can verify the signature by doing [this](https://docs.atoa.me/introduction#step-4-verify-signature).
+
+##
+
+For any issues or inquiries, please get in touch with us by writing to hello@paywithatoa.co.uk or by clicking [help](https://help.paywithatoa.co.uk/).
