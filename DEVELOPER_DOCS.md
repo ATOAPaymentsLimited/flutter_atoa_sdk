@@ -20,9 +20,10 @@ Steps to integrate Atoa in your Flutter App:
 
 ## Prerequisites
 
-Refer to getting started [here](https://docs.atoa.me/introduction#step-1-sign-up-for-developer-access).
+First, you must create an Atoa account and generate the access secret. See the Getting Started guide for more [information](https://docs.atoa.me/introduction#step-1-sign-up-for-developer-access).
 
 ## Installation
+
 Run the following to add Atoa SDK to your Flutter project
 
 ```sh
@@ -60,11 +61,11 @@ curl --location --request POST 'https://api.atoa.me/api/payments/process-payment
 
 ```
 
-Read more [here](https://docs.atoa.me/api-reference/Payment/process-payment).
+Check the [process-payment](https://docs.atoa.me/api-reference/Payment/process-payment) for further information.
 
 ## Initiate Payment
 
-Pass the `paymentRequestId`, which you got by calling the above [API](#create-a-payment-request-in-server).
+Pass the paymentRequestId, which you got by calling the [process-payment](https://docs.atoa.me/api-reference/Payment/process-payment) API.
 
 ```dart
 final transactionDetails = await AtoaSdk.show(
@@ -75,7 +76,8 @@ final transactionDetails = await AtoaSdk.show(
 ```
 
 ## Handle Payment Status
-Two ways to handle payment status are **Polling** and **Webhook** (Optional).
+
+Two ways to handle payment status are [**Polling**](https://docs.atoa.me/api-reference/Payment/getPaymentStatus) and [**Webhook**](https://docs.atoa.me/api-reference/Webhook/CreateWebhookEvent).
 
 ### Polling
 
@@ -107,7 +109,7 @@ That's how the redirection link will look like
 https://<yourRedirectUrl>?status=<SUCCESS/FAILURE/PENDING>&paymenRequestId=<paymenRequestId>&paymentIdempotencyId=<paymentIdempotencyId>&orderId=<atoaOrderId>&atoaSignature<atoaSignature>
 ```
 
-### Subscribe to webhook (Optional)
+### Subscribe to webhook (Recommended)
 
 Atoa uses webhooks to notify your application whenever an event happens in your account. Webhooks are particularly useful for events such as changes in payment status, such as completion, failure, or pending.
 
@@ -118,11 +120,11 @@ After registration, your endpoint will start receiving detailed webhook payloads
 ## Store Fields in Server
 
 Store the following in your backend once the transaction is complete.
+
 ```sh
  "signatureHash": string
  "paymentIdempotencyId": string
 ```
-
 
 ## Verify Payment Signature
 
