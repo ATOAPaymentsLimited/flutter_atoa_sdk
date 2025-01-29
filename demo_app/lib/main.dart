@@ -289,7 +289,7 @@ class _MainAppState extends State<MainApp> {
               fontWeight: FontWeight.bold,
             ),
           ).copyWith(
-            elevation: const MaterialStatePropertyAll(0),
+            elevation: const WidgetStatePropertyAll(0),
           ),
         ),
         appBarTheme: AppBarTheme(

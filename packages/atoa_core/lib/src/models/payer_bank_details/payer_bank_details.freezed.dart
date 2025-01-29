@@ -12,7 +12,7 @@ part of 'payer_bank_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PayerBankDetails _$PayerBankDetailsFromJson(Map<String, dynamic> json) {
   return _PayerBankDetails.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$PayerBankDetails {
   List<BankAccountIdentifications>? get accountIdentifications =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this PayerBankDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PayerBankDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PayerBankDetailsCopyWith<PayerBankDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$PayerBankDetailsCopyWithImpl<$Res, $Val extends PayerBankDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PayerBankDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$PayerBankDetailsImplCopyWithImpl<$Res>
       $Res Function(_$PayerBankDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PayerBankDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,12 +160,14 @@ class _$PayerBankDetailsImpl extends _PayerBankDetails {
                 other._accountIdentifications, _accountIdentifications));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name,
       const DeepCollectionEquality().hash(_accountIdentifications));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PayerBankDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PayerBankDetailsImplCopyWith<_$PayerBankDetailsImpl> get copyWith =>
@@ -187,8 +197,11 @@ abstract class _PayerBankDetails extends PayerBankDetails {
   String? get name;
   @override
   List<BankAccountIdentifications>? get accountIdentifications;
+
+  /// Create a copy of PayerBankDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PayerBankDetailsImplCopyWith<_$PayerBankDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

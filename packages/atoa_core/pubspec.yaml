@@ -4,7 +4,6 @@ version: 1.0.4
 homepage: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/tree/main/packages/atoa_core
 repository: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/tree/main/packages/atoa_core
 
-
 environment:
   sdk: ">=3.0.0 <4.0.0"
 

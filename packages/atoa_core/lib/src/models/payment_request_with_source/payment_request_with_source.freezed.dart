@@ -12,7 +12,7 @@ part of 'payment_request_with_source.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PaymentRequestWithSource _$PaymentRequestWithSourceFromJson(
     Map<String, dynamic> json) {
@@ -38,8 +38,12 @@ mixin _$PaymentRequestWithSource {
   String? get strictExpiry => throw _privateConstructorUsedError;
   String? get allowSdkRetry => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentRequestWithSource to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentRequestWithSource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentRequestWithSourceCopyWith<PaymentRequestWithSource> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -77,6 +81,8 @@ class _$PaymentRequestWithSourceCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentRequestWithSource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -140,6 +146,8 @@ class _$PaymentRequestWithSourceCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PaymentRequestWithSource
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AuditTrailDetailsCopyWith<$Res>? get auditTrailDetails {
@@ -189,6 +197,8 @@ class __$$PaymentRequestWithSourceImplCopyWithImpl<$Res>
       $Res Function(_$PaymentRequestWithSourceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentRequestWithSource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -335,7 +345,7 @@ class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
                 other.allowSdkRetry == allowSdkRetry));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -351,7 +361,9 @@ class _$PaymentRequestWithSourceImpl extends _PaymentRequestWithSource {
       strictExpiry,
       allowSdkRetry);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentRequestWithSource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentRequestWithSourceImplCopyWith<_$PaymentRequestWithSourceImpl>
@@ -410,8 +422,11 @@ abstract class _PaymentRequestWithSource extends PaymentRequestWithSource {
   String? get strictExpiry;
   @override
   String? get allowSdkRetry;
+
+  /// Create a copy of PaymentRequestWithSource
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentRequestWithSourceImplCopyWith<_$PaymentRequestWithSourceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

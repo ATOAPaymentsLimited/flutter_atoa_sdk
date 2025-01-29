@@ -12,7 +12,7 @@ part of 'payment_request_data.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PaymentRequestData _$PaymentRequestDataFromJson(Map<String, dynamic> json) {
   return _PaymentRequestData.fromJson(json);
@@ -57,8 +57,12 @@ mixin _$PaymentRequestData {
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get options => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentRequestData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentRequestDataCopyWith<PaymentRequestData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -117,6 +121,8 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -265,6 +271,8 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     ) as $Val);
   }
 
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AmountCopyWith<$Res> get amount {
@@ -273,6 +281,8 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     });
   }
 
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource {
@@ -286,6 +296,8 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     });
   }
 
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FraudDetailsCopyWith<$Res>? get fraudDetails {
@@ -298,6 +310,8 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     });
   }
 
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StoreDetailsCopyWith<$Res>? get storeDetails {
@@ -310,6 +324,8 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     });
   }
 
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MerchantPayeeAddressCopyWith<$Res>? get address {
@@ -382,6 +398,8 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
       $Res Function(_$PaymentRequestDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -705,7 +723,7 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
             const DeepCollectionEquality().equals(other._options, _options));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -739,7 +757,9 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
         const DeepCollectionEquality().hash(_options)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentRequestDataImplCopyWith<_$PaymentRequestDataImpl> get copyWith =>
@@ -854,8 +874,11 @@ abstract class _PaymentRequestData extends PaymentRequestData {
   @override
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get options;
+
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentRequestDataImplCopyWith<_$PaymentRequestDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

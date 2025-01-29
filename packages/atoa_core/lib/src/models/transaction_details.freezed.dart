@@ -93,8 +93,12 @@ mixin _$TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   String? get orderId => throw _privateConstructorUsedError;
 
+  /// Serializes this TransactionDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TransactionDetailsCopyWith<TransactionDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -141,6 +145,8 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -307,6 +313,8 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
       $Res Function(_$TransactionDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -613,7 +621,7 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
             (identical(other.orderId, orderId) || other.orderId == orderId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -642,7 +650,9 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         orderId
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionDetailsImplCopyWith<_$TransactionDetailsImpl> get copyWith =>
@@ -687,104 +697,106 @@ abstract class _TransactionDetails extends TransactionDetails {
   factory _TransactionDetails.fromJson(Map<String, dynamic> json) =
       _$TransactionDetailsImpl.fromJson;
 
-  @override
-
   /// Unique identifier for the payment request.
-  String get paymentIdempotencyId;
   @override
+  String get paymentIdempotencyId;
 
   /// Unique identifier for the application user initiating the transaction.
-  String get applicationUserId;
   @override
+  String get applicationUserId;
 
   /// The amount paid for the transaction.
+  @override
   @JsonKey(fromJson: _parseAmount)
   double get paidAmount;
-  @override
 
   /// The currency in which the transaction was made.
-  String get currency;
   @override
+  String get currency;
 
   /// Current status of the transaction.
-  String get status;
   @override
+  String get status;
 
   /// The date and time when the transaction was created.
-  String get createdAt;
   @override
+  String get createdAt;
 
   /// Optional: Unique identifier for the payment, if available.
-  String? get paymentId;
   @override
+  String? get paymentId;
 
   /// Optional: The date and time when the transaction was last updated.
-  String? get updatedAt;
   @override
+  String? get updatedAt;
 
   /// Optional: The name of the bank used for the transaction.
-  String? get bankName;
   @override
+  String? get bankName;
 
   /// Optional: The bank account number used for the transaction.
-  String? get bankAccountNo;
   @override
+  String? get bankAccountNo;
 
   /// Optional: Additional notes related to the transaction.
-  String? get notes;
   @override
+  String? get notes;
 
   /// Optional: The tax amount associated with the transaction.
+  @override
   @JsonKey(fromJson: _parseAmount)
   double? get taxAmount;
-  @override
 
   /// Optional: The service charge amount associated with the transaction.
+  @override
   @JsonKey(fromJson: _parseAmount)
   double? get serviceAmount;
-  @override
 
   /// Optional: The tip amount associated with the transaction.
+  @override
   @JsonKey(fromJson: _parseAmount)
   double? get tipAmount;
-  @override
 
   /// Optional: The QR code identifier associated with the transaction.
-  String? get qrId;
   @override
+  String? get qrId;
 
   /// Optional: The store identifier where the transaction took place.
-  String? get storeId;
   @override
+  String? get storeId;
 
   /// Optional: Nickname associated with the QR code used for the transaction.
-  String? get qrNickName;
   @override
+  String? get qrNickName;
 
   /// Optional: Description of any errors occurred during the transaction.
-  String? get errorDescription;
   @override
+  String? get errorDescription;
 
   /// Default: 3. Type of payment source used for the transaction.
-  int get paymentSourceType;
   @override
+  int get paymentSourceType;
 
   /// Optional: Unique identifier for linking payments across systems.
-  String? get paymentLinkId;
   @override
+  String? get paymentLinkId;
 
   /// Optional: Unique identifier for the employee associated with the transaction.
-  String? get employeeId;
   @override
+  String? get employeeId;
 
   /// Optional: Description of any pending transaction errors.
-  String? get pendingTrasactionError;
   @override
+  String? get pendingTrasactionError;
 
   /// Optional: Unique identifier for the order associated with the transaction.
-  String? get orderId;
   @override
-  @JsonKey(ignore: true)
+  String? get orderId;
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionDetailsImplCopyWith<_$TransactionDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

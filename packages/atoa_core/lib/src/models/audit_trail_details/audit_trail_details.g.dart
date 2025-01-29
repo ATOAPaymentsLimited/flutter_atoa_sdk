@@ -20,10 +20,10 @@ _$AuditTrailDetailsImpl _$$AuditTrailDetailsImplFromJson(
 Map<String, dynamic> _$$AuditTrailDetailsImplToJson(
         _$AuditTrailDetailsImpl instance) =>
     <String, dynamic>{
-      'fullName': instance.fullName,
-      'dob': instance.dob,
-      'citizenship': instance.citizenship,
-      'homeAddress': instance.homeAddress,
-      'occupation': instance.occupation,
-      'sourceOfIncome': instance.sourceOfIncome,
+      if (instance.fullName case final value?) 'fullName': value,
+      if (instance.dob case final value?) 'dob': value,
+      if (instance.citizenship case final value?) 'citizenship': value,
+      if (instance.homeAddress case final value?) 'homeAddress': value,
+      if (instance.occupation case final value?) 'occupation': value,
+      if (instance.sourceOfIncome case final value?) 'sourceOfIncome': value,
     };
