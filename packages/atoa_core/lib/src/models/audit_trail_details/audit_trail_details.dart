@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'audit_trail_details.freezed.dart';
@@ -6,12 +8,12 @@ part 'audit_trail_details.g.dart';
 @freezed
 class AuditTrailDetails with _$AuditTrailDetails {
   const factory AuditTrailDetails({
-    String? fullName,
-    String? dob,
-    String? citizenship,
-    String? homeAddress,
-    String? occupation,
-    String? sourceOfIncome,
+    @JsonKey(includeIfNull: false) String? fullName,
+    @JsonKey(includeIfNull: false) String? dob,
+    @JsonKey(includeIfNull: false) String? citizenship,
+    @JsonKey(includeIfNull: false) String? homeAddress,
+    @JsonKey(includeIfNull: false) String? occupation,
+    @JsonKey(includeIfNull: false) String? sourceOfIncome,
   }) = _AuditTrailDetails;
 
   const AuditTrailDetails._();

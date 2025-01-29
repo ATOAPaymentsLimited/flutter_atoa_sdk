@@ -12,7 +12,7 @@ part of 'bank_media.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BankMedia _$BankMediaFromJson(Map<String, dynamic> json) {
   return _BankMedia.fromJson(json);
@@ -23,8 +23,12 @@ mixin _$BankMedia {
   String get source => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
 
+  /// Serializes this BankMedia to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BankMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BankMediaCopyWith<BankMedia> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$BankMediaCopyWithImpl<$Res, $Val extends BankMedia>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BankMedia
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$BankMediaImplCopyWithImpl<$Res>
       _$BankMediaImpl _value, $Res Function(_$BankMediaImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BankMedia
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,11 +139,13 @@ class _$BankMediaImpl extends _BankMedia {
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, source, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BankMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BankMediaImplCopyWith<_$BankMediaImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _BankMedia extends BankMedia {
   String get source;
   @override
   String get type;
+
+  /// Create a copy of BankMedia
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BankMediaImplCopyWith<_$BankMediaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

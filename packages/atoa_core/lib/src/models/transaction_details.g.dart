@@ -31,7 +31,7 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
       storeId: json['storeId'] as String?,
       qrNickName: json['qrNickName'] as String?,
       errorDescription: json['errorDescription'] as String?,
-      paymentSourceType: json['paymentSourceType'] as int? ?? 3,
+      paymentSourceType: (json['paymentSourceType'] as num?)?.toInt() ?? 3,
       paymentLinkId: json['paymentLinkId'] as String?,
       employeeId: json['employeeId'] as String?,
       pendingTrasactionError: json['pendingTrasactionError'] as String?,

@@ -22,6 +22,8 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
           .toList(),
       deviceOrigin: json['deviceOrigin'] as String,
       totalAmountDue: json['totalAmountDue'] as num,
+      paymentDevice:
+          DeviceInfo.fromJson(json['paymentDevice'] as Map<String, dynamic>),
       userName: json['consumerName'] as String? ?? '',
       paymentRequest: json['paymentRequest'] == null
           ? const PaymentAuthPaymentRequest(paymentType: 'TRANSACTION')
@@ -38,7 +40,7 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
           ? null
           : PaymentRequestWithSource.fromJson(
               json['paymentRequestSource'] as Map<String, dynamic>),
-      paymentSourceType: json['paymentSourceType'] as int?,
+      paymentSourceType: (json['paymentSourceType'] as num?)?.toInt(),
       tipAmount: (json['tipAmount'] as num?)?.toDouble(),
       notes: json['notes'] as String?,
       contextType: json['contextType'] as String?,
@@ -48,40 +50,33 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
     );
 
 Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
-    _$PaymentAuthRequestBodyImpl instance) {
-  final val = <String, dynamic>{
-    'merchantId': instance.merchantId,
-    'consumerId': instance.uniqueUserId,
-    'merchantName': instance.merchantName,
-    'amount': instance.amount,
-    'applicationUserId': instance.applicationUserId,
-    'institutionId': instance.institutionId,
-    'taxPercentage': instance.taxPercentage,
-    'servicePercentage': instance.servicePercentage,
-    'features': instance.features,
-    'deviceOrigin': instance.deviceOrigin,
-    'totalAmountDue': instance.totalAmountDue,
-    'consumerName': instance.userName,
-    'paymentRequest': instance.paymentRequest,
-    'employeeId': instance.employeeId,
-    'encryptedNotesDetails': instance.encryptedNotesDetails,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('storeDetails', instance.storeDetails);
-  val['callbackParams'] = instance.callbackParams;
-  writeNotNull('paymentLinkId', instance.paymentLinkId);
-  val['paymentRequestSource'] = instance.paymentRequestSource;
-  val['paymentSourceType'] = instance.paymentSourceType;
-  val['tipAmount'] = instance.tipAmount;
-  writeNotNull('notes', instance.notes);
-  val['contextType'] = instance.contextType;
-  val['orderId'] = instance.orderId;
-  writeNotNull('merchantPaymentOptions', instance.merchantPaymentOptions);
-  return val;
-}
+        _$PaymentAuthRequestBodyImpl instance) =>
+    <String, dynamic>{
+      'merchantId': instance.merchantId,
+      'consumerId': instance.uniqueUserId,
+      'merchantName': instance.merchantName,
+      'amount': instance.amount,
+      'applicationUserId': instance.applicationUserId,
+      'institutionId': instance.institutionId,
+      'taxPercentage': instance.taxPercentage,
+      'servicePercentage': instance.servicePercentage,
+      'features': instance.features,
+      'deviceOrigin': instance.deviceOrigin,
+      'totalAmountDue': instance.totalAmountDue,
+      'paymentDevice': instance.paymentDevice,
+      'consumerName': instance.userName,
+      'paymentRequest': instance.paymentRequest,
+      'employeeId': instance.employeeId,
+      'encryptedNotesDetails': instance.encryptedNotesDetails,
+      if (instance.storeDetails case final value?) 'storeDetails': value,
+      'callbackParams': instance.callbackParams,
+      if (instance.paymentLinkId case final value?) 'paymentLinkId': value,
+      'paymentRequestSource': instance.paymentRequestSource,
+      'paymentSourceType': instance.paymentSourceType,
+      'tipAmount': instance.tipAmount,
+      if (instance.notes case final value?) 'notes': value,
+      'contextType': instance.contextType,
+      if (instance.orderId case final value?) 'orderId': value,
+      if (instance.merchantPaymentOptions case final value?)
+        'merchantPaymentOptions': value,
+    };

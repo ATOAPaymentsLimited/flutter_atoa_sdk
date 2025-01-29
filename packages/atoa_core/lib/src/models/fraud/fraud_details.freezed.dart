@@ -12,7 +12,7 @@ part of 'fraud_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FraudDetails _$FraudDetailsFromJson(Map<String, dynamic> json) {
   return _FraudDetails.fromJson(json);
@@ -24,8 +24,12 @@ mixin _$FraudDetails {
   String? get merchantCategory => throw _privateConstructorUsedError;
   String? get fraudCheckEnabled => throw _privateConstructorUsedError;
 
+  /// Serializes this FraudDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FraudDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FraudDetailsCopyWith<FraudDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$FraudDetailsCopyWithImpl<$Res, $Val extends FraudDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FraudDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$FraudDetailsImplCopyWithImpl<$Res>
       _$FraudDetailsImpl _value, $Res Function(_$FraudDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FraudDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,12 +165,14 @@ class _$FraudDetailsImpl extends _FraudDetails {
                 other.fraudCheckEnabled == fraudCheckEnabled));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, merchantCreatedAt, merchantCategory, fraudCheckEnabled);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FraudDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FraudDetailsImplCopyWith<_$FraudDetailsImpl> get copyWith =>
@@ -192,8 +202,11 @@ abstract class _FraudDetails extends FraudDetails {
   String? get merchantCategory;
   @override
   String? get fraudCheckEnabled;
+
+  /// Create a copy of FraudDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FraudDetailsImplCopyWith<_$FraudDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

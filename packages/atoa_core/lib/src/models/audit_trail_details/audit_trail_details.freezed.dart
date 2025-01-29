@@ -12,7 +12,7 @@ part of 'audit_trail_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AuditTrailDetails _$AuditTrailDetailsFromJson(Map<String, dynamic> json) {
   return _AuditTrailDetails.fromJson(json);
@@ -20,15 +20,25 @@ AuditTrailDetails _$AuditTrailDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuditTrailDetails {
+  @JsonKey(includeIfNull: false)
   String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get dob => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get citizenship => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get homeAddress => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get occupation => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get sourceOfIncome => throw _privateConstructorUsedError;
 
+  /// Serializes this AuditTrailDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuditTrailDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuditTrailDetailsCopyWith<AuditTrailDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -40,12 +50,12 @@ abstract class $AuditTrailDetailsCopyWith<$Res> {
       _$AuditTrailDetailsCopyWithImpl<$Res, AuditTrailDetails>;
   @useResult
   $Res call(
-      {String? fullName,
-      String? dob,
-      String? citizenship,
-      String? homeAddress,
-      String? occupation,
-      String? sourceOfIncome});
+      {@JsonKey(includeIfNull: false) String? fullName,
+      @JsonKey(includeIfNull: false) String? dob,
+      @JsonKey(includeIfNull: false) String? citizenship,
+      @JsonKey(includeIfNull: false) String? homeAddress,
+      @JsonKey(includeIfNull: false) String? occupation,
+      @JsonKey(includeIfNull: false) String? sourceOfIncome});
 }
 
 /// @nodoc
@@ -58,6 +68,8 @@ class _$AuditTrailDetailsCopyWithImpl<$Res, $Val extends AuditTrailDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuditTrailDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,12 +118,12 @@ abstract class _$$AuditTrailDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? fullName,
-      String? dob,
-      String? citizenship,
-      String? homeAddress,
-      String? occupation,
-      String? sourceOfIncome});
+      {@JsonKey(includeIfNull: false) String? fullName,
+      @JsonKey(includeIfNull: false) String? dob,
+      @JsonKey(includeIfNull: false) String? citizenship,
+      @JsonKey(includeIfNull: false) String? homeAddress,
+      @JsonKey(includeIfNull: false) String? occupation,
+      @JsonKey(includeIfNull: false) String? sourceOfIncome});
 }
 
 /// @nodoc
@@ -122,6 +134,8 @@ class __$$AuditTrailDetailsImplCopyWithImpl<$Res>
       $Res Function(_$AuditTrailDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuditTrailDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,28 +179,34 @@ class __$$AuditTrailDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuditTrailDetailsImpl extends _AuditTrailDetails {
   const _$AuditTrailDetailsImpl(
-      {this.fullName,
-      this.dob,
-      this.citizenship,
-      this.homeAddress,
-      this.occupation,
-      this.sourceOfIncome})
+      {@JsonKey(includeIfNull: false) this.fullName,
+      @JsonKey(includeIfNull: false) this.dob,
+      @JsonKey(includeIfNull: false) this.citizenship,
+      @JsonKey(includeIfNull: false) this.homeAddress,
+      @JsonKey(includeIfNull: false) this.occupation,
+      @JsonKey(includeIfNull: false) this.sourceOfIncome})
       : super._();
 
   factory _$AuditTrailDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuditTrailDetailsImplFromJson(json);
 
   @override
+  @JsonKey(includeIfNull: false)
   final String? fullName;
   @override
+  @JsonKey(includeIfNull: false)
   final String? dob;
   @override
+  @JsonKey(includeIfNull: false)
   final String? citizenship;
   @override
+  @JsonKey(includeIfNull: false)
   final String? homeAddress;
   @override
+  @JsonKey(includeIfNull: false)
   final String? occupation;
   @override
+  @JsonKey(includeIfNull: false)
   final String? sourceOfIncome;
 
   @override
@@ -212,12 +232,14 @@ class _$AuditTrailDetailsImpl extends _AuditTrailDetails {
                 other.sourceOfIncome == sourceOfIncome));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, fullName, dob, citizenship,
       homeAddress, occupation, sourceOfIncome);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuditTrailDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuditTrailDetailsImplCopyWith<_$AuditTrailDetailsImpl> get copyWith =>
@@ -234,31 +256,41 @@ class _$AuditTrailDetailsImpl extends _AuditTrailDetails {
 
 abstract class _AuditTrailDetails extends AuditTrailDetails {
   const factory _AuditTrailDetails(
-      {final String? fullName,
-      final String? dob,
-      final String? citizenship,
-      final String? homeAddress,
-      final String? occupation,
-      final String? sourceOfIncome}) = _$AuditTrailDetailsImpl;
+          {@JsonKey(includeIfNull: false) final String? fullName,
+          @JsonKey(includeIfNull: false) final String? dob,
+          @JsonKey(includeIfNull: false) final String? citizenship,
+          @JsonKey(includeIfNull: false) final String? homeAddress,
+          @JsonKey(includeIfNull: false) final String? occupation,
+          @JsonKey(includeIfNull: false) final String? sourceOfIncome}) =
+      _$AuditTrailDetailsImpl;
   const _AuditTrailDetails._() : super._();
 
   factory _AuditTrailDetails.fromJson(Map<String, dynamic> json) =
       _$AuditTrailDetailsImpl.fromJson;
 
   @override
+  @JsonKey(includeIfNull: false)
   String? get fullName;
   @override
+  @JsonKey(includeIfNull: false)
   String? get dob;
   @override
+  @JsonKey(includeIfNull: false)
   String? get citizenship;
   @override
+  @JsonKey(includeIfNull: false)
   String? get homeAddress;
   @override
+  @JsonKey(includeIfNull: false)
   String? get occupation;
   @override
+  @JsonKey(includeIfNull: false)
   String? get sourceOfIncome;
+
+  /// Create a copy of AuditTrailDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuditTrailDetailsImplCopyWith<_$AuditTrailDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

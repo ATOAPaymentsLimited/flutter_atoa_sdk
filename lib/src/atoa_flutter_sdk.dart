@@ -17,7 +17,7 @@ class AtoaSdk {
   /// {@macro atoa_flutter_sdk}
   const AtoaSdk();
 
-  static Future<TransactionDetails?> show(
+  static Future<bool?> show(
     BuildContext context, {
     required String paymentId,
     required AtoaEnv env,
@@ -31,7 +31,7 @@ class AtoaSdk {
 
     atoa.initialize();
 
-    return showDialog<TransactionDetails>(
+    return showDialog<bool>(
       context: context,
       useRootNavigator: false,
       builder: (_) => MultiProvider(
@@ -57,9 +57,8 @@ class AtoaSdk {
   }
 
   static Future<String> getPaymentRequestId({required double amount}) async {
-    final uri = Uri.https(
-      'https://devapi.atoa.me',
-      '/api/process-payment',
+    final uri = Uri.parse(
+      'https://devapi.atoa.me/api/payments/process-payment',
     );
 
     final response = await http.post(
@@ -67,10 +66,12 @@ class AtoaSdk {
       headers: {
         HttpHeaders.authorizationHeader: const String.fromEnvironment(
           'atoa-token',
-          defaultValue: '<add-token-here>',
+          defaultValue:
+              'Bearer ZWVlZjk5NGItYTE5My00ODUwLWJjMGYtYTJkNGEwMjM0OGJiOlRrRDZ4N2tEUVAya2czcnc=',
         ),
+        'Content-Type': 'application/json',
       },
-      body: getRequestData(amount),
+      body: jsonEncode(getRequestData(amount)),
     );
 
     final resMap = jsonDecode(response.body) as Map<String, dynamic>;
