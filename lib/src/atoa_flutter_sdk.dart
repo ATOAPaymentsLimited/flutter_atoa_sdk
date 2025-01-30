@@ -17,7 +17,7 @@ class AtoaSdk {
   /// {@macro atoa_flutter_sdk}
   const AtoaSdk();
 
-  static Future<bool?> show(
+  static Future<TransactionDetails?> show(
     BuildContext context, {
     required String paymentId,
     required AtoaEnv env,
@@ -31,7 +31,7 @@ class AtoaSdk {
 
     atoa.initialize();
 
-    return showDialog<bool>(
+    return showDialog<TransactionDetails>(
       context: context,
       useRootNavigator: false,
       builder: (_) => MultiProvider(
