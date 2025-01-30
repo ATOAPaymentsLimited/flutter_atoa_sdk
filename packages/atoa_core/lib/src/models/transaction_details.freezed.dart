@@ -91,7 +91,9 @@ mixin _$TransactionDetails {
   String? get pendingTrasactionError => throw _privateConstructorUsedError;
 
   /// Optional: Unique identifier for the order associated with the transaction.
-  String? get orderId => throw _privateConstructorUsedError;
+  String? get orderId =>
+      throw _privateConstructorUsedError; //Optional: redirect url
+  String? get redirectUrl => throw _privateConstructorUsedError;
 
   /// Serializes this TransactionDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -132,7 +134,8 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       String? paymentLinkId,
       String? employeeId,
       String? pendingTrasactionError,
-      String? orderId});
+      String? orderId,
+      String? redirectUrl});
 }
 
 /// @nodoc
@@ -173,6 +176,7 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
     Object? employeeId = freezed,
     Object? pendingTrasactionError = freezed,
     Object? orderId = freezed,
+    Object? redirectUrl = freezed,
   }) {
     return _then(_value.copyWith(
       paymentIdempotencyId: null == paymentIdempotencyId
@@ -267,6 +271,10 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String?,
+      redirectUrl: freezed == redirectUrl
+          ? _value.redirectUrl
+          : redirectUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -302,7 +310,8 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
       String? paymentLinkId,
       String? employeeId,
       String? pendingTrasactionError,
-      String? orderId});
+      String? orderId,
+      String? redirectUrl});
 }
 
 /// @nodoc
@@ -341,6 +350,7 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
     Object? employeeId = freezed,
     Object? pendingTrasactionError = freezed,
     Object? orderId = freezed,
+    Object? redirectUrl = freezed,
   }) {
     return _then(_$TransactionDetailsImpl(
       paymentIdempotencyId: null == paymentIdempotencyId
@@ -435,6 +445,10 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String?,
+      redirectUrl: freezed == redirectUrl
+          ? _value.redirectUrl
+          : redirectUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -465,7 +479,8 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
       this.paymentLinkId,
       this.employeeId,
       this.pendingTrasactionError,
-      this.orderId})
+      this.orderId,
+      this.redirectUrl})
       : super._();
 
   factory _$TransactionDetailsImpl.fromJson(Map<String, dynamic> json) =>
@@ -567,10 +582,13 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   @override
   final String? orderId;
+//Optional: redirect url
+  @override
+  final String? redirectUrl;
 
   @override
   String toString() {
-    return 'TransactionDetails(paymentIdempotencyId: $paymentIdempotencyId, applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId)';
+    return 'TransactionDetails(paymentIdempotencyId: $paymentIdempotencyId, applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, redirectUrl: $redirectUrl)';
   }
 
   @override
@@ -618,7 +636,9 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
                 other.employeeId == employeeId) &&
             (identical(other.pendingTrasactionError, pendingTrasactionError) ||
                 other.pendingTrasactionError == pendingTrasactionError) &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.redirectUrl, redirectUrl) ||
+                other.redirectUrl == redirectUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -647,7 +667,8 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         paymentLinkId,
         employeeId,
         pendingTrasactionError,
-        orderId
+        orderId,
+        redirectUrl
       ]);
 
   /// Create a copy of TransactionDetails
@@ -691,7 +712,8 @@ abstract class _TransactionDetails extends TransactionDetails {
       final String? paymentLinkId,
       final String? employeeId,
       final String? pendingTrasactionError,
-      final String? orderId}) = _$TransactionDetailsImpl;
+      final String? orderId,
+      final String? redirectUrl}) = _$TransactionDetailsImpl;
   _TransactionDetails._() : super._();
 
   factory _TransactionDetails.fromJson(Map<String, dynamic> json) =
@@ -791,7 +813,9 @@ abstract class _TransactionDetails extends TransactionDetails {
 
   /// Optional: Unique identifier for the order associated with the transaction.
   @override
-  String? get orderId;
+  String? get orderId; //Optional: redirect url
+  @override
+  String? get redirectUrl;
 
   /// Create a copy of TransactionDetails
   /// with the given fields replaced by the non-null parameter values.

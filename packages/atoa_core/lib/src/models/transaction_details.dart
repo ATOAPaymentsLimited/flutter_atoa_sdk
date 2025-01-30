@@ -80,6 +80,9 @@ class TransactionDetails with _$TransactionDetails {
 
     /// Optional: Unique identifier for the order associated with the transaction.
     String? orderId,
+
+    //Optional: redirect url
+    String? redirectUrl,
   }) = _TransactionDetails;
 
   TransactionDetails._();

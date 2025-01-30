@@ -10,6 +10,8 @@ class BankInstitutionsState with _$BankInstitutionsState {
     BankInstitution? selectedBank,
     PaymentRequestData? paymentDetails,
     PaymentAuthResponse? paymentAuth,
+    @Default(true) bool isAppInstalled,
+    @Default(false) bool urlSchemeEmptyFromApi,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();

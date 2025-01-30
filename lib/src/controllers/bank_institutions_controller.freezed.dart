@@ -23,8 +23,12 @@ mixin _$BankInstitutionsState {
   BankInstitution? get selectedBank => throw _privateConstructorUsedError;
   PaymentRequestData? get paymentDetails => throw _privateConstructorUsedError;
   PaymentAuthResponse? get paymentAuth => throw _privateConstructorUsedError;
+  bool get isAppInstalled => throw _privateConstructorUsedError;
+  bool get urlSchemeEmptyFromApi => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BankInstitutionsStateCopyWith<BankInstitutionsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,7 +46,9 @@ abstract class $BankInstitutionsStateCopyWith<$Res> {
       bool showPersonal,
       BankInstitution? selectedBank,
       PaymentRequestData? paymentDetails,
-      PaymentAuthResponse? paymentAuth});
+      PaymentAuthResponse? paymentAuth,
+      bool isAppInstalled,
+      bool urlSchemeEmptyFromApi});
 
   $BankInstitutionCopyWith<$Res>? get selectedBank;
   $PaymentRequestDataCopyWith<$Res>? get paymentDetails;
@@ -60,6 +66,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -70,6 +78,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     Object? selectedBank = freezed,
     Object? paymentDetails = freezed,
     Object? paymentAuth = freezed,
+    Object? isAppInstalled = null,
+    Object? urlSchemeEmptyFromApi = null,
   }) {
     return _then(_value.copyWith(
       bankList: null == bankList
@@ -100,9 +110,19 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
           ? _value.paymentAuth
           : paymentAuth // ignore: cast_nullable_to_non_nullable
               as PaymentAuthResponse?,
+      isAppInstalled: null == isAppInstalled
+          ? _value.isAppInstalled
+          : isAppInstalled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      urlSchemeEmptyFromApi: null == urlSchemeEmptyFromApi
+          ? _value.urlSchemeEmptyFromApi
+          : urlSchemeEmptyFromApi // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BankInstitutionCopyWith<$Res>? get selectedBank {
@@ -115,6 +135,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentRequestDataCopyWith<$Res>? get paymentDetails {
@@ -127,6 +149,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentAuthResponseCopyWith<$Res>? get paymentAuth {
@@ -156,7 +180,9 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
       bool showPersonal,
       BankInstitution? selectedBank,
       PaymentRequestData? paymentDetails,
-      PaymentAuthResponse? paymentAuth});
+      PaymentAuthResponse? paymentAuth,
+      bool isAppInstalled,
+      bool urlSchemeEmptyFromApi});
 
   @override
   $BankInstitutionCopyWith<$Res>? get selectedBank;
@@ -175,6 +201,8 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
       $Res Function(_$BankInstitutionsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -185,6 +213,8 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
     Object? selectedBank = freezed,
     Object? paymentDetails = freezed,
     Object? paymentAuth = freezed,
+    Object? isAppInstalled = null,
+    Object? urlSchemeEmptyFromApi = null,
   }) {
     return _then(_$BankInstitutionsStateImpl(
       bankList: null == bankList
@@ -215,6 +245,14 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
           ? _value.paymentAuth
           : paymentAuth // ignore: cast_nullable_to_non_nullable
               as PaymentAuthResponse?,
+      isAppInstalled: null == isAppInstalled
+          ? _value.isAppInstalled
+          : isAppInstalled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      urlSchemeEmptyFromApi: null == urlSchemeEmptyFromApi
+          ? _value.urlSchemeEmptyFromApi
+          : urlSchemeEmptyFromApi // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -230,7 +268,9 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       this.showPersonal = false,
       this.selectedBank,
       this.paymentDetails,
-      this.paymentAuth})
+      this.paymentAuth,
+      this.isAppInstalled = true,
+      this.urlSchemeEmptyFromApi = false})
       : _bankList = bankList,
         super._();
 
@@ -257,10 +297,16 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
   final PaymentRequestData? paymentDetails;
   @override
   final PaymentAuthResponse? paymentAuth;
+  @override
+  @JsonKey()
+  final bool isAppInstalled;
+  @override
+  @JsonKey()
+  final bool urlSchemeEmptyFromApi;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth)';
+    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth, isAppInstalled: $isAppInstalled, urlSchemeEmptyFromApi: $urlSchemeEmptyFromApi)';
   }
 
   @override
@@ -274,7 +320,10 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       ..add(DiagnosticsProperty('showPersonal', showPersonal))
       ..add(DiagnosticsProperty('selectedBank', selectedBank))
       ..add(DiagnosticsProperty('paymentDetails', paymentDetails))
-      ..add(DiagnosticsProperty('paymentAuth', paymentAuth));
+      ..add(DiagnosticsProperty('paymentAuth', paymentAuth))
+      ..add(DiagnosticsProperty('isAppInstalled', isAppInstalled))
+      ..add(
+          DiagnosticsProperty('urlSchemeEmptyFromApi', urlSchemeEmptyFromApi));
   }
 
   @override
@@ -293,7 +342,11 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
             (identical(other.paymentDetails, paymentDetails) ||
                 other.paymentDetails == paymentDetails) &&
             (identical(other.paymentAuth, paymentAuth) ||
-                other.paymentAuth == paymentAuth));
+                other.paymentAuth == paymentAuth) &&
+            (identical(other.isAppInstalled, isAppInstalled) ||
+                other.isAppInstalled == isAppInstalled) &&
+            (identical(other.urlSchemeEmptyFromApi, urlSchemeEmptyFromApi) ||
+                other.urlSchemeEmptyFromApi == urlSchemeEmptyFromApi));
   }
 
   @override
@@ -305,9 +358,13 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       showPersonal,
       selectedBank,
       paymentDetails,
-      paymentAuth);
+      paymentAuth,
+      isAppInstalled,
+      urlSchemeEmptyFromApi);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BankInstitutionsStateImplCopyWith<_$BankInstitutionsStateImpl>
@@ -323,7 +380,9 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
       final bool showPersonal,
       final BankInstitution? selectedBank,
       final PaymentRequestData? paymentDetails,
-      final PaymentAuthResponse? paymentAuth}) = _$BankInstitutionsStateImpl;
+      final PaymentAuthResponse? paymentAuth,
+      final bool isAppInstalled,
+      final bool urlSchemeEmptyFromApi}) = _$BankInstitutionsStateImpl;
   const _BankInstitutionsState._() : super._();
 
   @override
@@ -341,7 +400,14 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   @override
   PaymentAuthResponse? get paymentAuth;
   @override
-  @JsonKey(ignore: true)
+  bool get isAppInstalled;
+  @override
+  bool get urlSchemeEmptyFromApi;
+
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BankInstitutionsStateImplCopyWith<_$BankInstitutionsStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

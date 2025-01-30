@@ -36,6 +36,7 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
       employeeId: json['employeeId'] as String?,
       pendingTrasactionError: json['pendingTrasactionError'] as String?,
       orderId: json['orderId'] as String?,
+      redirectUrl: json['redirectUrl'] as String?,
     );
 
 Map<String, dynamic> _$$TransactionDetailsImplToJson(
@@ -64,4 +65,5 @@ Map<String, dynamic> _$$TransactionDetailsImplToJson(
       'employeeId': instance.employeeId,
       'pendingTrasactionError': instance.pendingTrasactionError,
       'orderId': instance.orderId,
+      'redirectUrl': instance.redirectUrl,
     };

@@ -1,4 +1,5 @@
 import 'package:atoa_core/atoa_core.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -65,15 +66,19 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   Future<bool?> authorizeBank() async {
     final paymentAuth = state.paymentAuth;
 
+    await checkBankAppAvailability();
+
     if (paymentAuth == null) return null;
 
     try {
       switch (defaultTargetPlatform) {
         case TargetPlatform.android:
-          final androidUrl = paymentAuth.deepLinkAndroidAuthorisationUrl ??
-              paymentAuth.authorisationUrl;
+          final androidUrl = state.isAppInstalled
+              ? paymentAuth.deepLinkAndroidAuthorisationUrl ??
+                  paymentAuth.authorisationUrl
+              : paymentAuth.playStoreLink;
 
-          final androidUri = Uri.tryParse(androidUrl);
+          final androidUri = Uri.tryParse(androidUrl ?? '');
           if (androidUri == null) {
             throw Exception('Invalid Android URL: $androidUrl');
           }
@@ -84,10 +89,12 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
           );
 
         case TargetPlatform.iOS:
-          final iosUrl = paymentAuth.deepLinkAuthorisationUrlIOS ??
-              paymentAuth.authorisationUrl;
+          final iosUrl = state.isAppInstalled
+              ? (paymentAuth.deepLinkAuthorisationUrlIOS ??
+                  paymentAuth.authorisationUrl)
+              : paymentAuth.appStoreLink;
 
-          final iosUri = Uri.tryParse(iosUrl);
+          final iosUri = Uri.tryParse(iosUrl ?? '');
           if (iosUri == null) {
             throw Exception('Invalid iOS URL: $iosUrl');
           }
@@ -146,5 +153,37 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     } finally {
       state = state.copyWith(error: null, isLoading: false);
     }
+  }
+
+  Future<void> checkBankAppAvailability() async {
+    final paymentAuth = state.paymentAuth;
+
+    if (paymentAuth == null) return;
+
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      final bundleId = paymentAuth.iOSPackageName;
+      state = state.copyWith(
+        urlSchemeEmptyFromApi: !(bundleId != null && bundleId.isNotEmpty),
+      );
+    }
+
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      final pkgName = paymentAuth.androidPackageName;
+      state = state.copyWith(
+        urlSchemeEmptyFromApi: !(pkgName != null && pkgName.isNotEmpty),
+      );
+    }
+
+    if (state.urlSchemeEmptyFromApi) {
+      state = state.copyWith(isAppInstalled: true);
+      return;
+    }
+
+    final dynamic result = await LaunchApp.isAppInstalled(
+      androidPackageName: paymentAuth.androidPackageName,
+      iosUrlScheme: paymentAuth.iOSPackageName,
+    );
+
+    state = state.copyWith(isAppInstalled: result is bool && result);
   }
 }

@@ -41,6 +41,7 @@ class PaymentRequestData with _$PaymentRequestData {
     String? requestCreatedAt,
     bool? strictExpiry,
     bool? allowSdkRetry,
+    String? redirectUrl,
     @Default(false) bool splitBill,
     @JsonKey(includeIfNull: false) Map<String, dynamic>? options,
   }) = _PaymentRequestData;

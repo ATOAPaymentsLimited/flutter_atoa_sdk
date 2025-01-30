@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:atoa_core/atoa_core.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'payment_status_controller.freezed.dart';
 part 'payment_status_state.dart';
@@ -33,10 +34,14 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
       (future) async {
         try {
           final details = await future;
+
           state = state.copyWith(
             details: details,
             exception: null,
           );
+          if (details.redirectUrl != null) {
+            unawaited(launchUrl(Uri.parse(details.redirectUrl!)));
+          }
         } on AtoaException catch (e) {
           state = state.copyWith(
             details: null,

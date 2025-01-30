@@ -42,6 +42,7 @@ _$PaymentRequestDataImpl _$$PaymentRequestDataImplFromJson(
       requestCreatedAt: json['requestCreatedAt'] as String?,
       strictExpiry: json['strictExpiry'] as bool?,
       allowSdkRetry: json['allowSdkRetry'] as bool?,
+      redirectUrl: json['redirectUrl'] as String?,
       splitBill: json['splitBill'] as bool? ?? false,
       options: json['options'] as Map<String, dynamic>?,
     );
@@ -74,6 +75,7 @@ Map<String, dynamic> _$$PaymentRequestDataImplToJson(
       'requestCreatedAt': instance.requestCreatedAt,
       'strictExpiry': instance.strictExpiry,
       'allowSdkRetry': instance.allowSdkRetry,
+      'redirectUrl': instance.redirectUrl,
       'splitBill': instance.splitBill,
       if (instance.options case final value?) 'options': value,
     };

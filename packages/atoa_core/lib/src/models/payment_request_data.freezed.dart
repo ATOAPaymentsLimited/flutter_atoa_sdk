@@ -53,6 +53,7 @@ mixin _$PaymentRequestData {
   String? get requestCreatedAt => throw _privateConstructorUsedError;
   bool? get strictExpiry => throw _privateConstructorUsedError;
   bool? get allowSdkRetry => throw _privateConstructorUsedError;
+  String? get redirectUrl => throw _privateConstructorUsedError;
   bool get splitBill => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get options => throw _privateConstructorUsedError;
@@ -101,6 +102,7 @@ abstract class $PaymentRequestDataCopyWith<$Res> {
       String? requestCreatedAt,
       bool? strictExpiry,
       bool? allowSdkRetry,
+      String? redirectUrl,
       bool splitBill,
       @JsonKey(includeIfNull: false) Map<String, dynamic>? options});
 
@@ -152,6 +154,7 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     Object? requestCreatedAt = freezed,
     Object? strictExpiry = freezed,
     Object? allowSdkRetry = freezed,
+    Object? redirectUrl = freezed,
     Object? splitBill = null,
     Object? options = freezed,
   }) {
@@ -260,6 +263,10 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
           ? _value.allowSdkRetry
           : allowSdkRetry // ignore: cast_nullable_to_non_nullable
               as bool?,
+      redirectUrl: freezed == redirectUrl
+          ? _value.redirectUrl
+          : redirectUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       splitBill: null == splitBill
           ? _value.splitBill
           : splitBill // ignore: cast_nullable_to_non_nullable
@@ -375,6 +382,7 @@ abstract class _$$PaymentRequestDataImplCopyWith<$Res>
       String? requestCreatedAt,
       bool? strictExpiry,
       bool? allowSdkRetry,
+      String? redirectUrl,
       bool splitBill,
       @JsonKey(includeIfNull: false) Map<String, dynamic>? options});
 
@@ -429,6 +437,7 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
     Object? requestCreatedAt = freezed,
     Object? strictExpiry = freezed,
     Object? allowSdkRetry = freezed,
+    Object? redirectUrl = freezed,
     Object? splitBill = null,
     Object? options = freezed,
   }) {
@@ -537,6 +546,10 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
           ? _value.allowSdkRetry
           : allowSdkRetry // ignore: cast_nullable_to_non_nullable
               as bool?,
+      redirectUrl: freezed == redirectUrl
+          ? _value.redirectUrl
+          : redirectUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       splitBill: null == splitBill
           ? _value.splitBill
           : splitBill // ignore: cast_nullable_to_non_nullable
@@ -580,6 +593,7 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
       this.requestCreatedAt,
       this.strictExpiry,
       this.allowSdkRetry,
+      this.redirectUrl,
       this.splitBill = false,
       @JsonKey(includeIfNull: false) final Map<String, dynamic>? options})
       : _options = options,
@@ -647,6 +661,8 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
   @override
   final bool? allowSdkRetry;
   @override
+  final String? redirectUrl;
+  @override
   @JsonKey()
   final bool splitBill;
   final Map<String, dynamic>? _options;
@@ -662,7 +678,7 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
 
   @override
   String toString() {
-    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, options: $options)';
+    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, redirectUrl: $redirectUrl, splitBill: $splitBill, options: $options)';
   }
 
   @override
@@ -718,6 +734,8 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
                 other.strictExpiry == strictExpiry) &&
             (identical(other.allowSdkRetry, allowSdkRetry) ||
                 other.allowSdkRetry == allowSdkRetry) &&
+            (identical(other.redirectUrl, redirectUrl) ||
+                other.redirectUrl == redirectUrl) &&
             (identical(other.splitBill, splitBill) ||
                 other.splitBill == splitBill) &&
             const DeepCollectionEquality().equals(other._options, _options));
@@ -753,6 +771,7 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
         requestCreatedAt,
         strictExpiry,
         allowSdkRetry,
+        redirectUrl,
         splitBill,
         const DeepCollectionEquality().hash(_options)
       ]);
@@ -803,6 +822,7 @@ abstract class _PaymentRequestData extends PaymentRequestData {
           final String? requestCreatedAt,
           final bool? strictExpiry,
           final bool? allowSdkRetry,
+          final String? redirectUrl,
           final bool splitBill,
           @JsonKey(includeIfNull: false) final Map<String, dynamic>? options}) =
       _$PaymentRequestDataImpl;
@@ -869,6 +889,8 @@ abstract class _PaymentRequestData extends PaymentRequestData {
   bool? get strictExpiry;
   @override
   bool? get allowSdkRetry;
+  @override
+  String? get redirectUrl;
   @override
   bool get splitBill;
   @override

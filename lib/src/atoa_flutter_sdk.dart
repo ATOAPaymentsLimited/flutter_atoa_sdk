@@ -98,6 +98,7 @@ class AtoaSdk {
           'deviceId': '{deviceId}',
           'locationId': '{locationId}',
         },
+        'redirectUrl': 'atoasdk://demoapp.me',
         'expiresIn': 60000000,
         'enableTips': true,
         'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',
