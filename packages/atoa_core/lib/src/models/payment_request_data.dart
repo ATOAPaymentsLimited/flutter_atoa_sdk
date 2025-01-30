@@ -79,18 +79,15 @@ extension PaymentRequestDataX on PaymentRequestData {
         encryptedNotesDetails: encryptedNotesDetails,
         paymentSourceType: 3,
         paymentDevice: DeviceInfo(
-          platform: 'Win32',
-          browser: 'Chrome',
-          deviceMemory: 8,
+          platform: 'DESKTOP',
         ),
         paymentRequestSource: PaymentRequestWithSource(
           requestCreatedAt: requestCreatedAt,
           splitBill: splitBill,
-          strictExpiry: 'false',
-          allowSdkRetry: 'true',
+          allowSdkRetry: allowSdkRetry?.toString(),
+          strictExpiry: strictExpiry?.toString(),
           expiresIn: expiresIn?.toString() ?? '60000000',
           paymentRequestId: paymentRequestId,
-          auditTrailDetails: const AuditTrailDetails(),
         ),
       );
 }
