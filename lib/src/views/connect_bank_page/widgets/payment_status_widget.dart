@@ -81,7 +81,7 @@ class PaymentStatusWidget extends StatelessWidget {
               child: RegalButton.primary(
                 shrink: true,
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, paymentDetails);
                 },
                 size: RegalButtonSize.small,
                 trackLabel: 'Go Back',

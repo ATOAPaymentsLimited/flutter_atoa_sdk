@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "111878638359",
+    "project_id": "flutter-atoa-sdk",
+    "storage_bucket": "flutter-atoa-sdk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111878638359:android:28f3e90682e3f8c0c60552",
+        "android_client_info": {
+          "package_name": "com.atoa.fluttersdk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJFx4_1ekRqzSv_UcpsyDYDj-n6X8Cx54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
