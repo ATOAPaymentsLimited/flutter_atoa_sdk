@@ -21,7 +21,7 @@
 		<key>CFBundleSignature</key>
 		<string>????</string>
 		<key>CFBundleVersion</key>
-		<string>16</string>
+		<string>22</string>
 		<key>LSRequiresIPhoneOS</key>
 		<true />
 		<key>UILaunchStoryboardName</key>
@@ -44,17 +44,19 @@
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true />
+		<true />		
+		<key>FlutterDeepLinkingEnabled</key>
+		<true/>
 		<key>CFBundleURLTypes</key>
 		<array>
-			<dict>
-				<key>CFBundleURLName</key>
-				<string></string>
-				<key>CFBundleURLSchemes</key>
-				<array>
-					<string>atoasdk://demapp.me</string>
-				</array>
-			</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+			<string>atoasdk</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>demoapp.me</string>
+		</dict>
 		</array>
 	</dict>
 </plist>
