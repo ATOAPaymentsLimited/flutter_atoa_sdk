@@ -1,7 +1,10 @@
 class Endpoints {
   const Endpoints._();
 
-  static String get baseUrl => 'https://devapi.atoa.me/api/';
+  // use this URL for demo app
+  // static String get baseUrl => 'https://devapi.atoa.me/api/';
+
+  static String get baseUrl => 'https://api.atoa.me/api/';
 
   //Institutions
   static const String institutions = 'institutions/customer';
