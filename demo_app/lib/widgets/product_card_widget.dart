@@ -51,7 +51,7 @@ class ProductCardWidget extends StatelessWidget {
                 Spacing.mini.yBox,
                 Spacing.tiny.yBox,
                 CustomText.semantics(
-                  '£67',
+                  '£1.0',
                   style: context.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w600,
                     height: 1.5,
@@ -79,12 +79,6 @@ class ProductCardWidget extends StatelessWidget {
                                 size: Spacing.large.value,
                                 color: const Color.fromRGBO(52, 152, 219, 1),
                               ),
-                              onTap: () {
-                                if (value > 1) {
-                                  totalItems.value -= 1;
-                                  totalAmountNotifier.value -= 67;
-                                }
-                              },
                             )),
                             Expanded(
                                 child: CustomText.semantics(
@@ -99,12 +93,6 @@ class ProductCardWidget extends StatelessWidget {
                                 size: Spacing.large.value,
                                 color: const Color.fromRGBO(52, 152, 219, 1),
                               ),
-                              onTap: () {
-                                if (value < 5) {
-                                  totalItems.value += 1;
-                                  totalAmountNotifier.value += 67;
-                                }
-                              },
                             )),
                           ],
                         ),

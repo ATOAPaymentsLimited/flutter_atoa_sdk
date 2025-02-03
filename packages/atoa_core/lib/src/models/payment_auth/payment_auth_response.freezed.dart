@@ -12,7 +12,7 @@ part of 'payment_auth_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PaymentAuthResponse _$PaymentAuthResponseFromJson(Map<String, dynamic> json) {
   return _PaymentAuthResponse.fromJson(json);
@@ -34,8 +34,12 @@ mixin _$PaymentAuthResponse {
   String? get androidPackageName => throw _privateConstructorUsedError;
   String? get iOSPackageName => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentAuthResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentAuthResponseCopyWith<PaymentAuthResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -71,6 +75,8 @@ class _$PaymentAuthResponseCopyWithImpl<$Res, $Val extends PaymentAuthResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -172,6 +178,8 @@ class __$$PaymentAuthResponseImplCopyWithImpl<$Res>
       $Res Function(_$PaymentAuthResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -337,7 +345,7 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
                 other.iOSPackageName == iOSPackageName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -354,7 +362,9 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
       androidPackageName,
       iOSPackageName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentAuthResponseImplCopyWith<_$PaymentAuthResponseImpl> get copyWith =>
@@ -412,8 +422,11 @@ abstract class _PaymentAuthResponse extends PaymentAuthResponse {
   String? get androidPackageName;
   @override
   String? get iOSPackageName;
+
+  /// Create a copy of PaymentAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentAuthResponseImplCopyWith<_$PaymentAuthResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

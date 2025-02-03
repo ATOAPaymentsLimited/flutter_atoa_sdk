@@ -80,9 +80,10 @@ class PaymentDetailsCommand extends Command<int> {
           'ACCOUNT_STATEMENT_FILE',
         ],
         paymentRequestId: paymentId,
+        requestCreatedAt: '',
       );
 
-    final authRes = await _atoa.getPaymentAuth(body);
+      final authRes = await _atoa.getPaymentAuth(body);
 
       _logger
         ..write(res.toString())

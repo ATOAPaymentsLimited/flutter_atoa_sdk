@@ -13,18 +13,9 @@ _$StoreDetailsImpl _$$StoreDetailsImplFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
     );
 
-Map<String, dynamic> _$$StoreDetailsImplToJson(_$StoreDetailsImpl instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('locationName', instance.locationName);
-  val['address'] = instance.address;
-  return val;
-}
+Map<String, dynamic> _$$StoreDetailsImplToJson(_$StoreDetailsImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      if (instance.locationName case final value?) 'locationName': value,
+      'address': instance.address,
+    };

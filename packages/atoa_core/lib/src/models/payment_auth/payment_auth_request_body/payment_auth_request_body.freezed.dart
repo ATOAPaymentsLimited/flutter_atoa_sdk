@@ -12,7 +12,7 @@ part of 'payment_auth_request_body.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PaymentAuthRequestBody _$PaymentAuthRequestBodyFromJson(
     Map<String, dynamic> json) {
@@ -35,6 +35,7 @@ mixin _$PaymentAuthRequestBody {
   List<String>? get features => throw _privateConstructorUsedError;
   String get deviceOrigin => throw _privateConstructorUsedError;
   num get totalAmountDue => throw _privateConstructorUsedError;
+  DeviceInfo get paymentDevice => throw _privateConstructorUsedError;
   @JsonKey(name: 'consumerName')
   String get userName => throw _privateConstructorUsedError;
   PaymentAuthPaymentRequest get paymentRequest =>
@@ -53,13 +54,18 @@ mixin _$PaymentAuthRequestBody {
   @JsonKey(includeIfNull: false)
   String? get notes => throw _privateConstructorUsedError;
   String? get contextType => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get orderId => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get merchantPaymentOptions =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentAuthRequestBody to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentAuthRequestBodyCopyWith<PaymentAuthRequestBody> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -82,6 +88,7 @@ abstract class $PaymentAuthRequestBodyCopyWith<$Res> {
       List<String>? features,
       String deviceOrigin,
       num totalAmountDue,
+      DeviceInfo paymentDevice,
       @JsonKey(name: 'consumerName') String userName,
       PaymentAuthPaymentRequest paymentRequest,
       String? employeeId,
@@ -94,11 +101,12 @@ abstract class $PaymentAuthRequestBodyCopyWith<$Res> {
       double? tipAmount,
       @JsonKey(includeIfNull: false) String? notes,
       String? contextType,
-      String? orderId,
+      @JsonKey(includeIfNull: false) String? orderId,
       @JsonKey(includeIfNull: false)
       Map<String, dynamic>? merchantPaymentOptions});
 
   $AmountCopyWith<$Res> get amount;
+  $DeviceInfoCopyWith<$Res> get paymentDevice;
   $PaymentAuthPaymentRequestCopyWith<$Res> get paymentRequest;
   $StoreDetailsCopyWith<$Res>? get storeDetails;
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
@@ -115,6 +123,8 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,6 +139,7 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     Object? features = freezed,
     Object? deviceOrigin = null,
     Object? totalAmountDue = null,
+    Object? paymentDevice = null,
     Object? userName = null,
     Object? paymentRequest = null,
     Object? employeeId = freezed,
@@ -189,6 +200,10 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
           ? _value.totalAmountDue
           : totalAmountDue // ignore: cast_nullable_to_non_nullable
               as num,
+      paymentDevice: null == paymentDevice
+          ? _value.paymentDevice
+          : paymentDevice // ignore: cast_nullable_to_non_nullable
+              as DeviceInfo,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -248,6 +263,8 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AmountCopyWith<$Res> get amount {
@@ -256,6 +273,18 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeviceInfoCopyWith<$Res> get paymentDevice {
+    return $DeviceInfoCopyWith<$Res>(_value.paymentDevice, (value) {
+      return _then(_value.copyWith(paymentDevice: value) as $Val);
+    });
+  }
+
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentAuthPaymentRequestCopyWith<$Res> get paymentRequest {
@@ -265,6 +294,8 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $StoreDetailsCopyWith<$Res>? get storeDetails {
@@ -277,6 +308,8 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource {
@@ -312,6 +345,7 @@ abstract class _$$PaymentAuthRequestBodyImplCopyWith<$Res>
       List<String>? features,
       String deviceOrigin,
       num totalAmountDue,
+      DeviceInfo paymentDevice,
       @JsonKey(name: 'consumerName') String userName,
       PaymentAuthPaymentRequest paymentRequest,
       String? employeeId,
@@ -324,12 +358,14 @@ abstract class _$$PaymentAuthRequestBodyImplCopyWith<$Res>
       double? tipAmount,
       @JsonKey(includeIfNull: false) String? notes,
       String? contextType,
-      String? orderId,
+      @JsonKey(includeIfNull: false) String? orderId,
       @JsonKey(includeIfNull: false)
       Map<String, dynamic>? merchantPaymentOptions});
 
   @override
   $AmountCopyWith<$Res> get amount;
+  @override
+  $DeviceInfoCopyWith<$Res> get paymentDevice;
   @override
   $PaymentAuthPaymentRequestCopyWith<$Res> get paymentRequest;
   @override
@@ -348,6 +384,8 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
       $Res Function(_$PaymentAuthRequestBodyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -362,6 +400,7 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
     Object? features = freezed,
     Object? deviceOrigin = null,
     Object? totalAmountDue = null,
+    Object? paymentDevice = null,
     Object? userName = null,
     Object? paymentRequest = null,
     Object? employeeId = freezed,
@@ -422,6 +461,10 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
           ? _value.totalAmountDue
           : totalAmountDue // ignore: cast_nullable_to_non_nullable
               as num,
+      paymentDevice: null == paymentDevice
+          ? _value.paymentDevice
+          : paymentDevice // ignore: cast_nullable_to_non_nullable
+              as DeviceInfo,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -497,6 +540,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
       required final List<String>? features,
       required this.deviceOrigin,
       required this.totalAmountDue,
+      required this.paymentDevice,
       @JsonKey(name: 'consumerName') this.userName = '',
       this.paymentRequest =
           const PaymentAuthPaymentRequest(paymentType: 'TRANSACTION'),
@@ -510,7 +554,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
       this.tipAmount,
       @JsonKey(includeIfNull: false) this.notes,
       this.contextType,
-      this.orderId,
+      @JsonKey(includeIfNull: false) this.orderId,
       @JsonKey(includeIfNull: false)
       final Map<String, dynamic>? merchantPaymentOptions})
       : _features = features,
@@ -554,6 +598,8 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   @override
   final num totalAmountDue;
   @override
+  final DeviceInfo paymentDevice;
+  @override
   @JsonKey(name: 'consumerName')
   final String userName;
   @override
@@ -583,6 +629,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   @override
   final String? contextType;
   @override
+  @JsonKey(includeIfNull: false)
   final String? orderId;
   final Map<String, dynamic>? _merchantPaymentOptions;
   @override
@@ -598,7 +645,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
 
   @override
   String toString() {
-    return 'PaymentAuthRequestBody(merchantId: $merchantId, uniqueUserId: $uniqueUserId, merchantName: $merchantName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, totalAmountDue: $totalAmountDue, userName: $userName, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, storeDetails: $storeDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions)';
+    return 'PaymentAuthRequestBody(merchantId: $merchantId, uniqueUserId: $uniqueUserId, merchantName: $merchantName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, totalAmountDue: $totalAmountDue, paymentDevice: $paymentDevice, userName: $userName, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, storeDetails: $storeDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions)';
   }
 
   @override
@@ -626,6 +673,8 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
                 other.deviceOrigin == deviceOrigin) &&
             (identical(other.totalAmountDue, totalAmountDue) ||
                 other.totalAmountDue == totalAmountDue) &&
+            (identical(other.paymentDevice, paymentDevice) ||
+                other.paymentDevice == paymentDevice) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.paymentRequest, paymentRequest) ||
@@ -654,7 +703,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
                 other._merchantPaymentOptions, _merchantPaymentOptions));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -669,6 +718,7 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
         const DeepCollectionEquality().hash(_features),
         deviceOrigin,
         totalAmountDue,
+        paymentDevice,
         userName,
         paymentRequest,
         employeeId,
@@ -685,7 +735,9 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
         const DeepCollectionEquality().hash(_merchantPaymentOptions)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentAuthRequestBodyImplCopyWith<_$PaymentAuthRequestBodyImpl>
@@ -713,6 +765,7 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
           required final List<String>? features,
           required final String deviceOrigin,
           required final num totalAmountDue,
+          required final DeviceInfo paymentDevice,
           @JsonKey(name: 'consumerName') final String userName,
           final PaymentAuthPaymentRequest paymentRequest,
           final String? employeeId,
@@ -725,7 +778,7 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
           final double? tipAmount,
           @JsonKey(includeIfNull: false) final String? notes,
           final String? contextType,
-          final String? orderId,
+          @JsonKey(includeIfNull: false) final String? orderId,
           @JsonKey(includeIfNull: false)
           final Map<String, dynamic>? merchantPaymentOptions}) =
       _$PaymentAuthRequestBodyImpl;
@@ -734,9 +787,10 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   factory _PaymentAuthRequestBody.fromJson(Map<String, dynamic> json) =
       _$PaymentAuthRequestBodyImpl.fromJson;
 
-  @override // merchantId is RecieverId
-  String get merchantId;
-  @override // consumerId is Senderid
+// merchantId is RecieverId
+  @override
+  String get merchantId; // consumerId is Senderid
+  @override
   @JsonKey(name: 'consumerId')
   String get uniqueUserId;
   @override
@@ -757,6 +811,8 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   String get deviceOrigin;
   @override
   num get totalAmountDue;
+  @override
+  DeviceInfo get paymentDevice;
   @override
   @JsonKey(name: 'consumerName')
   String get userName;
@@ -786,12 +842,16 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   @override
   String? get contextType;
   @override
+  @JsonKey(includeIfNull: false)
   String? get orderId;
   @override
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get merchantPaymentOptions;
+
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentAuthRequestBodyImplCopyWith<_$PaymentAuthRequestBodyImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

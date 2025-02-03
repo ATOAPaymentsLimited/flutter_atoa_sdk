@@ -47,42 +47,33 @@ _$PaymentRequestDataImpl _$$PaymentRequestDataImplFromJson(
     );
 
 Map<String, dynamic> _$$PaymentRequestDataImplToJson(
-    _$PaymentRequestDataImpl instance) {
-  final val = <String, dynamic>{
-    'merchantBusinessName': instance.merchantBusinessName,
-    'merchantId': instance.merchantId,
-    'amount': instance.amount,
-    'taxPercentage': instance.taxPercentage,
-    'servicePercentage': instance.servicePercentage,
-    'employeeId': instance.employeeId,
-    'customerId': instance.customerId,
-    'consumerId': instance.consumerId,
-    'env': instance.env,
-    'encryptedNotesDetails': instance.encryptedNotesDetails,
-    'encryptedQrDetails': instance.encryptedQrDetails,
-    'merchantNotes': instance.merchantNotes,
-    'splitOutstandingAmount': instance.splitOutstandingAmount,
-    'callbackParams': instance.callbackParams,
-    'notes': instance.notes,
-    'storeImg': instance.storeImg,
-    'contextType': instance.contextType,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('fraudDetails', instance.fraudDetails);
-  writeNotNull('storeDetails', instance.storeDetails);
-  writeNotNull('address', instance.address);
-  writeNotNull('paymentType', instance.paymentType);
-  val['expiresIn'] = instance.expiresIn;
-  val['requestCreatedAt'] = instance.requestCreatedAt;
-  val['strictExpiry'] = instance.strictExpiry;
-  val['allowSdkRetry'] = instance.allowSdkRetry;
-  val['splitBill'] = instance.splitBill;
-  writeNotNull('options', instance.options);
-  return val;
-}
+        _$PaymentRequestDataImpl instance) =>
+    <String, dynamic>{
+      'merchantBusinessName': instance.merchantBusinessName,
+      'merchantId': instance.merchantId,
+      'amount': instance.amount,
+      'taxPercentage': instance.taxPercentage,
+      'servicePercentage': instance.servicePercentage,
+      'employeeId': instance.employeeId,
+      'customerId': instance.customerId,
+      'consumerId': instance.consumerId,
+      'env': instance.env,
+      'encryptedNotesDetails': instance.encryptedNotesDetails,
+      'encryptedQrDetails': instance.encryptedQrDetails,
+      'merchantNotes': instance.merchantNotes,
+      'splitOutstandingAmount': instance.splitOutstandingAmount,
+      'callbackParams': instance.callbackParams,
+      'notes': instance.notes,
+      'storeImg': instance.storeImg,
+      'contextType': instance.contextType,
+      if (instance.fraudDetails case final value?) 'fraudDetails': value,
+      if (instance.storeDetails case final value?) 'storeDetails': value,
+      if (instance.address case final value?) 'address': value,
+      if (instance.paymentType case final value?) 'paymentType': value,
+      'expiresIn': instance.expiresIn,
+      'requestCreatedAt': instance.requestCreatedAt,
+      'strictExpiry': instance.strictExpiry,
+      'allowSdkRetry': instance.allowSdkRetry,
+      'splitBill': instance.splitBill,
+      if (instance.options case final value?) 'options': value,
+    };

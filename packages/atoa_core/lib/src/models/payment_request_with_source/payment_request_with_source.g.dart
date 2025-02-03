@@ -10,7 +10,8 @@ _$PaymentRequestWithSourceImpl _$$PaymentRequestWithSourceImplFromJson(
         Map<String, dynamic> json) =>
     _$PaymentRequestWithSourceImpl(
       paymentRequestId: json['paymentRequestId'] as String,
-      paymentRequestSourcetype: json['paymentRequestSourcetype'] as int? ?? 3,
+      paymentRequestSourcetype:
+          (json['paymentRequestSourcetype'] as num?)?.toInt() ?? 3,
       qrId: json['qrId'] as String?,
       paymentLinkId: json['paymentLinkId'] as String?,
       paymentRequest: json['paymentRequest'] as String?,
@@ -26,26 +27,18 @@ _$PaymentRequestWithSourceImpl _$$PaymentRequestWithSourceImplFromJson(
     );
 
 Map<String, dynamic> _$$PaymentRequestWithSourceImplToJson(
-    _$PaymentRequestWithSourceImpl instance) {
-  final val = <String, dynamic>{
-    'paymentRequestId': instance.paymentRequestId,
-    'paymentRequestSourcetype': instance.paymentRequestSourcetype,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('qrId', instance.qrId);
-  writeNotNull('paymentLinkId', instance.paymentLinkId);
-  writeNotNull('paymentRequest', instance.paymentRequest);
-  writeNotNull('auditTrailDetails', instance.auditTrailDetails);
-  val['splitBill'] = instance.splitBill;
-  val['expiresIn'] = instance.expiresIn;
-  val['requestCreatedAt'] = instance.requestCreatedAt;
-  val['strictExpiry'] = instance.strictExpiry;
-  val['allowSdkRetry'] = instance.allowSdkRetry;
-  return val;
-}
+        _$PaymentRequestWithSourceImpl instance) =>
+    <String, dynamic>{
+      'paymentRequestId': instance.paymentRequestId,
+      'paymentRequestSourcetype': instance.paymentRequestSourcetype,
+      if (instance.qrId case final value?) 'qrId': value,
+      if (instance.paymentLinkId case final value?) 'paymentLinkId': value,
+      if (instance.paymentRequest case final value?) 'paymentRequest': value,
+      if (instance.auditTrailDetails case final value?)
+        'auditTrailDetails': value,
+      'splitBill': instance.splitBill,
+      'expiresIn': instance.expiresIn,
+      'requestCreatedAt': instance.requestCreatedAt,
+      'strictExpiry': instance.strictExpiry,
+      'allowSdkRetry': instance.allowSdkRetry,
+    };

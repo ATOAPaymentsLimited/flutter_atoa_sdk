@@ -124,6 +124,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       institutionId: selectedBank.id,
       paymentRequestId: paymentId,
       features: selectedBank.features,
+      requestCreatedAt: paymentDetails.requestCreatedAt ?? '',
     );
 
     try {
