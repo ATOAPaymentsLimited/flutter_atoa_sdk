@@ -16,10 +16,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: ^5.9.0
-  flutter_svg: ^2.0.17
+  flutter_svg: ^2.0.1
   intl: any
   regal: ^3.2.3
   shared_preferences: ^2.2.2
+
+dependency_overrides:
+   vector_graphics: 1.1.15
+  
 
 dev_dependencies:
   flutter_test:
