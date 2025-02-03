@@ -17,16 +17,8 @@ _$PayerBankDetailsImpl _$$PayerBankDetailsImplFromJson(
     );
 
 Map<String, dynamic> _$$PayerBankDetailsImplToJson(
-    _$PayerBankDetailsImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  val['accountIdentifications'] = instance.accountIdentifications;
-  return val;
-}
+        _$PayerBankDetailsImpl instance) =>
+    <String, dynamic>{
+      if (instance.name case final value?) 'name': value,
+      'accountIdentifications': instance.accountIdentifications,
+    };

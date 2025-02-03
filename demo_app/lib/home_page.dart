@@ -6,7 +6,7 @@ import 'package:regal/regal.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final ValueNotifier<double> totalAmountNotifier = ValueNotifier(67.0 * 2);
+  final ValueNotifier<double> totalAmountNotifier = ValueNotifier(1.00 * 2);
 
   @override
   Widget build(BuildContext context) {

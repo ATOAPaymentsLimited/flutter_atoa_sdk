@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:atoa_core/src/models/device_info.dart';
 import 'package:atoa_core/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -56,6 +57,7 @@ extension PaymentRequestDataX on PaymentRequestData {
     required String institutionId,
     required String paymentRequestId,
     required List<String> features,
+    required String requestCreatedAt,
   }) =>
       PaymentAuthRequestBody(
         storeDetails: storeDetails,
@@ -76,7 +78,11 @@ extension PaymentRequestDataX on PaymentRequestData {
         merchantPaymentOptions: options,
         encryptedNotesDetails: encryptedNotesDetails,
         paymentSourceType: 3,
+        paymentDevice: DeviceInfo(
+          platform: 'DESKTOP',
+        ),
         paymentRequestSource: PaymentRequestWithSource(
+          requestCreatedAt: requestCreatedAt,
           splitBill: splitBill,
           allowSdkRetry: allowSdkRetry?.toString(),
           strictExpiry: strictExpiry?.toString(),

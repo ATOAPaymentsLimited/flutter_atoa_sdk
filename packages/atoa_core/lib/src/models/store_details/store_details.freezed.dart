@@ -12,7 +12,7 @@ part of 'store_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 StoreDetails _$StoreDetailsFromJson(Map<String, dynamic> json) {
   return _StoreDetails.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$StoreDetails {
   String? get locationName => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
 
+  /// Serializes this StoreDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StoreDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StoreDetailsCopyWith<StoreDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$StoreDetailsCopyWithImpl<$Res, $Val extends StoreDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StoreDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +107,8 @@ class __$$StoreDetailsImplCopyWithImpl<$Res>
       _$StoreDetailsImpl _value, $Res Function(_$StoreDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StoreDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,11 +170,13 @@ class _$StoreDetailsImpl extends _StoreDetails {
             (identical(other.address, address) || other.address == address));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, locationName, address);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StoreDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StoreDetailsImplCopyWith<_$StoreDetailsImpl> get copyWith =>
@@ -198,8 +208,11 @@ abstract class _StoreDetails extends StoreDetails {
   String? get locationName;
   @override
   String? get address;
+
+  /// Create a copy of StoreDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StoreDetailsImplCopyWith<_$StoreDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

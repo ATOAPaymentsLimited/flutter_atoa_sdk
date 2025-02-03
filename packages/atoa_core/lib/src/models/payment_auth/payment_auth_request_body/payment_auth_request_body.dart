@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:atoa_core/src/models/device_info.dart';
 import 'package:atoa_core/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -22,6 +23,7 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
     required List<String>? features,
     required String deviceOrigin,
     required num totalAmountDue,
+    required DeviceInfo paymentDevice,
     @JsonKey(name: 'consumerName') @Default('') String userName,
     @Default(PaymentAuthPaymentRequest(paymentType: 'TRANSACTION'))
     PaymentAuthPaymentRequest paymentRequest,
@@ -35,7 +37,7 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
     double? tipAmount,
     @JsonKey(includeIfNull: false) String? notes,
     String? contextType,
-    String? orderId,
+    @JsonKey(includeIfNull: false) String? orderId,
     @JsonKey(includeIfNull: false) Map<String, dynamic>? merchantPaymentOptions,
   }) = _PaymentAuthRequestBody;
   const PaymentAuthRequestBody._();
