@@ -86,7 +86,7 @@ extension PaymentRequestDataX on PaymentRequestData {
           splitBill: splitBill,
           allowSdkRetry: allowSdkRetry?.toString(),
           strictExpiry: strictExpiry?.toString(),
-          expiresIn: expiresIn?.toString() ?? '60000000',
+          expiresIn: expiresIn?.toString(),
           paymentRequestId: paymentRequestId,
         ),
       );

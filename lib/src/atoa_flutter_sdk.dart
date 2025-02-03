@@ -58,7 +58,7 @@ class AtoaSdk {
 
   static Future<String> getPaymentRequestId({required double amount}) async {
     final uri = Uri.parse(
-      'https://devapi.atoa.me/api/payments/process-payment',
+      'https://api.atoa.me/api/payments/process-payment',
     );
 
     final response = await http.post(
