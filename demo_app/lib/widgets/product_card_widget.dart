@@ -79,12 +79,6 @@ class ProductCardWidget extends StatelessWidget {
                                 size: Spacing.large.value,
                                 color: const Color.fromRGBO(52, 152, 219, 1),
                               ),
-                              onTap: () {
-                                if (value > 1) {
-                                  totalItems.value -= 1;
-                                  totalAmountNotifier.value -= 1;
-                                }
-                              },
                             )),
                             Expanded(
                                 child: CustomText.semantics(
@@ -99,12 +93,6 @@ class ProductCardWidget extends StatelessWidget {
                                 size: Spacing.large.value,
                                 color: const Color.fromRGBO(52, 152, 219, 1),
                               ),
-                              onTap: () {
-                                if (value < 5) {
-                                  totalItems.value += 1;
-                                  totalAmountNotifier.value += 1;
-                                }
-                              },
                             )),
                           ],
                         ),

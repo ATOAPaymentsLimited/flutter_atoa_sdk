@@ -1,7 +1,7 @@
 name: fluttersdk
 description: "A new Flutter project."
 publish_to: "none"
-version: 1.0.0+29
+version: 1.0.0+30
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
@@ -22,8 +22,7 @@ dependencies:
   shared_preferences: ^2.2.2
 
 dependency_overrides:
-   vector_graphics: 1.1.15
-  
+  vector_graphics: 1.1.15
 
 dev_dependencies:
   flutter_test:
