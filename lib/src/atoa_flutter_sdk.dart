@@ -67,7 +67,7 @@ class AtoaSdk {
       headers: {
         HttpHeaders.authorizationHeader: const String.fromEnvironment(
           'atoa-token',
-          defaultValue: 'Bearer <access-token>',
+          defaultValue: 'Bearer <access-secret>',
         ),
         'Content-Type': 'application/json',
       },
