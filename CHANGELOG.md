@@ -25,3 +25,7 @@
 # 1.0.6
 
 - chore: update docs
+
+# 1.0.7
+
+- feat: Demo App
