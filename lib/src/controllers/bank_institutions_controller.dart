@@ -1,21 +1,24 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'bank_institutions_state.dart';
 part 'bank_institutions_controller.freezed.dart';
 
+@injectable
 class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   BankInstitutionsController({
-    required this.paymentId,
-    required Atoa atoa,
-  })  : _atoa = atoa,
-        super(const BankInstitutionsState());
+    required this.atoa,
+    @factoryParam required this.paymentId,
+    @factoryParam required this.authKey,
+  }) : super(const BankInstitutionsState());
 
-  final Atoa _atoa;
+  final Atoa atoa;
   final String paymentId;
+  final String authKey;
 
   List<BankInstitution> get personalBanks =>
       state.bankList.where((bank) => !bank.businessBank).toList();
@@ -28,7 +31,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     try {
       final res =
-          await callServer<List<BankInstitution>>(_atoa.fetchInstitutions);
+          await callServer<List<BankInstitution>>(atoa.fetchInstitutions);
 
       state = state.copyWith(
         bankList: res,
@@ -44,7 +47,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     try {
       final paymentRes =
-          await callServer(() => _atoa.getPaymentDetails(paymentId));
+          await callServer(() => atoa.getPaymentDetails(paymentId));
 
       state = state.copyWith(paymentDetails: paymentRes);
     } on AtoaException catch (e) {
@@ -128,7 +131,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     );
 
     try {
-      final paymentAuth = await callServer(() => _atoa.getPaymentAuth(body));
+      final paymentAuth = await callServer(() => atoa.getPaymentAuth(body));
 
       state = state.copyWith(paymentAuth: paymentAuth);
     } on AtoaException catch (e) {
@@ -146,5 +149,15 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     } finally {
       state = state.copyWith(error: null, isLoading: false);
     }
+  }
+
+  Future<void> cancelPayment() async {
+    //Make an Api call
+    await callServer(
+      () => atoa.cancelPayment(
+        paymentId,
+        authKey,
+      ),
+    );
   }
 }

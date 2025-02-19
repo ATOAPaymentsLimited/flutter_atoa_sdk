@@ -1,0 +1,18 @@
+// ignore_for_file: invalid_annotation_target
+
+import 'package:atoa_core/src/models/models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'payer_bank_details.freezed.dart';
+part 'payer_bank_details.g.dart';
+
+@freezed
+class PayerBankDetails with _$PayerBankDetails {
+  factory PayerBankDetails({
+    @JsonKey(includeIfNull: false) String? name,
+    List<BankAccountIdentifications>? accountIdentifications,
+  }) = _PayerBankDetails;
+
+  factory PayerBankDetails.fromJson(Map<String, dynamic> json) =>
+      _$PayerBankDetailsFromJson(json);
+}

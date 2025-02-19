@@ -4,10 +4,12 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
 import 'package:atoa_core/src/models/models.dart';
+import 'package:dio/dio.dart';
 
 /// {@template atoa_core}
 /// Atoa Flutter SDK
 /// {@endtemplate}
+///
 class Atoa {
   /// {@macro atoa_core}
   factory Atoa() => _instance;
@@ -97,6 +99,28 @@ class Atoa {
     }
 
     return PaymentAuthResponse.fromJson(data);
+  }
+
+  Future<void> cancelPayment(
+    String paymentRequestId,
+    String authKey,
+  ) async {
+    _dioCheck();
+
+    final res = await _atoaDio!.post<Map<String, dynamic>>(
+      Endpoints.cancelPayment(paymentRequestId),
+      options: Options(
+        headers: {
+          'authorization': 'Bearer $authKey',
+        },
+      ),
+    );
+
+    final data = res.data;
+
+    if (data == null) {
+      throw const AtoaException(AtoaExceptionType.noDataFound);
+    }
   }
 
   Future<TransactionDetails> getPaymentStatus(

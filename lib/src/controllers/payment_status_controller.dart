@@ -3,14 +3,16 @@ import 'dart:async';
 import 'package:atoa_core/atoa_core.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'payment_status_controller.freezed.dart';
 part 'payment_status_state.dart';
 
+@injectable
 class PaymentStatusController extends StateNotifier<PaymentStatusState> {
   PaymentStatusController({
     required Atoa atoa,
-    Duration interval = const Duration(seconds: 1),
+    @factoryParam Duration interval = const Duration(seconds: 1),
   })  : _interval = interval,
         _atoa = atoa,
         super(const PaymentStatusState());

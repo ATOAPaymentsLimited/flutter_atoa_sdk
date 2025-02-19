@@ -70,7 +70,7 @@ extension PaymentRequestDataX on PaymentRequestData {
         taxPercentage: taxPercentage,
         servicePercentage: servicePercentage,
         features: features,
-        deviceOrigin: 'DESKTOP',
+        deviceOrigin: 'MOBILE',
         totalAmountDue: amount.amount,
         employeeId: employeeId,
         callbackParams: callbackParams,
@@ -79,7 +79,7 @@ extension PaymentRequestDataX on PaymentRequestData {
         encryptedNotesDetails: encryptedNotesDetails,
         paymentSourceType: 3,
         paymentDevice: DeviceInfo(
-          platform: 'DESKTOP',
+          platform: 'MOBILE',
         ),
         paymentRequestSource: PaymentRequestWithSource(
           requestCreatedAt: requestCreatedAt,

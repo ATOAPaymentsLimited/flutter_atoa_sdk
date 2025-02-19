@@ -1,7 +1,7 @@
 class Endpoints {
   const Endpoints._();
 
-  static String get baseUrl => 'https://api.atoa.me/api/';
+  static String get baseUrl => 'https://devapi.atoa.me/api/';
 
   //Institutions
   static const String institutions = 'institutions/customer';
@@ -14,4 +14,8 @@ class Endpoints {
 
   /// Payment Status
   static String getPaymentStatus(String id) => 'payments/payment-status/$id';
+
+  //Cancel Payment
+  static String cancelPayment(String paymentId) =>
+      'payment-request/cancel/$paymentId';
 }

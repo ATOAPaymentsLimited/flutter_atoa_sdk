@@ -151,7 +151,6 @@
     "connectYourBankAccountDesc": "Add your account details\nto receive cashback",
     "connect": "Connect",
     "sendReceivePaymentWithAtoa": "To send and receive payments using Atoa",
-    "selectYourBank": "Select your Bank",
     "continuingAgree": "By Continuing you agree to the",
     "atoa": "Atoa",
     "terms": "Terms",
@@ -1059,16 +1058,16 @@
     "great": "Great",
     "amazing": "Amazing",
     "custom": "Custom",
-    "newRequest":"New Request",
-    "newRequestDescription":"Invite friends and send funds to their bank",
-    "searchBarHintText":"Search by contact or #ID",
-    "exploreChallengesCapital":"EXPLORE CHALLENGES",
-    "exploreAtoaCapital":"EXPLORE ATOA",
-    "appUnderMaintenance":"App Under Maintenance",
-    "appUnderMaintenanceDesc":"We're sprucing things up to bring you a smoother experience. We'll be back before you know it.",
-    "appUnderMaintenanceThankyou":"Thank you for your understanding.",
-    "somethingWentWrong":"Oops! Something Went Wrong",
-    "lowConnectivityError":"We're having trouble connecting to the server at the moment. Please ensure you have a stable internet connection and try reopening the app.",
+    "newRequest": "New Request",
+    "newRequestDescription": "Invite friends and send funds to their bank",
+    "searchBarHintText": "Search by contact or #ID",
+    "exploreChallengesCapital": "EXPLORE CHALLENGES",
+    "exploreAtoaCapital": "EXPLORE ATOA",
+    "appUnderMaintenance": "App Under Maintenance",
+    "appUnderMaintenanceDesc": "We're sprucing things up to bring you a smoother experience. We'll be back before you know it.",
+    "appUnderMaintenanceThankyou": "Thank you for your understanding.",
+    "somethingWentWrong": "Oops! Something Went Wrong",
+    "lowConnectivityError": "We're having trouble connecting to the server at the moment. Please ensure you have a stable internet connection and try reopening the app.",
     "finish": "Finish",
     "homePageCoachMark1Desc": "No more IOUs! Send instant payments to friends and family across any UK bank account",
     "homePageCoachMark2Desc": "Scan Atoa QR codes to pay in-store and help local businesses save on card fees. You can win rewards too!",
@@ -1262,7 +1261,7 @@
         }
     },
     "paymentWarning": "This person doesn’t seem to be in your phonebook. Make sure you’re sending money to someone you know and trust.",
-    "selectBank": "Select your Bank",
+    "selectYourBank": "Select your Bank",
     "paymentWarningDesc": "If you do choose to continue with this payment, Atoa and your Bank will not be able to refund you.",
     "cancelThisPayment": "Cancel This Payment",
     "continueToPay": "Continue to Pay",
@@ -1337,16 +1336,16 @@
     "paymentsMade": "Payments made",
     "itemsPurchased": "Items Purchased",
     "totalDiscount": "Total Discount",
-    "appSolutelyLovingAtoa":"App-solutely loving Atoa?",
-    "notReally":"Not really",
-    "yes":"Yes!",
-    "negativeReviewSorryMessage":"Oh dear, we’re sorry!\nHow can we make the app better for you?",
-    "typeYourFeedbackHere":"Type your feedback here...",
-    "submit":"Submit",
-    "submitWithoutDetails":"Submit Without Details",
-    "appReviewSubmittedSheetTitle":"We love hearing from you!",
-    "appReviewSubmittedSheetDesc":"Thanks for your feedback – it helps us to make Atoa bigger and better.",
-    "loading":"Loading",
+    "appSolutelyLovingAtoa": "App-solutely loving Atoa?",
+    "notReally": "Not really",
+    "yes": "Yes!",
+    "negativeReviewSorryMessage": "Oh dear, we’re sorry!\nHow can we make the app better for you?",
+    "typeYourFeedbackHere": "Type your feedback here...",
+    "submit": "Submit",
+    "submitWithoutDetails": "Submit Without Details",
+    "appReviewSubmittedSheetTitle": "We love hearing from you!",
+    "appReviewSubmittedSheetDesc": "Thanks for your feedback – it helps us to make Atoa bigger and better.",
+    "loading": "Loading",
     "timeIn12Hour": "{time}",
     "@timeIn12Hour": {
         "placeholders": {
@@ -1359,12 +1358,12 @@
             }
         }
     },
-    "nationality":"Nationality",
-    "occupation":"Occupation",
-    "sourceOfIncome":"Primary Source of income",
-    "homeAddress":"Home address",
-    "extraDetails":"Extra Details",
-    "extraDetailsDesc":"We’re required under law to collect some basic details from you for any payments that exceed {amount}",
+    "nationality": "Nationality",
+    "occupation": "Occupation",
+    "sourceOfIncome": "Primary Source of income",
+    "homeAddress": "Home address",
+    "extraDetails": "Extra Details",
+    "extraDetailsDesc": "We’re required under law to collect some basic details from you for any payments that exceed {amount}",
     "@extraDetailsDesc": {
         "placeholders": {
             "amount": {
@@ -1379,13 +1378,13 @@
                 }
             }
         }
-    },   
-    "extraDetailsMsg":"For amounts over £15,000, provide extra details in the next step.",
-    "selectNationality":"Select Nationality",
-    "searchNationality":"Search for your nationality",
-    "selectOccupation":"Select Occupation",
-    "selectSourceOfWealth":"Select Source of Wealth",
-    "required":"{field} *",
+    },
+    "extraDetailsMsg": "For amounts over £15,000, provide extra details in the next step.",
+    "selectNationality": "Select Nationality",
+    "searchNationality": "Search for your nationality",
+    "selectOccupation": "Select Occupation",
+    "selectSourceOfWealth": "Select Source of Wealth",
+    "required": "{field} *",
     "@required": {
         "placeholders": {
             "field": {
@@ -1394,7 +1393,7 @@
             }
         }
     },
-    "bankPaymentAmountLimitErrMsg":"{name}'s payment limit is {amount} – please select another bank to pay from.",
+    "bankPaymentAmountLimitErrMsg": "{name}'s payment limit is {amount} – please select another bank to pay from.",
     "@bankPaymentAmountLimitErrMsg": {
         "placeholders": {
             "name": {
@@ -1508,9 +1507,9 @@
             }
         }
     },
-    "dismiss":"Dismiss",
-    "removePhoto":"Remove Photo",
-    "paidOn":"Paid on {date}",
+    "dismiss": "Dismiss",
+    "removePhoto": "Remove Photo",
+    "paidOn": "Paid on {date}",
     "@paidOn": {
         "placeholders": {
             "date": {
@@ -1531,7 +1530,60 @@
             }
         }
     },
-    "bankTabBar":"Bank Tab Bar",
-    "personalBanks":"Personal Banks",
-    "businessBanks":"Business Banks"
+    "bankTabBar": "Bank Tab Bar",
+    "personalBanks": "Personal Banks",
+    "businessBanks": "Business Banks",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "continueToYourBank": "Continue to your bank",
+    "okIUnderstandContinue": "Ok I understand, continue  →",
+    "poweredBy": "Powered by ",
+    "trustedByBusinesses": "Trusted by thousands of businesses in the UK",
+    "makePaymentStep3": "Once the payment’s confirmed, we’ll redirect you to the success page.",
+    "makePaymentStep2": "You can login securely and approve your payment. Your details stay confidential.",
+    "makePaymentStep1": "Your Bank app will open on selection automatically if it’s installed",
+    "ensureBankAppInstalled": "Ensure the selected bank’s app is installed on your phone.",
+    "allBanks": "ALL BANKS",
+    "noResults": "No results",
+    "noResultsDesc": "No results for ”ashwin ahmed” in banks. Try using different keywords.",
+    "somethingWentWrongDesc": "An unknown error occurred. We track these errors automatically, Please try again.",
+    "oopsSomethingWentWrong": "Oops! Something went wrong",
+    "searchYour": "Search your ",
+    "payingTo": "Paying to",
+    "goToBank": "Go to {bankName}  →",
+    "@goToBanak": {
+        "placeholders": {
+            "bankName": {
+                "type": "String",
+                "example": "name"
+            }
+        }
+    },
+    "atoaTerms": "Atoa Terms ",
+    "verifyingYourPayment": "Verifying payment status with your bank.",
+    "noteWithColon": "Note: ",
+    "doNotCloseWarning": "Do not press back or close this screen until the transaction is complete",
+    "couldNotCompletePayment": "Could not complete payment? ",
+    "cancelPaymentTitle": "Do you want to cancel the payment?",
+    "cancelPaymentReason1": "Help us improve by telling us why!",
+    "cancelPaymentReason2": "It’s taking too long to load",
+    "cancelPaymentReason3": "I’m facing issues with my bank",
+    "cancelPaymentReason4": "I don’t trust this method",
+    "cancelPaymentReason5": "Other (please specify)",
+    "yesCanclePayment": "Yes, cancel payment",
+    "recommendingAppInstallPart1": "For Seasmless payment we recommend installing ",
+    "recommendingAppInstallPart2": " in your device or you can continue paying using Web Internet banking.",
+    "noDismiss": "No, dismiss",
+    "tip": "Tip",
+    "valueCopiedToClipboard": "{label} copied to clipboard",
+    "@valueCopiedToClipboard": {
+        "placeholders": {
+            "label": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    },
+    "callBank": "Call Bank"
 }

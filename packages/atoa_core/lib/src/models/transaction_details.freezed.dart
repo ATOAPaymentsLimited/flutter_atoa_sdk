@@ -34,10 +34,12 @@ mixin _$TransactionDetails {
   String get currency => throw _privateConstructorUsedError;
 
   /// Current status of the transaction.
-  String get status => throw _privateConstructorUsedError;
+  @JsonKey()
+  TransactionStatus get status => throw _privateConstructorUsedError;
 
   /// The date and time when the transaction was created.
   String get createdAt => throw _privateConstructorUsedError;
+  PaymentType get paymentType => throw _privateConstructorUsedError;
 
   /// Optional: Unique identifier for the payment, if available.
   String? get paymentId => throw _privateConstructorUsedError;
@@ -92,6 +94,12 @@ mixin _$TransactionDetails {
 
   /// Optional: Unique identifier for the order associated with the transaction.
   String? get orderId => throw _privateConstructorUsedError;
+  @JsonKey()
+  TransactionStatusDetails? get statusDetails =>
+      throw _privateConstructorUsedError;
+  String? get merchantId => throw _privateConstructorUsedError;
+  @JsonKey()
+  PayerBankDetails? get payer => throw _privateConstructorUsedError;
 
   /// Serializes this TransactionDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -114,8 +122,9 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       String applicationUserId,
       @JsonKey(fromJson: _parseAmount) double paidAmount,
       String currency,
-      String status,
+      @JsonKey() TransactionStatus status,
       String createdAt,
+      PaymentType paymentType,
       String? paymentId,
       String? updatedAt,
       String? bankName,
@@ -132,7 +141,14 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       String? paymentLinkId,
       String? employeeId,
       String? pendingTrasactionError,
-      String? orderId});
+      String? orderId,
+      @JsonKey() TransactionStatusDetails? statusDetails,
+      String? merchantId,
+      @JsonKey() PayerBankDetails? payer});
+
+  $TransactionStatusCopyWith<$Res> get status;
+  $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
+  $PayerBankDetailsCopyWith<$Res>? get payer;
 }
 
 /// @nodoc
@@ -156,6 +172,7 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
     Object? currency = null,
     Object? status = null,
     Object? createdAt = null,
+    Object? paymentType = null,
     Object? paymentId = freezed,
     Object? updatedAt = freezed,
     Object? bankName = freezed,
@@ -173,6 +190,9 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
     Object? employeeId = freezed,
     Object? pendingTrasactionError = freezed,
     Object? orderId = freezed,
+    Object? statusDetails = freezed,
+    Object? merchantId = freezed,
+    Object? payer = freezed,
   }) {
     return _then(_value.copyWith(
       paymentIdempotencyId: null == paymentIdempotencyId
@@ -194,11 +214,15 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TransactionStatus,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      paymentType: null == paymentType
+          ? _value.paymentType
+          : paymentType // ignore: cast_nullable_to_non_nullable
+              as PaymentType,
       paymentId: freezed == paymentId
           ? _value.paymentId
           : paymentId // ignore: cast_nullable_to_non_nullable
@@ -267,7 +291,58 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String?,
+      statusDetails: freezed == statusDetails
+          ? _value.statusDetails
+          : statusDetails // ignore: cast_nullable_to_non_nullable
+              as TransactionStatusDetails?,
+      merchantId: freezed == merchantId
+          ? _value.merchantId
+          : merchantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      payer: freezed == payer
+          ? _value.payer
+          : payer // ignore: cast_nullable_to_non_nullable
+              as PayerBankDetails?,
     ) as $Val);
+  }
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionStatusCopyWith<$Res> get status {
+    return $TransactionStatusCopyWith<$Res>(_value.status, (value) {
+      return _then(_value.copyWith(status: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionStatusDetailsCopyWith<$Res>? get statusDetails {
+    if (_value.statusDetails == null) {
+      return null;
+    }
+
+    return $TransactionStatusDetailsCopyWith<$Res>(_value.statusDetails!,
+        (value) {
+      return _then(_value.copyWith(statusDetails: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PayerBankDetailsCopyWith<$Res>? get payer {
+    if (_value.payer == null) {
+      return null;
+    }
+
+    return $PayerBankDetailsCopyWith<$Res>(_value.payer!, (value) {
+      return _then(_value.copyWith(payer: value) as $Val);
+    });
   }
 }
 
@@ -284,8 +359,9 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
       String applicationUserId,
       @JsonKey(fromJson: _parseAmount) double paidAmount,
       String currency,
-      String status,
+      @JsonKey() TransactionStatus status,
       String createdAt,
+      PaymentType paymentType,
       String? paymentId,
       String? updatedAt,
       String? bankName,
@@ -302,7 +378,17 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
       String? paymentLinkId,
       String? employeeId,
       String? pendingTrasactionError,
-      String? orderId});
+      String? orderId,
+      @JsonKey() TransactionStatusDetails? statusDetails,
+      String? merchantId,
+      @JsonKey() PayerBankDetails? payer});
+
+  @override
+  $TransactionStatusCopyWith<$Res> get status;
+  @override
+  $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
+  @override
+  $PayerBankDetailsCopyWith<$Res>? get payer;
 }
 
 /// @nodoc
@@ -324,6 +410,7 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
     Object? currency = null,
     Object? status = null,
     Object? createdAt = null,
+    Object? paymentType = null,
     Object? paymentId = freezed,
     Object? updatedAt = freezed,
     Object? bankName = freezed,
@@ -341,6 +428,9 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
     Object? employeeId = freezed,
     Object? pendingTrasactionError = freezed,
     Object? orderId = freezed,
+    Object? statusDetails = freezed,
+    Object? merchantId = freezed,
+    Object? payer = freezed,
   }) {
     return _then(_$TransactionDetailsImpl(
       paymentIdempotencyId: null == paymentIdempotencyId
@@ -362,11 +452,15 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TransactionStatus,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      paymentType: null == paymentType
+          ? _value.paymentType
+          : paymentType // ignore: cast_nullable_to_non_nullable
+              as PaymentType,
       paymentId: freezed == paymentId
           ? _value.paymentId
           : paymentId // ignore: cast_nullable_to_non_nullable
@@ -435,6 +529,18 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String?,
+      statusDetails: freezed == statusDetails
+          ? _value.statusDetails
+          : statusDetails // ignore: cast_nullable_to_non_nullable
+              as TransactionStatusDetails?,
+      merchantId: freezed == merchantId
+          ? _value.merchantId
+          : merchantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      payer: freezed == payer
+          ? _value.payer
+          : payer // ignore: cast_nullable_to_non_nullable
+              as PayerBankDetails?,
     ));
   }
 }
@@ -447,8 +553,9 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
       required this.applicationUserId,
       @JsonKey(fromJson: _parseAmount) required this.paidAmount,
       required this.currency,
-      required this.status,
+      @JsonKey() required this.status,
       required this.createdAt,
+      required this.paymentType,
       this.paymentId,
       this.updatedAt,
       this.bankName,
@@ -465,7 +572,10 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
       this.paymentLinkId,
       this.employeeId,
       this.pendingTrasactionError,
-      this.orderId})
+      this.orderId,
+      @JsonKey() this.statusDetails,
+      this.merchantId,
+      @JsonKey() this.payer})
       : super._();
 
   factory _$TransactionDetailsImpl.fromJson(Map<String, dynamic> json) =>
@@ -490,11 +600,14 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
 
   /// Current status of the transaction.
   @override
-  final String status;
+  @JsonKey()
+  final TransactionStatus status;
 
   /// The date and time when the transaction was created.
   @override
   final String createdAt;
+  @override
+  final PaymentType paymentType;
 
   /// Optional: Unique identifier for the payment, if available.
   @override
@@ -567,10 +680,18 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   @override
   final String? orderId;
+  @override
+  @JsonKey()
+  final TransactionStatusDetails? statusDetails;
+  @override
+  final String? merchantId;
+  @override
+  @JsonKey()
+  final PayerBankDetails? payer;
 
   @override
   String toString() {
-    return 'TransactionDetails(paymentIdempotencyId: $paymentIdempotencyId, applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId)';
+    return 'TransactionDetails(paymentIdempotencyId: $paymentIdempotencyId, applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentType: $paymentType, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, payer: $payer)';
   }
 
   @override
@@ -589,6 +710,8 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.paymentType, paymentType) ||
+                other.paymentType == paymentType) &&
             (identical(other.paymentId, paymentId) ||
                 other.paymentId == paymentId) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -618,7 +741,12 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
                 other.employeeId == employeeId) &&
             (identical(other.pendingTrasactionError, pendingTrasactionError) ||
                 other.pendingTrasactionError == pendingTrasactionError) &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.statusDetails, statusDetails) ||
+                other.statusDetails == statusDetails) &&
+            (identical(other.merchantId, merchantId) ||
+                other.merchantId == merchantId) &&
+            (identical(other.payer, payer) || other.payer == payer));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -631,6 +759,7 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         currency,
         status,
         createdAt,
+        paymentType,
         paymentId,
         updatedAt,
         bankName,
@@ -647,7 +776,10 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         paymentLinkId,
         employeeId,
         pendingTrasactionError,
-        orderId
+        orderId,
+        statusDetails,
+        merchantId,
+        payer
       ]);
 
   /// Create a copy of TransactionDetails
@@ -673,8 +805,9 @@ abstract class _TransactionDetails extends TransactionDetails {
       required final String applicationUserId,
       @JsonKey(fromJson: _parseAmount) required final double paidAmount,
       required final String currency,
-      required final String status,
+      @JsonKey() required final TransactionStatus status,
       required final String createdAt,
+      required final PaymentType paymentType,
       final String? paymentId,
       final String? updatedAt,
       final String? bankName,
@@ -691,7 +824,10 @@ abstract class _TransactionDetails extends TransactionDetails {
       final String? paymentLinkId,
       final String? employeeId,
       final String? pendingTrasactionError,
-      final String? orderId}) = _$TransactionDetailsImpl;
+      final String? orderId,
+      @JsonKey() final TransactionStatusDetails? statusDetails,
+      final String? merchantId,
+      @JsonKey() final PayerBankDetails? payer}) = _$TransactionDetailsImpl;
   _TransactionDetails._() : super._();
 
   factory _TransactionDetails.fromJson(Map<String, dynamic> json) =
@@ -716,11 +852,14 @@ abstract class _TransactionDetails extends TransactionDetails {
 
   /// Current status of the transaction.
   @override
-  String get status;
+  @JsonKey()
+  TransactionStatus get status;
 
   /// The date and time when the transaction was created.
   @override
   String get createdAt;
+  @override
+  PaymentType get paymentType;
 
   /// Optional: Unique identifier for the payment, if available.
   @override
@@ -792,6 +931,14 @@ abstract class _TransactionDetails extends TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   @override
   String? get orderId;
+  @override
+  @JsonKey()
+  TransactionStatusDetails? get statusDetails;
+  @override
+  String? get merchantId;
+  @override
+  @JsonKey()
+  PayerBankDetails? get payer;
 
   /// Create a copy of TransactionDetails
   /// with the given fields replaced by the non-null parameter values.
