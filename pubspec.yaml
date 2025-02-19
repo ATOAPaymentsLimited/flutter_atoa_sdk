@@ -21,7 +21,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   flutter_state_notifier: ^1.0.0
   flutter_svg: ^2.0.1
-  flutter_widget_from_html_core: ^0.14.11
+  flutter_widget_from_html_core: ^0.16.0
   freezed_annotation: ^2.4.1
   http: ^1.2.1
   intl: ^0.19.0
