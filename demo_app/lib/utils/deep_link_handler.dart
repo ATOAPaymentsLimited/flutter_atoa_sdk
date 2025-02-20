@@ -16,6 +16,9 @@ class DeepLinkHandler {
 
     // Handle links that open the app
     final initialLink = await appLinks.getInitialLink();
+    if (!context.mounted) {
+      return;
+    }
     if (initialLink != null) {
       _handleDeepLink(
         context,
@@ -26,6 +29,9 @@ class DeepLinkHandler {
     // Handle links when app is already running
     appLinks.uriLinkStream.listen((Uri? link) {
       if (link != null) {
+        if (!context.mounted) {
+          return;
+        }
         _handleDeepLink(context, link);
       }
     });

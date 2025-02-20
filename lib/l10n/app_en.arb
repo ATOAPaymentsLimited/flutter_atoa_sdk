@@ -1585,5 +1585,17 @@
             }
         }
     },
-    "callBank": "Call Bank"
+    "callBank": "Call Bank",
+    "viewTransactionDetails": "View Transaction Details",
+    "referenceId": "Reference ID",
+    "orderId": "Order ID",
+    "awaitAuthDesc": "Payment under processing.",
+    "paymentSuccessful": "Payment Successful",
+    "receivedSuccessfully": "Received Successfully",
+    "paymentReceivedDesc": "Payment has been received successfully.",
+    "paymentRefundedDesc": "Funds have been credited back to your bank account.",
+    "paymentCancelledDesc": "You cancelled the payment.",
+    "paymentExpiredDesc": "The payment you're trying to make has expired.",
+    "unknownStatusDesc": "Unknown error",
+    "writeYourReason": "Write your reason..."
 }

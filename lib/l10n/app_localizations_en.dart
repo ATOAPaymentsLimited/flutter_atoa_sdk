@@ -2877,4 +2877,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get callBank => 'Call Bank';
+
+  @override
+  String get viewTransactionDetails => 'View Transaction Details';
+
+  @override
+  String get referenceId => 'Reference ID';
+
+  @override
+  String get orderId => 'Order ID';
+
+  @override
+  String get awaitAuthDesc => 'Payment under processing.';
+
+  @override
+  String get paymentSuccessful => 'Payment Successful';
+
+  @override
+  String get receivedSuccessfully => 'Received Successfully';
+
+  @override
+  String get paymentReceivedDesc => 'Payment has been received successfully.';
+
+  @override
+  String get paymentRefundedDesc => 'Funds have been credited back to your bank account.';
+
+  @override
+  String get paymentCancelledDesc => 'You cancelled the payment.';
+
+  @override
+  String get paymentExpiredDesc => 'The payment you\'re trying to make has expired.';
+
+  @override
+  String get unknownStatusDesc => 'Unknown error';
+
+  @override
+  String get writeYourReason => 'Write your reason...';
 }

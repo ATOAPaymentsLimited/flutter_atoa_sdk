@@ -5078,6 +5078,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Call Bank'**
   String get callBank;
+
+  /// No description provided for @viewTransactionDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View Transaction Details'**
+  String get viewTransactionDetails;
+
+  /// No description provided for @referenceId.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference ID'**
+  String get referenceId;
+
+  /// No description provided for @orderId.
+  ///
+  /// In en, this message translates to:
+  /// **'Order ID'**
+  String get orderId;
+
+  /// No description provided for @awaitAuthDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment under processing.'**
+  String get awaitAuthDesc;
+
+  /// No description provided for @paymentSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Successful'**
+  String get paymentSuccessful;
+
+  /// No description provided for @receivedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Received Successfully'**
+  String get receivedSuccessfully;
+
+  /// No description provided for @paymentReceivedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment has been received successfully.'**
+  String get paymentReceivedDesc;
+
+  /// No description provided for @paymentRefundedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Funds have been credited back to your bank account.'**
+  String get paymentRefundedDesc;
+
+  /// No description provided for @paymentCancelledDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You cancelled the payment.'**
+  String get paymentCancelledDesc;
+
+  /// No description provided for @paymentExpiredDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The payment you\'re trying to make has expired.'**
+  String get paymentExpiredDesc;
+
+  /// No description provided for @unknownStatusDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown error'**
+  String get unknownStatusDesc;
+
+  /// No description provided for @writeYourReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your reason...'**
+  String get writeYourReason;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -18,6 +18,7 @@ class BankInstitution with _$BankInstitution {
     required List<String> features,
     @Default(15000) double transactionAmountLimit,
     @Default(false) bool businessBank,
+    @Default(true) bool popularBank,
   }) = _BankInstitutions;
 
   const BankInstitution._();

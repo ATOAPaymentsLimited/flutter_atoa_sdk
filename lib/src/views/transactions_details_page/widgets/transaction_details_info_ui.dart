@@ -12,8 +12,8 @@ import 'package:regal/regal.dart';
 
 class TransactionDetailsInfoUi extends StatefulWidget {
   const TransactionDetailsInfoUi({
-    super.key,
     required this.transactionDetails,
+    super.key,
     this.showNotes = true,
     this.isExpanded = true,
     this.showTransactionActions = false,
@@ -132,10 +132,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
                         transactionDetails.status.maybeMap(
                       refunded: (value) =>
                           _getRefundBankDetails(transactionDetails, debitType),
-                      orElse: () => BankDetailsWidget(
-                        transactionDetails: transactionDetails,
-                        debitType: debitType,
-                      ),
+                      orElse: Container.new,
                     ),
                   ),
                   PaymentDetailsRow(
@@ -167,14 +164,15 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
       );
 
   Widget _getRefundBankDetails(
-    TransactionDetailsTransaction transactionDetails,
+    TransactionDetails transactionDetails,
     PaymentDebitType debitType,
   ) =>
-      transactionDetails.payerBankAccountNo != null &&
-              transactionDetails.payerBankAccountNo!.trim().isNotEmpty
-          ? BankDetailsWidget(
-              transactionDetails: transactionDetails,
-              debitType: debitType,
-            )
-          : const SizedBox.shrink();
+      // transactionDetails.payerBankAccountNo != null &&
+      //         transactionDetails.payerBankAccountNo!.trim().isNotEmpty
+      //     ? BankDetailsWidget(
+      //         transactionDetails: transactionDetails,
+      //         debitType: debitType,
+      //       )
+      //  :
+      const SizedBox.shrink();
 }

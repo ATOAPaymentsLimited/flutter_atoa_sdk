@@ -9,12 +9,12 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class CustomStatusContainer extends StatelessWidget {
   const CustomStatusContainer({
-    super.key,
-    this.iconBgColor,
     required this.transactionDetails,
     required this.svgAsset,
     required this.status,
     required this.dateTime,
+    super.key,
+    this.iconBgColor,
     this.showCallBank,
     this.desc,
     this.size,

@@ -9,11 +9,16 @@ part of 'transaction_status_details.dart';
 _$TransactionStatusDetailsImpl _$$TransactionStatusDetailsImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionStatusDetailsImpl(
-      status: json['status'] == null
-          ? null
-          : TransactionStatus.fromJson(json['status']),
+      status: TransactionStatus.fromJson(json['status']),
       isoStatus: json['isoStatus'] == null
           ? null
           : IsoStatus.fromJson(json['isoStatus'] as Map<String, dynamic>),
       statusUpdateDate: json['statusUpdateDate'] as String?,
     );
+
+Map<String, dynamic> _$$TransactionStatusDetailsImplToJson(
+        _$TransactionStatusDetailsImpl instance) =>
+    <String, dynamic>{
+      'isoStatus': instance.isoStatus,
+      'statusUpdateDate': instance.statusUpdateDate,
+    };

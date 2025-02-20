@@ -8,10 +8,10 @@ import 'package:regal/regal.dart';
 
 class CollapsedPaymentDetailsWidget extends StatelessWidget {
   const CollapsedPaymentDetailsWidget({
-    super.key,
     required this.transactionDetails,
     required this.isExpanded,
     required this.theme,
+    super.key,
   });
 
   final TransactionDetails transactionDetails;

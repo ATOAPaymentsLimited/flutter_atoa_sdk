@@ -3,7 +3,6 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
-import 'package:atoa_core/src/models/models.dart';
 import 'package:dio/dio.dart';
 
 /// {@template atoa_core}

@@ -1,17 +1,19 @@
 import 'package:atoa_core/atoa_core.dart';
+import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
+import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
+import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
+import 'package:atoa_flutter_sdk/src/utility/transaction_details_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
 
 class TransactionDetailsTopCard extends StatefulWidget {
   const TransactionDetailsTopCard({
-    super.key,
     required this.transactionDetails,
     required this.showRetry,
-    this.transactionDetailsSplitRequest,
-    this.expenseGroupDetails,
+    super.key,
     this.onRetry,
-    this.groupSplitRequestsListController,
     this.isCompleted = false,
   });
   final TransactionDetails transactionDetails;
@@ -24,15 +26,13 @@ class TransactionDetailsTopCard extends StatefulWidget {
       TransactionDetailsTopCardState();
 }
 
-class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard>
-    with TransactionRoutingMixin {
+class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
   late ValueNotifier<bool> showTickAnimation;
 
   @override
   void initState() {
     super.initState();
-    final debitType =
-        widget.transactionDetails.paymentDebitType(context.getCurrUser()!.id!);
+    final debitType = widget.transactionDetails.paymentDebitType('id');
     final isPaid = _isPaidStatus(debitType);
     showTickAnimation = ValueNotifier(widget.isCompleted && isPaid);
 
@@ -47,19 +47,10 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard>
   bool _isPaidStatus(
     PaymentDebitType debitType,
   ) =>
-      widget.transactionDetails.map(
-        TRANSACTION: (tnxDet) => _getTxnStatus(tnxDet, debitType),
-        PAYMENTREQUEST: (txnReq) => txnReq.requestStatus.maybeMap(
-          paid: (value) => _getPaymentRequestStatus(txnReq, debitType),
-          processing: (value) => _getPaymentRequestStatus(txnReq, debitType),
-          pending: (value) => _getPaymentRequestStatus(txnReq, debitType),
-          orElse: () => false,
-        ),
-        SPLITREQUEST: (values) => false,
-      );
+      _getTxnStatus(widget.transactionDetails, debitType);
 
   bool _getTxnStatus(
-    TransactionDetailsTransaction txnDet,
+    TransactionDetails txnDet,
     PaymentDebitType debitType,
   ) =>
       txnDet.status.maybeMap(
@@ -82,18 +73,11 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard>
             Builder(
               builder: (context) {
                 final userAvatar = CustomGestureDetector(
-                  semanticsLabel: context.l10n.senderReceiverProfilePicture,
+                  semanticsLabel: 'Profile Picture',
                   context: context,
                   trackLabel: 'Sender/receiver Profile Picture',
-                  onTap: () {
-                    goToPaymentMessagePageForConsumer(
-                      widget.transactionDetails,
-                    );
-                  },
                   child: UserAvatar(
                     size: 42.sp,
-                    borderRadius:
-                        isTrasnaction(context) ? Spacing.small.value : 42.sp,
                     url: _getSenderOrReceiverAvatar(
                       context,
                     ),
@@ -125,9 +109,9 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard>
                 return ValueListenableBuilder(
                   valueListenable: showTickAnimation,
                   builder: (context, showAnimation, child) => AnimatedSwitcher(
-                    duration: kAnimationDuration,
+                    duration: const Duration(milliseconds: 300),
                     child: showAnimation
-                        ? Assets.lotties.tickMark.lottie(
+                        ? Assets.gifs.tickMark.lottie(
                             height: 42.sp,
                             width: 42.sp,
                           )
@@ -137,56 +121,40 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard>
               },
             ),
             Spacing.large.yBox,
-            CustomGestureDetector(
-              semanticsLabel: context.l10n.senderReceiverName,
-              context: context,
-              trackLabel: 'Sender/Receiver Name',
-              onTap: () {
-                goToPaymentMessagePageForConsumer(
-                  widget.transactionDetails,
-                );
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: CustomTextSpan.semantics(
-                        children: [
-                          CustomTextSpan.semantics(
-                            text: _getSenderOrReceiverPrefix(context),
-                            style: context.labelSmall,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: CustomTextSpan.semantics(
+                      children: [
+                        CustomTextSpan.semantics(
+                          text: _getSenderOrReceiverPrefix(context),
+                          style: context.labelSmall,
+                        ),
+                        CustomTextSpan.semantics(
+                          text:
+                              TransactionDetailsUtility.getSenderOrReceiverName(
+                            context,
+                            widget.transactionDetails,
                           ),
-                          CustomTextSpan.semantics(
-                            text: TransactionDetailsUtility
-                                .getSenderOrReceiverName(
-                              context,
-                              widget.transactionDetails,
-                            ),
-                            style: context.labelSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                          style: context.labelSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
                           ),
-                        ],
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             _getStoreLocation(context),
             Spacing.xtraLarge.yBox,
             CustomText.semantics(
-              '£${widget.transactionDetails.map(
-                TRANSACTION: (value) =>
-                    value.paidAmount.toString().formattedAmount(),
-                PAYMENTREQUEST: (value) =>
-                    value.senders?.first.amount.toString().formattedAmount(),
-                SPLITREQUEST: (value) => '',
-              )}',
+              '£${widget.transactionDetails.paidAmount.toString().formattedAmount()}',
               style: context.headlineMedium,
             ),
             if (widget.showRetry && widget.onRetry != null) ...[
@@ -215,74 +183,24 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard>
                 ),
               ),
             ],
-            if (widget.transactionDetails.maybeMap(
-              TRANSACTION: (value) =>
-                  value.groupId != null && value.requestId != null,
-              PAYMENTREQUEST: (value) =>
-                  widget.transactionDetailsSplitRequest != null,
-              orElse: () => false,
-            )) ...[
-              SplitRequestViewButton(
-                transactionDetailsSplitRequest:
-                    widget.transactionDetailsSplitRequest,
-                onTap: viewSplitRequest,
-              ),
-            ] else if (widget.transactionDetails.maybeMap(
-              TRANSACTION: (value) =>
-                  value.groupId == null &&
-                  value.requestId == null &&
-                  value.status is TransactionStatusCompleted &&
-                  value.paymentType != PaymentType.P2P &&
-                  value.paymentType != PaymentType.P2P_WEB,
-              orElse: () => false,
-            ))
-              SplitWithFriendsButton(
-                transactionDetails: widget.transactionDetails,
-              )
-            else
-              const SizedBox.shrink(),
           ],
         ),
       );
 
-  bool isTrasnaction(BuildContext context) => widget.transactionDetails.map(
-        TRANSACTION: (txn) => switch (txn.paymentType) {
-          PaymentType.TRANSACTION => true,
-          _ => false,
-        },
-        PAYMENTREQUEST: (value) => false,
-        SPLITREQUEST: (value) => false,
-      );
+  bool isTrasnaction(BuildContext context) => true;
 
-  String _getSenderOrReceiverPrefix(BuildContext context) =>
-      widget.transactionDetails.map(
-        TRANSACTION: (txn) => switch (txn.paymentType) {
-          PaymentType.TRANSACTION => '${context.l10n.to} ',
-          _ => '',
-        },
-        PAYMENTREQUEST: (value) => '',
-        SPLITREQUEST: (value) => '',
-      );
+  String _getSenderOrReceiverPrefix(BuildContext context) => context.l10n.to;
 
   String? _getSenderOrReceiverAvatar(BuildContext context) =>
-      widget.transactionDetails.map(
-        TRANSACTION: (txn) => txn.avatar,
-        PAYMENTREQUEST: (req) => req.avatar,
-        SPLITREQUEST: (value) => '',
-      );
+      widget.transactionDetails.avatar;
 
   Widget _getStoreLocation(BuildContext context) =>
-      widget.transactionDetails.map(
-        TRANSACTION: (txn) => txn.storeDetails?.locationName != null &&
-                txn.storeDetails?.locationName != kDefault
-            ? _getStoreLocationSection(txn.storeDetails!.locationName!)
-            : const SizedBox.shrink(),
-        PAYMENTREQUEST: (req) => req.storeDetails?.locationName != null &&
-                req.storeDetails?.locationName != kDefault
-            ? _getStoreLocationSection(req.storeDetails!.locationName!)
-            : const SizedBox.shrink(),
-        SPLITREQUEST: (value) => const SizedBox.shrink(),
-      );
+      widget.transactionDetails.storeDetails?.locationName != null &&
+              widget.transactionDetails.storeDetails?.locationName != 'Default'
+          ? _getStoreLocationSection(
+              widget.transactionDetails.storeDetails!.locationName!,
+            )
+          : const SizedBox.shrink();
 
   Widget _getStoreLocationSection(String locationName) => Padding(
         padding: Spacing.medium.top,
@@ -308,40 +226,4 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard>
           ],
         ),
       );
-
-  void viewSplitRequest(TransactionDetailsSplitRequest splitReq) {
-    if (widget.expenseGroupDetails != null &&
-        widget.transactionDetails is TransactionDetailsTransaction) {
-      context.router.push(
-        routes.ViewSplitRequestFromTransactionsRoute(
-          expenseGroupDetails: widget.expenseGroupDetails!,
-          transactionDetailsSplitRequest:
-              widget.transactionDetailsSplitRequest!,
-        ),
-      );
-    }
-
-    if (context.router.stack.firstWhereOrNull(
-          (route) =>
-              route.name == routes.ViewingAndEditingSplitRequestPageRoute.name,
-        ) !=
-        null) {
-      context.router.popUntilRouteWithName(
-        routes.ViewingAndEditingSplitRequestPageRoute.name,
-      );
-    } else {
-      if (widget.expenseGroupDetails == null ||
-          widget.groupSplitRequestsListController == null) {
-        return;
-      }
-      context.router.push(
-        routes.ViewingAndEditingSplitRequestPageRoute(
-          expenseGroupDetails: widget.expenseGroupDetails!,
-          transactionDetailsSplitRequest: splitReq,
-          groupSplitRequestsListController:
-              widget.groupSplitRequestsListController,
-        ),
-      );
-    }
-  }
 }

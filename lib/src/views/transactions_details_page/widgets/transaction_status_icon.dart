@@ -2,12 +2,13 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:regal/regal.dart';
 
 class TransactionStatusIcon extends StatelessWidget {
   const TransactionStatusIcon({
-    super.key,
     required this.txnDetails,
+    super.key,
   });
   final TransactionDetails txnDetails;
 
@@ -19,28 +20,7 @@ class TransactionStatusIcon extends StatelessWidget {
           iconColor: context.regalColor.licoriceBlack,
           svgAsset: Assets.icons.iconHourglassEmpty.path,
         )
-      : txnDetails.map(
-          TRANSACTION: (txn) => _getIconForTxnStatus(context, txn.status),
-          PAYMENTREQUEST: (txnReq) => txnReq.requestStatus.maybeMap(
-            pending: (value) => CustomStatusContainer(
-              context,
-              iconBgColor: Colors.transparent,
-              iconColor: context.regalColor.licoriceBlack,
-              svgAsset: Assets.icons.iconPending2.path,
-            ),
-            paid: (value) =>
-                _getIconForTxnStatus(context, txnReq.txnPaymentStatus),
-            processing: (value) =>
-                _getIconForTxnStatus(context, txnReq.txnPaymentStatus),
-            orElse: () => CustomStatusContainer(
-              context,
-              iconBgColor: Colors.transparent,
-              iconColor: RegalColors.darkOrange,
-              svgAsset: Assets.icons.iconBlock.path,
-            ),
-          ),
-          SPLITREQUEST: (value) => const SizedBox.shrink(),
-        );
+      : _getIconForTxnStatus(context, txnDetails.status);
 
   Widget _getIconForTxnStatus(BuildContext context, TransactionStatus status) =>
       status.map(

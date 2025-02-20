@@ -3,9 +3,9 @@ import 'package:regal/regal.dart';
 
 class DetailRow extends StatelessWidget {
   const DetailRow({
-    super.key,
     required this.label,
     required this.value,
+    super.key,
     this.onTapValue,
   });
 

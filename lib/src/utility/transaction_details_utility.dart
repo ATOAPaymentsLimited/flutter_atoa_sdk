@@ -27,5 +27,5 @@ class TransactionDetailsUtility {
     BuildContext context,
     TransactionDetails transactionDetails,
   ) =>
-      merchantName ?? '';
+      transactionDetails.merchantName ?? '';
 }

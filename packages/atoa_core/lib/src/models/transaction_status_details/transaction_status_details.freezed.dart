@@ -21,9 +21,13 @@ TransactionStatusDetails _$TransactionStatusDetailsFromJson(
 
 /// @nodoc
 mixin _$TransactionStatusDetails {
+  @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
   TransactionStatus? get status => throw _privateConstructorUsedError;
   IsoStatus? get isoStatus => throw _privateConstructorUsedError;
   String? get statusUpdateDate => throw _privateConstructorUsedError;
+
+  /// Serializes this TransactionStatusDetails to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TransactionStatusDetails
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +43,8 @@ abstract class $TransactionStatusDetailsCopyWith<$Res> {
       _$TransactionStatusDetailsCopyWithImpl<$Res, TransactionStatusDetails>;
   @useResult
   $Res call(
-      {TransactionStatus? status,
+      {@JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+      TransactionStatus? status,
       IsoStatus? isoStatus,
       String? statusUpdateDate});
 
@@ -122,7 +127,8 @@ abstract class _$$TransactionStatusDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TransactionStatus? status,
+      {@JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+      TransactionStatus? status,
       IsoStatus? isoStatus,
       String? statusUpdateDate});
 
@@ -169,15 +175,19 @@ class __$$TransactionStatusDetailsImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class _$TransactionStatusDetailsImpl implements _TransactionStatusDetails {
   _$TransactionStatusDetailsImpl(
-      {this.status, this.isoStatus, this.statusUpdateDate});
+      {@JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+      this.status,
+      this.isoStatus,
+      this.statusUpdateDate});
 
   factory _$TransactionStatusDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransactionStatusDetailsImplFromJson(json);
 
   @override
+  @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
   final TransactionStatus? status;
   @override
   final IsoStatus? isoStatus;
@@ -214,11 +224,19 @@ class _$TransactionStatusDetailsImpl implements _TransactionStatusDetails {
   _$$TransactionStatusDetailsImplCopyWith<_$TransactionStatusDetailsImpl>
       get copyWith => __$$TransactionStatusDetailsImplCopyWithImpl<
           _$TransactionStatusDetailsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TransactionStatusDetailsImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _TransactionStatusDetails implements TransactionStatusDetails {
   factory _TransactionStatusDetails(
-      {final TransactionStatus? status,
+      {@JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+      final TransactionStatus? status,
       final IsoStatus? isoStatus,
       final String? statusUpdateDate}) = _$TransactionStatusDetailsImpl;
 
@@ -226,6 +244,7 @@ abstract class _TransactionStatusDetails implements TransactionStatusDetails {
       _$TransactionStatusDetailsImpl.fromJson;
 
   @override
+  @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
   TransactionStatus? get status;
   @override
   IsoStatus? get isoStatus;

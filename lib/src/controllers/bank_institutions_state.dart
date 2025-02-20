@@ -21,4 +21,11 @@ class BankInstitutionsState with _$BankInstitutionsState {
 
   List<BankInstitution> get personalBanks =>
       bankList.where((e) => !e.businessBank).toList();
+
+  List<BankInstitution> get popularPersonalBanks =>
+      bankList.where((e) => e.popularBank && !e.businessBank).toList();
+
+  List<BankInstitution> get normalPersonalBanks => personalBanks
+      .where((element) => !element.popularBank && !element.businessBank)
+      .toList();
 }

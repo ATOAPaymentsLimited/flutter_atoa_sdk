@@ -10,20 +10,34 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:lottie/lottie.dart' as _lottie;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
 class $AssetsGifsGen {
   const $AssetsGifsGen();
 
   /// File path: assets/gifs/dot-loading.json
-  String get dotLoading => 'assets/gifs/dot-loading.json';
+  LottieGenImage get dotLoading =>
+      const LottieGenImage('assets/gifs/dot-loading.json');
+
+  /// File path: assets/gifs/processing.json
+  LottieGenImage get processing =>
+      const LottieGenImage('assets/gifs/processing.json');
+
+  /// File path: assets/gifs/tick_mark.json
+  LottieGenImage get tickMark =>
+      const LottieGenImage('assets/gifs/tick_mark.json');
 
   /// List of all assets
-  List<String> get values => [dotLoading];
+  List<LottieGenImage> get values => [dotLoading, processing, tickMark];
 }
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
+
+  /// File path: assets/icons/Icon_refund.svg
+  SvgGenImage get iconRefund =>
+      const SvgGenImage('assets/icons/Icon_refund.svg');
 
   /// File path: assets/icons/atoa-logo.svg
   SvgGenImage get atoaLogo => const SvgGenImage('assets/icons/atoa-logo.svg');
@@ -31,11 +45,39 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bill.svg
   SvgGenImage get bill => const SvgGenImage('assets/icons/bill.svg');
 
+  /// File path: assets/icons/close.svg
+  SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
+
   /// File path: assets/icons/copy.svg
   SvgGenImage get copy => const SvgGenImage('assets/icons/copy.svg');
 
+  /// File path: assets/icons/icon_block.svg
+  SvgGenImage get iconBlock => const SvgGenImage('assets/icons/icon_block.svg');
+
+  /// File path: assets/icons/icon_error.svg
+  SvgGenImage get iconError => const SvgGenImage('assets/icons/icon_error.svg');
+
+  /// File path: assets/icons/icon_exclamation.svg
+  SvgGenImage get iconExclamation =>
+      const SvgGenImage('assets/icons/icon_exclamation.svg');
+
+  /// File path: assets/icons/icon_hourglass_empty.svg
+  SvgGenImage get iconHourglassEmpty =>
+      const SvgGenImage('assets/icons/icon_hourglass_empty.svg');
+
+  /// File path: assets/icons/icon_refunded.svg
+  SvgGenImage get iconRefunded =>
+      const SvgGenImage('assets/icons/icon_refunded.svg');
+
+  /// File path: assets/icons/icon_tick.svg
+  SvgGenImage get iconTick => const SvgGenImage('assets/icons/icon_tick.svg');
+
   /// File path: assets/icons/info.svg
   SvgGenImage get info => const SvgGenImage('assets/icons/info.svg');
+
+  /// File path: assets/icons/location_on.svg
+  SvgGenImage get locationOn =>
+      const SvgGenImage('assets/icons/location_on.svg');
 
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
@@ -44,7 +86,23 @@ class $AssetsIconsGen {
   SvgGenImage get warning => const SvgGenImage('assets/icons/warning.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [atoaLogo, bill, copy, info, search, warning];
+  List<SvgGenImage> get values => [
+        iconRefund,
+        atoaLogo,
+        bill,
+        close,
+        copy,
+        iconBlock,
+        iconError,
+        iconExclamation,
+        iconHourglassEmpty,
+        iconRefunded,
+        iconTick,
+        info,
+        locationOn,
+        search,
+        warning
+      ];
 }
 
 class $AssetsImagesGen {
@@ -220,6 +278,73 @@ class SvgGenImage {
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class LottieGenImage {
+  const LottieGenImage(
+    this._assetName, {
+    this.flavors = const {},
+  });
+
+  final String _assetName;
+  final Set<String> flavors;
+
+  _lottie.LottieBuilder lottie({
+    Animation<double>? controller,
+    bool? animate,
+    _lottie.FrameRate? frameRate,
+    bool? repeat,
+    bool? reverse,
+    _lottie.LottieDelegates? delegates,
+    _lottie.LottieOptions? options,
+    void Function(_lottie.LottieComposition)? onLoaded,
+    _lottie.LottieImageProviderFactory? imageProviderFactory,
+    Key? key,
+    AssetBundle? bundle,
+    Widget Function(
+      BuildContext,
+      Widget,
+      _lottie.LottieComposition?,
+    )? frameBuilder,
+    ImageErrorWidgetBuilder? errorBuilder,
+    double? width,
+    double? height,
+    BoxFit? fit,
+    AlignmentGeometry? alignment,
+    String? package,
+    bool? addRepaintBoundary,
+    FilterQuality? filterQuality,
+    void Function(String)? onWarning,
+  }) {
+    return _lottie.Lottie.asset(
+      _assetName,
+      controller: controller,
+      animate: animate,
+      frameRate: frameRate,
+      repeat: repeat,
+      reverse: reverse,
+      delegates: delegates,
+      options: options,
+      onLoaded: onLoaded,
+      imageProviderFactory: imageProviderFactory,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      errorBuilder: errorBuilder,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      package: package,
+      addRepaintBoundary: addRepaintBoundary,
+      filterQuality: filterQuality,
+      onWarning: onWarning,
     );
   }
 

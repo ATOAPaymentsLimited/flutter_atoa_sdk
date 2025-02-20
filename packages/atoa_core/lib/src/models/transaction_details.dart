@@ -2,7 +2,6 @@
 
 import 'package:atoa_core/src/models/enums/iso_code_status_enum.dart';
 import 'package:atoa_core/src/models/models.dart';
-import 'package:atoa_core/src/models/transaction_status/transaction_status.dart';
 import 'package:atoa_core/src/models/transaction_status_details/transaction_status_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,6 +11,7 @@ part 'transaction_details.g.dart';
 /// {@template transaction_details}
 /// Transaction Details
 /// {@endtemplate}
+
 @freezed
 class TransactionDetails with _$TransactionDetails {
   /// {@macro transaction_details}
@@ -29,7 +29,11 @@ class TransactionDetails with _$TransactionDetails {
     required String currency,
 
     /// Current status of the transaction.
-    @JsonKey() required TransactionStatus status,
+    @JsonKey(
+      fromJson: TransactionStatus.fromJson,
+      includeToJson: false,
+    )
+    required TransactionStatus status,
 
     /// The date and time when the transaction was created.
     required String createdAt,
@@ -85,10 +89,12 @@ class TransactionDetails with _$TransactionDetails {
 
     /// Optional: Unique identifier for the order associated with the transaction.
     String? orderId,
-    @JsonKey() TransactionStatusDetails? statusDetails,
+    TransactionStatusDetails? statusDetails,
     String? merchantId,
-    @JsonKey() PayerBankDetails? payer,
+    PayerBankDetails? payer,
     String? merchantName,
+    String? avatar,
+    StoreDetails? storeDetails,
   }) = _TransactionDetails;
 
   TransactionDetails._();

@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
 
 class PaymentTaxDetails extends StatelessWidget {
-  const PaymentTaxDetails({super.key, required this.transactionDetails});
+  const PaymentTaxDetails({required this.transactionDetails, super.key});
 
   final TransactionDetails transactionDetails;
 

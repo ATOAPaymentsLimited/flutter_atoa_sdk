@@ -52,12 +52,9 @@ class AtoaSdk {
           param2: authKey,
         ),
         builder: (context, child) =>
-            //     sharedPrefs.getBool('showHowToMakePayments') ?? true
-            //        ?
-            const HowToMakePaymentBottomSheet()
-        //           :
-        //   const BankSelectionBottomSheet(),
-        ,
+            sharedPrefs.getBool('showHowToMakePayments') ?? true
+                ? const HowToMakePaymentBottomSheet()
+                : const BankSelectionBottomSheet(),
       ),
     );
   }

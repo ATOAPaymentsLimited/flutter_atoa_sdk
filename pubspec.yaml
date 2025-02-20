@@ -37,6 +37,9 @@ dependencies:
   state_notifier: ^1.0.0
   url_launcher: ^6.2.3
 
+dependency_overrides:
+  vector_graphics: 1.1.15
+
 dev_dependencies:
   build_runner: ^2.4.8
   flutter_gen_runner: ^5.2.0
@@ -52,10 +55,14 @@ flutter_gen:
   integrations:
     flutter_svg: true
     rive: true
+    lottie: true
 
 flutter:
-  generate: true
+  uses-material-design:
+    true
+
+    # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/gifs/
-    - assets/images/
     - assets/icons/
+    - assets/images/
+    - assets/gifs/

@@ -7,19 +7,16 @@ import 'package:regal/regal.dart';
 
 class TransactionDetailsStatusContainer extends StatelessWidget {
   const TransactionDetailsStatusContainer({
-    super.key,
     required this.transactionDetails,
+    super.key,
   });
 
   final TransactionDetails transactionDetails;
 
   @override
   Widget build(BuildContext context) {
-    final debitType =
-        transactionDetails.paymentDebitType(context.getCurrUser()!.id!);
-    return 
-          _getTxnStatusContainerWidget(context, transactionDetails, debitType);
-     
+    final debitType = transactionDetails.paymentDebitType('id');
+    return _getTxnStatusContainerWidget(context, transactionDetails, debitType);
   }
 
   Widget _getTxnStatusContainerWidget(
@@ -36,6 +33,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
                     ? RegalColors.brightOrange
                     : RegalColors.darkCyan,
                 svgAsset: txnDetails.isSettlementInProcess
+                    ? Assets.gifs.processing.path
                     : Assets.icons.iconTick.path,
                 size: Spacing.large.value,
                 isLottie: txnDetails.isSettlementInProcess,
@@ -55,7 +53,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
                     ? RegalColors.brightOrange
                     : RegalColors.darkCyan,
                 svgAsset: txnDetails.isSettlementInProcess
-                    ? Assets.lotties.processing.path
+                    ? Assets.gifs.processing.path
                     : Assets.icons.iconTick.path,
                 size: Spacing.large.value,
                 isLottie: txnDetails.isSettlementInProcess,
@@ -96,7 +94,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         pending: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
           iconBgColor: RegalColors.brightOrange,
-          svgAsset: Assets.lotties.processing.path,
+          svgAsset: Assets.gifs.processing.path,
           isLottie: true,
           status: context.l10n.processing,
           showCallBank: true,
@@ -125,7 +123,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         awaitingAuthorization: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
           iconBgColor: RegalColors.brightOrange,
-          svgAsset: Assets.lotties.processing.path,
+          svgAsset: Assets.gifs.processing.path,
           isLottie: true,
           status: context.l10n.awaitingAuth,
           desc: context.l10n.awaitAuthDesc,
@@ -162,7 +160,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
       );
 
   String _getPaymentPendingStatusDescription(
-    TransactionDetailsTransaction txnDetails,
+    TransactionDetails txnDetails,
     BuildContext context,
   ) {
     if (txnDetails.errorMessage != null) {

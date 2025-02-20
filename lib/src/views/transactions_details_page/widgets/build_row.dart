@@ -5,12 +5,12 @@ import 'package:regal/regal.dart';
 
 class BuildRow extends StatelessWidget {
   const BuildRow({
-    super.key,
     required this.fromOrToTitle,
     required this.fromOrToDesc,
-    this.bankLogoUrl,
     required this.bankName,
     required this.bankAccNo,
+    super.key,
+    this.bankLogoUrl,
   });
 
   final String fromOrToTitle;

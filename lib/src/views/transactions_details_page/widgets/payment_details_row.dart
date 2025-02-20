@@ -8,9 +8,9 @@ import 'package:regal/regal.dart';
 
 class PaymentDetailsRow extends StatelessWidget {
   const PaymentDetailsRow({
-    super.key,
     required this.label,
     required this.value,
+    super.key,
     this.onTapValue,
     this.logo,
     this.subValue,
