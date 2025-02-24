@@ -1537,12 +1537,18 @@
     "two": "2",
     "three": "3",
     "continueToYourBank": "Continue to your bank",
-    "okIUnderstandContinue": "Ok I understand, continue  →",
+    "iUnderstandContinue": "I understand, continue  →",
     "poweredBy": "Powered by ",
     "trustedByBusinesses": "Trusted by thousands of businesses in the UK",
-    "makePaymentStep3": "Once the payment’s confirmed, we’ll redirect you to the success page.",
-    "makePaymentStep2": "You can login securely and approve your payment. Your details stay confidential.",
-    "makePaymentStep1": "Your Bank app will open on selection automatically if it’s installed",
+    "makePaymentStep3Text1": "Once the payment’s ",
+    "makePaymentStep3Text2": "confirmed, ",
+    "makePaymentStep3Text3": "we’ll redirect you to the success page.",
+    "makePaymentStep2Text1": "You can ",
+    "makePaymentStep2Text2": "login securely ",
+    "makePaymentStep2Text3": "and approve your payment. Your details stay confidential.",
+    "makePaymentStep1Text1": "Your ",
+    "makePaymentStep1Text2": "Bank app ",
+    "makePaymentStep1Text3": "will open on selection automatically if it’s installed",
     "ensureBankAppInstalled": "Ensure the selected bank’s app is installed on your phone.",
     "allBanks": "ALL BANKS",
     "noResults": "No results",
@@ -1597,5 +1603,24 @@
     "paymentCancelledDesc": "You cancelled the payment.",
     "paymentExpiredDesc": "The payment you're trying to make has expired.",
     "unknownStatusDesc": "Unknown error",
-    "writeYourReason": "Write your reason..."
+    "writeYourReason": "Write your reason...",
+    "termsAndPolicy": "Terms and policy",
+    "howWeProtectData": "How we protect your data.",
+    "rulesForService": "Rules for using our service.",
+    "atoaYapilyText": "Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority",
+    "review": "Review",
+    "downTime": "Downtime",
+    "okay": "Okay",
+    "bankDown": "{bankName} bank is currently down for maintenance. Please select a different bank and try again.",
+    "@bankDown": {
+        "placeholders": {
+            "bankName": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    },
+    "atoaTermsAndPolicy": "Atoa Terms and Privacy Policy",
+    "bankReviewInfoText": "We’ll send you to your bank’s app or website to confirm this payment.",
+    "paymentInProgress": "Payment in progress"
 }

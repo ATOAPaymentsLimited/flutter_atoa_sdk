@@ -2776,7 +2776,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueToYourBank => 'Continue to your bank';
 
   @override
-  String get okIUnderstandContinue => 'Ok I understand, continue  →';
+  String get iUnderstandContinue => 'I understand, continue  →';
 
   @override
   String get poweredBy => 'Powered by ';
@@ -2785,13 +2785,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get trustedByBusinesses => 'Trusted by thousands of businesses in the UK';
 
   @override
-  String get makePaymentStep3 => 'Once the payment’s confirmed, we’ll redirect you to the success page.';
+  String get makePaymentStep3Text1 => 'Once the payment’s ';
 
   @override
-  String get makePaymentStep2 => 'You can login securely and approve your payment. Your details stay confidential.';
+  String get makePaymentStep3Text2 => 'confirmed, ';
 
   @override
-  String get makePaymentStep1 => 'Your Bank app will open on selection automatically if it’s installed';
+  String get makePaymentStep3Text3 => 'we’ll redirect you to the success page.';
+
+  @override
+  String get makePaymentStep2Text1 => 'You can ';
+
+  @override
+  String get makePaymentStep2Text2 => 'login securely ';
+
+  @override
+  String get makePaymentStep2Text3 => 'and approve your payment. Your details stay confidential.';
+
+  @override
+  String get makePaymentStep1Text1 => 'Your ';
+
+  @override
+  String get makePaymentStep1Text2 => 'Bank app ';
+
+  @override
+  String get makePaymentStep1Text3 => 'will open on selection automatically if it’s installed';
 
   @override
   String get ensureBankAppInstalled => 'Ensure the selected bank’s app is installed on your phone.';
@@ -2913,4 +2931,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get writeYourReason => 'Write your reason...';
+
+  @override
+  String get termsAndPolicy => 'Terms and policy';
+
+  @override
+  String get howWeProtectData => 'How we protect your data.';
+
+  @override
+  String get rulesForService => 'Rules for using our service.';
+
+  @override
+  String get atoaYapilyText => 'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority';
+
+  @override
+  String get review => 'Review';
+
+  @override
+  String get downTime => 'Downtime';
+
+  @override
+  String get okay => 'Okay';
+
+  @override
+  String bankDown(String bankName) {
+    return '$bankName bank is currently down for maintenance. Please select a different bank and try again.';
+  }
+
+  @override
+  String get atoaTermsAndPolicy => 'Atoa Terms and Privacy Policy';
+
+  @override
+  String get bankReviewInfoText => 'We’ll send you to your bank’s app or website to confirm this payment.';
+
+  @override
+  String get paymentInProgress => 'Payment in progress';
 }

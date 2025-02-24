@@ -46,10 +46,16 @@ class Atoa {
     }
   }
 
-  Future<List<BankInstitution>> fetchInstitutions() async {
+  Future<List<BankInstitution>> fetchInstitutions({String? searchTerm}) async {
     _dioCheck();
 
-    final res = await _atoaDio!.get<List<dynamic>>(Endpoints.institutions);
+    var endPoint = Endpoints.institutions;
+
+    if (searchTerm != null && searchTerm.isNotEmpty) {
+      endPoint = '$endPoint?search=$searchTerm';
+    }
+
+    final res = await _atoaDio!.get<List<dynamic>>(endPoint);
     final data = res.data;
 
     if (data == null) {

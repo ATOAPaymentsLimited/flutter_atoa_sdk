@@ -27,7 +27,7 @@ class _MainAppState extends State<MainApp> {
 
   MaterialApp getApp(BuildContext context) {
     return MaterialApp(
-      theme: kThemeData,
+      themeMode: ThemeMode.light,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: Builder(
@@ -116,6 +116,8 @@ class ActionButton extends StatelessWidget {
       context,
       paymentId: controller.text.trim(),
       authKey: 'access-key',
+      showHowPaymentWorks: false,
+      brandingColor: Colors.blue,
       env: env,
     );
   }

@@ -51,6 +51,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/copy.svg
   SvgGenImage get copy => const SvgGenImage('assets/icons/copy.svg');
 
+  /// File path: assets/icons/external_link.svg
+  SvgGenImage get externalLink =>
+      const SvgGenImage('assets/icons/external_link.svg');
+
+  /// File path: assets/icons/help.svg
+  SvgGenImage get help => const SvgGenImage('assets/icons/help.svg');
+
   /// File path: assets/icons/icon_block.svg
   SvgGenImage get iconBlock => const SvgGenImage('assets/icons/icon_block.svg');
 
@@ -82,6 +89,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
+  /// File path: assets/icons/shield.svg
+  SvgGenImage get shield => const SvgGenImage('assets/icons/shield.svg');
+
   /// File path: assets/icons/warning.svg
   SvgGenImage get warning => const SvgGenImage('assets/icons/warning.svg');
 
@@ -92,6 +102,8 @@ class $AssetsIconsGen {
         bill,
         close,
         copy,
+        externalLink,
+        help,
         iconBlock,
         iconError,
         iconExclamation,
@@ -101,6 +113,7 @@ class $AssetsIconsGen {
         info,
         locationOn,
         search,
+        shield,
         warning
       ];
 }
@@ -123,6 +136,8 @@ class $AssetsImagesGen {
 class Assets {
   const Assets._();
 
+  static const String package = 'atoa_flutter_sdk';
+
   static const $AssetsGifsGen gifs = $AssetsGifsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
@@ -136,6 +151,8 @@ class AssetGenImage {
   });
 
   final String _assetName;
+
+  static const String package = 'atoa_flutter_sdk';
 
   final Size? size;
   final Set<String> flavors;
@@ -160,7 +177,8 @@ class AssetGenImage {
     bool matchTextDirection = false,
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
@@ -195,7 +213,8 @@ class AssetGenImage {
 
   ImageProvider provider({
     AssetBundle? bundle,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
   }) {
     return AssetImage(
       _assetName,
@@ -206,7 +225,7 @@ class AssetGenImage {
 
   String get path => _assetName;
 
-  String get keyName => _assetName;
+  String get keyName => 'packages/atoa_flutter_sdk/$_assetName';
 }
 
 class SvgGenImage {
@@ -227,11 +246,14 @@ class SvgGenImage {
   final Set<String> flavors;
   final bool _isVecFormat;
 
+  static const String package = 'atoa_flutter_sdk';
+
   _svg.SvgPicture svg({
     Key? key,
     bool matchTextDirection = false,
     AssetBundle? bundle,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     double? width,
     double? height,
     BoxFit fit = BoxFit.contain,
@@ -283,7 +305,7 @@ class SvgGenImage {
 
   String get path => _assetName;
 
-  String get keyName => _assetName;
+  String get keyName => 'packages/atoa_flutter_sdk/$_assetName';
 }
 
 class LottieGenImage {
@@ -294,6 +316,8 @@ class LottieGenImage {
 
   final String _assetName;
   final Set<String> flavors;
+
+  static const String package = 'atoa_flutter_sdk';
 
   _lottie.LottieBuilder lottie({
     Animation<double>? controller,
@@ -317,7 +341,8 @@ class LottieGenImage {
     double? height,
     BoxFit? fit,
     AlignmentGeometry? alignment,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     bool? addRepaintBoundary,
     FilterQuality? filterQuality,
     void Function(String)? onWarning,
@@ -350,5 +375,5 @@ class LottieGenImage {
 
   String get path => _assetName;
 
-  String get keyName => _assetName;
+  String get keyName => 'packages/atoa_flutter_sdk/$_assetName';
 }

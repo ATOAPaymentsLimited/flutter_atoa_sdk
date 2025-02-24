@@ -41,89 +41,17 @@ class CustomSwitcher<T> extends StatelessWidget {
             initialValue: initialValue,
             decoration: BoxDecoration(
               color: context.brightness.map(
-                (l) => RegalColors.snowWhite,
-                (d) => RegalColors.claretRed,
+                (l) => NeutralColors.light().grey.shade50,
+                (d) => NeutralColors.light().grey.shade50,
               ),
               border: Border.all(
                 color: context.regalColor.snowWhite,
               ),
               borderRadius: BorderRadius.circular(Spacing.large.value),
-              boxShadow: context.brightness.map(
-                (l) => [
-                  BoxShadow(
-                    color: RegalColors.grey.shade20,
-                    blurRadius: 3,
-                    offset: const Offset(0.62, 0.62),
-                  ),
-                  const BoxShadow(
-                    color: Color(0x3FFFFFFF),
-                    blurRadius: 2,
-                    offset: Offset(-1, -1),
-                  ),
-                  const BoxShadow(
-                    color: Color(0x1CBCD1FF),
-                    blurRadius: 13,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-                (d) => [
-                  const BoxShadow(
-                    color: Color(0x99E42646),
-                    blurRadius: 3,
-                    offset: Offset(0.62, 0.62),
-                  ),
-                  const BoxShadow(
-                    color: Color(0x3F000000),
-                    blurRadius: 2,
-                    offset: Offset(-1, -1),
-                  ),
-                  const BoxShadow(
-                    color: Color(0x1EFCE9EC),
-                    blurRadius: 13,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
             ),
             thumbDecoration: BoxDecoration(
-              color: RegalColors.vividRed,
+              color: context.intactColors.white,
               borderRadius: BorderRadius.circular(14.sp),
-              boxShadow: context.brightness.map(
-                (l) => const [
-                  BoxShadow(
-                    color: Color(0x962767C6),
-                    blurRadius: 3,
-                    offset: Offset(0.62, 0.62),
-                  ),
-                  BoxShadow(
-                    color: Color(0x3FFFFFFF),
-                    blurRadius: 2,
-                    offset: Offset(-1, -1),
-                  ),
-                  BoxShadow(
-                    color: Color(0x1CBCD1FF),
-                    blurRadius: 13,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-                (d) => [
-                  const BoxShadow(
-                    color: Color(0x99E42646),
-                    blurRadius: 3,
-                    offset: Offset(0.62, 0.62),
-                  ),
-                  const BoxShadow(
-                    color: Color(0x3F000000),
-                    blurRadius: 2,
-                    offset: Offset(-1, -1),
-                  ),
-                  const BoxShadow(
-                    color: Color(0x1EFCE9EC),
-                    blurRadius: 13,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
             ),
           ),
         ),

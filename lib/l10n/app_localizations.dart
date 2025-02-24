@@ -4881,11 +4881,11 @@ abstract class AppLocalizations {
   /// **'Continue to your bank'**
   String get continueToYourBank;
 
-  /// No description provided for @okIUnderstandContinue.
+  /// No description provided for @iUnderstandContinue.
   ///
   /// In en, this message translates to:
-  /// **'Ok I understand, continue  →'**
-  String get okIUnderstandContinue;
+  /// **'I understand, continue  →'**
+  String get iUnderstandContinue;
 
   /// No description provided for @poweredBy.
   ///
@@ -4899,23 +4899,59 @@ abstract class AppLocalizations {
   /// **'Trusted by thousands of businesses in the UK'**
   String get trustedByBusinesses;
 
-  /// No description provided for @makePaymentStep3.
+  /// No description provided for @makePaymentStep3Text1.
   ///
   /// In en, this message translates to:
-  /// **'Once the payment’s confirmed, we’ll redirect you to the success page.'**
-  String get makePaymentStep3;
+  /// **'Once the payment’s '**
+  String get makePaymentStep3Text1;
 
-  /// No description provided for @makePaymentStep2.
+  /// No description provided for @makePaymentStep3Text2.
   ///
   /// In en, this message translates to:
-  /// **'You can login securely and approve your payment. Your details stay confidential.'**
-  String get makePaymentStep2;
+  /// **'confirmed, '**
+  String get makePaymentStep3Text2;
 
-  /// No description provided for @makePaymentStep1.
+  /// No description provided for @makePaymentStep3Text3.
   ///
   /// In en, this message translates to:
-  /// **'Your Bank app will open on selection automatically if it’s installed'**
-  String get makePaymentStep1;
+  /// **'we’ll redirect you to the success page.'**
+  String get makePaymentStep3Text3;
+
+  /// No description provided for @makePaymentStep2Text1.
+  ///
+  /// In en, this message translates to:
+  /// **'You can '**
+  String get makePaymentStep2Text1;
+
+  /// No description provided for @makePaymentStep2Text2.
+  ///
+  /// In en, this message translates to:
+  /// **'login securely '**
+  String get makePaymentStep2Text2;
+
+  /// No description provided for @makePaymentStep2Text3.
+  ///
+  /// In en, this message translates to:
+  /// **'and approve your payment. Your details stay confidential.'**
+  String get makePaymentStep2Text3;
+
+  /// No description provided for @makePaymentStep1Text1.
+  ///
+  /// In en, this message translates to:
+  /// **'Your '**
+  String get makePaymentStep1Text1;
+
+  /// No description provided for @makePaymentStep1Text2.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank app '**
+  String get makePaymentStep1Text2;
+
+  /// No description provided for @makePaymentStep1Text3.
+  ///
+  /// In en, this message translates to:
+  /// **'will open on selection automatically if it’s installed'**
+  String get makePaymentStep1Text3;
 
   /// No description provided for @ensureBankAppInstalled.
   ///
@@ -5150,6 +5186,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Write your reason...'**
   String get writeYourReason;
+
+  /// No description provided for @termsAndPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms and policy'**
+  String get termsAndPolicy;
+
+  /// No description provided for @howWeProtectData.
+  ///
+  /// In en, this message translates to:
+  /// **'How we protect your data.'**
+  String get howWeProtectData;
+
+  /// No description provided for @rulesForService.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules for using our service.'**
+  String get rulesForService;
+
+  /// No description provided for @atoaYapilyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority'**
+  String get atoaYapilyText;
+
+  /// No description provided for @review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get review;
+
+  /// No description provided for @downTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Downtime'**
+  String get downTime;
+
+  /// No description provided for @okay.
+  ///
+  /// In en, this message translates to:
+  /// **'Okay'**
+  String get okay;
+
+  /// No description provided for @bankDown.
+  ///
+  /// In en, this message translates to:
+  /// **'{bankName} bank is currently down for maintenance. Please select a different bank and try again.'**
+  String bankDown(String bankName);
+
+  /// No description provided for @atoaTermsAndPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa Terms and Privacy Policy'**
+  String get atoaTermsAndPolicy;
+
+  /// No description provided for @bankReviewInfoText.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll send you to your bank’s app or website to confirm this payment.'**
+  String get bankReviewInfoText;
+
+  /// No description provided for @paymentInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment in progress'**
+  String get paymentInProgress;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

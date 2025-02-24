@@ -1,12 +1,16 @@
+import 'dart:async';
+
 import 'package:atoa_core/atoa_core.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:state_notifier/state_notifier.dart';
+import 'package:stream_transform/stream_transform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-part 'bank_institutions_state.dart';
 part 'bank_institutions_controller.freezed.dart';
+part 'bank_institutions_state.dart';
 
 @injectable
 class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
@@ -14,17 +18,82 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     required this.atoa,
     @factoryParam required this.paymentId,
     @factoryParam required this.authKey,
-  }) : super(const BankInstitutionsState());
+  }) : super(const BankInstitutionsState()) {
+    searchController = StreamController<String>();
+    searchController.stream
+        .debounce(const Duration(milliseconds: 300))
+        .listen(_search);
+  }
 
   final Atoa atoa;
   final String paymentId;
   final String authKey;
+  late StreamController<String> searchController;
+
+  String searchTerm = '';
+
+  void _search(String searchTerm) {
+    fetchFilteredBanks(
+      searchTerm,
+      refresh: true,
+    );
+  }
+
+  void search(String value) {
+    searchTerm = value;
+    searchController.sink.add(searchTerm);
+  }
 
   List<BankInstitution> get personalBanks =>
       state.bankList.where((bank) => !bank.businessBank).toList();
 
   List<BankInstitution> get businessBanks =>
       state.bankList.where((bank) => bank.businessBank).toList();
+
+  Future<void> fetchFilteredBanks(
+    String searchTerm, {
+    required bool refresh,
+  }) async {
+    state = state.copyWith(isLoading: true);
+
+    try {
+      final res = await callServer<List<BankInstitution>>(
+        () => atoa.fetchInstitutions(
+          searchTerm: searchTerm,
+        ),
+      );
+
+      state = state.copyWith(
+        bankList: res,
+        isLoading: false,
+      );
+    } on AtoaException catch (e) {
+      state = state.copyWith(error: e, isLoading: false);
+    } on Exception catch (e) {
+      state = state.copyWith(error: e, isLoading: false);
+    } finally {
+      state = state.copyWith(error: null, isLoading: false);
+    }
+
+    try {
+      final paymentRes =
+          await callServer(() => atoa.getPaymentDetails(paymentId));
+
+      state = state.copyWith(paymentDetails: paymentRes);
+    } on AtoaException catch (e) {
+      state = state.copyWith(
+        paymentDetails: null,
+        error: e,
+      );
+    } on Exception catch (e) {
+      state = state.copyWith(
+        paymentDetails: null,
+        error: e,
+      );
+    } finally {
+      state = state.copyWith(error: null, isLoading: false);
+    }
+  }
 
   Future<void> fetchBanks() async {
     state = state.copyWith(isLoading: true);
@@ -111,6 +180,34 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     return null;
   }
 
+  Future<void> checkBankAppAvailability() async {
+    if (state.paymentAuth == null) return;
+
+    var urlSchemeEmptyFromApi = false;
+
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      final bundleId = state.paymentAuth!.iOSPackageName;
+      urlSchemeEmptyFromApi = !(bundleId != null && bundleId.isNotEmpty);
+    }
+
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      final pkgName = state.paymentAuth!.androidPackageName;
+      urlSchemeEmptyFromApi = !(pkgName != null && pkgName.isNotEmpty);
+    }
+
+    if (urlSchemeEmptyFromApi) {
+      state = state.copyWith(isAppInstalled: true);
+      return;
+    }
+
+    final dynamic result = await LaunchApp.isAppInstalled(
+      androidPackageName: state.paymentAuth!.androidPackageName,
+      iosUrlScheme: state.paymentAuth!.iOSPackageName,
+    );
+
+    state = state.copyWith(isAppInstalled: result is bool && result);
+  }
+
   Future<void> selectBank(BankInstitution? selectedBank) async {
     state = state.copyWith(
       selectedBank: selectedBank,
@@ -149,6 +246,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     } finally {
       state = state.copyWith(error: null, isLoading: false);
     }
+    await checkBankAppAvailability();
   }
 
   Future<void> cancelPayment() async {

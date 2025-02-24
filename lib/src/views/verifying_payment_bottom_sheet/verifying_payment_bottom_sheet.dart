@@ -18,30 +18,34 @@ class VerifyingPaymentBottomSheet extends StatelessWidget {
     BankInstitutionsController bankInstitutionController,
     BankInstitutionsState state,
   ) =>
-      showModalBottomSheet<void>(
+      showLedgerBottomSheet<void>(
         context: context,
-        builder: (_) => VerifyingPaymentBottomSheet(
+        backgroundColor: context.intactColors.white,
+        titleAlign: TextAlign.center,
+        showTopDivider: false,
+        titleStyle: context.figtree.labelMedium.w700.textColor(
+          NeutralColors.light().grey.shade700,
+        ),
+        title: context.l10n.paymentInProgress,
+        body: (_) => VerifyingPaymentBottomSheet(
           bankInstitutionController: bankInstitutionController,
           state: state,
         ),
       );
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Cancel'),
-            RegalButton.primary(
-              onPressed: () async {
-                await bankInstitutionController.cancelPayment();
-              },
-              trackLabel: 'Cancel Button',
-              enableTracking: false,
-              label: context.l10n.cancel,
-            ),
-          ],
-        ),
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const CustomText.semantics('Cancel'),
+          RegalButton.tertiary(
+            onPressed: () async {
+              await bankInstitutionController.cancelPayment();
+            },
+            trackLabel: 'Cancel Button',
+            enableTracking: false,
+            label: context.l10n.cancel,
+          ),
+        ],
       );
 }

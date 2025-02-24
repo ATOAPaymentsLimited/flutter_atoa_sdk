@@ -18,6 +18,7 @@ class PayNowBottomSheet extends StatelessWidget {
       paymentId: paymentId,
       authKey:
           'NmNiYTgzODEtZjJlOS00YTRmLTlmMWYtZjRiMWI2Zjc0ZDExOnY2SnRFcUtmcTFRMkFmTU8=', //add the api access key here
+      showHowPaymentWorks: true,
       env: AtoaEnv.prod,
 
       /// or AtoaEnv.sandbox

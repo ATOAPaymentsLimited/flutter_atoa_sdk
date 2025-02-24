@@ -1,0 +1,35 @@
+import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
+import 'package:flutter/material.dart';
+import 'package:regal/regal.dart';
+
+class InfoWidget extends StatelessWidget {
+  const InfoWidget({
+    required this.text,
+    super.key,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: Spacing.small.y + Spacing.medium.x,
+        decoration: BoxDecoration(
+          color: SemanticsColors.light().info.lighter,
+          borderRadius: Spacing.small.brAll,
+        ),
+        child: Row(
+          children: [
+            Assets.icons.info.svg(),
+            Spacing.medium.xBox,
+            Expanded(
+              child: CustomText.semantics(
+                text,
+                style: context.figtree.bodyMedium.textColor(
+                  SemanticsColors.light().info.darker,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+}
