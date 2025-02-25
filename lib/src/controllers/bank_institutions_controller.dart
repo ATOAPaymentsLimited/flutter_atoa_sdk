@@ -17,7 +17,6 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   BankInstitutionsController({
     required this.atoa,
     @factoryParam required this.paymentId,
-    @factoryParam required this.authKey,
   }) : super(const BankInstitutionsState()) {
     searchController = StreamController<String>();
     searchController.stream
@@ -27,7 +26,6 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
   final Atoa atoa;
   final String paymentId;
-  final String authKey;
   late StreamController<String> searchController;
 
   String searchTerm = '';
@@ -252,10 +250,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   Future<void> cancelPayment() async {
     //Make an Api call
     await callServer(
-      () => atoa.cancelPayment(
-        paymentId,
-        authKey,
-      ),
+      () => atoa.cancelPayment(paymentId),
     );
   }
 }

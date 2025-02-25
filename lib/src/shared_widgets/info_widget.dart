@@ -5,10 +5,12 @@ import 'package:regal/regal.dart';
 class InfoWidget extends StatelessWidget {
   const InfoWidget({
     required this.text,
+    this.fontSize,
     super.key,
   });
 
   final String text;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -24,9 +26,11 @@ class InfoWidget extends StatelessWidget {
             Expanded(
               child: CustomText.semantics(
                 text,
-                style: context.figtree.bodyMedium.textColor(
-                  SemanticsColors.light().info.darker,
-                ),
+                style: context.figtree.bodyMedium
+                    .textColor(
+                      SemanticsColors.light().info.darker,
+                    )
+                    .copyWith(fontSize: fontSize),
               ),
             ),
           ],

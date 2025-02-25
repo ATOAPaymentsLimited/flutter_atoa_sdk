@@ -2,6 +2,7 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PayNowBottomSheet extends StatelessWidget {
   PayNowBottomSheet({
@@ -12,18 +13,27 @@ class PayNowBottomSheet extends StatelessWidget {
   final double totalAmount;
   final ValueNotifier<bool> isLoading = ValueNotifier(false);
 
-  void _showSheet(BuildContext context, String paymentId) {
+  void _showSheet(BuildContext context, String paymentId) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    if (!context.mounted) {
+      return;
+    }
+
     AtoaSdk.show(
       context,
       paymentId: paymentId,
       authKey:
           'NmNiYTgzODEtZjJlOS00YTRmLTlmMWYtZjRiMWI2Zjc0ZDExOnY2SnRFcUtmcTFRMkFmTU8=', //add the api access key here
+      // showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
       showHowPaymentWorks: true,
-      env: AtoaEnv.prod,
-      brandingColor: Colors.blue,
+      env: AtoaEnv.sandbox,
+      brandingColor: const Color(0x000052d0),
 
-      /// or AtoaEnv.sandbox
+      /// or AtoaEnv.prod
     );
+
+    prefs.setBool('showHowPaymentWorks', false);
   }
 
   @override

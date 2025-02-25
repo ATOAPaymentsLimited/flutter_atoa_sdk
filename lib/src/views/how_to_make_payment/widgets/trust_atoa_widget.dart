@@ -10,7 +10,7 @@ class TrustAtoaWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: Spacing.small.y + Spacing.medium.x,
+        padding: Spacing.medium.y + Spacing.large.x,
         decoration: BoxDecoration(
           color: SemanticsColors.light().positive.lighter,
           borderRadius: Spacing.small.brAll + Spacing.tiny.brAll,
@@ -18,11 +18,11 @@ class TrustAtoaWidget extends StatelessWidget {
         child: Row(
           children: [
             Assets.icons.shield.svg(),
-            Spacing.medium.xBox,
+            Spacing.small.xBox,
             Expanded(
               child: CustomText.semantics(
                 context.l10n.trustedByBusinesses,
-                style: context.figtree.bodyMedium.textColor(
+                style: context.figtree.bodyMedium.w600.textColor(
                   SemanticsColors.light().positive.darker,
                 ),
               ),

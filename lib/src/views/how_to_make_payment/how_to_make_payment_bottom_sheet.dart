@@ -1,7 +1,7 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_spacer.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
-import 'package:atoa_flutter_sdk/src/utility/shared_prefs.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/continue_button.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_to_make_payment_steps.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/trust_atoa_widget.dart';
@@ -32,6 +32,36 @@ class HowToMakePaymentBottomSheet extends StatefulWidget {
         titleStyle: context.figtree.labelMedium.w700.textColor(
           NeutralColors.light().grey.shade700,
         ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(Spacing.xtraLarge.value),
+            topRight: Radius.circular(Spacing.xtraLarge.value),
+          ),
+        ),
+        leadingTopWidget: Spacing.medium.xBox,
+        trailingTopWidget: CustomInkWell(
+          semanticsLabel: 'Close Dialog Sheet Icon',
+          context: context,
+          trackLabel: 'Close Dialog Sheet Icon',
+          onTap: () => Navigator.pop(context),
+          child: Container(
+            width: Spacing.huge.value,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: NeutralColors.light().grey.shade50,
+            ),
+            child: Center(
+              child: Padding(
+                padding: Spacing.mini.all,
+                child: Icon(
+                  Icons.close,
+                  size: Spacing.medium.value,
+                  color: context.intactColors.black,
+                ),
+              ),
+            ),
+          ),
+        ),
         body: (context) => HowToMakePaymentBottomSheet(
           isHelp: isHelp,
           paymentId: paymentId,
@@ -47,12 +77,6 @@ class _HowToMakePaymentBottomSheetState
     extends State<HowToMakePaymentBottomSheet>
     with SingleTickerProviderStateMixin {
   @override
-  void initState() {
-    super.initState();
-    SharedPrefs().setBool('showHowToMakePayments', value: false);
-  }
-
-  @override
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -60,27 +84,35 @@ class _HowToMakePaymentBottomSheetState
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Assets.images.redBackAtoaLogo.image(
-                width: Spacing.huge.value * 2 + Spacing.tiny.value,
-                height: Spacing.huge.value * 2 + Spacing.tiny.value,
+                width: Spacing.huge.value * 2,
+                height: Spacing.huge.value * 2,
               ),
-              Spacing.large.xBox,
-              Assets.gifs.dotLoading.lottie(width: Spacing.large.value * 3),
-              Spacing.large.xBox,
-              Assets.images.bankLogos.image(width: Spacing.huge.value * 7),
+              Spacing.medium.xBox,
+              Assets.gifs.dotLoading.lottie(
+                width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
+                repeat: false,
+              ),
+              Spacing.medium.xBox,
+              Assets.images.bankLogos.image(
+                width: Spacing.xtraLarge.value * 6 +
+                    Spacing.small.value +
+                    Spacing.tiny.value,
+                height: Spacing.huge.value * 2,
+              ),
             ],
           ),
-          Spacing.xtraLarge.yBox,
+          Spacing.xtraLarge.yBox * 2,
           const HowToMakePaymentSteps(),
-          Spacing.xtraLarge.yBox,
+          Spacing.huge.yBox,
           const TrustAtoaWidget(),
-          Spacing.xtraLarge.yBox,
+          Spacing.huge.yBox,
           ContinueButton(
             isHelp: widget.isHelp,
             paymentId: widget.paymentId,
           ),
-          Spacing.xtraLarge.yBox,
-          const PoweredByAtoaWidget(),
           Spacing.medium.yBox,
+          const PoweredByAtoaWidget(),
+          Spacing.huge.yBox,
         ],
       );
 }

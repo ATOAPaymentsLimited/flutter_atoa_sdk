@@ -76,12 +76,16 @@ class VerifyingPaymentBottomSheet extends StatelessWidget {
                     Spacing.medium.yBox,
                     RichText(
                       text: CustomTextSpan.semantics(
+                        text: context.l10n.noteWithColon,
+                        style: context.figtree.bodyMedium.w500.textColor(
+                          NeutralColors.light().grey.shade500,
+                        ),
                         children: [
                           CustomTextSpan.semantics(
-                            text: context.l10n.noteWithColon,
-                          ),
-                          CustomTextSpan.semantics(
                             text: context.l10n.doNotCloseWarning,
+                            style: context.figtree.bodyMedium.textColor(
+                              NeutralColors.light().grey.shade500,
+                            ),
                           ),
                         ],
                       ),

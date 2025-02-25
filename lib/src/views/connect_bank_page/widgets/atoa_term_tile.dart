@@ -1,5 +1,4 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
-import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 import 'package:url_launcher/url_launcher.dart';

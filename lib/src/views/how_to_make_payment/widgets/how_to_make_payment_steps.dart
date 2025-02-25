@@ -9,16 +9,16 @@ class HowToMakePaymentSteps extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           const _StepTile(step: 1),
-          Spacing.xtraLarge.yBox,
+          Spacing.large.yBox * 2,
           const _StepTile(step: 2),
-          Spacing.xtraLarge.yBox,
+          Spacing.large.yBox * 2,
           const _StepTile(step: 3),
         ],
       );
 }
 
 class _StepTile extends StatelessWidget {
-  const _StepTile({super.key, required this.step});
+  const _StepTile({required this.step});
 
   final int step;
 
@@ -26,6 +26,7 @@ class _StepTile extends StatelessWidget {
   Widget build(BuildContext context) => Row(
         children: [
           CircleAvatar(
+            radius: Spacing.xtraLarge.value,
             backgroundColor: SemanticsColors.light().info.lighter,
             child: CustomText.semantics(
               step.toString(),
@@ -34,7 +35,7 @@ class _StepTile extends StatelessWidget {
               ),
             ),
           ),
-          Spacing.medium.xBox,
+          Spacing.large.xBox,
           Expanded(
             child: _getStepTextWidget(context, step),
           ),

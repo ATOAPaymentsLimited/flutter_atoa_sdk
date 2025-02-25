@@ -2877,10 +2877,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yesCanclePayment => 'Yes, cancel payment';
 
   @override
-  String get recommendingAppInstallPart1 => 'For Seasmless payment we recommend installing ';
+  String get recommendingAppInstallPart1 => 'For a smoother payment, we recommend downloading the ';
 
   @override
-  String get recommendingAppInstallPart2 => ' in your device or you can continue paying using Web Internet banking.';
+  String get recommendingAppInstallPart2 => ' Or, continue using internet banking if that works better for you.';
+
+  @override
+  String bankApp(String bankName) {
+    return '$bankName app';
+  }
 
   @override
   String get noDismiss => 'No, dismiss';
@@ -2971,4 +2976,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String noResultFound(String search) {
     return 'No results for ”$search” in banks. Try using different keywords.';
   }
+
+  @override
+  String get results => 'RESULTS';
+
+  @override
+  String get change => 'Change';
 }

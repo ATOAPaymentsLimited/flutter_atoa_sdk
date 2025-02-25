@@ -57,15 +57,22 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
         onChanged: (value) {
           context.read<BankInstitutionsController>().search(value.trim());
         },
+        showFloatingLabel: FloatingLabelBehavior.never,
         fillColor: NeutralColors.light().grey.shade50,
+        onClear: () {
+          context.read<BankInstitutionsController>().search('');
+        },
+        textStyle: context.figtree.labelSmall.w600.textColor(
+          context.intactColors.black,
+        ),
+        border: BorderSide(color: NeutralColors.light().grey.shade100),
         isLightMode: true,
         label: Row(
           children: [
-            Text(
+            CustomText.semantics(
               context.l10n.searchYour,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
+              style: context.figtree.labelSmall.w500.textColor(
+                NeutralColors.light().grey.shade500,
               ),
             ),
             Expanded(
@@ -79,13 +86,12 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                           0,
                           -30 * _controller.value,
                         ),
-                        child: Text(
+                        child: CustomText.semantics(
                           _showPersonalBanks
                               ? context.l10n.personalBanks
                               : context.l10n.personalBanks,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
+                          style: context.figtree.labelSmall.w500.textColor(
+                            NeutralColors.light().grey.shade500,
                           ),
                         ),
                       ),
@@ -99,11 +105,10 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                         ),
                         child: Text(
                           _showPersonalBanks
-                              ? 'Business Banks'
-                              : 'Personal Banks',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
+                              ? context.l10n.personalBanks
+                              : context.l10n.personalBanks,
+                          style: context.figtree.labelSmall.w500.textColor(
+                            NeutralColors.light().grey.shade500,
                           ),
                         ),
                       ),

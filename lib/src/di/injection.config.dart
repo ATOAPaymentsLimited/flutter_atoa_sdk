@@ -40,14 +40,13 @@ extension GetItInjectableX on _i174.GetIt {
           atoa: gh<_i182.Atoa>(),
           interval: interval,
         ));
-    gh.factoryParam<_i493.BankInstitutionsController, String, String>((
+    gh.factoryParam<_i493.BankInstitutionsController, String, dynamic>((
       paymentId,
-      authKey,
+      _,
     ) =>
         _i493.BankInstitutionsController(
           atoa: gh<_i182.Atoa>(),
           paymentId: paymentId,
-          authKey: authKey,
         ));
     return this;
   }

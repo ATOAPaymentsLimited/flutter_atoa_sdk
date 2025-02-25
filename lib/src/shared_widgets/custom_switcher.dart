@@ -1,6 +1,5 @@
 import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
 
 class CustomSwitcher<T> extends StatelessWidget {
@@ -34,7 +33,7 @@ class CustomSwitcher<T> extends StatelessWidget {
             isStretch: isStretch,
             isDisabled: isDisabled,
             customSegmentSettings: CustomSegmentSettings(
-              borderRadius: BorderRadius.circular(14.sp),
+              borderRadius: Spacing.medium.brAll,
             ),
             children: children,
             onValueChanged: onValueChanged,
@@ -44,14 +43,11 @@ class CustomSwitcher<T> extends StatelessWidget {
                 (l) => NeutralColors.light().grey.shade50,
                 (d) => NeutralColors.light().grey.shade50,
               ),
-              border: Border.all(
-                color: context.regalColor.snowWhite,
-              ),
               borderRadius: BorderRadius.circular(Spacing.large.value),
             ),
             thumbDecoration: BoxDecoration(
               color: context.intactColors.white,
-              borderRadius: BorderRadius.circular(14.sp),
+              borderRadius: Spacing.medium.brAll,
             ),
           ),
         ),

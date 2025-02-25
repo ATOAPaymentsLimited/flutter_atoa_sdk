@@ -15,7 +15,7 @@ class PoweredByAtoaWidget extends StatelessWidget {
         children: [
           CustomText.semantics(
             context.l10n.poweredBy,
-            style: context.figtree.bodyLarge
+            style: context.figtree.bodyLarge.w500
                 .textColor(
                   NeutralColors.light().grey.shade500,
                 )

@@ -29,13 +29,13 @@ class BankTabBar extends StatelessWidget {
                         e,
                         CustomText.semantics(
                           e.toText(context),
-                          style: context.bodyLarge!.copyWith(
+                          style: context.figtree.labelSmall.copyWith(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Figtree',
                             height: 1.5,
                             color: e.index == tabController.index
-                                ? RegalColors.licoriceBlack
-                                : context.grey.shade40,
+                                ? context.intactColors.black
+                                : NeutralColors.light().grey.shade600,
                           ),
                         ),
                       ),

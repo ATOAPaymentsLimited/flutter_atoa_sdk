@@ -5082,14 +5082,20 @@ abstract class AppLocalizations {
   /// No description provided for @recommendingAppInstallPart1.
   ///
   /// In en, this message translates to:
-  /// **'For Seasmless payment we recommend installing '**
+  /// **'For a smoother payment, we recommend downloading the '**
   String get recommendingAppInstallPart1;
 
   /// No description provided for @recommendingAppInstallPart2.
   ///
   /// In en, this message translates to:
-  /// **' in your device or you can continue paying using Web Internet banking.'**
+  /// **' Or, continue using internet banking if that works better for you.'**
   String get recommendingAppInstallPart2;
+
+  /// No description provided for @bankApp.
+  ///
+  /// In en, this message translates to:
+  /// **'{bankName} app'**
+  String bankApp(String bankName);
 
   /// No description provided for @noDismiss.
   ///
@@ -5258,6 +5264,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No results for ”{search}” in banks. Try using different keywords.'**
   String noResultFound(String search);
+
+  /// No description provided for @results.
+  ///
+  /// In en, this message translates to:
+  /// **'RESULTS'**
+  String get results;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

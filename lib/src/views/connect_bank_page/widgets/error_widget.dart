@@ -2,13 +2,10 @@ import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
-class NoResultFoundWidget extends StatelessWidget {
-  const NoResultFoundWidget({
-    required this.searchTerm,
+class AtoaErrorWidget extends StatelessWidget {
+  const AtoaErrorWidget({
     super.key,
   });
-
-  final String searchTerm;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -16,14 +13,14 @@ class NoResultFoundWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomText.semantics(
-              context.l10n.noResults,
+              context.l10n.oopsSomethingWentWrong,
               style: context.labelSmall?.w700.copyWith(
                 color: context.intactColors.black,
               ),
             ),
             Spacing.small.yBox,
             CustomText.semantics(
-              context.l10n.noResultFound(searchTerm),
+              context.l10n.somethingWentWrongDesc,
               style: context.bodyLarge?.textColor(
                 NeutralColors.light().grey.shade500,
               ),

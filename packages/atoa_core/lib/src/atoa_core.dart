@@ -20,8 +20,13 @@ class Atoa {
     _instance._atoaEnv = value;
   }
 
+  static set authKey(String value) {
+    _instance._authKey = value;
+  }
+
   AtoaEnv? _atoaEnv;
   AtoaDio? _atoaDio;
+  String? _authKey;
 
   void initialize([
     Duration connectionTimeout = const Duration(seconds: 20),
@@ -108,7 +113,6 @@ class Atoa {
 
   Future<void> cancelPayment(
     String paymentRequestId,
-    String authKey,
   ) async {
     _dioCheck();
 
@@ -116,7 +120,7 @@ class Atoa {
       Endpoints.cancelPayment(paymentRequestId),
       options: Options(
         headers: {
-          'authorization': 'Bearer $authKey',
+          'authorization': 'Bearer $_authKey',
         },
       ),
     );

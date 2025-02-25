@@ -20,6 +20,8 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  SharedPreferences? _prefs;
+
   Widget getApp() {
     return MaterialApp(
       theme: kThemeData.copyWith(
@@ -371,6 +373,20 @@ class _MainAppState extends State<MainApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       home: HomePage(),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeSharedPreferences();
+  }
+
+  Future<void> _initializeSharedPreferences() async {
+    _prefs = await SharedPreferences.getInstance();
+    final showHowPaymentWorks = _prefs?.getBool('showHowPaymentWorks');
+    if (showHowPaymentWorks == null) {
+      await _prefs?.setBool('showHowPaymentWorks', true);
+    }
   }
 
   @override

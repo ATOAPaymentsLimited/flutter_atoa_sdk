@@ -1578,8 +1578,17 @@
     "cancelPaymentReason4": "I don’t trust this method",
     "cancelPaymentReason5": "Other (please specify)",
     "yesCanclePayment": "Yes, cancel payment",
-    "recommendingAppInstallPart1": "For Seasmless payment we recommend installing ",
-    "recommendingAppInstallPart2": " in your device or you can continue paying using Web Internet banking.",
+    "recommendingAppInstallPart1": "For a smoother payment, we recommend downloading the ",
+    "recommendingAppInstallPart2": " Or, continue using internet banking if that works better for you.",
+    "bankApp": "{bankName} app",
+    "@bankApp": {
+        "placeholders": {
+            "bankName": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    },
     "noDismiss": "No, dismiss",
     "tip": "Tip",
     "valueCopiedToClipboard": "{label} copied to clipboard",
@@ -1631,5 +1640,7 @@
                 "example": "Name"
             }
         }
-    }
+    },
+    "results": "RESULTS",
+    "change": "Change"
 }
