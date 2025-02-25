@@ -1,7 +1,6 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class ConfirmationBottomSheet extends StatelessWidget {
@@ -52,17 +51,6 @@ class ConfirmationBottomSheet extends StatelessWidget {
                   ? null
                   : () async {
                       Navigator.pop(context);
-                      final auth = state.paymentAuth;
-                      final launchApp =
-                          await bankInstitutionController.authorizeBank();
-
-                      if ((launchApp ?? false) &&
-                          context.mounted &&
-                          auth != null) {
-                        context
-                            .read<PaymentStatusController>()
-                            .startListening(auth.paymentIdempotencyId);
-                      }
                     },
               trackLabel: context.l10n.goTo,
               enableTracking: false,

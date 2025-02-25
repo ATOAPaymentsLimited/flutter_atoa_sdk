@@ -1,6 +1,12 @@
+import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/di/injection.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/failure_listener.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/payment_status_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class VerifyingPaymentBottomSheet extends StatelessWidget {
@@ -34,18 +40,66 @@ class VerifyingPaymentBottomSheet extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const CustomText.semantics('Cancel'),
-          RegalButton.tertiary(
-            onPressed: () async {
-              await bankInstitutionController.cancelPayment();
+  Widget build(BuildContext context) =>
+      StateNotifierProvider<PaymentStatusController, PaymentStatusState>(
+        create: (_) => getIt.get<PaymentStatusController>(
+          param1: const Duration(seconds: 1),
+        ),
+        builder: (context, _) {
+          context
+              .read<PaymentStatusController>()
+              .startListening(state.paymentAuth!.paymentIdempotencyId);
+          return FailureListener<PaymentStatusController, PaymentStatusState>(
+            message: (state) {
+              final e = state.exception;
+
+              if (e is AtoaException) {
+                return e.message;
+              }
+
+              return e?.toString();
             },
-            trackLabel: 'Cancel Button',
-            enableTracking: false,
-            label: context.l10n.cancel,
-          ),
-        ],
+            child: Consumer<PaymentStatusState>(
+              builder: (_, state, __) {
+                if (!state.started) {
+                  return const SizedBox.shrink();
+                }
+                if (state.details != null) {
+                  return const PaymentStatusView();
+                }
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CustomText.semantics(
+                      context.l10n.verifyingYourPayment,
+                    ),
+                    Spacing.medium.yBox,
+                    RichText(
+                      text: CustomTextSpan.semantics(
+                        children: [
+                          CustomTextSpan.semantics(
+                            text: context.l10n.noteWithColon,
+                          ),
+                          CustomTextSpan.semantics(
+                            text: context.l10n.doNotCloseWarning,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Spacing.large.yBox * 4,
+                    RegalButton.tertiary(
+                      onPressed: () async {
+                        await bankInstitutionController.cancelPayment();
+                      },
+                      trackLabel: 'Cancel Button',
+                      enableTracking: false,
+                      label: context.l10n.cancel,
+                    ),
+                  ],
+                );
+              },
+            ),
+          );
+        },
       );
 }

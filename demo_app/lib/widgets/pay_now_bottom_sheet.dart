@@ -20,6 +20,7 @@ class PayNowBottomSheet extends StatelessWidget {
           'NmNiYTgzODEtZjJlOS00YTRmLTlmMWYtZjRiMWI2Zjc0ZDExOnY2SnRFcUtmcTFRMkFmTU8=', //add the api access key here
       showHowPaymentWorks: true,
       env: AtoaEnv.prod,
+      brandingColor: Colors.blue,
 
       /// or AtoaEnv.sandbox
     );

@@ -5,12 +5,11 @@ import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/failure_listener.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/bank_tab_bar.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/no_result_found_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/widgets/animated_search_field.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 import 'package:shimmer/shimmer.dart';
@@ -115,51 +114,75 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
 
   Widget _buildPopularBanksTab() => Consumer<BankInstitutionsState>(
         builder: (_, state, __) {
-          final popularPersonalBanks = state.popularPersonalBanks;
+          if (context.read<BankInstitutionsController>().searchTerm.isEmpty) {
+            final popularPersonalBanks = state.popularPersonalBanks;
 
-          final normalPersonalBanks = state.normalPersonalBanks;
+            final normalPersonalBanks = state.normalPersonalBanks;
 
-          final gridBanks = popularPersonalBanks;
+            final gridBanks = popularPersonalBanks;
 
-          final gridBankLength = gridBanks.length;
-          if (gridBanks.length < 8) {
-            for (var i = 0; i < 8 - gridBankLength; i++) {
-              gridBanks.add(normalPersonalBanks[i]);
+            final gridBankLength = gridBanks.length;
+            if (gridBanks.length < 8) {
+              for (var i = 0; i < 8 - gridBankLength; i++) {
+                gridBanks.add(normalPersonalBanks[i]);
+              }
+              for (var i = 0; i < 8 - gridBankLength; i++) {
+                normalPersonalBanks.remove(normalPersonalBanks.elementAt(i));
+              }
             }
-            for (var i = 0; i < 8 - gridBankLength; i++) {
-              normalPersonalBanks.remove(normalPersonalBanks.elementAt(i));
-            }
-          }
 
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                // First Grid Row
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: Spacing.large.all,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  // First Grid Row
+
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: Spacing.large.all,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                    ),
+                    itemCount: gridBanks.length, // Two rows of 4 items
+                    itemBuilder: (context, index) =>
+                        _buildBankGridItem(gridBanks[index]),
                   ),
-                  itemCount: gridBanks.length, // Two rows of 4 items
-                  itemBuilder: (context, index) =>
-                      _buildBankGridItem(gridBanks[index]),
-                ),
 
-                // Scrollable List
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: normalPersonalBanks.length,
-                  itemBuilder: (context, index) =>
-                      _buildBankListItem(normalPersonalBanks[index]),
-                ),
-              ],
-            ),
-          );
+                  // Scrollable List
+
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: normalPersonalBanks.length,
+                    itemBuilder: (context, index) =>
+                        _buildBankListItem(normalPersonalBanks[index]),
+                  ),
+                ],
+              ),
+            );
+          } else if (context
+              .read<BankInstitutionsController>()
+              .searchTerm
+              .isNotEmpty) {
+            if (state.bankList.isEmpty) {
+              return NoResultFoundWidget(
+                searchTerm:
+                    context.read<BankInstitutionsController>().searchTerm,
+              );
+            }
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: state.bankList.length,
+              itemBuilder: (context, index) =>
+                  _buildBankListItem(state.bankList[index]),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
         },
       );
 

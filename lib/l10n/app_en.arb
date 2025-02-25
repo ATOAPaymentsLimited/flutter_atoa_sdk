@@ -1622,5 +1622,14 @@
     },
     "atoaTermsAndPolicy": "Atoa Terms and Privacy Policy",
     "bankReviewInfoText": "We’ll send you to your bank’s app or website to confirm this payment.",
-    "paymentInProgress": "Payment in progress"
+    "paymentInProgress": "Payment in progress",
+    "noResultFound": "No results for ”{search}” in banks. Try using different keywords.",
+    "@noResultFound": {
+        "placeholders": {
+            "search": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    }
 }

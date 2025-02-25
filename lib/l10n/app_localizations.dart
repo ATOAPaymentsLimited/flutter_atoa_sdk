@@ -5252,6 +5252,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Payment in progress'**
   String get paymentInProgress;
+
+  /// No description provided for @noResultFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for ”{search}” in banks. Try using different keywords.'**
+  String noResultFound(String search);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

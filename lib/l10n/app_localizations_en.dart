@@ -2966,4 +2966,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paymentInProgress => 'Payment in progress';
+
+  @override
+  String noResultFound(String search) {
+    return 'No results for ”$search” in banks. Try using different keywords.';
+  }
 }

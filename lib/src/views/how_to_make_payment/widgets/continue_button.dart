@@ -14,7 +14,7 @@ class ContinueButton extends StatelessWidget {
   final String paymentId;
 
   @override
-  Widget build(BuildContext context) => LedgerButton.secondary(
+  Widget build(BuildContext context) => LedgerButton.primary2(
         size: LedgerButtonSize.xtraLarge,
         trackLabel: 'Cotinue Button',
         label: context.l10n.iUnderstandContinue,
