@@ -28,7 +28,8 @@ class PayNowBottomSheet extends StatelessWidget {
       // showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
       showHowPaymentWorks: true,
       env: AtoaEnv.sandbox,
-      brandingColor: const Color(0x000052d0),
+      brandingBackgroundColor: const Color(0xff0052D0),
+      brandingForegroundColor: context.intactColors.white,
 
       /// or AtoaEnv.prod
     );
@@ -60,7 +61,7 @@ class PayNowBottomSheet extends StatelessWidget {
                 children: [
                   CustomText.semantics(
                     'Total',
-                    style: context.bodyLarge!.copyWith(
+                    style: context.bodyLarge?.copyWith(
                       color: context.grey.shade40,
                       fontWeight: FontWeight.w600,
                     ),

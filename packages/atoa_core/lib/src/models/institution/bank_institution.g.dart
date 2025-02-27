@@ -20,7 +20,8 @@ _$BankInstitutionsImpl _$$BankInstitutionsImplFromJson(
       transactionAmountLimit:
           (json['transactionAmountLimit'] as num?)?.toDouble() ?? 15000,
       businessBank: json['businessBank'] as bool? ?? false,
-      popularBank: json['popularBank'] as bool? ?? false,
+      popularBank: json['popularBank'] as bool? ?? true,
+      enabled: json['enabled'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$BankInstitutionsImplToJson(
@@ -34,4 +35,5 @@ Map<String, dynamic> _$$BankInstitutionsImplToJson(
       'transactionAmountLimit': instance.transactionAmountLimit,
       'businessBank': instance.businessBank,
       'popularBank': instance.popularBank,
+      'enabled': instance.enabled,
     };

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
@@ -6,10 +8,13 @@ import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/failure_listener.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/bank_tab_bar.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/no_result_found_widget.dart';
+import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/payment_status_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/widgets/animated_search_field.dart';
@@ -23,21 +28,23 @@ import 'package:regal/regal.dart';
 class BankSelectionBottomSheet extends StatefulWidget {
   const BankSelectionBottomSheet({
     required this.paymentId,
+    required this.dialogContext,
     super.key,
   });
 
   final String paymentId;
+  final BuildContext dialogContext;
 
-  static Future<void> show(
+  static Future<bool?> show(
     BuildContext context, {
     required String paymentId,
   }) =>
-      showLedgerBottomSheet<void>(
+      showSdkBottomSheet<bool?>(
         context: context,
         title: context.l10n.selectYourBank,
-        backgroundColor: context.intactColors.white,
         titleBottomSpacing: Spacing.large.value,
-        titleAlign: TextAlign.center,
+        useRootNavigator: true,
+        routeSettings: RouteSettings(name: 'BankSelectionBottomSheet'),
         leadingTopWidget: CustomGestureDetector(
           context: context,
           trackLabel: 'Back Icon',
@@ -57,7 +64,7 @@ class BankSelectionBottomSheet extends StatefulWidget {
             ),
           ),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pop(context, true);
           },
         ),
         trailingTopWidget: CustomGestureDetector(
@@ -79,17 +86,20 @@ class BankSelectionBottomSheet extends StatefulWidget {
             ),
           ),
         ),
-        showTopDivider: false,
-        titleStyle: context.figtree.labelMedium.w700.textColor(
-          NeutralColors.light().grey.shade700,
-        ),
         body: (context) => StateNotifierProvider<BankInstitutionsController,
             BankInstitutionsState>(
           create: (_) => getIt.get<BankInstitutionsController>(
             param1: paymentId,
           ),
-          builder: (context, child) => BankSelectionBottomSheet(
-            paymentId: paymentId,
+          builder: (dialogContext, child) => StateNotifierProvider<
+              PaymentStatusController, PaymentStatusState>.value(
+            value: getIt.get<PaymentStatusController>(
+              param1: const Duration(seconds: 1),
+            ),
+            builder: (contextx, _) => BankSelectionBottomSheet(
+              paymentId: paymentId,
+              dialogContext: context,
+            ),
           ),
         ),
       );
@@ -109,6 +119,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<BankInstitutionsController>()
@@ -127,130 +138,145 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   }
 
   @override
-  Widget build(BuildContext context) => PopScope(
-        canPop: !context.read<BankInstitutionsState>().isLoading,
-        child:
-            FailureListener<BankInstitutionsController, BankInstitutionsState>(
-          message: (state) {
-            final e = state.error;
+  Widget build(BuildContext context) =>
+      FailureListener<BankInstitutionsController, BankInstitutionsState>(
+        message: (state) {
+          final e = state.error;
 
-            if (e is AtoaException) {
-              return e.message;
-            }
+          if (e is AtoaException) {
+            return e.message;
+          }
 
-            return e?.toString();
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.8,
-            child: Consumer<BankInstitutionsState>(
-              builder: (_, state, __) {
-                final isLoading = state.isLoading;
-
-                if (isLoading &&
-                    context
-                        .read<BankInstitutionsController>()
-                        .searchTerm
-                        .isEmpty) {
-                  return const AtoaLoader();
-                }
-
-                if (state.error != null) {
-                  return const AtoaErrorWidget();
-                }
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          return e?.toString();
+        },
+        child: Stack(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Consumer<PaymentStatusState>(
+                builder: (_, paymentstate, __) => Stack(
                   children: [
-                    // Search Bar
-                    AnimatedSearchField(
-                      controller: _searchController,
-                    ),
-                    Spacing.large.yBox,
-                    InfoWidget(
-                      text: context.l10n.ensureBankAppInstalled,
-                      fontSize: 11.sp,
-                    ),
-                    Spacing.large.yBox,
+                    Consumer<BankInstitutionsState>(
+                      builder: (_, state, __) {
+                        final isLoading = state.isLoading;
 
-                    // Tab Bar
-                    if (context
-                        .read<BankInstitutionsController>()
-                        .searchTerm
-                        .isEmpty) ...[
-                      BankTabBar(
-                        tabController: _tabController,
-                      ),
-
-                      // Tab View
-                      Expanded(
-                        child: TabBarView(
-                          controller: _tabController,
-                          children: [
-                            _buildPopularBanksTab(),
-                            _buildBusinessBanksTab(),
-                          ],
-                        ),
-                      ),
-                    ],
-                    if (context
-                        .read<BankInstitutionsController>()
-                        .searchTerm
-                        .isNotEmpty) ...[
-                      if (context
-                          .read<BankInstitutionsController>()
-                          .searchTerm
-                          .isNotEmpty) ...[
-                        if (state.isLoading &&
+                        if (isLoading &&
                             context
                                 .read<BankInstitutionsController>()
                                 .searchTerm
-                                .isNotEmpty) ...[
-                          const Expanded(
-                            child: Center(
-                              child: AtoaLoader(),
+                                .isEmpty) {
+                          return const AtoaLoader();
+                        }
+
+                        if (state.error != null) {
+                          return const AtoaErrorWidget();
+                        }
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Search Bar
+                            AnimatedSearchField(
+                              controller: _searchController,
                             ),
-                          ),
-                        ] else if (state.bankList.isEmpty) ...[
-                          CustomText.semantics(
-                            context.l10n.results,
-                            style: context.figtree.bodyMedium.w700.textColor(
-                              NeutralColors.light().grey.shade500,
+                            Spacing.large.yBox,
+                            InfoWidget(
+                              text: context.l10n.ensureBankAppInstalled,
+                              fontSize: 11.sp,
                             ),
-                          ),
-                          Expanded(
-                            child: Center(
-                              child: NoResultFoundWidget(
-                                searchTerm: context
-                                    .read<BankInstitutionsController>()
-                                    .searchTerm,
+                            Spacing.large.yBox,
+
+                            // Tab Bar
+                            if (context
+                                .read<BankInstitutionsController>()
+                                .searchTerm
+                                .isEmpty) ...[
+                              BankTabBar(
+                                tabController: _tabController,
                               ),
-                            ),
-                          ),
-                        ] else ...[
-                          CustomText.semantics(
-                            context.l10n.results,
-                            style: context.figtree.bodyMedium.w700.textColor(
-                              NeutralColors.light().grey.shade500,
-                            ),
-                          ),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: state.bankList.length,
-                            itemBuilder: (context, index) =>
-                                _buildBankListItem(state.bankList[index]),
-                          ),
-                        ],
-                      ],
-                    ],
+
+                              // Tab View
+                              Expanded(
+                                child: TabBarView(
+                                  controller: _tabController,
+                                  children: [
+                                    _buildPopularBanksTab(widget.dialogContext),
+                                    _buildBusinessBanksTab(
+                                        widget.dialogContext),
+                                  ],
+                                ),
+                              ),
+                            ],
+                            if (context
+                                .read<BankInstitutionsController>()
+                                .searchTerm
+                                .isNotEmpty) ...[
+                              if (context
+                                  .read<BankInstitutionsController>()
+                                  .searchTerm
+                                  .isNotEmpty) ...[
+                                if (state.isLoading &&
+                                    context
+                                        .read<BankInstitutionsController>()
+                                        .searchTerm
+                                        .isNotEmpty) ...[
+                                  const Expanded(
+                                    child: Center(
+                                      child: AtoaLoader(),
+                                    ),
+                                  ),
+                                ] else if (state.bankList.isEmpty) ...[
+                                  CustomText.semantics(
+                                    context.l10n.results,
+                                    style: context.figtree.bodyMedium.w700
+                                        .textColor(
+                                      NeutralColors.light().grey.shade500,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: NoResultFoundWidget(
+                                        searchTerm: context
+                                            .read<BankInstitutionsController>()
+                                            .searchTerm,
+                                      ),
+                                    ),
+                                  ),
+                                ] else ...[
+                                  CustomText.semantics(
+                                    context.l10n.results,
+                                    style: context.figtree.bodyMedium.w700
+                                        .textColor(
+                                      NeutralColors.light().grey.shade500,
+                                    ),
+                                  ),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: state.bankList.length,
+                                    itemBuilder: (context, index) =>
+                                        _buildBankListItem(
+                                      widget.dialogContext,
+                                      state.bankList[index],
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ],
+                          ],
+                        );
+                      },
+                    ),
                   ],
-                );
-              },
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       );
 
-  Widget _buildPopularBanksTab() => Consumer<BankInstitutionsState>(
+  Widget _buildPopularBanksTab(BuildContext dialogContext) =>
+      Consumer<BankInstitutionsState>(
         builder: (_, state, __) {
           if (context.read<BankInstitutionsController>().searchTerm.isEmpty) {
             final popularPersonalBanks = state.popularPersonalBanks;
@@ -287,7 +313,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                     ),
                     itemCount: gridBanks.length, // Two rows of 4 items
                     itemBuilder: (context, index) =>
-                        _buildBankGridItem(gridBanks[index]),
+                        _buildBankGridItem(dialogContext, gridBanks[index]),
                   ),
 
                   // Scrollable List
@@ -303,8 +329,10 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: normalPersonalBanks.length,
-                    itemBuilder: (context, index) =>
-                        _buildBankListItem(normalPersonalBanks[index]),
+                    itemBuilder: (context, index) => _buildBankListItem(
+                      dialogContext,
+                      normalPersonalBanks[index],
+                    ),
                   ),
                 ],
               ),
@@ -315,7 +343,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         },
       );
 
-  Widget _buildBusinessBanksTab() => Column(
+  Widget _buildBusinessBanksTab(BuildContext dialogContext) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Spacing.medium.yBox,
@@ -329,41 +357,26 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
             child: Consumer<BankInstitutionsState>(
               builder: (_, state, __) => ListView.builder(
                 itemCount: state.businessBanks.length,
-                itemBuilder: (context, index) =>
-                    _buildBankListItem(state.businessBanks[index]),
+                itemBuilder: (context, index) => _buildBankListItem(
+                  dialogContext,
+                  state.businessBanks[index],
+                ),
               ),
             ),
           ),
         ],
       );
 
-  Widget _buildBankGridItem(BankInstitution bank) => CustomInkWell(
+  Widget _buildBankGridItem(BuildContext dialogContext, BankInstitution bank) =>
+      CustomInkWell(
         semanticsLabel: '${bank.name} ${context.l10n.bankCard}',
         context: context,
         trackLabel: '${bank.name} Bank Card',
         enableTracking: false,
         onTap: () async {
-          final bankInstitutionController =
-              context.read<BankInstitutionsController>();
-          await bankInstitutionController.selectBank(bank);
-          if (!mounted) {
-            return;
-          }
-          final res = await ConfirmationBottomSheet.show(
-            context,
-            bankInstitutionController,
-            context.read<BankInstitutionsState>(),
-          );
-          if (!mounted) {
-            return;
-          }
-          if (res != null && res) {
-            await VerifyingPaymentBottomSheet.show(
-              context,
-              bankInstitutionController,
-              context.read<BankInstitutionsState>(),
-            );
-          }
+          bank.enabled
+              ? await onTap(dialogContext, bank)
+              : BankDownBottomSheet.show(context, bank);
         },
         child: Container(
           width: 70,
@@ -394,7 +407,8 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         ),
       );
 
-  Widget _buildBankListItem(BankInstitution bank) => ListTile(
+  Widget _buildBankListItem(BuildContext dialogContext, BankInstitution bank) =>
+      ListTile(
         minLeadingWidth: 0,
         contentPadding: EdgeInsets.zero,
         horizontalTitleGap: Spacing.medium.value,
@@ -410,13 +424,27 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
             width: Spacing.xtraLarge.value,
           ),
         ),
-        title: CustomText.semantics(
-          bank.name,
-          style: context.figtree.bodyLarge
-              .textColor(
-                NeutralColors.light().grey.shade700,
-              )
-              .w500,
+        title: Row(
+          children: [
+            CustomText.semantics(
+              bank.name,
+              style: context.figtree.bodyLarge
+                  .textColor(
+                    NeutralColors.light().grey.shade700,
+                  )
+                  .w500,
+            ),
+            if (!bank.enabled) ...[
+              Spacing.medium.xBox,
+              CustomInkWell(
+                context: context,
+                trackLabel: 'Bank Down',
+                semanticsLabel: 'Bank Down',
+                onTap: () => BankDownBottomSheet.show(context, bank),
+                child: Assets.icons.iconError.svg(),
+              ),
+            ],
+          ],
         ),
         trailing: Radio<String>(
           value: bank.name,
@@ -430,27 +458,43 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
           },
         ),
         onTap: () async {
-          final bankInstitutionController =
-              context.read<BankInstitutionsController>();
-          await bankInstitutionController.selectBank(bank);
-          if (!mounted) {
-            return;
-          }
-          final res = await ConfirmationBottomSheet.show(
-            context,
-            bankInstitutionController,
-            context.read<BankInstitutionsState>(),
-          );
-          if (!mounted) {
-            return;
-          }
-          if (res != null && res) {
-            await VerifyingPaymentBottomSheet.show(
-              context,
-              bankInstitutionController,
-              context.read<BankInstitutionsState>(),
-            );
-          }
+          bank.enabled
+              ? await onTap(dialogContext, bank)
+              : BankDownBottomSheet.show(context, bank);
         },
       );
+
+  Future<void> onTap(BuildContext dialogContext, BankInstitution bank) async {
+    final bankInstitutionController =
+        context.read<BankInstitutionsController>();
+
+    final paymentStatusState = context.read<PaymentStatusState>();
+    await bankInstitutionController.selectBank(bank);
+    if (!mounted) {
+      return;
+    }
+    final res = await ConfirmationBottomSheet.show(
+      context,
+      bankInstitutionController,
+      context.read<BankInstitutionsState>(),
+      context.read<PaymentStatusController>(),
+      paymentStatusState,
+    );
+    if (!mounted) {
+      return;
+    }
+    if (res != null && res) {
+      final verify = await VerifyingPaymentBottomSheet.show(
+        context,
+        bankInstitutionController,
+        context.read<BankInstitutionsState>(),
+        context.read<PaymentStatusController>(),
+        paymentStatusState,
+      );
+      if (!mounted) {
+        return;
+      }
+      if (verify == true) Navigator.pop(context);
+    }
+  }
 }

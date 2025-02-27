@@ -49,8 +49,6 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
     _expandableController =
         ExpandableController(initialExpanded: widget.isExpanded);
     _transactionDetails = widget.transactionDetails;
-
-    context.read<BankInstitutionsController>().fetchBanks();
   }
 
   ExpandableThemeData expandableTheme(BuildContext context) =>
@@ -127,14 +125,6 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Consumer<BankInstitutionsController>(
-                    builder: (context, state, child) =>
-                        transactionDetails.status.maybeMap(
-                      refunded: (value) =>
-                          _getRefundBankDetails(transactionDetails, debitType),
-                      orElse: Container.new,
-                    ),
-                  ),
                   PaymentDetailsRow(
                     label: context.l10n.referenceId,
                     value: transactionDetails.paymentIdempotencyId,

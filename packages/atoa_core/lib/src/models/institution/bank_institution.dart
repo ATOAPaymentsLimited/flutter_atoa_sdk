@@ -19,6 +19,7 @@ class BankInstitution with _$BankInstitution {
     @Default(15000) double transactionAmountLimit,
     @Default(false) bool businessBank,
     @Default(true) bool popularBank,
+    @Default(false) bool enabled,
   }) = _BankInstitutions;
 
   const BankInstitution._();

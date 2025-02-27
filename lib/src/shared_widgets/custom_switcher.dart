@@ -21,34 +21,28 @@ class CustomSwitcher<T> extends StatelessWidget {
   final String semanticsLabel;
 
   @override
-  Widget build(BuildContext context) => Opacity(
-        opacity: isDisabled ? 0.5 : 1,
-        child: Semantics(
-          label: semanticsLabel,
-          button: true,
-          container: true,
-          enabled: true,
-          explicitChildNodes: true,
-          child: CustomSlidingSegmentedControl<T>(
-            isStretch: isStretch,
-            isDisabled: isDisabled,
-            customSegmentSettings: CustomSegmentSettings(
-              borderRadius: Spacing.medium.brAll,
-            ),
-            children: children,
-            onValueChanged: onValueChanged,
-            initialValue: initialValue,
-            decoration: BoxDecoration(
-              color: context.brightness.map(
-                (l) => NeutralColors.light().grey.shade50,
-                (d) => NeutralColors.light().grey.shade50,
-              ),
-              borderRadius: BorderRadius.circular(Spacing.large.value),
-            ),
-            thumbDecoration: BoxDecoration(
-              color: context.intactColors.white,
-              borderRadius: Spacing.medium.brAll,
-            ),
+  Widget build(BuildContext context) => Semantics(
+        label: semanticsLabel,
+        button: true,
+        container: true,
+        enabled: true,
+        explicitChildNodes: true,
+        child: CustomSlidingSegmentedControl<T>(
+          isStretch: isStretch,
+          isDisabled: isDisabled,
+          customSegmentSettings: CustomSegmentSettings(
+            borderRadius: Spacing.medium.brAll,
+          ),
+          children: children,
+          onValueChanged: onValueChanged,
+          initialValue: initialValue,
+          decoration: BoxDecoration(
+            color: NeutralColors.light().grey.shade50,
+            borderRadius: BorderRadius.circular(Spacing.large.value),
+          ),
+          thumbDecoration: BoxDecoration(
+            color: context.intactColors.white,
+            borderRadius: Spacing.medium.brAll,
           ),
         ),
       );

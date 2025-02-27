@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_spacer.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/continue_button.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_to_make_payment_steps.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/trust_atoa_widget.dart';
@@ -18,54 +20,22 @@ class HowToMakePaymentBottomSheet extends StatefulWidget {
   final bool isHelp;
   final String paymentId;
 
-  static void show(
+  static Future<void> show(
     BuildContext context, {
     required String paymentId,
     bool isHelp = true,
   }) =>
-      showLedgerBottomSheet<void>(
+      showSdkBottomSheet<void>(
         context: context,
         title: context.l10n.continueToYourBank,
-        backgroundColor: context.intactColors.white,
-        titleAlign: TextAlign.center,
-        showTopDivider: false,
-        titleStyle: context.figtree.labelMedium.w700.textColor(
-          NeutralColors.light().grey.shade700,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(Spacing.xtraLarge.value),
-            topRight: Radius.circular(Spacing.xtraLarge.value),
-          ),
-        ),
-        leadingTopWidget: Spacing.medium.xBox,
-        trailingTopWidget: CustomInkWell(
-          semanticsLabel: 'Close Dialog Sheet Icon',
-          context: context,
-          trackLabel: 'Close Dialog Sheet Icon',
-          onTap: () => Navigator.pop(context),
-          child: Container(
-            width: Spacing.huge.value,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: NeutralColors.light().grey.shade50,
-            ),
-            child: Center(
-              child: Padding(
-                padding: Spacing.mini.all,
-                child: Icon(
-                  Icons.close,
-                  size: Spacing.medium.value,
-                  color: context.intactColors.black,
-                ),
-              ),
-            ),
-          ),
-        ),
+        useRootNavigator: true,
         body: (context) => HowToMakePaymentBottomSheet(
           isHelp: isHelp,
           paymentId: paymentId,
         ),
+        onClose: (context) => {
+          Navigator.pop(context),
+        },
       );
 
   @override

@@ -1,5 +1,6 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -35,22 +36,32 @@ class AppNotInstalledWidget extends StatelessWidget {
               child: RichText(
                 text: CustomTextSpan.semantics(
                   text: context.l10n.recommendingAppInstallPart1,
-                  style: context.figtree.bodyMedium.textColor(
+                  style: context.figtree.bodyMedium
+                      .textColor(
                     SemanticsColors.light().error.darker,
+                  )
+                      .copyWith(
+                    shadows: [
+                      Shadow(
+                        color: SemanticsColors.light().error.darker,
+                        offset: Offset(0, -Spacing.mini.value),
+                      ),
+                    ],
+                    color: Colors.transparent,
                   ),
                   children: [
                     CustomTextSpan.semantics(
+                      recognizer: TapGestureRecognizer()..onTap = () {},
                       text: context.l10n.bankApp(name),
                       style: context.figtree.bodyMedium.w700
                           .textColor(
-                            SemanticsColors.light().error.darker,
-                          )
-                          .height150
+                        SemanticsColors.light().error.darker,
+                      )
                           .copyWith(
                         shadows: [
                           Shadow(
                             color: SemanticsColors.light().error.darker,
-                            offset: const Offset(0, -2),
+                            offset: Offset(0, -Spacing.mini.value),
                           ),
                         ],
                         color: Colors.transparent,

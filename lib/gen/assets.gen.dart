@@ -45,6 +45,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bill.svg
   SvgGenImage get bill => const SvgGenImage('assets/icons/bill.svg');
 
+  /// File path: assets/icons/business_img.svg
+  SvgGenImage get businessImg =>
+      const SvgGenImage('assets/icons/business_img.svg');
+
   /// File path: assets/icons/close.svg
   SvgGenImage get close => const SvgGenImage('assets/icons/close.svg');
 
@@ -100,6 +104,7 @@ class $AssetsIconsGen {
         iconRefund,
         atoaLogo,
         bill,
+        businessImg,
         close,
         copy,
         externalLink,

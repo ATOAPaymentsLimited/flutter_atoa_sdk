@@ -15,7 +15,8 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^5.9.0
   intl: any
-  regal: ^3.2.3
+  regal:
+    path: ../../atoa-flutter-packages/packages/regal
   shared_preferences: ^2.2.2
 
 dev_dependencies:

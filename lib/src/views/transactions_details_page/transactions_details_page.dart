@@ -44,41 +44,34 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: SingleChildScrollView(
-          clipBehavior: Clip.none,
-          child: Column(
-            children: [
-              TransactionDetailsTopCard(
-                transactionDetails: _transactionDetails,
-                showRetry: false,
-                isCompleted: widget.isCompleted,
-                onRetry: widget.failedRetryCallback,
-              ),
-              Padding(
-                padding: Spacing.xtraLarge.x + Spacing.xtraLarge.top,
-                child: Column(
-                  children: [
-                    TransactionDetailsStatusContainer(
-                      transactionDetails: _transactionDetails,
-                    ),
-                    Padding(
-                      padding: Spacing.medium.top + Spacing.tiny.top,
-                      child: TransactionDetailsInfoUi(
-                        transactionDetails: _transactionDetails,
-                        isExpanded: false,
-                      ),
-                    ),
-                    Spacing.medium.yBox,
-                    Spacing.large.yBox + Spacing.tiny.yBox,
-                    Spacing.huge.yBox,
-                    SizedBox(height: 48.sp),
-                  ],
-                ),
-              ),
-            ],
+  Widget build(BuildContext context) => Column(
+        children: [
+          TransactionDetailsTopCard(
+            transactionDetails: _transactionDetails,
+            showRetry: false,
+            isCompleted: widget.isCompleted,
+            onRetry: widget.failedRetryCallback,
           ),
-        ),
+          Padding(
+            padding: Spacing.xtraLarge.x + Spacing.xtraLarge.top,
+            child: Column(
+              children: [
+                TransactionDetailsStatusContainer(
+                  transactionDetails: _transactionDetails,
+                ),
+                Padding(
+                  padding: Spacing.medium.top + Spacing.tiny.top,
+                  child: TransactionDetailsInfoUi(
+                    transactionDetails: _transactionDetails,
+                    isExpanded: false,
+                  ),
+                ),
+                Spacing.medium.yBox,
+                Spacing.huge.yBox,
+              ],
+            ),
+          ),
+        ],
       );
 
   void _getLastPaymentStatus() {

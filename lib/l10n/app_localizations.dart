@@ -5016,7 +5016,7 @@ abstract class AppLocalizations {
   /// No description provided for @verifyingYourPayment.
   ///
   /// In en, this message translates to:
-  /// **'Verifying payment status with your bank.'**
+  /// **'Verifying payment status\nwith your bank.'**
   String get verifyingYourPayment;
 
   /// No description provided for @noteWithColon.
@@ -5238,8 +5238,8 @@ abstract class AppLocalizations {
   /// No description provided for @bankDown.
   ///
   /// In en, this message translates to:
-  /// **'{bankName} bank is currently down for maintenance. Please select a different bank and try again.'**
-  String bankDown(String bankName);
+  /// **' bank is currently down for maintenance. Please select a different bank and try again.'**
+  String get bankDown;
 
   /// No description provided for @atoaTermsAndPolicy.
   ///
@@ -5276,6 +5276,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change'**
   String get change;
+
+  /// No description provided for @cancelThePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel the payment?'**
+  String get cancelThePayment;
+
+  /// No description provided for @cancelThePaymentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel this payment? This action cannot be undone.'**
+  String get cancelThePaymentDesc;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

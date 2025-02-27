@@ -2844,7 +2844,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get atoaTerms => 'Atoa Terms ';
 
   @override
-  String get verifyingYourPayment => 'Verifying payment status with your bank.';
+  String get verifyingYourPayment => 'Verifying payment status\nwith your bank.';
 
   @override
   String get noteWithColon => 'Note: ';
@@ -2959,9 +2959,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get okay => 'Okay';
 
   @override
-  String bankDown(String bankName) {
-    return '$bankName bank is currently down for maintenance. Please select a different bank and try again.';
-  }
+  String get bankDown => ' bank is currently down for maintenance. Please select a different bank and try again.';
 
   @override
   String get atoaTermsAndPolicy => 'Atoa Terms and Privacy Policy';
@@ -2982,4 +2980,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get change => 'Change';
+
+  @override
+  String get cancelThePayment => 'Cancel the payment?';
+
+  @override
+  String get cancelThePaymentDesc => 'Are you sure you want to cancel this payment? This action cannot be undone.';
 }

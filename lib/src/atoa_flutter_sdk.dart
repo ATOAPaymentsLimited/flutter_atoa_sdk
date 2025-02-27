@@ -5,7 +5,7 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
-import 'package:atoa_flutter_sdk/src/utility/branding_color.dart';
+import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/bank_selection_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,8 @@ class AtoaSdk {
     required String authKey,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
-    Color? brandingColor,
+    Color? brandingBackgroundColor,
+    Color? brandingForegroundColor,
 
     /// payment status polling interval
     Duration interval = const Duration(seconds: 5),
@@ -50,13 +51,13 @@ class AtoaSdk {
     Atoa.env = env;
     Atoa.authKey = authKey;
 
-    BrandingColorUtility.brandingColor = brandingColor;
+    BrandingColorUtility.brandingBackgroundColor = brandingBackgroundColor;
+    BrandingColorUtility.brandingForegroundColor = brandingForegroundColor;
     await configureInjection(env.name);
 
     getIt.get<Atoa>().initialize();
 
     if (!context.mounted) return;
-    print('fvevef ${BrandingColorUtility.brandingColor}');
     return showHowPaymentWorks
         ? HowToMakePaymentBottomSheet.show(
             context,

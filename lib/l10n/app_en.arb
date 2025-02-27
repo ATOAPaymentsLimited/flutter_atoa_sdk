@@ -1567,7 +1567,7 @@
         }
     },
     "atoaTerms": "Atoa Terms ",
-    "verifyingYourPayment": "Verifying payment status with your bank.",
+    "verifyingYourPayment": "Verifying payment status\nwith your bank.",
     "noteWithColon": "Note: ",
     "doNotCloseWarning": "Do not press back or close this screen until the transaction is complete",
     "couldNotCompletePayment": "Could not complete payment? ",
@@ -1620,15 +1620,7 @@
     "review": "Review",
     "downTime": "Downtime",
     "okay": "Okay",
-    "bankDown": "{bankName} bank is currently down for maintenance. Please select a different bank and try again.",
-    "@bankDown": {
-        "placeholders": {
-            "bankName": {
-                "type": "String",
-                "example": "Name"
-            }
-        }
-    },
+    "bankDown": " bank is currently down for maintenance. Please select a different bank and try again.",
     "atoaTermsAndPolicy": "Atoa Terms and Privacy Policy",
     "bankReviewInfoText": "We’ll send you to your bank’s app or website to confirm this payment.",
     "paymentInProgress": "Payment in progress",
@@ -1642,5 +1634,7 @@
         }
     },
     "results": "RESULTS",
-    "change": "Change"
+    "change": "Change",
+    "cancelThePayment": "Cancel the payment?",
+    "cancelThePaymentDesc": "Are you sure you want to cancel this payment? This action cannot be undone."
 }
