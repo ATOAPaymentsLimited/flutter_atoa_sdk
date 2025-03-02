@@ -1,8 +1,4 @@
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 Future<T?> showSdkBottomSheet<T>({

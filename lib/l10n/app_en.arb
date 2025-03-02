@@ -1636,5 +1636,6 @@
     "results": "RESULTS",
     "change": "Change",
     "cancelThePayment": "Cancel the payment?",
-    "cancelThePaymentDesc": "Are you sure you want to cancel this payment? This action cannot be undone."
+    "cancelThePaymentDesc": "Are you sure you want to cancel this payment? This action cannot be undone.",
+    "debitedFrom": "Debited from"
 }

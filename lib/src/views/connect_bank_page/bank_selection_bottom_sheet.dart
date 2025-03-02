@@ -14,7 +14,6 @@ import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/bank_down_b
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/bank_tab_bar.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/no_result_found_widget.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/payment_status_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/widgets/animated_search_field.dart';
@@ -28,12 +27,10 @@ import 'package:regal/regal.dart';
 class BankSelectionBottomSheet extends StatefulWidget {
   const BankSelectionBottomSheet({
     required this.paymentId,
-    required this.dialogContext,
     super.key,
   });
 
   final String paymentId;
-  final BuildContext dialogContext;
 
   static Future<bool?> show(
     BuildContext context, {
@@ -44,7 +41,6 @@ class BankSelectionBottomSheet extends StatefulWidget {
         title: context.l10n.selectYourBank,
         titleBottomSpacing: Spacing.large.value,
         useRootNavigator: true,
-        routeSettings: RouteSettings(name: 'BankSelectionBottomSheet'),
         leadingTopWidget: CustomGestureDetector(
           context: context,
           trackLabel: 'Back Icon',
@@ -91,14 +87,13 @@ class BankSelectionBottomSheet extends StatefulWidget {
           create: (_) => getIt.get<BankInstitutionsController>(
             param1: paymentId,
           ),
-          builder: (dialogContext, child) => StateNotifierProvider<
+          builder: (context, child) => StateNotifierProvider<
               PaymentStatusController, PaymentStatusState>.value(
             value: getIt.get<PaymentStatusController>(
               param1: const Duration(seconds: 1),
             ),
             builder: (contextx, _) => BankSelectionBottomSheet(
               paymentId: paymentId,
-              dialogContext: context,
             ),
           ),
         ),
@@ -151,8 +146,10 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         },
         child: Stack(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
+            ConstrainedBox(
+              constraints: BoxConstraints.loose(
+                Size(1.sw, 0.8.sh),
+              ),
               child: Consumer<PaymentStatusState>(
                 builder: (_, paymentstate, __) => Stack(
                   children: [
@@ -171,7 +168,11 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                         if (state.error != null) {
                           return const AtoaErrorWidget();
                         }
-                        return Column(
+                        return
+                            //Visibility(
+                            //    visible: paymentstate.details == null,
+                            //       child:
+                            Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Search Bar
@@ -199,9 +200,8 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                                 child: TabBarView(
                                   controller: _tabController,
                                   children: [
-                                    _buildPopularBanksTab(widget.dialogContext),
-                                    _buildBusinessBanksTab(
-                                        widget.dialogContext),
+                                    _buildPopularBanksTab(),
+                                    _buildBusinessBanksTab(),
                                   ],
                                 ),
                               ),
@@ -256,7 +256,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                                     itemCount: state.bankList.length,
                                     itemBuilder: (context, index) =>
                                         _buildBankListItem(
-                                      widget.dialogContext,
                                       state.bankList[index],
                                     ),
                                   ),
@@ -264,6 +263,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                               ],
                             ],
                           ],
+                          //      ),
                         );
                       },
                     ),
@@ -275,9 +275,9 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         ),
       );
 
-  Widget _buildPopularBanksTab(BuildContext dialogContext) =>
-      Consumer<BankInstitutionsState>(
-        builder: (_, state, __) {
+  Widget _buildPopularBanksTab() => Builder(
+        builder: (context) {
+          final state = context.read<BankInstitutionsState>();
           if (context.read<BankInstitutionsController>().searchTerm.isEmpty) {
             final popularPersonalBanks = state.popularPersonalBanks;
 
@@ -313,7 +313,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                     ),
                     itemCount: gridBanks.length, // Two rows of 4 items
                     itemBuilder: (context, index) =>
-                        _buildBankGridItem(dialogContext, gridBanks[index]),
+                        _buildBankGridItem(gridBanks[index]),
                   ),
 
                   // Scrollable List
@@ -330,7 +330,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: normalPersonalBanks.length,
                     itemBuilder: (context, index) => _buildBankListItem(
-                      dialogContext,
                       normalPersonalBanks[index],
                     ),
                   ),
@@ -343,7 +342,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         },
       );
 
-  Widget _buildBusinessBanksTab(BuildContext dialogContext) => Column(
+  Widget _buildBusinessBanksTab() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Spacing.medium.yBox,
@@ -358,7 +357,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
               builder: (_, state, __) => ListView.builder(
                 itemCount: state.businessBanks.length,
                 itemBuilder: (context, index) => _buildBankListItem(
-                  dialogContext,
                   state.businessBanks[index],
                 ),
               ),
@@ -367,15 +365,14 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         ],
       );
 
-  Widget _buildBankGridItem(BuildContext dialogContext, BankInstitution bank) =>
-      CustomInkWell(
+  Widget _buildBankGridItem(BankInstitution bank) => CustomInkWell(
         semanticsLabel: '${bank.name} ${context.l10n.bankCard}',
         context: context,
         trackLabel: '${bank.name} Bank Card',
         enableTracking: false,
         onTap: () async {
           bank.enabled
-              ? await onTap(dialogContext, bank)
+              ? await onTap(bank)
               : BankDownBottomSheet.show(context, bank);
         },
         child: Container(
@@ -407,8 +404,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         ),
       );
 
-  Widget _buildBankListItem(BuildContext dialogContext, BankInstitution bank) =>
-      ListTile(
+  Widget _buildBankListItem(BankInstitution bank) => ListTile(
         minLeadingWidth: 0,
         contentPadding: EdgeInsets.zero,
         horizontalTitleGap: Spacing.medium.value,
@@ -459,12 +455,12 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
         ),
         onTap: () async {
           bank.enabled
-              ? await onTap(dialogContext, bank)
+              ? await onTap(bank)
               : BankDownBottomSheet.show(context, bank);
         },
       );
 
-  Future<void> onTap(BuildContext dialogContext, BankInstitution bank) async {
+  Future<void> onTap(BankInstitution bank) async {
     final bankInstitutionController =
         context.read<BankInstitutionsController>();
 
@@ -484,6 +480,8 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
       return;
     }
     if (res != null && res) {
+      unawaited(bankInstitutionController.authorizeBank());
+
       final verify = await VerifyingPaymentBottomSheet.show(
         context,
         bankInstitutionController,
@@ -494,7 +492,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
       if (!mounted) {
         return;
       }
-      if (verify == true) Navigator.pop(context);
+      if (verify != null && verify) Navigator.pop(context);
     }
   }
 }

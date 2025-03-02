@@ -22,7 +22,7 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.x + Spacing.small.y,
         decoration: BoxDecoration(
-          color: context.regalColor.snowWhite,
+          color: context.intactColors.white,
           border: isExpanded
               ? Border(
                   top: BorderSide(color: context.grey.shade10),
@@ -51,16 +51,18 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
               children: [
                 Assets.icons.bill.svg(
                   colorFilter: ColorFilter.mode(
-                    context.regalColor.licoriceBlack,
+                    context.intactColors.black,
                     BlendMode.srcIn,
                   ),
                 ),
                 Spacing.small.xBox,
                 CustomText.semantics(
                   context.l10n.paymentDetails,
-                  style: context.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: context.bodyLarge
+                      ?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      )
+                      .textColor(context.intactColors.black),
                 ),
               ],
             ),

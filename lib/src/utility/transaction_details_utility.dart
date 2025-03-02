@@ -22,10 +22,4 @@ class TransactionDetailsUtility {
         refunded: (TransactionStatusRefunded value) => RegalColors.darkBlue,
         unknown: (TransactionStatusUnknown value) => RegalColors.grey.shade60,
       );
-
-  static String getSenderOrReceiverName(
-    BuildContext context,
-    TransactionDetails transactionDetails,
-  ) =>
-      transactionDetails.merchantName ?? '';
 }

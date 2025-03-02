@@ -44,7 +44,8 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (label.isNotEmpty)
                     CustomText.semantics(
                       label,
-                      style: context.bodyMedium?.height150,
+                      style: context.bodyMedium?.height150
+                          .textColor(context.intactColors.black),
                     ),
                   Spacing.mini.yBox,
                   Row(
@@ -96,7 +97,7 @@ class PaymentDetailsRow extends StatelessWidget {
         height: Spacing.large.value * 2,
         width: Spacing.large.value * 2,
         decoration: BoxDecoration(
-          color: context.regalColor.snowWhite,
+          color: context.intactColors.white,
           borderRadius: BorderRadius.all(
             Radius.circular(
               Spacing.small.value,
@@ -120,7 +121,8 @@ class PaymentDetailsRow extends StatelessWidget {
           Flexible(
             child: CustomText.semantics(
               value,
-              style: context.bodyMedium?.w600,
+              style: context.bodyMedium?.w600
+                  .textColor(context.intactColors.black),
             ),
           ),
           if ((maskSubValue ?? false) && subValue != null)
@@ -129,14 +131,16 @@ class PaymentDetailsRow extends StatelessWidget {
                 subValue!.isEmpty
                     ? ''
                     : 'xxxxx${subValue!.length > 3 ? subValue!.substring(subValue!.length - 3) : subValue!}',
-                style: context.bodyMedium?.w600,
+                style: context.bodyMedium?.w600
+                    .textColor(context.intactColors.black),
               ),
             )
           else if (subValue != null)
             Flexible(
               child: CustomText.semantics(
                 subValue!.isEmpty ? '' : subValue!,
-                style: context.bodyMedium?.w600,
+                style: context.bodyMedium?.w600
+                    .textColor(context.intactColors.black),
               ),
             ),
         ],

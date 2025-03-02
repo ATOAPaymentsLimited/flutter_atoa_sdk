@@ -32,6 +32,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
     )..addStatusListener((status) async {
         if (status == AnimationStatus.completed) {
           await Future<void>.delayed(const Duration(seconds: 1));
+          if (!mounted) return;
           setState(() {
             _showPersonalBanks = !_showPersonalBanks;
             _controller

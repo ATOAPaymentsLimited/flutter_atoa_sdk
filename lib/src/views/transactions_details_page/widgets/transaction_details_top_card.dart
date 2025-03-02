@@ -3,7 +3,6 @@ import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
-import 'package:atoa_flutter_sdk/src/utility/transaction_details_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
@@ -32,38 +31,15 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
   @override
   void initState() {
     super.initState();
-    final debitType = widget.transactionDetails.paymentDebitType('id');
-    final isPaid = _isPaidStatus(debitType);
-    showTickAnimation = ValueNotifier(widget.isCompleted && isPaid);
+    showTickAnimation = ValueNotifier(widget.isCompleted);
 
-    if (widget.isCompleted && isPaid) {
+    if (widget.isCompleted) {
       Future<void>.delayed(
         const Duration(minutes: 1),
         () => showTickAnimation.value = false,
       );
     }
   }
-
-  bool _isPaidStatus(
-    PaymentDebitType debitType,
-  ) =>
-      _getTxnStatus(widget.transactionDetails, debitType);
-
-  bool _getTxnStatus(
-    TransactionDetails txnDet,
-    PaymentDebitType debitType,
-  ) =>
-      txnDet.status.maybeMap(
-        completed: (tnx) => switch (txnDet.paymentType) {
-          PaymentType.P2P => debitType.maybeMap(
-              sent: (value) => !txnDet.isSettlementInProcess,
-              orElse: () => false,
-            ),
-          PaymentType.CONSUMERREWARD || PaymentType.CONSUMERCASHBACK => false,
-          _ => true,
-        },
-        orElse: () => false,
-      );
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -75,7 +51,7 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                 final userAvatar = CustomGestureDetector(
                   semanticsLabel: 'Profile Picture',
                   context: context,
-                  trackLabel: 'Sender/receiver Profile Picture',
+                  trackLabel: 'Profile Picture',
                   child: UserAvatar(
                     size: 42.sp,
                     url: _getSenderOrReceiverAvatar(
@@ -85,17 +61,14 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                       height: 42.sp,
                       width: 42.sp,
                       decoration: BoxDecoration(
-                        borderRadius: isTrasnaction(context)
-                            ? BorderRadius.circular(Spacing.small.value)
-                            : BorderRadius.circular(42.sp),
+                        borderRadius:
+                            BorderRadius.circular(Spacing.small.value),
                         color: context.grey.shade10,
                       ),
                       child: Center(
                         child: CustomText.semantics(
-                          TransactionDetailsUtility.getSenderOrReceiverName(
-                            context,
-                            widget.transactionDetails,
-                          ).getInitials(),
+                          (widget.transactionDetails.merchantName ?? '')
+                              .getInitials(),
                           style: context.bodyLarge?.copyWith(
                             fontWeight: FontWeight.w700,
                           ),
@@ -130,18 +103,21 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                     text: CustomTextSpan.semantics(
                       children: [
                         CustomTextSpan.semantics(
-                          text: _getSenderOrReceiverPrefix(context),
-                          style: context.labelSmall,
+                          text: context.l10n.to,
+                          style: context.figtree.labelSmall.textColor(
+                            context.intactColors.black,
+                          ),
                         ),
+                        const CustomTextSpan.semantics(text: ' '),
                         CustomTextSpan.semantics(
-                          text:
-                              TransactionDetailsUtility.getSenderOrReceiverName(
-                            context,
-                            widget.transactionDetails,
-                          ),
-                          style: context.labelSmall?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                          text: widget.transactionDetails.merchantName,
+                          style: context.labelSmall
+                              ?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              )
+                              .textColor(
+                                context.intactColors.black,
+                              ),
                         ),
                       ],
                     ),
@@ -155,41 +131,15 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
             Spacing.xtraLarge.yBox,
             CustomText.semantics(
               '£${widget.transactionDetails.paidAmount.toString().formattedAmount()}',
-              style: context.headlineMedium,
-            ),
-            if (widget.showRetry && widget.onRetry != null) ...[
-              Spacing.xtraLarge.yBox,
-              SizedBox(
-                width: 180.sp,
-                child: Padding(
-                  padding: Spacing.huge.x,
-                  child: RegalButton.primary(
-                    trackLabel: 'Retry Button',
-                    size: RegalButtonSize.small,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: context.regalColor.licoriceBlack,
-                      textStyle: context.bodyLarge!.w600,
-                    ),
-                    onPressed: () => widget.onRetry?.call(context),
-                    prefixIcon: Transform.rotate(
-                      angle: -90,
-                      child: Icon(
-                        Icons.refresh_rounded,
-                        size: Spacing.xtraLarge.value,
-                      ),
-                    ),
-                    label: context.l10n.retry,
-                  ),
-                ),
+              style: context.figtree.headlineMedium.textColor(
+                context.intactColors.black,
               ),
-            ],
+            ),
           ],
         ),
       );
 
   bool isTrasnaction(BuildContext context) => true;
-
-  String _getSenderOrReceiverPrefix(BuildContext context) => context.l10n.to;
 
   String? _getSenderOrReceiverAvatar(BuildContext context) =>
       widget.transactionDetails.avatar;

@@ -7,9 +7,7 @@ import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/app_not_installed_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_and_service_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/review_details_tile.dart';
-import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class ConfirmationBottomSheet extends StatelessWidget {
@@ -78,7 +76,6 @@ class ConfirmationBottomSheet extends StatelessWidget {
                 ? null
                 : () {
                     Navigator.pop(context, true);
-                    bankInstitutionController.authorizeBank();
                   },
             trackLabel: context.l10n.goTo,
             enableTracking: false,

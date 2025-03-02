@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';

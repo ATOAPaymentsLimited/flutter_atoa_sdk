@@ -1,18 +1,19 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
+import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/bank_details_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/collapsed_payment_details_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/payment_details_row.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/payment_tax_details.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class TransactionDetailsInfoUi extends StatefulWidget {
   const TransactionDetailsInfoUi({
     required this.transactionDetails,
+    required this.bankState,
     super.key,
     this.showNotes = true,
     this.isExpanded = true,
@@ -22,6 +23,7 @@ class TransactionDetailsInfoUi extends StatefulWidget {
   final bool showTransactionActions;
   final bool isExpanded;
   final bool showNotes;
+  final BankInstitutionsState bankState;
 
   @override
   State<TransactionDetailsInfoUi> createState() =>
@@ -34,21 +36,17 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
   @override
   void didUpdateWidget(covariant TransactionDetailsInfoUi oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.transactionDetails != oldWidget.transactionDetails) {
-      _transactionDetails = widget.transactionDetails;
-    }
+    if (widget.transactionDetails != oldWidget.transactionDetails) {}
     if (widget.isExpanded != oldWidget.isExpanded) {
       _expandableController.value = widget.isExpanded;
     }
   }
 
-  late TransactionDetails _transactionDetails;
   @override
   void initState() {
     super.initState();
     _expandableController =
         ExpandableController(initialExpanded: widget.isExpanded);
-    _transactionDetails = widget.transactionDetails;
   }
 
   ExpandableThemeData expandableTheme(BuildContext context) =>
@@ -66,8 +64,6 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
 
   @override
   Widget build(BuildContext context) {
-    final debitType = _transactionDetails.paymentDebitType('id');
-
     Widget collapsed({bool isExpanded = false}) => CustomGestureDetector(
           context: context,
           onTap: _expandableController.toggle,
@@ -87,7 +83,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
       expanded: Column(
         children: [
           collapsed(isExpanded: true),
-          _transactionMainInfoUI(widget.transactionDetails, debitType),
+          _transactionMainInfoUI(widget.transactionDetails),
         ],
       ),
     );
@@ -95,11 +91,10 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
 
   Widget _transactionMainInfoUI(
     TransactionDetails transactionDetails,
-    PaymentDebitType debitType,
   ) =>
       DecoratedBox(
         decoration: BoxDecoration(
-          color: context.regalColor.snowWhite,
+          color: context.intactColors.white,
           border: Border(
             bottom: BorderSide(color: context.grey.shade10),
             left: BorderSide(color: context.grey.shade10),
@@ -125,6 +120,10 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  BankDetailsWidget(
+                    transactionDetails: transactionDetails,
+                    bankState: widget.bankState,
+                  ),
                   PaymentDetailsRow(
                     label: context.l10n.referenceId,
                     value: transactionDetails.paymentIdempotencyId,
@@ -152,17 +151,4 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
           ],
         ),
       );
-
-  Widget _getRefundBankDetails(
-    TransactionDetails transactionDetails,
-    PaymentDebitType debitType,
-  ) =>
-      // transactionDetails.payerBankAccountNo != null &&
-      //         transactionDetails.payerBankAccountNo!.trim().isNotEmpty
-      //     ? BankDetailsWidget(
-      //         transactionDetails: transactionDetails,
-      //         debitType: debitType,
-      //       )
-      //  :
-      const SizedBox.shrink();
 }

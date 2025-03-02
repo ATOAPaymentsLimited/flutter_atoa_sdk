@@ -23,7 +23,7 @@ class PaymentStatusWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.width / 2,
       width: MediaQuery.of(context).size.width / 2,
       decoration: BoxDecoration(
-        color: context.regalColor.snowWhite,
+        color: context.intactColors.white,
       ),
       alignment: Alignment.center,
       child: Center(

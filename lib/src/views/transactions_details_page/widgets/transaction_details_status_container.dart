@@ -14,83 +14,24 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
   final TransactionDetails transactionDetails;
 
   @override
-  Widget build(BuildContext context) {
-    final debitType = transactionDetails.paymentDebitType('id');
-    return _getTxnStatusContainerWidget(context, transactionDetails, debitType);
-  }
+  Widget build(BuildContext context) =>
+      _getTxnStatusContainerWidget(context, transactionDetails);
 
   Widget _getTxnStatusContainerWidget(
     BuildContext context,
     TransactionDetails txnDetails,
-    PaymentDebitType debitType,
   ) =>
       txnDetails.status.map(
-        completed: (value) => switch (txnDetails.paymentType) {
-          PaymentType.P2P => debitType.map(
-              sent: (value) => CustomStatusContainer(
-                transactionDetails: transactionDetails,
-                iconBgColor: txnDetails.isSettlementInProcess
-                    ? RegalColors.brightOrange
-                    : RegalColors.darkCyan,
-                svgAsset: txnDetails.isSettlementInProcess
-                    ? Assets.gifs.processing.path
-                    : Assets.icons.iconTick.path,
-                size: Spacing.large.value,
-                isLottie: txnDetails.isSettlementInProcess,
-                status: txnDetails.isSettlementInProcess
-                    ? context.l10n.processing
-                    : context.l10n.paid,
-                showCallBank: txnDetails.isSettlementInProcess,
-                dateTime: transactionDetails.updatedAt ??
-                    transactionDetails.createdAt,
-                desc: txnDetails.isSettlementInProcess
-                    ? context.l10n.settlementInProcessInfoText
-                    : context.l10n.paymentSuccessful,
-              ),
-              recieved: (value) => CustomStatusContainer(
-                transactionDetails: transactionDetails,
-                iconBgColor: txnDetails.isSettlementInProcess
-                    ? RegalColors.brightOrange
-                    : RegalColors.darkCyan,
-                svgAsset: txnDetails.isSettlementInProcess
-                    ? Assets.gifs.processing.path
-                    : Assets.icons.iconTick.path,
-                size: Spacing.large.value,
-                isLottie: txnDetails.isSettlementInProcess,
-                status: txnDetails.isSettlementInProcess
-                    ? context.l10n.processing
-                    : context.l10n.receivedSuccessfully,
-                showCallBank: txnDetails.isSettlementInProcess,
-                dateTime: transactionDetails.updatedAt ??
-                    transactionDetails.createdAt,
-                desc: txnDetails.isSettlementInProcess
-                    ? context.l10n.settlementInProcessInfoText
-                    : context.l10n.paymentReceivedDesc,
-              ),
-            ),
-          PaymentType.CONSUMERREWARD ||
-          PaymentType.CONSUMERCASHBACK =>
-            CustomStatusContainer(
-              transactionDetails: transactionDetails,
-              iconBgColor: RegalColors.darkCyan,
-              svgAsset: Assets.icons.iconTick.path,
-              size: Spacing.large.value,
-              status: context.l10n.received,
-              desc: context.l10n.paymentReceivedDesc,
-              dateTime:
-                  transactionDetails.updatedAt ?? transactionDetails.createdAt,
-            ),
-          _ => CustomStatusContainer(
-              transactionDetails: transactionDetails,
-              iconBgColor: RegalColors.darkCyan,
-              svgAsset: Assets.icons.iconTick.path,
-              size: Spacing.large.value,
-              status: context.l10n.paid,
-              desc: context.l10n.paymentSuccessful,
-              dateTime:
-                  transactionDetails.updatedAt ?? transactionDetails.createdAt,
-            ),
-        },
+        completed: (value) => CustomStatusContainer(
+          transactionDetails: transactionDetails,
+          iconBgColor: RegalColors.darkCyan,
+          svgAsset: Assets.icons.iconTick.path,
+          size: Spacing.large.value,
+          status: context.l10n.paid,
+          desc: context.l10n.paymentSuccessful,
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
+        ),
         pending: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
           iconBgColor: RegalColors.brightOrange,

@@ -19,7 +19,7 @@ class DetailRow extends StatelessWidget {
         children: [
           CustomText.semantics(
             label,
-            style: context.bodyMedium,
+            style: context.bodyMedium?.textColor(context.intactColors.black),
           ),
           Spacing.small.xBox,
           Expanded(
@@ -32,11 +32,13 @@ class DetailRow extends StatelessWidget {
               onTap: onTapValue,
               child: CustomText.semantics(
                 value,
-                style: context.bodyLarge?.copyWith(
-                  decoration: onTapValue != null
-                      ? TextDecoration.underline
-                      : TextDecoration.none,
-                ),
+                style: context.bodyLarge
+                    ?.copyWith(
+                      decoration: onTapValue != null
+                          ? TextDecoration.underline
+                          : TextDecoration.none,
+                    )
+                    .textColor(context.intactColors.black),
                 textAlign: TextAlign.right,
               ),
             ),

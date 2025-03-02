@@ -3,6 +3,7 @@
 import 'package:atoa_core/src/models/enums/iso_code_status_enum.dart';
 import 'package:atoa_core/src/models/models.dart';
 import 'package:atoa_core/src/models/transaction_status_details/transaction_status_details.dart';
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction_details.freezed.dart';
@@ -95,6 +96,7 @@ class TransactionDetails with _$TransactionDetails {
     String? merchantName,
     String? avatar,
     StoreDetails? storeDetails,
+    String? institutionId,
   }) = _TransactionDetails;
 
   TransactionDetails._();
@@ -150,12 +152,11 @@ class TransactionDetails with _$TransactionDetails {
           ? errorDescription!.trim()
           : null;
 
-  PaymentDebitType paymentDebitType(String userId) {
-    if (merchantId == userId) {
-      return PaymentDebitType.recieved();
-    }
-    return PaymentDebitType.sent();
-  }
+  String? get payerBankAccountNo => payer?.accountIdentifications
+      ?.firstWhereOrNull(
+        (element) => element.type.toUpperCase() == 'ACCOUNT_NUMBER',
+      )
+      ?.identification;
 }
 
 /// Parses dynamic amount value into a double.

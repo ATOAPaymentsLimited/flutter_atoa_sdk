@@ -45,22 +45,14 @@ class VerifyingPaymentBottomSheet extends StatelessWidget {
         paymentStatusController.stop();
         Navigator.pop(context, true);
       },
-      showCloseButton: true,
-
-      //    paymentState.details == null ||
-      //      paymentState.details!.status !=
-      //          const TransactionStatus.awaitingAuthorization(),
+      showCloseButton: paymentState.details == null ||
+          paymentState.details!.status !=
+              const TransactionStatus.awaitingAuthorization(),
       title: (paymentState.details == null ||
               paymentState.details!.status !=
                   const TransactionStatus.awaitingAuthorization())
-          ? context.l10n.paymentInProgress
-          : context.l10n.paymentDetails,
-      enableDrag: paymentState.details == null ||
-          paymentState.details!.status !=
-              const TransactionStatus.awaitingAuthorization(),
-      isDismissable: paymentState.details == null ||
-          paymentState.details!.status !=
-              const TransactionStatus.awaitingAuthorization(),
+          ? context.l10n.paymentDetails
+          : context.l10n.paymentInProgress,
       body: (_) => VerifyingPaymentBottomSheet(
         bankInstitutionController: bankInstitutionController,
         paymentStatusController: paymentStatusController,
@@ -92,13 +84,14 @@ class VerifyingPaymentBottomSheet extends StatelessWidget {
               if (paymentState.exception != null) {
                 return const AtoaErrorWidget();
               }
-              print(paymentState.details?.status);
               if (paymentState.details?.status != null &&
                   paymentState.details!.status !=
-                      TransactionStatus.awaitingAuthorization()) {
-                return PaymentStatusView();
+                      const TransactionStatus.awaitingAuthorization()) {
+                return PaymentStatusView(
+                  bankState: bankState,
+                  isCompleted: paymentState.details!.isCompleted,
+                );
               }
-              print('34456 inside sheet');
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

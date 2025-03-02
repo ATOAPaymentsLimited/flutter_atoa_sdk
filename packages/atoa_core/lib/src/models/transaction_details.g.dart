@@ -50,6 +50,7 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
       storeDetails: json['storeDetails'] == null
           ? null
           : StoreDetails.fromJson(json['storeDetails'] as Map<String, dynamic>),
+      institutionId: json['institutionId'] as String?,
     );
 
 Map<String, dynamic> _$$TransactionDetailsImplToJson(
@@ -84,6 +85,7 @@ Map<String, dynamic> _$$TransactionDetailsImplToJson(
       'merchantName': instance.merchantName,
       'avatar': instance.avatar,
       'storeDetails': instance.storeDetails,
+      'institutionId': instance.institutionId,
     };
 
 const _$PaymentTypeEnumMap = {

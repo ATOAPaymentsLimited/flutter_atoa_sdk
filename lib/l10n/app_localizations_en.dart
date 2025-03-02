@@ -2986,4 +2986,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancelThePaymentDesc => 'Are you sure you want to cancel this payment? This action cannot be undone.';
+
+  @override
+  String get debitedFrom => 'Debited from';
 }
