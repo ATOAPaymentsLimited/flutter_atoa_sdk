@@ -1,6 +1,6 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/bank_selection_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -18,6 +18,7 @@ class ContinueButton extends StatelessWidget {
   Widget build(BuildContext context) => LedgerButton.primary2(
         size: LedgerButtonSize.xtraLarge,
         trackLabel: 'I understand cotinue Button',
+        semanticsLabel: context.l10n.iUnderstandContinue,
         style: ElevatedButton.styleFrom(
           textStyle: context.figtree.bodyLarge.w700,
         ),

@@ -9,11 +9,11 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/failure_listener.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_tab_bar.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/no_result_found_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/bank_down_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/bank_tab_bar.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/error_widget.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/no_result_found_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/widgets/animated_search_field.dart';
@@ -32,11 +32,11 @@ class BankSelectionBottomSheet extends StatefulWidget {
 
   final String paymentId;
 
-  static Future<bool?> show(
+  static Future<TransactionDetails?> show(
     BuildContext context, {
     required String paymentId,
   }) =>
-      showSdkBottomSheet<bool?>(
+      showSdkBottomSheet<TransactionDetails?>(
         context: context,
         title: context.l10n.selectYourBank,
         titleBottomSpacing: Spacing.large.value,
@@ -60,7 +60,7 @@ class BankSelectionBottomSheet extends StatefulWidget {
             ),
           ),
           onTap: () {
-            Navigator.pop(context, true);
+            Navigator.pop(context);
           },
         ),
         trailingTopWidget: CustomGestureDetector(

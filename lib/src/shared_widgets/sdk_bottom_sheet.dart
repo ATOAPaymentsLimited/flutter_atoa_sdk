@@ -12,20 +12,11 @@ Future<T?> showSdkBottomSheet<T>({
   Color? barrierColor,
   bool useRootNavigator = false,
   bool isScrollControlled = true,
-  RouteSettings? routeSettings,
   Color? backgroundColor,
-  Clip? clipBehavior,
-  double? elevation,
   double? titleBottomSpacing,
-  bool enableDrag = false,
-  bool isDismissable = false,
   bool showCloseButton = true,
   Widget? trailingTopWidget,
   Widget? leadingTopWidget,
-  ShapeBorder? shape,
-  AnimationController? transitionAnimationController,
-  Alignment confettiAlignment = Alignment.center,
-  Widget? illustrationWidget,
   bool showTitle = true,
 }) =>
     showModalBottomSheet<T>(
@@ -43,7 +34,6 @@ Future<T?> showSdkBottomSheet<T>({
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (illustrationWidget != null) illustrationWidget,
               if (showTitle) ...[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,11 +105,9 @@ Future<T?> showSdkBottomSheet<T>({
       barrierColor: barrierColor,
       constraints: constraints,
       useRootNavigator: useRootNavigator,
-      routeSettings: routeSettings,
       backgroundColor: backgroundColor,
-      elevation: elevation,
-      enableDrag: enableDrag,
-      isDismissible: isDismissable,
+      enableDrag: false,
+      isDismissible: false,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(Spacing.xtraLarge.value),
@@ -127,5 +115,4 @@ Future<T?> showSdkBottomSheet<T>({
         ),
       ),
       useSafeArea: true,
-      transitionAnimationController: transitionAnimationController,
     );

@@ -28,4 +28,4 @@
 
 # 1.0.7
 
-- feat: Demo App
+- feat: Demo App and Atoa SDK

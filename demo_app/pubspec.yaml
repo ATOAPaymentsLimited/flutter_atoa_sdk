@@ -19,7 +19,6 @@ dependencies:
   regal:
     path: ../../atoa-flutter-packages/packages/regal
   shared_preferences: ^2.3.5
-  app_links: ^6.4.0
 
 dependency_overrides:
   vector_graphics: 1.1.15

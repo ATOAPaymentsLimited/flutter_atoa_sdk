@@ -1,3 +1,4 @@
+import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
@@ -18,12 +19,12 @@ class HowToMakePaymentBottomSheet extends StatefulWidget {
   final bool isHelp;
   final String paymentId;
 
-  static Future<void> show(
+  static Future<TransactionDetails?> show(
     BuildContext context, {
     required String paymentId,
     bool isHelp = true,
   }) =>
-      showSdkBottomSheet<void>(
+      showSdkBottomSheet<TransactionDetails?>(
         context: context,
         title: context.l10n.continueToYourBank,
         useRootNavigator: true,
@@ -31,9 +32,6 @@ class HowToMakePaymentBottomSheet extends StatefulWidget {
           isHelp: isHelp,
           paymentId: paymentId,
         ),
-        onClose: (context) => {
-          Navigator.pop(context),
-        },
       );
 
   @override

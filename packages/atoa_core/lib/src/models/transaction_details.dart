@@ -38,7 +38,6 @@ class TransactionDetails with _$TransactionDetails {
 
     /// The date and time when the transaction was created.
     required String createdAt,
-    required PaymentType paymentType,
 
     /// Optional: Unique identifier for the payment, if available.
     String? paymentId,
@@ -128,10 +127,6 @@ class TransactionDetails with _$TransactionDetails {
   bool get isCompleted => status.status == 'COMPLETED';
 
   bool get isSettlementInProcess {
-    if (paymentType != PaymentType.P2P) {
-      return false;
-    }
-
     if (statusDetails?.status is! TransactionStatusCompleted) {
       return false;
     }

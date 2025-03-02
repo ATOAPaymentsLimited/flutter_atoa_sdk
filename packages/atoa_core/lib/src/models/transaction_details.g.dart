@@ -15,7 +15,6 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
       currency: json['currency'] as String,
       status: TransactionStatus.fromJson(json['status']),
       createdAt: json['createdAt'] as String,
-      paymentType: $enumDecode(_$PaymentTypeEnumMap, json['paymentType']),
       paymentId: json['paymentId'] as String?,
       updatedAt: json['updatedAt'] as String?,
       bankName: json['bankName'] as String?,
@@ -61,7 +60,6 @@ Map<String, dynamic> _$$TransactionDetailsImplToJson(
       'paidAmount': instance.paidAmount,
       'currency': instance.currency,
       'createdAt': instance.createdAt,
-      'paymentType': _$PaymentTypeEnumMap[instance.paymentType]!,
       'paymentId': instance.paymentId,
       'updatedAt': instance.updatedAt,
       'bankName': instance.bankName,
@@ -87,13 +85,3 @@ Map<String, dynamic> _$$TransactionDetailsImplToJson(
       'storeDetails': instance.storeDetails,
       'institutionId': instance.institutionId,
     };
-
-const _$PaymentTypeEnumMap = {
-  PaymentType.TRANSACTION: 'TRANSACTION',
-  PaymentType.REFUND: 'REFUND',
-  PaymentType.CONSUMERREWARD: 'CONSUMERREWARD',
-  PaymentType.CONSUMERCASHBACK: 'CONSUMERCASHBACK',
-  PaymentType.P2P: 'P2P',
-  PaymentType.P2P_WEB: 'P2P_WEB',
-  PaymentType.INVOICEPAYMENT: 'INVOICEPAYMENT',
-};

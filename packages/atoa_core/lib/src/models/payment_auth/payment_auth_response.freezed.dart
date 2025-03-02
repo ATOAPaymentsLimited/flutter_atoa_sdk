@@ -31,6 +31,7 @@ mixin _$PaymentAuthResponse {
       throw _privateConstructorUsedError;
   String? get deepLinkAuthorisationUrlIOS => throw _privateConstructorUsedError;
   String? get appStoreLink => throw _privateConstructorUsedError;
+  String? get playStoreLink => throw _privateConstructorUsedError;
   String? get androidPackageName => throw _privateConstructorUsedError;
   String? get iOSPackageName => throw _privateConstructorUsedError;
 
@@ -61,6 +62,7 @@ abstract class $PaymentAuthResponseCopyWith<$Res> {
       String? deepLinkAndroidAuthorisationUrl,
       String? deepLinkAuthorisationUrlIOS,
       String? appStoreLink,
+      String? playStoreLink,
       String? androidPackageName,
       String? iOSPackageName});
 }
@@ -90,6 +92,7 @@ class _$PaymentAuthResponseCopyWithImpl<$Res, $Val extends PaymentAuthResponse>
     Object? deepLinkAndroidAuthorisationUrl = freezed,
     Object? deepLinkAuthorisationUrlIOS = freezed,
     Object? appStoreLink = freezed,
+    Object? playStoreLink = freezed,
     Object? androidPackageName = freezed,
     Object? iOSPackageName = freezed,
   }) {
@@ -135,6 +138,10 @@ class _$PaymentAuthResponseCopyWithImpl<$Res, $Val extends PaymentAuthResponse>
           ? _value.appStoreLink
           : appStoreLink // ignore: cast_nullable_to_non_nullable
               as String?,
+      playStoreLink: freezed == playStoreLink
+          ? _value.playStoreLink
+          : playStoreLink // ignore: cast_nullable_to_non_nullable
+              as String?,
       androidPackageName: freezed == androidPackageName
           ? _value.androidPackageName
           : androidPackageName // ignore: cast_nullable_to_non_nullable
@@ -166,6 +173,7 @@ abstract class _$$PaymentAuthResponseImplCopyWith<$Res>
       String? deepLinkAndroidAuthorisationUrl,
       String? deepLinkAuthorisationUrlIOS,
       String? appStoreLink,
+      String? playStoreLink,
       String? androidPackageName,
       String? iOSPackageName});
 }
@@ -193,6 +201,7 @@ class __$$PaymentAuthResponseImplCopyWithImpl<$Res>
     Object? deepLinkAndroidAuthorisationUrl = freezed,
     Object? deepLinkAuthorisationUrlIOS = freezed,
     Object? appStoreLink = freezed,
+    Object? playStoreLink = freezed,
     Object? androidPackageName = freezed,
     Object? iOSPackageName = freezed,
   }) {
@@ -238,6 +247,10 @@ class __$$PaymentAuthResponseImplCopyWithImpl<$Res>
           ? _value.appStoreLink
           : appStoreLink // ignore: cast_nullable_to_non_nullable
               as String?,
+      playStoreLink: freezed == playStoreLink
+          ? _value.playStoreLink
+          : playStoreLink // ignore: cast_nullable_to_non_nullable
+              as String?,
       androidPackageName: freezed == androidPackageName
           ? _value.androidPackageName
           : androidPackageName // ignore: cast_nullable_to_non_nullable
@@ -264,6 +277,7 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
       this.deepLinkAndroidAuthorisationUrl,
       this.deepLinkAuthorisationUrlIOS,
       this.appStoreLink,
+      this.playStoreLink,
       this.androidPackageName,
       this.iOSPackageName})
       : _featureScope = featureScope,
@@ -301,13 +315,15 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
   @override
   final String? appStoreLink;
   @override
+  final String? playStoreLink;
+  @override
   final String? androidPackageName;
   @override
   final String? iOSPackageName;
 
   @override
   String toString() {
-    return 'PaymentAuthResponse(authorisationUrl: $authorisationUrl, paymentIdempotencyId: $paymentIdempotencyId, userUuid: $userUuid, status: $status, featureScope: $featureScope, tracingId: $tracingId, deepLinkAuthorisationUrl: $deepLinkAuthorisationUrl, deepLinkAndroidAuthorisationUrl: $deepLinkAndroidAuthorisationUrl, deepLinkAuthorisationUrlIOS: $deepLinkAuthorisationUrlIOS, appStoreLink: $appStoreLink, androidPackageName: $androidPackageName, iOSPackageName: $iOSPackageName)';
+    return 'PaymentAuthResponse(authorisationUrl: $authorisationUrl, paymentIdempotencyId: $paymentIdempotencyId, userUuid: $userUuid, status: $status, featureScope: $featureScope, tracingId: $tracingId, deepLinkAuthorisationUrl: $deepLinkAuthorisationUrl, deepLinkAndroidAuthorisationUrl: $deepLinkAndroidAuthorisationUrl, deepLinkAuthorisationUrlIOS: $deepLinkAuthorisationUrlIOS, appStoreLink: $appStoreLink, playStoreLink: $playStoreLink, androidPackageName: $androidPackageName, iOSPackageName: $iOSPackageName)';
   }
 
   @override
@@ -339,6 +355,8 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
                     deepLinkAuthorisationUrlIOS) &&
             (identical(other.appStoreLink, appStoreLink) ||
                 other.appStoreLink == appStoreLink) &&
+            (identical(other.playStoreLink, playStoreLink) ||
+                other.playStoreLink == playStoreLink) &&
             (identical(other.androidPackageName, androidPackageName) ||
                 other.androidPackageName == androidPackageName) &&
             (identical(other.iOSPackageName, iOSPackageName) ||
@@ -359,6 +377,7 @@ class _$PaymentAuthResponseImpl extends _PaymentAuthResponse {
       deepLinkAndroidAuthorisationUrl,
       deepLinkAuthorisationUrlIOS,
       appStoreLink,
+      playStoreLink,
       androidPackageName,
       iOSPackageName);
 
@@ -391,6 +410,7 @@ abstract class _PaymentAuthResponse extends PaymentAuthResponse {
       final String? deepLinkAndroidAuthorisationUrl,
       final String? deepLinkAuthorisationUrlIOS,
       final String? appStoreLink,
+      final String? playStoreLink,
       final String? androidPackageName,
       final String? iOSPackageName}) = _$PaymentAuthResponseImpl;
   const _PaymentAuthResponse._() : super._();
@@ -418,6 +438,8 @@ abstract class _PaymentAuthResponse extends PaymentAuthResponse {
   String? get deepLinkAuthorisationUrlIOS;
   @override
   String? get appStoreLink;
+  @override
+  String? get playStoreLink;
   @override
   String? get androidPackageName;
   @override

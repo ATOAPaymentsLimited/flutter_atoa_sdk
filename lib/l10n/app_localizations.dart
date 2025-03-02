@@ -5294,6 +5294,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Debited from'**
   String get debitedFrom;
+
+  /// No description provided for @transactionDateAndTime.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} on {date}'**
+  String transactionDateAndTime(String time, String date);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

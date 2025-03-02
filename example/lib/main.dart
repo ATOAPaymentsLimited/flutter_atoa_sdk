@@ -27,6 +27,7 @@ class _MainAppState extends State<MainApp> {
 
   MaterialApp getApp(BuildContext context) {
     return MaterialApp(
+      theme: kThemeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: Builder(

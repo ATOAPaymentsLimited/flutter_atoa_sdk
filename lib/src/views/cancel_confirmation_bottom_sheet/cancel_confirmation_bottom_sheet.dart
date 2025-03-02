@@ -31,6 +31,7 @@ class CancelConfirmationBottomSheet extends StatelessWidget {
           ),
           Spacing.huge.yBox,
           LedgerButton.primary2(
+            semanticsLabel: context.l10n.yesCancelPayment,
             trackLabel: 'Yes, Cancel Payment',
             label: context.l10n.yesCancelPayment,
             onPressed: () {
@@ -46,6 +47,7 @@ class CancelConfirmationBottomSheet extends StatelessWidget {
           LedgerButton.secondary(
             trackLabel: 'No, Dismiss',
             label: context.l10n.noDismiss,
+            semanticsLabel: context.l10n.noDismiss,
             onPressed: () {
               Navigator.pop(context, false);
             },

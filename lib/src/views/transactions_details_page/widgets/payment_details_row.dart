@@ -11,7 +11,6 @@ class PaymentDetailsRow extends StatelessWidget {
     required this.label,
     required this.value,
     super.key,
-    this.onTapValue,
     this.logo,
     this.subValue,
     this.showCopyContent = false,
@@ -22,7 +21,6 @@ class PaymentDetailsRow extends StatelessWidget {
   final String value;
   final String? subValue;
   final String? logo;
-  final VoidCallback? onTapValue;
   final bool showCopyContent;
   final bool? maskSubValue;
 
@@ -32,7 +30,6 @@ class PaymentDetailsRow extends StatelessWidget {
         context: context,
         trackLabel: value,
         enableTracking: false,
-        onTap: onTapValue,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -44,7 +41,7 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (label.isNotEmpty)
                     CustomText.semantics(
                       label,
-                      style: context.bodyMedium?.height150
+                      style: context.figtree.bodyMedium.height150
                           .textColor(context.intactColors.black),
                     ),
                   Spacing.mini.yBox,
@@ -121,7 +118,7 @@ class PaymentDetailsRow extends StatelessWidget {
           Flexible(
             child: CustomText.semantics(
               value,
-              style: context.bodyMedium?.w600
+              style: context.figtree.bodyMedium.w600
                   .textColor(context.intactColors.black),
             ),
           ),
@@ -131,7 +128,7 @@ class PaymentDetailsRow extends StatelessWidget {
                 subValue!.isEmpty
                     ? ''
                     : 'xxxxx${subValue!.length > 3 ? subValue!.substring(subValue!.length - 3) : subValue!}',
-                style: context.bodyMedium?.w600
+                style: context.figtree.bodyMedium.w600
                     .textColor(context.intactColors.black),
               ),
             )
@@ -139,7 +136,7 @@ class PaymentDetailsRow extends StatelessWidget {
             Flexible(
               child: CustomText.semantics(
                 subValue!.isEmpty ? '' : subValue!,
-                style: context.bodyMedium?.w600
+                style: context.figtree.bodyMedium.w600
                     .textColor(context.intactColors.black),
               ),
             ),

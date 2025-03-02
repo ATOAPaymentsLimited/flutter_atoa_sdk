@@ -4,8 +4,10 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
+import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +16,7 @@ import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class TransactionDetailsPage extends StatefulWidget {
+class TransactionDetailsPage extends StatelessWidget {
   const TransactionDetailsPage({
     required this.transactionDetails,
     required this.bankState,
@@ -27,57 +29,47 @@ class TransactionDetailsPage extends StatefulWidget {
   final bool isCompleted;
 
   @override
-  State<TransactionDetailsPage> createState() => _TransactionDetailsPageState();
-}
-
-class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
-  late TransactionDetails _transactionDetails;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _transactionDetails = widget.transactionDetails;
-  }
-
-  @override
   Widget build(BuildContext context) => Column(
         children: [
-          if (_transactionDetails.updatedAt != null)
+          if (transactionDetails.updatedAt != null)
             CustomText.semantics(
-              '${_transactionDetails.updatedAt!.formattedTime()} on ${_transactionDetails.updatedAt?.formattedDateForPaymentDetails(context)}',
-              style: context.bodyLarge
-                  ?.copyWith(fontWeight: FontWeight.w700)
-                  .textColor(
-                    context.intactColors.black,
-                  ),
+              context.l10n.transactionDateAndTime(
+                transactionDetails.updatedAt!.formattedTime(),
+                transactionDetails.updatedAt!
+                    .formattedDateForPaymentDetails(context),
+              ),
+              style: context.figtree.bodyLarge.w700.textColor(
+                context.intactColors.black,
+              ),
             )
           else
             CustomText.semantics(
-              '${_transactionDetails.createdAt.formattedTime()} on ${_transactionDetails.createdAt.formattedDateForPaymentDetails(context)}',
-              style: context.bodyLarge
-                  ?.copyWith(fontWeight: FontWeight.w700)
-                  .textColor(
-                    context.intactColors.black,
-                  ),
+              context.l10n.transactionDateAndTime(
+                transactionDetails.createdAt.formattedTime(),
+                transactionDetails.createdAt
+                    .formattedDateForPaymentDetails(context),
+              ),
+              style: context.figtree.bodyLarge.w700.textColor(
+                context.intactColors.black,
+              ),
             ),
           TransactionDetailsTopCard(
-            transactionDetails: _transactionDetails,
+            transactionDetails: transactionDetails,
             showRetry: false,
-            isCompleted: widget.isCompleted,
+            isCompleted: isCompleted,
           ),
           Padding(
             padding: Spacing.xtraLarge.top,
             child: Column(
               children: [
                 TransactionDetailsStatusContainer(
-                  transactionDetails: _transactionDetails,
+                  transactionDetails: transactionDetails,
                 ),
                 Padding(
                   padding: Spacing.medium.top + Spacing.tiny.top,
                   child: TransactionDetailsInfoUi(
-                    transactionDetails: _transactionDetails,
-                    bankState: widget.bankState,
+                    transactionDetails: transactionDetails,
+                    bankState: bankState,
                     isExpanded: false,
                   ),
                 ),

@@ -1,5 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/atoa_term_tile.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/atoa_term_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 

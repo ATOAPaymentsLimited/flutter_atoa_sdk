@@ -4,7 +4,6 @@ import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
 
 class TransactionDetailsTopCard extends StatefulWidget {
@@ -53,13 +52,11 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                   context: context,
                   trackLabel: 'Profile Picture',
                   child: UserAvatar(
-                    size: 42.sp,
-                    url: _getSenderOrReceiverAvatar(
-                      context,
-                    ),
+                    size: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
+                    url: widget.transactionDetails.avatar,
                     placeholder: Container(
-                      height: 42.sp,
-                      width: 42.sp,
+                      height: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
+                      width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Spacing.small.value),
@@ -85,8 +82,10 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                     duration: const Duration(milliseconds: 300),
                     child: showAnimation
                         ? Assets.gifs.tickMark.lottie(
-                            height: 42.sp,
-                            width: 42.sp,
+                            height: Spacing.xtraLarge.value * 2 +
+                                Spacing.tiny.value,
+                            width: Spacing.xtraLarge.value * 2 +
+                                Spacing.tiny.value,
                           )
                         : userAvatar,
                   ),
@@ -111,8 +110,8 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                         const CustomTextSpan.semantics(text: ' '),
                         CustomTextSpan.semantics(
                           text: widget.transactionDetails.merchantName,
-                          style: context.labelSmall
-                              ?.copyWith(
+                          style: context.figtree.labelSmall
+                              .copyWith(
                                 fontWeight: FontWeight.w600,
                               )
                               .textColor(
@@ -139,11 +138,6 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
         ),
       );
 
-  bool isTrasnaction(BuildContext context) => true;
-
-  String? _getSenderOrReceiverAvatar(BuildContext context) =>
-      widget.transactionDetails.avatar;
-
   Widget _getStoreLocation(BuildContext context) =>
       widget.transactionDetails.storeDetails?.locationName != null &&
               widget.transactionDetails.storeDetails?.locationName != 'Default'
@@ -166,9 +160,8 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
             Spacing.small.xBox,
             CustomText.semantics(
               locationName,
-              style: context.labelSmall?.copyWith(
-                color: context.grey.shade40,
-                fontWeight: FontWeight.w700,
+              style: context.figtree.labelSmall.w700.textColor(
+                context.grey.shade40,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,

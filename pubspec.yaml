@@ -67,6 +67,7 @@ flutter_gen:
       class_name: Assets
 
 flutter:
+  generate: true
   uses-material-design:
     true
 

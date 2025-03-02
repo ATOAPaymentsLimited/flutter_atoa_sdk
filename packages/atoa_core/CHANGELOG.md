@@ -22,3 +22,7 @@
 # 1.0.5
 
 - fix: Payment APIs
+
+# 1.0.5
+
+- fix: Atoa core revamp

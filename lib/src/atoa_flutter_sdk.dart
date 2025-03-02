@@ -6,7 +6,7 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/bank_selection_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -36,7 +36,7 @@ class AtoaSdk {
   /// payment status polling interval
   final Duration? interval;
 
-  static Future<void> show(
+  static Future<TransactionDetails?> show(
     BuildContext context, {
     required String paymentId,
     required String authKey,
@@ -54,20 +54,24 @@ class AtoaSdk {
     BrandingColorUtility.brandingBackgroundColor = brandingBackgroundColor;
     BrandingColorUtility.brandingForegroundColor = brandingForegroundColor;
     await configureInjection(env.name);
-
     getIt.get<Atoa>().initialize();
 
-    if (!context.mounted) return;
-    return showHowPaymentWorks
-        ? HowToMakePaymentBottomSheet.show(
-            context,
-            isHelp: false,
-            paymentId: paymentId,
-          )
-        : BankSelectionBottomSheet.show(
-            context,
-            paymentId: paymentId,
-          );
+    if (!context.mounted) return null;
+    final TransactionDetails? transactionDetails;
+
+    if (showHowPaymentWorks) {
+      transactionDetails = await HowToMakePaymentBottomSheet.show(
+        context,
+        isHelp: false,
+        paymentId: paymentId,
+      );
+    } else {
+      transactionDetails = await BankSelectionBottomSheet.show(
+        context,
+        paymentId: paymentId,
+      );
+    }
+    return transactionDetails;
   }
 
   static Future<String> getPaymentRequestId({required double amount}) async {
@@ -103,7 +107,6 @@ class AtoaSdk {
         'orderId': '242u9384jfjkw',
         'currency': 'GBP',
         'amount': amount,
-        //  'institutionId': 'modelo-sandbox',
         'paymentType': 'TRANSACTION',
         'autoRedirect': false,
         'callbackParams': {

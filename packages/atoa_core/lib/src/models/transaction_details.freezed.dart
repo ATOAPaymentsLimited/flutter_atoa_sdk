@@ -39,7 +39,6 @@ mixin _$TransactionDetails {
 
   /// The date and time when the transaction was created.
   String get createdAt => throw _privateConstructorUsedError;
-  PaymentType get paymentType => throw _privateConstructorUsedError;
 
   /// Optional: Unique identifier for the payment, if available.
   String? get paymentId => throw _privateConstructorUsedError;
@@ -127,7 +126,6 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
       TransactionStatus status,
       String createdAt,
-      PaymentType paymentType,
       String? paymentId,
       String? updatedAt,
       String? bankName,
@@ -180,7 +178,6 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
     Object? currency = null,
     Object? status = null,
     Object? createdAt = null,
-    Object? paymentType = null,
     Object? paymentId = freezed,
     Object? updatedAt = freezed,
     Object? bankName = freezed,
@@ -231,10 +228,6 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentType: null == paymentType
-          ? _value.paymentType
-          : paymentType // ignore: cast_nullable_to_non_nullable
-              as PaymentType,
       paymentId: freezed == paymentId
           ? _value.paymentId
           : paymentId // ignore: cast_nullable_to_non_nullable
@@ -404,7 +397,6 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
       @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
       TransactionStatus status,
       String createdAt,
-      PaymentType paymentType,
       String? paymentId,
       String? updatedAt,
       String? bankName,
@@ -459,7 +451,6 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
     Object? currency = null,
     Object? status = null,
     Object? createdAt = null,
-    Object? paymentType = null,
     Object? paymentId = freezed,
     Object? updatedAt = freezed,
     Object? bankName = freezed,
@@ -510,10 +501,6 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      paymentType: null == paymentType
-          ? _value.paymentType
-          : paymentType // ignore: cast_nullable_to_non_nullable
-              as PaymentType,
       paymentId: freezed == paymentId
           ? _value.paymentId
           : paymentId // ignore: cast_nullable_to_non_nullable
@@ -625,7 +612,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
       @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
       required this.status,
       required this.createdAt,
-      required this.paymentType,
       this.paymentId,
       this.updatedAt,
       this.bankName,
@@ -680,8 +666,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   /// The date and time when the transaction was created.
   @override
   final String createdAt;
-  @override
-  final PaymentType paymentType;
 
   /// Optional: Unique identifier for the payment, if available.
   @override
@@ -771,7 +755,7 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
 
   @override
   String toString() {
-    return 'TransactionDetails(paymentIdempotencyId: $paymentIdempotencyId, applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentType: $paymentType, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, payer: $payer, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId)';
+    return 'TransactionDetails(paymentIdempotencyId: $paymentIdempotencyId, applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, payer: $payer, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId)';
   }
 
   @override
@@ -790,8 +774,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.paymentType, paymentType) ||
-                other.paymentType == paymentType) &&
             (identical(other.paymentId, paymentId) ||
                 other.paymentId == paymentId) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -846,7 +828,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         currency,
         status,
         createdAt,
-        paymentType,
         paymentId,
         updatedAt,
         bankName,
@@ -899,7 +880,6 @@ abstract class _TransactionDetails extends TransactionDetails {
       @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
       required final TransactionStatus status,
       required final String createdAt,
-      required final PaymentType paymentType,
       final String? paymentId,
       final String? updatedAt,
       final String? bankName,
@@ -954,8 +934,6 @@ abstract class _TransactionDetails extends TransactionDetails {
   /// The date and time when the transaction was created.
   @override
   String get createdAt;
-  @override
-  PaymentType get paymentType;
 
   /// Optional: Unique identifier for the payment, if available.
   @override

@@ -97,13 +97,9 @@ class CustomStatusContainer extends StatelessWidget {
                           Expanded(
                             child: CustomText.semantics(
                               status,
-                              style: context.bodyLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                  )
-                                  .textColor(
-                                    context.intactColors.black,
-                                  ),
+                              style: context.figtree.bodyLarge.w700.textColor(
+                                context.intactColors.black,
+                              ),
                             ),
                           ),
                         ],
@@ -124,7 +120,8 @@ class CustomStatusContainer extends StatelessWidget {
                           ),
                           child: CustomText.semantics(
                             context.l10n.callBank,
-                            style: context.bodyLarge?.w700.height150.textColor(
+                            style: context.figtree.bodyLarge.w700.height150
+                                .textColor(
                               context.intactColors.black,
                             ),
                           ),

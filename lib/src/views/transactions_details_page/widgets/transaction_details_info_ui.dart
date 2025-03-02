@@ -7,7 +7,6 @@ import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/pay
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/payment_tax_details.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
 
 class TransactionDetailsInfoUi extends StatefulWidget {
@@ -55,7 +54,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         tapBodyToCollapse: true,
         hasIcon: false,
         iconColor: context.grey.shade20,
-        iconSize: 32.sp,
+        iconSize: Spacing.large.value * 2,
         tapHeaderToExpand: true,
         iconPadding: EdgeInsets.zero,
         useInkWell: false,
@@ -112,9 +111,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (transactionDetails.paymentType == PaymentType.TRANSACTION) ...[
-              PaymentTaxDetails(transactionDetails: transactionDetails),
-            ],
+            PaymentTaxDetails(transactionDetails: transactionDetails),
             Padding(
               padding: Spacing.medium.all,
               child: Column(

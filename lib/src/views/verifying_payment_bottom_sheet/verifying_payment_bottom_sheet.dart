@@ -1,17 +1,13 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
-import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/dotted_line_painter.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/cancel_confirmation_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/error_widget.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/payment_status_view.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
+import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/payment_status_view.dart';
+import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/verifying_payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
-import 'package:regal/regal.dart';
 
 class VerifyingPaymentBottomSheet extends StatelessWidget {
   const VerifyingPaymentBottomSheet({
@@ -92,110 +88,9 @@ class VerifyingPaymentBottomSheet extends StatelessWidget {
                   isCompleted: paymentState.details!.isCompleted,
                 );
               }
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Spacing.huge.yBox * 4,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Assets.images.redBackAtoaLogo.image(
-                        width: Spacing.huge.value * 2,
-                        height: Spacing.huge.value * 2,
-                      ),
-                      Spacing.medium.xBox,
-                      Assets.gifs.dotLoading.lottie(
-                        width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
-                      ),
-                      Spacing.medium.xBox,
-                      CachedNetworkImage(
-                        imageUrl: bankState.selectedBank?.bankIcon ?? '',
-                        width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
-                        height:
-                            Spacing.xtraLarge.value * 2 + Spacing.mini.value,
-                      ),
-                    ],
-                  ),
-                  Spacing.large.yBox * 2,
-                  CustomText.semantics(
-                    context.l10n.verifyingYourPayment,
-                    style: context.figtree.titleSmall.w700
-                        .textColor(context.intactColors.black),
-                    textAlign: TextAlign.center,
-                  ),
-                  Spacing.large.yBox,
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: CustomTextSpan.semantics(
-                      text: context.l10n.noteWithColon,
-                      style: context.figtree.bodyMedium.w700.textColor(
-                        NeutralColors.light().grey.shade500,
-                      ),
-                      children: [
-                        CustomTextSpan.semantics(
-                          text: context.l10n.doNotCloseWarning,
-                          style: context.figtree.bodyMedium.w500.textColor(
-                            NeutralColors.light().grey.shade500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Spacing.huge.yBox * 4,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomText.semantics(
-                        context.l10n.couldNotCompletePayment,
-                        style: context.figtree.bodyLarge.w600.textColor(
-                          NeutralColors.light().grey.shade600,
-                        ),
-                      ),
-                      Spacing.tiny.xBox,
-                      CustomInkWell(
-                        semanticsLabel: context.l10n.cancel,
-                        context: context,
-                        trackLabel: 'Cancel',
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CustomText.semantics(
-                              context.l10n.change,
-                              style: context.figtree.bodyLarge.w700.textColor(
-                                BrandColors.light().primary.shade500,
-                              ),
-                            ),
-                            CustomPaint(
-                              size: Size(
-                                Spacing.huge.value * 2 +
-                                    Spacing.mini.value +
-                                    Spacing.tiny.value,
-                                1,
-                              ),
-                              painter: DottedLinePainter(
-                                color: BrandColors.light().primary.shade500,
-                              ),
-                            ),
-                          ],
-                        ),
-                        onTap: () async {
-                          final res = await CancelConfirmationBottomSheet.show(
-                            context,
-                          );
-
-                          if (res != null && res) {
-                            if (!context.mounted) {
-                              return;
-                            }
-                            Navigator.pop(context, true);
-                            await bankInstitutionController.cancelPayment();
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                  Spacing.xtraLarge.yBox,
-                ],
+              return VerifyingPaymentView(
+                bankInstitutionController: bankInstitutionController,
+                bankState: bankState,
               );
             },
           ),

@@ -3,7 +3,6 @@ import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
 
 class CollapsedPaymentDetailsWidget extends StatelessWidget {
@@ -30,7 +29,6 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
                   right: BorderSide(color: context.grey.shade10),
                 )
               : Border.all(
-                  width: 1.sp,
                   color: context.grey.shade10,
                 ),
           borderRadius: isExpanded
@@ -42,7 +40,7 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
                     Spacing.medium.value,
                   ),
                 )
-              : BorderRadius.circular(12.r),
+              : Spacing.medium.brAll,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,10 +56,7 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
                 Spacing.small.xBox,
                 CustomText.semantics(
                   context.l10n.paymentDetails,
-                  style: context.bodyLarge
-                      ?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      )
+                  style: context.figtree.bodyLarge.w600
                       .textColor(context.intactColors.black),
                 ),
               ],

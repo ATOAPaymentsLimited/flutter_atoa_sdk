@@ -2989,4 +2989,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get debitedFrom => 'Debited from';
+
+  @override
+  String transactionDateAndTime(String time, String date) {
+    return '$time on $date';
+  }
 }

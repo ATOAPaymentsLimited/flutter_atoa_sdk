@@ -1637,5 +1637,18 @@
     "change": "Change",
     "cancelThePayment": "Cancel the payment?",
     "cancelThePaymentDesc": "Are you sure you want to cancel this payment? This action cannot be undone.",
-    "debitedFrom": "Debited from"
+    "debitedFrom": "Debited from",
+    "transactionDateAndTime": "{time} on {date}",
+    "@transactionDateAndTime": {
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "example": "time"
+            },
+            "date": {
+                "type": "String",
+                "example": "date"
+            }
+        }
+    }
 }

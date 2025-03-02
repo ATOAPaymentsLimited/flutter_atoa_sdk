@@ -14,7 +14,6 @@ import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.da
 import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart'
     as _i333;
 import 'package:atoa_flutter_sdk/src/di/modules/app_module.dart' as _i80;
-import 'package:atoa_flutter_sdk/src/utility/shared_prefs.dart' as _i340;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -31,7 +30,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final appModule = _$AppModule();
     gh.lazySingleton<_i182.Atoa>(() => appModule.atoa);
-    gh.lazySingleton<_i340.SharedPrefs>(() => _i340.SharedPrefs());
     gh.factoryParam<_i333.PaymentStatusController, Duration, dynamic>((
       interval,
       _,

@@ -61,7 +61,7 @@ class PayNowBottomSheet extends StatelessWidget {
                 children: [
                   CustomText.semantics(
                     'Total',
-                    style: context.bodyLarge?.copyWith(
+                    style: context.bodyLarge!.copyWith(
                       color: context.grey.shade40,
                       fontWeight: FontWeight.w600,
                     ),

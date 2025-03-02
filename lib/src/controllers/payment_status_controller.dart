@@ -20,9 +20,7 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
   final Duration _interval;
   final Atoa _atoa;
 
-  void startListening(
-    String paymentIdempotencyId,
-  ) {
+  void startListening(String paymentIdempotencyId) {
     _subscription?.cancel();
     _subscription = null;
 

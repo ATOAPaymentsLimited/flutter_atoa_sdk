@@ -69,16 +69,3 @@ class TransactionStatus with _$TransactionStatus {
     );
   }
 }
-
-extension TransactionStatusX on TransactionStatus {
-  String get toJson => map(
-        completed: (_) => 'COMPLETED',
-        pending: (_) => 'PENDING',
-        failed: (_) => 'FAILED',
-        refunded: (_) => 'REFUNDED',
-        awaitingAuthorization: (_) => 'AWAITING_AUTHORIZATION',
-        cancelled: (_) => 'CANCELLED',
-        expired: (_) => 'EXPIRED',
-        unknown: (_) => 'UNKNOWN',
-      );
-}

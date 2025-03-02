@@ -1,5 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/widgets/atoa_terms_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/atoa_terms_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -14,8 +14,8 @@ class AtoaTermAndServiceWidget extends StatelessWidget {
         children: [
           CustomGestureDetector(
             context: context,
-            trackLabel: '',
-            semanticsLabel: '',
+            trackLabel: 'Atoa terms and policy',
+            semanticsLabel: context.l10n.atoaTermsAndPolicy,
             onTap: () => {
               AtoaTermsBottomSheet.show(context),
             },
