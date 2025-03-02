@@ -68,6 +68,7 @@ class CustomStatusContainer extends StatelessWidget {
                             padding: Spacing.mini.all,
                             child: Lottie.asset(
                               svgAsset,
+                              package: 'atoa_flutter_sdk',
                             ),
                           )
                         : Padding(
@@ -80,6 +81,7 @@ class CustomStatusContainer extends StatelessWidget {
                               ),
                               height: size,
                               width: size,
+                              package: 'atoa_flutter_sdk',
                             ),
                           ),
                   ),
