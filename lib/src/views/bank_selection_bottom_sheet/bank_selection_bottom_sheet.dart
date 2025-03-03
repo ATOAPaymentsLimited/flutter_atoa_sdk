@@ -8,7 +8,8 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/failure_listener.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/back_button.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_back_button.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_list_item.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_tab_bar.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/business_bank_tab_view.dart';
@@ -90,7 +91,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   void dispose() {
     _tabController.dispose();
     _searchController.dispose();
-
     super.dispose();
   }
 
@@ -170,7 +170,8 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                           else if (state.bankList.isEmpty) ...[
                             CustomText.semantics(
                               context.l10n.results,
-                              style: context.figtree.bodyMedium.w700.textColor(
+                              style:
+                                  kFigtreeTextTheme.bodyMedium?.w700.textColor(
                                 NeutralColors.light().grey.shade500,
                               ),
                             ),
@@ -186,7 +187,8 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                           ] else ...[
                             CustomText.semantics(
                               context.l10n.results,
-                              style: context.figtree.bodyMedium.w700.textColor(
+                              style:
+                                  kFigtreeTextTheme.bodyMedium?.w700.textColor(
                                 NeutralColors.light().grey.shade500,
                               ),
                             ),
@@ -243,7 +245,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
       if (!mounted) {
         return;
       }
-      if (verify != null && verify) Navigator.pop(context);
+      if (verify != null) Navigator.pop(context, verify);
     }
   }
 }

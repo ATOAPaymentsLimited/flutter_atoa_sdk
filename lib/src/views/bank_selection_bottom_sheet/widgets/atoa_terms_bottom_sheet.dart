@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/atoa_term_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -14,7 +15,7 @@ class AtoaTermsBottomSheet extends StatelessWidget {
       showLedgerBottomSheet<void>(
         context: context,
         backgroundColor: context.intactColors.white,
-        titleStyle: context.figtree.labelMedium.w700.textColor(
+        titleStyle: kFigtreeTextTheme.labelMedium?.w700.textColor(
           NeutralColors.light().grey.shade700,
         ),
         title: context.l10n.termsAndPolicy,
@@ -41,8 +42,8 @@ class AtoaTermsBottomSheet extends StatelessWidget {
           Spacing.huge.yBox,
           CustomText.semantics(
             context.l10n.atoaYapilyText,
-            style: context.figtree.bodyMedium
-                .textColor(NeutralColors.light().grey.shade600),
+            style: kFigtreeTextTheme.bodyMedium
+                ?.textColor(NeutralColors.light().grey.shade600),
           ),
           Spacing.huge.yBox,
         ],

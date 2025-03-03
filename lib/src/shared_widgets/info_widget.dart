@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -26,8 +27,8 @@ class InfoWidget extends StatelessWidget {
             Expanded(
               child: CustomText.semantics(
                 text,
-                style: context.figtree.bodyMedium
-                    .textColor(
+                style: kFigtreeTextTheme.bodyMedium
+                    ?.textColor(
                       SemanticsColors.light().info.darker,
                     )
                     .copyWith(fontSize: fontSize),

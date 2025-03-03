@@ -1,5 +1,6 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
@@ -63,7 +64,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
         onClear: () {
           context.read<BankInstitutionsController>().search('');
         },
-        textStyle: context.figtree.labelSmall.w600.textColor(
+        textStyle: kFigtreeTextTheme.labelSmall?.w600.textColor(
           context.intactColors.black,
         ),
         border: BorderSide(color: NeutralColors.light().grey.shade100),
@@ -72,7 +73,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
           children: [
             CustomText.semantics(
               context.l10n.searchYour,
-              style: context.figtree.labelSmall.w500.textColor(
+              style: kFigtreeTextTheme.labelSmall?.w500.textColor(
                 NeutralColors.light().grey.shade500,
               ),
             ),
@@ -91,7 +92,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                           _showPersonalBanks
                               ? context.l10n.personalBanks
                               : context.l10n.personalBanks,
-                          style: context.figtree.labelSmall.w500.textColor(
+                          style: kFigtreeTextTheme.labelSmall?.w500.textColor(
                             NeutralColors.light().grey.shade500,
                           ),
                         ),
@@ -108,7 +109,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                           _showPersonalBanks
                               ? context.l10n.personalBanks
                               : context.l10n.personalBanks,
-                          style: context.figtree.labelSmall.w500.textColor(
+                          style: kFigtreeTextTheme.labelSmall?.w500.textColor(
                             NeutralColors.light().grey.shade500,
                           ),
                         ),

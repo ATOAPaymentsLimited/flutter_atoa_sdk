@@ -53,7 +53,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         headerAlignment: ExpandablePanelHeaderAlignment.center,
         tapBodyToCollapse: true,
         hasIcon: false,
-        iconColor: context.grey.shade20,
+        iconColor: NeutralColors.light().grey.shade400,
         iconSize: Spacing.large.value * 2,
         tapHeaderToExpand: true,
         iconPadding: EdgeInsets.zero,
@@ -63,16 +63,21 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
 
   @override
   Widget build(BuildContext context) {
-    Widget collapsed({bool isExpanded = false}) => CustomGestureDetector(
-          context: context,
-          onTap: _expandableController.toggle,
-          trackLabel: 'View Payment Details',
-          semanticsLabel: context.l10n.viewTransactionDetails,
-          child: CollapsedPaymentDetailsWidget(
-            transactionDetails: widget.transactionDetails,
-            isExpanded: isExpanded,
-            theme: expandableTheme,
-          ),
+    Widget collapsed({bool isExpanded = false}) => Column(
+          children: [
+            CustomGestureDetector(
+              context: context,
+              onTap: _expandableController.toggle,
+              trackLabel: 'View Payment Details',
+              semanticsLabel: context.l10n.viewTransactionDetails,
+              child: CollapsedPaymentDetailsWidget(
+                transactionDetails: widget.transactionDetails,
+                isExpanded: isExpanded,
+                theme: expandableTheme,
+              ),
+            ),
+            if (!_expandableController.value) Spacing.huge.yBox * 4,
+          ],
         );
 
     return ExpandablePanel(
@@ -95,9 +100,9 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         decoration: BoxDecoration(
           color: context.intactColors.white,
           border: Border(
-            bottom: BorderSide(color: context.grey.shade10),
-            left: BorderSide(color: context.grey.shade10),
-            right: BorderSide(color: context.grey.shade10),
+            bottom: BorderSide(color: NeutralColors.light().grey.shade400),
+            left: BorderSide(color: NeutralColors.light().grey.shade400),
+            right: BorderSide(color: NeutralColors.light().grey.shade400),
           ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(

@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/custom_switcher.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
@@ -29,7 +30,7 @@ class BankTabBar extends StatelessWidget {
                         e,
                         CustomText.semantics(
                           e.toText(context),
-                          style: context.figtree.labelSmall.copyWith(
+                          style: kFigtreeTextTheme.labelSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Figtree',
                             height: 1.5,

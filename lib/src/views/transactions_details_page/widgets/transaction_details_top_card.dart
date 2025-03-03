@@ -2,7 +2,9 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
+import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/highlighted_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -42,7 +44,7 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: Spacing.large.top + Spacing.xtraLarge.x,
+        padding: Spacing.xtraLarge.x,
         child: Column(
           children: [
             Builder(
@@ -52,15 +54,15 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                   context: context,
                   trackLabel: 'Profile Picture',
                   child: UserAvatar(
-                    size: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
+                    size: Spacing.xtraLarge.value * 2,
                     url: widget.transactionDetails.avatar,
                     placeholder: Container(
-                      height: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
-                      width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
+                      height: Spacing.xtraLarge.value * 2,
+                      width: Spacing.xtraLarge.value * 2,
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Spacing.small.value),
-                        color: context.grey.shade10,
+                        color: NeutralColors.light().grey.shade400,
                       ),
                       child: Center(
                         child: CustomText.semantics(
@@ -82,17 +84,15 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                     duration: const Duration(milliseconds: 300),
                     child: showAnimation
                         ? Assets.gifs.tickMark.lottie(
-                            height: Spacing.xtraLarge.value * 2 +
-                                Spacing.tiny.value,
-                            width: Spacing.xtraLarge.value * 2 +
-                                Spacing.tiny.value,
+                            height: Spacing.xtraLarge.value * 2,
+                            width: Spacing.xtraLarge.value * 2,
                           )
                         : userAvatar,
                   ),
                 );
               },
             ),
-            Spacing.large.yBox,
+            Spacing.medium.yBox,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -103,15 +103,15 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                       children: [
                         CustomTextSpan.semantics(
                           text: context.l10n.to,
-                          style: context.figtree.labelSmall.textColor(
+                          style: kFigtreeTextTheme.bodyLarge?.textColor(
                             context.intactColors.black,
                           ),
                         ),
                         const CustomTextSpan.semantics(text: ' '),
                         CustomTextSpan.semantics(
                           text: widget.transactionDetails.merchantName,
-                          style: context.figtree.labelSmall
-                              .copyWith(
+                          style: kFigtreeTextTheme.bodyLarge
+                              ?.copyWith(
                                 fontWeight: FontWeight.w600,
                               )
                               .textColor(
@@ -127,12 +127,9 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
               ],
             ),
             _getStoreLocation(context),
-            Spacing.xtraLarge.yBox,
-            CustomText.semantics(
-              '£${widget.transactionDetails.paidAmount.toString().formattedAmount()}',
-              style: context.figtree.headlineMedium.textColor(
-                context.intactColors.black,
-              ),
+            Spacing.large.yBox,
+            HighlightedAmount(
+              amount: widget.transactionDetails.paidAmount,
             ),
           ],
         ),
@@ -152,16 +149,18 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Assets.icons.locationOn.svg(
-              colorFilter:
-                  ColorFilter.mode(context.grey.shade40, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                NeutralColors.light().grey.shade400,
+                BlendMode.srcIn,
+              ),
               width: Spacing.xtraLarge.value,
               height: Spacing.xtraLarge.value,
             ),
             Spacing.small.xBox,
             CustomText.semantics(
               locationName,
-              style: context.figtree.labelSmall.w700.textColor(
-                context.grey.shade40,
+              style: kFigtreeTextTheme.labelSmall?.w700.textColor(
+                NeutralColors.light().grey.shade400,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,

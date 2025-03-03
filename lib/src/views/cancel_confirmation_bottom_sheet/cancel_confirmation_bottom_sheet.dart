@@ -1,5 +1,6 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -24,7 +25,7 @@ class CancelConfirmationBottomSheet extends StatelessWidget {
         children: [
           CustomText.semantics(
             context.l10n.cancelThePaymentDesc,
-            style: context.figtree.bodyLarge.w500.textColor(
+            style: kFigtreeTextTheme.bodyLarge?.w500.textColor(
               NeutralColors.light().grey.shade500,
             ),
             textAlign: TextAlign.center,
@@ -38,7 +39,7 @@ class CancelConfirmationBottomSheet extends StatelessWidget {
               Navigator.pop(context, true);
             },
             style: ElevatedButton.styleFrom(
-              textStyle: context.figtree.bodyLarge.w700,
+              textStyle: kFigtreeTextTheme.bodyLarge?.w700,
             ),
             backgroundColor: BrandingColorUtility.brandingBackgroundColor,
             foregroundColor: BrandingColorUtility.brandingForegroundColor,
@@ -52,7 +53,7 @@ class CancelConfirmationBottomSheet extends StatelessWidget {
               Navigator.pop(context, false);
             },
             style: ElevatedButton.styleFrom(
-              textStyle: context.figtree.bodyLarge.w700,
+              textStyle: kFigtreeTextTheme.bodyLarge?.w700,
             ),
             backgroundColor: NeutralColors.light().grey.shade200,
             foregroundColor: context.intactColors.black,

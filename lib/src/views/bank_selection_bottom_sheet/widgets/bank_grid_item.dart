@@ -2,6 +2,7 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -85,10 +86,10 @@ class BankGridItem extends StatelessWidget {
             CustomText.semantics(
               bank.name,
               style: context.read<BankInstitutionsState>().selectedBank == bank
-                  ? context.figtree.bodyMedium.w700.textColor(
+                  ? kFigtreeTextTheme.bodyMedium?.w700.textColor(
                       context.intactColors.black,
                     )
-                  : context.figtree.bodyMedium.w500.textColor(
+                  : kFigtreeTextTheme.bodyMedium?.w500.textColor(
                       context.intactColors.black,
                     ),
               maxLines: 1,

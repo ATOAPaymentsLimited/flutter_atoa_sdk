@@ -6,6 +6,7 @@ import 'dart:ui' as ui;
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/widgets.dart';
@@ -38,7 +39,7 @@ class TransactionDetailsPage extends StatelessWidget {
                 transactionDetails.updatedAt!
                     .formattedDateForPaymentDetails(context),
               ),
-              style: context.figtree.bodyLarge.w700.textColor(
+              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                 context.intactColors.black,
               ),
             )
@@ -49,10 +50,11 @@ class TransactionDetailsPage extends StatelessWidget {
                 transactionDetails.createdAt
                     .formattedDateForPaymentDetails(context),
               ),
-              style: context.figtree.bodyLarge.w700.textColor(
+              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                 context.intactColors.black,
               ),
             ),
+          Spacing.huge.yBox * 2,
           TransactionDetailsTopCard(
             transactionDetails: transactionDetails,
             showRetry: false,

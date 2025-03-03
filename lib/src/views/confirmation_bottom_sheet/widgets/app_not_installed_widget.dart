@@ -1,6 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +42,8 @@ class AppNotInstalledWidget extends StatelessWidget {
               child: RichText(
                 text: CustomTextSpan.semantics(
                   text: context.l10n.recommendingAppInstallPart1,
-                  style: context.figtree.bodyMedium
-                      .textColor(
+                  style: kFigtreeTextTheme.bodyMedium
+                      ?.textColor(
                     SemanticsColors.light().error.darker,
                   )
                       .copyWith(
@@ -58,7 +59,7 @@ class AppNotInstalledWidget extends StatelessWidget {
                     CustomTextSpan.semantics(
                       recognizer: TapGestureRecognizer()..onTap = _launchStore,
                       text: context.l10n.bankApp(name),
-                      style: context.figtree.bodyMedium.w700
+                      style: kFigtreeTextTheme.bodyMedium?.w700
                           .textColor(
                         SemanticsColors.light().error.darker,
                       )

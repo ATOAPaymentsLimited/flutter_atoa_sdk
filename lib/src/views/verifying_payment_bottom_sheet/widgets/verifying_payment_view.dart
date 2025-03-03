@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/cancel_payment_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -25,25 +26,37 @@ class VerifyingPaymentView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Assets.images.redBackAtoaLogo.image(
-                width: Spacing.huge.value * 2,
-                height: Spacing.huge.value * 2,
+                width: Spacing.xtraLarge.value * 2,
+                height: Spacing.xtraLarge.value * 2,
               ),
               Spacing.medium.xBox,
               Assets.gifs.dotLoading.lottie(
                 width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
               ),
               Spacing.medium.xBox,
-              CachedNetworkImage(
-                imageUrl: bankState.selectedBank?.bankIcon ?? '',
-                width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
-                height: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+              Container(
+                padding: Spacing.small.all,
+                width: Spacing.xtraLarge.value * 2,
+                height: Spacing.xtraLarge.value * 2,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: NeutralColors.light().grey.shade100,
+                    width: 1.25,
+                  ),
+                  borderRadius: Spacing.small.brAll,
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: bankState.selectedBank?.bankIcon ?? '',
+                  width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+                  height: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+                ),
               ),
             ],
           ),
           Spacing.large.yBox * 2,
           CustomText.semantics(
             context.l10n.verifyingYourPayment,
-            style: context.figtree.titleSmall.w700
+            style: kFigtreeTextTheme.titleSmall?.w700
                 .textColor(context.intactColors.black),
             textAlign: TextAlign.center,
           ),
@@ -52,13 +65,13 @@ class VerifyingPaymentView extends StatelessWidget {
             textAlign: TextAlign.center,
             text: CustomTextSpan.semantics(
               text: context.l10n.noteWithColon,
-              style: context.figtree.bodyMedium.w700.textColor(
+              style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
                 NeutralColors.light().grey.shade500,
               ),
               children: [
                 CustomTextSpan.semantics(
                   text: context.l10n.doNotCloseWarning,
-                  style: context.figtree.bodyMedium.w500.textColor(
+                  style: kFigtreeTextTheme.bodyMedium?.w500.textColor(
                     NeutralColors.light().grey.shade500,
                   ),
                 ),
@@ -71,7 +84,7 @@ class VerifyingPaymentView extends StatelessWidget {
             children: [
               CustomText.semantics(
                 context.l10n.couldNotCompletePayment,
-                style: context.figtree.bodyLarge.w600.textColor(
+                style: kFigtreeTextTheme.bodyLarge?.w600.textColor(
                   NeutralColors.light().grey.shade600,
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -24,12 +25,12 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
           color: context.intactColors.white,
           border: isExpanded
               ? Border(
-                  top: BorderSide(color: context.grey.shade10),
-                  left: BorderSide(color: context.grey.shade10),
-                  right: BorderSide(color: context.grey.shade10),
+                  top: BorderSide(color: NeutralColors.light().grey.shade400),
+                  left: BorderSide(color: NeutralColors.light().grey.shade400),
+                  right: BorderSide(color: NeutralColors.light().grey.shade400),
                 )
               : Border.all(
-                  color: context.grey.shade10,
+                  color: NeutralColors.light().grey.shade400,
                 ),
           borderRadius: isExpanded
               ? BorderRadius.only(
@@ -56,7 +57,7 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
                 Spacing.small.xBox,
                 CustomText.semantics(
                   context.l10n.paymentDetails,
-                  style: context.figtree.bodyLarge.w600
+                  style: kFigtreeTextTheme.bodyLarge?.w600
                       .textColor(context.intactColors.black),
                 ),
               ],

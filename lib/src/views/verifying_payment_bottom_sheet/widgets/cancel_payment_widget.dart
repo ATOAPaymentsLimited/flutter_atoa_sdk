@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/dotted_line_painter.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/cancel_confirmation_bottom_sheet/cancel_confirmation_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -23,15 +24,13 @@ class CancelPaymentWidget extends StatelessWidget {
           children: [
             CustomText.semantics(
               context.l10n.cancel,
-              style: context.figtree.bodyLarge.w700.textColor(
+              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                 BrandColors.light().primary.shade500,
               ),
             ),
             CustomPaint(
               size: Size(
-                Spacing.huge.value * 2 +
-                    Spacing.mini.value +
-                    Spacing.tiny.value,
+                Spacing.xtraLarge.value * 2.25,
                 1,
               ),
               painter: DottedLinePainter(
@@ -54,7 +53,7 @@ class CancelPaymentWidget extends StatelessWidget {
       if (!context.mounted) {
         return;
       }
-      Navigator.pop(context, true);
+      Navigator.pop(context);
       await bankInstitutionController.cancelPayment();
     }
   }

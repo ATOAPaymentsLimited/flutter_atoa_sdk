@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -30,13 +31,13 @@ class AtoaTermTile extends StatelessWidget {
                 children: [
                   CustomText.semantics(
                     title,
-                    style: context.figtree.bodyLarge.w600.textColor(
+                    style: kFigtreeTextTheme.bodyLarge?.w600.textColor(
                       NeutralColors.light().grey.shade700,
                     ),
                   ),
                   CustomText.semantics(
                     desc,
-                    style: context.figtree.bodyMedium.textColor(
+                    style: kFigtreeTextTheme.bodyMedium?.textColor(
                       NeutralColors.light().grey.shade500,
                     ),
                   ),

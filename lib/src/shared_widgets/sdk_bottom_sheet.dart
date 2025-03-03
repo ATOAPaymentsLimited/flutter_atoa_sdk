@@ -23,7 +23,6 @@ Future<T?> showSdkBottomSheet<T>({
       context: context,
       builder: (dialogContext) => DecoratedBox(
         decoration: BoxDecoration(
-          color: context.intactColors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(Spacing.xtraLarge.value),
             topRight: Radius.circular(Spacing.xtraLarge.value),
@@ -48,8 +47,12 @@ Future<T?> showSdkBottomSheet<T>({
                       child: CustomText.semantics(
                         title,
                         textAlign: TextAlign.center,
-                        style: dialogContext.figtree.labelMedium.w700.height130
-                            .textColor(context.intactColors.black),
+                        style: dialogContext.labelMedium?.w700.height130
+                            .textColor(context.intactColors.black)
+                            .copyWith(
+                              fontFamily: 'Figtree',
+                              package: 'atoa_flutter_sdk',
+                            ),
                       ),
                     ),
                     Spacing.large.xBox,

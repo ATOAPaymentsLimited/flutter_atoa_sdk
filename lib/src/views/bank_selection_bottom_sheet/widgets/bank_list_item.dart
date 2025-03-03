@@ -1,6 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -39,8 +40,8 @@ class BankListItem extends StatelessWidget {
           children: [
             CustomText.semantics(
               bank.name,
-              style: context.figtree.bodyLarge
-                  .textColor(
+              style: kFigtreeTextTheme.bodyLarge
+                  ?.textColor(
                     NeutralColors.light().grey.shade700,
                   )
                   .w500,

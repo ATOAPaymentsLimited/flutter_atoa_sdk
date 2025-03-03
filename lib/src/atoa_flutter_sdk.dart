@@ -15,25 +15,7 @@ import 'package:http/http.dart' as http;
 /// {@endtemplate}
 ///
 class AtoaSdk {
-  const AtoaSdk({
-    required this.paymentId,
-    required this.authKey,
-    required this.env,
-    required this.showHowPaymentWorks,
-    this.brandingColor,
-
-    /// payment status polling interval
-    this.interval = const Duration(seconds: 5),
-  });
-
-  final String paymentId;
-  final String authKey;
-  final AtoaEnv env;
-  final bool showHowPaymentWorks;
-  final Color? brandingColor;
-
-  /// payment status polling interval
-  final Duration? interval;
+  const AtoaSdk();
 
   static Future<TransactionDetails?> show(
     BuildContext context, {
@@ -45,6 +27,8 @@ class AtoaSdk {
     /// payment status polling interval
     Duration interval = const Duration(seconds: 5),
   }) async {
+    WidgetsFlutterBinding.ensureInitialized();
+
     Atoa.env = env;
     Atoa.authKey = authKey;
 

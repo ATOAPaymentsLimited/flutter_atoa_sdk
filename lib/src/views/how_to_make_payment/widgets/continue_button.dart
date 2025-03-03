@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class ContinueButton extends StatelessWidget {
         trackLabel: 'I understand cotinue Button',
         semanticsLabel: context.l10n.iUnderstandContinue,
         style: ElevatedButton.styleFrom(
-          textStyle: context.figtree.bodyLarge.w700,
+          textStyle: kFigtreeTextTheme.bodyLarge?.w700,
         ),
         backgroundColor: BrandingColorUtility.brandingBackgroundColor,
         foregroundColor: BrandingColorUtility.brandingForegroundColor,
@@ -31,12 +32,12 @@ class ContinueButton extends StatelessWidget {
             return;
           }
 
-          await BankSelectionBottomSheet.show(
+          final res = await BankSelectionBottomSheet.show(
             context,
             paymentId: paymentId,
           );
           if (context.mounted) {
-            Navigator.pop(context);
+            Navigator.pop(context, res);
           }
         },
       );

@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -30,7 +31,7 @@ class _StepTile extends StatelessWidget {
             backgroundColor: SemanticsColors.light().info.lighter,
             child: CustomText.semantics(
               step.toString(),
-              style: context.figtree.bodyLarge.w700.textColor(
+              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                 SemanticsColors.light().info.darker,
               ),
             ),
@@ -79,13 +80,13 @@ class _StepTile extends StatelessWidget {
       RichText(
         text: CustomTextSpan.semantics(
           text: text1,
-          style: context.figtree.bodyLarge.textColor(
+          style: kFigtreeTextTheme.bodyLarge?.textColor(
             context.intactColors.black,
           ),
           children: [
             CustomTextSpan.semantics(
               text: text2,
-              style: context.figtree.bodyLarge.w700.textColor(
+              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                 context.intactColors.black,
               ),
             ),

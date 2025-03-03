@@ -1,5 +1,6 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,7 +42,7 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (label.isNotEmpty)
                     CustomText.semantics(
                       label,
-                      style: context.figtree.bodyMedium.height150
+                      style: kFigtreeTextTheme.bodyMedium?.height150
                           .textColor(context.intactColors.black),
                     ),
                   Spacing.mini.yBox,
@@ -68,7 +69,7 @@ class PaymentDetailsRow extends StatelessWidget {
                     height: Spacing.huge.value,
                     width: Spacing.huge.value,
                     colorFilter: ColorFilter.mode(
-                      context.grey.shade40,
+                      NeutralColors.light().grey.shade400,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -100,7 +101,7 @@ class PaymentDetailsRow extends StatelessWidget {
               Spacing.small.value,
             ),
           ),
-          border: Border.all(color: context.grey.shade20),
+          border: Border.all(color: NeutralColors.light().grey.shade400),
         ),
         child: Padding(
           padding: Spacing.mini.all,
@@ -118,7 +119,7 @@ class PaymentDetailsRow extends StatelessWidget {
           Flexible(
             child: CustomText.semantics(
               value,
-              style: context.figtree.bodyMedium.w600
+              style: kFigtreeTextTheme.bodyMedium?.w600
                   .textColor(context.intactColors.black),
             ),
           ),
@@ -128,7 +129,7 @@ class PaymentDetailsRow extends StatelessWidget {
                 subValue!.isEmpty
                     ? ''
                     : 'xxxxx${subValue!.length > 3 ? subValue!.substring(subValue!.length - 3) : subValue!}',
-                style: context.figtree.bodyMedium.w600
+                style: kFigtreeTextTheme.bodyMedium?.w600
                     .textColor(context.intactColors.black),
               ),
             )
@@ -136,7 +137,7 @@ class PaymentDetailsRow extends StatelessWidget {
             Flexible(
               child: CustomText.semantics(
                 subValue!.isEmpty ? '' : subValue!,
-                style: context.figtree.bodyMedium.w600
+                style: kFigtreeTextTheme.bodyMedium?.w600
                     .textColor(context.intactColors.black),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/transaction_details_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,7 +34,6 @@ class CustomStatusContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        width: double.infinity,
         decoration: BoxDecoration(
           color: iconBgColor?.withOpacity(0.10) ??
               TransactionDetailsUtility.getBackgroundColor(
@@ -97,7 +97,8 @@ class CustomStatusContainer extends StatelessWidget {
                           Expanded(
                             child: CustomText.semantics(
                               status,
-                              style: context.figtree.bodyLarge.w700.textColor(
+                              style:
+                                  kFigtreeTextTheme.bodyLarge?.w700.textColor(
                                 context.intactColors.black,
                               ),
                             ),
@@ -120,7 +121,7 @@ class CustomStatusContainer extends StatelessWidget {
                           ),
                           child: CustomText.semantics(
                             context.l10n.callBank,
-                            style: context.figtree.bodyLarge.w700.height150
+                            style: kFigtreeTextTheme.bodyLarge?.w700.height150
                                 .textColor(
                               context.intactColors.black,
                             ),
@@ -145,7 +146,7 @@ class CustomStatusContainer extends StatelessWidget {
   ) =>
       CustomText.semantics(
         desc,
-        style: context.figtree.bodyMedium.textColor(
+        style: kFigtreeTextTheme.bodyMedium?.textColor(
           context.intactColors.black,
         ),
       );

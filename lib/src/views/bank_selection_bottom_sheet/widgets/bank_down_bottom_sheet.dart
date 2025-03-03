@@ -1,8 +1,8 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -53,7 +53,7 @@ class BankDownBottomSheet extends StatelessWidget {
                 Spacing.small.xBox,
                 CustomText.semantics(
                   context.l10n.downTime,
-                  style: context.figtree.bodySmall.w700.textColor(
+                  style: kFigtreeTextTheme.bodySmall?.w700.textColor(
                     SemanticsColors.light().error.darker,
                   ),
                 ),
@@ -64,13 +64,13 @@ class BankDownBottomSheet extends StatelessWidget {
           RichText(
             text: CustomTextSpan.semantics(
               text: bank.name,
-              style: context.figtree.bodyLarge.w700.textColor(
+              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                 context.intactColors.black,
               ),
               children: [
                 CustomTextSpan.semantics(
                   text: context.l10n.bankDown,
-                  style: context.figtree.bodyLarge.textColor(
+                  style: kFigtreeTextTheme.bodyLarge?.textColor(
                     context.intactColors.black,
                   ),
                 ),
@@ -85,7 +85,7 @@ class BankDownBottomSheet extends StatelessWidget {
             trackLabel: context.l10n.okay,
             enableTracking: false,
             style: ElevatedButton.styleFrom(
-              textStyle: context.figtree.bodyLarge.w700,
+              textStyle: kFigtreeTextTheme.bodyLarge?.w700,
             ),
             backgroundColor: NeutralColors.light().grey.shade100,
             foregroundColor: context.intactColors.black,

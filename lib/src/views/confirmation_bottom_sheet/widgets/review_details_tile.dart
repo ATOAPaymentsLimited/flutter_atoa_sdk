@@ -2,6 +2,7 @@ import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/dotted_line_painter.dart';
+import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class ReviewDetailsTile extends StatelessWidget {
                 children: [
                   CustomText.semantics(
                     isBankInfo ? context.l10n.payingTo : context.l10n.from,
-                    style: context.figtree.bodyMedium.textColor(
+                    style: kFigtreeTextTheme.bodyMedium?.textColor(
                       NeutralColors.light().grey.shade500,
                     ),
                   ),
@@ -60,7 +61,7 @@ class ReviewDetailsTile extends StatelessWidget {
                     isBankInfo
                         ? state.paymentDetails?.merchantBusinessName ?? ''
                         : state.selectedBank?.name ?? '',
-                    style: context.figtree.bodyLarge.w700.textColor(
+                    style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                       context.intactColors.black,
                     ),
                   ),
@@ -78,7 +79,7 @@ class ReviewDetailsTile extends StatelessWidget {
                   children: [
                     CustomText.semantics(
                       context.l10n.change,
-                      style: context.figtree.bodyLarge.w700.textColor(
+                      style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                         BrandColors.light().primary.shade500,
                       ),
                     ),
@@ -105,7 +106,7 @@ class ReviewDetailsTile extends StatelessWidget {
                           currencySymbol: context.l10n.currencySymbol,
                         ) ??
                     '',
-                style: context.figtree.titleSmall.w700.textColor(
+                style: kFigtreeTextTheme.titleSmall?.w700.textColor(
                   context.intactColors.black,
                 ),
               ),
