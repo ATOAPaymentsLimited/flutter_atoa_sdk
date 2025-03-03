@@ -62,6 +62,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/help.svg
   SvgGenImage get help => const SvgGenImage('assets/icons/help.svg');
 
+  /// File path: assets/icons/icon_back.svg
+  SvgGenImage get iconBack => const SvgGenImage('assets/icons/icon_back.svg');
+
   /// File path: assets/icons/icon_block.svg
   SvgGenImage get iconBlock => const SvgGenImage('assets/icons/icon_block.svg');
 
@@ -109,6 +112,7 @@ class $AssetsIconsGen {
         copy,
         externalLink,
         help,
+        iconBack,
         iconBlock,
         iconError,
         iconExclamation,

@@ -117,7 +117,6 @@ class ActionButton extends StatelessWidget {
       paymentId: controller.text.trim(),
       authKey: 'access-key',
       showHowPaymentWorks: false,
-      brandingBackgroundColor: Colors.blue,
       env: env,
     );
   }

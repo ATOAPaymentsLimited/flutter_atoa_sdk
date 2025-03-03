@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
+import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -74,6 +76,46 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     }
   }
 
+  Future<void> getPaymentDetails() async {
+    state = state.copyWith(isLoading: true);
+
+    try {
+      final paymentRes =
+          await callServer(() => atoa.getPaymentDetails(paymentId));
+
+      state = state.copyWith(paymentDetails: paymentRes);
+      BrandingColorUtility.brandingBackgroundColor = Color(
+        int.parse(
+          (paymentRes.merchantThemeDetails?.colorCode ?? '').replaceFirst(
+            '#',
+            '0xFF',
+          ),
+        ),
+      );
+
+      BrandingColorUtility.brandingForegroundColor = Color(
+        int.parse(
+          (paymentRes.merchantThemeDetails?.foregroundColor ?? '').replaceFirst(
+            '#',
+            '0xFF',
+          ),
+        ),
+      );
+    } on AtoaException catch (e) {
+      state = state.copyWith(
+        paymentDetails: null,
+        error: e,
+      );
+    } on Exception catch (e) {
+      state = state.copyWith(
+        paymentDetails: null,
+        error: e,
+      );
+    } finally {
+      state = state.copyWith(error: null, isLoading: false);
+    }
+  }
+
   Future<void> fetchBanks() async {
     state = state.copyWith(isLoading: true);
 
@@ -89,25 +131,6 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(error: e, isLoading: false);
     } on Exception catch (e) {
       state = state.copyWith(error: e, isLoading: false);
-    } finally {
-      state = state.copyWith(error: null, isLoading: false);
-    }
-
-    try {
-      final paymentRes =
-          await callServer(() => atoa.getPaymentDetails(paymentId));
-
-      state = state.copyWith(paymentDetails: paymentRes);
-    } on AtoaException catch (e) {
-      state = state.copyWith(
-        paymentDetails: null,
-        error: e,
-      );
-    } on Exception catch (e) {
-      state = state.copyWith(
-        paymentDetails: null,
-        error: e,
-      );
     } finally {
       state = state.copyWith(error: null, isLoading: false);
     }

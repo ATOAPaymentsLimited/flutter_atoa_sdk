@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:atoa_core/src/models/device_info.dart';
+import 'package:atoa_core/src/models/merchant_theme_data/merchant_theme_details.dart';
 import 'package:atoa_core/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -43,6 +44,7 @@ class PaymentRequestData with _$PaymentRequestData {
     bool? allowSdkRetry,
     @Default(false) bool splitBill,
     @JsonKey(includeIfNull: false) Map<String, dynamic>? options,
+    @JsonKey(includeIfNull: false) MerchantThemeDetails? merchantThemeDetails,
   }) = _PaymentRequestData;
 
   const PaymentRequestData._();

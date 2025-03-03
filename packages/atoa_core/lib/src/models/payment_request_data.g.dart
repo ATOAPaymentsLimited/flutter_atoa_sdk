@@ -44,6 +44,10 @@ _$PaymentRequestDataImpl _$$PaymentRequestDataImplFromJson(
       allowSdkRetry: json['allowSdkRetry'] as bool?,
       splitBill: json['splitBill'] as bool? ?? false,
       options: json['options'] as Map<String, dynamic>?,
+      merchantThemeDetails: json['merchantThemeDetails'] == null
+          ? null
+          : MerchantThemeDetails.fromJson(
+              json['merchantThemeDetails'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PaymentRequestDataImplToJson(
@@ -76,4 +80,6 @@ Map<String, dynamic> _$$PaymentRequestDataImplToJson(
       'allowSdkRetry': instance.allowSdkRetry,
       'splitBill': instance.splitBill,
       if (instance.options case final value?) 'options': value,
+      if (instance.merchantThemeDetails case final value?)
+        'merchantThemeDetails': value,
     };

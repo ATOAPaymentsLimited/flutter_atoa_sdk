@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
@@ -20,52 +21,77 @@ class BankDownBottomSheet extends StatelessWidget {
       showSdkBottomSheet<void>(
         context: context,
         title: '',
+        showTitle: false,
+        titleBottomSpacing: Spacing.medium.value,
         body: (_) => BankDownBottomSheet(
           bank: bank,
         ),
       );
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            InfoWidget(
-              text: context.l10n.downTime,
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: Spacing.small.y + Spacing.medium.x,
+            decoration: BoxDecoration(
+              color: SemanticsColors.light().error.subtle,
+              borderRadius: Spacing.large.brAll,
             ),
-            Spacing.xtraLarge.yBox,
-            RichText(
-              text: CustomTextSpan.semantics(
-                text: bank.name,
-                style: context.figtree.bodyLarge.textColor(
-                  context.intactColors.black,
-                ),
-                children: [
-                  CustomTextSpan.semantics(
-                    text: context.l10n.bankDown,
-                    style: context.figtree.bodyLarge.w700.textColor(
-                      context.intactColors.black,
-                    ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Assets.icons.iconError.svg(
+                  height: Spacing.medium.value,
+                  width: Spacing.medium.value,
+                  colorFilter: ColorFilter.mode(
+                    SemanticsColors.light().error.darker,
+                    BlendMode.srcIn,
                   ),
-                ],
-              ),
+                ),
+                Spacing.small.xBox,
+                CustomText.semantics(
+                  context.l10n.downTime,
+                  style: context.figtree.bodySmall.w700.textColor(
+                    SemanticsColors.light().error.darker,
+                  ),
+                ),
+              ],
             ),
-            Spacing.xtraLarge.yBox,
-            LedgerButton.secondary(
-              onPressed: () async {
-                Navigator.pop(context);
-              },
-              trackLabel: context.l10n.okay,
-              enableTracking: false,
-              style: ElevatedButton.styleFrom(
-                textStyle: context.figtree.bodyLarge.w700,
+          ),
+          Spacing.huge.yBox,
+          RichText(
+            text: CustomTextSpan.semantics(
+              text: bank.name,
+              style: context.figtree.bodyLarge.w700.textColor(
+                context.intactColors.black,
               ),
-              backgroundColor: NeutralColors.light().grey.shade100,
-              foregroundColor: context.intactColors.black,
-              label: context.l10n.continueBtnText,
+              children: [
+                CustomTextSpan.semantics(
+                  text: context.l10n.bankDown,
+                  style: context.figtree.bodyLarge.textColor(
+                    context.intactColors.black,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Spacing.huge.yBox,
+          LedgerButton.secondary(
+            onPressed: () async {
+              Navigator.pop(context);
+            },
+            trackLabel: context.l10n.okay,
+            enableTracking: false,
+            style: ElevatedButton.styleFrom(
+              textStyle: context.figtree.bodyLarge.w700,
+            ),
+            backgroundColor: NeutralColors.light().grey.shade100,
+            foregroundColor: context.intactColors.black,
+            label: context.l10n.okay,
+          ),
+          Spacing.xtraLarge.yBox,
+        ],
       );
 }

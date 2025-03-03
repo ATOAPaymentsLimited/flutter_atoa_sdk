@@ -35,16 +35,17 @@ class VerifyingPaymentBottomSheet extends StatelessWidget {
       state.paymentAuth!.paymentIdempotencyId,
       paymentStatusController,
     );
+    print('333 ${paymentState.details}');
     return showSdkBottomSheet<bool?>(
       context: context,
       onClose: (context) {
         paymentStatusController.stop();
         Navigator.pop(context, true);
       },
-      showCloseButton: paymentState.details == null ||
+      showCloseButton: paymentState.details != null &&
           paymentState.details!.status !=
               const TransactionStatus.awaitingAuthorization(),
-      title: (paymentState.details == null ||
+      title: (paymentState.details != null &&
               paymentState.details!.status !=
                   const TransactionStatus.awaitingAuthorization())
           ? context.l10n.paymentDetails

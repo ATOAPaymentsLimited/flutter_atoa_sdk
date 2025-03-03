@@ -28,8 +28,6 @@ class PayNowBottomSheet extends StatelessWidget {
       // showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
       showHowPaymentWorks: true,
       env: AtoaEnv.sandbox,
-      brandingBackgroundColor: const Color(0xff0052D0),
-      brandingForegroundColor: context.intactColors.white,
 
       /// or AtoaEnv.prod
     );
