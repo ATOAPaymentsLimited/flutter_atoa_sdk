@@ -86,11 +86,9 @@ class BankGridItem extends StatelessWidget {
             CustomText.semantics(
               bank.name,
               style: context.read<BankInstitutionsState>().selectedBank == bank
-                  ? kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                      context.intactColors.black,
-                    )
+                  ? kFigtreeTextTheme.bodyMedium?.w700
                   : kFigtreeTextTheme.bodyMedium?.w500.textColor(
-                      context.intactColors.black,
+                      NeutralColors.light().grey.shade700,
                     ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

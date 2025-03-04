@@ -103,20 +103,12 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                       children: [
                         CustomTextSpan.semantics(
                           text: context.l10n.to,
-                          style: kFigtreeTextTheme.bodyLarge?.textColor(
-                            context.intactColors.black,
-                          ),
+                          style: kFigtreeTextTheme.bodyLarge,
                         ),
                         const CustomTextSpan.semantics(text: ' '),
                         CustomTextSpan.semantics(
                           text: widget.transactionDetails.merchantName,
-                          style: kFigtreeTextTheme.bodyLarge
-                              ?.copyWith(
-                                fontWeight: FontWeight.w600,
-                              )
-                              .textColor(
-                                context.intactColors.black,
-                              ),
+                          style: kFigtreeTextTheme.bodyLarge?.w600,
                         ),
                       ],
                     ),

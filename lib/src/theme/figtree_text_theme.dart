@@ -134,8 +134,8 @@ final kFigtreeTextTheme = TextTheme(
     height: 1.6,
   ),
 ).apply(
-  bodyColor: RegalColors.licoriceBlack,
-  displayColor: RegalColors.licoriceBlack,
+  bodyColor: BaseColors.light().black,
+  displayColor: BaseColors.light().black,
   fontFamily: 'FigTree',
   package: 'atoa_flutter_sdk',
 );

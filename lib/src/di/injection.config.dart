@@ -30,22 +30,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final appModule = _$AppModule();
     gh.lazySingleton<_i182.Atoa>(() => appModule.atoa);
-    gh.factoryParam<_i333.PaymentStatusController, Duration, dynamic>((
-      interval,
-      _,
-    ) =>
-        _i333.PaymentStatusController(
-          atoa: gh<_i182.Atoa>(),
-          interval: interval,
-        ));
-    gh.factoryParam<_i493.BankInstitutionsController, String, dynamic>((
-      paymentId,
-      _,
-    ) =>
-        _i493.BankInstitutionsController(
-          atoa: gh<_i182.Atoa>(),
-          paymentId: paymentId,
-        ));
+    gh.factory<_i493.BankInstitutionsController>(
+        () => _i493.BankInstitutionsController(atoa: gh<_i182.Atoa>()));
+    gh.factory<_i333.PaymentStatusController>(
+        () => _i333.PaymentStatusController(atoa: gh<_i182.Atoa>()));
     return this;
   }
 }

@@ -80,15 +80,11 @@ class _StepTile extends StatelessWidget {
       RichText(
         text: CustomTextSpan.semantics(
           text: text1,
-          style: kFigtreeTextTheme.bodyLarge?.textColor(
-            context.intactColors.black,
-          ),
+          style: kFigtreeTextTheme.bodyLarge,
           children: [
             CustomTextSpan.semantics(
               text: text2,
-              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                context.intactColors.black,
-              ),
+              style: kFigtreeTextTheme.bodyLarge?.w700,
             ),
             CustomTextSpan.semantics(
               text: text3,

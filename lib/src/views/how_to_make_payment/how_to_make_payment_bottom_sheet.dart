@@ -18,36 +18,27 @@ import 'package:regal/regal.dart';
 
 class HowToMakePaymentBottomSheet extends StatefulWidget {
   const HowToMakePaymentBottomSheet({
-    required this.paymentId,
     super.key,
     this.isHelp = true,
   });
 
   final bool isHelp;
-  final String paymentId;
 
   static Future<TransactionDetails?> show(
     BuildContext context, {
-    required String paymentId,
     bool isHelp = true,
   }) =>
       showSdkBottomSheet<TransactionDetails?>(
         context: context,
         title: context.l10n.continueToYourBank,
-        useRootNavigator: true,
         body: (context) => StateNotifierProvider<BankInstitutionsController,
             BankInstitutionsState>(
-          create: (_) => getIt.get<BankInstitutionsController>(
-            param1: paymentId,
-          ),
+          create: (_) => getIt.get<BankInstitutionsController>(),
           builder: (context, child) => StateNotifierProvider<
-              PaymentStatusController, PaymentStatusState>.value(
-            value: getIt.get<PaymentStatusController>(
-              param1: const Duration(seconds: 1),
-            ),
+              PaymentStatusController, PaymentStatusState>(
+            create: (_) => getIt.get<PaymentStatusController>(),
             builder: (contextx, _) => HowToMakePaymentBottomSheet(
               isHelp: isHelp,
-              paymentId: paymentId,
             ),
           ),
         ),
@@ -65,11 +56,10 @@ class _HowToMakePaymentBottomSheetState
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      unawaited(context.read<BankInstitutionsController>().fetchBanks());
-      if (context.read<BankInstitutionsState>().paymentDetails == null) {
-        await context.read<BankInstitutionsController>().getPaymentDetails();
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<BankInstitutionsController>()
+        ..fetchBanks()
+        ..getPaymentDetails();
     });
   }
 
@@ -119,7 +109,8 @@ class _HowToMakePaymentBottomSheetState
               Spacing.huge.yBox,
               ContinueButton(
                 isHelp: widget.isHelp,
-                paymentId: widget.paymentId,
+                bankInstitutionController:
+                    context.read<BankInstitutionsController>(),
               ),
               Spacing.medium.yBox,
               const PoweredByAtoaWidget(),

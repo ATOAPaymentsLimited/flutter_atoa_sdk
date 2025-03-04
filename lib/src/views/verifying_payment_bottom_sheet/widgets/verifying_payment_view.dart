@@ -5,17 +5,13 @@ import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/cancel_payment_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class VerifyingPaymentView extends StatelessWidget {
   const VerifyingPaymentView({
-    required this.bankInstitutionController,
-    required this.bankState,
     super.key,
   });
-
-  final BankInstitutionsController bankInstitutionController;
-  final BankInstitutionsState bankState;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -46,7 +42,11 @@ class VerifyingPaymentView extends StatelessWidget {
                   borderRadius: Spacing.small.brAll,
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: bankState.selectedBank?.bankIcon ?? '',
+                  imageUrl: context
+                          .read<BankInstitutionsState>()
+                          .selectedBank
+                          ?.bankIcon ??
+                      '',
                   width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
                   height: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
                 ),
@@ -56,8 +56,7 @@ class VerifyingPaymentView extends StatelessWidget {
           Spacing.large.yBox * 2,
           CustomText.semantics(
             context.l10n.verifyingYourPayment,
-            style: kFigtreeTextTheme.titleSmall?.w700
-                .textColor(context.intactColors.black),
+            style: kFigtreeTextTheme.titleSmall?.w700,
             textAlign: TextAlign.center,
           ),
           Spacing.large.yBox,
@@ -90,7 +89,8 @@ class VerifyingPaymentView extends StatelessWidget {
               ),
               Spacing.tiny.xBox,
               CancelPaymentWidget(
-                bankInstitutionController: bankInstitutionController,
+                bankInstitutionController:
+                    context.read<BankInstitutionsController>(),
               ),
             ],
           ),

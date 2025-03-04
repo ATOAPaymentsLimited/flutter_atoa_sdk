@@ -20,7 +20,8 @@ class PersonalBanksTabView extends StatelessWidget {
   Widget build(BuildContext context) => Builder(
         builder: (context) {
           final state = context.read<BankInstitutionsState>();
-          if (context.read<BankInstitutionsController>().searchTerm.isEmpty) {
+          if (context.read<BankInstitutionsController>().searchTerm.isEmpty &&
+              state.bankList.isNotEmpty) {
             final popularPersonalBanks = state.popularPersonalBanks;
 
             final normalPersonalBanks = state.normalPersonalBanks;

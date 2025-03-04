@@ -97,10 +97,7 @@ class CustomStatusContainer extends StatelessWidget {
                           Expanded(
                             child: CustomText.semantics(
                               status,
-                              style:
-                                  kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                                context.intactColors.black,
-                              ),
+                              style: kFigtreeTextTheme.bodyLarge?.w700,
                             ),
                           ),
                         ],
@@ -121,10 +118,7 @@ class CustomStatusContainer extends StatelessWidget {
                           ),
                           child: CustomText.semantics(
                             context.l10n.callBank,
-                            style: kFigtreeTextTheme.bodyLarge?.w700.height150
-                                .textColor(
-                              context.intactColors.black,
-                            ),
+                            style: kFigtreeTextTheme.bodyLarge?.w700.height150,
                           ),
                         ),
                       ],
@@ -146,8 +140,6 @@ class CustomStatusContainer extends StatelessWidget {
   ) =>
       CustomText.semantics(
         desc,
-        style: kFigtreeTextTheme.bodyMedium?.textColor(
-          context.intactColors.black,
-        ),
+        style: kFigtreeTextTheme.bodyMedium,
       );
 }

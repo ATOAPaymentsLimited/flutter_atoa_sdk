@@ -18,7 +18,6 @@ class BankListItem extends StatelessWidget {
 
   final BankInstitution bank;
   final Future<void> Function(BankInstitution) onBankSelect;
-
   @override
   Widget build(BuildContext context) => ListTile(
         minLeadingWidth: 0,

@@ -57,8 +57,7 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
                 Spacing.small.xBox,
                 CustomText.semantics(
                   context.l10n.paymentDetails,
-                  style: kFigtreeTextTheme.bodyLarge?.w600
-                      .textColor(context.intactColors.black),
+                  style: kFigtreeTextTheme.bodyLarge?.w600,
                 ),
               ],
             ),

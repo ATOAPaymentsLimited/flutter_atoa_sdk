@@ -21,47 +21,50 @@ import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmatio
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/widgets/animated_search_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class BankSelectionBottomSheet extends StatefulWidget {
-  const BankSelectionBottomSheet({
-    required this.paymentId,
-    super.key,
-  });
+  const BankSelectionBottomSheet({super.key, this.bankInstitutionController});
 
-  final String paymentId;
+  final BankInstitutionsController? bankInstitutionController;
 
   static Future<TransactionDetails?> show(
     BuildContext context, {
-    required String paymentId,
+    BankInstitutionsController? bankInstitutionController,
   }) =>
       showSdkBottomSheet<TransactionDetails?>(
         context: context,
         title: context.l10n.selectYourBank,
         titleBottomSpacing: Spacing.large.value,
-        useRootNavigator: true,
         leadingTopWidget: const BankBackButton(),
-        trailingTopWidget: HelpIconButton(
-          paymentId: paymentId,
-        ),
-        body: (context) => StateNotifierProvider<BankInstitutionsController,
-            BankInstitutionsState>(
-          create: (_) => getIt.get<BankInstitutionsController>(
-            param1: paymentId,
-          ),
-          builder: (context, child) => StateNotifierProvider<
-              PaymentStatusController, PaymentStatusState>.value(
-            value: getIt.get<PaymentStatusController>(
-              param1: const Duration(seconds: 1),
-            ),
-            builder: (contextx, _) => BankSelectionBottomSheet(
-              paymentId: paymentId,
-            ),
-          ),
-        ),
+        trailingTopWidget: const HelpIconButton(),
+        body: (context) => bankInstitutionController == null
+            ? StateNotifierProvider<BankInstitutionsController,
+                BankInstitutionsState>(
+                create: (_) => getIt.get<BankInstitutionsController>(),
+                builder: (context, child) => StateNotifierProvider<
+                    PaymentStatusController, PaymentStatusState>(
+                  create: (_) => getIt.get<PaymentStatusController>(),
+                  builder: (context, _) => BankSelectionBottomSheet(
+                    bankInstitutionController: bankInstitutionController,
+                  ),
+                ),
+              )
+            : StateNotifierProvider<BankInstitutionsController,
+                BankInstitutionsState>.value(
+                value: bankInstitutionController,
+                builder: (context, child) => StateNotifierProvider<
+                    PaymentStatusController, PaymentStatusState>(
+                  create: (_) => getIt.get<PaymentStatusController>(),
+                  builder: (context, _) => BankSelectionBottomSheet(
+                    bankInstitutionController: bankInstitutionController,
+                  ),
+                ),
+              ),
       );
 
   @override
@@ -80,7 +83,9 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
     _tabController = TabController(length: 2, vsync: this);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      unawaited(context.read<BankInstitutionsController>().fetchBanks());
+      if (context.read<BankInstitutionsState>().bankList.isEmpty) {
+        context.read<BankInstitutionsController>().fetchBanks();
+      }
       if (context.read<BankInstitutionsState>().paymentDetails == null) {
         context.read<BankInstitutionsController>().getPaymentDetails();
       }
@@ -106,108 +111,110 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
 
           return e?.toString();
         },
-        child: ConstrainedBox(
-          constraints: BoxConstraints.loose(
-            Size(1.sw, 0.8.sh),
-          ),
-          child: Consumer<PaymentStatusState>(
-            builder: (_, paymentstate, __) => Stack(
-              children: [
-                Consumer<BankInstitutionsState>(
-                  builder: (_, state, __) {
-                    final isLoading = state.isLoading;
+        child: KeyboardVisibilityBuilder(
+          builder: (context, isKeyboardVisible) => AnimatedPadding(
+            duration: const Duration(milliseconds: 300),
+            padding: EdgeInsets.only(
+              bottom: isKeyboardVisible
+                  ? MediaQuery.of(context).viewInsets.bottom
+                  : 0,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints.loose(
+                Size(1.sw, isKeyboardVisible ? 0.4.sh : 0.8.sh),
+              ),
+              child: Consumer<BankInstitutionsState>(
+                builder: (_, state, __) {
+                  final isLoading = state.isLoading;
 
-                    if (isLoading &&
-                        context
-                            .read<BankInstitutionsController>()
-                            .searchTerm
-                            .isEmpty) {
-                      return const AtoaLoader();
-                    }
+                  if (isLoading &&
+                      context
+                          .read<BankInstitutionsController>()
+                          .searchTerm
+                          .isEmpty) {
+                    return const AtoaLoader();
+                  }
 
-                    if (state.error != null) {
-                      return const AtoaErrorWidget();
-                    }
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AnimatedSearchField(
-                          controller: _searchController,
+                  if (state.error != null) {
+                    return const AtoaErrorWidget();
+                  }
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AnimatedSearchField(
+                        controller: _searchController,
+                      ),
+                      Spacing.large.yBox,
+                      InfoWidget(
+                        text: context.l10n.ensureBankAppInstalled,
+                        fontSize: 11.sp,
+                      ),
+                      Spacing.large.yBox,
+                      if (context
+                          .read<BankInstitutionsController>()
+                          .searchTerm
+                          .isEmpty) ...[
+                        BankTabBar(
+                          tabController: _tabController,
                         ),
-                        Spacing.large.yBox,
-                        InfoWidget(
-                          text: context.l10n.ensureBankAppInstalled,
-                          fontSize: 11.sp,
+                        Expanded(
+                          child: TabBarView(
+                            controller: _tabController,
+                            children: [
+                              PersonalBanksTabView(onBankSelect: onTap),
+                              BusinessBanksTabView(onBankSelect: onTap),
+                            ],
+                          ),
                         ),
-                        Spacing.large.yBox,
-                        if (context
-                            .read<BankInstitutionsController>()
-                            .searchTerm
-                            .isEmpty) ...[
-                          BankTabBar(
-                            tabController: _tabController,
+                      ],
+                      if (context
+                          .read<BankInstitutionsController>()
+                          .searchTerm
+                          .isNotEmpty) ...[
+                        if (state.isLoading)
+                          const Expanded(
+                            child: Center(
+                              child: AtoaLoader(),
+                            ),
+                          )
+                        else if (state.bankList.isEmpty) ...[
+                          CustomText.semantics(
+                            context.l10n.results,
+                            style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
+                              NeutralColors.light().grey.shade500,
+                            ),
                           ),
                           Expanded(
-                            child: TabBarView(
-                              controller: _tabController,
-                              children: [
-                                PersonalBanksTabView(onBankSelect: onTap),
-                                BusinessBanksTabView(onBankSelect: onTap),
-                              ],
+                            child: Center(
+                              child: NoResultFoundWidget(
+                                searchTerm: context
+                                    .read<BankInstitutionsController>()
+                                    .searchTerm,
+                              ),
+                            ),
+                          ),
+                        ] else ...[
+                          CustomText.semantics(
+                            context.l10n.results,
+                            style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
+                              NeutralColors.light().grey.shade500,
+                            ),
+                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: state.bankList.length,
+                            itemBuilder: (context, index) => BankListItem(
+                              bank: state.bankList[index],
+                              onBankSelect: onTap,
                             ),
                           ),
                         ],
-                        if (context
-                            .read<BankInstitutionsController>()
-                            .searchTerm
-                            .isNotEmpty) ...[
-                          if (state.isLoading)
-                            const Expanded(
-                              child: Center(
-                                child: AtoaLoader(),
-                              ),
-                            )
-                          else if (state.bankList.isEmpty) ...[
-                            CustomText.semantics(
-                              context.l10n.results,
-                              style:
-                                  kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                                NeutralColors.light().grey.shade500,
-                              ),
-                            ),
-                            Expanded(
-                              child: Center(
-                                child: NoResultFoundWidget(
-                                  searchTerm: context
-                                      .read<BankInstitutionsController>()
-                                      .searchTerm,
-                                ),
-                              ),
-                            ),
-                          ] else ...[
-                            CustomText.semantics(
-                              context.l10n.results,
-                              style:
-                                  kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                                NeutralColors.light().grey.shade500,
-                              ),
-                            ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: state.bankList.length,
-                              itemBuilder: (context, index) => BankListItem(
-                                bank: state.bankList[index],
-                                onBankSelect: onTap,
-                              ),
-                            ),
-                          ],
-                        ],
                       ],
-                    );
-                  },
-                ),
-              ],
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),
@@ -217,35 +224,22 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
     final bankInstitutionController =
         context.read<BankInstitutionsController>();
 
-    final paymentStatusState = context.read<PaymentStatusState>();
-    await bankInstitutionController.selectBank(bank);
-    if (!mounted) {
-      return;
-    }
     final res = await ConfirmationBottomSheet.show(
       context,
       bankInstitutionController,
-      context.read<BankInstitutionsState>(),
-      context.read<PaymentStatusController>(),
-      paymentStatusState,
+      bank,
     );
-    if (!mounted) {
-      return;
-    }
-    if (res != null && res) {
-      unawaited(bankInstitutionController.authorizeBank());
+    if (!mounted) return;
 
+    if (res != null && res) {
       final verify = await VerifyingPaymentBottomSheet.show(
         context,
         bankInstitutionController,
-        context.read<BankInstitutionsState>(),
         context.read<PaymentStatusController>(),
-        paymentStatusState,
       );
-      if (!mounted) {
-        return;
-      }
-      if (verify != null) Navigator.pop(context, verify);
+      if (!mounted) return;
+
+      Navigator.pop(context, verify);
     }
   }
 }

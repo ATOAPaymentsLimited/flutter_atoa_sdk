@@ -1,36 +1,34 @@
+import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/app_not_installed_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_and_service_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/review_details_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-class ConfirmationBottomSheet extends StatelessWidget {
+class ConfirmationBottomSheet extends StatefulWidget {
   const ConfirmationBottomSheet({
     required this.bankInstitutionController,
-    required this.bankState,
-    required this.paymentStatusController,
-    required this.paymentState,
+    required this.bank,
     super.key,
   });
-
   final BankInstitutionsController bankInstitutionController;
-  final BankInstitutionsState bankState;
-  final PaymentStatusController paymentStatusController;
-  final PaymentStatusState paymentState;
+  final BankInstitution bank;
 
   static Future<bool?> show(
     BuildContext context,
     BankInstitutionsController bankInstitutionController,
-    BankInstitutionsState bankState,
-    PaymentStatusController paymentStatusController,
-    PaymentStatusState paymentState,
+    BankInstitution bank,
   ) =>
       showSdkBottomSheet<bool>(
         context: context,
@@ -38,58 +36,98 @@ class ConfirmationBottomSheet extends StatelessWidget {
         title: context.l10n.review,
         body: (_) => ConfirmationBottomSheet(
           bankInstitutionController: bankInstitutionController,
-          bankState: bankState,
-          paymentStatusController: paymentStatusController,
-          paymentState: paymentState,
+          bank: bank,
         ),
       );
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          InfoWidget(
-            text: context.l10n.bankReviewInfoText,
-          ),
-          Spacing.large.yBox,
-          ReviewDetailsTile(
-            isBankInfo: false,
-            bankInstitutionController: bankInstitutionController,
-            state: bankState,
-          ),
-          Spacing.large.yBox,
-          ReviewDetailsTile(
-            bankInstitutionController: bankInstitutionController,
-            state: bankState,
-          ),
-          Spacing.large.yBox,
-          if (!bankState.isAppInstalled) ...[
-            AppNotInstalledWidget(
-              name: bankState.selectedBank?.name ?? '',
-              paymentAuth: bankState.paymentAuth,
-            ),
-            Spacing.large.yBox,
-          ],
-          LedgerButton.primary2(
-            style: ElevatedButton.styleFrom(
-              textStyle: kFigtreeTextTheme.bodyLarge?.w700,
-            ),
-            semanticsLabel:
-                context.l10n.goToBank(bankState.selectedBank?.name ?? ''),
-            backgroundColor: BrandingColorUtility.brandingBackgroundColor,
-            foregroundColor: BrandingColorUtility.brandingForegroundColor,
-            onPressed: bankState.paymentAuth == null
-                ? null
-                : () => Navigator.pop(context, true),
-            trackLabel: 'Go To ${bankState.selectedBank?.name}',
-            enableTracking: false,
-            label: context.l10n.goToBank(bankState.selectedBank?.name ?? ''),
-          ),
-          Spacing.xtraLarge.yBox,
-          const PoweredByAtoaWidget(),
-          Spacing.xtraLarge.yBox,
-          const AtoaTermAndServiceWidget(),
-          Spacing.xtraLarge.yBox,
-        ],
+  State<ConfirmationBottomSheet> createState() =>
+      _ConfirmationBottomSheetState();
+}
+
+class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.bankInstitutionController.selectBank(widget.bank);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => StateNotifierProvider<
+          BankInstitutionsController, BankInstitutionsState>.value(
+        value: widget.bankInstitutionController,
+        builder: (context, child) => Consumer<BankInstitutionsState>(
+          builder: (context, state, child) {
+            if (state.isLoadingAuth) {
+              Column(
+                children: [
+                  Spacing.huge.yBox * 4,
+                  const AtoaLoader(),
+                  Spacing.huge.yBox * 4,
+                ],
+              );
+            }
+
+            if (state.error != null) {
+              return Column(
+                children: [
+                  Spacing.huge.yBox * 4,
+                  const AtoaErrorWidget(),
+                  Spacing.huge.yBox * 4,
+                ],
+              );
+            }
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InfoWidget(
+                  text: context.l10n.bankReviewInfoText,
+                ),
+                Spacing.large.yBox,
+                ReviewDetailsTile(
+                  isBankInfo: false,
+                  bankInstitutionController: widget.bankInstitutionController,
+                  state: state,
+                ),
+                Spacing.large.yBox,
+                ReviewDetailsTile(
+                  bankInstitutionController: widget.bankInstitutionController,
+                  state: state,
+                ),
+                Spacing.large.yBox,
+                if (!state.isAppInstalled) ...[
+                  AppNotInstalledWidget(
+                    name: state.selectedBank?.name ?? '',
+                    paymentAuth: state.paymentAuth,
+                  ),
+                  Spacing.large.yBox,
+                ],
+                LedgerButton.primary2(
+                  style: ElevatedButton.styleFrom(
+                    textStyle: kFigtreeTextTheme.bodyLarge?.w700,
+                  ),
+                  semanticsLabel:
+                      context.l10n.goToBank(state.selectedBank?.name ?? ''),
+                  backgroundColor: BrandingColorUtility.brandingBackgroundColor,
+                  foregroundColor: BrandingColorUtility.brandingForegroundColor,
+                  onPressed: state.paymentAuth == null
+                      ? null
+                      : () => Navigator.pop(context, true),
+                  trackLabel: 'Go To ${state.selectedBank?.name}',
+                  label: context.l10n.goToBank(
+                    state.selectedBank?.name ?? '',
+                  ),
+                ),
+                Spacing.xtraLarge.yBox,
+                const PoweredByAtoaWidget(),
+                Spacing.xtraLarge.yBox,
+                const AtoaTermAndServiceWidget(),
+                Spacing.xtraLarge.yBox,
+              ],
+            );
+          },
+        ),
       );
 }

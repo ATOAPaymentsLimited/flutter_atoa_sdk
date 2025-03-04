@@ -5,6 +5,7 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
+import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +26,14 @@ class AtoaSdk {
     required bool showHowPaymentWorks,
 
     /// payment status polling interval
-    Duration interval = const Duration(seconds: 5),
+    Duration interval = const Duration(seconds: 1),
   }) async {
     WidgetsFlutterBinding.ensureInitialized();
 
     Atoa.env = env;
     Atoa.authKey = authKey;
+    PaymentUtility.paymentId = paymentId;
+    PaymentUtility.interval = interval;
 
     await configureInjection(env.name);
     getIt.get<Atoa>().initialize();
@@ -42,12 +45,10 @@ class AtoaSdk {
       transactionDetails = await HowToMakePaymentBottomSheet.show(
         context,
         isHelp: false,
-        paymentId: paymentId,
       );
     } else {
       transactionDetails = await BankSelectionBottomSheet.show(
         context,
-        paymentId: paymentId,
       );
     }
     return transactionDetails;

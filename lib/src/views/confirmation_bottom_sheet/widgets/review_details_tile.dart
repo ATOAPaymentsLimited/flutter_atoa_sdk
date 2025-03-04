@@ -61,9 +61,7 @@ class ReviewDetailsTile extends StatelessWidget {
                     isBankInfo
                         ? state.paymentDetails?.merchantBusinessName ?? ''
                         : state.selectedBank?.name ?? '',
-                    style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                      context.intactColors.black,
-                    ),
+                    style: kFigtreeTextTheme.bodyLarge?.w700,
                   ),
                 ],
               ),
@@ -106,9 +104,7 @@ class ReviewDetailsTile extends StatelessWidget {
                           currencySymbol: context.l10n.currencySymbol,
                         ) ??
                     '',
-                style: kFigtreeTextTheme.titleSmall?.w700.textColor(
-                  context.intactColors.black,
-                ),
+                style: kFigtreeTextTheme.titleSmall?.w700,
               ),
           ],
         ),

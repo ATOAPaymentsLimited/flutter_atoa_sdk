@@ -76,7 +76,6 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
                 theme: expandableTheme,
               ),
             ),
-            if (!_expandableController.value) Spacing.huge.yBox * 4,
           ],
         );
 

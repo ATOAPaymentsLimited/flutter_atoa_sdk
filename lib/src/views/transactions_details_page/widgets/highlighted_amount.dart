@@ -17,16 +17,12 @@ class HighlightedAmount extends StatelessWidget {
     final defaultContent = RichText(
       text: CustomTextSpan.semantics(
         text: beforeDecimal,
-        style: kFigtreeTextTheme.headlineMedium?.textColor(
-          context.intactColors.black,
-        ),
+        style: kFigtreeTextTheme.headlineMedium,
         children: [
           const CustomTextSpan.semantics(text: '.'),
           CustomTextSpan.semantics(
             text: afterDecimal,
-            style: kFigtreeTextTheme.headlineMedium?.w400.textColor(
-              context.intactColors.black,
-            ),
+            style: kFigtreeTextTheme.headlineMedium?.w400,
           ),
         ],
       ),

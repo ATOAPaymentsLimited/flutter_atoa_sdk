@@ -64,15 +64,11 @@ class BankDownBottomSheet extends StatelessWidget {
           RichText(
             text: CustomTextSpan.semantics(
               text: bank.name,
-              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                context.intactColors.black,
-              ),
+              style: kFigtreeTextTheme.bodyLarge?.w700,
               children: [
                 CustomTextSpan.semantics(
                   text: context.l10n.bankDown,
-                  style: kFigtreeTextTheme.bodyLarge?.textColor(
-                    context.intactColors.black,
-                  ),
+                  style: kFigtreeTextTheme.bodyLarge,
                 ),
               ],
             ),

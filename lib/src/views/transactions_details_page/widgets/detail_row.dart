@@ -18,16 +18,14 @@ class DetailRow extends StatelessWidget {
         children: [
           CustomText.semantics(
             label,
-            style: kFigtreeTextTheme.bodyMedium
-                ?.textColor(context.intactColors.black),
+            style: kFigtreeTextTheme.bodyMedium,
           ),
           Spacing.small.xBox,
           Expanded(
             flex: 7,
             child: CustomText.semantics(
               value,
-              style: kFigtreeTextTheme.bodyLarge
-                  ?.textColor(context.intactColors.black),
+              style: kFigtreeTextTheme.bodyLarge,
               textAlign: TextAlign.right,
             ),
           ),

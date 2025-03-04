@@ -5,11 +5,8 @@ import 'package:regal/regal.dart';
 
 class HelpIconButton extends StatelessWidget {
   const HelpIconButton({
-    required this.paymentId,
     super.key,
   });
-
-  final String paymentId;
 
   @override
   Widget build(BuildContext context) => CustomGestureDetector(
@@ -18,7 +15,6 @@ class HelpIconButton extends StatelessWidget {
         semanticsLabel: 'Help icon',
         onTap: () => HowToMakePaymentBottomSheet.show(
           context,
-          paymentId: paymentId,
         ),
         child: CircleAvatar(
           radius: Spacing.large.value,

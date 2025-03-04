@@ -10,12 +10,10 @@ import 'package:regal/regal.dart';
 
 class PaymentStatusView extends StatefulWidget {
   const PaymentStatusView({
-    required this.bankState,
     required this.isCompleted,
     super.key,
   });
 
-  final BankInstitutionsState bankState;
   final bool isCompleted;
 
   @override
@@ -24,11 +22,13 @@ class PaymentStatusView extends StatefulWidget {
 
 class _PaymentStatusViewState extends State<PaymentStatusView> {
   late ValueNotifier<bool> showTickAnimation;
+  late BankInstitutionsState bankState;
 
   @override
   void initState() {
     super.initState();
     showTickAnimation = ValueNotifier(widget.isCompleted);
+    bankState = context.read<BankInstitutionsState>();
 
     if (widget.isCompleted) {
       Future<void>.delayed(
@@ -63,17 +63,13 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
                             Spacing.medium.yBox,
                             CustomText.semantics(
                               context.l10n.paymentSuccessful,
-                              style: kFigtreeTextTheme.titleSmall
-                                  ?.textColor(
-                                    context.intactColors.black,
-                                  )
-                                  .w700,
+                              style: kFigtreeTextTheme.titleSmall?.w700,
                             ),
                           ],
                         ),
                       )
                     : TransactionDetailsPage(
-                        bankState: widget.bankState,
+                        bankState: bankState,
                         transactionDetails: state.details!,
                       ),
               ),

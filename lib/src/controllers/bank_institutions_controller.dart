@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
+import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -18,7 +18,6 @@ part 'bank_institutions_state.dart';
 class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   BankInstitutionsController({
     required this.atoa,
-    @factoryParam required this.paymentId,
   }) : super(const BankInstitutionsState()) {
     searchController = StreamController<String>();
     searchController.stream
@@ -27,7 +26,6 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   }
 
   final Atoa atoa;
-  final String paymentId;
   late StreamController<String> searchController;
 
   String searchTerm = '';
@@ -80,26 +78,21 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     state = state.copyWith(isLoading: true);
 
     try {
-      final paymentRes =
-          await callServer(() => atoa.getPaymentDetails(paymentId));
-
-      state = state.copyWith(paymentDetails: paymentRes);
-      BrandingColorUtility.brandingBackgroundColor = Color(
-        int.parse(
-          (paymentRes.merchantThemeDetails?.colorCode ?? '').replaceFirst(
-            '#',
-            '0xFF',
-          ),
-        ),
+      final paymentRes = await callServer(
+        () => atoa.getPaymentDetails(PaymentUtility.paymentId ?? ''),
       );
 
-      BrandingColorUtility.brandingForegroundColor = Color(
-        int.parse(
-          (paymentRes.merchantThemeDetails?.foregroundColor ?? '').replaceFirst(
-            '#',
-            '0xFF',
-          ),
-        ),
+      state = state.copyWith(
+        paymentDetails: paymentRes,
+      );
+      BrandingColorUtility.brandingBackgroundColor =
+          BrandingColorUtility.getColor(
+        paymentRes.merchantThemeDetails?.colorCode,
+      );
+
+      BrandingColorUtility.brandingForegroundColor =
+          BrandingColorUtility.getColor(
+        paymentRes.merchantThemeDetails?.foregroundColor,
       );
     } on AtoaException catch (e) {
       state = state.copyWith(
@@ -213,18 +206,22 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   Future<void> selectBank(BankInstitution? selectedBank) async {
     state = state.copyWith(
       selectedBank: selectedBank,
+      isLoadingAuth: true,
       paymentAuth: null,
     );
 
     final paymentDetails = state.paymentDetails;
 
     if (paymentDetails == null || selectedBank == null) {
+      state = state.copyWith(
+        isLoadingAuth: false,
+      );
       return;
     }
 
     final body = paymentDetails.toBody(
       institutionId: selectedBank.id,
-      paymentRequestId: paymentId,
+      paymentRequestId: PaymentUtility.paymentId ?? '',
       features: selectedBank.features,
       requestCreatedAt: paymentDetails.requestCreatedAt ?? '',
     );
@@ -246,7 +243,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         error: e,
       );
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(error: null, isLoadingAuth: false);
     }
     await checkBankAppAvailability();
   }
@@ -254,7 +251,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   Future<void> cancelPayment() async {
     //Make an Api call
     await callServer(
-      () => atoa.cancelPayment(paymentId),
+      () => atoa.cancelPayment(PaymentUtility.paymentId ?? ''),
     );
   }
 }

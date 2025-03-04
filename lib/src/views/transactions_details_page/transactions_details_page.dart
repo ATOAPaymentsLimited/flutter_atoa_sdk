@@ -39,9 +39,7 @@ class TransactionDetailsPage extends StatelessWidget {
                 transactionDetails.updatedAt!
                     .formattedDateForPaymentDetails(context),
               ),
-              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                context.intactColors.black,
-              ),
+              style: kFigtreeTextTheme.bodyLarge?.w700,
             )
           else
             CustomText.semantics(
@@ -50,9 +48,7 @@ class TransactionDetailsPage extends StatelessWidget {
                 transactionDetails.createdAt
                     .formattedDateForPaymentDetails(context),
               ),
-              style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                context.intactColors.black,
-              ),
+              style: kFigtreeTextTheme.bodyLarge?.w700,
             ),
           Spacing.huge.yBox * 2,
           TransactionDetailsTopCard(

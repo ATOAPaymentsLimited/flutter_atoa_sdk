@@ -42,8 +42,7 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (label.isNotEmpty)
                     CustomText.semantics(
                       label,
-                      style: kFigtreeTextTheme.bodyMedium?.height150
-                          .textColor(context.intactColors.black),
+                      style: kFigtreeTextTheme.bodyMedium?.height150,
                     ),
                   Spacing.mini.yBox,
                   Row(
@@ -119,8 +118,7 @@ class PaymentDetailsRow extends StatelessWidget {
           Flexible(
             child: CustomText.semantics(
               value,
-              style: kFigtreeTextTheme.bodyMedium?.w600
-                  .textColor(context.intactColors.black),
+              style: kFigtreeTextTheme.bodyMedium?.w600,
             ),
           ),
           if ((maskSubValue ?? false) && subValue != null)
@@ -129,16 +127,14 @@ class PaymentDetailsRow extends StatelessWidget {
                 subValue!.isEmpty
                     ? ''
                     : 'xxxxx${subValue!.length > 3 ? subValue!.substring(subValue!.length - 3) : subValue!}',
-                style: kFigtreeTextTheme.bodyMedium?.w600
-                    .textColor(context.intactColors.black),
+                style: kFigtreeTextTheme.bodyMedium?.w600,
               ),
             )
           else if (subValue != null)
             Flexible(
               child: CustomText.semantics(
                 subValue!.isEmpty ? '' : subValue!,
-                style: kFigtreeTextTheme.bodyMedium?.w600
-                    .textColor(context.intactColors.black),
+                style: kFigtreeTextTheme.bodyMedium?.w600,
               ),
             ),
         ],
