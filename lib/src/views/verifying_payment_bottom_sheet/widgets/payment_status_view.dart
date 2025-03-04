@@ -53,6 +53,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
                 child: showAnimation
                     ? SizedBox(
                         height: 0.7.sh,
+                        width: 1.sw,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

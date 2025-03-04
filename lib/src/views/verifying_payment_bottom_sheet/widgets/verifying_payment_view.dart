@@ -17,6 +17,11 @@ class VerifyingPaymentView extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          CustomText.semantics(
+            context.l10n.paymentInProgress,
+            textAlign: TextAlign.center,
+            style: kFigtreeTextTheme.labelMedium?.w700.height130,
+          ),
           Spacing.huge.yBox * 4,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

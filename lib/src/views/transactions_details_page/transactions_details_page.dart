@@ -6,6 +6,7 @@ import 'dart:ui' as ui;
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
+import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
@@ -32,6 +33,52 @@ class TransactionDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Spacing.large.xBox * 2,
+              Expanded(
+                child: CustomText.semantics(
+                  context.l10n.paymentDetails,
+                  textAlign: TextAlign.center,
+                  style: kFigtreeTextTheme.labelMedium?.w700.height130,
+                ),
+              ),
+              Spacing.large.xBox,
+              Padding(
+                padding: Spacing.mini.top,
+                child: CustomInkWell(
+                  semanticsLabel: 'Close Dialog Sheet Icon',
+                  context: context,
+                  trackLabel: 'Close Dialog Sheet Icon',
+                  onTap: () {
+                    Navigator.pop(
+                      context,
+                      context.read<PaymentStatusState>().details,
+                    );
+                  },
+                  child: Container(
+                    width: Spacing.huge.value,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: NeutralColors.light().grey.shade50,
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: Spacing.mini.all,
+                        child: Icon(
+                          Icons.close,
+                          size: Spacing.medium.value,
+                          color: context.intactColors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
           if (transactionDetails.updatedAt != null)
             CustomText.semantics(
               context.l10n.transactionDateAndTime(

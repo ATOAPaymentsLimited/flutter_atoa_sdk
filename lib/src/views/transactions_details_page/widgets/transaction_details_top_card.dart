@@ -8,7 +8,7 @@ import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/hig
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
-class TransactionDetailsTopCard extends StatefulWidget {
+class TransactionDetailsTopCard extends StatelessWidget {
   const TransactionDetailsTopCard({
     required this.transactionDetails,
     required this.showRetry,
@@ -22,75 +22,35 @@ class TransactionDetailsTopCard extends StatefulWidget {
   final bool isCompleted;
 
   @override
-  State<TransactionDetailsTopCard> createState() =>
-      TransactionDetailsTopCardState();
-}
-
-class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
-  late ValueNotifier<bool> showTickAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    showTickAnimation = ValueNotifier(widget.isCompleted);
-
-    if (widget.isCompleted) {
-      Future<void>.delayed(
-        const Duration(minutes: 1),
-        () => showTickAnimation.value = false,
-      );
-    }
-  }
-
-  @override
   Widget build(BuildContext context) => Padding(
         padding: Spacing.xtraLarge.x,
         child: Column(
           children: [
-            Builder(
-              builder: (context) {
-                final userAvatar = CustomGestureDetector(
-                  semanticsLabel: 'Profile Picture',
-                  context: context,
-                  trackLabel: 'Profile Picture',
-                  child: UserAvatar(
-                    size: Spacing.xtraLarge.value * 2,
-                    url: widget.transactionDetails.avatar,
-                    placeholder: Container(
-                      height: Spacing.xtraLarge.value * 2,
-                      width: Spacing.xtraLarge.value * 2,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Spacing.small.value),
-                        color: NeutralColors.light().grey.shade400,
+            CustomGestureDetector(
+              semanticsLabel: 'Profile Picture',
+              context: context,
+              trackLabel: 'Profile Picture',
+              child: UserAvatar(
+                size: Spacing.xtraLarge.value * 2,
+                url: transactionDetails.avatar,
+                placeholder: Container(
+                  height: Spacing.xtraLarge.value * 2,
+                  width: Spacing.xtraLarge.value * 2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Spacing.small.value),
+                    color: NeutralColors.light().grey.shade400,
+                  ),
+                  child: Center(
+                    child: CustomText.semantics(
+                      (transactionDetails.merchantName ?? '').getInitials(),
+                      style: context.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
                       ),
-                      child: Center(
-                        child: CustomText.semantics(
-                          (widget.transactionDetails.merchantName ?? '')
-                              .getInitials(),
-                          style: context.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                );
-
-                return ValueListenableBuilder(
-                  valueListenable: showTickAnimation,
-                  builder: (context, showAnimation, child) => AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    child: showAnimation
-                        ? Assets.gifs.tickMark.lottie(
-                            height: Spacing.xtraLarge.value * 2,
-                            width: Spacing.xtraLarge.value * 2,
-                          )
-                        : userAvatar,
-                  ),
-                );
-              },
+                ),
+              ),
             ),
             Spacing.medium.yBox,
             Row(
@@ -107,7 +67,7 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
                         ),
                         const CustomTextSpan.semantics(text: ' '),
                         CustomTextSpan.semantics(
-                          text: widget.transactionDetails.merchantName,
+                          text: transactionDetails.merchantName,
                           style: kFigtreeTextTheme.bodyLarge?.w600,
                         ),
                       ],
@@ -121,17 +81,17 @@ class TransactionDetailsTopCardState extends State<TransactionDetailsTopCard> {
             _getStoreLocation(context),
             Spacing.large.yBox,
             HighlightedAmount(
-              amount: widget.transactionDetails.paidAmount,
+              amount: transactionDetails.paidAmount,
             ),
           ],
         ),
       );
 
   Widget _getStoreLocation(BuildContext context) =>
-      widget.transactionDetails.storeDetails?.locationName != null &&
-              widget.transactionDetails.storeDetails?.locationName != 'Default'
+      transactionDetails.storeDetails?.locationName != null &&
+              transactionDetails.storeDetails?.locationName != 'Default'
           ? _getStoreLocationSection(
-              widget.transactionDetails.storeDetails!.locationName!,
+              transactionDetails.storeDetails!.locationName!,
             )
           : const SizedBox.shrink();
 

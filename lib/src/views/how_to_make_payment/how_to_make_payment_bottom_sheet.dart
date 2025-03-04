@@ -31,16 +31,8 @@ class HowToMakePaymentBottomSheet extends StatefulWidget {
       showSdkBottomSheet<TransactionDetails?>(
         context: context,
         title: context.l10n.continueToYourBank,
-        body: (context) => StateNotifierProvider<BankInstitutionsController,
-            BankInstitutionsState>(
-          create: (_) => getIt.get<BankInstitutionsController>(),
-          builder: (context, child) => StateNotifierProvider<
-              PaymentStatusController, PaymentStatusState>(
-            create: (_) => getIt.get<PaymentStatusController>(),
-            builder: (contextx, _) => HowToMakePaymentBottomSheet(
-              isHelp: isHelp,
-            ),
-          ),
+        body: (context) => HowToMakePaymentBottomSheet(
+          isHelp: isHelp,
         ),
       );
 
@@ -52,71 +44,90 @@ class HowToMakePaymentBottomSheet extends StatefulWidget {
 class _HowToMakePaymentBottomSheetState
     extends State<HowToMakePaymentBottomSheet>
     with SingleTickerProviderStateMixin {
+  late BankInstitutionsController bankInstitutionsController;
+  late PaymentStatusController paymentStatusController;
   @override
   void initState() {
     super.initState();
-
+    bankInstitutionsController = getIt.get<BankInstitutionsController>();
+    paymentStatusController = getIt.get<PaymentStatusController>();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<BankInstitutionsController>()
+      bankInstitutionsController
         ..fetchBanks()
         ..getPaymentDetails();
     });
   }
 
   @override
-  Widget build(BuildContext context) => Consumer<BankInstitutionsState>(
-        builder: (_, state, __) {
-          final isLoading = state.isLoading;
+  void dispose() {
+    bankInstitutionsController.dispose();
+    paymentStatusController.dispose();
 
-          if (isLoading) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Spacing.huge.yBox * 9,
-                const AtoaLoader(),
-                Spacing.huge.yBox * 9,
-              ],
-            );
-          }
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      StateNotifierProvider<BankInstitutionsController, BankInstitutionsState>(
+        create: (_) => bankInstitutionsController,
+        builder: (context, child) =>
+            StateNotifierProvider<PaymentStatusController, PaymentStatusState>(
+          create: (_) => paymentStatusController,
+          builder: (context, _) => Consumer<BankInstitutionsState>(
+            builder: (_, state, __) {
+              final isLoading = state.isLoading;
+
+              if (isLoading) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Spacing.huge.yBox * 9,
+                    const AtoaLoader(),
+                    Spacing.huge.yBox * 9,
+                  ],
+                );
+              }
+              return Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Assets.images.redBackAtoaLogo.image(
-                    width: Spacing.huge.value * 2,
-                    height: Spacing.huge.value * 2,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Assets.images.redBackAtoaLogo.image(
+                        width: Spacing.huge.value * 2,
+                        height: Spacing.huge.value * 2,
+                      ),
+                      Spacing.medium.xBox,
+                      Assets.gifs.dotLoading.lottie(
+                        width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
+                        repeat: false,
+                      ),
+                      Spacing.medium.xBox,
+                      Assets.images.bankLogos.image(
+                        width: Spacing.xtraLarge.value * 6 +
+                            Spacing.small.value +
+                            Spacing.tiny.value,
+                        height: Spacing.huge.value * 2,
+                      ),
+                    ],
                   ),
-                  Spacing.medium.xBox,
-                  Assets.gifs.dotLoading.lottie(
-                    width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
-                    repeat: false,
+                  Spacing.xtraLarge.yBox * 2,
+                  const HowToMakePaymentSteps(),
+                  Spacing.huge.yBox,
+                  const TrustAtoaWidget(),
+                  Spacing.huge.yBox,
+                  ContinueButton(
+                    isHelp: widget.isHelp,
+                    bankInstitutionController:
+                        context.read<BankInstitutionsController>(),
                   ),
-                  Spacing.medium.xBox,
-                  Assets.images.bankLogos.image(
-                    width: Spacing.xtraLarge.value * 6 +
-                        Spacing.small.value +
-                        Spacing.tiny.value,
-                    height: Spacing.huge.value * 2,
-                  ),
+                  Spacing.medium.yBox,
+                  const PoweredByAtoaWidget(),
+                  Spacing.huge.yBox,
                 ],
-              ),
-              Spacing.xtraLarge.yBox * 2,
-              const HowToMakePaymentSteps(),
-              Spacing.huge.yBox,
-              const TrustAtoaWidget(),
-              Spacing.huge.yBox,
-              ContinueButton(
-                isHelp: widget.isHelp,
-                bankInstitutionController:
-                    context.read<BankInstitutionsController>(),
-              ),
-              Spacing.medium.yBox,
-              const PoweredByAtoaWidget(),
-              Spacing.huge.yBox,
-            ],
-          );
-        },
+              );
+            },
+          ),
+        ),
       );
 }
