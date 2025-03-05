@@ -53,7 +53,7 @@
 					<string>atoa</string>
 				</array>
 				<key>CFBundleURLName</key>
-				<string>com.atoa.demoapp</string>
+				<string>demoapp.com</string>
 			</dict>
 		</array>
 	</dict>
