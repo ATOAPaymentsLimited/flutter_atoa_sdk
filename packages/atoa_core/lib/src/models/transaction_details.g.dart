@@ -9,17 +9,11 @@ part of 'transaction_details.dart';
 _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionDetailsImpl(
-      paymentIdempotencyId: json['paymentIdempotencyId'] as String,
-      applicationUserId: json['applicationUserId'] as String,
       paidAmount: _parseAmount(json['paidAmount']),
-      currency: json['currency'] as String,
       status: TransactionStatus.fromJson(json['status']),
-      createdAt: json['createdAt'] as String,
-      paymentId: json['paymentId'] as String?,
-      updatedAt: json['updatedAt'] as String?,
-      bankName: json['bankName'] as String?,
-      bankAccountNo: json['bankAccountNo'] as String?,
-      notes: json['notes'] as String?,
+      currency: json['currency'] as String?,
+      applicationUserId: json['applicationUserId'] as String?,
+      paymentRequestId: json['paymentRequestId'] as String?,
       taxAmount:
           json['taxAmount'] == null ? 0.0 : _parseAmount(json['taxAmount']),
       serviceAmount: json['serviceAmount'] == null
@@ -28,13 +22,7 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
       tipAmount:
           json['tipAmount'] == null ? 0.0 : _parseAmount(json['tipAmount']),
       qrId: json['qrId'] as String?,
-      storeId: json['storeId'] as String?,
       qrNickName: json['qrNickName'] as String?,
-      errorDescription: json['errorDescription'] as String?,
-      paymentSourceType: (json['paymentSourceType'] as num?)?.toInt() ?? 3,
-      paymentLinkId: json['paymentLinkId'] as String?,
-      employeeId: json['employeeId'] as String?,
-      pendingTrasactionError: json['pendingTrasactionError'] as String?,
       orderId: json['orderId'] as String?,
       statusDetails: json['statusDetails'] == null
           ? null
@@ -49,33 +37,27 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
       storeDetails: json['storeDetails'] == null
           ? null
           : StoreDetails.fromJson(json['storeDetails'] as Map<String, dynamic>),
-      institutionId: json['institutionId'] as String?,
+      transactionDetails: (json['transactionDetails'] as List<dynamic>?)
+              ?.map((e) => e == null
+                  ? null
+                  : TransactionDetailsTransaction.fromJson(
+                      e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$TransactionDetailsImplToJson(
         _$TransactionDetailsImpl instance) =>
     <String, dynamic>{
-      'paymentIdempotencyId': instance.paymentIdempotencyId,
-      'applicationUserId': instance.applicationUserId,
       'paidAmount': instance.paidAmount,
       'currency': instance.currency,
-      'createdAt': instance.createdAt,
-      'paymentId': instance.paymentId,
-      'updatedAt': instance.updatedAt,
-      'bankName': instance.bankName,
-      'bankAccountNo': instance.bankAccountNo,
-      'notes': instance.notes,
+      'applicationUserId': instance.applicationUserId,
+      'paymentRequestId': instance.paymentRequestId,
       'taxAmount': instance.taxAmount,
       'serviceAmount': instance.serviceAmount,
       'tipAmount': instance.tipAmount,
       'qrId': instance.qrId,
-      'storeId': instance.storeId,
       'qrNickName': instance.qrNickName,
-      'errorDescription': instance.errorDescription,
-      'paymentSourceType': instance.paymentSourceType,
-      'paymentLinkId': instance.paymentLinkId,
-      'employeeId': instance.employeeId,
-      'pendingTrasactionError': instance.pendingTrasactionError,
       'orderId': instance.orderId,
       'statusDetails': instance.statusDetails,
       'merchantId': instance.merchantId,
@@ -83,5 +65,5 @@ Map<String, dynamic> _$$TransactionDetailsImplToJson(
       'merchantName': instance.merchantName,
       'avatar': instance.avatar,
       'storeDetails': instance.storeDetails,
-      'institutionId': instance.institutionId,
+      'transactionDetails': instance.transactionDetails,
     };

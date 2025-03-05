@@ -28,11 +28,11 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..addStatusListener((status) async {
         if (status == AnimationStatus.completed) {
-          await Future<void>.delayed(const Duration(seconds: 1));
+          await Future<void>.delayed(const Duration(milliseconds: 500));
           if (!mounted) return;
           setState(() {
             _showPersonalBanks = !_showPersonalBanks;
@@ -89,7 +89,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                         child: CustomText.semantics(
                           _showPersonalBanks
                               ? context.l10n.personalBanks
-                              : context.l10n.personalBanks,
+                              : context.l10n.businessBanks,
                           style: kFigtreeTextTheme.labelSmall?.w500.textColor(
                             NeutralColors.light().grey.shade500,
                           ),
@@ -106,7 +106,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                         child: Text(
                           _showPersonalBanks
                               ? context.l10n.personalBanks
-                              : context.l10n.personalBanks,
+                              : context.l10n.businessBanks,
                           style: kFigtreeTextTheme.labelSmall?.w500.textColor(
                             NeutralColors.light().grey.shade500,
                           ),

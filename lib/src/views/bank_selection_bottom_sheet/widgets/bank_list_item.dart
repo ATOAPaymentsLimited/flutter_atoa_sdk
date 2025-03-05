@@ -19,64 +19,79 @@ class BankListItem extends StatelessWidget {
   final BankInstitution bank;
   final Future<void> Function(BankInstitution) onBankSelect;
   @override
-  Widget build(BuildContext context) => ListTile(
-        minLeadingWidth: 0,
-        contentPadding: EdgeInsets.zero,
-        horizontalTitleGap: Spacing.medium.value,
-        leading: Container(
-          padding: Spacing.mini.all,
-          decoration: BoxDecoration(
-            borderRadius: Spacing.mini.brAll + Spacing.tiny.brAll,
-            border: Border.all(color: NeutralColors.light().grey.shade100),
-          ),
-          child: CachedNetworkImage(
-            imageUrl: bank.bankIcon,
-            height: Spacing.xtraLarge.value,
-            width: Spacing.xtraLarge.value,
-          ),
-        ),
-        title: Row(
-          children: [
-            CustomText.semantics(
-              bank.name,
-              style: kFigtreeTextTheme.bodyLarge
-                  ?.textColor(
-                    NeutralColors.light().grey.shade700,
-                  )
-                  .w500,
-            ),
-            if (!bank.enabled) ...[
-              Spacing.medium.xBox,
-              BankDownIcon(bank: bank),
-            ],
-          ],
-        ),
-        trailing: CustomInkWell(
-          context: context,
-          trackLabel: '$bank CheckBox',
-          onTap: () async {
-            bank.enabled
-                ? await onBankSelect.call(bank)
-                : BankDownBottomSheet.show(context, bank);
-          },
-          semanticsLabel: '$bank CheckBox',
-          child: Container(
-            width: Spacing.large.value + Spacing.tiny.value,
-            height: Spacing.large.value + Spacing.tiny.value,
-            padding: Spacing.tiny.all,
-            decoration: BoxDecoration(
-              color: context.read<BankInstitutionsState>().selectedBank == bank
-                  ? context.intactColors.black
-                  : context.intactColors.white,
-              border: Border.all(
-                color: context.intactColors.black,
-                width: 1.5,
+  Widget build(BuildContext context) => CustomInkWell(
+        context: context,
+        semanticsLabel: '$bank Tile',
+        trackLabel: '$bank Tile',
+        child: Padding(
+          padding: Spacing.large.y,
+          child: Row(
+            children: [
+              Container(
+                padding: Spacing.mini.all,
+                decoration: BoxDecoration(
+                  borderRadius: Spacing.mini.brAll + Spacing.tiny.brAll,
+                  border:
+                      Border.all(color: NeutralColors.light().grey.shade100),
+                ),
+                child: bank.bankIcon != null
+                    ? CachedNetworkImage(
+                        imageUrl: bank.bankIcon!,
+                        height: Spacing.xtraLarge.value,
+                        width: Spacing.xtraLarge.value,
+                      )
+                    : const SizedBox.shrink(),
               ),
-              borderRadius: Spacing.medium.brAll,
-            ),
-            child: Assets.icons.iconTick.svg(
-              height: Spacing.mini.value,
-            ),
+              Spacing.medium.xBox,
+              Expanded(
+                child: Row(
+                  children: [
+                    CustomText.semantics(
+                      bank.name,
+                      style: kFigtreeTextTheme.bodyLarge
+                          ?.textColor(
+                            NeutralColors.light().grey.shade700,
+                          )
+                          .w500,
+                    ),
+                    if (!bank.enabled) ...[
+                      Spacing.medium.xBox,
+                      BankDownIcon(bank: bank),
+                    ],
+                  ],
+                ),
+              ),
+              Spacing.medium.xBox,
+              CustomInkWell(
+                context: context,
+                trackLabel: '$bank CheckBox',
+                onTap: () async {
+                  bank.enabled
+                      ? await onBankSelect.call(bank)
+                      : BankDownBottomSheet.show(context, bank);
+                },
+                semanticsLabel: '$bank CheckBox',
+                child: Container(
+                  width: Spacing.large.value + Spacing.tiny.value,
+                  height: Spacing.large.value + Spacing.tiny.value,
+                  padding: Spacing.tiny.all,
+                  decoration: BoxDecoration(
+                    color: context.read<BankInstitutionsState>().selectedBank ==
+                            bank
+                        ? context.intactColors.black
+                        : context.intactColors.white,
+                    border: Border.all(
+                      color: context.intactColors.black,
+                      width: 1.5,
+                    ),
+                    borderRadius: Spacing.medium.brAll,
+                  ),
+                  child: Assets.icons.iconTick.svg(
+                    height: Spacing.mini.value,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         onTap: () async {

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-class PersonalBanksTabView extends StatelessWidget {
+class PersonalBanksTabView extends StatefulWidget {
   const PersonalBanksTabView({
     required this.onBankSelect,
     super.key,
@@ -17,70 +17,108 @@ class PersonalBanksTabView extends StatelessWidget {
   final Future<void> Function(BankInstitution) onBankSelect;
 
   @override
-  Widget build(BuildContext context) => Builder(
-        builder: (context) {
-          final state = context.read<BankInstitutionsState>();
-          if (context.read<BankInstitutionsController>().searchTerm.isEmpty &&
-              state.bankList.isNotEmpty) {
-            final popularPersonalBanks = state.popularPersonalBanks;
+  State<PersonalBanksTabView> createState() => _PersonalBanksTabViewState();
+}
 
-            final normalPersonalBanks = state.normalPersonalBanks;
+class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
+  late ScrollController scrollController;
+  final int itemsPerPage = 8;
+  int currentPage = 0;
+  List<BankInstitution> allBanks = []; // Full list of banks
+  List<BankInstitution> paginatedBanks = []; // Current displayed banks
 
-            final gridBanks = popularPersonalBanks;
+  @override
+  void initState() {
+    super.initState();
+    allBanks = context.read<BankInstitutionsState>().allNormalBanks;
+    _loadNextPage();
+    scrollController = ScrollController()..addListener(scrollListener);
+  }
 
-            final gridBankLength = gridBanks.length;
-            if (gridBanks.length < 8) {
-              for (var i = 0; i < 8 - gridBankLength; i++) {
-                gridBanks.add(normalPersonalBanks[i]);
-                normalPersonalBanks.remove(normalPersonalBanks.elementAt(i));
-              }
-            }
+  @override
+  void dispose() {
+    scrollController
+      ..removeListener(scrollListener)
+      ..dispose();
+    super.dispose();
+  }
 
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Spacing.large.yBox,
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      crossAxisSpacing: Spacing.large.value,
-                      mainAxisSpacing: Spacing.large.value,
-                    ),
-                    itemCount: gridBanks.length, // Two rows of 4 items
-                    itemBuilder: (context, index) => BankGridItem(
-                      bank: gridBanks[index],
-                      onBankSelect: onBankSelect,
-                    ),
-                  ),
+  void scrollListener() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      _loadNextPage();
+    }
+  }
 
-                  // Scrollable List
-                  Spacing.large.yBox,
+  void _loadNextPage() {
+    final startIndex = currentPage * itemsPerPage;
+    final endIndex = startIndex + itemsPerPage;
 
-                  CustomText.semantics(
-                    context.l10n.allBanks.toUpperCase(),
-                    style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                      NeutralColors.light().grey.shade500,
-                    ),
-                  ),
-                  ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: normalPersonalBanks.length,
-                    itemBuilder: (context, index) => BankListItem(
-                      bank: normalPersonalBanks[index],
-                      onBankSelect: onBankSelect,
-                    ),
-                  ),
-                ],
+    if (startIndex < allBanks.length) {
+      setState(() {
+        paginatedBanks.addAll(
+          allBanks.sublist(
+            startIndex,
+            endIndex > allBanks.length ? allBanks.length : endIndex,
+          ),
+        );
+        currentPage++;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => (context
+              .read<BankInstitutionsController>()
+              .searchTerm
+              .isEmpty &&
+          context.read<BankInstitutionsState>().bankList.isNotEmpty)
+      ? SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Spacing.large.yBox,
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: Spacing.large.value,
+                  mainAxisSpacing: Spacing.large.value,
+                ),
+
+                itemCount: context
+                    .read<BankInstitutionsState>()
+                    .gridBanks
+                    .length, // Two rows of 4 items
+                itemBuilder: (context, index) => BankGridItem(
+                  bank: context.read<BankInstitutionsState>().gridBanks[index],
+                  onBankSelect: widget.onBankSelect,
+                ),
               ),
-            );
-          } else {
-            return const SizedBox.shrink();
-          }
-        },
-      );
+              Spacing.large.yBox,
+
+              // Scrollable List
+
+              CustomText.semantics(
+                context.l10n.allBanks.toUpperCase(),
+                style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
+                  NeutralColors.light().grey.shade500,
+                ),
+              ),
+              ListView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: paginatedBanks.length,
+                itemBuilder: (context, index) => BankListItem(
+                  bank: paginatedBanks[index],
+                  onBankSelect: widget.onBankSelect,
+                ),
+              ),
+            ],
+          ),
+        )
+      : const SizedBox.shrink();
 }

@@ -74,11 +74,13 @@ class BankGridItem extends StatelessWidget {
                     ),
                     borderRadius: Spacing.medium.brAll,
                   ),
-                  child: CachedNetworkImage(
-                    imageUrl: bank.bankIcon,
-                    height: Spacing.xtraLarge.value,
-                    width: Spacing.xtraLarge.value,
-                  ),
+                  child: bank.bankIcon != null
+                      ? CachedNetworkImage(
+                          imageUrl: bank.bankIcon!,
+                          height: Spacing.xtraLarge.value,
+                          width: Spacing.xtraLarge.value,
+                        )
+                      : const SizedBox.shrink(),
                 ),
               ],
             ),

@@ -31,6 +31,7 @@ Future<T?> showSdkBottomSheet<T>({
               topLeft: Radius.circular(Spacing.xtraLarge.value),
               topRight: Radius.circular(Spacing.xtraLarge.value),
             ),
+            color: context.intactColors.white,
           ),
           child: Padding(
             padding: Spacing.large.y + Spacing.xtraLarge.x,

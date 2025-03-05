@@ -3,7 +3,6 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
-import 'package:dio/dio.dart';
 
 /// {@template atoa_core}
 /// Atoa Flutter SDK
@@ -20,13 +19,8 @@ class Atoa {
     _instance._atoaEnv = value;
   }
 
-  static set authKey(String value) {
-    _instance._authKey = value;
-  }
-
   AtoaEnv? _atoaEnv;
   AtoaDio? _atoaDio;
-  String? _authKey;
 
   void initialize([
     Duration connectionTimeout = const Duration(seconds: 20),
@@ -111,34 +105,17 @@ class Atoa {
     return PaymentAuthResponse.fromJson(data);
   }
 
-  Future<void> cancelPayment(
-    String paymentRequestId,
-  ) async {
-    _dioCheck();
-
-    final res = await _atoaDio!.post<Map<String, dynamic>>(
-      Endpoints.cancelPayment(paymentRequestId),
-      options: Options(
-        headers: {
-          'authorization': 'Bearer $_authKey',
-        },
-      ),
-    );
-
-    final data = res.data;
-
-    if (data == null) {
-      throw const AtoaException(AtoaExceptionType.noDataFound);
-    }
-  }
-
   Future<TransactionDetails> getPaymentStatus(
-    String paymentIdempotencyId,
+    String paymentId,
   ) async {
     _dioCheck();
 
+    var endpoints = Endpoints.getPaymentStatus(paymentId);
+    if (_atoaEnv == AtoaEnv.sandbox) {
+      endpoints = '$endpoints?env=sandbox';
+    }
     final res = await _atoaDio!.get<Map<String, dynamic>>(
-      Endpoints.getPaymentStatus(paymentIdempotencyId),
+      endpoints,
     );
 
     final data = res.data;

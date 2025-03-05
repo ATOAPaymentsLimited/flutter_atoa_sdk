@@ -38,10 +38,12 @@ class BankDetailsWidget extends StatelessWidget {
   ) =>
       bankState.bankList
           .firstWhereOrNull(
-            (element) => element.id == transactionDetails.institutionId,
+            (element) =>
+                element.id ==
+                transactionDetails.transactionDetails.first?.institutionId,
           )
           ?.name ??
-      transactionDetails.bankName ??
+      transactionDetails.transactionDetails.first?.bankName ??
       '';
 
   String _getPayerBankIcon(
@@ -49,7 +51,9 @@ class BankDetailsWidget extends StatelessWidget {
   ) =>
       bankState.bankList
           .firstWhereOrNull(
-            (element) => element.id == transactionDetails.institutionId,
+            (element) =>
+                element.id ==
+                transactionDetails.transactionDetails.first?.institutionId,
           )
           ?.bankLogo ??
       '';

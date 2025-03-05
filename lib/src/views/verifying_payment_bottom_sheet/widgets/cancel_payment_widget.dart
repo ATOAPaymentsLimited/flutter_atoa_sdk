@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/dotted_line_painter.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
+import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/cancel_confirmation_bottom_sheet/cancel_confirmation_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class CancelPaymentWidget extends StatelessWidget {
@@ -53,8 +57,11 @@ class CancelPaymentWidget extends StatelessWidget {
       if (!context.mounted) {
         return;
       }
-      Navigator.pop(context);
-      await bankInstitutionController.cancelPayment();
+      context.read<PaymentStatusController>().stop();
+      PaymentUtility.onCancelPayment?.call(PaymentUtility.paymentId);
+      Navigator.pop(
+        context,
+      );
     }
   }
 }

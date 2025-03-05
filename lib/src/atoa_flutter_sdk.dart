@@ -21,9 +21,9 @@ class AtoaSdk {
   static Future<TransactionDetails?> show(
     BuildContext context, {
     required String paymentId,
-    required String authKey,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
+    void Function(String?)? onCancelPayment,
 
     /// payment status polling interval
     Duration interval = const Duration(seconds: 1),
@@ -31,8 +31,8 @@ class AtoaSdk {
     WidgetsFlutterBinding.ensureInitialized();
 
     Atoa.env = env;
-    Atoa.authKey = authKey;
     PaymentUtility.paymentId = paymentId;
+    PaymentUtility.onCancelPayment = onCancelPayment;
     PaymentUtility.interval = interval;
 
     await configureInjection(env.name);

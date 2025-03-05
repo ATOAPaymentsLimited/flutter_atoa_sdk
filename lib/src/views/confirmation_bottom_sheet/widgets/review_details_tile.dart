@@ -4,7 +4,6 @@ import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.da
 import 'package:atoa_flutter_sdk/src/shared_widgets/dotted_line_painter.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -22,7 +21,7 @@ class ReviewDetailsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: Spacing.large.all,
+        padding: Spacing.medium.all,
         decoration: BoxDecoration(
           color: NeutralColors.light().grey.shade50,
           borderRadius: Spacing.medium.brAll,
@@ -32,15 +31,15 @@ class ReviewDetailsTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (isBankInfo)
-              CachedNetworkImage(
-                imageUrl: state.selectedBank?.bankIcon ?? '',
+            if (isBankInfo && state.selectedBank?.bankIcon != null)
+              Image.network(
+                state.selectedBank?.bankIcon ?? '',
                 height: Spacing.xtraLarge.value * 2,
                 width: Spacing.xtraLarge.value * 2,
               )
             else if (state.paymentDetails?.storeImg != null)
-              CachedNetworkImage(
-                imageUrl: state.paymentDetails?.storeImg ?? '',
+              Image.network(
+                state.paymentDetails?.storeImg ?? '',
                 height: Spacing.xtraLarge.value * 2,
                 width: Spacing.xtraLarge.value * 2,
               )

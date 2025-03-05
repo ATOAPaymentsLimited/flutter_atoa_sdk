@@ -115,7 +115,6 @@ class ActionButton extends StatelessWidget {
     AtoaSdk.show(
       context,
       paymentId: controller.text.trim(),
-      authKey: 'access-key',
       showHowPaymentWorks: false,
       env: env,
     );

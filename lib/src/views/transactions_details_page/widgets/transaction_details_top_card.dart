@@ -38,13 +38,16 @@ class TransactionDetailsTopCard extends StatelessWidget {
                   width: Spacing.xtraLarge.value * 2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Spacing.small.value),
-                    color: NeutralColors.light().grey.shade400,
+                    color: NeutralColors.light().grey.shade200,
                   ),
                   child: Center(
                     child: CustomText.semantics(
-                      (transactionDetails.merchantName ?? '').getInitials(),
-                      style: context.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
+                      (transactionDetails
+                                  .transactionDetails.first?.merchantName ??
+                              '')
+                          .getInitials(),
+                      style: context.figtree.bodyLarge.w700.textColor(
+                        context.intactColors.black,
                       ),
                       textAlign: TextAlign.center,
                     ),

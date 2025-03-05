@@ -46,15 +46,22 @@ class VerifyingPaymentView extends StatelessWidget {
                   ),
                   borderRadius: Spacing.small.brAll,
                 ),
-                child: CachedNetworkImage(
-                  imageUrl: context
-                          .read<BankInstitutionsState>()
-                          .selectedBank
-                          ?.bankIcon ??
-                      '',
-                  width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
-                  height: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
-                ),
+                child: context
+                            .read<BankInstitutionsState>()
+                            .selectedBank
+                            ?.bankIcon !=
+                        null
+                    ? CachedNetworkImage(
+                        imageUrl: context
+                                .read<BankInstitutionsState>()
+                                .selectedBank
+                                ?.bankIcon ??
+                            '',
+                        width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+                        height:
+                            Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+                      )
+                    : const SizedBox.shrink(),
               ),
             ],
           ),

@@ -53,6 +53,7 @@ class TransactionDetailsPage extends StatelessWidget {
                   context: context,
                   trackLabel: 'Close Dialog Sheet Icon',
                   onTap: () {
+                    context.read<PaymentStatusController>().stop();
                     Navigator.pop(
                       context,
                       context.read<PaymentStatusState>().details,
@@ -79,20 +80,23 @@ class TransactionDetailsPage extends StatelessWidget {
               ),
             ],
           ),
-          if (transactionDetails.updatedAt != null)
+          if (transactionDetails.transactionDetails.first?.updatedAt != null)
             CustomText.semantics(
               context.l10n.transactionDateAndTime(
-                transactionDetails.updatedAt!.formattedTime(),
-                transactionDetails.updatedAt!
+                transactionDetails.transactionDetails.first!.updatedAt!
+                    .formattedTime(),
+                transactionDetails.transactionDetails.first!.updatedAt!
                     .formattedDateForPaymentDetails(context),
               ),
               style: kFigtreeTextTheme.bodyLarge?.w700,
             )
-          else
+          else if (transactionDetails.transactionDetails.first?.createdAt !=
+              null)
             CustomText.semantics(
               context.l10n.transactionDateAndTime(
-                transactionDetails.createdAt.formattedTime(),
-                transactionDetails.createdAt
+                transactionDetails.transactionDetails.first!.createdAt!
+                    .formattedTime(),
+                transactionDetails.transactionDetails.first!.createdAt!
                     .formattedDateForPaymentDetails(context),
               ),
               style: kFigtreeTextTheme.bodyLarge?.w700,

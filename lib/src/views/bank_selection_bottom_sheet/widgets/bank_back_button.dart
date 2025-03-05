@@ -17,7 +17,7 @@ class BankBackButton extends StatelessWidget {
           backgroundColor: NeutralColors.light().grey.shade50,
           child: Center(
             child: Padding(
-              padding: Spacing.mini.left + Spacing.tiny.left,
+              padding: Spacing.mini.left,
               child: Assets.icons.iconBack.svg(
                 colorFilter: ColorFilter.mode(
                   context.intactColors.black,

@@ -29,4 +29,22 @@ class BankInstitutionsState with _$BankInstitutionsState {
 
   List<BankInstitution> get normalPersonalBanks =>
       personalBanks.where((e) => !e.popularBank && !e.businessBank).toList();
+
+  List<BankInstitution> get gridBanks {
+    final gridBanks = popularPersonalBanks;
+    final gridBankLength = gridBanks.length;
+    if (gridBanks.length < 8) {
+      for (var i = 0; i < 8 - gridBankLength; i++) {
+        gridBanks.add(normalPersonalBanks[i]);
+      }
+    }
+    return gridBanks;
+  }
+
+  List<BankInstitution> get allNormalBanks {
+    if (popularPersonalBanks.length < 8) {
+      return normalPersonalBanks.sublist(8 - popularPersonalBanks.length);
+    }
+    return normalPersonalBanks;
+  }
 }

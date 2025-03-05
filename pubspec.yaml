@@ -36,7 +36,7 @@ dependencies:
   provider: ^6.1.1
   regal:
     path: ../atoa-flutter-packages/packages/regal
-  shared_preferences: ^2.5.2
+  shared_preferences: ^2.3.5
   shimmer: ^3.0.0
   state_notifier: ^1.0.0
   stream_transform: ^2.1.1

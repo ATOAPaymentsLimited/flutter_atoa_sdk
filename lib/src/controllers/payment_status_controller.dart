@@ -18,7 +18,7 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
 
   final Atoa _atoa;
 
-  void startListening(String paymentIdempotencyId) {
+  void startListening(String paymentId) {
     _subscription?.cancel();
     _subscription = null;
 
@@ -27,7 +27,7 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
     _subscription = Stream.periodic(
       PaymentUtility.interval ?? const Duration(seconds: 1),
       (_) => callServer<TransactionDetails>(
-        () => _atoa.getPaymentStatus(paymentIdempotencyId),
+        () => _atoa.getPaymentStatus(paymentId),
       ),
     ).listen(
       (future) async {

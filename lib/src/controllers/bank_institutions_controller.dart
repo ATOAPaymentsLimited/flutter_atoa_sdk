@@ -247,11 +247,4 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     }
     await checkBankAppAvailability();
   }
-
-  Future<void> cancelPayment() async {
-    //Make an Api call
-    await callServer(
-      () => atoa.cancelPayment(PaymentUtility.paymentId ?? ''),
-    );
-  }
 }

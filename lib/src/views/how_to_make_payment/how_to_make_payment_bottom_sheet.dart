@@ -53,8 +53,8 @@ class _HowToMakePaymentBottomSheetState
     paymentStatusController = getIt.get<PaymentStatusController>();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       bankInstitutionsController
-        ..fetchBanks()
-        ..getPaymentDetails();
+        ..getPaymentDetails()
+        ..fetchBanks();
     });
   }
 
