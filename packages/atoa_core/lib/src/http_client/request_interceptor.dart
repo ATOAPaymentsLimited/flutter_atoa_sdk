@@ -13,7 +13,7 @@ class RequestInterceptor extends QueuedInterceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final isPaymentStatus = options.path.contains('payments/payment-status');
+    final isPaymentStatus = options.path.contains('payments/v1/payment-status');
 
     final newOptions = options.copyWith(
       headers: {...options.headers},

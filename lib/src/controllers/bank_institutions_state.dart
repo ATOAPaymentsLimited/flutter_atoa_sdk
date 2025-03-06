@@ -34,9 +34,8 @@ class BankInstitutionsState with _$BankInstitutionsState {
     final gridBanks = popularPersonalBanks;
     final gridBankLength = gridBanks.length;
     if (gridBanks.length < 8) {
-      for (var i = 0; i < 8 - gridBankLength; i++) {
-        gridBanks.add(normalPersonalBanks[i]);
-      }
+      final normalBanks = normalPersonalBanks.sublist(0, 8 - gridBankLength);
+      return [...gridBanks, ...normalBanks];
     }
     return gridBanks;
   }

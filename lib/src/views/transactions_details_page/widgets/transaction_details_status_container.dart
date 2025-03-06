@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/custom_status_container.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -15,13 +16,14 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      _getTxnStatusContainerWidget(context, transactionDetails);
+      _getTxnStatusContainerWidget(context, transactionDetails) ??
+      const AtoaErrorWidget();
 
-  Widget _getTxnStatusContainerWidget(
+  CustomStatusContainer? _getTxnStatusContainerWidget(
     BuildContext context,
     TransactionDetails txnDetails,
   ) =>
-      txnDetails.status.map(
+      txnDetails.status.mapOrNull(
         completed: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
           iconBgColor: RegalColors.darkCyan,

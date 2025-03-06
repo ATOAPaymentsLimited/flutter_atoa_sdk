@@ -21,5 +21,7 @@ class TransactionDetailsUtility {
         pending: (TransactionStatusPending value) => RegalColors.darkOrange,
         refunded: (TransactionStatusRefunded value) => RegalColors.darkBlue,
         unknown: (TransactionStatusUnknown value) => RegalColors.grey.shade60,
+        paymentNotInitiated: (TransactionStatusPaymentNotInitiated value) =>
+            RegalColors.darkOrange,
       );
 }

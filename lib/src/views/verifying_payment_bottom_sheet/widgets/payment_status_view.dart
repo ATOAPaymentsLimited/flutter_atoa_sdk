@@ -39,43 +39,33 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
   }
 
   @override
-  Widget build(BuildContext context) => Builder(
-        builder: (context) => Consumer<PaymentStatusState>(
-          builder: (_, state, __) {
-            if (!state.started) {
-              return const SizedBox.shrink();
-            }
-
-            return ValueListenableBuilder(
-              valueListenable: showTickAnimation,
-              builder: (context, showAnimation, child) => AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                child: showAnimation
-                    ? SizedBox(
-                        height: 0.7.sh,
-                        width: 1.sw,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Assets.gifs.tickMark.lottie(
-                              height: Spacing.xtraLarge.value * 3,
-                              width: Spacing.xtraLarge.value * 3,
-                            ),
-                            Spacing.medium.yBox,
-                            CustomText.semantics(
-                              context.l10n.paymentSuccessful,
-                              style: kFigtreeTextTheme.titleSmall?.w700,
-                            ),
-                          ],
-                        ),
-                      )
-                    : TransactionDetailsPage(
-                        bankState: bankState,
-                        transactionDetails: state.details!,
+  Widget build(BuildContext context) => ValueListenableBuilder(
+        valueListenable: showTickAnimation,
+        builder: (context, showAnimation, child) => AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: showAnimation
+              ? SizedBox(
+                  height: 0.7.sh,
+                  width: 1.sw,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Assets.gifs.tickMark.lottie(
+                        height: Spacing.xtraLarge.value * 3,
+                        width: Spacing.xtraLarge.value * 3,
                       ),
-              ),
-            );
-          },
+                      Spacing.medium.yBox,
+                      CustomText.semantics(
+                        context.l10n.paymentSuccessful,
+                        style: kFigtreeTextTheme.titleSmall?.w700,
+                      ),
+                    ],
+                  ),
+                )
+              : TransactionDetailsPage(
+                  transactionDetails:
+                      context.read<PaymentStatusState>().details!,
+                ),
         ),
       );
 }

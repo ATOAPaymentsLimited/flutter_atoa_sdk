@@ -26,6 +26,7 @@ mixin _$TransactionStatus {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ mixin _$TransactionStatus {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -50,6 +52,7 @@ mixin _$TransactionStatus {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) =>
@@ -64,6 +67,8 @@ mixin _$TransactionStatus {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -77,6 +82,8 @@ mixin _$TransactionStatus {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -90,6 +97,8 @@ mixin _$TransactionStatus {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) =>
@@ -219,6 +228,7 @@ class _$TransactionStatusCompletedImpl implements TransactionStatusCompleted {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return completed(status);
@@ -234,6 +244,7 @@ class _$TransactionStatusCompletedImpl implements TransactionStatusCompleted {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return completed?.call(status);
@@ -249,6 +260,7 @@ class _$TransactionStatusCompletedImpl implements TransactionStatusCompleted {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -269,6 +281,8 @@ class _$TransactionStatusCompletedImpl implements TransactionStatusCompleted {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return completed(this);
@@ -285,6 +299,8 @@ class _$TransactionStatusCompletedImpl implements TransactionStatusCompleted {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return completed?.call(this);
@@ -301,6 +317,8 @@ class _$TransactionStatusCompletedImpl implements TransactionStatusCompleted {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -408,6 +426,7 @@ class _$TransactionStatusPendingImpl implements TransactionStatusPending {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return pending(status);
@@ -423,6 +442,7 @@ class _$TransactionStatusPendingImpl implements TransactionStatusPending {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return pending?.call(status);
@@ -438,6 +458,7 @@ class _$TransactionStatusPendingImpl implements TransactionStatusPending {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -458,6 +479,8 @@ class _$TransactionStatusPendingImpl implements TransactionStatusPending {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return pending(this);
@@ -474,6 +497,8 @@ class _$TransactionStatusPendingImpl implements TransactionStatusPending {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return pending?.call(this);
@@ -490,6 +515,8 @@ class _$TransactionStatusPendingImpl implements TransactionStatusPending {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -596,6 +623,7 @@ class _$TransactionStatusFailedImpl implements TransactionStatusFailed {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return failed(status);
@@ -611,6 +639,7 @@ class _$TransactionStatusFailedImpl implements TransactionStatusFailed {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return failed?.call(status);
@@ -626,6 +655,7 @@ class _$TransactionStatusFailedImpl implements TransactionStatusFailed {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -646,6 +676,8 @@ class _$TransactionStatusFailedImpl implements TransactionStatusFailed {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return failed(this);
@@ -662,6 +694,8 @@ class _$TransactionStatusFailedImpl implements TransactionStatusFailed {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return failed?.call(this);
@@ -678,6 +712,8 @@ class _$TransactionStatusFailedImpl implements TransactionStatusFailed {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -785,6 +821,7 @@ class _$TransactionStatusRefundedImpl implements TransactionStatusRefunded {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return refunded(status);
@@ -800,6 +837,7 @@ class _$TransactionStatusRefundedImpl implements TransactionStatusRefunded {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return refunded?.call(status);
@@ -815,6 +853,7 @@ class _$TransactionStatusRefundedImpl implements TransactionStatusRefunded {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -835,6 +874,8 @@ class _$TransactionStatusRefundedImpl implements TransactionStatusRefunded {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return refunded(this);
@@ -851,6 +892,8 @@ class _$TransactionStatusRefundedImpl implements TransactionStatusRefunded {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return refunded?.call(this);
@@ -867,6 +910,8 @@ class _$TransactionStatusRefundedImpl implements TransactionStatusRefunded {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -978,6 +1023,7 @@ class _$TransactionStatusAwaitingAuthorizationImpl
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return awaitingAuthorization(status);
@@ -993,6 +1039,7 @@ class _$TransactionStatusAwaitingAuthorizationImpl
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return awaitingAuthorization?.call(status);
@@ -1008,6 +1055,7 @@ class _$TransactionStatusAwaitingAuthorizationImpl
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -1028,6 +1076,8 @@ class _$TransactionStatusAwaitingAuthorizationImpl
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return awaitingAuthorization(this);
@@ -1044,6 +1094,8 @@ class _$TransactionStatusAwaitingAuthorizationImpl
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return awaitingAuthorization?.call(this);
@@ -1060,6 +1112,8 @@ class _$TransactionStatusAwaitingAuthorizationImpl
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -1169,6 +1223,7 @@ class _$TransactionStatusCancelledImpl implements TransactionStatusCancelled {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return cancelled(status);
@@ -1184,6 +1239,7 @@ class _$TransactionStatusCancelledImpl implements TransactionStatusCancelled {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return cancelled?.call(status);
@@ -1199,6 +1255,7 @@ class _$TransactionStatusCancelledImpl implements TransactionStatusCancelled {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -1219,6 +1276,8 @@ class _$TransactionStatusCancelledImpl implements TransactionStatusCancelled {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return cancelled(this);
@@ -1235,6 +1294,8 @@ class _$TransactionStatusCancelledImpl implements TransactionStatusCancelled {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return cancelled?.call(this);
@@ -1251,6 +1312,8 @@ class _$TransactionStatusCancelledImpl implements TransactionStatusCancelled {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -1358,6 +1421,7 @@ class _$TransactionStatusExpiredImpl implements TransactionStatusExpired {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return expired(status);
@@ -1373,6 +1437,7 @@ class _$TransactionStatusExpiredImpl implements TransactionStatusExpired {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return expired?.call(status);
@@ -1388,6 +1453,7 @@ class _$TransactionStatusExpiredImpl implements TransactionStatusExpired {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -1408,6 +1474,8 @@ class _$TransactionStatusExpiredImpl implements TransactionStatusExpired {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return expired(this);
@@ -1424,6 +1492,8 @@ class _$TransactionStatusExpiredImpl implements TransactionStatusExpired {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return expired?.call(this);
@@ -1440,6 +1510,8 @@ class _$TransactionStatusExpiredImpl implements TransactionStatusExpired {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -1462,6 +1534,209 @@ abstract class TransactionStatusExpired implements TransactionStatus {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionStatusExpiredImplCopyWith<_$TransactionStatusExpiredImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TransactionStatusPaymentNotInitiatedImplCopyWith<$Res>
+    implements $TransactionStatusCopyWith<$Res> {
+  factory _$$TransactionStatusPaymentNotInitiatedImplCopyWith(
+          _$TransactionStatusPaymentNotInitiatedImpl value,
+          $Res Function(_$TransactionStatusPaymentNotInitiatedImpl) then) =
+      __$$TransactionStatusPaymentNotInitiatedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? status});
+}
+
+/// @nodoc
+class __$$TransactionStatusPaymentNotInitiatedImplCopyWithImpl<$Res>
+    extends _$TransactionStatusCopyWithImpl<$Res,
+        _$TransactionStatusPaymentNotInitiatedImpl>
+    implements _$$TransactionStatusPaymentNotInitiatedImplCopyWith<$Res> {
+  __$$TransactionStatusPaymentNotInitiatedImplCopyWithImpl(
+      _$TransactionStatusPaymentNotInitiatedImpl _value,
+      $Res Function(_$TransactionStatusPaymentNotInitiatedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TransactionStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+  }) {
+    return _then(_$TransactionStatusPaymentNotInitiatedImpl(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TransactionStatusPaymentNotInitiatedImpl
+    implements TransactionStatusPaymentNotInitiated {
+  const _$TransactionStatusPaymentNotInitiatedImpl(
+      {this.status = 'PAYMENT_NOT_INITIATED'});
+
+  @override
+  @JsonKey()
+  final String? status;
+
+  @override
+  String toString() {
+    return 'TransactionStatus.paymentNotInitiated(status: $status)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TransactionStatusPaymentNotInitiatedImpl &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status);
+
+  /// Create a copy of TransactionStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TransactionStatusPaymentNotInitiatedImplCopyWith<
+          _$TransactionStatusPaymentNotInitiatedImpl>
+      get copyWith => __$$TransactionStatusPaymentNotInitiatedImplCopyWithImpl<
+          _$TransactionStatusPaymentNotInitiatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? status) completed,
+    required TResult Function(String? status) pending,
+    required TResult Function(String? status) failed,
+    required TResult Function(String? status) refunded,
+    required TResult Function(String? status) awaitingAuthorization,
+    required TResult Function(String? status) cancelled,
+    required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
+    required TResult Function(String? status) unknown,
+  }) {
+    return paymentNotInitiated(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? status)? completed,
+    TResult? Function(String? status)? pending,
+    TResult? Function(String? status)? failed,
+    TResult? Function(String? status)? refunded,
+    TResult? Function(String? status)? awaitingAuthorization,
+    TResult? Function(String? status)? cancelled,
+    TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
+    TResult? Function(String? status)? unknown,
+  }) {
+    return paymentNotInitiated?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? status)? completed,
+    TResult Function(String? status)? pending,
+    TResult Function(String? status)? failed,
+    TResult Function(String? status)? refunded,
+    TResult Function(String? status)? awaitingAuthorization,
+    TResult Function(String? status)? cancelled,
+    TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
+    TResult Function(String? status)? unknown,
+    required TResult orElse(),
+  }) {
+    if (paymentNotInitiated != null) {
+      return paymentNotInitiated(status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TransactionStatusCompleted value) completed,
+    required TResult Function(TransactionStatusPending value) pending,
+    required TResult Function(TransactionStatusFailed value) failed,
+    required TResult Function(TransactionStatusRefunded value) refunded,
+    required TResult Function(TransactionStatusAwaitingAuthorization value)
+        awaitingAuthorization,
+    required TResult Function(TransactionStatusCancelled value) cancelled,
+    required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
+    required TResult Function(TransactionStatusUnknown value) unknown,
+  }) {
+    return paymentNotInitiated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TransactionStatusCompleted value)? completed,
+    TResult? Function(TransactionStatusPending value)? pending,
+    TResult? Function(TransactionStatusFailed value)? failed,
+    TResult? Function(TransactionStatusRefunded value)? refunded,
+    TResult? Function(TransactionStatusAwaitingAuthorization value)?
+        awaitingAuthorization,
+    TResult? Function(TransactionStatusCancelled value)? cancelled,
+    TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
+    TResult? Function(TransactionStatusUnknown value)? unknown,
+  }) {
+    return paymentNotInitiated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionStatusCompleted value)? completed,
+    TResult Function(TransactionStatusPending value)? pending,
+    TResult Function(TransactionStatusFailed value)? failed,
+    TResult Function(TransactionStatusRefunded value)? refunded,
+    TResult Function(TransactionStatusAwaitingAuthorization value)?
+        awaitingAuthorization,
+    TResult Function(TransactionStatusCancelled value)? cancelled,
+    TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
+    TResult Function(TransactionStatusUnknown value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (paymentNotInitiated != null) {
+      return paymentNotInitiated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TransactionStatusPaymentNotInitiated
+    implements TransactionStatus {
+  const factory TransactionStatusPaymentNotInitiated({final String? status}) =
+      _$TransactionStatusPaymentNotInitiatedImpl;
+
+  @override
+  String? get status;
+
+  /// Create a copy of TransactionStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TransactionStatusPaymentNotInitiatedImplCopyWith<
+          _$TransactionStatusPaymentNotInitiatedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1546,6 +1821,7 @@ class _$TransactionStatusUnknownImpl implements TransactionStatusUnknown {
     required TResult Function(String? status) awaitingAuthorization,
     required TResult Function(String? status) cancelled,
     required TResult Function(String? status) expired,
+    required TResult Function(String? status) paymentNotInitiated,
     required TResult Function(String? status) unknown,
   }) {
     return unknown(status);
@@ -1561,6 +1837,7 @@ class _$TransactionStatusUnknownImpl implements TransactionStatusUnknown {
     TResult? Function(String? status)? awaitingAuthorization,
     TResult? Function(String? status)? cancelled,
     TResult? Function(String? status)? expired,
+    TResult? Function(String? status)? paymentNotInitiated,
     TResult? Function(String? status)? unknown,
   }) {
     return unknown?.call(status);
@@ -1576,6 +1853,7 @@ class _$TransactionStatusUnknownImpl implements TransactionStatusUnknown {
     TResult Function(String? status)? awaitingAuthorization,
     TResult Function(String? status)? cancelled,
     TResult Function(String? status)? expired,
+    TResult Function(String? status)? paymentNotInitiated,
     TResult Function(String? status)? unknown,
     required TResult orElse(),
   }) {
@@ -1596,6 +1874,8 @@ class _$TransactionStatusUnknownImpl implements TransactionStatusUnknown {
         awaitingAuthorization,
     required TResult Function(TransactionStatusCancelled value) cancelled,
     required TResult Function(TransactionStatusExpired value) expired,
+    required TResult Function(TransactionStatusPaymentNotInitiated value)
+        paymentNotInitiated,
     required TResult Function(TransactionStatusUnknown value) unknown,
   }) {
     return unknown(this);
@@ -1612,6 +1892,8 @@ class _$TransactionStatusUnknownImpl implements TransactionStatusUnknown {
         awaitingAuthorization,
     TResult? Function(TransactionStatusCancelled value)? cancelled,
     TResult? Function(TransactionStatusExpired value)? expired,
+    TResult? Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult? Function(TransactionStatusUnknown value)? unknown,
   }) {
     return unknown?.call(this);
@@ -1628,6 +1910,8 @@ class _$TransactionStatusUnknownImpl implements TransactionStatusUnknown {
         awaitingAuthorization,
     TResult Function(TransactionStatusCancelled value)? cancelled,
     TResult Function(TransactionStatusExpired value)? expired,
+    TResult Function(TransactionStatusPaymentNotInitiated value)?
+        paymentNotInitiated,
     TResult Function(TransactionStatusUnknown value)? unknown,
     required TResult orElse(),
   }) {

@@ -40,10 +40,6 @@ _$TransactionDetailsTransactionImpl
               : TransactionStatusDetails.fromJson(
                   json['statusDetails'] as Map<String, dynamic>),
           merchantId: json['merchantId'] as String?,
-          payer: json['payer'] == null
-              ? null
-              : PayerBankDetails.fromJson(
-                  json['payer'] as Map<String, dynamic>),
           merchantName: json['merchantName'] as String?,
           avatar: json['avatar'] as String?,
           storeDetails: json['storeDetails'] == null
@@ -79,7 +75,6 @@ Map<String, dynamic> _$$TransactionDetailsTransactionImplToJson(
       'orderId': instance.orderId,
       'statusDetails': instance.statusDetails,
       'merchantId': instance.merchantId,
-      'payer': instance.payer,
       'merchantName': instance.merchantName,
       'avatar': instance.avatar,
       'storeDetails': instance.storeDetails,

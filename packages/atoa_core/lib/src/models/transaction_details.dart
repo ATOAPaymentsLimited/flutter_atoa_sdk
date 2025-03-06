@@ -55,7 +55,6 @@ class TransactionDetails with _$TransactionDetails {
     String? orderId,
     TransactionStatusDetails? statusDetails,
     String? merchantId,
-    PayerBankDetails? payer,
     String? merchantName,
     String? avatar,
     StoreDetails? storeDetails,
@@ -113,10 +112,7 @@ class TransactionDetails with _$TransactionDetails {
           ? transactionDetails.first!.errorDescription!.trim()
           : null;
 
-  String? get payerBankAccountNo {
-    print('233 ${transactionDetails.first?.bankAccountNo}');
-    return transactionDetails.first?.bankAccountNo;
-  }
+  String? get payerBankAccountNo => transactionDetails.first?.bankAccountNo;
 }
 
 /// Parses dynamic amount value into a double.

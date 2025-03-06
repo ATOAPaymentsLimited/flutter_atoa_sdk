@@ -110,12 +110,8 @@ class Atoa {
   ) async {
     _dioCheck();
 
-    var endpoints = Endpoints.getPaymentStatus(paymentId);
-    if (_atoaEnv == AtoaEnv.sandbox) {
-      endpoints = '$endpoints?env=sandbox';
-    }
     final res = await _atoaDio!.get<Map<String, dynamic>>(
-      endpoints,
+      Endpoints.getPaymentStatus(paymentId),
     );
 
     final data = res.data;

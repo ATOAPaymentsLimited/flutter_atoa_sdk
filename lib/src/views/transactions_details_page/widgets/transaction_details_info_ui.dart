@@ -1,6 +1,5 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/bank_details_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/collapsed_payment_details_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/payment_details_row.dart';
@@ -12,7 +11,7 @@ import 'package:regal/regal.dart';
 class TransactionDetailsInfoUi extends StatefulWidget {
   const TransactionDetailsInfoUi({
     required this.transactionDetails,
-    required this.bankState,
+    //   required this.bankState,
     super.key,
     this.showNotes = true,
     this.isExpanded = true,
@@ -22,7 +21,7 @@ class TransactionDetailsInfoUi extends StatefulWidget {
   final bool showTransactionActions;
   final bool isExpanded;
   final bool showNotes;
-  final BankInstitutionsState bankState;
+//  final BankInstitutionsState bankState;
 
   @override
   State<TransactionDetailsInfoUi> createState() =>
@@ -123,7 +122,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
                 children: [
                   BankDetailsWidget(
                     transactionDetails: transactionDetails,
-                    bankState: widget.bankState,
+                    //  bankState: widget.bankState,
                   ),
                   PaymentDetailsRow(
                     label: context.l10n.referenceId,

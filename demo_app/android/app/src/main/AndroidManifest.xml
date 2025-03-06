@@ -30,6 +30,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "atoa://" -->
+                <data android:host="demoapp.com" />
+                <data android:scheme="intent" />
                 <data android:scheme="atoa" />
 
             </intent-filter>

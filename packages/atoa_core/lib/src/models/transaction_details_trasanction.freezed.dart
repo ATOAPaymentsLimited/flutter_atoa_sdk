@@ -94,7 +94,6 @@ mixin _$TransactionDetailsTransaction {
   TransactionStatusDetails? get statusDetails =>
       throw _privateConstructorUsedError;
   String? get merchantId => throw _privateConstructorUsedError;
-  PayerBankDetails? get payer => throw _privateConstructorUsedError;
   String? get merchantName => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
   StoreDetails? get storeDetails => throw _privateConstructorUsedError;
@@ -144,7 +143,6 @@ abstract class $TransactionDetailsTransactionCopyWith<$Res> {
       String? orderId,
       TransactionStatusDetails? statusDetails,
       String? merchantId,
-      PayerBankDetails? payer,
       String? merchantName,
       String? avatar,
       StoreDetails? storeDetails,
@@ -152,7 +150,6 @@ abstract class $TransactionDetailsTransactionCopyWith<$Res> {
 
   $TransactionStatusCopyWith<$Res>? get status;
   $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
-  $PayerBankDetailsCopyWith<$Res>? get payer;
   $StoreDetailsCopyWith<$Res>? get storeDetails;
 }
 
@@ -196,7 +193,6 @@ class _$TransactionDetailsTransactionCopyWithImpl<$Res,
     Object? orderId = freezed,
     Object? statusDetails = freezed,
     Object? merchantId = freezed,
-    Object? payer = freezed,
     Object? merchantName = freezed,
     Object? avatar = freezed,
     Object? storeDetails = freezed,
@@ -299,10 +295,6 @@ class _$TransactionDetailsTransactionCopyWithImpl<$Res,
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      payer: freezed == payer
-          ? _value.payer
-          : payer // ignore: cast_nullable_to_non_nullable
-              as PayerBankDetails?,
       merchantName: freezed == merchantName
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
@@ -348,20 +340,6 @@ class _$TransactionDetailsTransactionCopyWithImpl<$Res,
     return $TransactionStatusDetailsCopyWith<$Res>(_value.statusDetails!,
         (value) {
       return _then(_value.copyWith(statusDetails: value) as $Val);
-    });
-  }
-
-  /// Create a copy of TransactionDetailsTransaction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PayerBankDetailsCopyWith<$Res>? get payer {
-    if (_value.payer == null) {
-      return null;
-    }
-
-    return $PayerBankDetailsCopyWith<$Res>(_value.payer!, (value) {
-      return _then(_value.copyWith(payer: value) as $Val);
     });
   }
 
@@ -415,7 +393,6 @@ abstract class _$$TransactionDetailsTransactionImplCopyWith<$Res>
       String? orderId,
       TransactionStatusDetails? statusDetails,
       String? merchantId,
-      PayerBankDetails? payer,
       String? merchantName,
       String? avatar,
       StoreDetails? storeDetails,
@@ -425,8 +402,6 @@ abstract class _$$TransactionDetailsTransactionImplCopyWith<$Res>
   $TransactionStatusCopyWith<$Res>? get status;
   @override
   $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
-  @override
-  $PayerBankDetailsCopyWith<$Res>? get payer;
   @override
   $StoreDetailsCopyWith<$Res>? get storeDetails;
 }
@@ -470,7 +445,6 @@ class __$$TransactionDetailsTransactionImplCopyWithImpl<$Res>
     Object? orderId = freezed,
     Object? statusDetails = freezed,
     Object? merchantId = freezed,
-    Object? payer = freezed,
     Object? merchantName = freezed,
     Object? avatar = freezed,
     Object? storeDetails = freezed,
@@ -573,10 +547,6 @@ class __$$TransactionDetailsTransactionImplCopyWithImpl<$Res>
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      payer: freezed == payer
-          ? _value.payer
-          : payer // ignore: cast_nullable_to_non_nullable
-              as PayerBankDetails?,
       merchantName: freezed == merchantName
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
@@ -627,7 +597,6 @@ class _$TransactionDetailsTransactionImpl
       this.orderId,
       this.statusDetails,
       this.merchantId,
-      this.payer,
       this.merchantName,
       this.avatar,
       this.storeDetails,
@@ -736,8 +705,6 @@ class _$TransactionDetailsTransactionImpl
   @override
   final String? merchantId;
   @override
-  final PayerBankDetails? payer;
-  @override
   final String? merchantName;
   @override
   final String? avatar;
@@ -748,7 +715,7 @@ class _$TransactionDetailsTransactionImpl
 
   @override
   String toString() {
-    return 'TransactionDetailsTransaction(paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentIdempotencyId: $paymentIdempotencyId, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, payer: $payer, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId)';
+    return 'TransactionDetailsTransaction(paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentIdempotencyId: $paymentIdempotencyId, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId)';
   }
 
   @override
@@ -799,7 +766,6 @@ class _$TransactionDetailsTransactionImpl
                 other.statusDetails == statusDetails) &&
             (identical(other.merchantId, merchantId) ||
                 other.merchantId == merchantId) &&
-            (identical(other.payer, payer) || other.payer == payer) &&
             (identical(other.merchantName, merchantName) ||
                 other.merchantName == merchantName) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
@@ -837,7 +803,6 @@ class _$TransactionDetailsTransactionImpl
         orderId,
         statusDetails,
         merchantId,
-        payer,
         merchantName,
         avatar,
         storeDetails,
@@ -890,7 +855,6 @@ abstract class _TransactionDetailsTransaction
       final String? orderId,
       final TransactionStatusDetails? statusDetails,
       final String? merchantId,
-      final PayerBankDetails? payer,
       final String? merchantName,
       final String? avatar,
       final StoreDetails? storeDetails,
@@ -996,8 +960,6 @@ abstract class _TransactionDetailsTransaction
   TransactionStatusDetails? get statusDetails;
   @override
   String? get merchantId;
-  @override
-  PayerBankDetails? get payer;
   @override
   String? get merchantName;
   @override

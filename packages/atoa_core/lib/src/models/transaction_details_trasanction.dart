@@ -86,7 +86,6 @@ class TransactionDetailsTransaction with _$TransactionDetailsTransaction {
     String? orderId,
     TransactionStatusDetails? statusDetails,
     String? merchantId,
-    PayerBankDetails? payer,
     String? merchantName,
     String? avatar,
     StoreDetails? storeDetails,

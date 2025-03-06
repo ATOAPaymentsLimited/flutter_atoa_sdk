@@ -14,7 +14,6 @@ import 'package:http/http.dart' as http;
 /// {@template atoa_flutter_sdk}
 /// Atoa Flutter SDK
 /// {@endtemplate}
-///
 class AtoaSdk {
   const AtoaSdk();
 
@@ -23,7 +22,6 @@ class AtoaSdk {
     required String paymentId,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
-    void Function(String?)? onCancelPayment,
 
     /// payment status polling interval
     Duration interval = const Duration(seconds: 1),
@@ -32,7 +30,6 @@ class AtoaSdk {
 
     Atoa.env = env;
     PaymentUtility.paymentId = paymentId;
-    PaymentUtility.onCancelPayment = onCancelPayment;
     PaymentUtility.interval = interval;
 
     await configureInjection(env.name);

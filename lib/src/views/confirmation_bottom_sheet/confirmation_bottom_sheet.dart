@@ -116,6 +116,9 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
                       ? null
                       : () => Navigator.pop(context, true),
                   trackLabel: 'Go To ${state.selectedBank?.name}',
+                  loading: state.isLoadingAuth,
+                  loadingIndicatorColor:
+                      BrandingColorUtility.brandingForegroundColor,
                   label: context.l10n.goToBank(
                     state.selectedBank?.name ?? '',
                   ),

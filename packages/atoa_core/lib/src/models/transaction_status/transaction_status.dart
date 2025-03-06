@@ -32,6 +32,10 @@ class TransactionStatus with _$TransactionStatus {
     @Default('EXPIRED') String? status,
   }) = TransactionStatusExpired;
 
+  const factory TransactionStatus.paymentNotInitiated({
+    @Default('PAYMENT_NOT_INITIATED') String? status,
+  }) = TransactionStatusPaymentNotInitiated;
+
   const factory TransactionStatus.unknown({
     String? status,
   }) = TransactionStatusUnknown;
@@ -58,6 +62,9 @@ class TransactionStatus with _$TransactionStatus {
       }
       if (value.toLowerCase() == 'expired') {
         return const TransactionStatus.expired();
+      }
+      if (value.toLowerCase() == 'payment_not_initiated') {
+        return const TransactionStatus.paymentNotInitiated();
       }
       return TransactionStatus.unknown(
         status: value,

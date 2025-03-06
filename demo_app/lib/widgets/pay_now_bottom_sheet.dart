@@ -20,16 +20,15 @@ class PayNowBottomSheet extends StatelessWidget {
       return;
     }
 
-    AtoaSdk.show(context,
-        paymentId: paymentId,
-        // showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
-        showHowPaymentWorks: true,
-        env: AtoaEnv.sandbox, onCancelPayment: (paymentId) {
-      print(paymentId);
-    }
+    AtoaSdk.show(
+      context,
+      paymentId: paymentId,
+      // showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
+      showHowPaymentWorks: true,
+      env: AtoaEnv.sandbox,
 
-        // /// or AtoaEnv.prod
-        );
+      // /// or AtoaEnv.prod
+    );
 
     prefs.setBool('showHowPaymentWorks', false);
   }

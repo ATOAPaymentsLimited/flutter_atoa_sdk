@@ -21,20 +21,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 class TransactionDetailsPage extends StatelessWidget {
   const TransactionDetailsPage({
     required this.transactionDetails,
-    required this.bankState,
     super.key,
-    this.isCompleted = false,
   });
 
   final TransactionDetails transactionDetails;
-  final BankInstitutionsState bankState;
-  final bool isCompleted;
 
   @override
   Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Spacing.large.xBox * 2,
@@ -104,8 +100,6 @@ class TransactionDetailsPage extends StatelessWidget {
           Spacing.huge.yBox * 2,
           TransactionDetailsTopCard(
             transactionDetails: transactionDetails,
-            showRetry: false,
-            isCompleted: isCompleted,
           ),
           Padding(
             padding: Spacing.xtraLarge.top,
@@ -118,7 +112,6 @@ class TransactionDetailsPage extends StatelessWidget {
                   padding: Spacing.medium.top + Spacing.tiny.top,
                   child: TransactionDetailsInfoUi(
                     transactionDetails: transactionDetails,
-                    bankState: bankState,
                     isExpanded: false,
                   ),
                 ),

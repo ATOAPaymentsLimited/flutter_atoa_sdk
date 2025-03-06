@@ -9,6 +9,7 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/failure_listener.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/animated_search_field.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_back_button.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_list_item.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_tab_bar.dart';
@@ -19,7 +20,6 @@ import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/n
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/personal_banks_tab_view.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/widgets/animated_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

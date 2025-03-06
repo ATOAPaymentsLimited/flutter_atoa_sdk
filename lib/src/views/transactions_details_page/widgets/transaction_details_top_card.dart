@@ -11,20 +11,15 @@ import 'package:regal/regal.dart';
 class TransactionDetailsTopCard extends StatelessWidget {
   const TransactionDetailsTopCard({
     required this.transactionDetails,
-    required this.showRetry,
     super.key,
-    this.onRetry,
-    this.isCompleted = false,
   });
   final TransactionDetails transactionDetails;
-  final bool showRetry;
-  final void Function(BuildContext context)? onRetry;
-  final bool isCompleted;
 
   @override
   Widget build(BuildContext context) => Padding(
         padding: Spacing.xtraLarge.x,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             CustomGestureDetector(
               semanticsLabel: 'Profile Picture',
@@ -42,10 +37,7 @@ class TransactionDetailsTopCard extends StatelessWidget {
                   ),
                   child: Center(
                     child: CustomText.semantics(
-                      (transactionDetails
-                                  .transactionDetails.first?.merchantName ??
-                              '')
-                          .getInitials(),
+                      (transactionDetails.merchantName ?? '').getInitials(),
                       style: context.figtree.bodyLarge.w700.textColor(
                         context.intactColors.black,
                       ),

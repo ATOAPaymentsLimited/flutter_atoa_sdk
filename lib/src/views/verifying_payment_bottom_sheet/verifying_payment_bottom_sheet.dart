@@ -23,13 +23,13 @@ class VerifyingPaymentBottomSheet extends StatefulWidget {
   ) =>
       showModalBottomSheet<TransactionDetails?>(
         context: context,
-        builder: (contextz) => StateNotifierProvider<BankInstitutionsController,
+        builder: (context) => StateNotifierProvider<BankInstitutionsController,
             BankInstitutionsState>.value(
           value: bankInstitutionController,
-          builder: (contextz, child) => StateNotifierProvider<
+          builder: (context, child) => StateNotifierProvider<
               PaymentStatusController, PaymentStatusState>.value(
             value: paymentStatusController,
-            builder: (contextz, _) => VerifyingPaymentBottomSheet(
+            builder: (context, _) => VerifyingPaymentBottomSheet(
               bankInstitutionController: bankInstitutionController,
             ),
           ),
@@ -56,7 +56,10 @@ class _VerifyingPaymentBottomSheetState
   @override
   void initState() {
     super.initState();
-    widget.bankInstitutionController.authorizeBank();
+    Future.delayed(
+      const Duration(seconds: 1),
+      () => widget.bankInstitutionController.authorizeBank(),
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _startPollingAfter20Sec(context);
     });
@@ -79,44 +82,45 @@ class _VerifyingPaymentBottomSheetState
 
   @override
   Widget build(BuildContext context) => Consumer<PaymentStatusState>(
-        builder: (_, paymentState, __) => DecoratedBox(
-          decoration: BoxDecoration(
-            color: context.intactColors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(Spacing.xtraLarge.value),
-              topRight: Radius.circular(Spacing.xtraLarge.value),
+        builder: (_, paymentState, __) => AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.intactColors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Spacing.xtraLarge.value),
+                topRight: Radius.circular(Spacing.xtraLarge.value),
+              ),
             ),
-          ),
-          child: Padding(
-            padding: Spacing.large.y + Spacing.xtraLarge.x,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Builder(
-                  builder: (context) {
-                    if (paymentState.exception != null) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Spacing.huge.yBox * 8,
-                          const AtoaErrorWidget(),
-                          Spacing.huge.yBox * 8,
-                        ],
-                      );
-                    }
-                    if (paymentState.details?.status != null &&
-                        paymentState.details!.status !=
-                            const TransactionStatus.awaitingAuthorization() &&
-                        paymentState.details!.status !=
-                            const TransactionStatus.pending()) {
-                      return PaymentStatusView(
-                        isCompleted: paymentState.details!.isCompleted,
-                      );
-                    }
-                    return const VerifyingPaymentView();
-                  },
-                ),
-              ],
+            child: Padding(
+              padding: Spacing.large.y + Spacing.xtraLarge.x,
+              child: Builder(
+                builder: (context) {
+                  if (paymentState.exception != null) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Spacing.huge.yBox * 8,
+                        const AtoaErrorWidget(),
+                        Spacing.huge.yBox * 8,
+                      ],
+                    );
+                  }
+                  if (paymentState.details != null &&
+                      paymentState.details?.status != null &&
+                      paymentState.details!.status !=
+                          const TransactionStatus.awaitingAuthorization() &&
+                      paymentState.details!.status !=
+                          const TransactionStatus.paymentNotInitiated()) {
+                    return PaymentStatusView(
+                      isCompleted: paymentState.details!.isCompleted,
+                    );
+                  }
+
+                  return const VerifyingPaymentView();
+                },
+              ),
             ),
           ),
         ),
