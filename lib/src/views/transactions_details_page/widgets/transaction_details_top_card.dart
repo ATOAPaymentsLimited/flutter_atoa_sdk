@@ -38,7 +38,7 @@ class TransactionDetailsTopCard extends StatelessWidget {
                   child: Center(
                     child: CustomText.semantics(
                       (transactionDetails.merchantName ?? '').getInitials(),
-                      style: context.figtree.bodyLarge.w700.textColor(
+                      style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
                         context.intactColors.black,
                       ),
                       textAlign: TextAlign.center,

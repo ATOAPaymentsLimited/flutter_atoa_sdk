@@ -31,9 +31,8 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           size: Spacing.large.value,
           status: context.l10n.paid,
           desc: context.l10n.paymentSuccessful,
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
         ),
         pending: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
@@ -43,18 +42,16 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           status: context.l10n.processing,
           showCallBank: true,
           desc: _getPaymentPendingStatusDescription(txnDetails, context),
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
         ),
         failed: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
           iconBgColor: RegalColors.vividRed,
           svgAsset: Assets.icons.close.path,
           status: context.l10n.failed,
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
           desc: txnDetails.errorMessage ?? context.l10n.paymentFailedDesc,
         ),
         refunded: (value) => CustomStatusContainer(
@@ -63,9 +60,8 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           svgAsset: Assets.icons.iconRefunded.path,
           status: context.l10n.paymentRefunded,
           desc: context.l10n.paymentRefundedDesc,
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
         ),
         awaitingAuthorization: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
@@ -74,9 +70,8 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           isLottie: true,
           status: context.l10n.awaitingAuth,
           desc: context.l10n.awaitAuthDesc,
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
         ),
         cancelled: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
@@ -84,18 +79,16 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           svgAsset: Assets.icons.close.path,
           status: 'Cancelled',
           desc: txnDetails.errorMessage ?? context.l10n.paymentCancelledDesc,
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
         ),
         expired: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
           iconBgColor: RegalColors.grey.shade60,
           svgAsset: Assets.icons.iconExclamation.path,
           status: context.l10n.expired,
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
           desc: txnDetails.errorMessage ?? context.l10n.paymentExpiredDesc,
         ),
         unknown: (value) => CustomStatusContainer(
@@ -104,9 +97,8 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           svgAsset: Assets.icons.iconExclamation.path,
           status: value.status ?? context.l10n.unknown,
           desc: txnDetails.errorMessage ?? context.l10n.unknownStatusDesc,
-          dateTime: transactionDetails.transactionDetails.first?.updatedAt ??
-              transactionDetails.transactionDetails.first?.createdAt ??
-              '',
+          dateTime:
+              transactionDetails.updatedAt ?? transactionDetails.createdAt,
         ),
       );
 
@@ -116,11 +108,9 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
   ) {
     if (txnDetails.errorMessage != null) {
       return txnDetails.errorMessage!;
-    } else if (txnDetails.transactionDetails.first != null &&
-        txnDetails.transactionDetails.first?.pendingTrasactionError != null &&
-        txnDetails
-            .transactionDetails.first!.pendingTrasactionError!.isNotEmpty) {
-      return txnDetails.transactionDetails.first!.pendingTrasactionError!;
+    } else if (txnDetails.pendingTrasactionError != null &&
+        txnDetails.pendingTrasactionError!.isNotEmpty) {
+      return txnDetails.pendingTrasactionError!;
     } else {
       return context.l10n.settlementInProcessInfoText;
     }

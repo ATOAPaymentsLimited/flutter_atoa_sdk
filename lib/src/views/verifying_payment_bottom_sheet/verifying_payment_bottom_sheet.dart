@@ -1,6 +1,5 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/payment_status_view.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/verifying_payment_view.dart';
@@ -72,7 +71,8 @@ class _VerifyingPaymentBottomSheetState
   }
 
   void _startPollingAfter20Sec(BuildContext context) {
-    final paymentId = PaymentUtility.paymentId;
+    final paymentId =
+        context.read<BankInstitutionsState>().paymentAuth?.paymentIdempotencyId;
     if (context.mounted) {
       context.read<PaymentStatusController>().startListening(
             paymentId ?? '',

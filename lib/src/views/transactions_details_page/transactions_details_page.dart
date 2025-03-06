@@ -76,24 +76,20 @@ class TransactionDetailsPage extends StatelessWidget {
               ),
             ],
           ),
-          if (transactionDetails.transactionDetails.first != null &&
-              transactionDetails.transactionDetails.first?.updatedAt != null)
+          if (transactionDetails.updatedAt != null)
             CustomText.semantics(
               context.l10n.transactionDateAndTime(
-                transactionDetails.transactionDetails.first!.updatedAt!
-                    .formattedTime(),
-                transactionDetails.transactionDetails.first!.updatedAt!
+                transactionDetails.updatedAt!.formattedTime(),
+                transactionDetails.updatedAt!
                     .formattedDateForPaymentDetails(context),
               ),
               style: kFigtreeTextTheme.bodyLarge?.w700,
             )
-          else if (transactionDetails.transactionDetails.first?.createdAt !=
-              null)
+          else
             CustomText.semantics(
               context.l10n.transactionDateAndTime(
-                transactionDetails.transactionDetails.first!.createdAt!
-                    .formattedTime(),
-                transactionDetails.transactionDetails.first!.createdAt!
+                transactionDetails.createdAt.formattedTime(),
+                transactionDetails.createdAt
                     .formattedDateForPaymentDetails(context),
               ),
               style: kFigtreeTextTheme.bodyLarge?.w700,

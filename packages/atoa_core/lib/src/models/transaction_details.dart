@@ -2,8 +2,9 @@
 
 import 'package:atoa_core/src/models/enums/iso_code_status_enum.dart';
 import 'package:atoa_core/src/models/models.dart';
-import 'package:atoa_core/src/models/transaction_details_trasanction.dart';
+import 'package:atoa_core/src/models/payment_request/payment_request.dart';
 import 'package:atoa_core/src/models/transaction_status_details/transaction_status_details.dart';
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction_details.freezed.dart';
@@ -17,8 +18,14 @@ part 'transaction_details.g.dart';
 class TransactionDetails with _$TransactionDetails {
   /// {@macro transaction_details}
   factory TransactionDetails({
+    /// Unique identifier for the application user initiating the transaction.
+    required String applicationUserId,
+
     /// The amount paid for the transaction.
     @JsonKey(fromJson: _parseAmount) required double paidAmount,
+
+    /// The currency in which the transaction was made.
+    required String currency,
 
     /// Current status of the transaction.
     @JsonKey(
@@ -26,15 +33,23 @@ class TransactionDetails with _$TransactionDetails {
       includeToJson: false,
     )
     required TransactionStatus status,
-
-    /// The currency in which the transaction was made.
-    String? currency,
-
-    /// Unique identifier for the application user initiating the transaction.
-    String? applicationUserId,
+    required String createdAt,
+    required String paymentIdempotencyId,
 
     /// Optional: Unique identifier for the payment, if available.
-    String? paymentRequestId,
+    String? paymentId,
+
+    /// Optional: The date and time when the transaction was last updated.
+    String? updatedAt,
+
+    /// Optional: The name of the bank used for the transaction.
+    String? bankName,
+
+    /// Optional: The bank account number used for the transaction.
+    String? bankAccountNo,
+
+    /// Optional: Additional notes related to the transaction.
+    String? notes,
 
     /// Optional: The tax amount associated with the transaction.
     @Default(0.0) @JsonKey(fromJson: _parseAmount) double? taxAmount,
@@ -48,17 +63,36 @@ class TransactionDetails with _$TransactionDetails {
     /// Optional: The QR code identifier associated with the transaction.
     String? qrId,
 
+    /// Optional: The store identifier where the transaction took place.
+    String? storeId,
+
     /// Optional: Nickname associated with the QR code used for the transaction.
     String? qrNickName,
+
+    /// Optional: Description of any errors occurred during the transaction.
+    String? errorDescription,
+
+    /// Default: 3. Type of payment source used for the transaction.
+    @Default(3) int paymentSourceType,
+
+    /// Optional: Unique identifier for linking payments across systems.
+    String? paymentLinkId,
+
+    /// Optional: Unique identifier for the employee associated with the transaction.
+    String? employeeId,
+
+    /// Optional: Description of any pending transaction errors.
+    String? pendingTrasactionError,
 
     /// Optional: Unique identifier for the order associated with the transaction.
     String? orderId,
     TransactionStatusDetails? statusDetails,
     String? merchantId,
+    PaymentRequest? paymentRequest,
     String? merchantName,
     String? avatar,
     StoreDetails? storeDetails,
-    @Default([]) List<TransactionDetailsTransaction?> transactionDetails,
+    String? institutionId,
   }) = _TransactionDetails;
 
   TransactionDetails._();
@@ -75,8 +109,7 @@ class TransactionDetails with _$TransactionDetails {
 
   /// Checks if the transaction is currently processing.
   bool get isProcessing =>
-      status.status == 'PENDING' &&
-      transactionDetails.first?.pendingTrasactionError != null;
+      status.status == 'PENDING' && pendingTrasactionError != null;
 
   /// Checks if the transaction has been refunded.
   bool get isRefunded => status.status == 'REFUNDED';
@@ -106,13 +139,17 @@ class TransactionDetails with _$TransactionDetails {
 
   TransactionStatus get txnPaymentStatus => status;
 
-  String? get errorMessage => transactionDetails.first != null &&
-          transactionDetails.first?.errorDescription != null &&
-          transactionDetails.first!.errorDescription!.trim().isNotEmpty
-      ? transactionDetails.first!.errorDescription!.trim()
-      : null;
+  String? get errorMessage =>
+      errorDescription != null && errorDescription!.trim().isNotEmpty
+          ? errorDescription!.trim()
+          : null;
 
-  String? get payerBankAccountNo => transactionDetails.first?.bankAccountNo;
+  String? get payerBankAccountNo =>
+      paymentRequest?.payee?.accountIdentifications
+          ?.firstWhereOrNull(
+            (element) => element.type.toUpperCase() == 'ACCOUNT_NUMBER',
+          )
+          ?.identification;
 }
 
 /// Parses dynamic amount value into a double.

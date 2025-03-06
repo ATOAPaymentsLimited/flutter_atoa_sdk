@@ -39,9 +39,7 @@ class BankDetailsWidget extends StatelessWidget {
           .read<BankInstitutionsState>()
           .bankList
           .firstWhereOrNull(
-            (element) =>
-                element.id ==
-                transactionDetails.transactionDetails.first?.institutionId,
+            (element) => element.id == transactionDetails.institutionId,
           )
           ?.name ??
       '';
@@ -53,9 +51,7 @@ class BankDetailsWidget extends StatelessWidget {
           .read<BankInstitutionsState>()
           .bankList
           .firstWhereOrNull(
-            (element) =>
-                element.id ==
-                transactionDetails.transactionDetails.first?.institutionId,
+            (element) => element.id == transactionDetails.institutionId,
           )
           ?.bankLogo ??
       '';

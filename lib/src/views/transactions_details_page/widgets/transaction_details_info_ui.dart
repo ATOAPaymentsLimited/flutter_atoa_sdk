@@ -126,9 +126,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
                   ),
                   PaymentDetailsRow(
                     label: context.l10n.referenceId,
-                    value: transactionDetails
-                            .transactionDetails.first?.paymentIdempotencyId ??
-                        '',
+                    value: transactionDetails.paymentIdempotencyId,
                     showCopyContent: true,
                   ),
                   if (transactionDetails.orderId != null &&
@@ -140,15 +138,11 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
                       showCopyContent: true,
                     ),
                   ],
-                  if (transactionDetails.transactionDetails.first != null &&
-                      transactionDetails.transactionDetails.first?.notes !=
-                          null &&
-                      widget.showNotes) ...[
+                  if (transactionDetails.notes != null && widget.showNotes) ...[
                     Spacing.medium.yBox,
                     PaymentDetailsRow(
                       label: context.l10n.note,
-                      value:
-                          transactionDetails.transactionDetails.first!.notes!,
+                      value: transactionDetails.notes!,
                     ),
                   ],
                 ],

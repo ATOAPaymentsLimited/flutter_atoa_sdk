@@ -13,5 +13,5 @@ class Endpoints {
   static const getPaymentDetails = 'payments/get-payment-details';
 
   /// Payment Status
-  static String getPaymentStatus(String id) => 'payments/v1/payment-status/$id';
+  static String getPaymentStatus(String id) => 'payments/payment-status/$id';
 }
