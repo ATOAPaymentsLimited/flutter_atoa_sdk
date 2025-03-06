@@ -7,6 +7,7 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart'
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/app_not_installed_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_and_service_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/review_details_tile.dart';
@@ -59,17 +60,28 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
         builder: (context, child) => Consumer<BankInstitutionsState>(
           builder: (context, state, child) {
             if (state.isLoadingAuth) {
-              Column(
+              return Column(
                 children: [
-                  Spacing.huge.yBox * 4,
+                  Spacing.huge.yBox * 6,
                   const AtoaLoader(),
-                  Spacing.huge.yBox * 4,
+                  Spacing.huge.yBox * 6,
                 ],
               );
             }
 
-            if (state.error != null) {
-              Navigator.pop(context, false);
+            if (state.bankAuthError != null) {
+              return Column(
+                children: [
+                  Spacing.huge.yBox * 6,
+                  AtoaErrorWidget(
+                    message: state.bankAuthError != null &&
+                            state.bankAuthError is AtoaException
+                        ? (state.bankAuthError! as AtoaException).message
+                        : null,
+                  ),
+                  Spacing.huge.yBox * 6,
+                ],
+              );
             }
 
             return Column(

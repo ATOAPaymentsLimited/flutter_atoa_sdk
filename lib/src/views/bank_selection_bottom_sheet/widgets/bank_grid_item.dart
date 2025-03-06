@@ -21,84 +21,88 @@ class BankGridItem extends StatelessWidget {
   final Future<void> Function(BankInstitution) onBankSelect;
 
   @override
-  Widget build(BuildContext context) => CustomInkWell(
-        semanticsLabel: '${bank.name} ${context.l10n.bankCard}',
-        context: context,
-        trackLabel: '${bank.name} Bank Card',
-        enableTracking: false,
-        onTap: () async {
-          bank.enabled
-              ? await onBankSelect.call(bank)
-              : BankDownBottomSheet.show(context, bank);
-        },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
+  Widget build(BuildContext context) => Builder(
+        builder: (context) {
+          final isSelectedBank =
+              context.read<BankInstitutionsState>().selectedBank == bank;
+          return CustomInkWell(
+            semanticsLabel: '${bank.name} ${context.l10n.bankCard}',
+            context: context,
+            trackLabel: '${bank.name} Bank Card',
+            enableTracking: false,
+            onTap: () async {
+              bank.enabled
+                  ? await onBankSelect.call(bank)
+                  : BankDownBottomSheet.show(context, bank);
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (!bank.enabled) ...[
-                  Positioned(
-                    right: Spacing.mini.value,
-                    top: Spacing.mini.value,
-                    child: BankDownIcon(bank: bank),
-                  ),
-                ] else if (context.read<BankInstitutionsState>().selectedBank ==
-                    bank)
-                  Positioned(
-                    right: Spacing.mini.value,
-                    top: Spacing.mini.value,
-                    child: CircleAvatar(
-                      radius: Spacing.small.value,
-                      backgroundColor: context.intactColors.black,
-                      child: Assets.icons.iconTick.svg(
-                        height: Spacing.mini.value + Spacing.tiny.value,
+                Stack(
+                  children: [
+                    if (!bank.enabled) ...[
+                      Positioned(
+                        right: Spacing.mini.value,
+                        top: Spacing.mini.value,
+                        child: BankDownIcon(bank: bank),
                       ),
-                    ),
-                  ),
-                Container(
-                  padding:
-                      Spacing.medium.y + Spacing.tiny.y + Spacing.xtraLarge.x,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color:
-                          context.read<BankInstitutionsState>().selectedBank ==
-                                  bank
+                    ] else if (isSelectedBank)
+                      Positioned(
+                        right: Spacing.mini.value,
+                        top: Spacing.mini.value,
+                        child: CircleAvatar(
+                          radius: Spacing.small.value,
+                          backgroundColor: context.intactColors.black,
+                          child: Assets.icons.iconTick.svg(
+                            height: Spacing.mini.value + Spacing.tiny.value,
+                          ),
+                        ),
+                      ),
+                    Container(
+                      padding: Spacing.medium.y +
+                          Spacing.tiny.y +
+                          Spacing.xtraLarge.x,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: isSelectedBank
                               ? context.intactColors.black
                               : NeutralColors.light().grey.shade100,
-                      width:
-                          context.read<BankInstitutionsState>().selectedBank ==
-                                  bank
-                              ? 2
-                              : 1.5,
+                          width: isSelectedBank ? 2 : 1.5,
+                        ),
+                        borderRadius: Spacing.medium.brAll,
+                      ),
+                      child: bank.bankIcon != null
+                          ? CachedNetworkImage(
+                              imageUrl: bank.bankIcon!,
+                              height: Spacing.xtraLarge.value,
+                              width: Spacing.xtraLarge.value,
+                              memCacheWidth: 20,
+                              memCacheHeight: 20,
+                            )
+                          : Icon(
+                              Icons.account_balance_outlined,
+                              size: Spacing.xtraLarge.value * 2,
+                              color: context.intactColors.black,
+                            ),
                     ),
-                    borderRadius: Spacing.medium.brAll,
-                  ),
-                  child: bank.bankIcon != null
-                      ? CachedNetworkImage(
-                          imageUrl: bank.bankIcon!,
-                          height: Spacing.xtraLarge.value,
-                          width: Spacing.xtraLarge.value,
-                          memCacheWidth: 20,
-                          memCacheHeight: 20,
-                        )
-                      : const SizedBox.shrink(),
+                  ],
+                ),
+                Spacing.tiny.yBox,
+                CustomText.semantics(
+                  bank.name,
+                  style: isSelectedBank
+                      ? kFigtreeTextTheme.bodyMedium?.w700
+                      : kFigtreeTextTheme.bodyMedium?.w500.textColor(
+                          NeutralColors.light().grey.shade700,
+                        ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),
-            Spacing.tiny.yBox,
-            CustomText.semantics(
-              bank.name,
-              style: context.read<BankInstitutionsState>().selectedBank == bank
-                  ? kFigtreeTextTheme.bodyMedium?.w700
-                  : kFigtreeTextTheme.bodyMedium?.w500.textColor(
-                      NeutralColors.light().grey.shade700,
-                    ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+          );
+        },
       );
 }

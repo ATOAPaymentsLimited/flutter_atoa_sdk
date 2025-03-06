@@ -42,7 +42,11 @@ class BankListItem extends StatelessWidget {
                         memCacheWidth: 20,
                         memCacheHeight: 20,
                       )
-                    : const SizedBox.shrink(),
+                    : Icon(
+                        Icons.account_balance_outlined,
+                        size: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+                        color: context.intactColors.black,
+                      ),
               ),
               Spacing.medium.xBox,
               Expanded(

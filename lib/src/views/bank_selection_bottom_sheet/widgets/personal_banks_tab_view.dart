@@ -22,6 +22,8 @@ class PersonalBanksTabView extends StatefulWidget {
 
 class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
   late ScrollController scrollController;
+  late BankInstitutionsState bankInstitutionsState;
+  late BankInstitutionsController bankInstitutionsController;
   final int itemsPerPage = 8;
   int currentPage = 0;
   List<BankInstitution> allBanks = []; // Full list of banks
@@ -30,7 +32,9 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
   @override
   void initState() {
     super.initState();
-    allBanks = context.read<BankInstitutionsState>().allNormalBanks;
+    bankInstitutionsState = context.read<BankInstitutionsState>();
+    bankInstitutionsController = context.read<BankInstitutionsController>();
+    allBanks = bankInstitutionsState.allNormalBanks;
     _loadNextPage();
     scrollController = ScrollController()..addListener(scrollListener);
   }
@@ -68,57 +72,52 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
   }
 
   @override
-  Widget build(BuildContext context) => (context
-              .read<BankInstitutionsController>()
-              .searchTerm
-              .isEmpty &&
-          context.read<BankInstitutionsState>().bankList.isNotEmpty)
-      ? SingleChildScrollView(
-          controller: scrollController,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Spacing.large.yBox,
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: Spacing.large.value,
-                  mainAxisSpacing: Spacing.large.value,
-                ),
+  Widget build(BuildContext context) =>
+      bankInstitutionsState.bankList.isNotEmpty
+          ? SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Spacing.large.yBox,
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: Spacing.large.value,
+                      mainAxisSpacing: Spacing.large.value,
+                    ),
 
-                itemCount: context
-                    .read<BankInstitutionsState>()
-                    .gridBanks
-                    .length, // Two rows of 4 items
-                itemBuilder: (context, index) => BankGridItem(
-                  bank: context.read<BankInstitutionsState>().gridBanks[index],
-                  onBankSelect: widget.onBankSelect,
-                ),
-              ),
-              Spacing.large.yBox,
+                    itemCount: bankInstitutionsState
+                        .gridBanks.length, // Two rows of 4 items
+                    itemBuilder: (context, index) => BankGridItem(
+                      bank: bankInstitutionsState.gridBanks[index],
+                      onBankSelect: widget.onBankSelect,
+                    ),
+                  ),
+                  Spacing.large.yBox,
 
-              // Scrollable List
+                  // Scrollable List
 
-              CustomText.semantics(
-                context.l10n.allBanks.toUpperCase(),
-                style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                  NeutralColors.light().grey.shade500,
-                ),
+                  CustomText.semantics(
+                    context.l10n.allBanks.toUpperCase(),
+                    style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
+                      NeutralColors.light().grey.shade500,
+                    ),
+                  ),
+                  ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: paginatedBanks.length,
+                    itemBuilder: (context, index) => BankListItem(
+                      bank: paginatedBanks[index],
+                      onBankSelect: widget.onBankSelect,
+                    ),
+                  ),
+                ],
               ),
-              ListView.builder(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: paginatedBanks.length,
-                itemBuilder: (context, index) => BankListItem(
-                  bank: paginatedBanks[index],
-                  onBankSelect: widget.onBankSelect,
-                ),
-              ),
-            ],
-          ),
-        )
-      : const SizedBox.shrink();
+            )
+          : const SizedBox.shrink();
 }

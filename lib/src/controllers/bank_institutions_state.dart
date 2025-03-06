@@ -12,6 +12,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
     PaymentAuthResponse? paymentAuth,
     @Default(true) bool isAppInstalled,
     @Default(false) bool isLoadingAuth,
+    Exception? bankAuthError,
     @Default(true) bool showHowPaymentWorks,
   }) = _BankInstitutionsState;
 

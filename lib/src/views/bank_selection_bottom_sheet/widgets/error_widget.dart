@@ -5,7 +5,10 @@ import 'package:regal/regal.dart';
 class AtoaErrorWidget extends StatelessWidget {
   const AtoaErrorWidget({
     super.key,
+    this.message,
   });
+
+  final String? message;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -20,7 +23,7 @@ class AtoaErrorWidget extends StatelessWidget {
             ),
             Spacing.small.yBox,
             CustomText.semantics(
-              context.l10n.somethingWentWrongDesc,
+              message ?? context.l10n.somethingWentWrongDesc,
               style: context.bodyLarge?.textColor(
                 NeutralColors.light().grey.shade500,
               ),

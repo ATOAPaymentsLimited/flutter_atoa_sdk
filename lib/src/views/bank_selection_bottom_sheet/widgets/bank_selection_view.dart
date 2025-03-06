@@ -42,12 +42,9 @@ class _BankSelectionViewState extends State<BankSelectionView> {
           Consumer<BankInstitutionsState>(
             builder: (_, state, __) {
               final isLoading = state.isLoading;
+              final bankController = context.read<BankInstitutionsController>();
 
-              if (isLoading &&
-                  context
-                      .read<BankInstitutionsController>()
-                      .searchTerm
-                      .isEmpty) {
+              if (isLoading && bankController.searchTerm.isEmpty) {
                 return const Expanded(
                   child: Center(
                     child: AtoaLoader(),
@@ -56,7 +53,11 @@ class _BankSelectionViewState extends State<BankSelectionView> {
               }
 
               if (state.error != null) {
-                return const AtoaErrorWidget();
+                return const Expanded(
+                  child: Center(
+                    child: AtoaErrorWidget(),
+                  ),
+                );
               }
               return Expanded(
                 child: Column(
@@ -72,10 +73,7 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                       fontSize: 11.sp,
                     ),
                     Spacing.large.yBox,
-                    if (context
-                        .read<BankInstitutionsController>()
-                        .searchTerm
-                        .isEmpty) ...[
+                    if (bankController.searchTerm.isEmpty) ...[
                       BankTabBar(
                         tabController: widget.tabController,
                       ),
@@ -89,10 +87,7 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                         ),
                       ),
                     ],
-                    if (context
-                        .read<BankInstitutionsController>()
-                        .searchTerm
-                        .isNotEmpty) ...[
+                    if (bankController.searchTerm.isNotEmpty) ...[
                       if (state.isLoading)
                         const Expanded(
                           child: Center(

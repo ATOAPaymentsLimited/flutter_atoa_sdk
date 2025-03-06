@@ -214,6 +214,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       selectedBank: selectedBank,
       isLoadingAuth: true,
       paymentAuth: null,
+      bankAuthError: null,
     );
 
     final paymentDetails = state.paymentDetails;
@@ -240,13 +241,13 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(
         selectedBank: null,
         paymentAuth: null,
-        error: e,
+        bankAuthError: e,
       );
     } on Exception catch (e) {
       state = state.copyWith(
         selectedBank: null,
         paymentAuth: null,
-        error: e,
+        bankAuthError: e,
       );
     } finally {
       state = state.copyWith(isLoadingAuth: false);
