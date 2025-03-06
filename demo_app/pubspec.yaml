@@ -17,12 +17,15 @@ dependencies:
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.1
   intl: ^0.19.0
-  regal:
-    path: ../../atoa-flutter-packages/packages/regal
+  regal: ^3.7.5
   shared_preferences: ^2.2.2
 
 dependency_overrides:
-  vector_graphics: 1.1.15
+  regal:
+    git:
+      url: https://github.com/ATOAPaymentsLimited/atoa-flutter-packages.git
+      path: packages/regal
+      ref: feat/light-mode-sdk
 
 dev_dependencies:
   flutter_test:
