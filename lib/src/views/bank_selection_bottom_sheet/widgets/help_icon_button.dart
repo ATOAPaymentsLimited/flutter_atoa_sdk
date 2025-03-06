@@ -1,14 +1,13 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
+import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class HelpIconButton extends StatelessWidget {
   const HelpIconButton({
-    required this.showHowPaymentWorks,
     super.key,
   });
-
-  final ValueNotifier<bool> showHowPaymentWorks;
 
   @override
   Widget build(BuildContext context) => CustomGestureDetector(
@@ -16,7 +15,7 @@ class HelpIconButton extends StatelessWidget {
         trackLabel: 'Help Icon',
         semanticsLabel: 'Help icon',
         onTap: () {
-          showHowPaymentWorks.value = true;
+          context.read<BankInstitutionsController>().showHowPaymentWorks = true;
         },
         child: CircleAvatar(
           radius: Spacing.large.value,

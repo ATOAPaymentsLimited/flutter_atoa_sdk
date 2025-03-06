@@ -8,10 +8,12 @@ part 'payer_bank_details.g.dart';
 
 @freezed
 class PayerBankDetails with _$PayerBankDetails {
-  factory PayerBankDetails({
+  const factory PayerBankDetails({
     @JsonKey(includeIfNull: false) String? name,
     List<BankAccountIdentifications>? accountIdentifications,
   }) = _PayerBankDetails;
+
+  const PayerBankDetails._();
 
   factory PayerBankDetails.fromJson(Map<String, dynamic> json) =>
       _$PayerBankDetailsFromJson(json);

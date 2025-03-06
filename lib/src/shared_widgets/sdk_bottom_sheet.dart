@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -6,25 +7,15 @@ Future<T?> showSdkBottomSheet<T>({
   required BuildContext context,
   required String title,
   required WidgetBuilder body,
-  void Function(BuildContext)? onClose,
   TextStyle? titleStyle,
-  TextAlign? titleAlign,
-  BoxConstraints? constraints,
-  Color? barrierColor,
-  bool useRootNavigator = false,
-  bool isScrollControlled = true,
-  Color? backgroundColor,
   double? titleBottomSpacing,
-  bool showCloseButton = true,
-  Widget? trailingTopWidget,
-  Widget? leadingTopWidget,
   bool showTitle = true,
   bool showDivider = false,
 }) =>
     showModalBottomSheet<T>(
       context: context,
       builder: (dialogContext) => AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: kAnimationDuration,
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -54,10 +45,6 @@ Future<T?> showSdkBottomSheet<T>({
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (leadingTopWidget != null) ...[
-                        leadingTopWidget,
-                        Spacing.medium.xBox,
-                      ],
                       Spacing.huge.xBox,
                       Expanded(
                         child: CustomText.semantics(
@@ -67,38 +54,34 @@ Future<T?> showSdkBottomSheet<T>({
                         ),
                       ),
                       Spacing.large.xBox,
-                      if (showCloseButton)
-                        Padding(
-                          padding: Spacing.mini.top,
-                          child: trailingTopWidget ??
-                              CustomInkWell(
-                                semanticsLabel: 'Close Dialog Sheet Icon',
-                                context: dialogContext,
-                                trackLabel: 'Close Dialog Sheet Icon',
-                                onTap: onClose != null
-                                    ? () => onClose.call(dialogContext)
-                                    : () {
-                                        Navigator.pop(dialogContext);
-                                      },
-                                child: Container(
-                                  width: Spacing.huge.value,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: NeutralColors.light().grey.shade50,
-                                  ),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: Spacing.mini.all,
-                                      child: Icon(
-                                        Icons.close,
-                                        size: Spacing.medium.value,
-                                        color: context.intactColors.black,
-                                      ),
-                                    ),
-                                  ),
+                      Padding(
+                        padding: Spacing.mini.top,
+                        child: CustomInkWell(
+                          semanticsLabel: 'Close Dialog Sheet Icon',
+                          context: dialogContext,
+                          trackLabel: 'Close Dialog Sheet Icon',
+                          onTap: () {
+                            Navigator.pop(dialogContext);
+                          },
+                          child: Container(
+                            width: Spacing.huge.value,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: NeutralColors.light().grey.shade50,
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: Spacing.mini.all,
+                                child: Icon(
+                                  Icons.close,
+                                  size: Spacing.medium.value,
+                                  color: context.intactColors.black,
                                 ),
                               ),
+                            ),
+                          ),
                         ),
+                      ),
                     ],
                   ),
                 ],
@@ -116,11 +99,8 @@ Future<T?> showSdkBottomSheet<T>({
           ),
         ),
       ),
-      isScrollControlled: isScrollControlled,
-      barrierColor: barrierColor,
-      constraints: constraints,
-      useRootNavigator: useRootNavigator,
-      backgroundColor: backgroundColor,
+      isScrollControlled: true,
+      backgroundColor: context.intactColors.white,
       enableDrag: false,
       isDismissible: false,
       shape: RoundedRectangleBorder(

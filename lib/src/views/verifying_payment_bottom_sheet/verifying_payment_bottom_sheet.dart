@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/payment_status_view.dart';
@@ -52,9 +53,15 @@ class VerifyingPaymentBottomSheet extends StatefulWidget {
 
 class _VerifyingPaymentBottomSheetState
     extends State<VerifyingPaymentBottomSheet> {
+  late PaymentStatusController paymentStatusController;
+  late BankInstitutionsState bankInstitutionState;
+
   @override
   void initState() {
     super.initState();
+    paymentStatusController = context.read<PaymentStatusController>();
+    bankInstitutionState = context.read<BankInstitutionsState>();
+
     Future.delayed(
       const Duration(seconds: 1),
       () => widget.bankInstitutionController.authorizeBank(),
@@ -66,7 +73,7 @@ class _VerifyingPaymentBottomSheetState
 
   @override
   void dispose() {
-    context.read<PaymentStatusController>().stop();
+    paymentStatusController.stop();
     super.dispose();
   }
 
@@ -74,16 +81,16 @@ class _VerifyingPaymentBottomSheetState
     final paymentId =
         context.read<BankInstitutionsState>().paymentAuth?.paymentIdempotencyId;
     if (context.mounted) {
-      context.read<PaymentStatusController>().startListening(
-            paymentId ?? '',
-          );
+      paymentStatusController.startListening(
+        paymentId ?? '',
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) => Consumer<PaymentStatusState>(
         builder: (_, paymentState, __) => AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
+          duration: kAnimationDuration,
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: context.intactColors.white,
@@ -109,16 +116,16 @@ class _VerifyingPaymentBottomSheetState
                   }
                   if (paymentState.details != null &&
                       paymentState.details?.status != null &&
-                      paymentState.details!.status !=
-                          const TransactionStatus.awaitingAuthorization() &&
-                      paymentState.details!.status !=
-                          const TransactionStatus.paymentNotInitiated()) {
+                      !paymentState.details!.isAwaitingAuth &&
+                      !paymentState.details!.notIntitated) {
                     return PaymentStatusView(
                       isCompleted: paymentState.details!.isCompleted,
                     );
                   }
 
-                  return const VerifyingPaymentView();
+                  return VerifyingPaymentView(
+                    bankIcon: bankInstitutionState.selectedBank?.bankIcon,
+                  );
                 },
               ),
             ),

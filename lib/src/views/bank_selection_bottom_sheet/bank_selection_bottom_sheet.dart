@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
+import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
@@ -54,7 +55,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final TextEditingController _searchController = TextEditingController();
-  late ValueNotifier<bool> showHowPaymentWorks;
   late BankInstitutionsController bankInstitutionsController;
   late PaymentStatusController paymentStatusController;
 
@@ -64,12 +64,11 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
     bankInstitutionsController = getIt.get<BankInstitutionsController>();
     paymentStatusController = getIt.get<PaymentStatusController>();
     _tabController = TabController(length: 2, vsync: this);
-    showHowPaymentWorks = ValueNotifier(widget.showHowPaymentWorks);
+    bankInstitutionsController.showHowPaymentWorks = widget.showHowPaymentWorks;
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      bankInstitutionsController
-        ..getPaymentDetails()
-        ..fetchBanks();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await bankInstitutionsController.getPaymentDetails();
+      await bankInstitutionsController.fetchBanks();
     });
   }
 
@@ -94,12 +93,10 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
             value: paymentStatusController,
           ),
         ],
-        builder: (context, _) => ValueListenableBuilder(
-          valueListenable: showHowPaymentWorks,
-          builder: (context, showPaymentWorks, Widget? child) =>
-              KeyboardVisibilityBuilder(
+        builder: (context, _) => Consumer<BankInstitutionsState>(
+          builder: (context, state, Widget? child) => KeyboardVisibilityBuilder(
             builder: (context, isKeyboardVisible) => AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: kAnimationDuration,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.intactColors.white,
@@ -110,12 +107,10 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                 ),
                 child: Padding(
                   padding: Spacing.large.y + Spacing.xtraLarge.x,
-                  child: showPaymentWorks
-                      ? HowToMakePaymentView(
-                          showHowPaymentWorks: showHowPaymentWorks,
-                        )
+                  child: state.showHowPaymentWorks
+                      ? const HowToMakePaymentView()
                       : AnimatedPadding(
-                          duration: const Duration(milliseconds: 300),
+                          duration: kAnimationDuration,
                           padding: EdgeInsets.only(
                             bottom: isKeyboardVisible
                                 ? MediaQuery.of(context).viewInsets.bottom
@@ -126,7 +121,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                               Size(1.sw, isKeyboardVisible ? 0.5.sh : 0.9.sh),
                             ),
                             child: BankSelectionView(
-                              showHowPaymentWorks: showHowPaymentWorks,
                               tabController: _tabController,
                               searchController: _searchController,
                             ),

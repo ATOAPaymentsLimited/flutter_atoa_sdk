@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
@@ -23,10 +24,12 @@ class PaymentStatusView extends StatefulWidget {
 class _PaymentStatusViewState extends State<PaymentStatusView> {
   late ValueNotifier<bool> showTickAnimation;
   late BankInstitutionsState bankState;
+  late PaymentStatusState paymentStatusState;
 
   @override
   void initState() {
     super.initState();
+    paymentStatusState = context.read<PaymentStatusState>();
     showTickAnimation = ValueNotifier(widget.isCompleted);
     bankState = context.read<BankInstitutionsState>();
 
@@ -42,7 +45,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
   Widget build(BuildContext context) => ValueListenableBuilder(
         valueListenable: showTickAnimation,
         builder: (context, showAnimation, child) => AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
+          duration: kAnimationDuration,
           child: showAnimation
               ? SizedBox(
                   height: 0.7.sh,
@@ -63,8 +66,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
                   ),
                 )
               : TransactionDetailsPage(
-                  transactionDetails:
-                      context.read<PaymentStatusState>().details!,
+                  transactionDetails: paymentStatusState.details!,
                 ),
         ),
       );

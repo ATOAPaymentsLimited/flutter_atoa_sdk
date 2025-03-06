@@ -5,7 +5,7 @@ import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
-// Currently, not Using anywhere
+// Currently, not using anywhere
 class CancelConfirmationBottomSheet extends StatelessWidget {
   const CancelConfirmationBottomSheet({
     super.key,

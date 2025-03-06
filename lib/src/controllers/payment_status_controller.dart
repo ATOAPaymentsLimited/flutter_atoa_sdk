@@ -25,7 +25,7 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
     state = state.copyWith(started: true);
 
     _subscription = Stream.periodic(
-      PaymentUtility.interval ?? const Duration(seconds: 2),
+      PaymentUtility.interval,
       (_) => callServer<TransactionDetails>(
         () => _atoa.getPaymentStatus(paymentId),
       ),

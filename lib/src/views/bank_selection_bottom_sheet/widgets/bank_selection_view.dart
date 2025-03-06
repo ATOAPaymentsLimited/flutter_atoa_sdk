@@ -4,7 +4,7 @@ import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/animated_search_field.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/animated_search_field.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_list_item.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_title_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_tab_bar.dart';
@@ -21,13 +21,11 @@ import 'package:regal/regal.dart';
 
 class BankSelectionView extends StatefulWidget {
   const BankSelectionView({
-    required this.showHowPaymentWorks,
     required this.tabController,
     required this.searchController,
     super.key,
   });
 
-  final ValueNotifier<bool> showHowPaymentWorks;
   final TabController tabController;
   final TextEditingController searchController;
 
@@ -39,9 +37,7 @@ class _BankSelectionViewState extends State<BankSelectionView> {
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          BankSelectionTitleWidget(
-            showHowPaymentWorks: widget.showHowPaymentWorks,
-          ),
+          const BankSelectionTitleWidget(),
           Spacing.xtraLarge.yBox,
           Consumer<BankInstitutionsState>(
             builder: (_, state, __) {

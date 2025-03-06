@@ -12,6 +12,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
     PaymentAuthResponse? paymentAuth,
     @Default(true) bool isAppInstalled,
     @Default(false) bool isLoadingAuth,
+    @Default(true) bool showHowPaymentWorks,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();

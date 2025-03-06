@@ -1,17 +1,17 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class VerifyingPaymentView extends StatelessWidget {
   const VerifyingPaymentView({
     super.key,
+    this.bankIcon,
   });
 
+  final String? bankIcon;
   @override
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
@@ -45,24 +45,20 @@ class VerifyingPaymentView extends StatelessWidget {
                   ),
                   borderRadius: Spacing.small.brAll,
                 ),
-                child: context
-                            .read<BankInstitutionsState>()
-                            .selectedBank
-                            ?.bankIcon !=
-                        null
+                child: bankIcon != null
                     ? CachedNetworkImage(
-                        imageUrl: context
-                                .read<BankInstitutionsState>()
-                                .selectedBank
-                                ?.bankIcon ??
-                            '',
+                        imageUrl: bankIcon ?? '',
                         width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
                         height:
                             Spacing.xtraLarge.value * 2 + Spacing.mini.value,
                         memCacheWidth: 20,
                         memCacheHeight: 20,
                       )
-                    : const SizedBox.shrink(),
+                    : Icon(
+                        Icons.account_balance_outlined,
+                        size: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+                        color: context.intactColors.black,
+                      ),
               ),
             ],
           ),

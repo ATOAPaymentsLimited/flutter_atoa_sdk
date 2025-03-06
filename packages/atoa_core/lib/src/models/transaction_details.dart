@@ -123,6 +123,10 @@ class TransactionDetails with _$TransactionDetails {
   /// Checks if the transaction is completed.
   bool get isCompleted => status.status == 'COMPLETED';
 
+  bool get isAwaitingAuth => status.status == 'AWAITING_AUTHORIZATION';
+
+  bool get notIntitated => status.status == 'PAYMENT_NOT_INITIATED';
+
   bool get isSettlementInProcess {
     if (statusDetails?.status is! TransactionStatusCompleted) {
       return false;

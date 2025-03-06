@@ -21,7 +21,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   }) : super(const BankInstitutionsState()) {
     searchController = StreamController<String>();
     searchController.stream
-        .debounce(const Duration(milliseconds: 300))
+        .debounce(const Duration(milliseconds: 600))
         .listen(_search);
   }
 
@@ -41,6 +41,12 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     searchTerm = value;
     searchController.sink.add(searchTerm);
   }
+
+  set showHowPaymentWorks(bool value) {
+    state = state.copyWith(showHowPaymentWorks: value);
+  }
+
+  bool get showHowPaymentWorks => state.showHowPaymentWorks;
 
   List<BankInstitution> get personalBanks =>
       state.bankList.where((bank) => !bank.businessBank).toList();
@@ -79,7 +85,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     try {
       final paymentRes = await callServer(
-        () => atoa.getPaymentDetails(PaymentUtility.paymentId ?? ''),
+        () => atoa.getPaymentDetails(PaymentUtility.paymentId),
       );
 
       state = state.copyWith(
@@ -181,12 +187,12 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     var urlSchemeEmptyFromApi = false;
 
     if (defaultTargetPlatform == TargetPlatform.iOS) {
-      final bundleId = state.paymentAuth!.iOSPackageName;
+      final bundleId = state.paymentAuth?.iOSPackageName;
       urlSchemeEmptyFromApi = !(bundleId != null && bundleId.isNotEmpty);
     }
 
     if (defaultTargetPlatform == TargetPlatform.android) {
-      final pkgName = state.paymentAuth!.androidPackageName;
+      final pkgName = state.paymentAuth?.androidPackageName;
       urlSchemeEmptyFromApi = !(pkgName != null && pkgName.isNotEmpty);
     }
 
@@ -196,8 +202,8 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     }
 
     final dynamic result = await LaunchApp.isAppInstalled(
-      androidPackageName: state.paymentAuth!.androidPackageName,
-      iosUrlScheme: state.paymentAuth!.iOSPackageName,
+      androidPackageName: state.paymentAuth?.androidPackageName,
+      iosUrlScheme: state.paymentAuth?.iOSPackageName,
     );
 
     state = state.copyWith(isAppInstalled: result is bool && result);
@@ -221,7 +227,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     final body = paymentDetails.toBody(
       institutionId: selectedBank.id,
-      paymentRequestId: PaymentUtility.paymentId ?? '',
+      paymentRequestId: PaymentUtility.paymentId,
       features: selectedBank.features,
       requestCreatedAt: paymentDetails.requestCreatedAt ?? '',
     );

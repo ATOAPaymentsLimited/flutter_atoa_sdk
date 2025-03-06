@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
@@ -15,7 +16,6 @@ class AtoaTermsBottomSheet extends StatelessWidget {
   ) =>
       showSdkBottomSheet<void>(
         context: context,
-        backgroundColor: context.intactColors.white,
         titleStyle: kFigtreeTextTheme.labelMedium?.w700.textColor(
           NeutralColors.light().grey.shade700,
         ),
@@ -27,7 +27,7 @@ class AtoaTermsBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: kAnimationDuration,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

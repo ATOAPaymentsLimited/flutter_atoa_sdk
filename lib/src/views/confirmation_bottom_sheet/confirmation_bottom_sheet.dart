@@ -31,7 +31,6 @@ class ConfirmationBottomSheet extends StatefulWidget {
   ) =>
       showSdkBottomSheet<bool>(
         context: context,
-        backgroundColor: context.intactColors.white,
         title: context.l10n.review,
         body: (_) => ConfirmationBottomSheet(
           bankInstitutionController: bankInstitutionController,
@@ -48,8 +47,8 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.bankInstitutionController.selectBank(widget.bank);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await widget.bankInstitutionController.selectBank(widget.bank);
     });
   }
 
@@ -72,6 +71,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
             if (state.error != null) {
               Navigator.pop(context, false);
             }
+
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [

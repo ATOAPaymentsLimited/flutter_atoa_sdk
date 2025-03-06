@@ -12,11 +12,8 @@ import 'package:regal/regal.dart';
 
 class HowToMakePaymentView extends StatelessWidget {
   const HowToMakePaymentView({
-    required this.showHowPaymentWorks,
     super.key,
   });
-
-  final ValueNotifier<bool> showHowPaymentWorks;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -67,9 +64,7 @@ class HowToMakePaymentView extends StatelessWidget {
                   Spacing.huge.yBox,
                   const TrustAtoaWidget(),
                   Spacing.huge.yBox,
-                  ContinueButton(
-                    showHowPaymentWorks: showHowPaymentWorks,
-                  ),
+                  const ContinueButton(),
                   Spacing.medium.yBox,
                   const PoweredByAtoaWidget(),
                   Spacing.huge.yBox,

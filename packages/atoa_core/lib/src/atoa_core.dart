@@ -7,7 +7,7 @@ import 'package:atoa_core/src/http_client/http_client.dart';
 /// {@template atoa_core}
 /// Atoa Flutter SDK
 /// {@endtemplate}
-///
+
 class Atoa {
   /// {@macro atoa_core}
   factory Atoa() => _instance;

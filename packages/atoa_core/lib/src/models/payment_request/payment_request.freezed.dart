@@ -123,8 +123,8 @@ class __$$PaymentRequestImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PaymentRequestImpl implements _PaymentRequest {
-  _$PaymentRequestImpl({this.payee});
+class _$PaymentRequestImpl extends _PaymentRequest {
+  const _$PaymentRequestImpl({this.payee}) : super._();
 
   factory _$PaymentRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaymentRequestImplFromJson(json);
@@ -166,9 +166,10 @@ class _$PaymentRequestImpl implements _PaymentRequest {
   }
 }
 
-abstract class _PaymentRequest implements PaymentRequest {
-  factory _PaymentRequest({final PayerBankDetails? payee}) =
+abstract class _PaymentRequest extends PaymentRequest {
+  const factory _PaymentRequest({final PayerBankDetails? payee}) =
       _$PaymentRequestImpl;
+  const _PaymentRequest._() : super._();
 
   factory _PaymentRequest.fromJson(Map<String, dynamic> json) =
       _$PaymentRequestImpl.fromJson;

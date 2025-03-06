@@ -8,9 +8,11 @@ part 'payment_request.g.dart';
 
 @freezed
 class PaymentRequest with _$PaymentRequest {
-  factory PaymentRequest({
+  const factory PaymentRequest({
     PayerBankDetails? payee,
   }) = _PaymentRequest;
+
+  const PaymentRequest._();
 
   factory PaymentRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentRequestFromJson(json);

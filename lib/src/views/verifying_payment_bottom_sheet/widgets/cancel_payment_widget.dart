@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-// Currently, not Using anywhere
+// Currently, not using anywhere
 
 class CancelPaymentWidget extends StatelessWidget {
   const CancelPaymentWidget({

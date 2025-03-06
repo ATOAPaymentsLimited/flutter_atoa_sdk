@@ -121,11 +121,12 @@ class __$$PayerBankDetailsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PayerBankDetailsImpl implements _PayerBankDetails {
-  _$PayerBankDetailsImpl(
+class _$PayerBankDetailsImpl extends _PayerBankDetails {
+  const _$PayerBankDetailsImpl(
       {@JsonKey(includeIfNull: false) this.name,
       final List<BankAccountIdentifications>? accountIdentifications})
-      : _accountIdentifications = accountIdentifications;
+      : _accountIdentifications = accountIdentifications,
+        super._();
 
   factory _$PayerBankDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$PayerBankDetailsImplFromJson(json);
@@ -181,11 +182,12 @@ class _$PayerBankDetailsImpl implements _PayerBankDetails {
   }
 }
 
-abstract class _PayerBankDetails implements PayerBankDetails {
-  factory _PayerBankDetails(
+abstract class _PayerBankDetails extends PayerBankDetails {
+  const factory _PayerBankDetails(
           {@JsonKey(includeIfNull: false) final String? name,
           final List<BankAccountIdentifications>? accountIdentifications}) =
       _$PayerBankDetailsImpl;
+  const _PayerBankDetails._() : super._();
 
   factory _PayerBankDetails.fromJson(Map<String, dynamic> json) =
       _$PayerBankDetailsImpl.fromJson;

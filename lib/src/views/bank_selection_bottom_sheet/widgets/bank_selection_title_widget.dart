@@ -7,11 +7,9 @@ import 'package:regal/regal.dart';
 
 class BankSelectionTitleWidget extends StatelessWidget {
   const BankSelectionTitleWidget({
-    required this.showHowPaymentWorks,
     super.key,
   });
 
-  final ValueNotifier<bool> showHowPaymentWorks;
   @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,9 +26,7 @@ class BankSelectionTitleWidget extends StatelessWidget {
             ),
           ),
           Spacing.large.xBox,
-          HelpIconButton(
-            showHowPaymentWorks: showHowPaymentWorks,
-          ),
+          const HelpIconButton(),
         ],
       );
 }
