@@ -41,9 +41,7 @@ dependencies:
   state_notifier: ^1.0.0
   stream_transform: ^2.1.1
   url_launcher: ^6.2.3
-
-dependency_overrides:
-  vector_graphics: 1.1.15
+  vector_graphics: ^1.1.15
 
 dev_dependencies:
   build_runner: ^2.4.8
