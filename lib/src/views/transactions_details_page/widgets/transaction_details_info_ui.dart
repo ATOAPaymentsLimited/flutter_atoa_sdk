@@ -140,7 +140,8 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
                       showCopyContent: true,
                     ),
                   ],
-                  if (transactionDetails.transactionDetails.first?.notes !=
+                  if (transactionDetails.transactionDetails.first != null &&
+                      transactionDetails.transactionDetails.first?.notes !=
                           null &&
                       widget.showNotes) ...[
                     Spacing.medium.yBox,

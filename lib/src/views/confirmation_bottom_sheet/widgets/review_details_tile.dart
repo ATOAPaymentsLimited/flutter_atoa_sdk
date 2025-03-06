@@ -51,13 +51,13 @@ class ReviewDetailsTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText.semantics(
-                    isBankInfo ? context.l10n.payingTo : context.l10n.from,
+                    !isBankInfo ? context.l10n.payingTo : context.l10n.from,
                     style: kFigtreeTextTheme.bodyMedium?.textColor(
                       NeutralColors.light().grey.shade500,
                     ),
                   ),
                   CustomText.semantics(
-                    isBankInfo
+                    !isBankInfo
                         ? state.paymentDetails?.merchantBusinessName ?? ''
                         : state.selectedBank?.name ?? '',
                     style: kFigtreeTextTheme.bodyLarge?.w700,

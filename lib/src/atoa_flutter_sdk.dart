@@ -7,7 +7,6 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -36,18 +35,12 @@ class AtoaSdk {
     getIt.get<Atoa>().initialize();
 
     if (!context.mounted) return null;
-    final TransactionDetails? transactionDetails;
 
-    if (showHowPaymentWorks) {
-      transactionDetails = await HowToMakePaymentBottomSheet.show(
-        context,
-        isHelp: false,
-      );
-    } else {
-      transactionDetails = await BankSelectionBottomSheet.show(
-        context,
-      );
-    }
+    final transactionDetails = await BankSelectionBottomSheet.show(
+      context,
+      showHowPaymentWorks: showHowPaymentWorks,
+    );
+
     return transactionDetails;
   }
 

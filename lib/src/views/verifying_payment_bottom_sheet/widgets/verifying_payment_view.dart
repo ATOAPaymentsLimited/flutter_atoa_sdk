@@ -59,6 +59,8 @@ class VerifyingPaymentView extends StatelessWidget {
                         width: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
                         height:
                             Spacing.xtraLarge.value * 2 + Spacing.mini.value,
+                        memCacheWidth: 20,
+                        memCacheHeight: 20,
                       )
                     : const SizedBox.shrink(),
               ),

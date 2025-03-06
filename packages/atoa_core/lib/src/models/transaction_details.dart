@@ -106,11 +106,11 @@ class TransactionDetails with _$TransactionDetails {
 
   TransactionStatus get txnPaymentStatus => status;
 
-  String? get errorMessage =>
-      transactionDetails.first?.errorDescription != null &&
-              transactionDetails.first!.errorDescription!.trim().isNotEmpty
-          ? transactionDetails.first!.errorDescription!.trim()
-          : null;
+  String? get errorMessage => transactionDetails.first != null &&
+          transactionDetails.first?.errorDescription != null &&
+          transactionDetails.first!.errorDescription!.trim().isNotEmpty
+      ? transactionDetails.first!.errorDescription!.trim()
+      : null;
 
   String? get payerBankAccountNo => transactionDetails.first?.bankAccountNo;
 }

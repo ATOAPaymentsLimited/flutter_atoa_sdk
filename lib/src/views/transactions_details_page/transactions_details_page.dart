@@ -76,7 +76,8 @@ class TransactionDetailsPage extends StatelessWidget {
               ),
             ],
           ),
-          if (transactionDetails.transactionDetails.first?.updatedAt != null)
+          if (transactionDetails.transactionDetails.first != null &&
+              transactionDetails.transactionDetails.first?.updatedAt != null)
             CustomText.semantics(
               context.l10n.transactionDateAndTime(
                 transactionDetails.transactionDetails.first!.updatedAt!

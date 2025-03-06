@@ -83,7 +83,8 @@ class TransactionDetailsTopCard extends StatelessWidget {
       );
 
   Widget _getStoreLocation(BuildContext context) =>
-      transactionDetails.storeDetails?.locationName != null &&
+      transactionDetails.storeDetails != null &&
+              transactionDetails.storeDetails?.locationName != null &&
               transactionDetails.storeDetails?.locationName != 'Default'
           ? _getStoreLocationSection(
               transactionDetails.storeDetails!.locationName!,

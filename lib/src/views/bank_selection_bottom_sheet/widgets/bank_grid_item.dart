@@ -79,6 +79,8 @@ class BankGridItem extends StatelessWidget {
                           imageUrl: bank.bankIcon!,
                           height: Spacing.xtraLarge.value,
                           width: Spacing.xtraLarge.value,
+                          memCacheWidth: 20,
+                          memCacheHeight: 20,
                         )
                       : const SizedBox.shrink(),
                 ),
