@@ -243,7 +243,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         error: e,
       );
     } finally {
-      state = state.copyWith(error: null, isLoadingAuth: false);
+      state = state.copyWith(isLoadingAuth: false);
     }
     await checkBankAppAvailability();
   }

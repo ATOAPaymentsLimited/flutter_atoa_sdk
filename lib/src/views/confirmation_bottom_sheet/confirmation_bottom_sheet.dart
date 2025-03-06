@@ -7,7 +7,6 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart'
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/app_not_installed_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_and_service_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/review_details_tile.dart';
@@ -71,13 +70,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
             }
 
             if (state.error != null) {
-              return Column(
-                children: [
-                  Spacing.huge.yBox * 4,
-                  const AtoaErrorWidget(),
-                  Spacing.huge.yBox * 4,
-                ],
-              );
+              Navigator.pop(context, false);
             }
             return Column(
               mainAxisSize: MainAxisSize.min,

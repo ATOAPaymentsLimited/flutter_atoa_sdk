@@ -5,7 +5,6 @@ import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/failure_listener.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
@@ -100,121 +99,109 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   }
 
   @override
-  Widget build(BuildContext context) =>
-      FailureListener<BankInstitutionsController, BankInstitutionsState>(
-        message: (state) {
-          final e = state.error;
-
-          if (e is AtoaException) {
-            return e.message;
-          }
-
-          return e?.toString();
-        },
-        child: KeyboardVisibilityBuilder(
-          builder: (context, isKeyboardVisible) => AnimatedPadding(
-            duration: const Duration(milliseconds: 300),
-            padding: EdgeInsets.only(
-              bottom: isKeyboardVisible
-                  ? MediaQuery.of(context).viewInsets.bottom
-                  : 0,
+  Widget build(BuildContext context) => KeyboardVisibilityBuilder(
+        builder: (context, isKeyboardVisible) => AnimatedPadding(
+          duration: const Duration(milliseconds: 300),
+          padding: EdgeInsets.only(
+            bottom: isKeyboardVisible
+                ? MediaQuery.of(context).viewInsets.bottom
+                : 0,
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints.loose(
+              Size(1.sw, isKeyboardVisible ? 0.4.sh : 0.8.sh),
             ),
-            child: ConstrainedBox(
-              constraints: BoxConstraints.loose(
-                Size(1.sw, isKeyboardVisible ? 0.4.sh : 0.8.sh),
-              ),
-              child: Consumer<BankInstitutionsState>(
-                builder: (_, state, __) {
-                  final isLoading = state.isLoading;
+            child: Consumer<BankInstitutionsState>(
+              builder: (_, state, __) {
+                final isLoading = state.isLoading;
 
-                  if (isLoading &&
-                      context
-                          .read<BankInstitutionsController>()
-                          .searchTerm
-                          .isEmpty) {
-                    return const AtoaLoader();
-                  }
+                if (isLoading &&
+                    context
+                        .read<BankInstitutionsController>()
+                        .searchTerm
+                        .isEmpty) {
+                  return const AtoaLoader();
+                }
 
-                  if (state.error != null) {
-                    return const AtoaErrorWidget();
-                  }
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AnimatedSearchField(
-                        controller: _searchController,
+                if (state.error != null) {
+                  return const AtoaErrorWidget();
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AnimatedSearchField(
+                      controller: _searchController,
+                    ),
+                    Spacing.large.yBox,
+                    InfoWidget(
+                      text: context.l10n.ensureBankAppInstalled,
+                      fontSize: 11.sp,
+                    ),
+                    Spacing.large.yBox,
+                    if (context
+                        .read<BankInstitutionsController>()
+                        .searchTerm
+                        .isEmpty) ...[
+                      BankTabBar(
+                        tabController: _tabController,
                       ),
-                      Spacing.large.yBox,
-                      InfoWidget(
-                        text: context.l10n.ensureBankAppInstalled,
-                        fontSize: 11.sp,
+                      Expanded(
+                        child: TabBarView(
+                          controller: _tabController,
+                          children: [
+                            PersonalBanksTabView(onBankSelect: onTap),
+                            BusinessBanksTabView(onBankSelect: onTap),
+                          ],
+                        ),
                       ),
-                      Spacing.large.yBox,
-                      if (context
-                          .read<BankInstitutionsController>()
-                          .searchTerm
-                          .isEmpty) ...[
-                        BankTabBar(
-                          tabController: _tabController,
+                    ],
+                    if (context
+                        .read<BankInstitutionsController>()
+                        .searchTerm
+                        .isNotEmpty) ...[
+                      if (state.isLoading)
+                        const Expanded(
+                          child: Center(
+                            child: AtoaLoader(),
+                          ),
+                        )
+                      else if (state.bankList.isEmpty) ...[
+                        CustomText.semantics(
+                          context.l10n.results,
+                          style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
+                            NeutralColors.light().grey.shade500,
+                          ),
                         ),
                         Expanded(
-                          child: TabBarView(
-                            controller: _tabController,
-                            children: [
-                              PersonalBanksTabView(onBankSelect: onTap),
-                              BusinessBanksTabView(onBankSelect: onTap),
-                            ],
+                          child: Center(
+                            child: NoResultFoundWidget(
+                              searchTerm: context
+                                  .read<BankInstitutionsController>()
+                                  .searchTerm,
+                            ),
+                          ),
+                        ),
+                      ] else ...[
+                        CustomText.semantics(
+                          context.l10n.results,
+                          style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
+                            NeutralColors.light().grey.shade500,
+                          ),
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: state.bankList.length,
+                          itemBuilder: (context, index) => BankListItem(
+                            bank: state.bankList[index],
+                            onBankSelect: onTap,
                           ),
                         ),
                       ],
-                      if (context
-                          .read<BankInstitutionsController>()
-                          .searchTerm
-                          .isNotEmpty) ...[
-                        if (state.isLoading)
-                          const Expanded(
-                            child: Center(
-                              child: AtoaLoader(),
-                            ),
-                          )
-                        else if (state.bankList.isEmpty) ...[
-                          CustomText.semantics(
-                            context.l10n.results,
-                            style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                              NeutralColors.light().grey.shade500,
-                            ),
-                          ),
-                          Expanded(
-                            child: Center(
-                              child: NoResultFoundWidget(
-                                searchTerm: context
-                                    .read<BankInstitutionsController>()
-                                    .searchTerm,
-                              ),
-                            ),
-                          ),
-                        ] else ...[
-                          CustomText.semantics(
-                            context.l10n.results,
-                            style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                              NeutralColors.light().grey.shade500,
-                            ),
-                          ),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: state.bankList.length,
-                            itemBuilder: (context, index) => BankListItem(
-                              bank: state.bankList[index],
-                              onBankSelect: onTap,
-                            ),
-                          ),
-                        ],
-                      ],
                     ],
-                  );
-                },
-              ),
+                  ],
+                );
+              },
             ),
           ),
         ),
