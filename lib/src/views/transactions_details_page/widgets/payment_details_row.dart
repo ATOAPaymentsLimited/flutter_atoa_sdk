@@ -42,7 +42,9 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (label.isNotEmpty)
                     CustomText.semantics(
                       label,
-                      style: kFigtreeTextTheme.bodyMedium?.height150,
+                      style: kFigtreeTextTheme.bodyMedium?.height150.textColor(
+                        NeutralColors.light().grey.shade600,
+                      ),
                     ),
                   Spacing.mini.yBox,
                   Row(
@@ -79,6 +81,9 @@ class PaymentDetailsRow extends StatelessWidget {
                     return;
                   }
                   context.showSnackbar(
+                    titleTextStyle: kFigtreeTextTheme.bodyLarge?.w700.textColor(
+                      context.intactColors.white,
+                    ),
                     SnackbarType.success(
                       context.l10n.valueCopiedToClipboard(label),
                     ),
@@ -114,6 +119,7 @@ class PaymentDetailsRow extends StatelessWidget {
       );
 
   Widget _getValueWidget(BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [

@@ -2899,7 +2899,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get callBank => 'Call Bank';
+  String get callBank => 'Call Bank →';
 
   @override
   String get viewTransactionDetails => 'View Transaction Details';

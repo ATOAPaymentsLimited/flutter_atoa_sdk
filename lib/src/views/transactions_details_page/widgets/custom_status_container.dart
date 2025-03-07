@@ -14,8 +14,8 @@ class CustomStatusContainer extends StatelessWidget {
     required this.svgAsset,
     required this.status,
     required this.dateTime,
+    required this.iconBgColor,
     super.key,
-    this.iconBgColor,
     this.showCallBank,
     this.desc,
     this.size,
@@ -35,11 +35,10 @@ class CustomStatusContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: iconBgColor?.withOpacity(0.10) ??
-              TransactionDetailsUtility.getBackgroundColor(
-                transactionDetails,
-                context,
-              ).withOpacity(0.10),
+          color: TransactionDetailsUtility.getBackgroundColor(
+            transactionDetails,
+            context,
+          ),
           borderRadius: BorderRadius.circular(Spacing.medium.value),
         ),
         padding: Spacing.large.x + Spacing.medium.y + Spacing.tiny.y,
@@ -55,11 +54,7 @@ class CustomStatusContainer extends StatelessWidget {
                   height: Spacing.xtraLarge.value * 2,
                   width: Spacing.xtraLarge.value * 2,
                   decoration: BoxDecoration(
-                    color: iconBgColor ??
-                        TransactionDetailsUtility.getBackgroundColor(
-                          transactionDetails,
-                          context,
-                        ),
+                    color: iconBgColor,
                     shape: BoxShape.circle,
                   ),
                   child: Center(

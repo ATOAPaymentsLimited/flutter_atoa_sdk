@@ -27,7 +27,7 @@ class BankDetailsWidget extends StatelessWidget {
           ),
           value: _getPayerBankName(context),
           maskSubValue: true,
-          subValue: transactionDetails.payerBankAccountNo ?? '',
+          subValue: transactionDetails.payerBankAccountNo,
           logo: _getPayerBankIcon(context),
         ),
       );

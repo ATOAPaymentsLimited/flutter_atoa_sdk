@@ -5118,7 +5118,7 @@ abstract class AppLocalizations {
   /// No description provided for @callBank.
   ///
   /// In en, this message translates to:
-  /// **'Call Bank'**
+  /// **'Call Bank →'**
   String get callBank;
 
   /// No description provided for @viewTransactionDetails.

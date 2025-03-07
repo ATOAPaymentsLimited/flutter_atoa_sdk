@@ -148,12 +148,17 @@ class TransactionDetails with _$TransactionDetails {
           ? errorDescription!.trim()
           : null;
 
-  String? get payerBankAccountNo =>
-      paymentRequest?.payee?.accountIdentifications
-          ?.firstWhereOrNull(
-            (element) => element.type.toUpperCase() == 'ACCOUNT_NUMBER',
-          )
-          ?.identification;
+  String? get payerBankAccountNo {
+    final accNum = paymentRequest?.payee?.accountIdentifications
+        ?.firstWhereOrNull(
+          (element) => element.type.toUpperCase() == 'ACCOUNT_NUMBER',
+        )
+        ?.identification;
+    if (accNum != null && !accNum.contains('***')) {
+      return accNum;
+    }
+    return null;
+  }
 }
 
 /// Parses dynamic amount value into a double.

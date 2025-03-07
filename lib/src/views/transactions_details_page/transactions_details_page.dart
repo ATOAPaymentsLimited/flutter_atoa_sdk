@@ -26,98 +26,101 @@ class TransactionDetailsPage extends StatelessWidget {
   final TransactionDetails transactionDetails;
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Spacing.mediumlarge.xBox * 2,
-              Expanded(
-                child: CustomText.semantics(
-                  context.l10n.paymentDetails,
-                  textAlign: TextAlign.center,
-                  style: kFigtreeTextTheme.bodyLarge?.w700.height130.textColor(
-                    NeutralColors.light().grey.shade500,
+  Widget build(BuildContext context) => SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Spacing.mediumlarge.xBox * 2,
+                Expanded(
+                  child: CustomText.semantics(
+                    context.l10n.paymentDetails,
+                    textAlign: TextAlign.center,
+                    style:
+                        kFigtreeTextTheme.bodyLarge?.w700.height130.textColor(
+                      NeutralColors.light().grey.shade500,
+                    ),
                   ),
                 ),
-              ),
-              Spacing.large.xBox,
-              Padding(
-                padding: Spacing.mini.top,
-                child: CustomInkWell(
-                  semanticsLabel: 'Close Dialog Sheet Icon',
-                  context: context,
-                  trackLabel: 'Close Dialog Sheet Icon',
-                  onTap: () {
-                    context.read<PaymentStatusController>().stop();
-                    Navigator.pop(
-                      context,
-                      context.read<PaymentStatusState>().details,
-                    );
-                  },
-                  child: Container(
-                    width: Spacing.huge.value,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: NeutralColors.light().grey.shade50,
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: Spacing.mini.all,
-                        child: Icon(
-                          Icons.close,
-                          size: Spacing.medium.value,
-                          color: context.intactColors.black,
+                Spacing.large.xBox,
+                Padding(
+                  padding: Spacing.mini.top,
+                  child: CustomInkWell(
+                    semanticsLabel: 'Close Dialog Sheet Icon',
+                    context: context,
+                    trackLabel: 'Close Dialog Sheet Icon',
+                    onTap: () {
+                      context.read<PaymentStatusController>().stop();
+                      Navigator.pop(
+                        context,
+                        context.read<PaymentStatusState>().details,
+                      );
+                    },
+                    child: Container(
+                      width: Spacing.huge.value,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: NeutralColors.light().grey.shade50,
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: Spacing.mini.all,
+                          child: Icon(
+                            Icons.close,
+                            size: Spacing.medium.value,
+                            color: context.intactColors.black,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          if (transactionDetails.updatedAt != null)
-            CustomText.semantics(
-              context.l10n.transactionDateAndTime(
-                transactionDetails.updatedAt!.formattedTime(),
-                transactionDetails.updatedAt!
-                    .formattedDateForPaymentDetails(context),
-              ),
-              style: kFigtreeTextTheme.bodyLarge?.w700,
-            )
-          else
-            CustomText.semantics(
-              context.l10n.transactionDateAndTime(
-                transactionDetails.createdAt.formattedTime(),
-                transactionDetails.createdAt
-                    .formattedDateForPaymentDetails(context),
-              ),
-              style: kFigtreeTextTheme.bodyLarge?.w700,
-            ),
-          Spacing.huge.yBox * 2,
-          TransactionDetailsTopCard(
-            transactionDetails: transactionDetails,
-          ),
-          Padding(
-            padding: Spacing.xtraLarge.top,
-            child: Column(
-              children: [
-                TransactionDetailsStatusContainer(
-                  transactionDetails: transactionDetails,
-                ),
-                Padding(
-                  padding: Spacing.medium.top + Spacing.tiny.top,
-                  child: TransactionDetailsInfoUi(
-                    transactionDetails: transactionDetails,
-                    isExpanded: false,
-                  ),
-                ),
-                Spacing.medium.yBox,
-                Spacing.huge.yBox,
               ],
             ),
-          ),
-        ],
+            if (transactionDetails.updatedAt != null)
+              CustomText.semantics(
+                context.l10n.transactionDateAndTime(
+                  transactionDetails.updatedAt!.formattedTime(),
+                  transactionDetails.updatedAt!
+                      .formattedDateForPaymentDetails(context),
+                ),
+                style: kFigtreeTextTheme.bodyLarge?.w700,
+              )
+            else
+              CustomText.semantics(
+                context.l10n.transactionDateAndTime(
+                  transactionDetails.createdAt.formattedTime(),
+                  transactionDetails.createdAt
+                      .formattedDateForPaymentDetails(context),
+                ),
+                style: kFigtreeTextTheme.bodyLarge?.w700,
+              ),
+            Spacing.huge.yBox * 2,
+            TransactionDetailsTopCard(
+              transactionDetails: transactionDetails,
+            ),
+            Padding(
+              padding: Spacing.xtraLarge.top,
+              child: Column(
+                children: [
+                  TransactionDetailsStatusContainer(
+                    transactionDetails: transactionDetails,
+                  ),
+                  Padding(
+                    padding: Spacing.medium.top + Spacing.tiny.top,
+                    child: TransactionDetailsInfoUi(
+                      transactionDetails: transactionDetails,
+                      isExpanded: false,
+                    ),
+                  ),
+                  Spacing.medium.yBox,
+                  Spacing.huge.yBox,
+                ],
+              ),
+            ),
+          ],
+        ),
       );
 }

@@ -21,28 +21,24 @@ class TransactionDetailsTopCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            CustomGestureDetector(
-              semanticsLabel: 'Profile Picture',
-              context: context,
-              trackLabel: 'Profile Picture',
-              child: UserAvatar(
-                size: Spacing.xtraLarge.value * 2,
-                url: transactionDetails.avatar,
-                placeholder: Container(
-                  height: Spacing.xtraLarge.value * 2,
-                  width: Spacing.xtraLarge.value * 2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Spacing.small.value),
-                    color: NeutralColors.light().grey.shade200,
-                  ),
-                  child: Center(
-                    child: CustomText.semantics(
-                      (transactionDetails.merchantName ?? '').getInitials(),
-                      style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                        context.intactColors.black,
-                      ),
-                      textAlign: TextAlign.center,
+            UserAvatar(
+              size: Spacing.xtraLarge.value * 2,
+              url: transactionDetails.avatar,
+              borderRadius: Spacing.small.brAll,
+              placeholder: Container(
+                height: Spacing.xtraLarge.value * 2,
+                width: Spacing.xtraLarge.value * 2,
+                decoration: BoxDecoration(
+                  borderRadius: Spacing.small.brAll,
+                  color: NeutralColors.light().grey.shade200,
+                ),
+                child: Center(
+                  child: CustomText.semantics(
+                    (transactionDetails.merchantName ?? '').getInitials(),
+                    style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
+                      context.intactColors.black,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -98,7 +94,7 @@ class TransactionDetailsTopCard extends StatelessWidget {
           children: [
             Assets.icons.locationOn.svg(
               colorFilter: ColorFilter.mode(
-                NeutralColors.light().grey.shade200,
+                NeutralColors.light().grey.shade400,
                 BlendMode.srcIn,
               ),
               width: Spacing.xtraLarge.value,

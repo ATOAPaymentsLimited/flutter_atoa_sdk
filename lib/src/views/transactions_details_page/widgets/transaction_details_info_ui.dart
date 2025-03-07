@@ -122,7 +122,6 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
                 children: [
                   BankDetailsWidget(
                     transactionDetails: transactionDetails,
-                    //  bankState: widget.bankState,
                   ),
                   PaymentDetailsRow(
                     label: context.l10n.referenceId,

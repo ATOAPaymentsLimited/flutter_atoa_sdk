@@ -4,6 +4,7 @@ import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/payment_status_view.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/verifying_payment_view.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
@@ -55,6 +56,7 @@ class _VerifyingPaymentBottomSheetState
     extends State<VerifyingPaymentBottomSheet> {
   late PaymentStatusController paymentStatusController;
   late BankInstitutionsState bankInstitutionState;
+  final botToastBuilder = BotToastInit();
 
   @override
   void initState() {
@@ -118,8 +120,11 @@ class _VerifyingPaymentBottomSheetState
                       paymentState.details?.status != null &&
                       !paymentState.details!.isAwaitingAuth &&
                       !paymentState.details!.notIntitated) {
-                    return PaymentStatusView(
-                      isCompleted: paymentState.details!.isCompleted,
+                    return botToastBuilder(
+                      context,
+                      PaymentStatusView(
+                        isCompleted: paymentState.details!.isCompleted,
+                      ),
                     );
                   }
 

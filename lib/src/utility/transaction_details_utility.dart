@@ -10,18 +10,24 @@ class TransactionDetailsUtility {
   ) =>
       transactionDetails.txnPaymentStatus.map(
         awaitingAuthorization: (TransactionStatusAwaitingAuthorization value) =>
-            RegalColors.darkOrange,
-        cancelled: (TransactionStatusCancelled value) => RegalColors.vividRed,
+            SemanticsColors.light().error.subtle,
+        cancelled: (TransactionStatusCancelled value) =>
+            SemanticsColors.light().negative.subtle,
         completed: (TransactionStatusCompleted value) =>
             transactionDetails.isSettlementInProcess
-                ? RegalColors.darkOrange
-                : RegalColors.darkCyan,
-        expired: (TransactionStatusExpired value) => RegalColors.grey.shade60,
-        failed: (TransactionStatusFailed value) => RegalColors.vividRed,
-        pending: (TransactionStatusPending value) => RegalColors.darkOrange,
-        refunded: (TransactionStatusRefunded value) => RegalColors.darkBlue,
-        unknown: (TransactionStatusUnknown value) => RegalColors.grey.shade60,
+                ? SemanticsColors.light().error.subtle
+                : SemanticsColors.light().positive.subtle,
+        expired: (TransactionStatusExpired value) =>
+            NeutralColors.light().grey.shade200,
+        failed: (TransactionStatusFailed value) =>
+            SemanticsColors.light().negative.subtle,
+        pending: (TransactionStatusPending value) =>
+            SemanticsColors.light().error.subtle,
+        refunded: (TransactionStatusRefunded value) =>
+            SemanticsColors.light().info.subtle,
+        unknown: (TransactionStatusUnknown value) =>
+            NeutralColors.light().grey.shade200,
         paymentNotInitiated: (TransactionStatusPaymentNotInitiated value) =>
-            RegalColors.darkOrange,
+            SemanticsColors.light().error.subtle,
       );
 }

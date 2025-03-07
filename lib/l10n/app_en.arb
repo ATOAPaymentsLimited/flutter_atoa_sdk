@@ -1600,7 +1600,7 @@
             }
         }
     },
-    "callBank": "Call Bank",
+    "callBank": "Call Bank →",
     "viewTransactionDetails": "View Transaction Details",
     "referenceId": "Reference ID",
     "orderId": "Order ID",
