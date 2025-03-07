@@ -1,7 +1,8 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:regal/regal.dart';
+import 'package:fluttersdk/widgets/regal_button.dart';
+import 'package:regal/regal.dart' hide RegalButton;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PayNowBottomSheet extends StatelessWidget {

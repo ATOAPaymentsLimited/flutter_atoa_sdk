@@ -3,6 +3,7 @@ import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/ledger_button.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
@@ -14,7 +15,7 @@ import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/rev
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
-import 'package:regal/regal.dart';
+import 'package:regal/regal.dart' hide LedgerButton;
 
 class ConfirmationBottomSheet extends StatefulWidget {
   const ConfirmationBottomSheet({

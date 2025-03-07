@@ -11,12 +11,12 @@ environment:
 dependencies:
   atoa_core:
     path: packages/atoa_core
-  cached_network_image: ^3.3.1
+  cached_network_image: ^3.4.1
   collection: ^1.18.0
   custom_sliding_segmented_control: ^1.8.1
   dotted_border: ^2.1.0
   expandable: ^5.0.1
-  external_app_launcher: ^4.0.1
+  external_app_launcher: ^4.0.3
   flutter:
     sdk: flutter
   flutter_keyboard_visibility: ^6.0.0
@@ -36,7 +36,6 @@ dependencies:
   provider: ^6.1.1
   regal: ^3.7.7
 
-  shared_preferences: ^2.3.5
   shimmer: ^3.0.0
   state_notifier: ^1.0.0
   stream_transform: ^2.1.1

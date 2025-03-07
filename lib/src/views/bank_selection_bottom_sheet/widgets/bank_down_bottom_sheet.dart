@@ -1,10 +1,11 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/ledger_button.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:regal/regal.dart';
+import 'package:regal/regal.dart' hide LedgerButton;
 
 class BankDownBottomSheet extends StatelessWidget {
   const BankDownBottomSheet({

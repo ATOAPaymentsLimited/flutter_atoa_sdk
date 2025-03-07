@@ -16,7 +16,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class TransactionDetailsPage extends StatelessWidget {
   const TransactionDetailsPage({
