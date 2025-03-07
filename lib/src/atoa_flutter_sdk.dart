@@ -47,7 +47,7 @@ class AtoaSdk {
   static Future<String> getPaymentRequestId({required double amount}) async {
     // change it to dev url while testing
     final uri = Uri.parse(
-      'https://api.atoa.me/api/payments/process-payment',
+      'https://devapi.atoa.me/api/payments/process-payment',
     );
 
     final response = await http.post(
@@ -55,7 +55,8 @@ class AtoaSdk {
       headers: {
         HttpHeaders.authorizationHeader: const String.fromEnvironment(
           'atoa-token',
-          defaultValue: 'Bearer <access-token>',
+          defaultValue:
+              'Bearer NmNiYTgzODEtZjJlOS00YTRmLTlmMWYtZjRiMWI2Zjc0ZDExOnY2SnRFcUtmcTFRMkFmTU8=',
         ),
         'Content-Type': 'application/json',
       },

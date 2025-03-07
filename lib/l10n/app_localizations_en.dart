@@ -2441,7 +2441,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paymentWarning => 'This person doesn’t seem to be in your phonebook. Make sure you’re sending money to someone you know and trust.';
 
   @override
-  String get selectYourBank => 'Select your Bank';
+  String get selectYourBank => 'Select your bank';
 
   @override
   String get paymentWarningDesc => 'If you do choose to continue with this payment, Atoa and your Bank will not be able to refund you.';

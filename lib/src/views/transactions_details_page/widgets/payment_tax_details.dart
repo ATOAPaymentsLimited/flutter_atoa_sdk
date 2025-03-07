@@ -44,7 +44,7 @@ class PaymentTaxDetails extends StatelessWidget {
                   Spacing.mini.value,
                   Spacing.mini.value,
                 ],
-                color: NeutralColors.light().grey.shade400,
+                color: NeutralColors.light().grey.shade200,
               ),
             ),
           ],

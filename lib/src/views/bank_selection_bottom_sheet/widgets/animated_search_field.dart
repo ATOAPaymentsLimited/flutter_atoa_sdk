@@ -65,7 +65,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
           context.read<BankInstitutionsController>().search('');
         },
         textStyle: kFigtreeTextTheme.labelSmall?.w600,
-        border: BorderSide(color: NeutralColors.light().grey.shade100),
+        border: BorderSide(color: NeutralColors.light().grey.shade200),
         isLightMode: true,
         label: Row(
           children: [

@@ -19,6 +19,7 @@ class AtoaTermsBottomSheet extends StatelessWidget {
         titleStyle: kFigtreeTextTheme.labelMedium?.w700.textColor(
           NeutralColors.light().grey.shade700,
         ),
+        titleAlign: TextAlign.left,
         showDivider: true,
         title: context.l10n.termsAndPolicy,
         titleBottomSpacing: Spacing.small.value,
@@ -32,19 +33,17 @@ class AtoaTermsBottomSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Spacing.large.yBox,
             AtoaTermTile(
               title: context.l10n.termsOfService,
               desc: context.l10n.rulesForService,
               link: 'https://paywithatoa.co.uk/terms/',
             ),
-            Spacing.large.yBox,
             AtoaTermTile(
               title: context.l10n.privacyPolicy,
               desc: context.l10n.howWeProtectData,
               link: 'https://paywithatoa.co.uk/atoa-pay-privacy-policy/',
             ),
-            Spacing.huge.yBox,
+            Spacing.large.yBox * 2,
             CustomText.semantics(
               context.l10n.atoaYapilyText,
               style: kFigtreeTextTheme.bodyMedium

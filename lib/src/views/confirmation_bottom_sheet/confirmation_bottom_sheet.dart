@@ -15,7 +15,7 @@ import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/rev
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
-import 'package:regal/regal.dart' hide LedgerButton;
+import 'package:regal/regal.dart' hide LedgerButton, LedgerButtonSize;
 
 class ConfirmationBottomSheet extends StatefulWidget {
   const ConfirmationBottomSheet({
@@ -110,10 +110,12 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
                   ),
                   Spacing.large.yBox,
                 ],
+                Spacing.small.yBox,
                 LedgerButton.primary2(
                   style: ElevatedButton.styleFrom(
                     textStyle: kFigtreeTextTheme.bodyLarge?.w700,
                   ),
+                  size: LedgerButtonSize.xtraLarge,
                   semanticsLabel:
                       context.l10n.goToBank(state.selectedBank?.name ?? ''),
                   backgroundColor: BrandingColorUtility.brandingBackgroundColor,
@@ -129,9 +131,9 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
                     state.selectedBank?.name ?? '',
                   ),
                 ),
-                Spacing.xtraLarge.yBox,
+                Spacing.medium.yBox,
                 const PoweredByAtoaWidget(),
-                Spacing.xtraLarge.yBox,
+                Spacing.huge.yBox,
                 const AtoaTermAndServiceWidget(),
                 Spacing.xtraLarge.yBox,
               ],

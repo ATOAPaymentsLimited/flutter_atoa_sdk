@@ -32,12 +32,14 @@ class TransactionDetailsPage extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacing.large.xBox * 2,
+              Spacing.mediumlarge.xBox * 2,
               Expanded(
                 child: CustomText.semantics(
                   context.l10n.paymentDetails,
                   textAlign: TextAlign.center,
-                  style: kFigtreeTextTheme.labelMedium?.w700.height130,
+                  style: kFigtreeTextTheme.bodyLarge?.w700.height130.textColor(
+                    NeutralColors.light().grey.shade500,
+                  ),
                 ),
               ),
               Spacing.large.xBox,

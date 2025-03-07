@@ -100,7 +100,7 @@ class PaymentDetailsRow extends StatelessWidget {
               Spacing.small.value,
             ),
           ),
-          border: Border.all(color: NeutralColors.light().grey.shade400),
+          border: Border.all(color: NeutralColors.light().grey.shade200),
         ),
         child: Padding(
           padding: Spacing.mini.all,

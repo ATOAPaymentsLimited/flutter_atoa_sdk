@@ -98,9 +98,9 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         decoration: BoxDecoration(
           color: context.intactColors.white,
           border: Border(
-            bottom: BorderSide(color: NeutralColors.light().grey.shade400),
-            left: BorderSide(color: NeutralColors.light().grey.shade400),
-            right: BorderSide(color: NeutralColors.light().grey.shade400),
+            bottom: BorderSide(color: NeutralColors.light().grey.shade200),
+            left: BorderSide(color: NeutralColors.light().grey.shade200),
+            right: BorderSide(color: NeutralColors.light().grey.shade200),
           ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(

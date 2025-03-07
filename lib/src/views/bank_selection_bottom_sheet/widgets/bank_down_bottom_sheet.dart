@@ -5,7 +5,7 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/ledger_button.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:regal/regal.dart' hide LedgerButton;
+import 'package:regal/regal.dart' hide LedgerButton, LedgerButtonSize;
 
 class BankDownBottomSheet extends StatelessWidget {
   const BankDownBottomSheet({
@@ -23,7 +23,8 @@ class BankDownBottomSheet extends StatelessWidget {
         context: context,
         title: '',
         showTitle: false,
-        titleBottomSpacing: Spacing.medium.value,
+        titleBottomSpacing: Spacing.small.value,
+        showDivider: true,
         body: (_) => BankDownBottomSheet(
           bank: bank,
         ),
@@ -79,12 +80,13 @@ class BankDownBottomSheet extends StatelessWidget {
             onPressed: () async {
               Navigator.pop(context);
             },
+            size: LedgerButtonSize.xtraLarge,
             trackLabel: context.l10n.okay,
             enableTracking: false,
             style: ElevatedButton.styleFrom(
               textStyle: kFigtreeTextTheme.bodyLarge?.w700,
             ),
-            backgroundColor: NeutralColors.light().grey.shade100,
+            backgroundColor: NeutralColors.light().grey.shade50,
             foregroundColor: context.intactColors.black,
             label: context.l10n.okay,
           ),

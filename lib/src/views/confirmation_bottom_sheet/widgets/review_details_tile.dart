@@ -31,20 +31,23 @@ class ReviewDetailsTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (isBankInfo && state.selectedBank?.bankIcon != null)
-              Image.network(
-                state.selectedBank?.bankIcon ?? '',
-                height: Spacing.xtraLarge.value * 2,
-                width: Spacing.xtraLarge.value * 2,
-              )
-            else if (state.paymentDetails?.storeImg != null)
-              Image.network(
-                state.paymentDetails?.storeImg ?? '',
+            if (!isBankInfo && state.paymentDetails?.storeImg == null)
+              Assets.icons.businessImg.svg(
                 height: Spacing.xtraLarge.value * 2,
                 width: Spacing.xtraLarge.value * 2,
               )
             else
-              Assets.icons.businessImg.svg(),
+              Container(
+                padding: Spacing.small.all,
+                decoration: BoxDecoration(
+                  color: context.intactColors.white,
+                  borderRadius: Spacing.small.brAll,
+                  border: Border.all(
+                    color: NeutralColors.light().grey.shade100,
+                  ),
+                ),
+                child: _getIcon(context),
+              ),
             Spacing.medium.xBox,
             Expanded(
               child: Column(
@@ -53,7 +56,7 @@ class ReviewDetailsTile extends StatelessWidget {
                   CustomText.semantics(
                     !isBankInfo ? context.l10n.payingTo : context.l10n.from,
                     style: kFigtreeTextTheme.bodyMedium?.textColor(
-                      NeutralColors.light().grey.shade500,
+                      NeutralColors.light().grey.shade600,
                     ),
                   ),
                   CustomText.semantics(
@@ -108,4 +111,28 @@ class ReviewDetailsTile extends StatelessWidget {
           ],
         ),
       );
+
+  Widget _getIcon(BuildContext context) {
+    if (isBankInfo) {
+      if (state.selectedBank?.bankIcon != null) {
+        return Image.network(
+          state.selectedBank?.bankIcon ?? '',
+          height: Spacing.xtraLarge.value + Spacing.tiny.value,
+          width: Spacing.xtraLarge.value + Spacing.tiny.value,
+        );
+      } else {
+        return Icon(
+          Icons.account_balance_outlined,
+          size: Spacing.xtraLarge.value + Spacing.tiny.value,
+          color: context.intactColors.black,
+        );
+      }
+    } else {
+      return Image.network(
+        state.paymentDetails?.storeImg ?? '',
+        height: Spacing.xtraLarge.value + Spacing.tiny.value,
+        width: Spacing.xtraLarge.value + Spacing.tiny.value,
+      );
+    }
+  }
 }

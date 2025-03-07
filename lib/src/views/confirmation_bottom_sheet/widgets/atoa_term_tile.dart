@@ -22,30 +22,33 @@ class AtoaTermTile extends StatelessWidget {
         trackLabel: title,
         semanticsLabel: title,
         onTap: () => launchUrl(Uri.parse(link)),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText.semantics(
-                    title,
-                    style: kFigtreeTextTheme.bodyLarge?.w600.textColor(
-                      NeutralColors.light().grey.shade700,
+        child: Padding(
+          padding: Spacing.large.y,
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText.semantics(
+                      title,
+                      style: kFigtreeTextTheme.bodyLarge?.w600.textColor(
+                        NeutralColors.light().grey.shade700,
+                      ),
                     ),
-                  ),
-                  CustomText.semantics(
-                    desc,
-                    style: kFigtreeTextTheme.bodyMedium?.textColor(
-                      NeutralColors.light().grey.shade500,
+                    CustomText.semantics(
+                      desc,
+                      style: kFigtreeTextTheme.bodyMedium?.textColor(
+                        NeutralColors.light().grey.shade500,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Assets.icons.externalLink.svg(),
-          ],
+              Assets.icons.externalLink.svg(),
+            ],
+          ),
         ),
       );
 }

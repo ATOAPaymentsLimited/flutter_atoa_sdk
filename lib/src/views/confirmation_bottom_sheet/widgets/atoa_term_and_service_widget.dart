@@ -20,10 +20,31 @@ class AtoaTermAndServiceWidget extends StatelessWidget {
             onTap: () => {
               AtoaTermsBottomSheet.show(context),
             },
-            child: CustomText.semantics(
-              context.l10n.atoaTermsAndPolicy,
-              style: kFigtreeTextTheme.bodySmall?.textColor(
-                NeutralColors.light().grey.shade500,
+            child: RichText(
+              text: CustomTextSpan.semantics(
+                text: context.l10n.atoaTerms,
+                style: kFigtreeTextTheme.bodySmall
+                    ?.textColor(
+                      NeutralColors.light().grey.shade500,
+                    )
+                    .w600,
+                children: [
+                  CustomTextSpan.semantics(
+                    text: context.l10n.and,
+                    style: kFigtreeTextTheme.bodySmall?.textColor(
+                      NeutralColors.light().grey.shade500,
+                    ),
+                  ),
+                  const CustomTextSpan.semantics(text: ' '),
+                  CustomTextSpan.semantics(
+                    text: context.l10n.privacyPolicy,
+                    style: kFigtreeTextTheme.bodySmall
+                        ?.textColor(
+                          NeutralColors.light().grey.shade500,
+                        )
+                        .w600,
+                  ),
+                ],
               ),
             ),
           ),

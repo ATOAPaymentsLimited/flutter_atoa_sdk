@@ -61,7 +61,7 @@ class BankGridItem extends StatelessWidget {
                       ),
                     Container(
                       padding: Spacing.medium.y +
-                          Spacing.tiny.y +
+                          Spacing.tiny.all +
                           Spacing.xtraLarge.x,
                       decoration: BoxDecoration(
                         border: Border.all(

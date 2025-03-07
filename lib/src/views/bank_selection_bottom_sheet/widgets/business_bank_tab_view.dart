@@ -19,13 +19,14 @@ class BusinessBanksTabView extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Spacing.medium.yBox,
+          Spacing.xtraLarge.yBox,
           CustomText.semantics(
             context.l10n.allBanks.toUpperCase(),
             style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
               NeutralColors.light().grey.shade500,
             ),
           ),
+          Spacing.medium.yBox,
           Expanded(
             child: Consumer<BankInstitutionsState>(
               builder: (_, state, __) => ListView.builder(

@@ -25,12 +25,12 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
           color: context.intactColors.white,
           border: isExpanded
               ? Border(
-                  top: BorderSide(color: NeutralColors.light().grey.shade400),
-                  left: BorderSide(color: NeutralColors.light().grey.shade400),
-                  right: BorderSide(color: NeutralColors.light().grey.shade400),
+                  top: BorderSide(color: NeutralColors.light().grey.shade200),
+                  left: BorderSide(color: NeutralColors.light().grey.shade200),
+                  right: BorderSide(color: NeutralColors.light().grey.shade200),
                 )
               : Border.all(
-                  color: NeutralColors.light().grey.shade400,
+                  color: NeutralColors.light().grey.shade200,
                 ),
           borderRadius: isExpanded
               ? BorderRadius.only(

@@ -78,16 +78,20 @@ class BankListItem extends StatelessWidget {
                 },
                 semanticsLabel: '$bank CheckBox',
                 child: Container(
-                  width: Spacing.large.value + Spacing.tiny.value,
-                  height: Spacing.large.value + Spacing.tiny.value,
-                  padding: Spacing.tiny.all,
+                  width: Spacing.xtraLarge.value,
+                  height: Spacing.xtraLarge.value,
+                  padding: Spacing.mini.all,
                   decoration: BoxDecoration(
                     color: context.read<BankInstitutionsState>().selectedBank ==
                             bank
                         ? context.intactColors.black
                         : context.intactColors.white,
                     border: Border.all(
-                      color: context.intactColors.black,
+                      color:
+                          context.read<BankInstitutionsState>().selectedBank ==
+                                  bank
+                              ? context.intactColors.black
+                              : NeutralColors.light().grey.shade300,
                       width: 1.5,
                     ),
                     borderRadius: Spacing.medium.brAll,

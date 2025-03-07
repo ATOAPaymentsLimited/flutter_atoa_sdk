@@ -1261,7 +1261,7 @@
         }
     },
     "paymentWarning": "This person doesn’t seem to be in your phonebook. Make sure you’re sending money to someone you know and trust.",
-    "selectYourBank": "Select your Bank",
+    "selectYourBank": "Select your bank",
     "paymentWarningDesc": "If you do choose to continue with this payment, Atoa and your Bank will not be able to refund you.",
     "cancelThisPayment": "Cancel This Payment",
     "continueToPay": "Continue to Pay",

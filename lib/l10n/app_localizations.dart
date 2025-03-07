@@ -4434,7 +4434,7 @@ abstract class AppLocalizations {
   /// No description provided for @selectYourBank.
   ///
   /// In en, this message translates to:
-  /// **'Select your Bank'**
+  /// **'Select your bank'**
   String get selectYourBank;
 
   /// No description provided for @paymentWarningDesc.

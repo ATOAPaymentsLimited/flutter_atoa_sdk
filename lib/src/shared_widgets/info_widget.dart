@@ -23,7 +23,7 @@ class InfoWidget extends StatelessWidget {
         child: Row(
           children: [
             Assets.icons.info.svg(),
-            Spacing.medium.xBox,
+            Spacing.small.xBox,
             Expanded(
               child: CustomText.semantics(
                 text,
@@ -31,7 +31,8 @@ class InfoWidget extends StatelessWidget {
                     ?.textColor(
                       SemanticsColors.light().info.darker,
                     )
-                    .copyWith(fontSize: fontSize),
+                    .copyWith(fontSize: fontSize)
+                    .w500,
               ),
             ),
           ],

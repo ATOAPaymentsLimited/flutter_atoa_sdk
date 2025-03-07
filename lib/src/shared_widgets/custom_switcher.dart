@@ -30,6 +30,7 @@ class CustomSwitcher<T> extends StatelessWidget {
           enabled: true,
           explicitChildNodes: true,
           child: CustomSlidingSegmentedControl<T>(
+            innerPadding: Spacing.mini.all,
             isStretch: isStretch,
             isDisabled: isDisabled,
             customSegmentSettings: CustomSegmentSettings(
@@ -40,7 +41,7 @@ class CustomSwitcher<T> extends StatelessWidget {
             initialValue: initialValue,
             decoration: BoxDecoration(
               color: NeutralColors.light().grey.shade50,
-              borderRadius: BorderRadius.circular(Spacing.large.value),
+              borderRadius: BorderRadius.circular(Spacing.medium.value),
             ),
             thumbDecoration: BoxDecoration(
               color: context.intactColors.white,

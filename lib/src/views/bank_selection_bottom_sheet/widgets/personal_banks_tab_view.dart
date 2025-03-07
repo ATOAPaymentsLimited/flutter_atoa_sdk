@@ -96,7 +96,7 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                       onBankSelect: widget.onBankSelect,
                     ),
                   ),
-                  Spacing.large.yBox,
+                  Spacing.huge.yBox,
 
                   // Scrollable List
 
@@ -106,6 +106,7 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                       NeutralColors.light().grey.shade500,
                     ),
                   ),
+                  Spacing.medium.yBox,
                   ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,

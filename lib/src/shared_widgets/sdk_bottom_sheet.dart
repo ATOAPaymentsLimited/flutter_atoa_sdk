@@ -8,6 +8,7 @@ Future<T?> showSdkBottomSheet<T>({
   required String title,
   required WidgetBuilder body,
   TextStyle? titleStyle,
+  TextAlign? titleAlign,
   double? titleBottomSpacing,
   bool showTitle = true,
   bool showDivider = false,
@@ -45,11 +46,11 @@ Future<T?> showSdkBottomSheet<T>({
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Spacing.huge.xBox,
+                      if (titleAlign == null) Spacing.huge.xBox,
                       Expanded(
                         child: CustomText.semantics(
                           title,
-                          textAlign: TextAlign.center,
+                          textAlign: titleAlign ?? TextAlign.center,
                           style: kFigtreeTextTheme.labelMedium?.w700.height130,
                         ),
                       ),

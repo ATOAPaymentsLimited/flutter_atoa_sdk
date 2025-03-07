@@ -63,7 +63,7 @@ class TransactionDetailsTopCard extends StatelessWidget {
                         const CustomTextSpan.semantics(text: ' '),
                         CustomTextSpan.semantics(
                           text: transactionDetails.merchantName,
-                          style: kFigtreeTextTheme.bodyLarge?.w600,
+                          style: kFigtreeTextTheme.bodyLarge?.w700,
                         ),
                       ],
                     ),
@@ -98,7 +98,7 @@ class TransactionDetailsTopCard extends StatelessWidget {
           children: [
             Assets.icons.locationOn.svg(
               colorFilter: ColorFilter.mode(
-                NeutralColors.light().grey.shade400,
+                NeutralColors.light().grey.shade200,
                 BlendMode.srcIn,
               ),
               width: Spacing.xtraLarge.value,

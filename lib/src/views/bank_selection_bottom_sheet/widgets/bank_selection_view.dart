@@ -67,15 +67,15 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                     AnimatedSearchField(
                       controller: widget.searchController,
                     ),
-                    Spacing.large.yBox,
-                    InfoWidget(
-                      text: context.l10n.ensureBankAppInstalled,
-                      fontSize: 11.sp,
-                    ),
-                    Spacing.large.yBox,
+                    Spacing.xtraLarge.yBox,
                     if (bankController.searchTerm.isEmpty) ...[
                       BankTabBar(
                         tabController: widget.tabController,
+                      ),
+                      Spacing.xtraLarge.yBox,
+                      InfoWidget(
+                        text: context.l10n.ensureBankAppInstalled,
+                        fontSize: 11.sp,
                       ),
                       Expanded(
                         child: TabBarView(
@@ -111,6 +111,11 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                           ),
                         ),
                       ] else ...[
+                        InfoWidget(
+                          text: context.l10n.ensureBankAppInstalled,
+                          fontSize: 11.sp,
+                        ),
+                        Spacing.xtraLarge.yBox,
                         CustomText.semantics(
                           context.l10n.results,
                           style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
