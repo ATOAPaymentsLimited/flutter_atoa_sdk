@@ -26,7 +26,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
       txnDetails.status.mapOrNull(
         completed: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: SemanticsColors.light().positive.defaultColor,
+          iconBgColor: SemanticsColors.light().positive.darker,
           svgAsset: Assets.icons.iconTick.path,
           size: Spacing.large.value,
           status: context.l10n.paid,
