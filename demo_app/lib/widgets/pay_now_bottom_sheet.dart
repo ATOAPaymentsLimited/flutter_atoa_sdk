@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttersdk/widgets/regal_button.dart';
 import 'package:regal/regal.dart' hide RegalButton;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class PayNowBottomSheet extends StatelessWidget {
   PayNowBottomSheet({
@@ -101,8 +105,7 @@ class PayNowBottomSheet extends StatelessWidget {
 
   Future<void> _getPaymentId(BuildContext context, totalAmount) async {
     isLoading.value = true;
-    final paymentRequestId =
-        await AtoaSdk.getPaymentRequestId(amount: totalAmount);
+    final paymentRequestId = await _getPaymentRequestId(amount: totalAmount);
     if (context.mounted) {
       if (paymentRequestId.isNotEmpty) {
         isLoading.value = false;
@@ -127,4 +130,51 @@ class PayNowBottomSheet extends StatelessWidget {
       }
     }
   }
+
+  Future<String> _getPaymentRequestId({required double amount}) async {
+    // change it to dev url while testing
+    final uri = Uri.parse(
+      'https://api.atoa.me/api/payments/process-payment',
+    );
+
+    final response = await http.post(
+      uri,
+      headers: {
+        HttpHeaders.authorizationHeader: const String.fromEnvironment(
+          'atoa-token',
+          defaultValue: 'Bearer <access-token>',
+        ),
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(_getRequestData(amount)),
+    );
+
+    final resMap = jsonDecode(response.body) as Map<String, dynamic>;
+
+    return resMap['paymentRequestId'] as String? ?? '';
+  }
+
+  Map<String, dynamic> _getRequestData(double amount) => {
+        'customerId': 'abc123',
+        'consumerDetails': {
+          'phoneCountryCode': '44',
+          'phoneNumber': 7857094720,
+        },
+        'orderId': '242u9384jfjkw',
+        'currency': 'GBP',
+        'amount': amount,
+        'paymentType': 'TRANSACTION',
+        'autoRedirect': false,
+        'callbackParams': {
+          'deviceId': '{deviceId}',
+          'locationId': '{locationId}',
+        },
+        'redirectUrl': 'atoa://demoapp.com',
+        'expiresIn': 60000000,
+        'enableTips': true,
+        'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',
+        'strictExpiry': false,
+        'allowRetry': true,
+        'splitBill': false,
+      };
 }
