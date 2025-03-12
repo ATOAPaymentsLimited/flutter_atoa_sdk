@@ -23,6 +23,7 @@ class Atoa {
   AtoaDio? _atoaDio;
 
   void initialize([
+    AtoaDio? dio,
     Duration connectionTimeout = const Duration(seconds: 20),
   ]) {
     if (_atoaEnv == null) {
@@ -30,13 +31,21 @@ class Atoa {
         AtoaExceptionType.environmentNotSet,
       );
     }
-
-    _atoaDio = AtoaDio(connectionTimeout)
-      ..interceptors.add(
-        RequestInterceptor(
-          env: _atoaEnv!,
-        ),
-      );
+    if (dio != null) {
+      _atoaDio = dio
+        ..interceptors.add(
+          RequestInterceptor(
+            env: _atoaEnv!,
+          ),
+        );
+    } else {
+      _atoaDio = AtoaDio(connectionTimeout)
+        ..interceptors.add(
+          RequestInterceptor(
+            env: _atoaEnv!,
+          ),
+        );
+    }
   }
 
   void _dioCheck() {
