@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttersdk/utils/connectivity_controller.dart';
+import 'package:fluttersdk/widgets/regal_button.dart';
 import 'package:provider/provider.dart';
-import 'package:regal/regal.dart';
+import 'package:regal/regal.dart' hide RegalButton;
 
 class ConnectivityWrapper extends StatefulWidget {
   final Widget child;

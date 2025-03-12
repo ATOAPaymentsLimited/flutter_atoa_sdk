@@ -24,10 +24,7 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
   late ScrollController scrollController;
   late BankInstitutionsState bankInstitutionsState;
   late BankInstitutionsController bankInstitutionsController;
-  final int itemsPerPage = 8;
-  int currentPage = 0;
   List<BankInstitution> allBanks = []; // Full list of banks
-  List<BankInstitution> paginatedBanks = []; // Current displayed banks
 
   @override
   void initState() {
@@ -35,40 +32,13 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
     bankInstitutionsState = context.read<BankInstitutionsState>();
     bankInstitutionsController = context.read<BankInstitutionsController>();
     allBanks = bankInstitutionsState.allNormalBanks;
-    _loadNextPage();
-    scrollController = ScrollController()..addListener(scrollListener);
+    scrollController = ScrollController();
   }
 
   @override
   void dispose() {
-    scrollController
-      ..removeListener(scrollListener)
-      ..dispose();
+    scrollController.dispose();
     super.dispose();
-  }
-
-  void scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
-      _loadNextPage();
-    }
-  }
-
-  void _loadNextPage() {
-    final startIndex = currentPage * itemsPerPage;
-    final endIndex = startIndex + itemsPerPage;
-
-    if (startIndex < allBanks.length) {
-      setState(() {
-        paginatedBanks.addAll(
-          allBanks.sublist(
-            startIndex,
-            endIndex > allBanks.length ? allBanks.length : endIndex,
-          ),
-        );
-        currentPage++;
-      });
-    }
   }
 
   @override
@@ -111,9 +81,9 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: paginatedBanks.length,
+                    itemCount: allBanks.length,
                     itemBuilder: (context, index) => BankListItem(
-                      bank: paginatedBanks[index],
+                      bank: allBanks[index],
                       onBankSelect: widget.onBankSelect,
                     ),
                   ),

@@ -112,8 +112,6 @@ class PaymentDetailsRow extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: logo!,
             height: Spacing.xtraLarge.value,
-            memCacheWidth: 20,
-            memCacheHeight: 20,
           ),
         ),
       );
