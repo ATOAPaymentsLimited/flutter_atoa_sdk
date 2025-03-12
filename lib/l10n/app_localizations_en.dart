@@ -2809,7 +2809,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get makePaymentStep1Text2 => 'Bank app ';
 
   @override
-  String get makePaymentStep1Text3 => 'will open on selection automatically if it’s installed';
+  String get makePaymentStep1Text3 => 'will open on selection automatically if it’s installed.';
 
   @override
   String get ensureBankAppInstalled => 'Ensure the selected bank’s app is installed on your phone.';
@@ -2994,4 +2994,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String transactionDateAndTime(String time, String date) {
     return '$time on $date';
   }
+
+  @override
+  String get noInternetConnection => 'Oops! No internet connection';
+
+  @override
+  String get serverNotReachable => 'Server is not reachable. Please check your internet connection and try again';
 }

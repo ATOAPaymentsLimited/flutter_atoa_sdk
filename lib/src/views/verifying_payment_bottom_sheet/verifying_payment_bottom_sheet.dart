@@ -1,6 +1,8 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/constants/constant.dart';
+import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/payment_status_view.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/verifying_payment_view.dart';
@@ -13,14 +15,17 @@ import 'package:regal/regal.dart';
 class VerifyingPaymentBottomSheet extends StatefulWidget {
   const VerifyingPaymentBottomSheet({
     required this.bankInstitutionController,
+    required this.connectivityController,
     super.key,
   });
   final BankInstitutionsController bankInstitutionController;
+  final ConnectivityController connectivityController;
 
   static Future<TransactionDetails?> show(
     BuildContext context,
     BankInstitutionsController bankInstitutionController,
     PaymentStatusController paymentStatusController,
+    ConnectivityController connectivityController,
   ) =>
       showModalBottomSheet<TransactionDetails?>(
         context: context,
@@ -32,6 +37,7 @@ class VerifyingPaymentBottomSheet extends StatefulWidget {
             value: paymentStatusController,
             builder: (context, _) => VerifyingPaymentBottomSheet(
               bankInstitutionController: bankInstitutionController,
+              connectivityController: connectivityController,
             ),
           ),
         ),
@@ -90,48 +96,55 @@ class _VerifyingPaymentBottomSheetState
   }
 
   @override
-  Widget build(BuildContext context) => Consumer<PaymentStatusState>(
-        builder: (_, paymentState, __) => AnimatedContainer(
-          duration: kAnimationDuration,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.intactColors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Spacing.xtraLarge.value),
-                topRight: Radius.circular(Spacing.xtraLarge.value),
+  Widget build(BuildContext context) =>
+      StreamProvider<ConnectivityStatus>.value(
+        initialData: ConnectivityStatus.waiting,
+        value: widget.connectivityController.connectionStatusController.stream,
+        builder: (context, child) => Consumer<PaymentStatusState>(
+          builder: (_, paymentState, __) => AnimatedContainer(
+            duration: kAnimationDuration,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: context.intactColors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Spacing.xtraLarge.value),
+                  topRight: Radius.circular(Spacing.xtraLarge.value),
+                ),
               ),
-            ),
-            child: Padding(
-              padding: Spacing.large.y + Spacing.xtraLarge.x,
-              child: Builder(
-                builder: (context) {
-                  if (paymentState.exception != null) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Spacing.huge.yBox * 8,
-                        const AtoaErrorWidget(),
-                        Spacing.huge.yBox * 8,
-                      ],
-                    );
-                  }
-                  if (paymentState.details != null &&
-                      paymentState.details?.status != null &&
-                      !paymentState.details!.isAwaitingAuth &&
-                      !paymentState.details!.notIntitated) {
-                    return botToastBuilder(
-                      context,
-                      PaymentStatusView(
-                        isCompleted: paymentState.details!.isCompleted,
-                      ),
-                    );
-                  }
+              child: Padding(
+                padding: Spacing.large.y + Spacing.xtraLarge.x,
+                child: ConnectivityWrapper(
+                  child: Builder(
+                    builder: (context) {
+                      if (paymentState.exception != null) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Spacing.huge.yBox * 8,
+                            const AtoaErrorWidget(),
+                            Spacing.huge.yBox * 8,
+                          ],
+                        );
+                      }
+                      if (paymentState.details != null &&
+                          paymentState.details?.status != null &&
+                          !paymentState.details!.isAwaitingAuth &&
+                          !paymentState.details!.notIntitated) {
+                        return botToastBuilder(
+                          context,
+                          PaymentStatusView(
+                            isCompleted: paymentState.details!.isCompleted,
+                          ),
+                        );
+                      }
 
-                  return VerifyingPaymentView(
-                    bankIcon: bankInstitutionState.selectedBank?.bankIcon,
-                  );
-                },
+                      return VerifyingPaymentView(
+                        bankIcon: bankInstitutionState.selectedBank?.bankIcon,
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
           ),

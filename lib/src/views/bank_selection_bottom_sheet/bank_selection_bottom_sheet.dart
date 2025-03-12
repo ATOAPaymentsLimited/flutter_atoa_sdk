@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/constants/constant.dart';
+import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
+import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_view.dart';
 import 'package:flutter/material.dart';
@@ -57,12 +59,14 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   final TextEditingController _searchController = TextEditingController();
   late BankInstitutionsController bankInstitutionsController;
   late PaymentStatusController paymentStatusController;
+  late ConnectivityController connectivityController;
 
   @override
   void initState() {
     super.initState();
     bankInstitutionsController = getIt.get<BankInstitutionsController>();
     paymentStatusController = getIt.get<PaymentStatusController>();
+    connectivityController = getIt.get<ConnectivityController>();
     _tabController = TabController(length: 2, vsync: this);
     bankInstitutionsController.showHowPaymentWorks = widget.showHowPaymentWorks;
 
@@ -78,12 +82,23 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
     _searchController.dispose();
     bankInstitutionsController.dispose();
     paymentStatusController.dispose();
+    connectivityController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
+          StreamProvider<ConnectivityStatus>(
+            initialData: ConnectivityStatus.waiting,
+            create: (_) {
+              connectivityController.checkConnection();
+              return connectivityController.connectionStatusController.stream;
+            },
+          ),
+          Provider<ConnectivityController>.value(
+            value: connectivityController,
+          ),
           StateNotifierProvider<BankInstitutionsController,
               BankInstitutionsState>.value(
             value: bankInstitutionsController,
@@ -108,7 +123,9 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                 child: Padding(
                   padding: Spacing.large.y + Spacing.xtraLarge.x,
                   child: state.showHowPaymentWorks
-                      ? const HowToMakePaymentView()
+                      ? const ConnectivityWrapper(
+                          child: HowToMakePaymentView(),
+                        )
                       : AnimatedPadding(
                           duration: kAnimationDuration,
                           padding: EdgeInsets.only(
@@ -120,9 +137,11 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                             constraints: BoxConstraints.loose(
                               Size(1.sw, isKeyboardVisible ? 0.5.sh : 0.9.sh),
                             ),
-                            child: BankSelectionView(
-                              tabController: _tabController,
-                              searchController: _searchController,
+                            child: ConnectivityWrapper(
+                              child: BankSelectionView(
+                                tabController: _tabController,
+                                searchController: _searchController,
+                              ),
                             ),
                           ),
                         ),

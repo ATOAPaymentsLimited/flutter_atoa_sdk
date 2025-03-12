@@ -42,6 +42,12 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
   }
 
   @override
+  void dispose() {
+    showTickAnimation.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => ValueListenableBuilder(
         valueListenable: showTickAnimation,
         builder: (context, showAnimation, child) => AnimatedSwitcher(

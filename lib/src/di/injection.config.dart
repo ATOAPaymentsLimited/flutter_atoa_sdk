@@ -11,6 +11,8 @@
 import 'package:atoa_core/atoa_core.dart' as _i182;
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart'
     as _i493;
+import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart'
+    as _i630;
 import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart'
     as _i333;
 import 'package:atoa_flutter_sdk/src/di/modules/app_module.dart' as _i80;
@@ -29,6 +31,8 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final appModule = _$AppModule();
+    gh.singleton<_i630.ConnectivityController>(
+        () => _i630.ConnectivityController());
     gh.lazySingleton<_i182.Atoa>(() => appModule.atoa);
     gh.factory<_i493.BankInstitutionsController>(
         () => _i493.BankInstitutionsController(atoa: gh<_i182.Atoa>()));

@@ -1548,7 +1548,7 @@
     "makePaymentStep2Text3": "and approve your payment. Your details stay confidential.",
     "makePaymentStep1Text1": "Your ",
     "makePaymentStep1Text2": "Bank app ",
-    "makePaymentStep1Text3": "will open on selection automatically if it’s installed",
+    "makePaymentStep1Text3": "will open on selection automatically if it’s installed.",
     "ensureBankAppInstalled": "Ensure the selected bank’s app is installed on your phone.",
     "allBanks": "ALL BANKS",
     "noResults": "No results",
@@ -1650,5 +1650,7 @@
                 "example": "date"
             }
         }
-    }
+    },
+    "noInternetConnection": "Oops! No internet connection",
+    "serverNotReachable": "Server is not reachable. Please check your internet connection and try again"
 }

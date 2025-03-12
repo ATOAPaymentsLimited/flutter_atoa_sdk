@@ -102,6 +102,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/warning.svg
   SvgGenImage get warning => const SvgGenImage('assets/icons/warning.svg');
 
+  /// File path: assets/icons/wifi_off.svg
+  SvgGenImage get wifiOff => const SvgGenImage('assets/icons/wifi_off.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         iconRefund,
@@ -123,7 +126,8 @@ class $AssetsIconsGen {
         locationOn,
         search,
         shield,
-        warning
+        warning,
+        wifiOff
       ];
 }
 

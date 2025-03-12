@@ -4,14 +4,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:regal/regal.dart';
 
 class ProductCardWidget extends StatelessWidget {
-  ProductCardWidget({
+  const ProductCardWidget({
     super.key,
     required this.name,
-    required this.totalAmountNotifier,
   });
 
-  final ValueNotifier totalAmountNotifier;
-  final ValueNotifier<int> totalItems = ValueNotifier(1);
   final String name;
   @override
   Widget build(BuildContext context) => Container(
@@ -61,43 +58,41 @@ class ProductCardWidget extends StatelessWidget {
                 Spacing.mini.yBox,
                 Spacing.tiny.yBox,
                 Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Spacing.tiny.value),
-                        border: Border.all(
-                            color: const Color.fromRGBO(238, 239, 240, 1))),
-                    child: ValueListenableBuilder(
-                      valueListenable: totalItems,
-                      builder: (context, value, child) => SizedBox(
-                        width: 96.sp,
-                        height: 36.sp,
-                        child: Row(
-                          children: [
-                            Expanded(
-                                child: InkWell(
-                              child: Icon(
-                                Icons.remove,
-                                size: Spacing.large.value,
-                                color: const Color.fromRGBO(52, 152, 219, 1),
-                              ),
-                            )),
-                            Expanded(
-                                child: CustomText.semantics(
-                              totalItems.value.toString(),
-                              textAlign: TextAlign.center,
-                              style: context.bodyMedium,
-                            )),
-                            Expanded(
-                                child: InkWell(
-                              child: Icon(
-                                Icons.add,
-                                size: Spacing.large.value,
-                                color: const Color.fromRGBO(52, 152, 219, 1),
-                              ),
-                            )),
-                          ],
-                        ),
-                      ),
-                    )),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Spacing.tiny.value),
+                      border: Border.all(
+                          color: const Color.fromRGBO(238, 239, 240, 1))),
+                  child: SizedBox(
+                    width: 96.sp,
+                    height: 36.sp,
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: InkWell(
+                          child: Icon(
+                            Icons.remove,
+                            size: Spacing.large.value,
+                            color: const Color.fromRGBO(52, 152, 219, 1),
+                          ),
+                        )),
+                        Expanded(
+                            child: CustomText.semantics(
+                          '1',
+                          textAlign: TextAlign.center,
+                          style: context.bodyMedium,
+                        )),
+                        Expanded(
+                            child: InkWell(
+                          child: Icon(
+                            Icons.add,
+                            size: Spacing.large.value,
+                            color: const Color.fromRGBO(52, 152, 219, 1),
+                          ),
+                        )),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ],

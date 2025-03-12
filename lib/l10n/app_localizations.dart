@@ -4950,7 +4950,7 @@ abstract class AppLocalizations {
   /// No description provided for @makePaymentStep1Text3.
   ///
   /// In en, this message translates to:
-  /// **'will open on selection automatically if it’s installed'**
+  /// **'will open on selection automatically if it’s installed.'**
   String get makePaymentStep1Text3;
 
   /// No description provided for @ensureBankAppInstalled.
@@ -5300,6 +5300,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{time} on {date}'**
   String transactionDateAndTime(String time, String date);
+
+  /// No description provided for @noInternetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! No internet connection'**
+  String get noInternetConnection;
+
+  /// No description provided for @serverNotReachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Server is not reachable. Please check your internet connection and try again'**
+  String get serverNotReachable;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

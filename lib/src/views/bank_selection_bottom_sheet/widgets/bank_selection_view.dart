@@ -1,5 +1,6 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
@@ -145,10 +146,13 @@ class _BankSelectionViewState extends State<BankSelectionView> {
     final bankInstitutionController =
         context.read<BankInstitutionsController>();
 
+    final connectivityController = context.read<ConnectivityController>();
+
     final res = await ConfirmationBottomSheet.show(
       context,
       bankInstitutionController,
       bank,
+      connectivityController,
     );
     if (!mounted) return;
 
@@ -157,6 +161,7 @@ class _BankSelectionViewState extends State<BankSelectionView> {
         context,
         bankInstitutionController,
         context.read<PaymentStatusController>(),
+        connectivityController,
       );
       if (!mounted) return;
 

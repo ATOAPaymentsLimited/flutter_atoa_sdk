@@ -4,18 +4,25 @@ import 'dart:io';
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttersdk/utils/connectivity_controller.dart';
 import 'package:fluttersdk/widgets/regal_button.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart' hide RegalButton;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-class PayNowBottomSheet extends StatelessWidget {
-  PayNowBottomSheet({
+class PayNowBottomSheet extends StatefulWidget {
+  const PayNowBottomSheet({
     super.key,
     required this.totalAmount,
   });
-
   final double totalAmount;
+
+  @override
+  State<PayNowBottomSheet> createState() => _PayNowBottomSheetState();
+}
+
+class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
   final ValueNotifier<bool> isLoading = ValueNotifier(false);
 
   void _showSheet(BuildContext context, String paymentId) async {
@@ -35,6 +42,12 @@ class PayNowBottomSheet extends StatelessWidget {
     );
 
     prefs.setBool('showHowPaymentWorks', false);
+  }
+
+  @override
+  void dispose() {
+    isLoading.dispose();
+    super.dispose();
   }
 
   @override
@@ -67,7 +80,7 @@ class PayNowBottomSheet extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '£ ${totalAmount.toString()}',
+                    '£ ${widget.totalAmount.toString()}',
                     style: context.labelMedium!.copyWith(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Montserrat',
@@ -79,23 +92,33 @@ class PayNowBottomSheet extends StatelessWidget {
               SizedBox(
                 width: 164.sp,
                 height: 56.sp,
-                child: ValueListenableBuilder(
-                  valueListenable: isLoading,
-                  builder: (context, value, child) => RegalButton.primary(
-                    shrink: true,
-                    onPressed: () =>
-                        value ? null : _getPaymentId(context, totalAmount),
-                    label: 'Pay Now',
-                    trackLabel: 'Pay Now',
-                    enable: !value,
-                    loading: value,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(52, 152, 219, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(Spacing.mini.value),
+                child: Builder(
+                  builder: (context) {
+                    final ConnectivityStatus connectivityStatus =
+                        context.watch<ConnectivityStatus>();
+                    return ValueListenableBuilder(
+                      valueListenable: isLoading,
+                      builder: (context, value, child) => RegalButton.primary(
+                        shrink: true,
+                        onPressed: () => value
+                            ? null
+                            : _getPaymentId(context, widget.totalAmount),
+                        label: 'Pay Now',
+                        trackLabel: 'Pay Now',
+                        enable:
+                            !value && !connectivityStatus.isOfflineOrWaiting,
+                        loading: value,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(52, 152, 219, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(Spacing.mini.value),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ),
             ],
