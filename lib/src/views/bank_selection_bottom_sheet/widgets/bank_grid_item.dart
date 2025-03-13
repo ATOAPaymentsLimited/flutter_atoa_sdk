@@ -60,9 +60,11 @@ class BankGridItem extends StatelessWidget {
                         ),
                       ),
                     Container(
-                      padding: Spacing.medium.y +
-                          Spacing.tiny.all +
-                          Spacing.xtraLarge.x,
+                      width: Spacing.xtraLarge.value * 3 +
+                          Spacing.medium.value +
+                          Spacing.tiny.value,
+                      height: Spacing.xtraLarge.value * 3,
+                      padding: Spacing.medium.y + Spacing.xtraLarge.x,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: isSelectedBank
@@ -86,7 +88,7 @@ class BankGridItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                Spacing.tiny.yBox,
+                Spacing.small.yBox,
                 CustomText.semantics(
                   bank.name,
                   style: isSelectedBank

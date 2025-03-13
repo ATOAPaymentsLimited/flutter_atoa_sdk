@@ -57,6 +57,8 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                       crossAxisCount: 4,
                       crossAxisSpacing: Spacing.large.value,
                       mainAxisSpacing: Spacing.large.value,
+                      mainAxisExtent:
+                          Spacing.xtraLarge.value * 4 + Spacing.medium.value,
                     ),
 
                     itemCount: bankInstitutionsState
@@ -69,7 +71,6 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                   Spacing.huge.yBox,
 
                   // Scrollable List
-
                   CustomText.semantics(
                     context.l10n.allBanks.toUpperCase(),
                     style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
