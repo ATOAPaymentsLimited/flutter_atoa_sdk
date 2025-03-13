@@ -9,7 +9,9 @@ part 'bank_institution.g.dart';
 /// Bank institituion
 /// {@endtemplate}
 @freezed
-class BankInstitution with _$BankInstitution {
+class BankInstitution
+    with _$BankInstitution
+    implements Comparable<BankInstitution> {
   /// {@macro bank_institution}
   const factory BankInstitution({
     required String id,
@@ -34,4 +36,7 @@ class BankInstitution with _$BankInstitution {
 
   String? get bankLogo =>
       media.firstWhereOrNull((element) => element.type == 'logo')?.source;
+
+  @override
+  int compareTo(BankInstitution other) => name.compareTo(other.name);
 }

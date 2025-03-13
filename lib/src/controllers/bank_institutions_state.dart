@@ -21,7 +21,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
   bool get isBankSelected => selectedBank != null;
 
   List<BankInstitution> get businessBanks =>
-      bankList.where((e) => e.businessBank).toList();
+      bankList.where((e) => e.businessBank).toList()..sort();
 
   List<BankInstitution> get personalBanks =>
       bankList.where((e) => !e.businessBank).toList();
@@ -37,15 +37,23 @@ class BankInstitutionsState with _$BankInstitutionsState {
     final gridBankLength = gridBanks.length;
     if (gridBanks.length < 8) {
       final normalBanks = normalPersonalBanks.sublist(0, 8 - gridBankLength);
-      return [...gridBanks, ...normalBanks];
+      return [...gridBanks, ...normalBanks]..sort();
     }
-    return gridBanks;
+    if (gridBanks.length > 8) {
+      return popularPersonalBanks.sublist(0, 8)..sort();
+    }
+    return gridBanks..sort();
   }
 
   List<BankInstitution> get allNormalBanks {
     if (popularPersonalBanks.length < 8) {
-      return normalPersonalBanks.sublist(8 - popularPersonalBanks.length);
+      return normalPersonalBanks.sublist(8 - popularPersonalBanks.length)
+        ..sort();
     }
-    return normalPersonalBanks;
+    if (popularPersonalBanks.length > 8) {
+      final remainingPopularBanks = popularPersonalBanks.sublist(8);
+      return [...remainingPopularBanks, ...normalPersonalBanks]..sort();
+    }
+    return normalPersonalBanks..sort();
   }
 }
