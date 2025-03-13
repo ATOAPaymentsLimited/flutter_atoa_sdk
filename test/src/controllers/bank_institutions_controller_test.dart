@@ -378,6 +378,14 @@ void main() {
         expect(controller.state.bankAuthError, exception);
       });
     });
+
+    test(
+      'should handle general Exception in getPaymentAuth during selectBank',
+      () async {
+        controller.resetSelectBank();
+        expect(controller.state.selectedBank, null);
+      },
+    );
   });
 
   group('Payment details', () {

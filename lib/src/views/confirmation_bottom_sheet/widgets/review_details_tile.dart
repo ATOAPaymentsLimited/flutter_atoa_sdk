@@ -97,6 +97,7 @@ class ReviewDetailsTile extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
+                  bankInstitutionController.resetSelectBank();
                   Navigator.pop(context);
                 },
               )
