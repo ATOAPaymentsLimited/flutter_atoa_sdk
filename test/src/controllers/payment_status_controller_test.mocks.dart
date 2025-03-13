@@ -59,10 +59,6 @@ class _FakeTransactionDetails_2 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAtoa extends _i1.Mock implements _i2.Atoa {
-  MockAtoa() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   void initialize([
     _i3.AtoaDio? dio,
@@ -90,6 +86,8 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
         ),
         returnValue: _i4.Future<List<_i2.BankInstitution>>.value(
             <_i2.BankInstitution>[]),
+        returnValueForMissingStub: _i4.Future<List<_i2.BankInstitution>>.value(
+            <_i2.BankInstitution>[]),
       ) as _i4.Future<List<_i2.BankInstitution>>);
 
   @override
@@ -101,6 +99,14 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
           [paymentRequestId],
         ),
         returnValue:
+            _i4.Future<_i2.PaymentRequestData>.value(_FakePaymentRequestData_0(
+          this,
+          Invocation.method(
+            #getPaymentDetails,
+            [paymentRequestId],
+          ),
+        )),
+        returnValueForMissingStub:
             _i4.Future<_i2.PaymentRequestData>.value(_FakePaymentRequestData_0(
           this,
           Invocation.method(
@@ -126,6 +132,14 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
             [payRequestBody],
           ),
         )),
+        returnValueForMissingStub: _i4.Future<_i2.PaymentAuthResponse>.value(
+            _FakePaymentAuthResponse_1(
+          this,
+          Invocation.method(
+            #getPaymentAuth,
+            [payRequestBody],
+          ),
+        )),
       ) as _i4.Future<_i2.PaymentAuthResponse>);
 
   @override
@@ -136,6 +150,14 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
           [paymentId],
         ),
         returnValue:
+            _i4.Future<_i2.TransactionDetails>.value(_FakeTransactionDetails_2(
+          this,
+          Invocation.method(
+            #getPaymentStatus,
+            [paymentId],
+          ),
+        )),
+        returnValueForMissingStub:
             _i4.Future<_i2.TransactionDetails>.value(_FakeTransactionDetails_2(
           this,
           Invocation.method(

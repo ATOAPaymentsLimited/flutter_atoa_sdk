@@ -8,6 +8,7 @@ import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_view.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,6 +65,8 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   @override
   void initState() {
     super.initState();
+    getIt.registerSingleton<Connectivity>(Connectivity());
+
     bankInstitutionsController = getIt.get<BankInstitutionsController>();
     paymentStatusController = getIt.get<PaymentStatusController>();
     connectivityController = getIt.get<ConnectivityController>();

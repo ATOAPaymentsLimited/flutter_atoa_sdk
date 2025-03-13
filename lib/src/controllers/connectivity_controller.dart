@@ -6,10 +6,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/animation.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class ConnectivityController {
-  ConnectivityController() {
-    _subscription = Connectivity()
+  ConnectivityController({Connectivity? connectivity}) {
+    _subscription = (connectivity ?? Connectivity())
         .onConnectivityChanged
         .listen((ConnectivityResult result) async {
       final status = await _getStatusFromResult(result);
@@ -81,8 +81,9 @@ class ConnectivityController {
     try {
       final connectivityDio =
           dio ?? Dio(BaseOptions(connectTimeout: const Duration(seconds: 15)));
-      final result =
-          await connectivityDio.get<dynamic>('https://devapi.atoa.me/api/');
+      final result = await connectivityDio.get<dynamic>(
+        'https://api.atoa.me/api/',
+      );
       return result.statusCode == 200;
     } on DioException catch (e) {
       if (e.error is HandshakeException) {

@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 
 import 'payment_status_controller_test.mocks.dart';
 
-@GenerateMocks([Atoa])
+@GenerateNiceMocks([MockSpec<Atoa>()])
 void main() {
   late MockAtoa mockAtoa;
   late PaymentStatusController controller;
