@@ -4,7 +4,8 @@ class Endpoints {
   static String get baseUrl => 'https://api.atoa.me/api/';
 
   //Institutions
-  static const String institutions = 'institutions/customer';
+  static const String institutions =
+      'institutions/customer?sendDisabledBanks=true';
 
   /// Secure Payment Auth Url
   static const securedAuthUrl = 'payments/v1/secure-payment-auth';

@@ -50,13 +50,16 @@ class BankListItem extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    CustomText.semantics(
-                      bank.name,
-                      style: kFigtreeTextTheme.bodyLarge
-                          ?.textColor(
-                            NeutralColors.light().grey.shade700,
-                          )
-                          .w500,
+                    Flexible(
+                      child: CustomText.semantics(
+                        bank.name,
+                        style: kFigtreeTextTheme.bodyLarge
+                            ?.textColor(
+                              NeutralColors.light().grey.shade700,
+                            )
+                            .w500,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     if (!bank.enabled) ...[
                       Spacing.medium.xBox,
