@@ -123,13 +123,13 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                             NeutralColors.light().grey.shade500,
                           ),
                         ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: state.bankList.length,
-                          itemBuilder: (context, index) => BankListItem(
-                            bank: state.bankList[index],
-                            onBankSelect: onTap,
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: state.bankList.length,
+                            itemBuilder: (context, index) => BankListItem(
+                              bank: state.bankList[index],
+                              onBankSelect: onTap,
+                            ),
                           ),
                         ),
                       ],

@@ -60,7 +60,7 @@ class Atoa {
     var endPoint = Endpoints.institutions;
 
     if (searchTerm != null && searchTerm.isNotEmpty) {
-      endPoint = '$endPoint?search=$searchTerm';
+      endPoint = '$endPoint&search=$searchTerm';
     }
 
     final res = await _atoaDio!.get<List<dynamic>>(endPoint);

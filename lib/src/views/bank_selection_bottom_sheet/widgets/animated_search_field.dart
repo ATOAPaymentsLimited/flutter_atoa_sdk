@@ -103,7 +103,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                           0,
                           20 * (1 - _controller.value),
                         ),
-                        child: Text(
+                        child: CustomText.semantics(
                           !_showPersonalBanks
                               ? context.l10n.personalBanks
                               : context.l10n.businessBanks,

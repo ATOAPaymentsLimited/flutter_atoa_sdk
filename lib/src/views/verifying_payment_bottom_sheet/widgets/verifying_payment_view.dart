@@ -1,8 +1,10 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class VerifyingPaymentView extends StatelessWidget {
@@ -16,10 +18,45 @@ class VerifyingPaymentView extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CustomText.semantics(
-            context.l10n.paymentInProgress,
-            textAlign: TextAlign.center,
-            style: kFigtreeTextTheme.labelMedium?.w700.height130,
+          Row(
+            children: [
+              Expanded(
+                child: CustomText.semantics(
+                  context.l10n.paymentInProgress,
+                  textAlign: TextAlign.center,
+                  style: kFigtreeTextTheme.labelMedium?.w700.height130,
+                ),
+              ),
+              CustomInkWell(
+                semanticsLabel: 'Close Dialog Sheet Icon',
+                context: context,
+                trackLabel: 'Close Dialog Sheet Icon',
+                onTap: () {
+                  context.read<PaymentStatusController>().stop();
+                  Navigator.pop(
+                    context,
+                    context.read<PaymentStatusState>().details,
+                  );
+                },
+                child: Container(
+                  width: Spacing.huge.value,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: NeutralColors.light().grey.shade50,
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: Spacing.mini.all,
+                      child: Icon(
+                        Icons.close,
+                        size: Spacing.medium.value,
+                        color: context.intactColors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           Spacing.huge.yBox * 4,
           Row(
