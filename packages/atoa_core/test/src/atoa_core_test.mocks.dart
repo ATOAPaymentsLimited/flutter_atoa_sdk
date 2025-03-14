@@ -73,6 +73,16 @@ class _FakeResponse_4<T> extends _i1.SmartFake implements _i2.Response<T> {
         );
 }
 
+class _FakeDio_5 extends _i1.SmartFake implements _i2.Dio {
+  _FakeDio_5(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [AtoaDio].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -153,6 +163,7 @@ class MockAtoaDio extends _i1.Mock implements _i3.AtoaDio {
     Map<String, dynamic>? queryParameters,
     _i2.CancelToken? cancelToken,
     bool? deleteOnError = true,
+    _i2.FileAccessMode? fileAccessMode = _i2.FileAccessMode.write,
     String? lengthHeader = r'content-length',
     Object? data,
     _i2.Options? options,
@@ -169,6 +180,7 @@ class MockAtoaDio extends _i1.Mock implements _i3.AtoaDio {
             #queryParameters: queryParameters,
             #cancelToken: cancelToken,
             #deleteOnError: deleteOnError,
+            #fileAccessMode: fileAccessMode,
             #lengthHeader: lengthHeader,
             #data: data,
             #options: options,
@@ -188,6 +200,7 @@ class MockAtoaDio extends _i1.Mock implements _i3.AtoaDio {
               #queryParameters: queryParameters,
               #cancelToken: cancelToken,
               #deleteOnError: deleteOnError,
+              #fileAccessMode: fileAccessMode,
               #lengthHeader: lengthHeader,
               #data: data,
               #options: options,
@@ -645,6 +658,7 @@ class MockAtoaDio extends _i1.Mock implements _i3.AtoaDio {
     _i2.ProgressCallback? onReceiveProgress,
     _i2.CancelToken? cancelToken,
     bool? deleteOnError = true,
+    _i2.FileAccessMode? fileAccessMode = _i2.FileAccessMode.write,
     String? lengthHeader = r'content-length',
     Object? data,
     _i2.Options? options,
@@ -660,6 +674,7 @@ class MockAtoaDio extends _i1.Mock implements _i3.AtoaDio {
             #onReceiveProgress: onReceiveProgress,
             #cancelToken: cancelToken,
             #deleteOnError: deleteOnError,
+            #fileAccessMode: fileAccessMode,
             #lengthHeader: lengthHeader,
             #data: data,
             #options: options,
@@ -678,6 +693,7 @@ class MockAtoaDio extends _i1.Mock implements _i3.AtoaDio {
               #onReceiveProgress: onReceiveProgress,
               #cancelToken: cancelToken,
               #deleteOnError: deleteOnError,
+              #fileAccessMode: fileAccessMode,
               #lengthHeader: lengthHeader,
               #data: data,
               #options: options,
@@ -778,4 +794,37 @@ class MockAtoaDio extends _i1.Mock implements _i3.AtoaDio {
           ),
         )),
       ) as _i4.Future<_i2.Response<T>>);
+
+  @override
+  _i2.Dio clone({
+    _i2.BaseOptions? options,
+    _i2.Interceptors? interceptors,
+    _i2.HttpClientAdapter? httpClientAdapter,
+    _i2.Transformer? transformer,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #clone,
+          [],
+          {
+            #options: options,
+            #interceptors: interceptors,
+            #httpClientAdapter: httpClientAdapter,
+            #transformer: transformer,
+          },
+        ),
+        returnValue: _FakeDio_5(
+          this,
+          Invocation.method(
+            #clone,
+            [],
+            {
+              #options: options,
+              #interceptors: interceptors,
+              #httpClientAdapter: httpClientAdapter,
+              #transformer: transformer,
+            },
+          ),
+        ),
+      ) as _i2.Dio);
 }
