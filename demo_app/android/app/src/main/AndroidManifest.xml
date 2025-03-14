@@ -48,7 +48,6 @@
 
          In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
     <queries>
-
         <package android:name="com.barclays.android.barclaysmobilebanking" />
         <package android:name="com.starlingbank.android" />
         <package android:name="com.grppl.android.shell.CMBlloydsTSB73" />

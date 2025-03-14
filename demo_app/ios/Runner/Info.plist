@@ -59,8 +59,6 @@
 			<string>ie.aib.mobilebanking</string>
 			<string>bos-commercial</string>
 			<string>chase-international</string>
-			<string>whatsapp</string>
-			<string>tel</string>
 		</array>
 		<key>UISupportedInterfaceOrientations~ipad</key>
 		<array>
