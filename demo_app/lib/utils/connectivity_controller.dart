@@ -81,7 +81,7 @@ class ConnectivityController {
       final connectivityDio =
           dio ?? Dio(BaseOptions(connectTimeout: const Duration(seconds: 15)));
       final result =
-          await connectivityDio.get<dynamic>('https://devapi.atoa.me/api/');
+          await connectivityDio.get<dynamic>('https://api.atoa.me/api/');
       return result.statusCode == 200;
     } on DioException catch (e) {
       if (e.error is HandshakeException) {
