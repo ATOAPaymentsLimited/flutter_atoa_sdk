@@ -40,6 +40,10 @@ class ConfirmationBottomSheet extends StatefulWidget {
       showSdkBottomSheet<bool>(
         context: context,
         title: context.l10n.review,
+        onClose: (context) {
+          bankInstitutionController.resetAppInstalled();
+          Navigator.pop(context);
+        },
         body: (_) => ConfirmationBottomSheet(
           bankInstitutionController: bankInstitutionController,
           connectivityController: connectivityController,

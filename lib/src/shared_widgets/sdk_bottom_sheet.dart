@@ -10,6 +10,7 @@ Future<T?> showSdkBottomSheet<T>({
   TextStyle? titleStyle,
   TextAlign? titleAlign,
   double? titleBottomSpacing,
+  void Function(BuildContext)? onClose,
   bool showTitle = true,
   bool showDivider = false,
 }) =>
@@ -61,9 +62,11 @@ Future<T?> showSdkBottomSheet<T>({
                           semanticsLabel: 'Close Dialog Sheet Icon',
                           context: dialogContext,
                           trackLabel: 'Close Dialog Sheet Icon',
-                          onTap: () {
-                            Navigator.pop(dialogContext);
-                          },
+                          onTap: onClose != null
+                              ? () => onClose.call(dialogContext)
+                              : () {
+                                  Navigator.pop(dialogContext);
+                                },
                           child: Container(
                             width: Spacing.huge.value,
                             decoration: BoxDecoration(

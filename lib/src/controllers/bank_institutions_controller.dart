@@ -255,7 +255,17 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     await checkBankAppAvailability();
   }
 
+  void resetAppInstalled() {
+    state = state.copyWith(
+      isAppInstalled: true,
+    );
+  }
+
   void resetSelectBank() {
-    state = state.copyWith(selectedBank: null, paymentAuth: null);
+    state = state.copyWith(
+      selectedBank: null,
+      paymentAuth: null,
+      isAppInstalled: true,
+    );
   }
 }
