@@ -28,7 +28,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 3),
       vsync: this,
     )..addStatusListener((status) async {
         if (status == AnimationStatus.completed) {

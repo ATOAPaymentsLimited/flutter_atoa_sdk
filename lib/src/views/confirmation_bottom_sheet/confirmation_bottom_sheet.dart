@@ -56,13 +56,31 @@ class ConfirmationBottomSheet extends StatefulWidget {
       _ConfirmationBottomSheetState();
 }
 
-class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet> {
+class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await widget.bankInstitutionController.selectBank(widget.bank);
     });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      WidgetsBinding.instance.addPersistentFrameCallback((_) async {
+        await widget.bankInstitutionController.checkBankAppAvailability();
+      });
+    }
+    super.didChangeAppLifecycleState(state);
   }
 
   @override
