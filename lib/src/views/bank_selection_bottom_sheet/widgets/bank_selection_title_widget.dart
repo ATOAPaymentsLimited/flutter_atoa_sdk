@@ -16,8 +16,7 @@ class BankSelectionTitleWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const BankBackButton(),
-          Spacing.medium.xBox,
-          Spacing.huge.xBox,
+          Spacing.large.xBox,
           Expanded(
             child: CustomText.semantics(
               context.l10n.selectYourBank,

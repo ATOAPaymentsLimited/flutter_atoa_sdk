@@ -1,5 +1,6 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
@@ -10,21 +11,18 @@ class HelpIconButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => CustomGestureDetector(
-        context: context,
+  Widget build(BuildContext context) => BottomSheetAction(
         trackLabel: 'Help Icon',
         semanticsLabel: 'Help icon',
         onTap: () {
           context.read<BankInstitutionsController>().showHowPaymentWorks = true;
         },
-        child: CircleAvatar(
-          radius: Spacing.large.value,
-          backgroundColor: NeutralColors.light().grey.shade50,
-          child: Center(
-            child: CircleAvatar(
-              backgroundColor: NeutralColors.light().grey.shade50,
-              child: Assets.icons.help.svg(),
-            ),
+        child: Assets.icons.help.svg(
+          height: Spacing.large.value,
+          width: Spacing.large.value,
+          colorFilter: ColorFilter.mode(
+            context.neutralColors.grey.shade600,
+            BlendMode.srcIn,
           ),
         ),
       );

@@ -28,11 +28,11 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..addStatusListener((status) async {
         if (status == AnimationStatus.completed) {
-          await Future<void>.delayed(const Duration(milliseconds: 500));
+          await Future<void>.delayed(const Duration(seconds: 1));
           if (!mounted) return;
           setState(() {
             _showPersonalBanks = !_showPersonalBanks;

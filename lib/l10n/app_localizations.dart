@@ -4875,11 +4875,11 @@ abstract class AppLocalizations {
   /// **'3'**
   String get three;
 
-  /// No description provided for @continueToYourBank.
+  /// No description provided for @howToPayWithBankApp.
   ///
   /// In en, this message translates to:
-  /// **'Continue to your bank'**
-  String get continueToYourBank;
+  /// **'How to pay with bank app?'**
+  String get howToPayWithBankApp;
 
   /// No description provided for @iUnderstandContinue.
   ///

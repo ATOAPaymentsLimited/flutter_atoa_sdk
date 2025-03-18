@@ -48,7 +48,7 @@ class _BankSelectionViewState extends State<BankSelectionView> {
               if (isLoading && bankController.searchTerm.isEmpty) {
                 return const Expanded(
                   child: Center(
-                    child: AtoaLoader(),
+                    child: FetchingBankLoader(),
                   ),
                 );
               }
