@@ -110,6 +110,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/warning.svg
   SvgGenImage get warning => const SvgGenImage('assets/icons/warning.svg');
 
+  /// File path: assets/icons/warning_filled.svg
+  SvgGenImage get warningFilled =>
+      const SvgGenImage('assets/icons/warning_filled.svg');
+
   /// File path: assets/icons/wifi_off.svg
   SvgGenImage get wifiOff => const SvgGenImage('assets/icons/wifi_off.svg');
 
@@ -136,6 +140,7 @@ class $AssetsIconsGen {
         shield,
         spinner,
         warning,
+        warningFilled,
         wifiOff
       ];
 }

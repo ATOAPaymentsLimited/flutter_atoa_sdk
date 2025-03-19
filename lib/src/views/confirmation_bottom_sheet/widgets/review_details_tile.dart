@@ -2,7 +2,6 @@ import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/dotted_line_painter.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -23,10 +22,10 @@ class ReviewDetailsTile extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.all,
         decoration: BoxDecoration(
-          color: NeutralColors.light().grey.shade50,
+          color: context.neutralColors.grey.shade50,
           borderRadius: Spacing.medium.brAll,
           border: Border.all(
-            color: NeutralColors.light().grey.shade200,
+            color: context.neutralColors.grey.shade200,
           ),
         ),
         child: Row(
@@ -43,7 +42,7 @@ class ReviewDetailsTile extends StatelessWidget {
                   color: context.intactColors.white,
                   borderRadius: Spacing.small.brAll,
                   border: Border.all(
-                    color: NeutralColors.light().grey.shade100,
+                    color: context.neutralColors.grey.shade100,
                   ),
                 ),
                 child: _getIcon(context),
@@ -55,15 +54,15 @@ class ReviewDetailsTile extends StatelessWidget {
                 children: [
                   CustomText.semantics(
                     !isBankInfo ? context.l10n.payingTo : context.l10n.from,
-                    style: kFigtreeTextTheme.bodyMedium?.textColor(
-                      NeutralColors.light().grey.shade600,
+                    style: context.bodyMedium?.textColor(
+                      context.neutralColors.grey.shade600,
                     ),
                   ),
                   CustomText.semantics(
                     !isBankInfo
                         ? state.paymentDetails?.merchantBusinessName ?? ''
                         : state.selectedBank?.name ?? '',
-                    style: kFigtreeTextTheme.bodyLarge?.w700,
+                    style: context.bodyLarge?.w700,
                   ),
                 ],
               ),
@@ -73,14 +72,15 @@ class ReviewDetailsTile extends StatelessWidget {
               CustomInkWell(
                 semanticsLabel: context.l10n.change,
                 context: context,
+                enableTracking: false,
                 trackLabel: 'Change Bank',
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     CustomText.semantics(
                       context.l10n.change,
-                      style: kFigtreeTextTheme.bodyLarge?.w700.textColor(
-                        BrandColors.light().primary.shade500,
+                      style: context.bodyLarge?.w700.textColor(
+                        context.brandColors.primary.shade500,
                       ),
                     ),
                     CustomPaint(
@@ -91,7 +91,7 @@ class ReviewDetailsTile extends StatelessWidget {
                         1,
                       ),
                       painter: DottedLinePainter(
-                        color: BrandColors.light().primary.shade500,
+                        color: context.brandColors.primary.shade500,
                       ),
                     ),
                   ],
@@ -107,7 +107,7 @@ class ReviewDetailsTile extends StatelessWidget {
                           currencySymbol: context.l10n.currencySymbol,
                         ) ??
                     '',
-                style: kFigtreeTextTheme.titleSmall?.w700,
+                style: context.titleSmall?.w700,
               ),
           ],
         ),

@@ -77,9 +77,3 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/gifs/
-  fonts:
-    - family: FigTree
-      fonts:
-        - asset: assets/fonts/FigTree/Figtree-VariableFont_wght.ttf
-        - asset: assets/fonts/FigTree/Figtree-Italic-VariableFont_wght.ttf
-          style: italic

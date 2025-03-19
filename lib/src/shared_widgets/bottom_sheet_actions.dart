@@ -31,6 +31,7 @@ class BottomSheetAction extends StatelessWidget {
         trackLabel: trackLabel,
         semanticsLabel: semanticsLabel,
         onTap: onTap,
+        enableTracking: false,
         child: CircleAvatar(
           radius: Spacing.large.value,
           backgroundColor: context.neutralColors.grey.shade50,

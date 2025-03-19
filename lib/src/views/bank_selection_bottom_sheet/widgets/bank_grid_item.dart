@@ -2,7 +2,6 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -69,7 +68,7 @@ class BankGridItem extends StatelessWidget {
                         border: Border.all(
                           color: isSelectedBank
                               ? context.intactColors.black
-                              : NeutralColors.light().grey.shade100,
+                              : context.neutralColors.grey.shade100,
                           width: isSelectedBank ? 2 : 1.5,
                         ),
                         borderRadius: Spacing.medium.brAll,
@@ -92,9 +91,9 @@ class BankGridItem extends StatelessWidget {
                 CustomText.semantics(
                   bank.name,
                   style: isSelectedBank
-                      ? kFigtreeTextTheme.bodyMedium?.w700
-                      : kFigtreeTextTheme.bodyMedium?.w500.textColor(
-                          NeutralColors.light().grey.shade700,
+                      ? context.bodyMedium?.w700
+                      : context.bodyMedium?.w500.textColor(
+                          context.neutralColors.grey.shade700,
                         ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

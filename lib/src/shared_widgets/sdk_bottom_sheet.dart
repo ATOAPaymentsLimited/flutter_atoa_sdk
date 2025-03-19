@@ -1,5 +1,5 @@
 import 'package:atoa_flutter_sdk/constants/constant.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -12,101 +12,26 @@ Future<T?> showSdkBottomSheet<T>({
   double? titleBottomSpacing,
   void Function(BuildContext)? onClose,
   bool showTitle = true,
-  bool showDivider = false,
+  bool enableDrag = false,
+  bool isDismissible = false,
 }) =>
     showModalBottomSheet<T>(
       context: context,
-      builder: (dialogContext) => AnimatedContainer(
-        duration: kAnimationDuration,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(Spacing.xtraLarge.value),
-              topRight: Radius.circular(Spacing.xtraLarge.value),
-            ),
-            color: context.intactColors.white,
-          ),
-          child: Padding(
-            padding: Spacing.large.y + Spacing.xtraLarge.x,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (showDivider) ...[
-                  Container(
-                    height: Spacing.mini.value,
-                    width: Spacing.huge.value * 2 + Spacing.tiny.value,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Spacing.mini.value),
-                      color: NeutralColors.light().grey.shade200,
-                    ),
-                  ),
-                  Spacing.medium.yBox,
-                ],
-                if (showTitle) ...[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (titleAlign == null) Spacing.huge.xBox,
-                      Expanded(
-                        child: CustomText.semantics(
-                          title,
-                          textAlign: titleAlign ?? TextAlign.center,
-                          style: kFigtreeTextTheme.labelMedium?.w700.height130,
-                        ),
-                      ),
-                      Spacing.large.xBox,
-                      Padding(
-                        padding: Spacing.mini.top,
-                        child: CustomInkWell(
-                          semanticsLabel: 'Close Dialog Sheet Icon',
-                          context: dialogContext,
-                          trackLabel: 'Close Dialog Sheet Icon',
-                          onTap: onClose != null
-                              ? () => onClose.call(dialogContext)
-                              : () {
-                                  Navigator.pop(dialogContext);
-                                },
-                          child: Container(
-                            width: Spacing.huge.value,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: NeutralColors.light().grey.shade50,
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: Spacing.mini.all,
-                                child: Icon(
-                                  Icons.close,
-                                  size: Spacing.medium.value,
-                                  color: context.intactColors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-                if (titleBottomSpacing != null)
-                  OperatorSizedBox.height(
-                    titleBottomSpacing,
-                  )
-                else
-                  Spacing.huge.yBox,
-                Builder(
-                  builder: body,
-                ),
-              ],
-            ),
-          ),
-        ),
+      builder: (dialogContext) => SdkBottomSheet(
+        showDivider: enableDrag,
+        title: title,
+        titleStyle: titleStyle,
+        titleAlign: titleAlign,
+        titleBottomSpacing: titleBottomSpacing,
+        onClose: onClose,
+        showTitle: showTitle,
+        padding: Spacing.large.all,
+        body: body,
       ),
       isScrollControlled: true,
       backgroundColor: context.intactColors.white,
-      enableDrag: false,
-      isDismissible: false,
+      enableDrag: enableDrag,
+      isDismissible: isDismissible,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(Spacing.xtraLarge.value),
@@ -115,3 +40,112 @@ Future<T?> showSdkBottomSheet<T>({
       ),
       useSafeArea: true,
     );
+
+class SdkBottomSheet extends StatefulWidget {
+  const SdkBottomSheet({
+    required this.title,
+    required this.body,
+    required this.padding,
+    super.key,
+    this.titleStyle,
+    this.titleAlign,
+    this.titleBottomSpacing,
+    this.onClose,
+    this.showTitle = true,
+    this.showDivider = false,
+  });
+  final String title;
+  final bool showDivider;
+  final bool showTitle;
+  final TextStyle? titleStyle;
+  final TextAlign? titleAlign;
+  final double? titleBottomSpacing;
+  final void Function(BuildContext)? onClose;
+  final WidgetBuilder body;
+  final EdgeInsets padding;
+
+  @override
+  State<SdkBottomSheet> createState() => _SdkBottomSheetState();
+}
+
+class _SdkBottomSheetState extends State<SdkBottomSheet> {
+  @override
+  Widget build(BuildContext context) => Theme(
+        data: context.ledgerTheme,
+        child: AnimatedContainer(
+          duration: kAnimationDuration,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Spacing.xtraLarge.value),
+                topRight: Radius.circular(Spacing.xtraLarge.value),
+              ),
+              color: context.intactColors.white,
+            ),
+            child: Padding(
+              padding: widget.padding,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (widget.showDivider) ...[
+                    Container(
+                      height: Spacing.mini.value,
+                      width: Spacing.huge.value * 2 + Spacing.tiny.value,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Spacing.mini.value),
+                        color: context.neutralColors.grey.shade200,
+                      ),
+                    ),
+                    Spacing.medium.yBox,
+                  ],
+                  if (widget.showTitle) ...[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (widget.titleAlign == null) ...[
+                          const Opacity(
+                            opacity: 0,
+                            child: EmptyIconPlaceholder(),
+                          ),
+                          Spacing.large.xBox,
+                        ],
+                        Expanded(
+                          child: CustomText.semantics(
+                            widget.title,
+                            textAlign: widget.titleAlign ?? TextAlign.center,
+                            style: context.labelMedium?.w700.height130,
+                          ),
+                        ),
+                        Spacing.large.xBox,
+                        BottomSheetAction(
+                          semanticsLabel: 'Close Dialog Sheet Icon',
+                          trackLabel: 'Close Dialog Sheet Icon',
+                          onTap: widget.onClose != null
+                              ? () => widget.onClose!.call(context)
+                              : () {
+                                  Navigator.pop(context);
+                                },
+                          child: Icon(
+                            Icons.close,
+                            size: Spacing.large.value,
+                            color: context.intactColors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                  if (widget.titleBottomSpacing != null)
+                    OperatorSizedBox.height(
+                      widget.titleBottomSpacing!,
+                    )
+                  else
+                    Spacing.huge.yBox,
+                  widget.body(context),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+}

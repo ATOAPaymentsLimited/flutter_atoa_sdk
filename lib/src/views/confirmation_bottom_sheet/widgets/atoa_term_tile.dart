@@ -1,5 +1,4 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,6 +27,7 @@ class AtoaTermTile extends StatelessWidget {
             context: context,
             trackLabel: title,
             semanticsLabel: title,
+            enableTracking: false,
             onTap: () => launchUrl(Uri.parse(link)),
             child: Row(
               children: [
@@ -38,14 +38,14 @@ class AtoaTermTile extends StatelessWidget {
                     children: [
                       CustomText.semantics(
                         title,
-                        style: kFigtreeTextTheme.bodyLarge?.w600.textColor(
-                          NeutralColors.light().grey.shade700,
+                        style: context.bodyLarge?.w600.textColor(
+                          context.neutralColors.grey.shade700,
                         ),
                       ),
                       CustomText.semantics(
                         desc,
-                        style: kFigtreeTextTheme.bodyMedium?.textColor(
-                          NeutralColors.light().grey.shade500,
+                        style: context.bodyMedium?.textColor(
+                          context.neutralColors.grey.shade500,
                         ),
                       ),
                     ],

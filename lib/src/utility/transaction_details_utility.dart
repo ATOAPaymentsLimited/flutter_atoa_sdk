@@ -10,24 +10,24 @@ class TransactionDetailsUtility {
   ) =>
       transactionDetails.txnPaymentStatus.map(
         awaitingAuthorization: (TransactionStatusAwaitingAuthorization value) =>
-            SemanticsColors.light().error.subtle,
+            context.error.subtle,
         cancelled: (TransactionStatusCancelled value) =>
-            SemanticsColors.light().negative.subtle,
+            context.negative.subtle,
         completed: (TransactionStatusCompleted value) =>
             transactionDetails.isSettlementInProcess
-                ? SemanticsColors.light().error.subtle
-                : SemanticsColors.light().positive.subtle,
+                ? context.error.subtle
+                : context.positive.subtle,
         expired: (TransactionStatusExpired value) =>
-            NeutralColors.light().grey.shade200,
+            context.neutralColors.grey.shade200,
         failed: (TransactionStatusFailed value) =>
-            SemanticsColors.light().negative.subtle,
+            context.negative.subtle,
         pending: (TransactionStatusPending value) =>
-            SemanticsColors.light().error.subtle,
+            context.error.subtle,
         refunded: (TransactionStatusRefunded value) =>
-            SemanticsColors.light().info.subtle,
+            context.info.subtle,
         unknown: (TransactionStatusUnknown value) =>
-            NeutralColors.light().grey.shade200,
+            context.neutralColors.grey.shade200,
         paymentNotInitiated: (TransactionStatusPaymentNotInitiated value) =>
-            SemanticsColors.light().error.subtle,
+            context.error.subtle,
       );
 }

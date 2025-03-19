@@ -5,6 +5,7 @@ import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_view.dart';
@@ -66,7 +67,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   void initState() {
     super.initState();
     getIt.registerSingleton<Connectivity>(Connectivity());
-
     bankInstitutionsController = getIt.get<BankInstitutionsController>();
     paymentStatusController = getIt.get<PaymentStatusController>();
     connectivityController = getIt.get<ConnectivityController>();
@@ -74,8 +74,8 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
     bankInstitutionsController.showHowPaymentWorks = widget.showHowPaymentWorks;
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await bankInstitutionsController.getPaymentDetails();
       await bankInstitutionsController.fetchBanks();
+      await bankInstitutionsController.getPaymentDetails();
     });
   }
 
@@ -90,64 +90,68 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   }
 
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          StreamProvider<ConnectivityStatus>(
-            initialData: ConnectivityStatus.waiting,
-            create: (_) {
-              connectivityController.checkConnection();
-              return connectivityController.connectionStatusController.stream;
-            },
-          ),
-          Provider<ConnectivityController>.value(
-            value: connectivityController,
-          ),
-          StateNotifierProvider<BankInstitutionsController,
-              BankInstitutionsState>.value(
-            value: bankInstitutionsController,
-          ),
-          StateNotifierProvider<PaymentStatusController,
-              PaymentStatusState>.value(
-            value: paymentStatusController,
-          ),
-        ],
-        builder: (context, _) => Consumer<BankInstitutionsState>(
-          builder: (context, state, Widget? child) => KeyboardVisibilityBuilder(
-            builder: (context, isKeyboardVisible) => AnimatedContainer(
-              duration: kAnimationDuration,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: context.intactColors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(Spacing.xtraLarge.value),
-                    topRight: Radius.circular(Spacing.xtraLarge.value),
+  Widget build(BuildContext context) => Theme(
+        data: ledgerTheme(context),
+        child: MultiProvider(
+          providers: [
+            StreamProvider<ConnectivityStatus>(
+              initialData: ConnectivityStatus.waiting,
+              create: (_) {
+                connectivityController.checkConnection();
+                return connectivityController.connectionStatusController.stream;
+              },
+            ),
+            Provider<ConnectivityController>.value(
+              value: connectivityController,
+            ),
+            StateNotifierProvider<BankInstitutionsController,
+                BankInstitutionsState>.value(
+              value: bankInstitutionsController,
+            ),
+            StateNotifierProvider<PaymentStatusController,
+                PaymentStatusState>.value(
+              value: paymentStatusController,
+            ),
+          ],
+          builder: (context, _) => Consumer<BankInstitutionsState>(
+            builder: (context, state, Widget? child) =>
+                KeyboardVisibilityBuilder(
+              builder: (context, isKeyboardVisible) => AnimatedContainer(
+                duration: kAnimationDuration,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: context.intactColors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Spacing.xtraLarge.value),
+                      topRight: Radius.circular(Spacing.xtraLarge.value),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: Spacing.large.y + Spacing.xtraLarge.x,
-                  child: state.showHowPaymentWorks
-                      ? const ConnectivityWrapper(
-                          child: HowToMakePaymentView(),
-                        )
-                      : AnimatedPadding(
-                          duration: kAnimationDuration,
-                          padding: EdgeInsets.only(
-                            bottom: isKeyboardVisible
-                                ? MediaQuery.of(context).viewInsets.bottom
-                                : 0,
-                          ),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints.loose(
-                              Size(1.sw, isKeyboardVisible ? 0.5.sh : 0.9.sh),
+                  child: Padding(
+                    padding: Spacing.large.all,
+                    child: state.showHowPaymentWorks
+                        ? const ConnectivityWrapper(
+                            child: HowToMakePaymentView(),
+                          )
+                        : AnimatedPadding(
+                            duration: kAnimationDuration,
+                            padding: EdgeInsets.only(
+                              bottom: isKeyboardVisible
+                                  ? MediaQuery.of(context).viewInsets.bottom
+                                  : 0,
                             ),
-                            child: ConnectivityWrapper(
-                              child: BankSelectionView(
-                                tabController: _tabController,
-                                searchController: _searchController,
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints.loose(
+                                Size(1.sw, isKeyboardVisible ? 0.5.sh : 0.9.sh),
+                              ),
+                              child: ConnectivityWrapper(
+                                child: BankSelectionView(
+                                  tabController: _tabController,
+                                  searchController: _searchController,
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                  ),
                 ),
               ),
             ),

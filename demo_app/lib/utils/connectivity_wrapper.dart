@@ -96,6 +96,7 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
                           }
                           return RegalButton.tertiary(
                             trackLabel: "Retry Button",
+                            enableTracking: false,
                             onPressed: () {
                               setState(() {
                                 _checkConnectivity = Future.wait([

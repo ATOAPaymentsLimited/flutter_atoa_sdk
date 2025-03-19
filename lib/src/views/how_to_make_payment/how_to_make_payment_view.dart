@@ -7,6 +7,7 @@ import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_payme
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_to_make_payment_steps.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/trust_atoa_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
@@ -26,13 +27,11 @@ class HowToMakePaymentView extends StatelessWidget {
               final isLoading = state.isLoading;
 
               if (isLoading) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Spacing.huge.yBox * 9,
-                    const AtoaLoader(),
-                    Spacing.huge.yBox * 9,
-                  ],
+                return SizedBox(
+                  height: 0.5.sh,
+                  child: const Center(
+                    child: SDKLoader(),
+                  ),
                 );
               }
               return Column(
@@ -67,7 +66,6 @@ class HowToMakePaymentView extends StatelessWidget {
                   const ContinueButton(),
                   Spacing.medium.yBox,
                   const PoweredByAtoaWidget(),
-                  Spacing.huge.yBox,
                 ],
               );
             },

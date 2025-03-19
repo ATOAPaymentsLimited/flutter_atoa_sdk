@@ -1,6 +1,5 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/transaction_details_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -92,7 +91,7 @@ class CustomStatusContainer extends StatelessWidget {
                           Expanded(
                             child: CustomText.semantics(
                               status,
-                              style: kFigtreeTextTheme.bodyLarge?.w700,
+                              style: context.bodyLarge?.w700,
                             ),
                           ),
                         ],
@@ -106,6 +105,7 @@ class CustomStatusContainer extends StatelessWidget {
                         Spacing.mini.yBox,
                         CustomGestureDetector(
                           context: context,
+                          enableTracking: false,
                           trackLabel: 'Call Bank Button',
                           semanticsLabel: context.l10n.callBank,
                           onTap: () => url_launcher.launchUrl(
@@ -113,7 +113,7 @@ class CustomStatusContainer extends StatelessWidget {
                           ),
                           child: CustomText.semantics(
                             context.l10n.callBank,
-                            style: kFigtreeTextTheme.bodyLarge?.w700.height150,
+                            style: context.bodyLarge?.w700.height150,
                           ),
                         ),
                       ],
@@ -135,6 +135,6 @@ class CustomStatusContainer extends StatelessWidget {
   ) =>
       CustomText.semantics(
         desc,
-        style: kFigtreeTextTheme.bodyMedium,
+        style: context.bodyMedium,
       );
 }

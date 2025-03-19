@@ -25,7 +25,7 @@ class NoResultFoundWidget extends StatelessWidget {
             CustomText.semantics(
               context.l10n.noResultFound(searchTerm),
               style: context.bodyLarge?.textColor(
-                NeutralColors.light().grey.shade500,
+                context.neutralColors.grey.shade500,
               ),
               textAlign: TextAlign.center,
             ),

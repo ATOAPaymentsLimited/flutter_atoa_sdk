@@ -2,7 +2,6 @@ import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/transactions_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -66,7 +65,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
                       Spacing.medium.yBox,
                       CustomText.semantics(
                         context.l10n.paymentSuccessful,
-                        style: kFigtreeTextTheme.titleSmall?.w700,
+                        style: context.titleSmall?.w700,
                       ),
                     ],
                   ),

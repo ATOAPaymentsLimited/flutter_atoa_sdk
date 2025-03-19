@@ -25,7 +25,7 @@ class AtoaErrorWidget extends StatelessWidget {
             CustomText.semantics(
               message ?? context.l10n.somethingWentWrongDesc,
               style: context.bodyLarge?.textColor(
-                NeutralColors.light().grey.shade500,
+                context.neutralColors.grey.shade500,
               ),
               textAlign: TextAlign.center,
             ),

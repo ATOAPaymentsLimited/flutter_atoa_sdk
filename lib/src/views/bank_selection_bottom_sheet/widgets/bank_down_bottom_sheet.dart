@@ -3,7 +3,6 @@ import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/ledger_button.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart' hide LedgerButton, LedgerButtonSize;
 
@@ -23,8 +22,9 @@ class BankDownBottomSheet extends StatelessWidget {
         context: context,
         title: '',
         showTitle: false,
-        titleBottomSpacing: Spacing.small.value,
-        showDivider: true,
+        titleBottomSpacing: 0,
+        enableDrag: true,
+        isDismissible: true,
         body: (_) => BankDownBottomSheet(
           bank: bank,
         ),
@@ -38,7 +38,7 @@ class BankDownBottomSheet extends StatelessWidget {
           Container(
             padding: Spacing.small.y + Spacing.medium.x,
             decoration: BoxDecoration(
-              color: SemanticsColors.light().error.subtle,
+              color: context.error.subtle,
               borderRadius: Spacing.large.brAll,
             ),
             child: Row(
@@ -48,15 +48,15 @@ class BankDownBottomSheet extends StatelessWidget {
                   height: Spacing.medium.value,
                   width: Spacing.medium.value,
                   colorFilter: ColorFilter.mode(
-                    SemanticsColors.light().error.darker,
+                    context.error.darker,
                     BlendMode.srcIn,
                   ),
                 ),
                 Spacing.small.xBox,
                 CustomText.semantics(
                   context.l10n.downTime,
-                  style: kFigtreeTextTheme.bodySmall?.w700.textColor(
-                    SemanticsColors.light().error.darker,
+                  style: context.bodySmall?.w700.textColor(
+                    context.error.darker,
                   ),
                 ),
               ],
@@ -66,11 +66,11 @@ class BankDownBottomSheet extends StatelessWidget {
           RichText(
             text: CustomTextSpan.semantics(
               text: bank.name,
-              style: kFigtreeTextTheme.bodyLarge?.w700,
+              style: context.bodyLarge?.w700,
               children: [
                 CustomTextSpan.semantics(
                   text: context.l10n.bankDown,
-                  style: kFigtreeTextTheme.bodyLarge,
+                  style: context.bodyLarge,
                 ),
               ],
             ),
@@ -84,13 +84,12 @@ class BankDownBottomSheet extends StatelessWidget {
             trackLabel: context.l10n.okay,
             enableTracking: false,
             style: ElevatedButton.styleFrom(
-              textStyle: kFigtreeTextTheme.bodyLarge?.w700,
+              textStyle: context.bodyLarge?.w700,
             ),
-            backgroundColor: NeutralColors.light().grey.shade50,
+            backgroundColor: context.neutralColors.grey.shade50,
             foregroundColor: context.intactColors.black,
-            label: context.l10n.okay,
+            label: context.l10n.selectAnotherBank,
           ),
-          Spacing.xtraLarge.yBox,
         ],
       );
 }

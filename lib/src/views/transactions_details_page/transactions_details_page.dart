@@ -7,7 +7,6 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/widgets.dart';
@@ -39,8 +38,8 @@ class TransactionDetailsPage extends StatelessWidget {
                     context.l10n.paymentDetails,
                     textAlign: TextAlign.center,
                     style:
-                        kFigtreeTextTheme.bodyLarge?.w700.height130.textColor(
-                      NeutralColors.light().grey.shade500,
+                        context.bodyLarge?.w700.height130.textColor(
+                      context.neutralColors.grey.shade500,
                     ),
                   ),
                 ),
@@ -50,6 +49,7 @@ class TransactionDetailsPage extends StatelessWidget {
                   child: CustomInkWell(
                     semanticsLabel: 'Close Dialog Sheet Icon',
                     context: context,
+                    enableTracking: false,
                     trackLabel: 'Close Dialog Sheet Icon',
                     onTap: () {
                       context.read<PaymentStatusController>().stop();
@@ -62,7 +62,7 @@ class TransactionDetailsPage extends StatelessWidget {
                       width: Spacing.huge.value,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: NeutralColors.light().grey.shade50,
+                        color: context.neutralColors.grey.shade50,
                       ),
                       child: Center(
                         child: Padding(
@@ -86,7 +86,7 @@ class TransactionDetailsPage extends StatelessWidget {
                   transactionDetails.updatedAt!
                       .formattedDateForPaymentDetails(context),
                 ),
-                style: kFigtreeTextTheme.bodyLarge?.w700,
+                style: context.bodyLarge?.w700,
               )
             else
               CustomText.semantics(
@@ -95,7 +95,7 @@ class TransactionDetailsPage extends StatelessWidget {
                   transactionDetails.createdAt
                       .formattedDateForPaymentDetails(context),
                 ),
-                style: kFigtreeTextTheme.bodyLarge?.w700,
+                style: context.bodyLarge?.w700,
               ),
             Spacing.huge.yBox * 2,
             TransactionDetailsTopCard(

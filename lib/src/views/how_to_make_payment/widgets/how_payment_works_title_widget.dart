@@ -23,14 +23,14 @@ class HowPaymentWorksTitleWidget extends StatelessWidget {
             child: CustomText.semantics(
               context.l10n.howToPayWithBankApp,
               textAlign: TextAlign.center,
-              style: kFigtreeTextTheme.labelMedium?.w700.height130,
+              style: context.labelMedium?.w700.height130,
             ),
           ),
           Spacing.large.xBox,
           BottomSheetAction(
             trackLabel: 'Close Dialog Sheet Icon',
-              semanticsLabel: 'Close Dialog Sheet Icon',
-              onTap: () => Navigator.pop(context),
+            semanticsLabel: 'Close Dialog Sheet Icon',
+            onTap: () => Navigator.pop(context),
             child: Assets.icons.close.svg(
               height: Spacing.large.value,
               width: Spacing.large.value,
