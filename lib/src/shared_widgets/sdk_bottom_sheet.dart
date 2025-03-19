@@ -101,7 +101,6 @@ class _SdkBottomSheetState extends State<SdkBottomSheet> {
                   if (widget.showTitle) ...[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (widget.titleAlign == null) ...[
                           const Opacity(

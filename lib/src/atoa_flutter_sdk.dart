@@ -19,15 +19,15 @@ class AtoaSdk {
     required String paymentId,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
-
-    /// payment status polling interval
-    Duration interval = const Duration(seconds: 1),
+    Duration? interval,
   }) async {
     WidgetsFlutterBinding.ensureInitialized();
 
     Atoa.env = env;
     PaymentUtility.paymentId = paymentId;
-    PaymentUtility.interval = interval;
+    /// payment status polling interval
+    /// default is 5 seconds
+    if (interval != null) PaymentUtility.interval = interval;
     Regal.enableTracking = false;
 
     await configureInjection(env.name);

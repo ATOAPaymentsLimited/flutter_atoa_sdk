@@ -7,6 +7,7 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/widgets.dart';
@@ -30,73 +31,63 @@ class TransactionDetailsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const Opacity(
+                  opacity: 0,
+                  child: EmptyIconPlaceholder(),
+                ),
                 Spacing.mediumlarge.xBox * 2,
                 Expanded(
-                  child: CustomText.semantics(
-                    context.l10n.paymentDetails,
-                    textAlign: TextAlign.center,
-                    style:
-                        context.bodyLarge?.w700.height130.textColor(
-                      context.neutralColors.grey.shade500,
-                    ),
+                  child: Column(
+                    children: [
+                      CustomText.semantics(
+                        context.l10n.paymentDetails,
+                        textAlign: TextAlign.center,
+                        style: context.bodyLarge?.w700.height130.textColor(
+                          context.neutralColors.grey.shade500,
+                        ),
+                      ),
+                      if (transactionDetails.updatedAt != null)
+                        CustomText.semantics(
+                          context.l10n.transactionDateAndTime(
+                            transactionDetails.updatedAt!.formattedTime(),
+                            transactionDetails.updatedAt!
+                                .formattedDateForPaymentDetails(context),
+                          ),
+                          style: context.bodyLarge?.w700,
+                        )
+                      else
+                        CustomText.semantics(
+                          context.l10n.transactionDateAndTime(
+                            transactionDetails.createdAt.formattedTime(),
+                            transactionDetails.createdAt
+                                .formattedDateForPaymentDetails(context),
+                          ),
+                          style: context.bodyLarge?.w700,
+                        ),
+                    ],
                   ),
                 ),
                 Spacing.large.xBox,
-                Padding(
-                  padding: Spacing.mini.top,
-                  child: CustomInkWell(
-                    semanticsLabel: 'Close Dialog Sheet Icon',
-                    context: context,
-                    enableTracking: false,
-                    trackLabel: 'Close Dialog Sheet Icon',
-                    onTap: () {
-                      context.read<PaymentStatusController>().stop();
-                      Navigator.pop(
-                        context,
-                        context.read<PaymentStatusState>().details,
-                      );
-                    },
-                    child: Container(
-                      width: Spacing.huge.value,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: context.neutralColors.grey.shade50,
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: Spacing.mini.all,
-                          child: Icon(
-                            Icons.close,
-                            size: Spacing.medium.value,
-                            color: context.intactColors.black,
-                          ),
-                        ),
-                      ),
-                    ),
+                BottomSheetAction(
+                  semanticsLabel: 'Close Dialog Sheet Icon',
+                  trackLabel: 'Close Dialog Sheet Icon',
+                  onTap: () {
+                    context.read<PaymentStatusController>().stop();
+                    Navigator.pop(
+                      context,
+                      context.read<PaymentStatusState>().details,
+                    );
+                  },
+                  child: Icon(
+                    Icons.close,
+                    size: Spacing.large.value,
+                    color: context.intactColors.black,
                   ),
                 ),
               ],
             ),
-            if (transactionDetails.updatedAt != null)
-              CustomText.semantics(
-                context.l10n.transactionDateAndTime(
-                  transactionDetails.updatedAt!.formattedTime(),
-                  transactionDetails.updatedAt!
-                      .formattedDateForPaymentDetails(context),
-                ),
-                style: context.bodyLarge?.w700,
-              )
-            else
-              CustomText.semantics(
-                context.l10n.transactionDateAndTime(
-                  transactionDetails.createdAt.formattedTime(),
-                  transactionDetails.createdAt
-                      .formattedDateForPaymentDetails(context),
-                ),
-                style: context.bodyLarge?.w700,
-              ),
             Spacing.huge.yBox * 2,
             TransactionDetailsTopCard(
               transactionDetails: transactionDetails,

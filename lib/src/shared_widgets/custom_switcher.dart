@@ -33,9 +33,6 @@ class CustomSwitcher<T> extends StatelessWidget {
             innerPadding: Spacing.mini.all,
             isStretch: isStretch,
             isDisabled: isDisabled,
-            customSegmentSettings: CustomSegmentSettings(
-              borderRadius: Spacing.medium.brAll,
-            ),
             children: children,
             onValueChanged: onValueChanged,
             initialValue: initialValue,
@@ -45,7 +42,7 @@ class CustomSwitcher<T> extends StatelessWidget {
             ),
             thumbDecoration: BoxDecoration(
               color: context.intactColors.white,
-              borderRadius: Spacing.medium.brAll,
+              borderRadius: Spacing.small.brAll + Spacing.tiny.brAll,
             ),
           ),
         ),

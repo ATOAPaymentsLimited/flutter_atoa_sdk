@@ -5,9 +5,7 @@ import 'package:shimmer/shimmer.dart';
 
 
 class AtoaLoader extends StatefulWidget {
-  const AtoaLoader({
-    super.key
-  });
+  const AtoaLoader({super.key});
 
   @override
   State<AtoaLoader> createState() => AtoaLoaderState();

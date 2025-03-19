@@ -29,15 +29,12 @@ class BankTabBar extends StatelessWidget {
                         e,
                         CustomText.semantics(
                           e.toText(context),
-                          style:
-                              context.labelSmall?.height150.copyWith(
-                            fontWeight: e.index == tabController.index
-                                ? FontWeight.w700
-                                : FontWeight.w500,
-                            color: e.index == tabController.index
-                                ? context.intactColors.black
-                                : context.neutralColors.grey.shade600,
-                          ),
+                          style: e.index == tabController.index
+                              ? context.labelSmall?.w700
+                                  .textColor(context.intactColors.black)
+                              : context.labelSmall?.w500.textColor(
+                                  context.neutralColors.grey.shade600,
+                                ),
                         ),
                       ),
                     ),

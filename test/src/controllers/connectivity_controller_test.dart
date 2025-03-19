@@ -110,7 +110,7 @@ void main() {
       );
     });
 
-    const endpoint = 'https://devapi.atoa.me/api/';
+    const endpoint = 'https://api.atoa.me/api/';
 
     test('THEN true is returned', () async {
       final mockBaseDio = MockDio();

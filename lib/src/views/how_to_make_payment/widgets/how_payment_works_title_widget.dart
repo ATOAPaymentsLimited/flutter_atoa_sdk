@@ -12,7 +12,6 @@ class HowPaymentWorksTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Opacity(
             opacity: 0,

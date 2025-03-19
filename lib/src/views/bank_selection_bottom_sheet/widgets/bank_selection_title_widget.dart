@@ -12,7 +12,6 @@ class BankSelectionTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const BankBackButton(),
           Spacing.large.xBox,

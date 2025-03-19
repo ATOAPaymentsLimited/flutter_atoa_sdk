@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,13 @@ class VerifyingPaymentView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              const Opacity(
+                opacity: 0,
+                child: EmptyIconPlaceholder(),
+              ),
+              Spacing.large.xBox,
               Expanded(
                 child: CustomText.semantics(
                   context.l10n.paymentInProgress,
@@ -26,10 +33,9 @@ class VerifyingPaymentView extends StatelessWidget {
                   style: context.labelMedium?.w700.height130,
                 ),
               ),
-              CustomInkWell(
+              Spacing.large.xBox,
+              BottomSheetAction(
                 semanticsLabel: 'Close Dialog Sheet Icon',
-                context: context,
-                enableTracking: false,
                 trackLabel: 'Close Dialog Sheet Icon',
                 onTap: () {
                   context.read<PaymentStatusController>().stop();
@@ -38,22 +44,10 @@ class VerifyingPaymentView extends StatelessWidget {
                     context.read<PaymentStatusState>().details,
                   );
                 },
-                child: Container(
-                  width: Spacing.huge.value,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: context.neutralColors.grey.shade50,
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: Spacing.mini.all,
-                      child: Icon(
-                        Icons.close,
-                        size: Spacing.medium.value,
-                        color: context.intactColors.black,
-                      ),
-                    ),
-                  ),
+                child: Icon(
+                  Icons.close,
+                  size: Spacing.large.value,
+                  color: context.intactColors.black,
                 ),
               ),
             ],

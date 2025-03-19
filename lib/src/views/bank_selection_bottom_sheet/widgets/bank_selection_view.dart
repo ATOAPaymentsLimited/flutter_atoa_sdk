@@ -67,12 +67,12 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                     AnimatedSearchField(
                       controller: widget.searchController,
                     ),
-                    Spacing.xtraLarge.yBox,
+                    Spacing.large.yBox,
                     if (bankController.searchTerm.isEmpty) ...[
                       BankTabBar(
                         tabController: widget.tabController,
                       ),
-                      Spacing.xtraLarge.yBox,
+                      Spacing.large.yBox,
                       InfoWidget(
                         text: context.l10n.ensureBankAppInstalled,
                         fontSize: 11.sp,
