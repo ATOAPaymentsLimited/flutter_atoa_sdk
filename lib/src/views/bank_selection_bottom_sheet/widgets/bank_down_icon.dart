@@ -17,11 +17,12 @@ class BankDownIcon extends StatelessWidget {
         context: context,
         trackLabel: 'Bank Down',
         semanticsLabel: 'Bank Down',
+        enableTracking: false,
         onTap: () => BankDownBottomSheet.show(context, bank),
         child: Container(
           padding: Spacing.tiny.y + Spacing.mini.x,
           decoration: BoxDecoration(
-            color: SemanticsColors.light().error.subtle,
+            color: context.error.subtle,
             borderRadius: Spacing.medium.brAll,
           ),
           child: Assets.icons.iconError.svg(

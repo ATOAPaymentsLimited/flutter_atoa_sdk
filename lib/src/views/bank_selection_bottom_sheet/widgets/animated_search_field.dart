@@ -1,6 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
@@ -28,11 +27,11 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..addStatusListener((status) async {
         if (status == AnimationStatus.completed) {
-          await Future<void>.delayed(const Duration(milliseconds: 500));
+          await Future<void>.delayed(const Duration(seconds: 1));
           if (!mounted) return;
           setState(() {
             _showPersonalBanks = !_showPersonalBanks;
@@ -60,19 +59,19 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
           context.read<BankInstitutionsController>().search(value.trim());
         },
         showFloatingLabel: FloatingLabelBehavior.never,
-        fillColor: NeutralColors.light().grey.shade50,
+        fillColor: context.neutralColors.grey.shade50,
         onClear: () {
           context.read<BankInstitutionsController>().search('');
         },
-        textStyle: kFigtreeTextTheme.labelSmall?.w600,
-        border: BorderSide(color: NeutralColors.light().grey.shade200),
+        textStyle: context.labelSmall?.w600,
+        border: BorderSide(color: context.neutralColors.grey.shade200),
         isLightMode: true,
         label: Row(
           children: [
             CustomText.semantics(
               context.l10n.searchYour,
-              style: kFigtreeTextTheme.labelSmall?.w500.textColor(
-                NeutralColors.light().grey.shade500,
+              style: context.labelSmall?.w500.textColor(
+                context.neutralColors.grey.shade500,
               ),
             ),
             Expanded(
@@ -90,8 +89,8 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                           _showPersonalBanks
                               ? context.l10n.personalBanks
                               : context.l10n.businessBanks,
-                          style: kFigtreeTextTheme.labelSmall?.w500.textColor(
-                            NeutralColors.light().grey.shade500,
+                          style: context.labelSmall?.w500.textColor(
+                            context.neutralColors.grey.shade500,
                           ),
                         ),
                       ),
@@ -107,8 +106,8 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                           !_showPersonalBanks
                               ? context.l10n.personalBanks
                               : context.l10n.businessBanks,
-                          style: kFigtreeTextTheme.labelSmall?.w500.textColor(
-                            NeutralColors.light().grey.shade500,
+                          style: context.labelSmall?.w500.textColor(
+                            context.neutralColors.grey.shade500,
                           ),
                         ),
                       ),

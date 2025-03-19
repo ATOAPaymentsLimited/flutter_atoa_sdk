@@ -1,7 +1,6 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -22,19 +21,16 @@ class AppNotInstalledWidget extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.y + Spacing.large.x,
         decoration: BoxDecoration(
-          color: SemanticsColors.light().error.subtle,
+          color: context.error.subtle,
           borderRadius: Spacing.small.brAll,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: Spacing.mini.top,
-              child: Assets.icons.info.svg(
-                colorFilter: ColorFilter.mode(
-                  SemanticsColors.light().error.darker,
-                  BlendMode.srcIn,
-                ),
+            Assets.icons.warningFilled.svg(
+              colorFilter: ColorFilter.mode(
+                context.error.darker,
+                BlendMode.srcIn,
               ),
             ),
             Spacing.medium.xBox,
@@ -42,14 +38,14 @@ class AppNotInstalledWidget extends StatelessWidget {
               child: RichText(
                 text: CustomTextSpan.semantics(
                   text: context.l10n.recommendingAppInstallPart1,
-                  style: kFigtreeTextTheme.bodyMedium
+                  style: context.bodyMedium
                       ?.textColor(
-                    SemanticsColors.light().error.darker,
+                    context.error.darker,
                   )
                       .copyWith(
                     shadows: [
                       Shadow(
-                        color: SemanticsColors.light().error.darker,
+                        color: context.error.darker,
                         offset: Offset(0, -Spacing.mini.value),
                       ),
                     ],
@@ -59,21 +55,21 @@ class AppNotInstalledWidget extends StatelessWidget {
                     CustomTextSpan.semantics(
                       recognizer: TapGestureRecognizer()..onTap = _launchStore,
                       text: context.l10n.bankApp(name),
-                      style: kFigtreeTextTheme.bodyMedium?.w700
+                      style: context.bodyMedium?.w700
                           .textColor(
-                        SemanticsColors.light().error.darker,
+                        context.error.darker,
                       )
                           .copyWith(
                         shadows: [
                           Shadow(
-                            color: SemanticsColors.light().error.darker,
+                            color: context.error.darker,
                             offset: Offset(0, -Spacing.mini.value),
                           ),
                         ],
                         color: Colors.transparent,
                         decoration: TextDecoration.underline,
                         decorationStyle: TextDecorationStyle.dotted,
-                        decorationColor: SemanticsColors.light().error.darker,
+                        decorationColor: context.error.darker,
                         decorationThickness: Spacing.tiny.value,
                       ),
                     ),

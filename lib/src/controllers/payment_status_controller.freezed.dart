@@ -20,9 +20,7 @@ mixin _$PaymentStatusState {
   TransactionDetails? get details => throw _privateConstructorUsedError;
   Exception? get exception => throw _privateConstructorUsedError;
 
-  /// Create a copy of PaymentStatusState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PaymentStatusStateCopyWith<PaymentStatusState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,8 +46,6 @@ class _$PaymentStatusStateCopyWithImpl<$Res, $Val extends PaymentStatusState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PaymentStatusState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -73,8 +69,6 @@ class _$PaymentStatusStateCopyWithImpl<$Res, $Val extends PaymentStatusState>
     ) as $Val);
   }
 
-  /// Create a copy of PaymentStatusState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TransactionDetailsCopyWith<$Res>? get details {
@@ -110,8 +104,6 @@ class __$$PaymentStatusStateImplCopyWithImpl<$Res>
       $Res Function(_$PaymentStatusStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PaymentStatusState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,9 +162,7 @@ class _$PaymentStatusStateImpl extends _PaymentStatusState {
   @override
   int get hashCode => Object.hash(runtimeType, started, details, exception);
 
-  /// Create a copy of PaymentStatusState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentStatusStateImplCopyWith<_$PaymentStatusStateImpl> get copyWith =>
@@ -193,11 +183,8 @@ abstract class _PaymentStatusState extends PaymentStatusState {
   TransactionDetails? get details;
   @override
   Exception? get exception;
-
-  /// Create a copy of PaymentStatusState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PaymentStatusStateImplCopyWith<_$PaymentStatusStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

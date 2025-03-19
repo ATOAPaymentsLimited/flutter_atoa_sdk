@@ -2773,7 +2773,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get three => '3';
 
   @override
-  String get continueToYourBank => 'Continue to your bank';
+  String get howToPayWithBankApp => 'How to pay with bank app?';
 
   @override
   String get iUnderstandContinue => 'I understand, continue  →';

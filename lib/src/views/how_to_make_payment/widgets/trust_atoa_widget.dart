@@ -1,6 +1,5 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -13,7 +12,7 @@ class TrustAtoaWidget extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.y + Spacing.large.x,
         decoration: BoxDecoration(
-          color: SemanticsColors.light().positive.lighter,
+          color: context.positive.lighter,
           borderRadius: Spacing.small.brAll + Spacing.tiny.brAll,
         ),
         child: Row(
@@ -23,8 +22,8 @@ class TrustAtoaWidget extends StatelessWidget {
             Expanded(
               child: CustomText.semantics(
                 context.l10n.trustedByBusinesses,
-                style: kFigtreeTextTheme.bodyMedium?.w600.textColor(
-                  SemanticsColors.light().positive.darker,
+                style: context.bodyMedium?.w600.textColor(
+                  context.positive.darker,
                 ),
               ),
             ),

@@ -2,7 +2,6 @@ import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -78,20 +77,20 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
                     Assets.icons.wifiOff.svg(
                       height: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
                       colorFilter: ColorFilter.mode(
-                        NeutralColors.light().grey.shade500,
+                        context.neutralColors.grey.shade500,
                         BlendMode.srcIn,
                       ),
                     ),
                     Spacing.huge.yBox,
                     CustomText.semantics(
                       context.l10n.noInternetConnection,
-                      style: kFigtreeTextTheme.titleSmall?.w700,
+                      style: context.titleSmall?.w700,
                     ),
                     Spacing.huge.yBox,
                     CustomText.semantics(
                       context.l10n.serverNotReachable,
                       textAlign: TextAlign.center,
-                      style: kFigtreeTextTheme.bodyLarge,
+                      style: context.bodyLarge,
                     ),
                     Spacing.huge.yBox,
                   ],

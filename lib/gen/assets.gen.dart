@@ -16,6 +16,10 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsGifsGen {
   const $AssetsGifsGen();
 
+  /// File path: assets/gifs/animated_grid_loader.json
+  LottieGenImage get animatedGridLoader =>
+      const LottieGenImage('assets/gifs/animated_grid_loader.json');
+
   /// File path: assets/gifs/dot-loading.json
   LottieGenImage get dotLoading =>
       const LottieGenImage('assets/gifs/dot-loading.json');
@@ -29,7 +33,8 @@ class $AssetsGifsGen {
       const LottieGenImage('assets/gifs/tick_mark.json');
 
   /// List of all assets
-  List<LottieGenImage> get values => [dotLoading, processing, tickMark];
+  List<LottieGenImage> get values =>
+      [animatedGridLoader, dotLoading, processing, tickMark];
 }
 
 class $AssetsIconsGen {
@@ -99,8 +104,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/shield.svg
   SvgGenImage get shield => const SvgGenImage('assets/icons/shield.svg');
 
+  /// File path: assets/icons/spinner.svg
+  SvgGenImage get spinner => const SvgGenImage('assets/icons/spinner.svg');
+
   /// File path: assets/icons/warning.svg
   SvgGenImage get warning => const SvgGenImage('assets/icons/warning.svg');
+
+  /// File path: assets/icons/warning_filled.svg
+  SvgGenImage get warningFilled =>
+      const SvgGenImage('assets/icons/warning_filled.svg');
 
   /// File path: assets/icons/wifi_off.svg
   SvgGenImage get wifiOff => const SvgGenImage('assets/icons/wifi_off.svg');
@@ -126,7 +138,9 @@ class $AssetsIconsGen {
         locationOn,
         search,
         shield,
+        spinner,
         warning,
+        warningFilled,
         wifiOff
       ];
 }

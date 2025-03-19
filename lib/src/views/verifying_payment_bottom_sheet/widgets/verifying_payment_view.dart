@@ -1,7 +1,6 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,12 +23,13 @@ class VerifyingPaymentView extends StatelessWidget {
                 child: CustomText.semantics(
                   context.l10n.paymentInProgress,
                   textAlign: TextAlign.center,
-                  style: kFigtreeTextTheme.labelMedium?.w700.height130,
+                  style: context.labelMedium?.w700.height130,
                 ),
               ),
               CustomInkWell(
                 semanticsLabel: 'Close Dialog Sheet Icon',
                 context: context,
+                enableTracking: false,
                 trackLabel: 'Close Dialog Sheet Icon',
                 onTap: () {
                   context.read<PaymentStatusController>().stop();
@@ -42,7 +42,7 @@ class VerifyingPaymentView extends StatelessWidget {
                   width: Spacing.huge.value,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: NeutralColors.light().grey.shade50,
+                    color: context.neutralColors.grey.shade50,
                   ),
                   child: Center(
                     child: Padding(
@@ -77,7 +77,7 @@ class VerifyingPaymentView extends StatelessWidget {
                 height: Spacing.xtraLarge.value * 2,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: NeutralColors.light().grey.shade100,
+                    color: context.neutralColors.grey.shade100,
                     width: 1.25,
                   ),
                   borderRadius: Spacing.small.brAll,
@@ -100,7 +100,7 @@ class VerifyingPaymentView extends StatelessWidget {
           Spacing.large.yBox * 2,
           CustomText.semantics(
             context.l10n.verifyingYourPayment,
-            style: kFigtreeTextTheme.titleSmall?.w700,
+            style: context.titleSmall?.w700,
             textAlign: TextAlign.center,
           ),
           Spacing.large.yBox,
@@ -108,14 +108,14 @@ class VerifyingPaymentView extends StatelessWidget {
             textAlign: TextAlign.center,
             text: CustomTextSpan.semantics(
               text: context.l10n.noteWithColon,
-              style: kFigtreeTextTheme.bodyMedium?.w700.textColor(
-                NeutralColors.light().grey.shade500,
+              style: context.bodyMedium?.w700.textColor(
+                context.neutralColors.grey.shade500,
               ),
               children: [
                 CustomTextSpan.semantics(
                   text: context.l10n.doNotCloseWarning,
-                  style: kFigtreeTextTheme.bodyMedium?.w500.textColor(
-                    NeutralColors.light().grey.shade500,
+                  style: context.bodyMedium?.w500.textColor(
+                    context.neutralColors.grey.shade500,
                   ),
                 ),
               ],

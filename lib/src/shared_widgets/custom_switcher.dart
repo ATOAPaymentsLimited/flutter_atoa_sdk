@@ -40,7 +40,7 @@ class CustomSwitcher<T> extends StatelessWidget {
             onValueChanged: onValueChanged,
             initialValue: initialValue,
             decoration: BoxDecoration(
-              color: NeutralColors.light().grey.shade50,
+              color: context.neutralColors.grey.shade50,
               borderRadius: BorderRadius.circular(Spacing.medium.value),
             ),
             thumbDecoration: BoxDecoration(

@@ -33,6 +33,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
       personalBanks.where((e) => !e.popularBank && !e.businessBank).toList();
 
   List<BankInstitution> get gridBanks {
+    if (bankList.isEmpty) return bankList;
     final gridBanks = popularPersonalBanks;
     final gridBankLength = gridBanks.length;
     if (gridBanks.length < 8) {
@@ -46,6 +47,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
   }
 
   List<BankInstitution> get allNormalBanks {
+    if (bankList.isEmpty) return bankList;
     if (popularPersonalBanks.length < 8) {
       return normalPersonalBanks.sublist(8 - popularPersonalBanks.length)
         ..sort();

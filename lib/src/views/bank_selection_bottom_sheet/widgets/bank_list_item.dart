@@ -1,7 +1,6 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -32,7 +31,7 @@ class BankListItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: Spacing.mini.brAll + Spacing.tiny.brAll,
                   border:
-                      Border.all(color: NeutralColors.light().grey.shade100),
+                      Border.all(color: context.neutralColors.grey.shade100),
                 ),
                 child: bank.bankIcon != null
                     ? CachedNetworkImage(
@@ -53,9 +52,9 @@ class BankListItem extends StatelessWidget {
                     Flexible(
                       child: CustomText.semantics(
                         bank.name,
-                        style: kFigtreeTextTheme.bodyLarge
+                        style: context.bodyLarge
                             ?.textColor(
-                              NeutralColors.light().grey.shade700,
+                              context.neutralColors.grey.shade700,
                             )
                             .w500,
                         overflow: TextOverflow.ellipsis,
@@ -71,6 +70,7 @@ class BankListItem extends StatelessWidget {
               Spacing.medium.xBox,
               CustomInkWell(
                 context: context,
+                enableTracking: false,
                 trackLabel: '$bank CheckBox',
                 onTap: () async {
                   bank.enabled
@@ -92,7 +92,7 @@ class BankListItem extends StatelessWidget {
                           context.read<BankInstitutionsState>().selectedBank ==
                                   bank
                               ? context.intactColors.black
-                              : NeutralColors.light().grey.shade300,
+                              : context.neutralColors.grey.shade300,
                       width: 1.5,
                     ),
                     borderRadius: Spacing.medium.brAll,

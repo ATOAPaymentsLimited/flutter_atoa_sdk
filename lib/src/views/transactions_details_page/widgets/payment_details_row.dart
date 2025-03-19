@@ -1,6 +1,5 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/theme/figtree_text_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,8 +41,8 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (label.isNotEmpty)
                     CustomText.semantics(
                       label,
-                      style: kFigtreeTextTheme.bodyMedium?.height150.textColor(
-                        NeutralColors.light().grey.shade600,
+                      style: context.bodyMedium?.height150.textColor(
+                        context.neutralColors.grey.shade600,
                       ),
                     ),
                   Spacing.mini.yBox,
@@ -64,13 +63,14 @@ class PaymentDetailsRow extends StatelessWidget {
                 context: context,
                 trackLabel: 'Copy $label',
                 semanticsLabel: 'Copy $label',
+                enableTracking: false,
                 child: Padding(
                   padding: Spacing.small.left,
                   child: Assets.icons.copy.svg(
                     height: Spacing.huge.value,
                     width: Spacing.huge.value,
                     colorFilter: ColorFilter.mode(
-                      NeutralColors.light().grey.shade400,
+                      context.neutralColors.grey.shade400,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -81,7 +81,7 @@ class PaymentDetailsRow extends StatelessWidget {
                     return;
                   }
                   context.showSnackbar(
-                    titleTextStyle: kFigtreeTextTheme.bodyLarge?.w700.textColor(
+                    titleTextStyle: context.bodyLarge?.w700.textColor(
                       context.intactColors.white,
                     ),
                     SnackbarType.success(
@@ -105,7 +105,7 @@ class PaymentDetailsRow extends StatelessWidget {
               Spacing.small.value,
             ),
           ),
-          border: Border.all(color: NeutralColors.light().grey.shade200),
+          border: Border.all(color: context.neutralColors.grey.shade200),
         ),
         child: Padding(
           padding: Spacing.mini.all,
@@ -124,7 +124,7 @@ class PaymentDetailsRow extends StatelessWidget {
           Flexible(
             child: CustomText.semantics(
               value,
-              style: kFigtreeTextTheme.bodyMedium?.w600,
+              style: context.bodyMedium?.w600,
             ),
           ),
           if ((maskSubValue ?? false) && subValue != null)
@@ -133,14 +133,14 @@ class PaymentDetailsRow extends StatelessWidget {
                 subValue!.isEmpty
                     ? ''
                     : 'xxxxx${subValue!.length > 3 ? subValue!.substring(subValue!.length - 3) : subValue!}',
-                style: kFigtreeTextTheme.bodyMedium?.w600,
+                style: context.bodyMedium?.w600,
               ),
             )
           else if (subValue != null)
             Flexible(
               child: CustomText.semantics(
                 subValue!.isEmpty ? '' : subValue!,
-                style: kFigtreeTextTheme.bodyMedium?.w600,
+                style: context.bodyMedium?.w600,
               ),
             ),
         ],

@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttersdk/utils/connectivity_controller.dart';
 import 'package:fluttersdk/widgets/regal_button.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart' hide RegalButton;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class PayNowBottomSheet extends StatefulWidget {
   const PayNowBottomSheet({
@@ -36,9 +36,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       context,
       paymentId: paymentId,
       showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
-      env: AtoaEnv.sandbox,
-
-      // /// or AtoaEnv.prod
+      env: AtoaEnv.sandbox, // or AtoaEnv.prod
     );
 
     prefs.setBool('showHowPaymentWorks', false);
@@ -94,15 +92,16 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                 height: 56.sp,
                 child: Builder(
                   builder: (context) {
-                    final ConnectivityStatus connectivityStatus =
+                    final connectivityStatus =
                         context.watch<ConnectivityStatus>();
                     return ValueListenableBuilder(
                       valueListenable: isLoading,
-                      builder: (context, value, child) => RegalButton.primary(
+                      builder: (context, value, child) {
+                        return RegalButton.primary(
                         shrink: true,
-                        onPressed: () => value
-                            ? null
-                            : _getPaymentId(context, widget.totalAmount),
+                          enableTracking: false,
+                          onPressed: () =>
+                              _getPaymentId(context, widget.totalAmount),
                         label: 'Pay Now',
                         trackLabel: 'Pay Now',
                         enable:
@@ -116,7 +115,8 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                                 BorderRadius.circular(Spacing.mini.value),
                           ),
                         ),
-                      ),
+                        );
+                      },
                     );
                   },
                 ),
@@ -160,13 +160,12 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       'https://api.atoa.me/api/payments/process-payment',
     );
 
+    const atoaToken = String.fromEnvironment('atoa-token');
+
     final response = await http.post(
       uri,
       headers: {
-        HttpHeaders.authorizationHeader: const String.fromEnvironment(
-          'atoa-token',
-          defaultValue: 'Bearer <access-token>',
-        ),
+        HttpHeaders.authorizationHeader: 'Bearer $atoaToken',
         'Content-Type': 'application/json',
       },
       body: jsonEncode(_getRequestData(amount)),

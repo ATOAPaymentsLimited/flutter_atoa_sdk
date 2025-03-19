@@ -52,7 +52,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         headerAlignment: ExpandablePanelHeaderAlignment.center,
         tapBodyToCollapse: true,
         hasIcon: false,
-        iconColor: NeutralColors.light().grey.shade400,
+        iconColor: context.neutralColors.grey.shade400,
         iconSize: Spacing.large.value * 2,
         tapHeaderToExpand: true,
         iconPadding: EdgeInsets.zero,
@@ -66,6 +66,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
           children: [
             CustomGestureDetector(
               context: context,
+              enableTracking: false,
               onTap: _expandableController.toggle,
               trackLabel: 'View Payment Details',
               semanticsLabel: context.l10n.viewTransactionDetails,
@@ -98,9 +99,9 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         decoration: BoxDecoration(
           color: context.intactColors.white,
           border: Border(
-            bottom: BorderSide(color: NeutralColors.light().grey.shade200),
-            left: BorderSide(color: NeutralColors.light().grey.shade200),
-            right: BorderSide(color: NeutralColors.light().grey.shade200),
+            bottom: BorderSide(color: context.neutralColors.grey.shade200),
+            left: BorderSide(color: context.neutralColors.grey.shade200),
+            right: BorderSide(color: context.neutralColors.grey.shade200),
           ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(
