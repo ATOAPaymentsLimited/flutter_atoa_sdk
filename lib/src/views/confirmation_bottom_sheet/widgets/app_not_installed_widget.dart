@@ -27,13 +27,10 @@ class AppNotInstalledWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: Spacing.mini.top,
-              child: Assets.icons.warningFilled.svg(
-                colorFilter: ColorFilter.mode(
-                  context.error.darker,
-                  BlendMode.srcIn,
-                ),
+            Assets.icons.warningFilled.svg(
+              colorFilter: ColorFilter.mode(
+                context.error.darker,
+                BlendMode.srcIn,
               ),
             ),
             Spacing.medium.xBox,
