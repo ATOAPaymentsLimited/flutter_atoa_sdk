@@ -56,6 +56,18 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
     _subscription?.cancel();
   }
 
+  void pause() {
+    if (!(_subscription?.isPaused ?? false)) {
+      _subscription?.pause();
+    }
+  }
+
+  void resume() {
+    if (_subscription?.isPaused ?? false) {
+      _subscription?.resume();
+    }
+  }
+
   StreamSubscription<dynamic>? _subscription;
 
   @override

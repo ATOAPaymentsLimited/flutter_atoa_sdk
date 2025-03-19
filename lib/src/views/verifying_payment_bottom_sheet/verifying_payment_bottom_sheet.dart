@@ -60,7 +60,7 @@ class VerifyingPaymentBottomSheet extends StatefulWidget {
 }
 
 class _VerifyingPaymentBottomSheetState
-    extends State<VerifyingPaymentBottomSheet> {
+    extends State<VerifyingPaymentBottomSheet> with WidgetsBindingObserver {
   late PaymentStatusController paymentStatusController;
   late BankInstitutionsState bankInstitutionState;
   final botToastBuilder = BotToastInit();
@@ -68,6 +68,7 @@ class _VerifyingPaymentBottomSheetState
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     paymentStatusController = context.read<PaymentStatusController>();
     bankInstitutionState = context.read<BankInstitutionsState>();
 
@@ -82,8 +83,26 @@ class _VerifyingPaymentBottomSheetState
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     paymentStatusController.stop();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    /// This is to prevent the API from crashing when the app is paused
+    /// API throws an error when the app is paused
+    /// This is a workaround to prevent the sdk from showing unknown error
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        if (state == AppLifecycleState.resumed) {
+          paymentStatusController.resume();
+        } else {
+          paymentStatusController.pause();
+        }
+      },
+    );
   }
 
   void _startPollingAfter20Sec(BuildContext context) {
