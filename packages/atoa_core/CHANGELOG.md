@@ -16,4 +16,9 @@
 - status getters
 
 # 1.0.4
+
 - fix: base url
+
+# 1.0.5
+
+- fix: Payment APIs
