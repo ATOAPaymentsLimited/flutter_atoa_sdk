@@ -97,6 +97,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                   context: context,
                   semanticsLabel: 'Clear Search Bar Icon',
                   trackLabel: 'Clear Icon Search Bar',
+                  enableTracking: false,
                   onTap: () {
                     widget.controller.clear();
                     context.read<BankInstitutionsController>().search('');

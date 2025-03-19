@@ -20,6 +20,7 @@ class AtoaTermTile extends StatelessWidget {
         context: context,
         trackLabel: title,
         semanticsLabel: title,
+        enableTracking: false,
         onTap: () => launchUrl(Uri.parse(link)),
         child: Padding(
           padding: Spacing.large.y,

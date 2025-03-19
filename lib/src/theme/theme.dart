@@ -10,6 +10,7 @@ ThemeData ledgerTheme(BuildContext context) => kThemeData.copyWith(
       textTheme: kFigTreeTextTheme.apply(
         displayColor: context.intactColors.black,
         bodyColor: context.intactColors.black,
+        package: 'atoa_flutter_sdk',
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
