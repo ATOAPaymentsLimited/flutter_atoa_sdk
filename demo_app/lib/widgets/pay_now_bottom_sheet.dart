@@ -36,7 +36,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       context,
       paymentId: paymentId,
       showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
-      env: AtoaEnv.sandbox, // or AtoaEnv.prod
+      env: AtoaEnv.prod, // or AtoaEnv.sandbox
     );
 
     prefs.setBool('showHowPaymentWorks', false);
@@ -51,7 +51,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(
-          color: context.regalColor.snowWhite,
+          color: IntactColors.light().white,
           boxShadow: const [
             BoxShadow(
               color: Color(0x07000000),
@@ -72,16 +72,15 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                 children: [
                   CustomText.semantics(
                     'Total',
-                    style: context.bodyLarge!.copyWith(
-                      color: context.grey.shade40,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: NeutralColors.light().grey.shade50,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
                     '£ ${widget.totalAmount.toString()}',
-                    style: context.labelMedium!.copyWith(
+                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat',
                     ),
                   ),
                 ],
@@ -142,7 +141,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
               backgroundColor: RegalColors.darkOrange,
               content: Text(
                 'Oops, An Error Occurred',
-                style: context.headlineSmall!.copyWith(
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   color: Colors.white,
                   fontSize: 14.sp,
                   fontFamily: 'Montserrat',

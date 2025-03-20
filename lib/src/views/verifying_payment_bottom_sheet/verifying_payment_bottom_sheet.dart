@@ -117,7 +117,7 @@ class _VerifyingPaymentBottomSheetState
 
   @override
   Widget build(BuildContext context) => Theme(
-        data: ledgerTheme(context),
+        data: sdkLedgerTheme,
         child: StreamProvider<ConnectivityStatus>.value(
           initialData: ConnectivityStatus.waiting,
           value: widget.connectivityController.connectionStatusController.stream,
@@ -126,7 +126,7 @@ class _VerifyingPaymentBottomSheetState
               duration: kAnimationDuration,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: context.intactColors.white,
+                  color: IntactColors.light().white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Spacing.xtraLarge.value),
                     topRight: Radius.circular(Spacing.xtraLarge.value),
@@ -155,7 +155,7 @@ class _VerifyingPaymentBottomSheetState
                           return botToastBuilder(
                             context,
                             Theme(
-                              data: ledgerTheme(context),
+                              data: sdkLedgerTheme,
                               child: PaymentStatusView(
                                 isCompleted: paymentState.details!.isCompleted,
                               ),

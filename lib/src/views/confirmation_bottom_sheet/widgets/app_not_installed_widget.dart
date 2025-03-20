@@ -1,6 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class AppNotInstalledWidget extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.y + Spacing.large.x,
         decoration: BoxDecoration(
-          color: context.error.subtle,
+          color: SemanticsColors.light().error.subtle,
           borderRadius: Spacing.small.brAll,
         ),
         child: Row(
@@ -29,7 +30,7 @@ class AppNotInstalledWidget extends StatelessWidget {
           children: [
             Assets.icons.warningFilled.svg(
               colorFilter: ColorFilter.mode(
-                context.error.darker,
+                SemanticsColors.light().error.darker,
                 BlendMode.srcIn,
               ),
             ),
@@ -38,14 +39,14 @@ class AppNotInstalledWidget extends StatelessWidget {
               child: RichText(
                 text: CustomTextSpan.semantics(
                   text: context.l10n.recommendingAppInstallPart1,
-                  style: context.bodyMedium
+                  style: sdkFigTreeTextTheme.bodyMedium
                       ?.textColor(
-                    context.error.darker,
+                    SemanticsColors.light().error.darker,
                   )
                       .copyWith(
                     shadows: [
                       Shadow(
-                        color: context.error.darker,
+                        color: SemanticsColors.light().error.darker,
                         offset: Offset(0, -Spacing.mini.value),
                       ),
                     ],
@@ -55,21 +56,21 @@ class AppNotInstalledWidget extends StatelessWidget {
                     CustomTextSpan.semantics(
                       recognizer: TapGestureRecognizer()..onTap = _launchStore,
                       text: context.l10n.bankApp(name),
-                      style: context.bodyMedium?.w700
+                      style: sdkFigTreeTextTheme.bodyMedium?.w700
                           .textColor(
-                        context.error.darker,
+                        SemanticsColors.light().error.darker,
                       )
                           .copyWith(
                         shadows: [
                           Shadow(
-                            color: context.error.darker,
+                            color: SemanticsColors.light().error.darker,
                             offset: Offset(0, -Spacing.mini.value),
                           ),
                         ],
                         color: Colors.transparent,
                         decoration: TextDecoration.underline,
                         decorationStyle: TextDecorationStyle.dotted,
-                        decorationColor: context.error.darker,
+                        decorationColor: SemanticsColors.light().error.darker,
                         decorationThickness: Spacing.tiny.value,
                       ),
                     ),

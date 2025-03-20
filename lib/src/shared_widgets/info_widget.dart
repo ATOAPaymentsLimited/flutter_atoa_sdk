@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -16,7 +17,7 @@ class InfoWidget extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.small.y + Spacing.medium.x,
         decoration: BoxDecoration(
-          color: context.info.subtle,
+          color: SemanticsColors.light().info.subtle,
           borderRadius: Spacing.small.brAll,
         ),
         child: Row(
@@ -30,9 +31,9 @@ class InfoWidget extends StatelessWidget {
             Expanded(
               child: CustomText.semantics(
                 text,
-                style: context.bodyMedium
+                style: sdkFigTreeTextTheme.bodyMedium
                     ?.textColor(
-                      context.info.darker,
+                      SemanticsColors.light().info.darker,
                     )
                     .copyWith(fontSize: fontSize)
                     .w500,

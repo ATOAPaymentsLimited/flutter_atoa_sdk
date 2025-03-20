@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,14 +40,14 @@ class AtoaTermTile extends StatelessWidget {
                     children: [
                       CustomText.semantics(
                         title,
-                        style: context.bodyLarge?.w600.textColor(
-                          context.neutralColors.grey.shade700,
+                        style: sdkFigTreeTextTheme.bodyLarge?.w600.textColor(
+                          NeutralColors.light().grey.shade700,
                         ),
                       ),
                       CustomText.semantics(
                         desc,
-                        style: context.bodyMedium?.textColor(
-                          context.neutralColors.grey.shade500,
+                        style: sdkFigTreeTextTheme.bodyMedium?.textColor(
+                          NeutralColors.light().grey.shade500,
                         ),
                       ),
                     ],

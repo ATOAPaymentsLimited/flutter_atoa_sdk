@@ -253,11 +253,11 @@ class LedgerButton extends StatelessWidget {
                       BorderRadius.circular(Spacing.smallMedium.value),
                 ),
               ),
-              foregroundColor: _ElevatedButtonColor(context.intactColors.white),
+              foregroundColor: _ElevatedButtonColor(IntactColors.light().white),
               backgroundColor:
-                  _ElevatedButtonColor(context.brandColors.primary.shade500),
+                  _ElevatedButtonColor(BrandColors.light().primary.shade500),
               surfaceTintColor:
-                  WidgetStatePropertyAll(context.neutralColors.grey.shade500),
+                  WidgetStatePropertyAll(NeutralColors.light().grey.shade500),
               elevation: const WidgetStatePropertyAll(0),
             ),
             child: child,
@@ -277,13 +277,13 @@ class LedgerButton extends StatelessWidget {
                 ),
               ),
               foregroundColor: _ElevatedButtonColor(
-                foregroundColor ?? context.baseColors.white,
+                foregroundColor ?? BaseColors.light().white,
               ),
               backgroundColor: _ElevatedButtonColor(
-                backgroundColor ?? context.baseColors.black,
+                backgroundColor ?? BaseColors.light().black,
               ),
               surfaceTintColor:
-                  WidgetStatePropertyAll(context.neutralColors.grey.shade500),
+                  WidgetStatePropertyAll(NeutralColors.light().grey.shade500),
               elevation: const WidgetStatePropertyAll(0),
             ),
             child: child,
@@ -303,13 +303,13 @@ class LedgerButton extends StatelessWidget {
                 ),
               ),
               foregroundColor: _ElevatedButtonColor(
-                foregroundColor ?? context.baseColors.black,
+                foregroundColor ?? BaseColors.light().black,
               ),
               backgroundColor: _ElevatedButtonColor(
-                backgroundColor ?? context.neutralColors.grey.shade50,
+                backgroundColor ?? NeutralColors.light().grey.shade50,
               ),
               surfaceTintColor:
-                  WidgetStatePropertyAll(context.neutralColors.grey.shade500),
+                  WidgetStatePropertyAll(NeutralColors.light().grey.shade500),
               elevation: const WidgetStatePropertyAll(0),
             ),
             child: child,
@@ -329,10 +329,10 @@ class LedgerButton extends StatelessWidget {
                 ),
               ),
               foregroundColor:
-                  _ElevatedButtonColor(context.brandColors.primary.shade500),
+                  _ElevatedButtonColor(BrandColors.light().primary.shade500),
               backgroundColor: _ElevatedButtonColor(Colors.transparent),
               surfaceTintColor:
-                  WidgetStatePropertyAll(context.neutralColors.grey.shade500),
+                  WidgetStatePropertyAll(NeutralColors.light().grey.shade500),
               elevation: const WidgetStatePropertyAll(0),
             ),
             child: child,
@@ -351,10 +351,10 @@ class LedgerButton extends StatelessWidget {
                       BorderRadius.circular(Spacing.smallMedium.value),
                 ),
               ),
-              foregroundColor: _ElevatedButtonColor(context.baseColors.black),
+              foregroundColor: _ElevatedButtonColor(BaseColors.light().black),
               backgroundColor: _ElevatedButtonColor(Colors.transparent),
               surfaceTintColor:
-                  WidgetStatePropertyAll(context.neutralColors.grey.shade500),
+                  WidgetStatePropertyAll(NeutralColors.light().grey.shade500),
               elevation: const WidgetStatePropertyAll(0),
             ),
             child: child,
@@ -370,17 +370,17 @@ class LedgerButton extends StatelessWidget {
               shape: WidgetStatePropertyAll(
                 RoundedRectangleBorder(
                   side: BorderSide(
-                    color: context.baseColors.black,
+                    color: BaseColors.light().black,
                     width: 1.sp,
                   ),
                   borderRadius:
                       BorderRadius.circular(Spacing.smallMedium.value),
                 ),
               ),
-              foregroundColor: _ElevatedButtonColor(context.baseColors.black),
-              backgroundColor: _ElevatedButtonColor(context.baseColors.white),
+              foregroundColor: _ElevatedButtonColor(BaseColors.light().black),
+              backgroundColor: _ElevatedButtonColor(BaseColors.light().white),
               surfaceTintColor:
-                  WidgetStatePropertyAll(context.neutralColors.grey.shade500),
+                  WidgetStatePropertyAll(NeutralColors.light().grey.shade500),
               elevation: const WidgetStatePropertyAll(0),
             ),
             child: child,

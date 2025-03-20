@@ -22,7 +22,7 @@ class BankDownIcon extends StatelessWidget {
         child: Container(
           padding: Spacing.tiny.y + Spacing.mini.x,
           decoration: BoxDecoration(
-            color: context.error.subtle,
+            color: SemanticsColors.light().error.subtle,
             borderRadius: Spacing.medium.brAll,
           ),
           child: Assets.icons.iconError.svg(

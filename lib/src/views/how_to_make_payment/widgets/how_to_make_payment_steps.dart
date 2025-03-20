@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -27,11 +28,11 @@ class _StepTile extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: Spacing.xtraLarge.value,
-            backgroundColor: context.info.subtle,
+            backgroundColor: SemanticsColors.light().info.subtle,
             child: CustomText.semantics(
               step.toString(),
-              style: context.bodyLarge?.w700.textColor(
-                context.info.darker,
+              style: sdkFigTreeTextTheme.bodyLarge?.w700.textColor(
+                SemanticsColors.light().info.darker,
               ),
             ),
           ),
@@ -79,11 +80,11 @@ class _StepTile extends StatelessWidget {
       RichText(
         text: CustomTextSpan.semantics(
           text: text1,
-          style: context.bodyLarge,
+          style: sdkFigTreeTextTheme.bodyLarge,
           children: [
             CustomTextSpan.semantics(
               text: text2,
-              style: context.bodyLarge?.w700,
+              style: sdkFigTreeTextTheme.bodyLarge?.w700,
             ),
             CustomTextSpan.semantics(
               text: text3,

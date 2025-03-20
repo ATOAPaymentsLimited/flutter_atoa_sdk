@@ -1,5 +1,6 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/transaction_details_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -70,7 +71,7 @@ class CustomStatusContainer extends StatelessWidget {
                             child: SvgPicture.asset(
                               svgAsset,
                               colorFilter: ColorFilter.mode(
-                                context.intactColors.white,
+                                IntactColors.light().white,
                                 BlendMode.srcIn,
                               ),
                               height: size,
@@ -91,7 +92,7 @@ class CustomStatusContainer extends StatelessWidget {
                           Expanded(
                             child: CustomText.semantics(
                               status,
-                              style: context.bodyLarge?.w700,
+                              style: sdkFigTreeTextTheme.bodyLarge?.w700,
                             ),
                           ),
                         ],
@@ -113,7 +114,7 @@ class CustomStatusContainer extends StatelessWidget {
                           ),
                           child: CustomText.semantics(
                             context.l10n.callBank,
-                            style: context.bodyLarge?.w700.height150,
+                            style: sdkFigTreeTextTheme.bodyLarge?.w700.height150,
                           ),
                         ),
                       ],
@@ -135,6 +136,6 @@ class CustomStatusContainer extends StatelessWidget {
   ) =>
       CustomText.semantics(
         desc,
-        style: context.bodyMedium,
+        style: sdkFigTreeTextTheme.bodyMedium,
       );
 }

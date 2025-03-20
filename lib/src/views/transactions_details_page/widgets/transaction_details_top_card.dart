@@ -2,6 +2,7 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/highlighted_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -28,7 +29,7 @@ class TransactionDetailsTopCard extends StatelessWidget {
                 width: Spacing.xtraLarge.value * 2,
                 decoration: BoxDecoration(
                   borderRadius: Spacing.small.brAll,
-                  color: context.neutralColors.grey.shade200,
+                  color: NeutralColors.light().grey.shade200,
                 ),
                 child: Assets.icons.businessImg.svg(
                   height: Spacing.xtraLarge.value * 2,
@@ -47,12 +48,12 @@ class TransactionDetailsTopCard extends StatelessWidget {
                       children: [
                         CustomTextSpan.semantics(
                           text: context.l10n.to,
-                          style: context.bodyLarge,
+                          style: sdkFigTreeTextTheme.bodyLarge,
                         ),
                         const CustomTextSpan.semantics(text: ' '),
                         CustomTextSpan.semantics(
                           text: transactionDetails.merchantName,
-                          style: context.bodyLarge?.w700,
+                          style: sdkFigTreeTextTheme.bodyLarge?.w700,
                         ),
                       ],
                     ),
@@ -92,7 +93,7 @@ class TransactionDetailsTopCard extends StatelessWidget {
           children: [
             Assets.icons.locationOn.svg(
               colorFilter: ColorFilter.mode(
-                context.neutralColors.grey.shade400,
+                NeutralColors.light().grey.shade400,
                 BlendMode.srcIn,
               ),
               width: Spacing.xtraLarge.value,
@@ -101,8 +102,8 @@ class TransactionDetailsTopCard extends StatelessWidget {
             Spacing.small.xBox,
             CustomText.semantics(
               locationName,
-              style: context.labelSmall?.w700.textColor(
-                context.neutralColors.grey.shade400,
+              style: sdkFigTreeTextTheme.labelSmall?.w700.textColor(
+                NeutralColors.light().grey.shade400,
               ),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,

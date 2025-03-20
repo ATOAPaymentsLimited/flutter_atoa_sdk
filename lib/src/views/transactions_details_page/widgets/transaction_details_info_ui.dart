@@ -52,7 +52,7 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
         headerAlignment: ExpandablePanelHeaderAlignment.center,
         tapBodyToCollapse: true,
         hasIcon: false,
-        iconColor: context.neutralColors.grey.shade400,
+        iconColor: NeutralColors.light().grey.shade400,
         iconSize: Spacing.large.value * 2,
         tapHeaderToExpand: true,
         iconPadding: EdgeInsets.zero,
@@ -97,11 +97,11 @@ class _TransactionDetailsInfoUiState extends State<TransactionDetailsInfoUi> {
   ) =>
       DecoratedBox(
         decoration: BoxDecoration(
-          color: context.intactColors.white,
+          color: IntactColors.light().white,
           border: Border(
-            bottom: BorderSide(color: context.neutralColors.grey.shade200),
-            left: BorderSide(color: context.neutralColors.grey.shade200),
-            right: BorderSide(color: context.neutralColors.grey.shade200),
+            bottom: BorderSide(color: NeutralColors.light().grey.shade200),
+            left: BorderSide(color: NeutralColors.light().grey.shade200),
+            right: BorderSide(color: NeutralColors.light().grey.shade200),
           ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(

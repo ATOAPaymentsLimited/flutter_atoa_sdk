@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -65,21 +66,21 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
   Widget build(BuildContext context) => TextField(
         controller: widget.controller,
         keyboardType: TextInputType.text,
-        cursorColor: context.intactColors.black,
+        cursorColor: IntactColors.light().black,
         decoration: InputDecoration(
           isDense: true,
-          fillColor: context.neutralColors.grey.shade50,
+          fillColor: NeutralColors.light().grey.shade50,
           filled: true,
           disabledBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(100),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: context.neutralColors.grey.shade200),
+            borderSide: BorderSide(color: NeutralColors.light().grey.shade200),
             borderRadius: BorderRadius.circular(100),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: context.neutralColors.grey.shade200),
+            borderSide: BorderSide(color: NeutralColors.light().grey.shade200),
             borderRadius: BorderRadius.circular(100),
           ),
           contentPadding: Spacing.large.x + Spacing.small.y + Spacing.tiny.y,
@@ -87,7 +88,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
             padding: Spacing.small.all + Spacing.tiny.all,
             child: Assets.icons.search.svg(
               colorFilter: ColorFilter.mode(
-                context.intactColors.black,
+                IntactColors.light().black,
                 BlendMode.srcIn,
               ),
             ),
@@ -105,7 +106,7 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                   child: Icon(
                     Icons.clear_sharp,
                     size: 18.sp,
-                    color: context.intactColors.black,
+                    color: IntactColors.light().black,
                   ),
                 )
               : null,
@@ -113,8 +114,8 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
             children: [
               CustomText.semantics(
                 context.l10n.searchYour,
-                style: context.labelSmall?.w500.textColor(
-                  context.neutralColors.grey.shade500,
+                style: sdkFigTreeTextTheme.labelSmall?.w500.textColor(
+                  NeutralColors.light().grey.shade500,
                 ),
               ),
               Expanded(
@@ -132,8 +133,8 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                             _showPersonalBanks
                                 ? context.l10n.personalBanks
                                 : context.l10n.businessBanks,
-                            style: context.labelSmall?.w500.textColor(
-                              context.neutralColors.grey.shade500,
+                            style: sdkFigTreeTextTheme.labelSmall?.w500.textColor(
+                              NeutralColors.light().grey.shade500,
                             ),
                           ),
                         ),
@@ -149,8 +150,8 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                             !_showPersonalBanks
                                 ? context.l10n.personalBanks
                                 : context.l10n.businessBanks,
-                            style: context.labelSmall?.w500.textColor(
-                              context.neutralColors.grey.shade500,
+                            style: sdkFigTreeTextTheme.labelSmall?.w500.textColor(
+                              NeutralColors.light().grey.shade500,
                             ),
                           ),
                         ),
@@ -166,6 +167,6 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
         onChanged: (value) {
           context.read<BankInstitutionsController>().search(value.trim());
         },
-        style: context.labelSmall?.w600,
+        style: sdkFigTreeTextTheme.labelSmall?.w600,
       );
 }

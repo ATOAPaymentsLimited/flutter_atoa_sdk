@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/double_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -16,12 +17,12 @@ class HighlightedAmount extends StatelessWidget {
     final defaultContent = RichText(
       text: CustomTextSpan.semantics(
         text: beforeDecimal,
-        style: context.headlineMedium,
+        style: sdkFigTreeTextTheme.headlineMedium,
         children: [
           const CustomTextSpan.semantics(text: '.'),
           CustomTextSpan.semantics(
             text: afterDecimal,
-            style: context.headlineMedium?.w400,
+            style: sdkFigTreeTextTheme.headlineMedium?.w400,
           ),
         ],
       ),

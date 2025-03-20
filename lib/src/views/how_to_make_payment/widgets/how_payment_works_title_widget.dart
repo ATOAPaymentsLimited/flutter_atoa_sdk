@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -22,7 +23,7 @@ class HowPaymentWorksTitleWidget extends StatelessWidget {
             child: CustomText.semantics(
               context.l10n.howToPayWithBankApp,
               textAlign: TextAlign.center,
-              style: context.labelMedium?.w700.height130,
+              style: sdkFigTreeTextTheme.labelMedium?.w700.height130,
             ),
           ),
           Spacing.large.xBox,
@@ -34,7 +35,7 @@ class HowPaymentWorksTitleWidget extends StatelessWidget {
               height: Spacing.large.value,
               width: Spacing.large.value,
               colorFilter: ColorFilter.mode(
-                context.intactColors.black,
+                IntactColors.light().black,
                 BlendMode.srcIn,
               ),
             ),

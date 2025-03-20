@@ -2,6 +2,7 @@ import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/dotted_line_painter.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -22,10 +23,10 @@ class ReviewDetailsTile extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.all,
         decoration: BoxDecoration(
-          color: context.neutralColors.grey.shade50,
+          color: NeutralColors.light().grey.shade50,
           borderRadius: Spacing.medium.brAll,
           border: Border.all(
-            color: context.neutralColors.grey.shade200,
+            color: NeutralColors.light().grey.shade200,
           ),
         ),
         child: Row(
@@ -39,10 +40,10 @@ class ReviewDetailsTile extends StatelessWidget {
               Container(
                 padding: Spacing.small.all,
                 decoration: BoxDecoration(
-                  color: context.intactColors.white,
+                  color: IntactColors.light().white,
                   borderRadius: Spacing.small.brAll,
                   border: Border.all(
-                    color: context.neutralColors.grey.shade100,
+                    color: NeutralColors.light().grey.shade100,
                   ),
                 ),
                 child: _getIcon(context),
@@ -54,15 +55,15 @@ class ReviewDetailsTile extends StatelessWidget {
                 children: [
                   CustomText.semantics(
                     !isBankInfo ? context.l10n.payingTo : context.l10n.from,
-                    style: context.bodyMedium?.textColor(
-                      context.neutralColors.grey.shade600,
+                    style: sdkFigTreeTextTheme.bodyMedium?.textColor(
+                      NeutralColors.light().grey.shade600,
                     ),
                   ),
                   CustomText.semantics(
                     !isBankInfo
                         ? state.paymentDetails?.merchantBusinessName ?? ''
                         : state.selectedBank?.name ?? '',
-                    style: context.bodyLarge?.w700,
+                    style: sdkFigTreeTextTheme.bodyLarge?.w700,
                   ),
                 ],
               ),
@@ -79,8 +80,8 @@ class ReviewDetailsTile extends StatelessWidget {
                   children: [
                     CustomText.semantics(
                       context.l10n.change,
-                      style: context.bodyLarge?.w700.textColor(
-                        context.brandColors.primary.shade500,
+                      style: sdkFigTreeTextTheme.bodyLarge?.w700.textColor(
+                        BrandColors.light().primary.shade500,
                       ),
                     ),
                     CustomPaint(
@@ -91,7 +92,7 @@ class ReviewDetailsTile extends StatelessWidget {
                         1,
                       ),
                       painter: DottedLinePainter(
-                        color: context.brandColors.primary.shade500,
+                        color: BrandColors.light().primary.shade500,
                       ),
                     ),
                   ],
@@ -107,7 +108,7 @@ class ReviewDetailsTile extends StatelessWidget {
                           currencySymbol: context.l10n.currencySymbol,
                         ) ??
                     '',
-                style: context.titleSmall?.w700,
+                style: sdkFigTreeTextTheme.titleSmall?.w700,
               ),
           ],
         ),
@@ -125,7 +126,7 @@ class ReviewDetailsTile extends StatelessWidget {
         return Icon(
           Icons.account_balance_outlined,
           size: Spacing.xtraLarge.value + Spacing.tiny.value,
-          color: context.intactColors.black,
+          color: IntactColors.light().black,
         );
       }
     } else {

@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -17,14 +18,14 @@ class DetailRow extends StatelessWidget {
         children: [
           CustomText.semantics(
             label,
-            style: context.bodyMedium,
+            style: sdkFigTreeTextTheme.bodyMedium,
           ),
           Spacing.small.xBox,
           Expanded(
             flex: 7,
             child: CustomText.semantics(
               value,
-              style: context.bodyLarge,
+              style: sdkFigTreeTextTheme.bodyLarge,
               textAlign: TextAlign.right,
             ),
           ),

@@ -17,7 +17,7 @@ class ContinueButton extends StatelessWidget {
     trackLabel: 'I understand cotinue Button',
     semanticsLabel: context.l10n.iUnderstandContinue,
     style: ElevatedButton.styleFrom(
-      textStyle: context.bodyLarge?.w700,
+      textStyle: Theme.of(context).textTheme.bodyLarge?.w700,
     ),
     backgroundColor: BrandingColorUtility.brandingBackgroundColor,
     foregroundColor: BrandingColorUtility.brandingForegroundColor,

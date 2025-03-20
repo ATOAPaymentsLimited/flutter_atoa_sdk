@@ -21,7 +21,7 @@ class HelpIconButton extends StatelessWidget {
           height: Spacing.large.value,
           width: Spacing.large.value,
           colorFilter: ColorFilter.mode(
-            context.neutralColors.grey.shade600,
+            NeutralColors.light().grey.shade600,
             BlendMode.srcIn,
           ),
         ),

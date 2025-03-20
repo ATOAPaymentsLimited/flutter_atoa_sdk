@@ -26,7 +26,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
       txnDetails.status.mapOrNull(
         completed: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: context.positive.darker,
+          iconBgColor: SemanticsColors.light().positive.darker,
           svgAsset: Assets.icons.iconTick.path,
           size: Spacing.large.value,
           status: context.l10n.paid,
@@ -36,7 +36,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         ),
         pending: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: context.error.defaultColor,
+          iconBgColor: SemanticsColors.light().error.defaultColor,
           svgAsset: Assets.gifs.processing.path,
           isLottie: true,
           status: context.l10n.processing,
@@ -47,7 +47,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         ),
         failed: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: context.negative.defaultColor,
+          iconBgColor: SemanticsColors.light().negative.defaultColor,
           svgAsset: Assets.icons.close.path,
           status: context.l10n.failed,
           dateTime:
@@ -56,7 +56,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         ),
         refunded: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: context.info.defaultColor,
+          iconBgColor: SemanticsColors.light().info.defaultColor,
           svgAsset: Assets.icons.iconRefunded.path,
           status: context.l10n.paymentRefunded,
           desc: context.l10n.paymentRefundedDesc,
@@ -65,7 +65,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         ),
         awaitingAuthorization: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: context.error.defaultColor,
+          iconBgColor: SemanticsColors.light().error.defaultColor,
           svgAsset: Assets.gifs.processing.path,
           isLottie: true,
           status: context.l10n.awaitingAuth,
@@ -75,7 +75,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         ),
         cancelled: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: context.negative.defaultColor,
+          iconBgColor: SemanticsColors.light().negative.defaultColor,
           svgAsset: Assets.icons.close.path,
           status: 'Cancelled',
           desc: txnDetails.errorMessage ?? context.l10n.paymentCancelledDesc,
@@ -84,7 +84,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
         ),
         expired: (value) => CustomStatusContainer(
           transactionDetails: transactionDetails,
-          iconBgColor: context.neutralColors.grey.shade600,
+          iconBgColor: NeutralColors.light().grey.shade600,
           svgAsset: Assets.icons.iconExclamation.path,
           status: context.l10n.expired,
           dateTime:
@@ -92,7 +92,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           desc: txnDetails.errorMessage ?? context.l10n.paymentExpiredDesc,
         ),
         unknown: (value) => CustomStatusContainer(
-          iconBgColor: context.neutralColors.grey.shade600,
+          iconBgColor: NeutralColors.light().grey.shade600,
           transactionDetails: transactionDetails,
           svgAsset: Assets.icons.iconExclamation.path,
           status: value.status ?? context.l10n.unknown,

@@ -2,6 +2,7 @@ import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -52,7 +53,7 @@ class BankGridItem extends StatelessWidget {
                         top: Spacing.mini.value,
                         child: CircleAvatar(
                           radius: Spacing.small.value,
-                          backgroundColor: context.intactColors.black,
+                          backgroundColor: IntactColors.light().black,
                           child: Assets.icons.iconTick.svg(
                             height: Spacing.mini.value + Spacing.tiny.value,
                           ),
@@ -67,8 +68,8 @@ class BankGridItem extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: isSelectedBank
-                              ? context.intactColors.black
-                              : context.neutralColors.grey.shade100,
+                              ? IntactColors.light().black
+                              : NeutralColors.light().grey.shade100,
                           width: isSelectedBank ? 2 : 1.5,
                         ),
                         borderRadius: Spacing.medium.brAll,
@@ -82,7 +83,7 @@ class BankGridItem extends StatelessWidget {
                           : Icon(
                               Icons.account_balance_outlined,
                               size: Spacing.xtraLarge.value * 2,
-                              color: context.intactColors.black,
+                              color: IntactColors.light().black,
                             ),
                     ),
                   ],
@@ -91,9 +92,9 @@ class BankGridItem extends StatelessWidget {
                 CustomText.semantics(
                   bank.name,
                   style: isSelectedBank
-                      ? context.bodyMedium?.w700
-                      : context.bodyMedium?.w500.textColor(
-                          context.neutralColors.grey.shade700,
+                      ? sdkFigTreeTextTheme.bodyMedium?.w700
+                      : sdkFigTreeTextTheme.bodyMedium?.w500.textColor(
+                          NeutralColors.light().grey.shade700,
                         ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

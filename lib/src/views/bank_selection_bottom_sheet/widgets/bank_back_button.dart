@@ -15,7 +15,7 @@ class BankBackButton extends StatelessWidget {
           height: Spacing.large.value,
           width: Spacing.large.value,
           colorFilter: ColorFilter.mode(
-            context.baseColors.black,
+            BaseColors.light().black,
             BlendMode.srcIn,
           ),
         ),

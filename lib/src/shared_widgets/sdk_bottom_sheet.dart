@@ -1,5 +1,6 @@
 import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -29,7 +30,7 @@ Future<T?> showSdkBottomSheet<T>({
         body: body,
       ),
       isScrollControlled: true,
-      backgroundColor: context.intactColors.white,
+      backgroundColor: IntactColors.light().white,
       enableDrag: enableDrag,
       isDismissible: isDismissible,
       shape: RoundedRectangleBorder(
@@ -71,7 +72,7 @@ class SdkBottomSheet extends StatefulWidget {
 class _SdkBottomSheetState extends State<SdkBottomSheet> {
   @override
   Widget build(BuildContext context) => Theme(
-        data: context.ledgerTheme,
+        data: sdkLedgerTheme,
         child: AnimatedContainer(
           duration: kAnimationDuration,
           child: DecoratedBox(
@@ -80,7 +81,7 @@ class _SdkBottomSheetState extends State<SdkBottomSheet> {
                 topLeft: Radius.circular(Spacing.xtraLarge.value),
                 topRight: Radius.circular(Spacing.xtraLarge.value),
               ),
-              color: context.intactColors.white,
+              color: IntactColors.light().white,
             ),
             child: Padding(
               padding: widget.padding,
@@ -93,7 +94,7 @@ class _SdkBottomSheetState extends State<SdkBottomSheet> {
                       width: Spacing.huge.value * 2 + Spacing.tiny.value,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Spacing.mini.value),
-                        color: context.neutralColors.grey.shade200,
+                        color: NeutralColors.light().grey.shade200,
                       ),
                     ),
                     Spacing.medium.yBox,
@@ -113,7 +114,7 @@ class _SdkBottomSheetState extends State<SdkBottomSheet> {
                           child: CustomText.semantics(
                             widget.title,
                             textAlign: widget.titleAlign ?? TextAlign.center,
-                            style: context.labelMedium?.w700.height130,
+                            style: sdkFigTreeTextTheme.labelMedium?.w700.height130,
                           ),
                         ),
                         Spacing.large.xBox,
@@ -128,7 +129,7 @@ class _SdkBottomSheetState extends State<SdkBottomSheet> {
                           child: Icon(
                             Icons.close,
                             size: Spacing.large.value,
-                            color: context.intactColors.black,
+                            color: IntactColors.light().black,
                           ),
                         ),
                       ],

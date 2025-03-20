@@ -1,4 +1,5 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_terms_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -23,24 +24,24 @@ class AtoaTermAndServiceWidget extends StatelessWidget {
             child: RichText(
               text: CustomTextSpan.semantics(
                 text: context.l10n.atoaTerms,
-                style: context.bodySmall
+                style: sdkFigTreeTextTheme.bodySmall
                     ?.textColor(
-                      context.neutralColors.grey.shade500,
+                      NeutralColors.light().grey.shade500,
                     )
                     .w600,
                 children: [
                   CustomTextSpan.semantics(
                     text: context.l10n.and,
-                    style: context.bodySmall?.textColor(
-                      context.neutralColors.grey.shade500,
+                    style: sdkFigTreeTextTheme.bodySmall?.textColor(
+                      NeutralColors.light().grey.shade500,
                     ),
                   ),
                   const CustomTextSpan.semantics(text: ' '),
                   CustomTextSpan.semantics(
                     text: context.l10n.privacyPolicy,
-                    style: context.bodySmall
+                    style: sdkFigTreeTextTheme.bodySmall
                         ?.textColor(
-                          context.neutralColors.grey.shade500,
+                          NeutralColors.light().grey.shade500,
                         )
                         .w600,
                   ),

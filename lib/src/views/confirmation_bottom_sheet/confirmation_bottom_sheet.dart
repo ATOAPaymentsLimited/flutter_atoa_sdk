@@ -85,7 +85,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
 
   @override
   Widget build(BuildContext context) => Theme(
-        data: ledgerTheme(context),
+        data: sdkLedgerTheme,
         child: MultiProvider(
           providers: [
             StreamProvider<ConnectivityStatus>.value(
@@ -155,7 +155,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                     Spacing.small.yBox,
                     LedgerButton.primary2(
                       style: ElevatedButton.styleFrom(
-                        textStyle: context.bodyLarge?.w700,
+                        textStyle: sdkFigTreeTextTheme.bodyLarge?.w700,
                       ),
                       size: LedgerButtonSize.xtraLarge,
                       semanticsLabel:

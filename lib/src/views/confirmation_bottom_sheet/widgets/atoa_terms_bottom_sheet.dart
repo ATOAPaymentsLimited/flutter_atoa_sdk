@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -15,8 +16,8 @@ class AtoaTermsBottomSheet extends StatelessWidget {
   ) =>
       showSdkBottomSheet<void>(
         context: context,
-        titleStyle: context.labelMedium?.w700.textColor(
-          context.neutralColors.grey.shade700,
+        titleStyle: sdkFigTreeTextTheme.labelMedium?.w700.textColor(
+          NeutralColors.light().grey.shade700,
         ),
         titleAlign: TextAlign.left,
         enableDrag: true,
@@ -46,8 +47,8 @@ class AtoaTermsBottomSheet extends StatelessWidget {
             Spacing.large.yBox * 2,
             CustomText.semantics(
               context.l10n.atoaYapilyText,
-              style: context.bodyMedium
-                  ?.textColor(context.neutralColors.grey.shade600),
+              style: sdkFigTreeTextTheme.bodyMedium
+                  ?.textColor(NeutralColors.light().grey.shade600),
             ),
           ],
         ),

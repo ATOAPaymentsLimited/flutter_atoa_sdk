@@ -1,6 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,6 +22,7 @@ class BankListItem extends StatelessWidget {
   Widget build(BuildContext context) => CustomInkWell(
         context: context,
         semanticsLabel: '$bank Tile',
+        enableTracking: false,
         trackLabel: '$bank Tile',
         child: Padding(
           padding: Spacing.large.y,
@@ -31,7 +33,7 @@ class BankListItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: Spacing.mini.brAll + Spacing.tiny.brAll,
                   border:
-                      Border.all(color: context.neutralColors.grey.shade100),
+                      Border.all(color: NeutralColors.light().grey.shade100),
                 ),
                 child: bank.bankIcon != null
                     ? CachedNetworkImage(
@@ -42,7 +44,7 @@ class BankListItem extends StatelessWidget {
                     : Icon(
                         Icons.account_balance_outlined,
                         size: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
-                        color: context.intactColors.black,
+                        color: IntactColors.light().black,
                       ),
               ),
               Spacing.medium.xBox,
@@ -52,9 +54,9 @@ class BankListItem extends StatelessWidget {
                     Flexible(
                       child: CustomText.semantics(
                         bank.name,
-                        style: context.bodyLarge
+                        style: sdkFigTreeTextTheme.bodyLarge
                             ?.textColor(
-                              context.neutralColors.grey.shade700,
+                              NeutralColors.light().grey.shade700,
                             )
                             .w500,
                         overflow: TextOverflow.ellipsis,
@@ -85,14 +87,14 @@ class BankListItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: context.read<BankInstitutionsState>().selectedBank ==
                             bank
-                        ? context.intactColors.black
-                        : context.intactColors.white,
+                        ? IntactColors.light().black
+                        : IntactColors.light().white,
                     border: Border.all(
                       color:
                           context.read<BankInstitutionsState>().selectedBank ==
                                   bank
-                              ? context.intactColors.black
-                              : context.neutralColors.grey.shade300,
+                              ? IntactColors.light().black
+                              : NeutralColors.light().grey.shade300,
                       width: 1.5,
                     ),
                     borderRadius: Spacing.medium.brAll,

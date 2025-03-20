@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/custom_switcher.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
@@ -30,10 +31,10 @@ class BankTabBar extends StatelessWidget {
                         CustomText.semantics(
                           e.toText(context),
                           style: e.index == tabController.index
-                              ? context.labelSmall?.w700
-                                  .textColor(context.intactColors.black)
-                              : context.labelSmall?.w500.textColor(
-                                  context.neutralColors.grey.shade600,
+                              ? sdkFigTreeTextTheme.labelSmall?.w700
+                                  .textColor(IntactColors.light().black)
+                              : sdkFigTreeTextTheme.labelSmall?.w500.textColor(
+                                  NeutralColors.light().grey.shade600,
                                 ),
                         ),
                       ),

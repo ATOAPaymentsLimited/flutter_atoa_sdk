@@ -4,6 +4,7 @@ import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/animated_search_field.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_list_item.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_title_widget.dart';
@@ -97,8 +98,8 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                       else if (state.bankList.isEmpty) ...[
                         CustomText.semantics(
                           context.l10n.results,
-                          style: context.bodyMedium?.w700.textColor(
-                            context.neutralColors.grey.shade500,
+                          style: sdkFigTreeTextTheme.bodyMedium?.w700.textColor(
+                            NeutralColors.light().grey.shade500,
                           ),
                         ),
                         Expanded(
@@ -118,8 +119,8 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                         Spacing.xtraLarge.yBox,
                         CustomText.semantics(
                           context.l10n.results,
-                          style: context.bodyMedium?.w700.textColor(
-                            context.neutralColors.grey.shade500,
+                          style: sdkFigTreeTextTheme.bodyMedium?.w700.textColor(
+                            NeutralColors.light().grey.shade500,
                           ),
                         ),
                         Expanded(

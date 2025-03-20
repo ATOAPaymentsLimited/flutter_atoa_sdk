@@ -7,7 +7,7 @@ class EmptyIconPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) => CircleAvatar(
       radius: Spacing.large.value,
-      backgroundColor: context.neutralColors.grey.shade50,
+      backgroundColor: NeutralColors.light().grey.shade50,
     );
 }
 
@@ -34,7 +34,7 @@ class BottomSheetAction extends StatelessWidget {
         enableTracking: false,
         child: CircleAvatar(
           radius: Spacing.large.value,
-          backgroundColor: context.neutralColors.grey.shade50,
+          backgroundColor: NeutralColors.light().grey.shade50,
           child: child,
         ),
       );

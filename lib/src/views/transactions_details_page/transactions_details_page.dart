@@ -8,6 +8,7 @@ import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/widgets.dart';
@@ -44,8 +45,8 @@ class TransactionDetailsPage extends StatelessWidget {
                       CustomText.semantics(
                         context.l10n.paymentDetails,
                         textAlign: TextAlign.center,
-                        style: context.bodyLarge?.w700.height130.textColor(
-                          context.neutralColors.grey.shade500,
+                        style: sdkFigTreeTextTheme.bodyLarge?.w700.height130.textColor(
+                          NeutralColors.light().grey.shade500,
                         ),
                       ),
                       if (transactionDetails.updatedAt != null)
@@ -55,7 +56,7 @@ class TransactionDetailsPage extends StatelessWidget {
                             transactionDetails.updatedAt!
                                 .formattedDateForPaymentDetails(context),
                           ),
-                          style: context.bodyLarge?.w700,
+                          style: sdkFigTreeTextTheme.bodyLarge?.w700,
                         )
                       else
                         CustomText.semantics(
@@ -64,7 +65,7 @@ class TransactionDetailsPage extends StatelessWidget {
                             transactionDetails.createdAt
                                 .formattedDateForPaymentDetails(context),
                           ),
-                          style: context.bodyLarge?.w700,
+                          style: sdkFigTreeTextTheme.bodyLarge?.w700,
                         ),
                     ],
                   ),
@@ -83,7 +84,7 @@ class TransactionDetailsPage extends StatelessWidget {
                   child: Icon(
                     Icons.close,
                     size: Spacing.large.value,
-                    color: context.intactColors.black,
+                    color: IntactColors.light().black,
                   ),
                 ),
               ],

@@ -125,8 +125,8 @@ class ActionButton extends StatelessWidget {
         valueListenable: controller,
         child: Text(
           'Initiate Payment',
-          style: context.montserrat.headlineSmall.copyWith(
-            color: RegalColors.snowWhite,
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            color: IntactColors.light().white,
           ),
         ),
         builder: (context, value, child) {

@@ -60,20 +60,20 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
                 padding: Spacing.medium.all,
                 margin: Spacing.large.x + Spacing.huge.y,
                 decoration: BoxDecoration(
-                    color: context.grey.shade05,
+                    color: NeutralColors.light().grey.shade50,
                     borderRadius: BorderRadius.circular(12.0)),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.signal_wifi_connected_no_internet_4,
-                      color: context.regalColor.licoriceBlack,
+                      color: RegalColors.licoriceBlack,
                     ),
                     Spacing.medium.xBox,
                     Expanded(
                       child: CustomText.semantics(
                         'No internet connection',
-                        style: context.titleSmall?.height150.textColor(
-                          context.regalColor.licoriceBlack,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: RegalColors.licoriceBlack,
                         ),
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -21,15 +22,15 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: Spacing.medium.x + Spacing.small.y,
         decoration: BoxDecoration(
-          color: context.intactColors.white,
+          color: IntactColors.light().white,
           border: isExpanded
               ? Border(
-                  top: BorderSide(color: context.neutralColors.grey.shade200),
-                  left: BorderSide(color: context.neutralColors.grey.shade200),
-                  right: BorderSide(color: context.neutralColors.grey.shade200),
+                  top: BorderSide(color: NeutralColors.light().grey.shade200),
+                  left: BorderSide(color: NeutralColors.light().grey.shade200),
+                  right: BorderSide(color: NeutralColors.light().grey.shade200),
                 )
               : Border.all(
-                  color: context.neutralColors.grey.shade200,
+                  color: NeutralColors.light().grey.shade200,
                 ),
           borderRadius: isExpanded
               ? BorderRadius.only(
@@ -49,14 +50,14 @@ class CollapsedPaymentDetailsWidget extends StatelessWidget {
               children: [
                 Assets.icons.bill.svg(
                   colorFilter: ColorFilter.mode(
-                    context.intactColors.black,
+                    IntactColors.light().black,
                     BlendMode.srcIn,
                   ),
                 ),
                 Spacing.small.xBox,
                 CustomText.semantics(
                   context.l10n.paymentDetails,
-                  style: context.bodyLarge?.w600,
+                  style: sdkFigTreeTextTheme.bodyLarge?.w600,
                 ),
               ],
             ),

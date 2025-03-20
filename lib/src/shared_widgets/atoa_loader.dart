@@ -66,8 +66,8 @@ class SDKLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
         child: Shimmer.fromColors(
-          baseColor: context.brandColors.primary.shade500,
-          highlightColor: context.intactColors.white,
+          baseColor: BrandColors.light().primary.shade500,
+          highlightColor: IntactColors.light().white,
           child: Assets.icons.atoaLogo.svg(),
         ),
       );

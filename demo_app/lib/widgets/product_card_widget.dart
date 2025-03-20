@@ -15,7 +15,7 @@ class ProductCardWidget extends StatelessWidget {
         padding: Spacing.medium.all,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(Spacing.large.value),
-            border: Border.all(color: context.grey.shade10)),
+            border: Border.all(color: NeutralColors.light().grey.shade10)),
         child: Row(
           children: [
             Image.asset(
@@ -34,7 +34,7 @@ class ProductCardWidget extends StatelessWidget {
                   children: [
                     CustomText.semantics(
                       name,
-                      style: context.labelSmall!
+                      style: Theme.of(context).textTheme.labelSmall!
                           .copyWith(fontWeight: FontWeight.w600, height: 1.5),
                     ),
                     Spacing.large.xBox * 2,
@@ -49,7 +49,7 @@ class ProductCardWidget extends StatelessWidget {
                 Spacing.tiny.yBox,
                 CustomText.semantics(
                   '£1.0',
-                  style: context.bodyLarge!.copyWith(
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w600,
                     height: 1.5,
                     color: const Color.fromRGBO(73, 80, 87, 1),
@@ -79,7 +79,7 @@ class ProductCardWidget extends StatelessWidget {
                             child: CustomText.semantics(
                           '1',
                           textAlign: TextAlign.center,
-                          style: context.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         )),
                         Expanded(
                             child: InkWell(

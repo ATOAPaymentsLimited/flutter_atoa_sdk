@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
@@ -49,7 +50,7 @@ class _FailureListenerState<T extends StateNotifier<S>, S>
               backgroundColor: RegalColors.darkOrange,
               content: Text(
                 message,
-                style: context.headlineSmall!.copyWith(
+                style: sdkFigTreeTextTheme.headlineSmall!.copyWith(
                   color: Colors.white,
                   fontSize: 14.sp,
                   fontFamily: 'Montserrat',

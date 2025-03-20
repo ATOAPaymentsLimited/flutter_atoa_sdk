@@ -37,11 +37,11 @@ class CustomSwitcher<T> extends StatelessWidget {
             onValueChanged: onValueChanged,
             initialValue: initialValue,
             decoration: BoxDecoration(
-              color: context.neutralColors.grey.shade50,
+              color: NeutralColors.light().grey.shade50,
               borderRadius: BorderRadius.circular(Spacing.medium.value),
             ),
             thumbDecoration: BoxDecoration(
-              color: context.intactColors.white,
+              color: IntactColors.light().white,
               borderRadius: Spacing.small.brAll + Spacing.tiny.brAll,
             ),
           ),

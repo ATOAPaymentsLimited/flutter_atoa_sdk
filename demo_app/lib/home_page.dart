@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                     children: [
                       CustomText.semantics(
                         '2 items',
-                        style: context.bodyLarge!.copyWith(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: const Color.fromRGBO(73, 80, 87, 1),
                         ),
@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                         color: const Color.fromRGBO(255, 249, 219, 1),
                         child: CustomText.semantics(
                           'Arrives by April 3rd to April 9th',
-                          style: context.bodyMedium!.copyWith(
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: const Color.fromRGBO(73, 80, 87, 1),
                           ),
                         ),
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                     children: [
                       CustomText.semantics(
                         'Pay Using',
-                        style: context.labelSmall!.copyWith(
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Montserrat',
                         ),
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                       Spacing.medium.xBox,
                       CustomText.semantics(
                         'Atoa - Instant Bank Pay',
-                        style: context.bodyLarge!,
+                        style: Theme.of(context).textTheme.bodyLarge!,
                       )
                     ],
                   ),
