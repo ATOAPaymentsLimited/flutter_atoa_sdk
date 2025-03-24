@@ -72,6 +72,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         isLoading: false,
       );
     } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
       state = state.copyWith(error: e, isLoading: false);
     } on Exception catch (e) {
       state = state.copyWith(error: e, isLoading: false);
@@ -101,6 +102,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         paymentRes.merchantThemeDetails?.foregroundColor,
       );
     } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
       state = state.copyWith(
         paymentDetails: null,
         error: e,
@@ -127,6 +129,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         isLoading: false,
       );
     } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
       state = state.copyWith(error: e, isLoading: false);
     } on Exception catch (e) {
       state = state.copyWith(error: e, isLoading: false);
@@ -238,6 +241,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
       state = state.copyWith(paymentAuth: paymentAuth);
     } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
       state = state.copyWith(
         selectedBank: null,
         paymentAuth: null,

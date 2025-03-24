@@ -35,10 +35,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i182.Atoa>(() => appModule.atoa);
     gh.lazySingleton<_i630.ConnectivityController>(() =>
         _i630.ConnectivityController(connectivity: gh<_i895.Connectivity>()));
-    gh.factory<_i333.PaymentStatusController>(
-        () => _i333.PaymentStatusController(atoa: gh<_i182.Atoa>()));
     gh.factory<_i493.BankInstitutionsController>(
         () => _i493.BankInstitutionsController(atoa: gh<_i182.Atoa>()));
+    gh.factory<_i333.PaymentStatusController>(
+        () => _i333.PaymentStatusController(atoa: gh<_i182.Atoa>()));
     return this;
   }
 }

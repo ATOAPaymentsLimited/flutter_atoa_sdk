@@ -72,7 +72,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
                   ),
                 )
               : TransactionDetailsPage(
-                  transactionDetails: paymentStatusState.details!,
+                  paymentDetails: paymentStatusState.details!,
                 ),
         ),
       );

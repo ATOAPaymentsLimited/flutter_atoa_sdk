@@ -28,7 +28,9 @@ mixin _$BankInstitutionsState {
   Exception? get bankAuthError => throw _privateConstructorUsedError;
   bool get showHowPaymentWorks => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BankInstitutionsStateCopyWith<BankInstitutionsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,6 +70,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,6 +135,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BankInstitutionCopyWith<$Res>? get selectedBank {
@@ -143,6 +149,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentRequestDataCopyWith<$Res>? get paymentDetails {
@@ -155,6 +163,8 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentAuthResponseCopyWith<$Res>? get paymentAuth {
@@ -207,6 +217,8 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
       $Res Function(_$BankInstitutionsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -390,7 +402,9 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       bankAuthError,
       showHowPaymentWorks);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BankInstitutionsStateImplCopyWith<_$BankInstitutionsStateImpl>
@@ -435,8 +449,11 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   Exception? get bankAuthError;
   @override
   bool get showHowPaymentWorks;
+
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BankInstitutionsStateImplCopyWith<_$BankInstitutionsStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

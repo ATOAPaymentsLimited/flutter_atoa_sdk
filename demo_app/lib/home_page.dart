@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
       },
       builder: (context, child) => ConnectivityWrapper(
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             leading: Icon(
               Icons.arrow_back_ios,
@@ -41,18 +42,19 @@ class HomePage extends StatelessWidget {
                       CustomText.semantics(
                         '2 items',
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: const Color.fromRGBO(73, 80, 87, 1),
-                        ),
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromRGBO(73, 80, 87, 1),
+                            ),
                       ),
                       Container(
                         padding: Spacing.large.x + Spacing.small.y,
                         color: const Color.fromRGBO(255, 249, 219, 1),
                         child: CustomText.semantics(
                           'Arrives by April 3rd to April 9th',
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: const Color.fromRGBO(73, 80, 87, 1),
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: const Color.fromRGBO(73, 80, 87, 1),
+                                  ),
                         ),
                       ),
                     ],
@@ -72,9 +74,9 @@ class HomePage extends StatelessWidget {
                       CustomText.semantics(
                         'Pay Using',
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat',
-                        ),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                            ),
                       ),
                     ],
                   ),

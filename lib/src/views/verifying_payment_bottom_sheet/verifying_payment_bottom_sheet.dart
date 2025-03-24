@@ -120,7 +120,8 @@ class _VerifyingPaymentBottomSheetState
         data: sdkLedgerTheme,
         child: StreamProvider<ConnectivityStatus>.value(
           initialData: ConnectivityStatus.waiting,
-          value: widget.connectivityController.connectionStatusController.stream,
+          value:
+              widget.connectivityController.connectionStatusController.stream,
           builder: (context, child) => Consumer<PaymentStatusState>(
             builder: (_, paymentState, __) => AnimatedContainer(
               duration: kAnimationDuration,
@@ -162,7 +163,7 @@ class _VerifyingPaymentBottomSheetState
                             ),
                           );
                         }
-        
+
                         return VerifyingPaymentView(
                           bankIcon: bankInstitutionState.selectedBank?.bankIcon,
                         );

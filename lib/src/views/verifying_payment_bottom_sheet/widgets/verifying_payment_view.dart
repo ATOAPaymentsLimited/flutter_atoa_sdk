@@ -3,6 +3,7 @@ import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
+import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,7 @@ class VerifyingPaymentView extends StatelessWidget {
                 semanticsLabel: 'Close Dialog Sheet Icon',
                 trackLabel: 'Close Dialog Sheet Icon',
                 onTap: () {
+                  PaymentUtility.onUserClose?.call(PaymentUtility.paymentId);
                   context.read<PaymentStatusController>().stop();
                   Navigator.pop(
                     context,
