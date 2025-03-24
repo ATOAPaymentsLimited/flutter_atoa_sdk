@@ -73,7 +73,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                   CustomText.semantics(
                     'Total',
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: NeutralColors.light().grey.shade50,
+                      color: NeutralColors.light().grey.shade800,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -107,6 +107,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                             !value && !connectivityStatus.isOfflineOrWaiting,
                         loading: value,
                         style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
                           backgroundColor:
                               const Color.fromRGBO(52, 152, 219, 1),
                           shape: RoundedRectangleBorder(
