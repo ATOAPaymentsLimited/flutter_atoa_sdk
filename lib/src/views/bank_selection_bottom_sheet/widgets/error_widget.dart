@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,18 @@ class AtoaErrorWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Assets.icons.iconError.svg(
+              height: Spacing.xtraLarge.value * 2,
+              width: Spacing.xtraLarge.value * 2,
+              colorFilter: ColorFilter.mode(
+                NeutralColors.light().grey.shade600,
+                BlendMode.srcIn,
+              ),
+            ),
+            Spacing.huge.yBox,
             CustomText.semantics(
               context.l10n.oopsSomethingWentWrong,
-              style: sdkFigTreeTextTheme.labelSmall?.w700.copyWith(
+              style: sdkFigTreeTextTheme.titleSmall?.w700.copyWith(
                 color: IntactColors.light().black,
               ),
             ),

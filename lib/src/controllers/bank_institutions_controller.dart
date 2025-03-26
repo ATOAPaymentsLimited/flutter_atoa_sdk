@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
+import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
@@ -257,6 +258,26 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(isLoadingAuth: false);
     }
     await checkBankAppAvailability();
+  }
+
+  Future<void> getSavedBank(String customerId) async {
+    try {
+      final savedBankDetails =
+          await callServer(() => atoa.getSavedBank(customerId));
+
+      state = state.copyWith(savedBankDetails: savedBankDetails);
+    } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
+      state = state.copyWith(
+        error: e,
+      );
+    } on Exception catch (e) {
+      state = state.copyWith(
+        error: e,
+      );
+    } finally {
+      state = state.copyWith(isLoading: false);
+    }
   }
 
   void resetAppInstalled() {

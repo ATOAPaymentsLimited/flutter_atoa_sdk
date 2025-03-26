@@ -1652,5 +1652,17 @@
         }
     },
     "noInternetConnection": "Oops! No internet connection",
-    "serverNotReachable": "Server is not reachable. Please check your internet connection and try again"
+    "serverNotReachable": "Server is not reachable. Please check your internet connection and try again",
+    "poweredByAtoa": "Powered by Atoa",
+    "payBy": "Pay by {name}",
+    "@payBy": {
+        "placeholders": {
+            "name": {
+                "type": "String",
+                "example": "time"
+            }
+        }
+    },
+    "bankAppText": "bank app",
+    "bankLimitText": "Some banks listed below might not handle the payments of "
 }

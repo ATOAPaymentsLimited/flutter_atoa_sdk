@@ -18,7 +18,7 @@ class NoResultFoundWidget extends StatelessWidget {
           children: [
             CustomText.semantics(
               context.l10n.noResults,
-              style: sdkFigTreeTextTheme.labelSmall?.w700.copyWith(
+              style: sdkFigTreeTextTheme.titleSmall?.w700.copyWith(
                 color: IntactColors.light().black,
               ),
             ),

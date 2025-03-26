@@ -41,6 +41,10 @@ class BankSelectionBottomSheet extends StatefulWidget {
         isScrollControlled: true,
         enableDrag: false,
         isDismissible: false,
+        transitionAnimationController: AnimationController(
+          vsync: Navigator.of(context),
+          duration: const Duration(milliseconds: 500),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(Spacing.xtraLarge.value),
@@ -74,8 +78,9 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
     bankInstitutionsController.showHowPaymentWorks = widget.showHowPaymentWorks;
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await bankInstitutionsController.fetchBanks();
       await bankInstitutionsController.getPaymentDetails();
+
+      await bankInstitutionsController.fetchBanks();
     });
   }
 
@@ -128,29 +133,37 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                   ),
                   child: Padding(
                     padding: Spacing.large.all,
-                    child: state.showHowPaymentWorks
-                        ? const ConnectivityWrapper(
-                            child: HowToMakePaymentView(),
-                          )
-                        : AnimatedPadding(
-                            duration: kAnimationDuration,
-                            padding: EdgeInsets.only(
-                              bottom: isKeyboardVisible
-                                  ? MediaQuery.of(context).viewInsets.bottom
-                                  : 0,
-                            ),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints.loose(
-                                Size(1.sw, isKeyboardVisible ? 0.5.sh : 0.9.sh),
-                              ),
-                              child: ConnectivityWrapper(
-                                child: BankSelectionView(
-                                  tabController: _tabController,
-                                  searchController: _searchController,
-                                ),
-                              ),
+                    child: AnimatedCrossFade(
+                      duration: kAnimationDuration,
+                      crossFadeState: state.showHowPaymentWorks
+                          ? CrossFadeState.showFirst
+                          : CrossFadeState.showSecond,
+                      firstChild: const ConnectivityWrapper(
+                        child: HowToMakePaymentView(),
+                      ),
+                      secondChild: AnimatedPadding(
+                        duration: kAnimationDuration,
+                        padding: EdgeInsets.only(
+                          bottom: isKeyboardVisible
+                              ? MediaQuery.of(context).viewInsets.bottom
+                              : 0,
+                        ),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints.loose(
+                            Size(
+                              1.sw,
+                              isKeyboardVisible ? 0.5.sh : 0.9.sh,
                             ),
                           ),
+                          child: ConnectivityWrapper(
+                            child: BankSelectionView(
+                              tabController: _tabController,
+                              searchController: _searchController,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

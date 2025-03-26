@@ -15,8 +15,10 @@ class PayNowBottomSheet extends StatefulWidget {
   const PayNowBottomSheet({
     super.key,
     required this.totalAmount,
+    required this.isEnabled,
   });
   final double totalAmount;
+  final bool isEnabled;
 
   @override
   State<PayNowBottomSheet> createState() => _PayNowBottomSheetState();
@@ -52,8 +54,8 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         // );
       },
       onPaymentStatusChange: (status) {
-        //handle payment status
-        //print('Payment Status Changed to $status');
+        // handle payment status
+        // print('Payment Status Changed to $status');
       },
       onError: (error) {
         // handle Atoa Mobile SDK error
@@ -94,14 +96,14 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                 children: [
                   CustomText.semantics(
                     'Total',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: NeutralColors.light().grey.shade800,
                           fontWeight: FontWeight.w600,
                         ),
                   ),
                   Text(
                     '£ ${widget.totalAmount.toString()}',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -125,8 +127,9 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                               _getPaymentId(context, widget.totalAmount),
                           label: 'Pay Now',
                           trackLabel: 'Pay Now',
-                          enable:
-                              !value && !connectivityStatus.isOfflineOrWaiting,
+                          enable: !value &&
+                              !connectivityStatus.isOfflineOrWaiting &&
+                              widget.isEnabled,
                           loading: value,
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,

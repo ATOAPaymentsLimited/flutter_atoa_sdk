@@ -90,8 +90,8 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
           providers: [
             StreamProvider<ConnectivityStatus>.value(
               initialData: ConnectivityStatus.waiting,
-              value:
-                  widget.connectivityController.connectionStatusController.stream,
+              value: widget
+                  .connectivityController.connectionStatusController.stream,
             ),
             StateNotifierProvider<BankInstitutionsController,
                 BankInstitutionsState>.value(
@@ -102,16 +102,16 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
             builder: (context, state, child) {
               if (state.isLoadingAuth) {
                 return SizedBox(
-                  height: 0.55.sh,
+                  height: 0.48.sh,
                   child: const Center(
                     child: AtoaLoader(),
                   ),
                 );
               }
-    
+
               if (state.bankAuthError != null) {
-               return SizedBox(
-                  height: 0.55.sh,
+                return SizedBox(
+                  height: 0.48.sh,
                   child: Center(
                     child: AtoaErrorWidget(
                       message: state.bankAuthError != null &&
@@ -122,7 +122,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                   ),
                 );
               }
-    
+
               return ConnectivityWrapper(
                 showBackIcon: false,
                 topSpacing: Spacing.huge.yBox * 5,
@@ -136,12 +136,14 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                     Spacing.large.yBox,
                     ReviewDetailsTile(
                       isBankInfo: false,
-                      bankInstitutionController: widget.bankInstitutionController,
+                      bankInstitutionController:
+                          widget.bankInstitutionController,
                       state: state,
                     ),
                     Spacing.large.yBox,
                     ReviewDetailsTile(
-                      bankInstitutionController: widget.bankInstitutionController,
+                      bankInstitutionController:
+                          widget.bankInstitutionController,
                       state: state,
                     ),
                     Spacing.large.yBox,
@@ -185,5 +187,5 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
             },
           ),
         ),
-  );
+      );
 }

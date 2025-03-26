@@ -27,6 +27,7 @@ mixin _$BankInstitutionsState {
   bool get isLoadingAuth => throw _privateConstructorUsedError;
   Exception? get bankAuthError => throw _privateConstructorUsedError;
   bool get showHowPaymentWorks => throw _privateConstructorUsedError;
+  SavedBankDetails? get savedBankDetails => throw _privateConstructorUsedError;
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.
@@ -52,11 +53,13 @@ abstract class $BankInstitutionsStateCopyWith<$Res> {
       bool isAppInstalled,
       bool isLoadingAuth,
       Exception? bankAuthError,
-      bool showHowPaymentWorks});
+      bool showHowPaymentWorks,
+      SavedBankDetails? savedBankDetails});
 
   $BankInstitutionCopyWith<$Res>? get selectedBank;
   $PaymentRequestDataCopyWith<$Res>? get paymentDetails;
   $PaymentAuthResponseCopyWith<$Res>? get paymentAuth;
+  $SavedBankDetailsCopyWith<$Res>? get savedBankDetails;
 }
 
 /// @nodoc
@@ -86,6 +89,7 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     Object? isLoadingAuth = null,
     Object? bankAuthError = freezed,
     Object? showHowPaymentWorks = null,
+    Object? savedBankDetails = freezed,
   }) {
     return _then(_value.copyWith(
       bankList: null == bankList
@@ -132,6 +136,10 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
           ? _value.showHowPaymentWorks
           : showHowPaymentWorks // ignore: cast_nullable_to_non_nullable
               as bool,
+      savedBankDetails: freezed == savedBankDetails
+          ? _value.savedBankDetails
+          : savedBankDetails // ignore: cast_nullable_to_non_nullable
+              as SavedBankDetails?,
     ) as $Val);
   }
 
@@ -176,6 +184,20 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
       return _then(_value.copyWith(paymentAuth: value) as $Val);
     });
   }
+
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SavedBankDetailsCopyWith<$Res>? get savedBankDetails {
+    if (_value.savedBankDetails == null) {
+      return null;
+    }
+
+    return $SavedBankDetailsCopyWith<$Res>(_value.savedBankDetails!, (value) {
+      return _then(_value.copyWith(savedBankDetails: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -198,7 +220,8 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
       bool isAppInstalled,
       bool isLoadingAuth,
       Exception? bankAuthError,
-      bool showHowPaymentWorks});
+      bool showHowPaymentWorks,
+      SavedBankDetails? savedBankDetails});
 
   @override
   $BankInstitutionCopyWith<$Res>? get selectedBank;
@@ -206,6 +229,8 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
   $PaymentRequestDataCopyWith<$Res>? get paymentDetails;
   @override
   $PaymentAuthResponseCopyWith<$Res>? get paymentAuth;
+  @override
+  $SavedBankDetailsCopyWith<$Res>? get savedBankDetails;
 }
 
 /// @nodoc
@@ -233,6 +258,7 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
     Object? isLoadingAuth = null,
     Object? bankAuthError = freezed,
     Object? showHowPaymentWorks = null,
+    Object? savedBankDetails = freezed,
   }) {
     return _then(_$BankInstitutionsStateImpl(
       bankList: null == bankList
@@ -279,6 +305,10 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
           ? _value.showHowPaymentWorks
           : showHowPaymentWorks // ignore: cast_nullable_to_non_nullable
               as bool,
+      savedBankDetails: freezed == savedBankDetails
+          ? _value.savedBankDetails
+          : savedBankDetails // ignore: cast_nullable_to_non_nullable
+              as SavedBankDetails?,
     ));
   }
 }
@@ -298,7 +328,8 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       this.isAppInstalled = true,
       this.isLoadingAuth = false,
       this.bankAuthError,
-      this.showHowPaymentWorks = true})
+      this.showHowPaymentWorks = true,
+      this.savedBankDetails})
       : _bankList = bankList,
         super._();
 
@@ -336,10 +367,12 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
   @override
   @JsonKey()
   final bool showHowPaymentWorks;
+  @override
+  final SavedBankDetails? savedBankDetails;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth, isAppInstalled: $isAppInstalled, isLoadingAuth: $isLoadingAuth, bankAuthError: $bankAuthError, showHowPaymentWorks: $showHowPaymentWorks)';
+    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth, isAppInstalled: $isAppInstalled, isLoadingAuth: $isLoadingAuth, bankAuthError: $bankAuthError, showHowPaymentWorks: $showHowPaymentWorks, savedBankDetails: $savedBankDetails)';
   }
 
   @override
@@ -357,7 +390,8 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       ..add(DiagnosticsProperty('isAppInstalled', isAppInstalled))
       ..add(DiagnosticsProperty('isLoadingAuth', isLoadingAuth))
       ..add(DiagnosticsProperty('bankAuthError', bankAuthError))
-      ..add(DiagnosticsProperty('showHowPaymentWorks', showHowPaymentWorks));
+      ..add(DiagnosticsProperty('showHowPaymentWorks', showHowPaymentWorks))
+      ..add(DiagnosticsProperty('savedBankDetails', savedBankDetails));
   }
 
   @override
@@ -384,7 +418,9 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
             (identical(other.bankAuthError, bankAuthError) ||
                 other.bankAuthError == bankAuthError) &&
             (identical(other.showHowPaymentWorks, showHowPaymentWorks) ||
-                other.showHowPaymentWorks == showHowPaymentWorks));
+                other.showHowPaymentWorks == showHowPaymentWorks) &&
+            (identical(other.savedBankDetails, savedBankDetails) ||
+                other.savedBankDetails == savedBankDetails));
   }
 
   @override
@@ -400,7 +436,8 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       isAppInstalled,
       isLoadingAuth,
       bankAuthError,
-      showHowPaymentWorks);
+      showHowPaymentWorks,
+      savedBankDetails);
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.
@@ -424,7 +461,8 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
       final bool isAppInstalled,
       final bool isLoadingAuth,
       final Exception? bankAuthError,
-      final bool showHowPaymentWorks}) = _$BankInstitutionsStateImpl;
+      final bool showHowPaymentWorks,
+      final SavedBankDetails? savedBankDetails}) = _$BankInstitutionsStateImpl;
   const _BankInstitutionsState._() : super._();
 
   @override
@@ -449,6 +487,8 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   Exception? get bankAuthError;
   @override
   bool get showHowPaymentWorks;
+  @override
+  SavedBankDetails? get savedBankDetails;
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.

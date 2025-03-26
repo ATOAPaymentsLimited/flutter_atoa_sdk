@@ -13,17 +13,26 @@ class BankListItem extends StatelessWidget {
   const BankListItem({
     required this.bank,
     required this.onBankSelect,
+    this.enabled = true,
     super.key,
   });
 
   final BankInstitution bank;
   final Future<void> Function(BankInstitution) onBankSelect;
+  final bool enabled;
   @override
   Widget build(BuildContext context) => CustomInkWell(
         context: context,
         semanticsLabel: '$bank Tile',
         enableTracking: false,
         trackLabel: '$bank Tile',
+        onTap: enabled
+            ? () async {
+                bank.enabled
+                    ? await onBankSelect.call(bank)
+                    : BankDownBottomSheet.show(context, bank);
+              }
+            : () {},
         child: Padding(
           padding: Spacing.large.y,
           child: Row(
@@ -36,15 +45,20 @@ class BankListItem extends StatelessWidget {
                       Border.all(color: NeutralColors.light().grey.shade100),
                 ),
                 child: bank.bankIcon != null
-                    ? CachedNetworkImage(
-                        imageUrl: bank.bankIcon!,
-                        height: Spacing.xtraLarge.value,
-                        width: Spacing.xtraLarge.value,
+                    ? Opacity(
+                        opacity: enabled ? 1 : 0.40,
+                        child: CachedNetworkImage(
+                          imageUrl: bank.bankIcon!,
+                          height: Spacing.xtraLarge.value,
+                          width: Spacing.xtraLarge.value,
+                        ),
                       )
                     : Icon(
                         Icons.account_balance_outlined,
                         size: Spacing.xtraLarge.value * 2 + Spacing.mini.value,
-                        color: IntactColors.light().black,
+                        color: IntactColors.light().black.withOpacity(
+                              enabled ? 1 : 0.40,
+                            ),
                       ),
               ),
               Spacing.medium.xBox,
@@ -56,13 +70,15 @@ class BankListItem extends StatelessWidget {
                         bank.name,
                         style: sdkFigTreeTextTheme.bodyLarge
                             ?.textColor(
-                              NeutralColors.light().grey.shade700,
+                              enabled
+                                  ? NeutralColors.light().grey.shade700
+                                  : NeutralColors.light().grey.shade400,
                             )
                             .w500,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    if (!bank.enabled) ...[
+                    if (!bank.enabled && enabled) ...[
                       Spacing.medium.xBox,
                       BankDownIcon(bank: bank),
                     ],
@@ -74,11 +90,13 @@ class BankListItem extends StatelessWidget {
                 context: context,
                 enableTracking: false,
                 trackLabel: '$bank CheckBox',
-                onTap: () async {
-                  bank.enabled
-                      ? await onBankSelect.call(bank)
-                      : BankDownBottomSheet.show(context, bank);
-                },
+                onTap: enabled
+                    ? () async {
+                        bank.enabled && enabled
+                            ? await onBankSelect.call(bank)
+                            : BankDownBottomSheet.show(context, bank);
+                      }
+                    : () {},
                 semanticsLabel: '$bank CheckBox',
                 child: Container(
                   width: Spacing.xtraLarge.value,
@@ -107,10 +125,5 @@ class BankListItem extends StatelessWidget {
             ],
           ),
         ),
-        onTap: () async {
-          bank.enabled
-              ? await onBankSelect.call(bank)
-              : BankDownBottomSheet.show(context, bank);
-        },
       );
 }

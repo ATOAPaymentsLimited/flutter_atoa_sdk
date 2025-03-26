@@ -1,8 +1,10 @@
 import 'package:atoa_core/atoa_core.dart';
+
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_grid_item.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_limit_card.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -88,6 +90,24 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                       onBankSelect: widget.onBankSelect,
                     ),
                   ),
+                  if (bankInstitutionsState.personalBankDiabled.isNotEmpty) ...[
+                    Spacing.small.yBox,
+                    const BankLimitCard(),
+                    Spacing.medium.yBox,
+                    ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount:
+                          bankInstitutionsState.personalBankDiabled.length,
+                      itemBuilder: (context, index) => BankListItem(
+                        bank: bankInstitutionsState.personalBankDiabled[index],
+                        onBankSelect: (_) async {},
+                        enabled: false,
+                      ),
+                    ),
+                    Spacing.huge.yBox,
+                  ],
                 ],
               ),
             )

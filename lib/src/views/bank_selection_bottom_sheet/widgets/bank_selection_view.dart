@@ -34,112 +34,136 @@ class BankSelectionView extends StatefulWidget {
   State<BankSelectionView> createState() => _BankSelectionViewState();
 }
 
-class _BankSelectionViewState extends State<BankSelectionView> {
+class _BankSelectionViewState extends State<BankSelectionView>
+    with TickerProviderStateMixin {
+  late ValueNotifier<bool> isBankSelection;
+
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          const BankSelectionTitleWidget(),
-          Spacing.xtraLarge.yBox,
-          Consumer<BankInstitutionsState>(
-            builder: (_, state, __) {
-              final isLoading = state.isLoading;
-              final bankController = context.read<BankInstitutionsController>();
+  void initState() {
+    super.initState();
+    isBankSelection = ValueNotifier(true);
+  }
 
-              if (isLoading && bankController.searchTerm.isEmpty) {
-                return const Expanded(
-                  child: Center(
-                    child: FetchingBankLoader(),
-                  ),
-                );
-              }
+  @override
+  void dispose() {
+    isBankSelection.dispose();
+    super.dispose();
+  }
 
-              if (state.error != null) {
-                return const Expanded(
-                  child: Center(
-                    child: AtoaErrorWidget(),
-                  ),
-                );
-              }
-              return Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AnimatedSearchField(
-                      controller: widget.searchController,
-                    ),
-                    Spacing.large.yBox,
-                    if (bankController.searchTerm.isEmpty) ...[
-                      BankTabBar(
-                        tabController: widget.tabController,
+  @override
+  Widget build(BuildContext context) => ValueListenableBuilder(
+        valueListenable: isBankSelection,
+        builder: (context, value, child) => Visibility(
+          visible: value,
+          child: Column(
+            children: [
+              const BankSelectionTitleWidget(),
+              Spacing.xtraLarge.yBox,
+              Consumer<BankInstitutionsState>(
+                builder: (_, state, __) {
+                  final isLoading = state.isLoading;
+                  final bankController =
+                      context.read<BankInstitutionsController>();
+
+                  if (isLoading && bankController.searchTerm.isEmpty) {
+                    return const Expanded(
+                      child: Center(
+                        child: FetchingBankLoader(),
                       ),
-                      Spacing.large.yBox,
-                      InfoWidget(
-                        text: context.l10n.ensureBankAppInstalled,
-                        fontSize: 11.sp,
+                    );
+                  }
+
+                  if (state.error != null) {
+                    return const Expanded(
+                      child: Center(
+                        child: AtoaErrorWidget(),
                       ),
-                      Expanded(
-                        child: TabBarView(
-                          controller: widget.tabController,
-                          children: [
-                            PersonalBanksTabView(onBankSelect: onTap),
-                            BusinessBanksTabView(onBankSelect: onTap),
+                    );
+                  }
+                  return Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AnimatedSearchField(
+                          controller: widget.searchController,
+                        ),
+                        Spacing.large.yBox,
+                        if (bankController.searchTerm.isEmpty) ...[
+                          BankTabBar(
+                            tabController: widget.tabController,
+                          ),
+                          Spacing.large.yBox,
+                          InfoWidget(
+                            text: context.l10n.ensureBankAppInstalled,
+                            fontSize: 11.sp,
+                          ),
+                          Expanded(
+                            child: TabBarView(
+                              controller: widget.tabController,
+                              children: [
+                                PersonalBanksTabView(onBankSelect: onTap),
+                                BusinessBanksTabView(onBankSelect: onTap),
+                              ],
+                            ),
+                          ),
+                        ],
+                        if (bankController.searchTerm.isNotEmpty) ...[
+                          if (state.isLoading)
+                            const Expanded(
+                              child: Center(
+                                child: AtoaLoader(),
+                              ),
+                            )
+                          else if (state.bankList.isEmpty) ...[
+                            CustomText.semantics(
+                              context.l10n.results,
+                              style: sdkFigTreeTextTheme.bodyMedium?.w700
+                                  .textColor(
+                                NeutralColors.light().grey.shade500,
+                              ),
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: NoResultFoundWidget(
+                                  searchTerm: context
+                                      .read<BankInstitutionsController>()
+                                      .searchTerm,
+                                ),
+                              ),
+                            ),
+                          ] else ...[
+                            InfoWidget(
+                              text: context.l10n.ensureBankAppInstalled,
+                              fontSize: 11.sp,
+                            ),
+                            Spacing.xtraLarge.yBox,
+                            CustomText.semantics(
+                              context.l10n.results,
+                              style: sdkFigTreeTextTheme.bodyMedium?.w700
+                                  .textColor(
+                                NeutralColors.light().grey.shade500,
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: state.bankList.length,
+                                itemBuilder: (context, index) => BankListItem(
+                                  bank: state.bankList[index],
+                                  onBankSelect: onTap,
+                                ),
+                              ),
+                            ),
                           ],
-                        ),
-                      ),
-                    ],
-                    if (bankController.searchTerm.isNotEmpty) ...[
-                      if (state.isLoading)
-                        const Expanded(
-                          child: Center(
-                            child: AtoaLoader(),
-                          ),
-                        )
-                      else if (state.bankList.isEmpty) ...[
-                        CustomText.semantics(
-                          context.l10n.results,
-                          style: sdkFigTreeTextTheme.bodyMedium?.w700.textColor(
-                            NeutralColors.light().grey.shade500,
-                          ),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: NoResultFoundWidget(
-                              searchTerm: context
-                                  .read<BankInstitutionsController>()
-                                  .searchTerm,
-                            ),
-                          ),
-                        ),
-                      ] else ...[
-                        InfoWidget(
-                          text: context.l10n.ensureBankAppInstalled,
-                          fontSize: 11.sp,
-                        ),
-                        Spacing.xtraLarge.yBox,
-                        CustomText.semantics(
-                          context.l10n.results,
-                          style: sdkFigTreeTextTheme.bodyMedium?.w700.textColor(
-                            NeutralColors.light().grey.shade500,
-                          ),
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: state.bankList.length,
-                            itemBuilder: (context, index) => BankListItem(
-                              bank: state.bankList[index],
-                              onBankSelect: onTap,
-                            ),
-                          ),
-                        ),
+                        ],
                       ],
-                    ],
-                  ],
-                ),
-              );
-            },
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       );
 
   Future<void> onTap(BankInstitution bank) async {
@@ -147,7 +171,7 @@ class _BankSelectionViewState extends State<BankSelectionView> {
         context.read<BankInstitutionsController>();
 
     final connectivityController = context.read<ConnectivityController>();
-
+    isBankSelection.value = false;
     final res = await ConfirmationBottomSheet.show(
       context,
       bankInstitutionController,
@@ -166,6 +190,8 @@ class _BankSelectionViewState extends State<BankSelectionView> {
       if (!mounted) return;
 
       Navigator.pop(context, verify);
+    } else {
+      isBankSelection.value = true;
     }
   }
 }
