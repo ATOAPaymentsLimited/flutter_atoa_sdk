@@ -8,8 +8,11 @@ import 'package:regal/regal.dart';
 
 class BankLimitCard extends StatelessWidget {
   const BankLimitCard({
+    required this.amount,
     super.key,
   });
+
+  final double amount;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -35,7 +38,7 @@ class BankLimitCard extends StatelessWidget {
                 text: CustomTextSpan.semantics(
                   children: [
                     CustomTextSpan.semantics(
-                      text: maxTrasanctionLimit.toString().formattedAmount(
+                      text: amount.toString().formattedAmount(
                             currencySymbol: context.l10n.currencySymbol,
                           ),
                       style: sdkFigTreeTextTheme.bodyMedium

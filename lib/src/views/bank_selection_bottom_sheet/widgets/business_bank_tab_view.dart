@@ -42,9 +42,12 @@ class BusinessBanksTabView extends StatelessWidget {
                     onBankSelect: onBankSelect,
                   ),
                 ),
-                if (disabledBanks.isNotEmpty) ...[
+                if (disabledBanks.isNotEmpty &&
+                    state.paymentDetails?.amount.amount != null) ...[
                   Spacing.small.yBox,
-                  const BankLimitCard(),
+                  BankLimitCard(
+                    amount: state.paymentDetails!.amount.amount,
+                  ),
                   Spacing.medium.yBox,
                   ListView.builder(
                     padding: EdgeInsets.zero,

@@ -34,6 +34,10 @@ class AtoaSdk {
       PaymentUtility.onPaymentStatusChange = onPaymentStatusChange;
     }
 
+    await AtoaSdkConfig.initialize(
+      environment: AtoaEnvironment.development, // or .staging or .production
+    );
+
     if (onError != null) {
       PaymentUtility.onError = onError;
     }

@@ -1,7 +1,9 @@
+import 'package:atoa_core/src/config/environment.dart';
+
 class Endpoints {
   const Endpoints._();
 
-  static String get baseUrl => 'https://devapi.atoa.me/api/';
+  static String get baseUrl => AtoaConfig.baseUrl;
 
   //Institutions
   static const String institutions =

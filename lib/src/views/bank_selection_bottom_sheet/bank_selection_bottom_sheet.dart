@@ -79,7 +79,6 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await bankInstitutionsController.getPaymentDetails();
-
       await bankInstitutionsController.fetchBanks();
     });
   }

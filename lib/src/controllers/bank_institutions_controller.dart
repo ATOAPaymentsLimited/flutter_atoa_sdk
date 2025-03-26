@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
@@ -74,11 +73,11 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       );
     } on AtoaException catch (e) {
       PaymentUtility.onError?.call(e);
-      state = state.copyWith(error: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } on Exception catch (e) {
-      state = state.copyWith(error: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
   }
 
@@ -106,15 +105,15 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       PaymentUtility.onError?.call(e);
       state = state.copyWith(
         paymentDetails: null,
-        error: e,
+        paymentDetailsError: e,
       );
     } on Exception catch (e) {
       state = state.copyWith(
         paymentDetails: null,
-        error: e,
+        paymentDetailsError: e,
       );
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
   }
 
@@ -131,11 +130,11 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       );
     } on AtoaException catch (e) {
       PaymentUtility.onError?.call(e);
-      state = state.copyWith(error: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } on Exception catch (e) {
-      state = state.copyWith(error: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
   }
 
@@ -180,7 +179,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     } on Exception catch (e) {
       state = state.copyWith(error: e);
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
     return null;
   }

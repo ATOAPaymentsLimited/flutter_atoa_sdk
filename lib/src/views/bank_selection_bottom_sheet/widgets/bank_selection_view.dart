@@ -73,10 +73,34 @@ class _BankSelectionViewState extends State<BankSelectionView>
                     );
                   }
 
-                  if (state.error != null) {
-                    return const Expanded(
+                  if (state.paymentDetailsError != null) {
+                    return Expanded(
                       child: Center(
-                        child: AtoaErrorWidget(),
+                        child: AtoaErrorWidget(
+                          message: state.paymentDetailsError != null &&
+                                  state.paymentDetailsError is AtoaException
+                              ? (state.paymentDetailsError! as AtoaException)
+                                  .message
+                              : null,
+                          title: context.l10n.errorProcessingPayment,
+                        ),
+                      ),
+                    );
+                  }
+
+                  if (state.bankFetchingError != null) {
+                    return Expanded(
+                      child: Center(
+                        child: AtoaErrorWidget(
+                          message: context.l10n.bankFetchErrorDesc,
+                          onRetry: () {
+                            context
+                                .read<BankInstitutionsController>()
+                                .fetchBanks();
+                          },
+                          title: context.l10n.bankFetchErrorTitle,
+                          showErrorIcon: false,
+                        ),
                       ),
                     );
                   }

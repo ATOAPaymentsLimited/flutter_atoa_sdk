@@ -15,6 +15,8 @@ class BankInstitutionsState with _$BankInstitutionsState {
     Exception? bankAuthError,
     @Default(true) bool showHowPaymentWorks,
     SavedBankDetails? savedBankDetails,
+    Exception? paymentDetailsError,
+    Exception? bankFetchingError,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();
@@ -22,52 +24,48 @@ class BankInstitutionsState with _$BankInstitutionsState {
   bool get isBankSelected => selectedBank != null;
 
   List<BankInstitution> get businessBanks =>
-      paymentDetails?.amount.amount != null &&
-              paymentDetails!.amount.amount >= maxTrasanctionLimit
+      paymentDetails?.amount.amount != null
           ? bankList
               .where(
                 (e) =>
                     e.businessBank &&
-                    e.transactionAmountLimit >= maxTrasanctionLimit,
+                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
               )
               .toList()
           : bankList.where((e) => e.businessBank).toList()
         ..sort();
 
   List<BankInstitution> get businessBanksDisabled =>
-      paymentDetails?.amount.amount != null &&
-              paymentDetails!.amount.amount >= maxTrasanctionLimit
+      paymentDetails?.amount.amount != null
           ? bankList
               .where(
                 (e) =>
                     e.businessBank &&
-                    e.transactionAmountLimit < maxTrasanctionLimit,
+                    e.transactionAmountLimit < paymentDetails!.amount.amount,
               )
               .toList()
           : []
         ..sort();
 
   List<BankInstitution> get personalBankDiabled =>
-      paymentDetails?.amount.amount != null &&
-              paymentDetails!.amount.amount >= maxTrasanctionLimit
+      paymentDetails?.amount.amount != null
           ? bankList
               .where(
                 (e) =>
                     !e.businessBank &&
-                    e.transactionAmountLimit < maxTrasanctionLimit,
+                    e.transactionAmountLimit < paymentDetails!.amount.amount,
               )
               .toList()
           : [];
 
   List<BankInstitution> get popularPersonalBanks =>
-      paymentDetails?.amount.amount != null &&
-              paymentDetails!.amount.amount >= maxTrasanctionLimit
+      paymentDetails?.amount.amount != null
           ? bankList
               .where(
                 (e) =>
                     e.popularBank &&
                     !e.businessBank &&
-                    e.transactionAmountLimit >= maxTrasanctionLimit,
+                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
               )
               .toList()
           : bankList
@@ -77,14 +75,13 @@ class BankInstitutionsState with _$BankInstitutionsState {
               .toList();
 
   List<BankInstitution> get normalPersonalBanks =>
-      paymentDetails?.amount.amount != null &&
-              paymentDetails!.amount.amount >= maxTrasanctionLimit
+      paymentDetails?.amount.amount != null
           ? bankList
               .where(
                 (e) =>
                     !e.popularBank &&
                     !e.businessBank &&
-                    e.transactionAmountLimit >= maxTrasanctionLimit,
+                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
               )
               .toList()
           : bankList

@@ -148,7 +148,13 @@ class _VerifyingPaymentBottomSheetState
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Spacing.huge.yBox * 8,
-                              const AtoaErrorWidget(),
+                              AtoaErrorWidget(
+                                message: paymentState.exception != null &&
+                                        paymentState.exception is AtoaException
+                                    ? (paymentState.exception! as AtoaException)
+                                        .message
+                                    : null,
+                              ),
                               Spacing.huge.yBox * 8,
                             ],
                           );

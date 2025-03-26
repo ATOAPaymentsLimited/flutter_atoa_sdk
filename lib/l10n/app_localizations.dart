@@ -5336,6 +5336,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Some banks listed below might not handle the payments of '**
   String get bankLimitText;
+
+  /// No description provided for @bankFetchErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t fetch banks!'**
+  String get bankFetchErrorTitle;
+
+  /// No description provided for @bankFetchErrorDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while fetching bank list. Please check your internet connection and try again.'**
+  String get bankFetchErrorDesc;
+
+  /// No description provided for @errorProcessingPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Error processing payment'**
+  String get errorProcessingPayment;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
