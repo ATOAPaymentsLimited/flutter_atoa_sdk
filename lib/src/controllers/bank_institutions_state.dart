@@ -14,6 +14,9 @@ class BankInstitutionsState with _$BankInstitutionsState {
     @Default(false) bool isLoadingAuth,
     Exception? bankAuthError,
     @Default(true) bool showHowPaymentWorks,
+    SavedBankDetails? savedBankDetails,
+    Exception? paymentDetailsError,
+    Exception? bankFetchingError,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();
@@ -21,23 +24,87 @@ class BankInstitutionsState with _$BankInstitutionsState {
   bool get isBankSelected => selectedBank != null;
 
   List<BankInstitution> get businessBanks =>
-      bankList.where((e) => e.businessBank).toList()..sort();
+      paymentDetails?.amount.amount != null
+          ? bankList
+              .where(
+                (e) =>
+                    e.businessBank &&
+                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
+              )
+              .toList()
+          : bankList.where((e) => e.businessBank).toList()
+        ..sort();
 
-  List<BankInstitution> get personalBanks =>
-      bankList.where((e) => !e.businessBank).toList();
+  List<BankInstitution> get businessBanksDisabled =>
+      paymentDetails?.amount.amount != null
+          ? bankList
+              .where(
+                (e) =>
+                    e.businessBank &&
+                    e.transactionAmountLimit < paymentDetails!.amount.amount,
+              )
+              .toList()
+          : []
+        ..sort();
+
+  List<BankInstitution> get personalBankDiabled =>
+      paymentDetails?.amount.amount != null
+          ? bankList
+              .where(
+                (e) =>
+                    !e.businessBank &&
+                    e.transactionAmountLimit < paymentDetails!.amount.amount,
+              )
+              .toList()
+          : [];
 
   List<BankInstitution> get popularPersonalBanks =>
-      bankList.where((e) => e.popularBank && !e.businessBank).toList();
+      paymentDetails?.amount.amount != null
+          ? bankList
+              .where(
+                (e) =>
+                    e.popularBank &&
+                    !e.businessBank &&
+                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
+              )
+              .toList()
+          : bankList
+              .where(
+                (e) => e.popularBank && !e.businessBank,
+              )
+              .toList();
 
   List<BankInstitution> get normalPersonalBanks =>
-      personalBanks.where((e) => !e.popularBank && !e.businessBank).toList();
+      paymentDetails?.amount.amount != null
+          ? bankList
+              .where(
+                (e) =>
+                    !e.popularBank &&
+                    !e.businessBank &&
+                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
+              )
+              .toList()
+          : bankList
+              .where(
+                (e) => !e.popularBank && !e.businessBank,
+              )
+              .toList();
 
   List<BankInstitution> get gridBanks {
     if (bankList.isEmpty) return bankList;
     final gridBanks = popularPersonalBanks;
     final gridBankLength = gridBanks.length;
-    if (gridBanks.length < 8) {
+    if (gridBanks.length < 8 &&
+        normalPersonalBanks.length >= 8 - gridBanks.length) {
       final normalBanks = normalPersonalBanks.sublist(0, 8 - gridBankLength);
+      return [...gridBanks, ...normalBanks]..sort();
+    }
+    if (gridBanks.length < 8 &&
+        normalPersonalBanks.length < 8 - gridBanks.length) {
+      final normalBanks = normalPersonalBanks.sublist(
+        0,
+        normalPersonalBanks.length,
+      );
       return [...gridBanks, ...normalBanks]..sort();
     }
     if (gridBanks.length > 8) {
@@ -48,9 +115,12 @@ class BankInstitutionsState with _$BankInstitutionsState {
 
   List<BankInstitution> get allNormalBanks {
     if (bankList.isEmpty) return bankList;
-    if (popularPersonalBanks.length < 8) {
+    if (popularPersonalBanks.length < 8 && normalPersonalBanks.length >= 8) {
       return normalPersonalBanks.sublist(8 - popularPersonalBanks.length)
         ..sort();
+    }
+    if (popularPersonalBanks.length < 8 && normalPersonalBanks.length < 8) {
+      return normalPersonalBanks.sublist(normalPersonalBanks.length)..sort();
     }
     if (popularPersonalBanks.length > 8) {
       final remainingPopularBanks = popularPersonalBanks.sublist(8);

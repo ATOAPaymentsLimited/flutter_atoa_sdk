@@ -3000,4 +3000,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get serverNotReachable => 'Server is not reachable. Please check your internet connection and try again';
+
+  @override
+  String get poweredByAtoa => 'Powered by Atoa';
+
+  @override
+  String payBy(String name) {
+    return 'Pay by $name';
+  }
+
+  @override
+  String get bankAppText => 'bank app';
+
+  @override
+  String get bankLimitText => 'Some banks listed below might not handle the payments of ';
+
+  @override
+  String get bankFetchErrorTitle => 'We couldn’t fetch banks!';
+
+  @override
+  String get bankFetchErrorDesc => 'Something went wrong while fetching bank list. Please check your internet connection and try again.';
+
+  @override
+  String get errorProcessingPayment => 'Error processing payment';
 }

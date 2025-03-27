@@ -40,6 +40,10 @@ Future<T?> showSdkBottomSheet<T>({
         ),
       ),
       useSafeArea: true,
+      transitionAnimationController: AnimationController(
+        vsync: Navigator.of(context),
+        duration: const Duration(milliseconds: 500),
+      ),
     );
 
 class SdkBottomSheet extends StatefulWidget {
@@ -114,7 +118,8 @@ class _SdkBottomSheetState extends State<SdkBottomSheet> {
                           child: CustomText.semantics(
                             widget.title,
                             textAlign: widget.titleAlign ?? TextAlign.center,
-                            style: sdkFigTreeTextTheme.labelMedium?.w700.height130,
+                            style:
+                                sdkFigTreeTextTheme.labelMedium?.w700.height130,
                           ),
                         ),
                         Spacing.large.xBox,

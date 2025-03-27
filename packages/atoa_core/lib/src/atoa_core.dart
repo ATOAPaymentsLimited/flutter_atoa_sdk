@@ -131,4 +131,22 @@ class Atoa {
 
     return TransactionDetails.fromJson(data);
   }
+
+  Future<SavedBankDetails> getSavedBank(
+    String customerId,
+  ) async {
+    _dioCheck();
+
+    final res = await _atoaDio!.post<Map<String, dynamic>>(
+      '${Endpoints.getSavedBank}?customerId=$customerId',
+    );
+
+    final data = res.data;
+
+    if (data == null) {
+      throw const AtoaException(AtoaExceptionType.noDataFound);
+    }
+
+    return SavedBankDetails.fromJson(data);
+  }
 }

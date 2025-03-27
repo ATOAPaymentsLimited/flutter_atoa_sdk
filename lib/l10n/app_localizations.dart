@@ -5312,6 +5312,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Server is not reachable. Please check your internet connection and try again'**
   String get serverNotReachable;
+
+  /// No description provided for @poweredByAtoa.
+  ///
+  /// In en, this message translates to:
+  /// **'Powered by Atoa'**
+  String get poweredByAtoa;
+
+  /// No description provided for @payBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay by {name}'**
+  String payBy(String name);
+
+  /// No description provided for @bankAppText.
+  ///
+  /// In en, this message translates to:
+  /// **'bank app'**
+  String get bankAppText;
+
+  /// No description provided for @bankLimitText.
+  ///
+  /// In en, this message translates to:
+  /// **'Some banks listed below might not handle the payments of '**
+  String get bankLimitText;
+
+  /// No description provided for @bankFetchErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t fetch banks!'**
+  String get bankFetchErrorTitle;
+
+  /// No description provided for @bankFetchErrorDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while fetching bank list. Please check your internet connection and try again.'**
+  String get bankFetchErrorDesc;
+
+  /// No description provided for @errorProcessingPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Error processing payment'**
+  String get errorProcessingPayment;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

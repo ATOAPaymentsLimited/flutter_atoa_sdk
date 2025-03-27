@@ -14,20 +14,33 @@ import 'package:regal/regal.dart';
 class AtoaSdk {
   const AtoaSdk();
 
-  static Future<TransactionDetails?> show(
+  static Future<TransactionDetails?> pay(
     BuildContext context, {
     required String paymentId,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
-    Duration? interval,
+    void Function(String)? onUserClose,
+    void Function(String)? onPaymentStatusChange,
+    void Function(AtoaException)? onError,
   }) async {
     WidgetsFlutterBinding.ensureInitialized();
 
     Atoa.env = env;
     PaymentUtility.paymentId = paymentId;
-    /// payment status polling interval
-    /// default is 5 seconds
-    if (interval != null) PaymentUtility.interval = interval;
+
+    if (onUserClose != null) PaymentUtility.onUserClose = onUserClose;
+
+    if (onPaymentStatusChange != null) {
+      PaymentUtility.onPaymentStatusChange = onPaymentStatusChange;
+    }
+
+    await AtoaSdkConfig.initialize(
+      environment: AtoaEnvironment.development, // or .staging or .production
+    );
+
+    if (onError != null) {
+      PaymentUtility.onError = onError;
+    }
     Regal.enableTracking = false;
 
     await configureInjection(env.name);

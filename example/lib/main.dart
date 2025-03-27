@@ -112,7 +112,7 @@ class ActionButton extends StatelessWidget {
   final AtoaEnv env;
 
   void _showSheet(BuildContext context) {
-    AtoaSdk.show(
+    AtoaSdk.pay(
       context,
       paymentId: controller.text.trim(),
       showHowPaymentWorks: false,
@@ -126,8 +126,8 @@ class ActionButton extends StatelessWidget {
         child: Text(
           'Initiate Payment',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            color: IntactColors.light().white,
-          ),
+                color: IntactColors.light().white,
+              ),
         ),
         builder: (context, value, child) {
           return ElevatedButton(

@@ -45,6 +45,10 @@ class VerifyingPaymentBottomSheet extends StatefulWidget {
         isScrollControlled: true,
         enableDrag: false,
         isDismissible: false,
+        transitionAnimationController: AnimationController(
+          vsync: Navigator.of(context),
+          duration: const Duration(milliseconds: 500),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(Spacing.xtraLarge.value),
@@ -77,7 +81,7 @@ class _VerifyingPaymentBottomSheetState
       () => widget.bankInstitutionController.authorizeBank(),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _startPollingAfter20Sec(context);
+      _startPolling(context);
     });
   }
 
@@ -105,7 +109,7 @@ class _VerifyingPaymentBottomSheetState
     );
   }
 
-  void _startPollingAfter20Sec(BuildContext context) {
+  void _startPolling(BuildContext context) {
     final paymentId =
         context.read<BankInstitutionsState>().paymentAuth?.paymentIdempotencyId;
     if (context.mounted) {
@@ -120,7 +124,8 @@ class _VerifyingPaymentBottomSheetState
         data: sdkLedgerTheme,
         child: StreamProvider<ConnectivityStatus>.value(
           initialData: ConnectivityStatus.waiting,
-          value: widget.connectivityController.connectionStatusController.stream,
+          value:
+              widget.connectivityController.connectionStatusController.stream,
           builder: (context, child) => Consumer<PaymentStatusState>(
             builder: (_, paymentState, __) => AnimatedContainer(
               duration: kAnimationDuration,
@@ -143,7 +148,13 @@ class _VerifyingPaymentBottomSheetState
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Spacing.huge.yBox * 8,
-                              const AtoaErrorWidget(),
+                              AtoaErrorWidget(
+                                message: paymentState.exception != null &&
+                                        paymentState.exception is AtoaException
+                                    ? (paymentState.exception! as AtoaException)
+                                        .message
+                                    : null,
+                              ),
                               Spacing.huge.yBox * 8,
                             ],
                           );
@@ -162,7 +173,7 @@ class _VerifyingPaymentBottomSheetState
                             ),
                           );
                         }
-        
+
                         return VerifyingPaymentView(
                           bankIcon: bankInstitutionState.selectedBank?.bankIcon,
                         );

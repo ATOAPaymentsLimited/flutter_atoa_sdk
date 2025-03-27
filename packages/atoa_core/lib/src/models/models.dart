@@ -13,6 +13,7 @@ export 'payment_auth/payment_auth_response.dart';
 export 'payment_auth_payment_request/payment_auth_payment_request.dart';
 export 'payment_request_data.dart';
 export 'payment_request_with_source/payment_request_with_source.dart';
+export 'saved_bank_details/saved_bank_details.dart';
 export 'store_details/store_details.dart';
 export 'transaction_details.dart';
 export 'transaction_status/transaction_status.dart';

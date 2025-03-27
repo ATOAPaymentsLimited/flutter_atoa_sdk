@@ -1,7 +1,9 @@
+import 'package:atoa_core/src/config/environment.dart';
+
 class Endpoints {
   const Endpoints._();
 
-  static String get baseUrl => 'https://api.atoa.me/api/';
+  static String get baseUrl => AtoaConfig.baseUrl;
 
   //Institutions
   static const String institutions =
@@ -15,4 +17,7 @@ class Endpoints {
 
   /// Payment Status
   static String getPaymentStatus(String id) => 'payments/payment-status/$id';
+
+  // Saved bank
+  static const getSavedBank = 'saved-bank';
 }

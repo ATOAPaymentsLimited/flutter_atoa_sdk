@@ -72,11 +72,12 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         isLoading: false,
       );
     } on AtoaException catch (e) {
-      state = state.copyWith(error: e, isLoading: false);
+      PaymentUtility.onError?.call(e);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } on Exception catch (e) {
-      state = state.copyWith(error: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
   }
 
@@ -101,17 +102,18 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         paymentRes.merchantThemeDetails?.foregroundColor,
       );
     } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
       state = state.copyWith(
         paymentDetails: null,
-        error: e,
+        paymentDetailsError: e,
       );
     } on Exception catch (e) {
       state = state.copyWith(
         paymentDetails: null,
-        error: e,
+        paymentDetailsError: e,
       );
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
   }
 
@@ -127,11 +129,12 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         isLoading: false,
       );
     } on AtoaException catch (e) {
-      state = state.copyWith(error: e, isLoading: false);
+      PaymentUtility.onError?.call(e);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } on Exception catch (e) {
-      state = state.copyWith(error: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e, isLoading: false);
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
   }
 
@@ -176,7 +179,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     } on Exception catch (e) {
       state = state.copyWith(error: e);
     } finally {
-      state = state.copyWith(error: null, isLoading: false);
+      state = state.copyWith(isLoading: false);
     }
     return null;
   }
@@ -238,6 +241,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
       state = state.copyWith(paymentAuth: paymentAuth);
     } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
       state = state.copyWith(
         selectedBank: null,
         paymentAuth: null,
@@ -253,6 +257,26 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(isLoadingAuth: false);
     }
     await checkBankAppAvailability();
+  }
+
+  Future<void> getSavedBank(String customerId) async {
+    try {
+      final savedBankDetails =
+          await callServer(() => atoa.getSavedBank(customerId));
+
+      state = state.copyWith(savedBankDetails: savedBankDetails);
+    } on AtoaException catch (e) {
+      PaymentUtility.onError?.call(e);
+      state = state.copyWith(
+        error: e,
+      );
+    } on Exception catch (e) {
+      state = state.copyWith(
+        error: e,
+      );
+    } finally {
+      state = state.copyWith(isLoading: false);
+    }
   }
 
   void resetAppInstalled() {

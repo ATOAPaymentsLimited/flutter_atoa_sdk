@@ -15,8 +15,10 @@ class PayNowBottomSheet extends StatefulWidget {
   const PayNowBottomSheet({
     super.key,
     required this.totalAmount,
+    required this.isEnabled,
   });
   final double totalAmount;
+  final bool isEnabled;
 
   @override
   State<PayNowBottomSheet> createState() => _PayNowBottomSheetState();
@@ -32,11 +34,33 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       return;
     }
 
-    AtoaSdk.show(
+    AtoaSdk.pay(
       context,
       paymentId: paymentId,
       showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
-      env: AtoaEnv.prod, // or AtoaEnv.sandbox
+      env: AtoaEnv.prod,
+      // or AtoaEnv.sandbox
+
+      onUserClose: (paymentRequestId) {
+        // handle payment when user close the payment verification bottom sheet
+
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     backgroundColor: RegalColors.darkOrange,
+        //     content: Text(
+        //       'User closed the payment for paymentRequestId: $paymentRequestId',
+        //     ),
+        //   ),
+        // );
+      },
+      onPaymentStatusChange: (status) {
+        // handle payment status
+        // print('Payment Status Changed to $status');
+      },
+      onError: (error) {
+        // handle Atoa Mobile SDK error
+        // print('Error in Atoa Mobile SDK ${error.message}');
+      },
     );
 
     prefs.setBool('showHowPaymentWorks', false);
@@ -72,16 +96,16 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                 children: [
                   CustomText.semantics(
                     'Total',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: NeutralColors.light().grey.shade800,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: NeutralColors.light().grey.shade800,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                   Text(
                     '£ ${widget.totalAmount.toString()}',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               ),
@@ -97,24 +121,25 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                       valueListenable: isLoading,
                       builder: (context, value, child) {
                         return RegalButton.primary(
-                        shrink: true,
+                          shrink: true,
                           enableTracking: false,
                           onPressed: () =>
                               _getPaymentId(context, widget.totalAmount),
-                        label: 'Pay Now',
-                        trackLabel: 'Pay Now',
-                        enable:
-                            !value && !connectivityStatus.isOfflineOrWaiting,
-                        loading: value,
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor:
-                              const Color.fromRGBO(52, 152, 219, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(Spacing.mini.value),
+                          label: 'Pay Now',
+                          trackLabel: 'Pay Now',
+                          enable: !value &&
+                              !connectivityStatus.isOfflineOrWaiting &&
+                              widget.isEnabled,
+                          loading: value,
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor:
+                                const Color.fromRGBO(52, 152, 219, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(Spacing.mini.value),
+                            ),
                           ),
-                        ),
                         );
                       },
                     );
@@ -143,10 +168,10 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
               content: Text(
                 'Oops, An Error Occurred',
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color: Colors.white,
-                  fontSize: 14.sp,
-                  fontFamily: 'Montserrat',
-                ),
+                      color: Colors.white,
+                      fontSize: 14.sp,
+                      fontFamily: 'Montserrat',
+                    ),
               ),
             ),
           );
@@ -188,8 +213,8 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         'paymentType': 'TRANSACTION',
         'autoRedirect': false,
         'callbackParams': {
-          'deviceId': '{deviceId}',
-          'locationId': '{locationId}',
+          'deviceId': '35356478',
+          'locationId': '8956545',
         },
         'redirectUrl': 'atoa://demoapp.com',
         'expiresIn': 60000000,
