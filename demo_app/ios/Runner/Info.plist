@@ -74,12 +74,14 @@
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>
+			    <key>CFBundleTypeRole</key>
+			  	<string>Editor</string> 
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>devapp</string>
+					<string>https</string>
 				</array>
 				<key>CFBundleURLName</key>
-				<string>atoa.me</string>
+				<string>devapp.atoa.me</string>
 			</dict>
 		</array>
 	</dict>
