@@ -4,6 +4,7 @@ library atoa_core;
 export 'src/atoa_core.dart';
 export 'src/config/atoa_sdk_config.dart';
 export 'src/config/environment.dart';
+export 'src/models/customer_details/customer_details.dart';
 export 'src/models/enums/atoa_env.dart';
 export 'src/models/institution/bank_institution.dart';
 export 'src/models/models.dart';

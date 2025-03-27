@@ -47,7 +47,7 @@ class VerifyingPaymentBottomSheet extends StatefulWidget {
         isDismissible: false,
         transitionAnimationController: AnimationController(
           vsync: Navigator.of(context),
-          duration: const Duration(milliseconds: 500),
+          duration: kAnimationDuration,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

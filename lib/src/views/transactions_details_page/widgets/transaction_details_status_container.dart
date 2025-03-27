@@ -1,8 +1,10 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/custom_status_container.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
 class TransactionDetailsStatusContainer extends StatelessWidget {
@@ -15,8 +17,14 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      _getTxnStatusContainerWidget(context, transactionDetails) ??
-      const SizedBox.shrink();
+      Selector<PaymentStatusState, TransactionDetails?>(
+        selector: (context, state) => state.details,
+        builder: (context, details, _) {
+          final paymentDetails = details ?? transactionDetails;
+          return _getTxnStatusContainerWidget(context, paymentDetails) ??
+              const SizedBox.shrink();
+        },
+      );
 
   CustomStatusContainer? _getTxnStatusContainerWidget(
     BuildContext context,

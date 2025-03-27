@@ -76,10 +76,10 @@
 			<dict>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>atoa</string>
+					<string>devapp</string>
 				</array>
 				<key>CFBundleURLName</key>
-				<string>demoapp.com</string>
+				<string>atoa.me</string>
 			</dict>
 		</array>
 	</dict>

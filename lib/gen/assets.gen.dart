@@ -152,17 +152,12 @@ class $AssetsImagesGen {
   AssetGenImage get bankLogos =>
       const AssetGenImage('assets/images/bank-logos.png');
 
-  /// File path: assets/images/pay-by-atoa-banks.png
-  AssetGenImage get payByAtoaBanks =>
-      const AssetGenImage('assets/images/pay-by-atoa-banks.png');
-
   /// File path: assets/images/red-back-atoa-logo.png
   AssetGenImage get redBackAtoaLogo =>
       const AssetGenImage('assets/images/red-back-atoa-logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [bankLogos, payByAtoaBanks, redBackAtoaLogo];
+  List<AssetGenImage> get values => [bankLogos, redBackAtoaLogo];
 }
 
 class Assets {

@@ -48,6 +48,10 @@ _$PaymentRequestDataImpl _$$PaymentRequestDataImplFromJson(
           ? null
           : MerchantThemeDetails.fromJson(
               json['merchantThemeDetails'] as Map<String, dynamic>),
+      lastPaymentBankDetails: json['lastPaymentBankDetails'] == null
+          ? null
+          : SavedBankDetails.fromJson(
+              json['lastPaymentBankDetails'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PaymentRequestDataImplToJson(
@@ -82,4 +86,6 @@ Map<String, dynamic> _$$PaymentRequestDataImplToJson(
       if (instance.options case final value?) 'options': value,
       if (instance.merchantThemeDetails case final value?)
         'merchantThemeDetails': value,
+      if (instance.lastPaymentBankDetails case final value?)
+        'lastPaymentBankDetails': value,
     };

@@ -12,4 +12,6 @@ class PaymentUtility {
   static void Function(String)? onPaymentStatusChange;
 
   static void Function(AtoaException)? onError;
+
+  static CustomerDetails? customerDetails;
 }

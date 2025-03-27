@@ -55,17 +55,6 @@ class _FakeTransactionDetails_2 extends _i1.SmartFake
         );
 }
 
-class _FakeSavedBankDetails_3 extends _i1.SmartFake
-    implements _i2.SavedBankDetails {
-  _FakeSavedBankDetails_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [Atoa].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -103,11 +92,14 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
 
   @override
   _i4.Future<_i2.PaymentRequestData> getPaymentDetails(
-          String? paymentRequestId) =>
+    String? paymentRequestId, {
+    _i2.CustomerDetails? customerDetails,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPaymentDetails,
           [paymentRequestId],
+          {#customerDetails: customerDetails},
         ),
         returnValue:
             _i4.Future<_i2.PaymentRequestData>.value(_FakePaymentRequestData_0(
@@ -115,6 +107,7 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
           Invocation.method(
             #getPaymentDetails,
             [paymentRequestId],
+            {#customerDetails: customerDetails},
           ),
         )),
         returnValueForMissingStub:
@@ -123,6 +116,7 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
           Invocation.method(
             #getPaymentDetails,
             [paymentRequestId],
+            {#customerDetails: customerDetails},
           ),
         )),
       ) as _i4.Future<_i2.PaymentRequestData>);
@@ -177,29 +171,4 @@ class MockAtoa extends _i1.Mock implements _i2.Atoa {
           ),
         )),
       ) as _i4.Future<_i2.TransactionDetails>);
-
-  @override
-  _i4.Future<_i2.SavedBankDetails> getSavedBank(String? customerId) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getSavedBank,
-          [customerId],
-        ),
-        returnValue:
-            _i4.Future<_i2.SavedBankDetails>.value(_FakeSavedBankDetails_3(
-          this,
-          Invocation.method(
-            #getSavedBank,
-            [customerId],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i4.Future<_i2.SavedBankDetails>.value(_FakeSavedBankDetails_3(
-          this,
-          Invocation.method(
-            #getSavedBank,
-            [customerId],
-          ),
-        )),
-      ) as _i4.Future<_i2.SavedBankDetails>);
 }

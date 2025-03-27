@@ -121,6 +121,11 @@ class ReviewDetailsTile extends StatelessWidget {
           state.selectedBank?.bankIcon ?? '',
           height: Spacing.xtraLarge.value + Spacing.tiny.value,
           width: Spacing.xtraLarge.value + Spacing.tiny.value,
+          errorBuilder: (context, _, __) => Icon(
+            Icons.account_balance_outlined,
+            size: Spacing.xtraLarge.value + Spacing.tiny.value,
+            color: IntactColors.light().black,
+          ),
         );
       } else {
         return Icon(
@@ -134,6 +139,10 @@ class ReviewDetailsTile extends StatelessWidget {
         state.paymentDetails?.storeImg ?? '',
         height: Spacing.xtraLarge.value + Spacing.tiny.value,
         width: Spacing.xtraLarge.value + Spacing.tiny.value,
+        errorBuilder: (context, _, __) => Assets.icons.businessImg.svg(
+          height: Spacing.xtraLarge.value * 2,
+          width: Spacing.xtraLarge.value * 2,
+        ),
       );
     }
   }

@@ -42,7 +42,7 @@ Future<T?> showSdkBottomSheet<T>({
       useSafeArea: true,
       transitionAnimationController: AnimationController(
         vsync: Navigator.of(context),
-        duration: const Duration(milliseconds: 500),
+        duration: kAnimationDuration,
       ),
     );
 

@@ -28,22 +28,22 @@ class TransactionDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-        child: Selector<PaymentStatusState, TransactionDetails?>(
-          selector: (context, state) => state.details,
-          builder: (context, details, _) {
-            final transactionDetails = details ?? paymentDetails;
-            return Column(
-              mainAxisSize: MainAxisSize.min,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Opacity(
-                      opacity: 0,
-                      child: EmptyIconPlaceholder(),
-                    ),
-                    Spacing.mediumlarge.xBox * 2,
-                    Expanded(
+                const Opacity(
+                  opacity: 0,
+                  child: EmptyIconPlaceholder(),
+                ),
+                Spacing.mediumlarge.xBox * 2,
+                Selector<PaymentStatusState, TransactionDetails?>(
+                  selector: (context, state) => state.details,
+                  builder: (context, details, _) {
+                    final transactionDetails = details ?? paymentDetails;
+                    return Expanded(
                       child: Column(
                         children: [
                           CustomText.semantics(
@@ -74,52 +74,52 @@ class TransactionDetailsPage extends StatelessWidget {
                             ),
                         ],
                       ),
-                    ),
-                    Spacing.large.xBox,
-                    BottomSheetAction(
-                      semanticsLabel: 'Close Dialog Sheet Icon',
-                      trackLabel: 'Close Dialog Sheet Icon',
-                      onTap: () {
-                        context.read<PaymentStatusController>().stop();
-                        Navigator.pop(
-                          context,
-                          context.read<PaymentStatusState>().details,
-                        );
-                      },
-                      child: Icon(
-                        Icons.close,
-                        size: Spacing.large.value,
-                        color: IntactColors.light().black,
-                      ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
-                Spacing.huge.yBox * 2,
-                TransactionDetailsTopCard(
-                  transactionDetails: transactionDetails,
-                ),
-                Padding(
-                  padding: Spacing.xtraLarge.top,
-                  child: Column(
-                    children: [
-                      TransactionDetailsStatusContainer(
-                        transactionDetails: transactionDetails,
-                      ),
-                      Padding(
-                        padding: Spacing.medium.top + Spacing.tiny.top,
-                        child: TransactionDetailsInfoUi(
-                          transactionDetails: transactionDetails,
-                          isExpanded: false,
-                        ),
-                      ),
-                      Spacing.medium.yBox,
-                      Spacing.huge.yBox,
-                    ],
+                Spacing.large.xBox,
+                BottomSheetAction(
+                  semanticsLabel: 'Close Dialog Sheet Icon',
+                  trackLabel: 'Close Dialog Sheet Icon',
+                  onTap: () {
+                    context.read<PaymentStatusController>().stop();
+                    Navigator.pop(
+                      context,
+                      context.read<PaymentStatusState>().details,
+                    );
+                  },
+                  child: Icon(
+                    Icons.close,
+                    size: Spacing.large.value,
+                    color: IntactColors.light().black,
                   ),
                 ),
               ],
-            );
-          },
+            ),
+            Spacing.huge.yBox * 2,
+            TransactionDetailsTopCard(
+              transactionDetails: paymentDetails,
+            ),
+            Padding(
+              padding: Spacing.xtraLarge.top,
+              child: Column(
+                children: [
+                  TransactionDetailsStatusContainer(
+                    transactionDetails: paymentDetails,
+                  ),
+                  Padding(
+                    padding: Spacing.medium.top + Spacing.tiny.top,
+                    child: TransactionDetailsInfoUi(
+                      transactionDetails: paymentDetails,
+                      isExpanded: false,
+                    ),
+                  ),
+                  Spacing.medium.yBox,
+                  Spacing.huge.yBox,
+                ],
+              ),
+            ),
+          ],
         ),
       );
 }

@@ -15,10 +15,8 @@ class PayNowBottomSheet extends StatefulWidget {
   const PayNowBottomSheet({
     super.key,
     required this.totalAmount,
-    required this.isEnabled,
   });
   final double totalAmount;
-  final bool isEnabled;
 
   @override
   State<PayNowBottomSheet> createState() => _PayNowBottomSheetState();
@@ -38,6 +36,11 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       context,
       paymentId: paymentId,
       showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
+      customerDetails: const CustomerDetails(
+        phoneCountryCode: '44',
+        phoneNumber: '7857094720',
+        email: 'testsdk@gmail.com',
+      ),
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
@@ -127,9 +130,8 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                               _getPaymentId(context, widget.totalAmount),
                           label: 'Pay Now',
                           trackLabel: 'Pay Now',
-                          enable: !value &&
-                              !connectivityStatus.isOfflineOrWaiting &&
-                              widget.isEnabled,
+                          enable:
+                              !value && !connectivityStatus.isOfflineOrWaiting,
                           loading: value,
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
@@ -216,7 +218,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
           'deviceId': '35356478',
           'locationId': '8956545',
         },
-        'redirectUrl': 'atoa://demoapp.com',
+        'redirectUrl': 'https://devapp.atoa.me/demopay',
         'expiresIn': 60000000,
         'enableTips': true,
         'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',

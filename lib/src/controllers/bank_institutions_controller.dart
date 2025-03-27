@@ -86,7 +86,10 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     try {
       final paymentRes = await callServer(
-        () => atoa.getPaymentDetails(PaymentUtility.paymentId),
+        () => atoa.getPaymentDetails(
+          PaymentUtility.paymentId,
+          customerDetails: PaymentUtility.customerDetails,
+        ),
       );
 
       state = state.copyWith(
@@ -257,26 +260,6 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(isLoadingAuth: false);
     }
     await checkBankAppAvailability();
-  }
-
-  Future<void> getSavedBank(String customerId) async {
-    try {
-      final savedBankDetails =
-          await callServer(() => atoa.getSavedBank(customerId));
-
-      state = state.copyWith(savedBankDetails: savedBankDetails);
-    } on AtoaException catch (e) {
-      PaymentUtility.onError?.call(e);
-      state = state.copyWith(
-        error: e,
-      );
-    } on Exception catch (e) {
-      state = state.copyWith(
-        error: e,
-      );
-    } finally {
-      state = state.copyWith(isLoading: false);
-    }
   }
 
   void resetAppInstalled() {

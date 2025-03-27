@@ -22,6 +22,7 @@ class AtoaSdk {
     void Function(String)? onUserClose,
     void Function(String)? onPaymentStatusChange,
     void Function(AtoaException)? onError,
+    CustomerDetails? customerDetails,
   }) async {
     WidgetsFlutterBinding.ensureInitialized();
 
@@ -32,6 +33,10 @@ class AtoaSdk {
 
     if (onPaymentStatusChange != null) {
       PaymentUtility.onPaymentStatusChange = onPaymentStatusChange;
+    }
+
+    if (customerDetails != null) {
+      PaymentUtility.customerDetails = customerDetails;
     }
 
     await AtoaSdkConfig.initialize(

@@ -1,4 +1,3 @@
-import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersdk/utils/connectivity_controller.dart';
 import 'package:fluttersdk/utils/connectivity_wrapper.dart';
@@ -7,29 +6,10 @@ import 'package:fluttersdk/widgets/product_card_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({
     super.key,
   });
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late ValueNotifier<bool> enabled;
-
-  @override
-  void initState() {
-    super.initState();
-    enabled = ValueNotifier(false);
-  }
-
-  @override
-  void dispose() {
-    enabled.dispose();
-    super.dispose();
-  }
 
   final totalAmountNotifier = 1.00 * 2;
 
@@ -91,20 +71,34 @@ class _HomePageState extends State<HomePage> {
                     name: 'NikeCourt Lite 2',
                   ),
                   Spacing.huge.yBox,
-                  AtoaPayByWidget(onSelect: ({required bool selected}) {
-                    //handle Atoa Pay selected value
-                    enabled.value = selected;
-                  }),
+                  Row(
+                    children: [
+                      Radio(
+                        visualDensity: const VisualDensity(
+                            horizontal: VisualDensity.minimumDensity,
+                            vertical: VisualDensity.minimumDensity),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        splashRadius: 0,
+                        value: true,
+                        groupValue: true,
+                        onChanged: (bool? value) {},
+                      ),
+                      Spacing.medium.xBox,
+                      CustomText.semantics(
+                        'Atoa - Instant Bank Pay',
+                        style: context.bodyLarge!,
+                      )
+                    ],
+                  ),
+                  Spacing.small.yBox,
+                  Spacing.tiny.yBox,
+                  Image.asset('assets/images/atoa.png'),
                 ],
               ),
             ),
           ),
-          bottomSheet: ValueListenableBuilder(
-            valueListenable: enabled,
-            builder: (context, isEnabled, child) => PayNowBottomSheet(
-              totalAmount: totalAmountNotifier,
-              isEnabled: isEnabled,
-            ),
+          bottomSheet: PayNowBottomSheet(
+            totalAmount: totalAmountNotifier,
           ),
         ),
       ),

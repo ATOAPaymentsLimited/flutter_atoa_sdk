@@ -44,6 +44,7 @@ class PaymentRequestData with _$PaymentRequestData {
     @Default(false) bool splitBill,
     @JsonKey(includeIfNull: false) Map<String, dynamic>? options,
     @JsonKey(includeIfNull: false) MerchantThemeDetails? merchantThemeDetails,
+    @JsonKey(includeIfNull: false) SavedBankDetails? lastPaymentBankDetails,
   }) = _PaymentRequestData;
 
   const PaymentRequestData._();

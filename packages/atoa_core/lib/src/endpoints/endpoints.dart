@@ -17,7 +17,4 @@ class Endpoints {
 
   /// Payment Status
   static String getPaymentStatus(String id) => 'payments/payment-status/$id';
-
-  // Saved bank
-  static const getSavedBank = 'saved-bank';
 }
