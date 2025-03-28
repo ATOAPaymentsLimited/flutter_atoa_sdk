@@ -30,6 +30,9 @@ mixin _$BankInstitutionsState {
   SavedBankDetails? get savedBankDetails => throw _privateConstructorUsedError;
   Exception? get paymentDetailsError => throw _privateConstructorUsedError;
   Exception? get bankFetchingError => throw _privateConstructorUsedError;
+  bool get hasLastPaymentDetails => throw _privateConstructorUsedError;
+  BankInstitution? get lastBankDetails => throw _privateConstructorUsedError;
+  bool get showConfirmation => throw _privateConstructorUsedError;
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.
@@ -58,12 +61,16 @@ abstract class $BankInstitutionsStateCopyWith<$Res> {
       bool showHowPaymentWorks,
       SavedBankDetails? savedBankDetails,
       Exception? paymentDetailsError,
-      Exception? bankFetchingError});
+      Exception? bankFetchingError,
+      bool hasLastPaymentDetails,
+      BankInstitution? lastBankDetails,
+      bool showConfirmation});
 
   $BankInstitutionCopyWith<$Res>? get selectedBank;
   $PaymentRequestDataCopyWith<$Res>? get paymentDetails;
   $PaymentAuthResponseCopyWith<$Res>? get paymentAuth;
   $SavedBankDetailsCopyWith<$Res>? get savedBankDetails;
+  $BankInstitutionCopyWith<$Res>? get lastBankDetails;
 }
 
 /// @nodoc
@@ -96,6 +103,9 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     Object? savedBankDetails = freezed,
     Object? paymentDetailsError = freezed,
     Object? bankFetchingError = freezed,
+    Object? hasLastPaymentDetails = null,
+    Object? lastBankDetails = freezed,
+    Object? showConfirmation = null,
   }) {
     return _then(_value.copyWith(
       bankList: null == bankList
@@ -154,6 +164,18 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
           ? _value.bankFetchingError
           : bankFetchingError // ignore: cast_nullable_to_non_nullable
               as Exception?,
+      hasLastPaymentDetails: null == hasLastPaymentDetails
+          ? _value.hasLastPaymentDetails
+          : hasLastPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lastBankDetails: freezed == lastBankDetails
+          ? _value.lastBankDetails
+          : lastBankDetails // ignore: cast_nullable_to_non_nullable
+              as BankInstitution?,
+      showConfirmation: null == showConfirmation
+          ? _value.showConfirmation
+          : showConfirmation // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -212,6 +234,20 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
       return _then(_value.copyWith(savedBankDetails: value) as $Val);
     });
   }
+
+  /// Create a copy of BankInstitutionsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BankInstitutionCopyWith<$Res>? get lastBankDetails {
+    if (_value.lastBankDetails == null) {
+      return null;
+    }
+
+    return $BankInstitutionCopyWith<$Res>(_value.lastBankDetails!, (value) {
+      return _then(_value.copyWith(lastBankDetails: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -237,7 +273,10 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
       bool showHowPaymentWorks,
       SavedBankDetails? savedBankDetails,
       Exception? paymentDetailsError,
-      Exception? bankFetchingError});
+      Exception? bankFetchingError,
+      bool hasLastPaymentDetails,
+      BankInstitution? lastBankDetails,
+      bool showConfirmation});
 
   @override
   $BankInstitutionCopyWith<$Res>? get selectedBank;
@@ -247,6 +286,8 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
   $PaymentAuthResponseCopyWith<$Res>? get paymentAuth;
   @override
   $SavedBankDetailsCopyWith<$Res>? get savedBankDetails;
+  @override
+  $BankInstitutionCopyWith<$Res>? get lastBankDetails;
 }
 
 /// @nodoc
@@ -277,6 +318,9 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
     Object? savedBankDetails = freezed,
     Object? paymentDetailsError = freezed,
     Object? bankFetchingError = freezed,
+    Object? hasLastPaymentDetails = null,
+    Object? lastBankDetails = freezed,
+    Object? showConfirmation = null,
   }) {
     return _then(_$BankInstitutionsStateImpl(
       bankList: null == bankList
@@ -335,6 +379,18 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
           ? _value.bankFetchingError
           : bankFetchingError // ignore: cast_nullable_to_non_nullable
               as Exception?,
+      hasLastPaymentDetails: null == hasLastPaymentDetails
+          ? _value.hasLastPaymentDetails
+          : hasLastPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lastBankDetails: freezed == lastBankDetails
+          ? _value.lastBankDetails
+          : lastBankDetails // ignore: cast_nullable_to_non_nullable
+              as BankInstitution?,
+      showConfirmation: null == showConfirmation
+          ? _value.showConfirmation
+          : showConfirmation // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -357,7 +413,10 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       this.showHowPaymentWorks = true,
       this.savedBankDetails,
       this.paymentDetailsError,
-      this.bankFetchingError})
+      this.bankFetchingError,
+      this.hasLastPaymentDetails = false,
+      this.lastBankDetails,
+      this.showConfirmation = false})
       : _bankList = bankList,
         super._();
 
@@ -401,10 +460,18 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
   final Exception? paymentDetailsError;
   @override
   final Exception? bankFetchingError;
+  @override
+  @JsonKey()
+  final bool hasLastPaymentDetails;
+  @override
+  final BankInstitution? lastBankDetails;
+  @override
+  @JsonKey()
+  final bool showConfirmation;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth, isAppInstalled: $isAppInstalled, isLoadingAuth: $isLoadingAuth, bankAuthError: $bankAuthError, showHowPaymentWorks: $showHowPaymentWorks, savedBankDetails: $savedBankDetails, paymentDetailsError: $paymentDetailsError, bankFetchingError: $bankFetchingError)';
+    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth, isAppInstalled: $isAppInstalled, isLoadingAuth: $isLoadingAuth, bankAuthError: $bankAuthError, showHowPaymentWorks: $showHowPaymentWorks, savedBankDetails: $savedBankDetails, paymentDetailsError: $paymentDetailsError, bankFetchingError: $bankFetchingError, hasLastPaymentDetails: $hasLastPaymentDetails, lastBankDetails: $lastBankDetails, showConfirmation: $showConfirmation)';
   }
 
   @override
@@ -425,7 +492,10 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       ..add(DiagnosticsProperty('showHowPaymentWorks', showHowPaymentWorks))
       ..add(DiagnosticsProperty('savedBankDetails', savedBankDetails))
       ..add(DiagnosticsProperty('paymentDetailsError', paymentDetailsError))
-      ..add(DiagnosticsProperty('bankFetchingError', bankFetchingError));
+      ..add(DiagnosticsProperty('bankFetchingError', bankFetchingError))
+      ..add(DiagnosticsProperty('hasLastPaymentDetails', hasLastPaymentDetails))
+      ..add(DiagnosticsProperty('lastBankDetails', lastBankDetails))
+      ..add(DiagnosticsProperty('showConfirmation', showConfirmation));
   }
 
   @override
@@ -458,7 +528,13 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
             (identical(other.paymentDetailsError, paymentDetailsError) ||
                 other.paymentDetailsError == paymentDetailsError) &&
             (identical(other.bankFetchingError, bankFetchingError) ||
-                other.bankFetchingError == bankFetchingError));
+                other.bankFetchingError == bankFetchingError) &&
+            (identical(other.hasLastPaymentDetails, hasLastPaymentDetails) ||
+                other.hasLastPaymentDetails == hasLastPaymentDetails) &&
+            (identical(other.lastBankDetails, lastBankDetails) ||
+                other.lastBankDetails == lastBankDetails) &&
+            (identical(other.showConfirmation, showConfirmation) ||
+                other.showConfirmation == showConfirmation));
   }
 
   @override
@@ -477,7 +553,10 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       showHowPaymentWorks,
       savedBankDetails,
       paymentDetailsError,
-      bankFetchingError);
+      bankFetchingError,
+      hasLastPaymentDetails,
+      lastBankDetails,
+      showConfirmation);
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.
@@ -504,7 +583,10 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
       final bool showHowPaymentWorks,
       final SavedBankDetails? savedBankDetails,
       final Exception? paymentDetailsError,
-      final Exception? bankFetchingError}) = _$BankInstitutionsStateImpl;
+      final Exception? bankFetchingError,
+      final bool hasLastPaymentDetails,
+      final BankInstitution? lastBankDetails,
+      final bool showConfirmation}) = _$BankInstitutionsStateImpl;
   const _BankInstitutionsState._() : super._();
 
   @override
@@ -535,6 +617,12 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   Exception? get paymentDetailsError;
   @override
   Exception? get bankFetchingError;
+  @override
+  bool get hasLastPaymentDetails;
+  @override
+  BankInstitution? get lastBankDetails;
+  @override
+  bool get showConfirmation;
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.

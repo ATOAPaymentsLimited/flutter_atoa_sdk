@@ -17,6 +17,9 @@ class BankInstitutionsState with _$BankInstitutionsState {
     SavedBankDetails? savedBankDetails,
     Exception? paymentDetailsError,
     Exception? bankFetchingError,
+    @Default(false) bool hasLastPaymentDetails,
+    BankInstitution? lastBankDetails,
+    @Default(false) bool showConfirmation,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();

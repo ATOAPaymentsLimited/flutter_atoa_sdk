@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
+import 'package:collection/collection.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -47,6 +48,18 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   }
 
   bool get showHowPaymentWorks => state.showHowPaymentWorks;
+
+  set showConfirmation(bool value) {
+    state = state.copyWith(showConfirmation: value);
+  }
+
+  bool get showConfirmation => state.showConfirmation;
+
+  set bankSelected(BankInstitution? value) {
+    state = state.copyWith(lastBankDetails: value);
+  }
+
+  BankInstitution? get bankSelected => state.lastBankDetails;
 
   List<BankInstitution> get personalBanks =>
       state.bankList.where((bank) => !bank.businessBank).toList();
@@ -129,8 +142,22 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
       state = state.copyWith(
         bankList: res,
-        isLoading: false,
       );
+
+      final lastPaymentBank = state.paymentDetails?.lastPaymentBankDetails;
+      final lastBankDetails = state.bankList.firstWhereOrNull(
+        (element) => element.id == lastPaymentBank?.institutionId,
+      );
+      if (lastBankDetails != null &&
+          state.paymentDetails?.amount.amount != null) {
+        state = state.copyWith(
+          hasLastPaymentDetails: lastBankDetails.enabled &&
+              lastBankDetails.transactionAmountLimit >=
+                  state.paymentDetails!.amount.amount,
+          lastBankDetails: lastBankDetails,
+        );
+      }
+      state = state.copyWith(isLoading: false);
     } on AtoaException catch (e) {
       PaymentUtility.onError?.call(e);
       state = state.copyWith(bankFetchingError: e, isLoading: false);
@@ -273,6 +300,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       selectedBank: null,
       paymentAuth: null,
       isAppInstalled: true,
+      lastBankDetails: null,
     );
   }
 }

@@ -13,18 +13,18 @@ class ContinueButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LedgerButton.primary2(
-    size: LedgerButtonSize.xtraLarge,
-    trackLabel: 'I understand cotinue Button',
-    semanticsLabel: context.l10n.iUnderstandContinue,
-    style: ElevatedButton.styleFrom(
-      textStyle: Theme.of(context).textTheme.bodyLarge?.w700,
-    ),
-    backgroundColor: BrandingColorUtility.brandingBackgroundColor,
-    foregroundColor: BrandingColorUtility.brandingForegroundColor,
-    label: context.l10n.iUnderstandContinue,
-    onPressed: () async {
-      context.read<BankInstitutionsController>().showHowPaymentWorks =
-          false;
-    },
-  );
+        size: LedgerButtonSize.xtraLarge,
+        trackLabel: 'I understand cotinue Button',
+        semanticsLabel: context.l10n.iUnderstandContinue,
+        style: ElevatedButton.styleFrom(
+          textStyle: Theme.of(context).textTheme.bodyLarge?.w700,
+        ),
+        backgroundColor: BrandingColorUtility.brandingBackgroundColor,
+        foregroundColor: BrandingColorUtility.brandingForegroundColor,
+        label: context.l10n.iUnderstandContinue,
+        onPressed: () async {
+          context.read<BankInstitutionsController>().showHowPaymentWorks =
+              false;
+        },
+      );
 }

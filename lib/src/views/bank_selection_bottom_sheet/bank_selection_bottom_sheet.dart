@@ -1,15 +1,13 @@
 import 'dart:async';
 
-import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
+import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_view.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,83 +18,27 @@ import 'package:regal/regal.dart';
 class BankSelectionBottomSheet extends StatefulWidget {
   const BankSelectionBottomSheet({
     required this.showHowPaymentWorks,
+    required this.bankInstitutionsController,
+    required this.paymentStatusController,
+    required this.connectivityController,
     super.key,
-    this.bankInstitutionController,
   });
 
   final bool showHowPaymentWorks;
-  final BankInstitutionsController? bankInstitutionController;
+  final BankInstitutionsController bankInstitutionsController;
+  final PaymentStatusController paymentStatusController;
+  final ConnectivityController connectivityController;
 
-  static Future<TransactionDetails?> show(
+  static Future<bool?> show(
     BuildContext context, {
     required bool showHowPaymentWorks,
-    BankInstitutionsController? bankInstitutionController,
+    required BankInstitutionsController bankInstitutionsController,
+    required PaymentStatusController paymentStatusController,
+    required ConnectivityController connectivityController,
   }) =>
-      showModalBottomSheet<TransactionDetails?>(
+      showModalBottomSheet<bool?>(
         context: context,
-        builder: (context) => BankSelectionBottomSheet(
-          bankInstitutionController: bankInstitutionController,
-          showHowPaymentWorks: showHowPaymentWorks,
-        ),
-        isScrollControlled: true,
-        enableDrag: false,
-        isDismissible: false,
-        transitionAnimationController: AnimationController(
-          vsync: Navigator.of(context),
-          duration: const Duration(milliseconds: 500),
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(Spacing.xtraLarge.value),
-            topRight: Radius.circular(Spacing.xtraLarge.value),
-          ),
-        ),
-        useSafeArea: true,
-      );
-
-  @override
-  State<BankSelectionBottomSheet> createState() =>
-      _BankSelectionBottomSheetState();
-}
-
-class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  final TextEditingController _searchController = TextEditingController();
-  late BankInstitutionsController bankInstitutionsController;
-  late PaymentStatusController paymentStatusController;
-  late ConnectivityController connectivityController;
-
-  @override
-  void initState() {
-    super.initState();
-    getIt.registerSingleton<Connectivity>(Connectivity());
-    bankInstitutionsController = getIt.get<BankInstitutionsController>();
-    paymentStatusController = getIt.get<PaymentStatusController>();
-    connectivityController = getIt.get<ConnectivityController>();
-    _tabController = TabController(length: 2, vsync: this);
-    bankInstitutionsController.showHowPaymentWorks = widget.showHowPaymentWorks;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await bankInstitutionsController.getPaymentDetails();
-      await bankInstitutionsController.fetchBanks();
-    });
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    _searchController.dispose();
-    bankInstitutionsController.dispose();
-    paymentStatusController.dispose();
-    connectivityController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => Theme(
-        data: sdkLedgerTheme,
-        child: MultiProvider(
+        builder: (context) => MultiProvider(
           providers: [
             StreamProvider<ConnectivityStatus>(
               initialData: ConnectivityStatus.waiting,
@@ -117,28 +59,87 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
               value: paymentStatusController,
             ),
           ],
-          builder: (context, _) => Consumer<BankInstitutionsState>(
+          builder: (context, _) => BankSelectionBottomSheet(
+            showHowPaymentWorks: showHowPaymentWorks,
+            bankInstitutionsController: bankInstitutionsController,
+            paymentStatusController: paymentStatusController,
+            connectivityController: connectivityController,
+          ),
+        ),
+        isScrollControlled: true,
+        enableDrag: false,
+        isDismissible: false,
+        transitionAnimationController: AnimationController(
+          vsync: Navigator.of(context),
+          duration: kAnimationDuration,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(Spacing.xtraLarge.value),
+            topRight: Radius.circular(Spacing.xtraLarge.value),
+          ),
+        ),
+        useSafeArea: true,
+      );
+
+  @override
+  State<BankSelectionBottomSheet> createState() =>
+      _BankSelectionBottomSheetState();
+}
+
+class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _searchController.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Theme(
+        data: sdkLedgerTheme,
+        child: ConnectivityWrapper(
+          child: Consumer<BankInstitutionsState>(
             builder: (context, state, Widget? child) =>
                 KeyboardVisibilityBuilder(
-              builder: (context, isKeyboardVisible) => AnimatedContainer(
-                duration: kAnimationDuration,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: IntactColors.light().white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Spacing.xtraLarge.value),
-                      topRight: Radius.circular(Spacing.xtraLarge.value),
-                    ),
+              builder: (context, isKeyboardVisible) => DecoratedBox(
+                decoration: BoxDecoration(
+                  color: IntactColors.light().white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(Spacing.xtraLarge.value),
+                    topRight: Radius.circular(Spacing.xtraLarge.value),
                   ),
-                  child: Padding(
-                    padding: Spacing.large.all,
-                    child: AnimatedCrossFade(
+                ),
+                child: Padding(
+                  padding: Spacing.large.all,
+                  child: AnimatedCrossFade(
+                    duration: kAnimationDuration,
+                    crossFadeState: state.showHowPaymentWorks
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                    firstChild: const HowToMakePaymentView(),
+                    secondChild: AnimatedCrossFade(
                       duration: kAnimationDuration,
-                      crossFadeState: state.showHowPaymentWorks
+                      crossFadeState: (state.hasLastPaymentDetails &&
+                                  state.lastBankDetails != null) ||
+                              state.showConfirmation
                           ? CrossFadeState.showFirst
                           : CrossFadeState.showSecond,
-                      firstChild: const ConnectivityWrapper(
-                        child: HowToMakePaymentView(),
+                      firstChild: ConfirmationBottomSheet(
+                        key: ValueKey(state.lastBankDetails),
+                        bank: state.lastBankDetails,
                       ),
                       secondChild: AnimatedPadding(
                         duration: kAnimationDuration,
@@ -154,11 +155,9 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                               isKeyboardVisible ? 0.5.sh : 0.9.sh,
                             ),
                           ),
-                          child: ConnectivityWrapper(
-                            child: BankSelectionView(
-                              tabController: _tabController,
-                              searchController: _searchController,
-                            ),
+                          child: BankSelectionView(
+                            tabController: _tabController,
+                            searchController: _searchController,
                           ),
                         ),
                       ),

@@ -2,9 +2,13 @@ import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
+import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/di/injection.dart';
 import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
@@ -71,11 +75,41 @@ class AtoaSdk {
     }
 
     if (!context.mounted) return null;
+    getIt.registerSingleton<Connectivity>(Connectivity());
 
-    final transactionDetails = await BankSelectionBottomSheet.show(
+    final bankInstitutionsController = getIt.get<BankInstitutionsController>();
+    final paymentStatusController = getIt.get<PaymentStatusController>();
+    final connectivityController = getIt.get<ConnectivityController>();
+
+    unawaited(bankInstitutionsController.getPaymentDetails());
+    unawaited(bankInstitutionsController.fetchBanks());
+    bankInstitutionsController.showHowPaymentWorks = showHowPaymentWorks;
+    if (!context.mounted) return null;
+    final res = await BankSelectionBottomSheet.show(
       context,
       showHowPaymentWorks: showHowPaymentWorks,
+      bankInstitutionsController: bankInstitutionsController,
+      paymentStatusController: paymentStatusController,
+      connectivityController: connectivityController,
     );
+
+    if (!context.mounted) return null;
+
+    TransactionDetails? transactionDetails;
+    if (res != null && res) {
+      final verify = await VerifyingPaymentBottomSheet.show(
+        context,
+        bankInstitutionsController,
+        paymentStatusController,
+        connectivityController,
+      );
+
+      transactionDetails = verify;
+    }
+
+    bankInstitutionsController.dispose();
+    paymentStatusController.dispose();
+    connectivityController.dispose();
 
     return transactionDetails;
   }
