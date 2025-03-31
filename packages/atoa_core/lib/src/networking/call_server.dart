@@ -57,6 +57,9 @@ Future<T> callServer<T>(
           AtoaExceptionType.custom,
           ((e.response!.data as Map<String, dynamic>)['message'] as String?) ??
               'Unknown Error',
+          (e.response!.data as Map<String, dynamic>)['amount'] as num?,
+          (e.response!.data as Map<String, dynamic>)['referenceId'] as String?,
+          (e.response!.data as Map<String, dynamic>)['time'] as String?,
         );
       }
     }

@@ -2244,7 +2244,7 @@ abstract class AppLocalizations {
   /// No description provided for @requestExpired.
   ///
   /// In en, this message translates to:
-  /// **'Request Expired'**
+  /// **'Request expired'**
   String get requestExpired;
 
   /// No description provided for @internalReward.
@@ -5354,6 +5354,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error processing payment'**
   String get errorProcessingPayment;
+
+  /// No description provided for @bankDownError.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops, this bank app is down at the moment. This happens when the bank is upgrading its app or has maintenance underway. Atoa is working fine. Please pay with another bank.'**
+  String get bankDownError;
+
+  /// No description provided for @requestExpiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'This payment request has been expired, please go back and retry the payment again.'**
+  String get requestExpiredError;
+
+  /// No description provided for @requiredExpiredErrorDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Please reach out to the business for a new link and attempt to pay again'**
+  String get requiredExpiredErrorDesc;
+
+  /// No description provided for @linkPaidMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'This link is already paid'**
+  String get linkPaidMsg;
+
+  /// No description provided for @paymentAlreadyPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'This payment is already paid'**
+  String get paymentAlreadyPaid;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

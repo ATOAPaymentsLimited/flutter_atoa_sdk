@@ -8,9 +8,11 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/ledger_button.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/app_not_installed_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_and_service_widget.dart';
+import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/payment_paid_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/review_details_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -105,7 +107,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
               Spacing.xtraLarge.yBox,
               Consumer<BankInstitutionsState>(
                 builder: (context, state, child) {
-                  if (state.isLoadingAuth) {
+                  if (state.isLoading != null && state.isLoading!) {
                     return const Expanded(
                       child: Center(
                         child: AtoaLoader(),
@@ -114,15 +116,8 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                   }
 
                   if (state.bankAuthError != null) {
-                    return Expanded(
-                      child: Center(
-                        child: AtoaErrorWidget(
-                          message: state.bankAuthError != null &&
-                                  state.bankAuthError is AtoaException
-                              ? (state.bankAuthError! as AtoaException).message
-                              : null,
-                        ),
-                      ),
+                    return Center(
+                      child: _getErrorWidget(state.bankAuthError!),
                     );
                   }
 
@@ -167,7 +162,8 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                               ? null
                               : () => Navigator.pop(context, true),
                           trackLabel: 'Go To ${state.selectedBank?.name}',
-                          loading: state.isLoadingAuth,
+                          loading: state.isLoading == null ||
+                              state.isLoading != null && state.isLoading!,
                           loadingIndicatorColor:
                               BrandingColorUtility.brandingForegroundColor,
                           label: context.l10n.goToBank(
@@ -187,4 +183,41 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
           ),
         ),
       );
+
+  Widget _getErrorWidget(Exception err) {
+    final errMsg = err is AtoaException ? err.message : null;
+
+    if (errMsg != null &&
+        errMsg.trim() == context.l10n.bankDownError &&
+        widget.bank != null) {
+      return BankDownBottomSheet(
+        bank: widget.bank!,
+      );
+    } else if (errMsg != null &&
+        errMsg.trim() == context.l10n.requiredExpiredErrorDesc) {
+      return SizedBox(
+        height: 0.60.sh,
+        child: AtoaErrorWidget(
+          title: context.l10n.requestExpired,
+          message: context.l10n.requestExpiredError,
+        ),
+      );
+    } else if (errMsg != null &&
+        errMsg.trim() == context.l10n.linkPaidMsg &&
+        err is AtoaException) {
+      return SizedBox(
+        height: 0.60.sh,
+        child: PaymentPaidWidget(
+          error: err,
+        ),
+      );
+    } else {
+      return SizedBox(
+        height: 0.60.sh,
+        child: AtoaErrorWidget(
+          message: err is AtoaException ? err.message : null,
+        ),
+      );
+    }
+  }
 }

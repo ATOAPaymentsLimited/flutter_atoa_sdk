@@ -533,7 +533,7 @@
     "requestCancelled": "Request Cancelled",
     "youHaveDeclined": "You’ve Declined",
     "requestDeclined": "Request Declined",
-    "requestExpired": "Request Expired",
+    "requestExpired": "Request expired",
     "internalReward": "Internal Reward",
     "requested": "Requested",
     "waitingForPayment": "Waiting for payment",
@@ -1667,5 +1667,10 @@
     "bankLimitText": "Some banks listed below might not handle the payments of ",
     "bankFetchErrorTitle": "We couldn’t fetch banks!",
     "bankFetchErrorDesc": "Something went wrong while fetching bank list. Please check your internet connection and try again.",
-    "errorProcessingPayment": "Error processing payment"
+    "errorProcessingPayment": "Error processing payment",
+    "bankDownError": "Oops, this bank app is down at the moment. This happens when the bank is upgrading its app or has maintenance underway. Atoa is working fine. Please pay with another bank.",
+    "requestExpiredError": "This payment request has been expired, please go back and retry the payment again.",
+    "requiredExpiredErrorDesc": "Please reach out to the business for a new link and attempt to pay again",
+    "linkPaidMsg": "This link is already paid",
+    "paymentAlreadyPaid": "This payment is already paid"
 }

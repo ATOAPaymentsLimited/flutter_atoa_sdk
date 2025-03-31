@@ -24,13 +24,13 @@ class HowToMakePaymentView extends StatelessWidget {
           Spacing.huge.yBox,
           Consumer<BankInstitutionsState>(
             builder: (_, state, __) {
-              final isLoading = state.isLoading;
+              final isLoading = state.isLoadingDetails;
 
-              if (isLoading) {
+              if (isLoading == null || isLoading) {
                 return SizedBox(
                   height: 0.5.sh,
                   child: const Center(
-                    child: SDKLoader(),
+                    child: FetchingBankLoader(),
                   ),
                 );
               }

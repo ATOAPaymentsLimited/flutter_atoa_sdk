@@ -110,31 +110,31 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
   @override
   Widget build(BuildContext context) => Theme(
         data: sdkLedgerTheme,
-        child: ConnectivityWrapper(
-          child: Consumer<BankInstitutionsState>(
-            builder: (context, state, Widget? child) =>
-                KeyboardVisibilityBuilder(
-              builder: (context, isKeyboardVisible) => DecoratedBox(
-                decoration: BoxDecoration(
-                  color: IntactColors.light().white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(Spacing.xtraLarge.value),
-                    topRight: Radius.circular(Spacing.xtraLarge.value),
-                  ),
+        child: Consumer<BankInstitutionsState>(
+          builder: (context, state, Widget? child) => KeyboardVisibilityBuilder(
+            builder: (context, isKeyboardVisible) => DecoratedBox(
+              decoration: BoxDecoration(
+                color: IntactColors.light().white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Spacing.xtraLarge.value),
+                  topRight: Radius.circular(Spacing.xtraLarge.value),
                 ),
-                child: Padding(
-                  padding: Spacing.large.all,
+              ),
+              child: Padding(
+                padding: Spacing.large.all,
+                child: ConnectivityWrapper(
                   child: AnimatedCrossFade(
                     duration: kAnimationDuration,
-                    crossFadeState: state.showHowPaymentWorks
+                    crossFadeState: state.showHowPaymentWorks != null &&
+                            state.showHowPaymentWorks!
                         ? CrossFadeState.showFirst
                         : CrossFadeState.showSecond,
                     firstChild: const HowToMakePaymentView(),
                     secondChild: AnimatedCrossFade(
                       duration: kAnimationDuration,
-                      crossFadeState: (state.hasLastPaymentDetails &&
+                      crossFadeState: ((state.hasLastPaymentDetails &&
                                   state.lastBankDetails != null) ||
-                              state.showConfirmation
+                              state.showConfirmation)
                           ? CrossFadeState.showFirst
                           : CrossFadeState.showSecond,
                       firstChild: ConfirmationBottomSheet(
@@ -158,6 +158,7 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                           child: BankSelectionView(
                             tabController: _tabController,
                             searchController: _searchController,
+                            state: state,
                           ),
                         ),
                       ),

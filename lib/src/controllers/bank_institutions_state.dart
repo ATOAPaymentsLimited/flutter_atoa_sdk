@@ -5,7 +5,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
   const factory BankInstitutionsState({
     @Default([]) List<BankInstitution> bankList,
     Exception? error,
-    @Default(false) bool isLoading,
+    bool? isLoading,
     @Default(false) bool showPersonal,
     BankInstitution? selectedBank,
     PaymentRequestData? paymentDetails,
@@ -13,13 +13,16 @@ class BankInstitutionsState with _$BankInstitutionsState {
     @Default(true) bool isAppInstalled,
     @Default(false) bool isLoadingAuth,
     Exception? bankAuthError,
-    @Default(true) bool showHowPaymentWorks,
+    bool? showHowPaymentWorks,
     SavedBankDetails? savedBankDetails,
     Exception? paymentDetailsError,
     Exception? bankFetchingError,
     @Default(false) bool hasLastPaymentDetails,
     BankInstitution? lastBankDetails,
     @Default(false) bool showConfirmation,
+    bool? isPaymentAndBankLoading,
+    @Default(false) bool bankRedirectionFails,
+    bool? isLoadingDetails,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();

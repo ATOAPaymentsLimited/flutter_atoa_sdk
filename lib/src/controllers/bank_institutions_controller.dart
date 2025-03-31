@@ -43,11 +43,11 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     searchController.sink.add(searchTerm);
   }
 
-  set showHowPaymentWorks(bool value) {
+  set showHowPaymentWorks(bool? value) {
     state = state.copyWith(showHowPaymentWorks: value);
   }
 
-  bool get showHowPaymentWorks => state.showHowPaymentWorks;
+  bool? get showHowPaymentWorks => state.showHowPaymentWorks;
 
   set showConfirmation(bool value) {
     state = state.copyWith(showConfirmation: value);
@@ -95,7 +95,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   }
 
   Future<void> getPaymentDetails() async {
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(isLoadingDetails: true);
 
     try {
       final paymentRes = await callServer(
@@ -129,7 +129,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         paymentDetailsError: e,
       );
     } finally {
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(isLoadingDetails: false);
     }
   }
 
@@ -139,13 +139,8 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     try {
       final res =
           await callServer<List<BankInstitution>>(atoa.fetchInstitutions);
-
-      state = state.copyWith(
-        bankList: res,
-      );
-
       final lastPaymentBank = state.paymentDetails?.lastPaymentBankDetails;
-      final lastBankDetails = state.bankList.firstWhereOrNull(
+      final lastBankDetails = res.firstWhereOrNull(
         (element) => element.id == lastPaymentBank?.institutionId,
       );
       if (lastBankDetails != null &&
@@ -157,12 +152,14 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
           lastBankDetails: lastBankDetails,
         );
       }
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(
+        bankList: res,
+      );
     } on AtoaException catch (e) {
       PaymentUtility.onError?.call(e);
-      state = state.copyWith(bankFetchingError: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e);
     } on Exception catch (e) {
-      state = state.copyWith(bankFetchingError: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e);
     } finally {
       state = state.copyWith(isLoading: false);
     }
@@ -207,7 +204,10 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
           break;
       }
     } on Exception catch (e) {
-      state = state.copyWith(error: e);
+      state = state.copyWith(
+        error: e,
+        bankRedirectionFails: true,
+      );
     } finally {
       state = state.copyWith(isLoading: false);
     }
@@ -245,7 +245,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   Future<void> selectBank(BankInstitution? selectedBank) async {
     state = state.copyWith(
       selectedBank: selectedBank,
-      isLoadingAuth: true,
+      isLoading: true,
       paymentAuth: null,
       bankAuthError: null,
     );
@@ -254,7 +254,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     if (paymentDetails == null || selectedBank == null) {
       state = state.copyWith(
-        isLoadingAuth: false,
+        isLoading: false,
       );
       return;
     }
@@ -284,7 +284,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         bankAuthError: e,
       );
     } finally {
-      state = state.copyWith(isLoadingAuth: false);
+      state = state.copyWith(isLoading: false);
     }
     await checkBankAppAvailability();
   }
@@ -293,6 +293,13 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     state = state.copyWith(
       isAppInstalled: true,
     );
+  }
+
+  Future<void> getPaymentDetailsAndBanks() async {
+    state = state.copyWith(isPaymentAndBankLoading: true);
+    await getPaymentDetails();
+    await fetchBanks();
+    state = state.copyWith(isPaymentAndBankLoading: false);
   }
 
   void resetSelectBank() {

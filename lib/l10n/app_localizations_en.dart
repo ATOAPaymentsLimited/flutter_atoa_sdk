@@ -1155,7 +1155,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get requestDeclined => 'Request Declined';
 
   @override
-  String get requestExpired => 'Request Expired';
+  String get requestExpired => 'Request expired';
 
   @override
   String get internalReward => 'Internal Reward';
@@ -3023,4 +3023,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorProcessingPayment => 'Error processing payment';
+
+  @override
+  String get bankDownError => 'Oops, this bank app is down at the moment. This happens when the bank is upgrading its app or has maintenance underway. Atoa is working fine. Please pay with another bank.';
+
+  @override
+  String get requestExpiredError => 'This payment request has been expired, please go back and retry the payment again.';
+
+  @override
+  String get requiredExpiredErrorDesc => 'Please reach out to the business for a new link and attempt to pay again';
+
+  @override
+  String get linkPaidMsg => 'This link is already paid';
+
+  @override
+  String get paymentAlreadyPaid => 'This payment is already paid';
 }

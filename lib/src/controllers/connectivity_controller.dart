@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/animation.dart';
@@ -82,7 +83,7 @@ class ConnectivityController {
       final connectivityDio =
           dio ?? Dio(BaseOptions(connectTimeout: const Duration(seconds: 15)));
       final result = await connectivityDio.get<dynamic>(
-        'https://api.atoa.me/api/',
+        Endpoints.baseUrl,
       );
       return result.statusCode == 200;
     } on DioException catch (e) {
