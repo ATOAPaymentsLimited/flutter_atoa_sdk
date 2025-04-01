@@ -1,9 +1,9 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/highlighted_amount.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/shared_widgets.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
-import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/highlighted_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 

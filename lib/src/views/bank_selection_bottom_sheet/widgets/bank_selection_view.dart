@@ -82,6 +82,17 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                               as AtoaException,
                         ),
                       );
+                    } else if (errMsg != null &&
+                        errMsg.trim() ==
+                            context.l10n.requiredExpiredErrorDesc) {
+                      return Expanded(
+                        child: Center(
+                          child: AtoaErrorWidget(
+                            title: context.l10n.requestExpired,
+                            message: context.l10n.requestExpiredError,
+                          ),
+                        ),
+                      );
                     }
                   }
                   return Expanded(

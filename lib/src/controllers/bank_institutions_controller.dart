@@ -110,12 +110,12 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       );
       BrandingColorUtility.brandingBackgroundColor =
           BrandingColorUtility.getColor(
-        paymentRes.merchantThemeDetails?.colorCode,
+        state.paymentDetails?.merchantThemeDetails?.colorCode,
       );
 
       BrandingColorUtility.brandingForegroundColor =
           BrandingColorUtility.getColor(
-        paymentRes.merchantThemeDetails?.foregroundColor,
+        state.paymentDetails?.merchantThemeDetails?.foregroundColor,
       );
     } on AtoaException catch (e) {
       PaymentUtility.onError?.call(e);
@@ -309,5 +309,16 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       isAppInstalled: true,
       lastBankDetails: null,
     );
+  }
+
+  @override
+  void dispose() {
+    state = state.copyWith(
+      selectedBank: null,
+      paymentAuth: null,
+      isAppInstalled: true,
+      lastBankDetails: null,
+    );
+    super.dispose();
   }
 }

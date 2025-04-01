@@ -4,7 +4,7 @@ import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
+import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/payment_status_error_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/payment_status_view.dart';
 import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/widgets/verifying_payment_view.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -143,20 +143,8 @@ class _VerifyingPaymentBottomSheetState
                     child: Builder(
                       builder: (context) {
                         if (paymentState.exception != null) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Spacing.huge.yBox * 8,
-                              AtoaErrorWidget(
-                                message: paymentState.exception != null &&
-                                        paymentState.exception is AtoaException
-                                    ? (paymentState.exception! as AtoaException)
-                                        .message
-                                    : null,
-                              ),
-                              Spacing.huge.yBox * 8,
-                            ],
+                          return PaymentStatusErrorWidget(
+                            error: paymentState.exception!,
                           );
                         }
                         if (paymentState.details != null &&

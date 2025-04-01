@@ -55,6 +55,9 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       WidgetsBinding.instance.addPersistentFrameCallback((_) async {
+        if (!mounted) {
+          return;
+        }
         await bankInstitutionController.checkBankAppAvailability();
       });
     }
