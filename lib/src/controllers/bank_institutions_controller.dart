@@ -239,7 +239,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     state = state.copyWith(
       selectedBank: selectedBank,
-      isLoading: true,
+      isLoadingAuth: true,
       paymentAuth: null,
       bankAuthError: null,
     );
@@ -248,7 +248,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     if (paymentDetails == null) {
       state = state.copyWith(
-        isLoading: false,
+        isLoadingAuth: false,
       );
       return;
     }
@@ -278,7 +278,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         bankAuthError: e,
       );
     } finally {
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(isLoadingAuth: false);
     }
     await checkBankAppAvailability();
   }

@@ -447,7 +447,7 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       this.paymentDetails,
       this.paymentAuth,
       this.isAppInstalled = true,
-      this.isLoadingAuth = false,
+      this.isLoadingAuth = true,
       this.bankAuthError,
       this.showHowPaymentWorks,
       this.savedBankDetails,

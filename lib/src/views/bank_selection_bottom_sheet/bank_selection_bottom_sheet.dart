@@ -131,44 +131,44 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                         ? CrossFadeState.showFirst
                         : CrossFadeState.showSecond,
                     firstChild: const HowToMakePaymentView(),
-                    secondChild: AnimatedCrossFade(
-                      duration: kAnimationDuration,
-                      crossFadeState: ((state.hasLastPaymentDetails &&
-                                  state.lastBankDetails != null) ||
-                              state.showConfirmation)
-                          ? CrossFadeState.showFirst
-                          : CrossFadeState.showSecond,
-                      firstChild: ConfirmationBottomSheet(
-                        key: ValueKey(state.lastBankDetails),
-                        bank: state.lastBankDetails,
-                      ),
-                      secondChild: AnimatedPadding(
-                        duration: kAnimationDuration,
-                        padding: EdgeInsets.only(
-                          bottom: isKeyboardVisible
-                              ? MediaQuery.of(context).viewInsets.bottom
-                              : 0,
-                        ),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints.loose(
-                            Size(
-                              1.sw,
-                              isKeyboardVisible ? 0.5.sh : 0.9.sh,
+                    secondChild: state.isLoading == null ||
+                            state.isLoading != null && state.isLoading!
+                        ? const Center(
+                            child: FetchingBankLoader(),
+                          )
+                        : AnimatedCrossFade(
+                            duration: kAnimationDuration,
+                            crossFadeState: ((state.hasLastPaymentDetails &&
+                                        state.lastBankDetails != null) ||
+                                    state.showConfirmation)
+                                ? CrossFadeState.showFirst
+                                : CrossFadeState.showSecond,
+                            firstChild: ConfirmationBottomSheet(
+                              key: ValueKey(state.lastBankDetails),
+                              bank: state.lastBankDetails,
                             ),
-                          ),
-                          child: state.isLoading == null ||
-                                  state.isLoading != null && state.isLoading!
-                              ? const Center(
-                                  child: FetchingBankLoader(),
-                                )
-                              : BankSelectionView(
+                            secondChild: AnimatedPadding(
+                              duration: kAnimationDuration,
+                              padding: EdgeInsets.only(
+                                bottom: isKeyboardVisible
+                                    ? MediaQuery.of(context).viewInsets.bottom
+                                    : 0,
+                              ),
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints.loose(
+                                  Size(
+                                    1.sw,
+                                    isKeyboardVisible ? 0.5.sh : 0.9.sh,
+                                  ),
+                                ),
+                                child: BankSelectionView(
                                   tabController: _tabController,
                                   searchController: _searchController,
                                   state: state,
                                 ),
-                        ),
-                      ),
-                    ),
+                              ),
+                            ),
+                          ),
                   ),
                 ),
               ),

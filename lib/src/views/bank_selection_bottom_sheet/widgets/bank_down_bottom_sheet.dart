@@ -1,19 +1,23 @@
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/ledger_button.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart' hide LedgerButton, LedgerButtonSize;
 
 class BankDownBottomSheet extends StatelessWidget {
   const BankDownBottomSheet({
     required this.bank,
+    this.isReviewSheet = false,
     super.key,
   });
 
   final BankInstitution bank;
+  final bool isReviewSheet;
 
   static Future<void> show(
     BuildContext context,
@@ -79,6 +83,12 @@ class BankDownBottomSheet extends StatelessWidget {
           Spacing.huge.yBox,
           LedgerButton.secondary(
             onPressed: () async {
+              if (isReviewSheet) {
+                context.read<BankInstitutionsController>()
+                  ..resetSelectBank()
+                  ..showConfirmation = false;
+                return;
+              }
               Navigator.pop(context);
             },
             size: LedgerButtonSize.xtraLarge,

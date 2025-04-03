@@ -11,7 +11,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
     PaymentRequestData? paymentDetails,
     PaymentAuthResponse? paymentAuth,
     @Default(true) bool isAppInstalled,
-    @Default(false) bool isLoadingAuth,
+    @Default(true) bool isLoadingAuth,
     Exception? bankAuthError,
     bool? showHowPaymentWorks,
     SavedBankDetails? savedBankDetails,
