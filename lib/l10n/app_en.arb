@@ -1672,5 +1672,7 @@
     "requestExpiredError": "This payment request has been expired, please go back and retry the payment again.",
     "requiredExpiredErrorDesc": "Please reach out to the business for a new link and attempt to pay again",
     "linkPaidMsg": "This link is already paid",
-    "paymentAlreadyPaid": "This payment is already paid"
+    "paymentAlreadyPaid": "This payment is already paid",
+    "linkExpired": "Link expired, ",
+    "toTryAgain": " to try again"
 }

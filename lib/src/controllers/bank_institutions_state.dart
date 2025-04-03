@@ -20,9 +20,9 @@ class BankInstitutionsState with _$BankInstitutionsState {
     @Default(false) bool hasLastPaymentDetails,
     BankInstitution? lastBankDetails,
     @Default(false) bool showConfirmation,
-    bool? isPaymentAndBankLoading,
-    @Default(false) bool bankRedirectionFails,
     bool? isLoadingDetails,
+    @Default(false) bool showLinkExpired,
+    bool? isLoadingFilterBanks,
   }) = _BankInstitutionsState;
 
   const BankInstitutionsState._();

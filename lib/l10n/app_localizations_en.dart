@@ -3038,4 +3038,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paymentAlreadyPaid => 'This payment is already paid';
+
+  @override
+  String get linkExpired => 'Link expired, ';
+
+  @override
+  String get toTryAgain => ' to try again';
 }

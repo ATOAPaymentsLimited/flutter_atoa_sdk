@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
@@ -155,11 +156,16 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
                               isKeyboardVisible ? 0.5.sh : 0.9.sh,
                             ),
                           ),
-                          child: BankSelectionView(
-                            tabController: _tabController,
-                            searchController: _searchController,
-                            state: state,
-                          ),
+                          child: state.isLoading == null ||
+                                  state.isLoading != null && state.isLoading!
+                              ? const Center(
+                                  child: FetchingBankLoader(),
+                                )
+                              : BankSelectionView(
+                                  tabController: _tabController,
+                                  searchController: _searchController,
+                                  state: state,
+                                ),
                         ),
                       ),
                     ),

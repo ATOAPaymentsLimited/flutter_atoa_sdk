@@ -14,6 +14,7 @@ import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/app
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_and_service_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/payment_paid_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/review_details_tile.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -42,11 +43,23 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await bankInstitutionController.selectBank(widget.bank);
+      if (widget.bank != null) {
+        _startPolling();
+      }
     });
+  }
+
+  void _startPolling() {
+    if (context.mounted) {
+      bankInstitutionController.startPolling();
+    }
   }
 
   @override
   void dispose() {
+    if (context.mounted) {
+      bankInstitutionController.stop();
+    }
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -111,8 +124,9 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
               Consumer<BankInstitutionsState>(
                 builder: (context, state, child) {
                   if (state.isLoading != null && state.isLoading!) {
-                    return const Expanded(
-                      child: Center(
+                    return SizedBox(
+                      height: 0.50.sh,
+                      child: const Center(
                         child: AtoaLoader(),
                       ),
                     );
@@ -149,6 +163,61 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                           ),
                           Spacing.large.yBox,
                         ],
+                        if (state.showLinkExpired) ...[
+                          RichText(
+                            text: CustomTextSpan.semantics(
+                              text: context.l10n.linkExpired,
+                              style: sdkFigTreeTextTheme.bodyLarge
+                                  ?.textColor(
+                                    SemanticsColors.light().error.darker,
+                                  )
+                                  .w500
+                                  .copyWith(
+                                shadows: [
+                                  Shadow(
+                                    color: SemanticsColors.light().error.darker,
+                                    offset: Offset(0, -Spacing.mini.value),
+                                  ),
+                                ],
+                                color: Colors.transparent,
+                              ),
+                              children: [
+                                CustomTextSpan.semantics(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      bankInstitutionController
+                                        ..showLinkExpired = false
+                                        ..selectBank(state.selectedBank);
+                                    },
+                                  text: context.l10n.refresh,
+                                  style: sdkFigTreeTextTheme.bodyMedium?.w700
+                                      .textColor(
+                                    SemanticsColors.light().error.darker,
+                                  )
+                                      .copyWith(
+                                    shadows: [
+                                      Shadow(
+                                        color: SemanticsColors.light()
+                                            .error
+                                            .darker,
+                                        offset: Offset(0, -Spacing.mini.value),
+                                      ),
+                                    ],
+                                    color: Colors.transparent,
+                                    decoration: TextDecoration.underline,
+                                    decorationStyle: TextDecorationStyle.dotted,
+                                    decorationColor:
+                                        SemanticsColors.light().error.darker,
+                                    decorationThickness: Spacing.tiny.value,
+                                  ),
+                                ),
+                                CustomTextSpan.semantics(
+                                  text: context.l10n.toTryAgain,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                         Spacing.small.yBox,
                         LedgerButton.primary2(
                           style: ElevatedButton.styleFrom(
@@ -167,6 +236,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                           trackLabel: 'Go To ${state.selectedBank?.name}',
                           loading: state.isLoading == null ||
                               state.isLoading != null && state.isLoading!,
+                          enable: !state.showLinkExpired,
                           loadingIndicatorColor:
                               BrandingColorUtility.brandingForegroundColor,
                           label: context.l10n.goToBank(

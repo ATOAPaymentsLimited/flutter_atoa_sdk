@@ -5384,6 +5384,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This payment is already paid'**
   String get paymentAlreadyPaid;
+
+  /// No description provided for @linkExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Link expired, '**
+  String get linkExpired;
+
+  /// No description provided for @toTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **' to try again'**
+  String get toTryAgain;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

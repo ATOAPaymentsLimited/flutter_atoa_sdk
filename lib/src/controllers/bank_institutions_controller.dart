@@ -71,7 +71,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     String searchTerm, {
     required bool refresh,
   }) async {
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(isLoadingFilterBanks: true);
 
     try {
       final res = await callServer<List<BankInstitution>>(
@@ -80,17 +80,14 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
         ),
       );
 
-      state = state.copyWith(
-        bankList: res,
-        isLoading: false,
-      );
+      state = state.copyWith(bankList: res);
     } on AtoaException catch (e) {
       PaymentUtility.onError?.call(e);
-      state = state.copyWith(bankFetchingError: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e);
     } on Exception catch (e) {
-      state = state.copyWith(bankFetchingError: e, isLoading: false);
+      state = state.copyWith(bankFetchingError: e);
     } finally {
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(isLoadingFilterBanks: false);
     }
   }
 
@@ -204,12 +201,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
           break;
       }
     } on Exception catch (e) {
-      state = state.copyWith(
-        error: e,
-        bankRedirectionFails: true,
-      );
-    } finally {
-      state = state.copyWith(isLoading: false);
+      state = state.copyWith(error: e);
     }
     return null;
   }
@@ -243,6 +235,8 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   }
 
   Future<void> selectBank(BankInstitution? selectedBank) async {
+    if (selectedBank == null) return;
+
     state = state.copyWith(
       selectedBank: selectedBank,
       isLoading: true,
@@ -252,7 +246,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     final paymentDetails = state.paymentDetails;
 
-    if (paymentDetails == null || selectedBank == null) {
+    if (paymentDetails == null) {
       state = state.copyWith(
         isLoading: false,
       );
@@ -296,20 +290,55 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
   }
 
   Future<void> getPaymentDetailsAndBanks() async {
-    state = state.copyWith(isPaymentAndBankLoading: true);
     await getPaymentDetails();
     await fetchBanks();
-    state = state.copyWith(isPaymentAndBankLoading: false);
   }
 
   void resetSelectBank() {
     state = state.copyWith(
       selectedBank: null,
       paymentAuth: null,
+      showLinkExpired: false,
       isAppInstalled: true,
       lastBankDetails: null,
     );
   }
+
+  set showLinkExpired(bool value) {
+    state = state.copyWith(showLinkExpired: value);
+  }
+
+  bool get showLinkExpired => state.showLinkExpired;
+
+  void startPolling() {
+    _subscription?.cancel();
+    var linkRefreshedCount = 0;
+    Stream.periodic(
+      const Duration(minutes: 5),
+      (_) {
+        linkRefreshedCount++;
+        selectBank(state.selectedBank);
+      },
+    ).take(6).listen((_) async {
+      if (linkRefreshedCount > 5) {
+        startTimer(5);
+        stop();
+      }
+    });
+  }
+
+  Timer? _timer;
+  void startTimer(int minutes) {
+    _timer = Timer(Duration(minutes: minutes), () {
+      state = state.copyWith(showLinkExpired: true);
+    });
+  }
+
+  void stop() {
+    _subscription?.cancel();
+  }
+
+  StreamSubscription<dynamic>? _subscription;
 
   @override
   void dispose() {
@@ -319,6 +348,8 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       isAppInstalled: true,
       lastBankDetails: null,
     );
+    _subscription?.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 }

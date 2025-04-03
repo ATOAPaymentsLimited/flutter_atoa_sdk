@@ -133,7 +133,8 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                             _showPersonalBanks
                                 ? context.l10n.personalBanks
                                 : context.l10n.businessBanks,
-                            style: sdkFigTreeTextTheme.labelSmall?.w500.textColor(
+                            style:
+                                sdkFigTreeTextTheme.labelSmall?.w500.textColor(
                               NeutralColors.light().grey.shade500,
                             ),
                           ),
@@ -150,7 +151,8 @@ class _AnimatedSearchFieldState extends State<AnimatedSearchField>
                             !_showPersonalBanks
                                 ? context.l10n.personalBanks
                                 : context.l10n.businessBanks,
-                            style: sdkFigTreeTextTheme.labelSmall?.w500.textColor(
+                            style:
+                                sdkFigTreeTextTheme.labelSmall?.w500.textColor(
                               NeutralColors.light().grey.shade500,
                             ),
                           ),

@@ -33,9 +33,9 @@ mixin _$BankInstitutionsState {
   bool get hasLastPaymentDetails => throw _privateConstructorUsedError;
   BankInstitution? get lastBankDetails => throw _privateConstructorUsedError;
   bool get showConfirmation => throw _privateConstructorUsedError;
-  bool? get isPaymentAndBankLoading => throw _privateConstructorUsedError;
-  bool get bankRedirectionFails => throw _privateConstructorUsedError;
   bool? get isLoadingDetails => throw _privateConstructorUsedError;
+  bool get showLinkExpired => throw _privateConstructorUsedError;
+  bool? get isLoadingFilterBanks => throw _privateConstructorUsedError;
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.
@@ -68,9 +68,9 @@ abstract class $BankInstitutionsStateCopyWith<$Res> {
       bool hasLastPaymentDetails,
       BankInstitution? lastBankDetails,
       bool showConfirmation,
-      bool? isPaymentAndBankLoading,
-      bool bankRedirectionFails,
-      bool? isLoadingDetails});
+      bool? isLoadingDetails,
+      bool showLinkExpired,
+      bool? isLoadingFilterBanks});
 
   $BankInstitutionCopyWith<$Res>? get selectedBank;
   $PaymentRequestDataCopyWith<$Res>? get paymentDetails;
@@ -112,9 +112,9 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
     Object? hasLastPaymentDetails = null,
     Object? lastBankDetails = freezed,
     Object? showConfirmation = null,
-    Object? isPaymentAndBankLoading = freezed,
-    Object? bankRedirectionFails = null,
     Object? isLoadingDetails = freezed,
+    Object? showLinkExpired = null,
+    Object? isLoadingFilterBanks = freezed,
   }) {
     return _then(_value.copyWith(
       bankList: null == bankList
@@ -185,17 +185,17 @@ class _$BankInstitutionsStateCopyWithImpl<$Res,
           ? _value.showConfirmation
           : showConfirmation // ignore: cast_nullable_to_non_nullable
               as bool,
-      isPaymentAndBankLoading: freezed == isPaymentAndBankLoading
-          ? _value.isPaymentAndBankLoading
-          : isPaymentAndBankLoading // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      bankRedirectionFails: null == bankRedirectionFails
-          ? _value.bankRedirectionFails
-          : bankRedirectionFails // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoadingDetails: freezed == isLoadingDetails
           ? _value.isLoadingDetails
           : isLoadingDetails // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      showLinkExpired: null == showLinkExpired
+          ? _value.showLinkExpired
+          : showLinkExpired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingFilterBanks: freezed == isLoadingFilterBanks
+          ? _value.isLoadingFilterBanks
+          : isLoadingFilterBanks // ignore: cast_nullable_to_non_nullable
               as bool?,
     ) as $Val);
   }
@@ -298,9 +298,9 @@ abstract class _$$BankInstitutionsStateImplCopyWith<$Res>
       bool hasLastPaymentDetails,
       BankInstitution? lastBankDetails,
       bool showConfirmation,
-      bool? isPaymentAndBankLoading,
-      bool bankRedirectionFails,
-      bool? isLoadingDetails});
+      bool? isLoadingDetails,
+      bool showLinkExpired,
+      bool? isLoadingFilterBanks});
 
   @override
   $BankInstitutionCopyWith<$Res>? get selectedBank;
@@ -345,9 +345,9 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
     Object? hasLastPaymentDetails = null,
     Object? lastBankDetails = freezed,
     Object? showConfirmation = null,
-    Object? isPaymentAndBankLoading = freezed,
-    Object? bankRedirectionFails = null,
     Object? isLoadingDetails = freezed,
+    Object? showLinkExpired = null,
+    Object? isLoadingFilterBanks = freezed,
   }) {
     return _then(_$BankInstitutionsStateImpl(
       bankList: null == bankList
@@ -418,17 +418,17 @@ class __$$BankInstitutionsStateImplCopyWithImpl<$Res>
           ? _value.showConfirmation
           : showConfirmation // ignore: cast_nullable_to_non_nullable
               as bool,
-      isPaymentAndBankLoading: freezed == isPaymentAndBankLoading
-          ? _value.isPaymentAndBankLoading
-          : isPaymentAndBankLoading // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      bankRedirectionFails: null == bankRedirectionFails
-          ? _value.bankRedirectionFails
-          : bankRedirectionFails // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoadingDetails: freezed == isLoadingDetails
           ? _value.isLoadingDetails
           : isLoadingDetails // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      showLinkExpired: null == showLinkExpired
+          ? _value.showLinkExpired
+          : showLinkExpired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingFilterBanks: freezed == isLoadingFilterBanks
+          ? _value.isLoadingFilterBanks
+          : isLoadingFilterBanks // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -456,9 +456,9 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       this.hasLastPaymentDetails = false,
       this.lastBankDetails,
       this.showConfirmation = false,
-      this.isPaymentAndBankLoading,
-      this.bankRedirectionFails = false,
-      this.isLoadingDetails})
+      this.isLoadingDetails,
+      this.showLinkExpired = false,
+      this.isLoadingFilterBanks})
       : _bankList = bankList,
         super._();
 
@@ -509,16 +509,16 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
   @JsonKey()
   final bool showConfirmation;
   @override
-  final bool? isPaymentAndBankLoading;
+  final bool? isLoadingDetails;
   @override
   @JsonKey()
-  final bool bankRedirectionFails;
+  final bool showLinkExpired;
   @override
-  final bool? isLoadingDetails;
+  final bool? isLoadingFilterBanks;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth, isAppInstalled: $isAppInstalled, isLoadingAuth: $isLoadingAuth, bankAuthError: $bankAuthError, showHowPaymentWorks: $showHowPaymentWorks, savedBankDetails: $savedBankDetails, paymentDetailsError: $paymentDetailsError, bankFetchingError: $bankFetchingError, hasLastPaymentDetails: $hasLastPaymentDetails, lastBankDetails: $lastBankDetails, showConfirmation: $showConfirmation, isPaymentAndBankLoading: $isPaymentAndBankLoading, bankRedirectionFails: $bankRedirectionFails, isLoadingDetails: $isLoadingDetails)';
+    return 'BankInstitutionsState(bankList: $bankList, error: $error, isLoading: $isLoading, showPersonal: $showPersonal, selectedBank: $selectedBank, paymentDetails: $paymentDetails, paymentAuth: $paymentAuth, isAppInstalled: $isAppInstalled, isLoadingAuth: $isLoadingAuth, bankAuthError: $bankAuthError, showHowPaymentWorks: $showHowPaymentWorks, savedBankDetails: $savedBankDetails, paymentDetailsError: $paymentDetailsError, bankFetchingError: $bankFetchingError, hasLastPaymentDetails: $hasLastPaymentDetails, lastBankDetails: $lastBankDetails, showConfirmation: $showConfirmation, isLoadingDetails: $isLoadingDetails, showLinkExpired: $showLinkExpired, isLoadingFilterBanks: $isLoadingFilterBanks)';
   }
 
   @override
@@ -543,10 +543,9 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
       ..add(DiagnosticsProperty('hasLastPaymentDetails', hasLastPaymentDetails))
       ..add(DiagnosticsProperty('lastBankDetails', lastBankDetails))
       ..add(DiagnosticsProperty('showConfirmation', showConfirmation))
-      ..add(DiagnosticsProperty(
-          'isPaymentAndBankLoading', isPaymentAndBankLoading))
-      ..add(DiagnosticsProperty('bankRedirectionFails', bankRedirectionFails))
-      ..add(DiagnosticsProperty('isLoadingDetails', isLoadingDetails));
+      ..add(DiagnosticsProperty('isLoadingDetails', isLoadingDetails))
+      ..add(DiagnosticsProperty('showLinkExpired', showLinkExpired))
+      ..add(DiagnosticsProperty('isLoadingFilterBanks', isLoadingFilterBanks));
   }
 
   @override
@@ -586,13 +585,12 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
                 other.lastBankDetails == lastBankDetails) &&
             (identical(other.showConfirmation, showConfirmation) ||
                 other.showConfirmation == showConfirmation) &&
-            (identical(
-                    other.isPaymentAndBankLoading, isPaymentAndBankLoading) ||
-                other.isPaymentAndBankLoading == isPaymentAndBankLoading) &&
-            (identical(other.bankRedirectionFails, bankRedirectionFails) ||
-                other.bankRedirectionFails == bankRedirectionFails) &&
             (identical(other.isLoadingDetails, isLoadingDetails) ||
-                other.isLoadingDetails == isLoadingDetails));
+                other.isLoadingDetails == isLoadingDetails) &&
+            (identical(other.showLinkExpired, showLinkExpired) ||
+                other.showLinkExpired == showLinkExpired) &&
+            (identical(other.isLoadingFilterBanks, isLoadingFilterBanks) ||
+                other.isLoadingFilterBanks == isLoadingFilterBanks));
   }
 
   @override
@@ -615,9 +613,9 @@ class _$BankInstitutionsStateImpl extends _BankInstitutionsState
         hasLastPaymentDetails,
         lastBankDetails,
         showConfirmation,
-        isPaymentAndBankLoading,
-        bankRedirectionFails,
-        isLoadingDetails
+        isLoadingDetails,
+        showLinkExpired,
+        isLoadingFilterBanks
       ]);
 
   /// Create a copy of BankInstitutionsState
@@ -649,9 +647,9 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
       final bool hasLastPaymentDetails,
       final BankInstitution? lastBankDetails,
       final bool showConfirmation,
-      final bool? isPaymentAndBankLoading,
-      final bool bankRedirectionFails,
-      final bool? isLoadingDetails}) = _$BankInstitutionsStateImpl;
+      final bool? isLoadingDetails,
+      final bool showLinkExpired,
+      final bool? isLoadingFilterBanks}) = _$BankInstitutionsStateImpl;
   const _BankInstitutionsState._() : super._();
 
   @override
@@ -689,11 +687,11 @@ abstract class _BankInstitutionsState extends BankInstitutionsState {
   @override
   bool get showConfirmation;
   @override
-  bool? get isPaymentAndBankLoading;
-  @override
-  bool get bankRedirectionFails;
-  @override
   bool? get isLoadingDetails;
+  @override
+  bool get showLinkExpired;
+  @override
+  bool? get isLoadingFilterBanks;
 
   /// Create a copy of BankInstitutionsState
   /// with the given fields replaced by the non-null parameter values.
