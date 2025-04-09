@@ -53,13 +53,13 @@ Future<T> callServer<T>(
         );
       }
       if (e.response!.data is Map<String, dynamic>) {
+        final err = e.response!.data as Map<String, dynamic>;
         throw AtoaException(
           AtoaExceptionType.custom,
-          ((e.response!.data as Map<String, dynamic>)['message'] as String?) ??
-              'Unknown Error',
-          (e.response!.data as Map<String, dynamic>)['amount'] as num?,
-          (e.response!.data as Map<String, dynamic>)['referenceId'] as String?,
-          (e.response!.data as Map<String, dynamic>)['time'] as String?,
+          (err['message'] as String?) ?? 'Unknown Error',
+          err['amount'] as num?,
+          err['referenceId'] as String?,
+          err['time'] as String?,
         );
       }
     }

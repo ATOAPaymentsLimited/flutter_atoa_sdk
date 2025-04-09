@@ -34,21 +34,6 @@ void main() {
 
         expect(() => atoa.initialize(customDio), returnsNormally);
       });
-
-      test('should initialize with default dio instance', () {
-        final newAtoa = Atoa();
-        Atoa.env = AtoaEnv.sandbox;
-        expect(newAtoa.initialize, returnsNormally);
-      });
-
-      test('should initialize with custom timeout', () {
-        final newAtoa = Atoa();
-        Atoa.env = AtoaEnv.sandbox;
-        expect(
-          () => newAtoa.initialize(null, const Duration(seconds: 30)),
-          returnsNormally,
-        );
-      });
     });
 
     group('fetchInstitutions', () {

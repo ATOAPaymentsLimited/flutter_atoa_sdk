@@ -36,10 +36,12 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       context,
       paymentId: paymentId,
       showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
-      customerDetails: const CustomerDetails(
+      customerDetails:
+          // pass customer details for pre-select bank
+          const CustomerDetails(
         phoneCountryCode: '44',
-        phoneNumber: '7857094720',
-        email: 'testsdk@gmail.com',
+        phoneNumber: '8788899999',
+        email: 'aaa@gmail.com',
       ),
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
@@ -207,7 +209,8 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         'customerId': 'abc123',
         'consumerDetails': {
           'phoneCountryCode': '44',
-          'phoneNumber': 7857094720,
+          'phoneNumber': '8788899999',
+          'email': 'aaa@gmail.com',
         },
         'orderId': '242u9384jfjkw',
         'currency': 'GBP',

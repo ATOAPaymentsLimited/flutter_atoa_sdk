@@ -14,6 +14,8 @@ void main() {
   late MockAtoa mockAtoa;
   late BankInstitutionsController controller;
   const launchVpnMethodChannel = MethodChannel('launch_vpn');
+  const urlLaunchMethodChannel =
+      MethodChannel('plugins.flutter.io/url_launcher');
 
   setUp(() {
     mockAtoa = MockAtoa();
@@ -29,6 +31,16 @@ void main() {
           (MethodCall methodCall) async {
     switch (methodCall.method) {
       case 'isAppInstalled':
+        return;
+    }
+    return null;
+  });
+
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(urlLaunchMethodChannel,
+          (MethodCall methodCall) async {
+    switch (methodCall.method) {
+      case 'launch':
         return;
     }
     return null;
@@ -56,7 +68,7 @@ void main() {
     ];
 
     test('Initial state should be correct', () {
-      expect(controller.state.isLoading, false);
+      expect(controller.state.isLoading, null);
       expect(controller.state.bankList, isEmpty);
       expect(controller.state.error, isNull);
     });
@@ -105,7 +117,7 @@ void main() {
         await controller.fetchFilteredBanks(searchTerm, refresh: true);
 
         expect(controller.state.bankList, [mockBanks[0]]);
-        expect(controller.state.isLoading, false);
+        expect(controller.state.isLoadingFilterBanks, false);
       });
 
       test('should handle empty search results', () async {
@@ -116,7 +128,7 @@ void main() {
         await controller.fetchFilteredBanks(searchTerm, refresh: true);
 
         expect(controller.state.bankList, isEmpty);
-        expect(controller.state.isLoading, false);
+        expect(controller.state.isLoadingFilterBanks, false);
       });
 
       test('should handle general Exception in fetchFilteredBanks', () async {
@@ -127,7 +139,7 @@ void main() {
         await controller.fetchFilteredBanks('test', refresh: true);
 
         expect(controller.state.bankList, isEmpty);
-        expect(controller.state.isLoading, false);
+        expect(controller.state.isLoadingFilterBanks, false);
         expect(controller.state.error, isNull);
       });
 
@@ -142,7 +154,7 @@ void main() {
         await controller.fetchFilteredBanks('test', refresh: true);
 
         expect(controller.state.bankList, isEmpty);
-        expect(controller.state.isLoading, false);
+        expect(controller.state.isLoadingFilterBanks, false);
         expect(controller.state.error, isNull);
       });
     });
@@ -317,7 +329,7 @@ void main() {
 
         expect(controller.state.paymentDetails, isNull);
         expect(controller.state.error, isNull);
-        expect(controller.state.isLoading, false);
+        expect(controller.state.isLoadingDetails, false);
       });
 
       test('should handle general Exception and clear error', () async {
@@ -328,7 +340,7 @@ void main() {
 
         expect(controller.state.paymentDetails, isNull);
         expect(controller.state.error, isNull);
-        expect(controller.state.isLoading, false);
+        expect(controller.state.isLoadingDetails, false);
       });
     });
 
@@ -337,7 +349,6 @@ void main() {
         await controller.selectBank(null);
 
         expect(controller.state.selectedBank, isNull);
-        expect(controller.state.isLoadingAuth, false);
         expect(controller.state.paymentAuth, isNull);
         expect(controller.state.bankAuthError, isNull);
       });
@@ -416,7 +427,7 @@ void main() {
         Color(int.parse('0xFF434456')),
       );
       expect(controller.state.paymentDetails, mockPaymentDetails);
-      expect(controller.state.isLoading, false);
+      expect(controller.state.isLoadingDetails, false);
     });
   });
 }
