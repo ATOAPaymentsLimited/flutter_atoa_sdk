@@ -13,7 +13,6 @@ The Atoa Mobile Client SDK allows merchants to easily integrate Atoa Payments in
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Example][example]
 - [Complete Demo App](demo_app/lib/main.dart)
 - [Handle Redirection](#handle-redirection-optional) (Optional)
 
