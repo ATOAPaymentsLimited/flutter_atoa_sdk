@@ -44,7 +44,7 @@ class AtoaSdk {
     }
 
     await AtoaSdkConfig.initialize(
-      environment: AtoaEnvironment.development, // or .staging or .production
+      environment: AtoaEnvironment.production, // or .staging or .production
     );
 
     if (onError != null) {

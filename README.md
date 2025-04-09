@@ -29,7 +29,7 @@ flutter pub add atoa_flutter_sdk
 
 ## Usage
 
-Sample code to integrate can be found in [demo_app\lib\widgets\pay_now_bottom_sheet.dart](demo_app\lib\widgets\pay_now_bottom_sheet.dart).
+Sample code to integrate can be found in [demo_app\lib\widgets\pay_now_bottom_sheet.dart](\demo_app\lib\widgets\pay_now_bottom_sheet.dart).
 
 #### Import package
 
@@ -39,14 +39,16 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 
 #### Show Payment Sheet
 
-It's a full screen sheet which shows all the available bank list then once user selects the bank. They will be redirected to their bank app or website.
+It's a full screen sheet which shows all the available bank list then once user selects the bank. They can confirm the bank details and redirected to their bank app or website.
 
 ```dart
 final paymentDetails = AtoaSdk.pay(
       context,
       paymentId: 'your-payment-request-id',
       showHowPaymentWorks: false,
-      customerDetails: const CustomerDetails(
+      customerDetails:
+      // pass customer details if pre-selc
+       const CustomerDetails(
         phoneCountryCode: '44',
         phoneNumber: '8788899999',
         email: 'aaa@gmail.com',
@@ -100,8 +102,9 @@ The SDK supports displaying banks the customer has previously paid with through 
 #### Parameters
 
 - `options`: Configuration object (required)
-  - `environment`: The Atoa environment to use (enum: 'SANDBOX', 'PRODUCTION')
-  - `paymentRequestId`: The payment request ID (required)
+  - `env`: The Atoa environment to use (enum: 'AtoaEnv.sandbox', 'AtoaEnv.prod')
+  - `paymentId`: The payment request ID (required)
+  - `showHowPaymentWorks`: Shows a sheet which explains the steps for making a payment. (required)
   - `customerDetails`: Customer details for the payment (optional)
   - `onError`: Error callback function (optional)
   - `onPaymentStatusChange`: Callback for payment status updates (optional)
@@ -111,9 +114,9 @@ The SDK supports displaying banks the customer has previously paid with through 
 
 ##### Environment
 
-- Type: `EnvironmentTypeEnum`
+- Type: `AtoaEnv`
 - Required: Yes
-- Values: 'SANDBOX' | 'PRODUCTION'
+- Values: 'sandbox' | 'prod'
 - Description: Specifies which Atoa environment to use for the payment
 
 ##### Payment Request ID
@@ -121,6 +124,12 @@ The SDK supports displaying banks the customer has previously paid with through 
 - Type: `string`
 - Required: Yes
 - Description: Unique identifier for the payment request
+
+##### Show How Payment Works
+
+- Type: `showHowPaymentWorks`
+- Required: Yes
+- Description: Shows a sheet which explains the steps for making a payment.
 
 ##### Customer Details
 
@@ -149,7 +158,7 @@ The SDK supports displaying banks the customer has previously paid with through 
     - `paymentRequestId`: The payment request ID
     - `paymentIdempotencyId`: (optional) Payment idempotency ID
 
-###### onUserCancel
+###### onUserClose
 
 - Type: `(paymentRequestId: string) => void`
 - Description: Called when the user cancels the payment
@@ -198,7 +207,7 @@ Called when the payment status changes.
   - `paymentRequestId`: The payment request ID
   - `paymentIdempotencyId`: (optional) Payment idempotency ID
 
-#### onUserCancel(paymentRequestId)
+#### onUserClose(paymentRequestId)
 
 Called when the user cancels the payment.
 
