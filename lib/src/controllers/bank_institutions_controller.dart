@@ -296,7 +296,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     await fetchBanks();
     showHowPaymentWorks = showHowPaymentWork &&
         !state.hasLastPaymentDetails &&
-        state.lastBankDetails != null;
+        state.lastBankDetails == null;
   }
 
   void resetSelectBank() {

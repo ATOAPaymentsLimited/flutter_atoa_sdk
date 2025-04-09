@@ -81,18 +81,18 @@ final paymentDetails = AtoaSdk.pay(
 
 The SDK supports displaying banks the customer has previously paid with through the `customerDetails` parameter:
 
-#### Important Notes About Customer ID
+#### Important Notes About Customer Details
 
-- **Uniqueness**: The `customerId` should be a unique identifier for each customer in your system.
-- **Persistence**: When a customer completes a payment, the bank they used is remembered and associated with this ID.
-- **Returning Customers**: For returning customers, providing the same `customerId` allows the SDK to offer the option to pay with banks they've previously used.
+- **Uniqueness**: The `customerDetails` should be a unique identifier for each customer in your system.
+- **Persistence**: When a customer completes a payment, the bank they used is remembered and associated with this customerDetails.
+- **Returning Customers**: For returning customers, providing the same `customerDetails` allows the SDK to offer the option to pay with banks they've previously used.
 - **Security**: The information about previously used banks is securely stored by Atoa, not in your application.
 - **Optional**: This parameter is optional. If not provided, each payment will be treated as a new transaction without showing previously used banks.
 
 #### Best Practices
 
 - Use a consistent and unique identifier from your system (e.g., user ID, customer reference).
-- Keep the same `customerId` across all payments for the same customer to ensure continuity of previously used banks.
+- Keep the same `customerDetails` across all payments for the same customer to ensure continuity of previously used banks.
 - Consider user consent and data privacy regulations when implementing this functionality.
 
 ## API Reference
@@ -132,7 +132,7 @@ The SDK supports displaying banks the customer has previously paid with through 
 
 ###### onError
 
-- Type: `(error: AtoaPayWebSDKError) => void`
+- Type: `(error: AtoaException) => void`
 - Description: Called when an error occurs during the payment process
 - Parameters:
   - `error`: Error object containing:
@@ -168,8 +168,7 @@ AtoaSdk.pay();
 
 This method:
 
-- Creates a custom web component for the payment dialog
-- Appends the dialog to the document body
+- Creates a custom mobile component for the payment sheet
 - Handles all payment flow interactions
 
 **Returns:**
