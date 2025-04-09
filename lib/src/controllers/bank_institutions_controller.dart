@@ -289,9 +289,14 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     );
   }
 
-  Future<void> getPaymentDetailsAndBanks() async {
+  Future<void> getPaymentDetailsAndBanks({
+    required bool showHowPaymentWork,
+  }) async {
     await getPaymentDetails();
     await fetchBanks();
+    showHowPaymentWorks = showHowPaymentWork &&
+        !state.hasLastPaymentDetails &&
+        state.lastBankDetails != null;
   }
 
   void resetSelectBank() {

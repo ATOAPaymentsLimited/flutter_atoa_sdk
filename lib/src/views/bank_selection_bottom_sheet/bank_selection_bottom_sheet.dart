@@ -124,54 +124,65 @@ class _BankSelectionBottomSheetState extends State<BankSelectionBottomSheet>
               child: Padding(
                 padding: Spacing.large.all,
                 child: ConnectivityWrapper(
-                  child: AnimatedCrossFade(
-                    duration: kAnimationDuration,
-                    crossFadeState: state.showHowPaymentWorks != null &&
-                            state.showHowPaymentWorks!
-                        ? CrossFadeState.showFirst
-                        : CrossFadeState.showSecond,
-                    firstChild: const HowToMakePaymentView(),
-                    secondChild: state.isLoading == null ||
-                            state.isLoading != null && state.isLoading!
-                        ? const Center(
-                            child: FetchingBankLoader(),
-                          )
-                        : AnimatedCrossFade(
-                            duration: kAnimationDuration,
-                            crossFadeState: ((state.hasLastPaymentDetails &&
-                                        state.lastBankDetails != null) ||
-                                    state.showConfirmation)
-                                ? CrossFadeState.showFirst
-                                : CrossFadeState.showSecond,
-                            firstChild: ConfirmationBottomSheet(
-                              key: ValueKey(state.lastBankDetails),
-                              bank: state.lastBankDetails,
-                            ),
-                            secondChild: AnimatedPadding(
-                              duration: kAnimationDuration,
-                              padding: EdgeInsets.only(
-                                bottom: isKeyboardVisible
-                                    ? MediaQuery.of(context).viewInsets.bottom
-                                    : 0,
-                              ),
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints.loose(
-                                  Size(
-                                    1.sw,
-                                    isKeyboardVisible ? 0.5.sh : 0.9.sh,
-                                  ),
-                                ),
-                                child: BankSelectionView(
-                                  tabController: _tabController,
-                                  searchController: _searchController,
-                                  state: state,
-                                ),
-                              ),
-                            ),
-                          ),
-                  ),
+                  child: state.isLoading == null ||
+                          state.isLoading != null && state.isLoading!
+                      ? const Center(
+                          child: FetchingBankLoader(),
+                        )
+                      : AnimatedCrossFade(
+                          duration: kAnimationDuration,
+                          crossFadeState: state.showHowPaymentWorks != null &&
+                                  state.showHowPaymentWorks!
+                              ? CrossFadeState.showFirst
+                              : CrossFadeState.showSecond,
+                          firstChild: const HowToMakePaymentView(),
+                          secondChild: state.isLoading == null ||
+                                  state.isLoading != null && state.isLoading!
+                              ? const Center(
+                                  child: FetchingBankLoader(),
+                                )
+                              : _getBankOrReviewUI(state, isKeyboardVisible),
+                        ),
                 ),
               ),
+            ),
+          ),
+        ),
+      );
+
+  Widget _getBankOrReviewUI(
+    BankInstitutionsState state,
+    bool isKeyboardVisible,
+  ) =>
+      AnimatedCrossFade(
+        duration: kAnimationDuration,
+        crossFadeState:
+            ((state.hasLastPaymentDetails && state.lastBankDetails != null) ||
+                    state.showConfirmation)
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+        firstChild: ConfirmationBottomSheet(
+          key: ValueKey(state.lastBankDetails),
+          bank: state.lastBankDetails,
+        ),
+        secondChild: AnimatedPadding(
+          duration: kAnimationDuration,
+          padding: EdgeInsets.only(
+            bottom: isKeyboardVisible
+                ? MediaQuery.of(context).viewInsets.bottom
+                : 0,
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints.loose(
+              Size(
+                1.sw,
+                isKeyboardVisible ? 0.5.sh : 0.9.sh,
+              ),
+            ),
+            child: BankSelectionView(
+              tabController: _tabController,
+              searchController: _searchController,
+              state: state,
             ),
           ),
         ),

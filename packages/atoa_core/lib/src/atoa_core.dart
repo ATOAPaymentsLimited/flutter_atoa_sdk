@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_setters_without_getters
 
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
 
 /// {@template atoa_core}
@@ -86,7 +85,8 @@ class Atoa {
       data: {
         'data': paymentRequestId,
         'source': 'EXTERNAL_MERCHANT',
-        'customerDetails': customerDetails?.toJson(),
+        if (customerDetails != null)
+          'customerDetails': customerDetails.toJson(),
       },
     );
 

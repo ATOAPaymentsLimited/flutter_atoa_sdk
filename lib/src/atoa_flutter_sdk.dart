@@ -81,8 +81,11 @@ class AtoaSdk {
     final paymentStatusController = getIt.get<PaymentStatusController>();
     final connectivityController = getIt.get<ConnectivityController>();
 
-    unawaited(bankInstitutionsController.getPaymentDetailsAndBanks());
-    bankInstitutionsController.showHowPaymentWorks = showHowPaymentWorks;
+    unawaited(
+      bankInstitutionsController.getPaymentDetailsAndBanks(
+        showHowPaymentWork: showHowPaymentWorks,
+      ),
+    );
     if (!context.mounted) return null;
     final res = await BankSelectionBottomSheet.show(
       context,
