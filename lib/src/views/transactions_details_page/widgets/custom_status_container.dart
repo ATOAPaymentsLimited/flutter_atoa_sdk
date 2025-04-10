@@ -103,7 +103,7 @@ class CustomStatusContainer extends StatelessWidget {
                       if (desc != null &&
                           bankPhoneNumber != null &&
                           (showCallBank ?? false)) ...[
-                        Spacing.mini.yBox,
+                        Spacing.small.yBox,
                         CustomGestureDetector(
                           context: context,
                           enableTracking: false,
@@ -114,7 +114,16 @@ class CustomStatusContainer extends StatelessWidget {
                           ),
                           child: CustomText.semantics(
                             context.l10n.callBank,
-                            style: sdkFigTreeTextTheme.bodyLarge?.w700.height150,
+                            style: sdkFigTreeTextTheme.bodyLarge?.w700.height150
+                                .copyWith(
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(0, -Spacing.mini.value),
+                                ),
+                              ],
+                              color: Colors.transparent,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
                       ],

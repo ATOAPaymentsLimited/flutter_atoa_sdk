@@ -113,9 +113,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
     TransactionDetails txnDetails,
     BuildContext context,
   ) {
-    if (txnDetails.errorMessage != null) {
-      return txnDetails.errorMessage!;
-    } else if (txnDetails.pendingTrasactionError != null &&
+    if (txnDetails.pendingTrasactionError != null &&
         txnDetails.pendingTrasactionError!.isNotEmpty) {
       return txnDetails.pendingTrasactionError!;
     } else {
