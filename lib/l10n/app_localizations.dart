@@ -2310,7 +2310,7 @@ abstract class AppLocalizations {
   /// No description provided for @settlementInProcessInfoText.
   ///
   /// In en, this message translates to:
-  /// **'It is taking longer than normal, Please be patient while we check for updated status, in case of discrepancy payment will be refunded'**
+  /// **'Payment processing is taking longer than usual but your money is safe with the bank. Please wait for this transaction to complete before making another payment.'**
   String get settlementInProcessInfoText;
 
   /// No description provided for @dateOfBirth.

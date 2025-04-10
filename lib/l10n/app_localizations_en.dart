@@ -1190,7 +1190,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get monthlyReward => 'You have won the prize for using Atoa for a month';
 
   @override
-  String get settlementInProcessInfoText => 'It is taking longer than normal, Please be patient while we check for updated status, in case of discrepancy payment will be refunded';
+  String get settlementInProcessInfoText => 'Payment processing is taking longer than usual but your money is safe with the bank. Please wait for this transaction to complete before making another payment.';
 
   @override
   String get dateOfBirth => 'Date of Birth';
