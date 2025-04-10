@@ -72,7 +72,7 @@ extension PaymentRequestDataX on PaymentRequestData {
         taxPercentage: taxPercentage,
         servicePercentage: servicePercentage,
         features: features,
-        deviceOrigin: 'MOBILE',
+        deviceOrigin: 'SDK_MOBILE_APP',
         totalAmountDue: amount.amount,
         employeeId: employeeId,
         callbackParams: callbackParams,
