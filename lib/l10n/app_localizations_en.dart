@@ -3053,4 +3053,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get atoaIsPowered => ' Atoa is powered by Yapily Connect Ltd.';
+
+  @override
+  String get youWillRedirectIn => 'You will be redirected in ';
+
+  @override
+  String get seconds => ' seconds';
 }

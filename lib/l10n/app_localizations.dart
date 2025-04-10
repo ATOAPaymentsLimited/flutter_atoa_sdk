@@ -5414,6 +5414,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **' Atoa is powered by Yapily Connect Ltd.'**
   String get atoaIsPowered;
+
+  /// No description provided for @youWillRedirectIn.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be redirected in '**
+  String get youWillRedirectIn;
+
+  /// No description provided for @seconds.
+  ///
+  /// In en, this message translates to:
+  /// **' seconds'**
+  String get seconds;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

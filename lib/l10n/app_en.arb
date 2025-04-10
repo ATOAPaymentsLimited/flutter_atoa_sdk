@@ -1677,5 +1677,7 @@
     "toTryAgain": " to try again",
     "byContinuingYouAccept": "By continuing you accept Yapily's ",
     "atoas": "Atoa’s",
-    "atoaIsPowered": " Atoa is powered by Yapily Connect Ltd."
+    "atoaIsPowered": " Atoa is powered by Yapily Connect Ltd.",
+    "youWillRedirectIn": "You will be redirected in ",
+    "seconds": " seconds"
 }

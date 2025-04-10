@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -11,6 +12,7 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/redirection_timer_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,13 +20,52 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-class TransactionDetailsPage extends StatelessWidget {
+class TransactionDetailsPage extends StatefulWidget {
   const TransactionDetailsPage({
     required this.paymentDetails,
     super.key,
   });
 
   final TransactionDetails paymentDetails;
+
+  @override
+  State<TransactionDetailsPage> createState() => _TransactionDetailsPageState();
+}
+
+class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
+  Timer? _countdownTimer;
+  late ValueNotifier<Duration> _countdownDurationLeft;
+  @override
+  void initState() {
+    super.initState();
+    _countdownDurationLeft = ValueNotifier(
+      Duration(seconds: widget.paymentDetails.isPending ? 20 : 10),
+    );
+    startTimer();
+  }
+
+  void startTimer() {
+    _countdownTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      final seconds = _countdownDurationLeft.value.inSeconds - 1;
+      if (seconds < 0) {
+        if (_countdownTimer != null) {
+          _countdownTimer!.cancel();
+          Navigator.pop(context);
+        }
+      } else {
+        _countdownDurationLeft.value = Duration(seconds: seconds);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    if (_countdownTimer != null) {
+      _countdownTimer!.cancel();
+    }
+    _countdownDurationLeft.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
@@ -42,7 +83,7 @@ class TransactionDetailsPage extends StatelessWidget {
                 Selector<PaymentStatusState, TransactionDetails?>(
                   selector: (context, state) => state.details,
                   builder: (context, details, _) {
-                    final transactionDetails = details ?? paymentDetails;
+                    final transactionDetails = details ?? widget.paymentDetails;
                     return Expanded(
                       child: Column(
                         children: [
@@ -98,20 +139,28 @@ class TransactionDetailsPage extends StatelessWidget {
             ),
             Spacing.huge.yBox * 2,
             TransactionDetailsTopCard(
-              transactionDetails: paymentDetails,
+              transactionDetails: widget.paymentDetails,
             ),
             Padding(
               padding: Spacing.xtraLarge.top,
               child: Column(
                 children: [
                   TransactionDetailsStatusContainer(
-                    transactionDetails: paymentDetails,
+                    transactionDetails: widget.paymentDetails,
                   ),
                   Padding(
                     padding: Spacing.medium.top + Spacing.tiny.top,
                     child: TransactionDetailsInfoUi(
-                      transactionDetails: paymentDetails,
+                      transactionDetails: widget.paymentDetails,
                       isExpanded: false,
+                    ),
+                  ),
+                  Spacing.xtraLarge.yBox,
+                  ValueListenableBuilder(
+                    valueListenable: _countdownDurationLeft,
+                    builder: (context, durationLeft, child) =>
+                        RedirectionTimerWidget(
+                      durationLeft: durationLeft,
                     ),
                   ),
                   Spacing.medium.yBox,
