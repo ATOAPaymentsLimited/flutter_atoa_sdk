@@ -1705,7 +1705,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterYourMobile => 'Enter your mobile number';
 
   @override
-  String get termsOfService => 'Terms of Service';
+  String get termsOfService => 'Terms of service';
 
   @override
   String get betterLuckNextTime => 'Better luck\nnext time';
@@ -3044,4 +3044,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get toTryAgain => ' to try again';
+
+  @override
+  String get byContinuingYouAccept => 'By continuing you accept Yapily\'s ';
+
+  @override
+  String get atoas => 'Atoa’s';
+
+  @override
+  String get atoaIsPowered => ' Atoa is powered by Yapily Connect Ltd.';
 }

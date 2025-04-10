@@ -37,12 +37,12 @@ class AtoaTermsBottomSheet extends StatelessWidget {
             AtoaTermTile(
               title: context.l10n.termsOfService,
               desc: context.l10n.rulesForService,
-              link: 'https://paywithatoa.co.uk/terms/',
+              link: atoaTermsOfService,
             ),
             AtoaTermTile(
               title: context.l10n.privacyPolicy,
               desc: context.l10n.howWeProtectData,
-              link: 'https://paywithatoa.co.uk/atoa-pay-privacy-policy/',
+              link: atoaPrivacyPolicy,
             ),
             Spacing.large.yBox * 2,
             CustomText.semantics(

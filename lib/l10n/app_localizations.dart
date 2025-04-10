@@ -3174,7 +3174,7 @@ abstract class AppLocalizations {
   /// No description provided for @termsOfService.
   ///
   /// In en, this message translates to:
-  /// **'Terms of Service'**
+  /// **'Terms of service'**
   String get termsOfService;
 
   /// No description provided for @betterLuckNextTime.
@@ -5396,6 +5396,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **' to try again'**
   String get toTryAgain;
+
+  /// No description provided for @byContinuingYouAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing you accept Yapily\'s '**
+  String get byContinuingYouAccept;
+
+  /// No description provided for @atoas.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa’s'**
+  String get atoas;
+
+  /// No description provided for @atoaIsPowered.
+  ///
+  /// In en, this message translates to:
+  /// **' Atoa is powered by Yapily Connect Ltd.'**
+  String get atoaIsPowered;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

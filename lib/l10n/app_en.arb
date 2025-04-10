@@ -874,7 +874,7 @@
     "confirmHashIdTitle": "Please confirm your\nAtoa ID",
     "confirmHashIdDesc": "This ID will be permanent and\ncannot be changed later",
     "enterYourMobile": "Enter your mobile number",
-    "termsOfService": "Terms of Service",
+    "termsOfService": "Terms of service",
     "betterLuckNextTime": "Better luck\nnext time",
     "totalCashbackReceived": "Total Cashback Received",
     "bySigningUp": "By Continuing you agree to the",
@@ -1674,5 +1674,8 @@
     "linkPaidMsg": "This link is already paid",
     "paymentAlreadyPaid": "This payment is already paid",
     "linkExpired": "Link expired, ",
-    "toTryAgain": " to try again"
+    "toTryAgain": " to try again",
+    "byContinuingYouAccept": "By continuing you accept Yapily's ",
+    "atoas": "Atoa’s",
+    "atoaIsPowered": " Atoa is powered by Yapily Connect Ltd."
 }

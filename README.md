@@ -2,7 +2,6 @@
 
 The official mobile client SDK for integrating Atoa Payments into mobile applications.
 
-[![pub package](https://img.shields.io/pub/v/atoa_flutter_sdk.svg)](https://pub.dartlang.org/packages/atoa_flutter_sdk)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 ![Atoa SDK Flow][atoa_banner]
@@ -46,7 +45,7 @@ final paymentDetails = AtoaSdk.pay(
       paymentId: 'your-payment-request-id',
       showHowPaymentWorks: false,
       customerDetails:
-      // pass customer details if pre-selc
+        // pass customer details for pre-select bank
        const CustomerDetails(
         phoneCountryCode: '44',
         phoneNumber: '8788899999',
@@ -152,10 +151,10 @@ The SDK supports displaying banks the customer has previously paid with through 
 - Type: `(data: { status: string; paymentRequestId: string; paymentIdempotencyId?: string }) => void`
 - Description: Called when the payment status changes
 - Parameters:
-  - `data`: Status data object containing:
-    - `status`: Current payment status
-    - `paymentRequestId`: The payment request ID
-    - `paymentIdempotencyId`: (optional) Payment idempotency ID
+  - `status`: Current payment status
+  - `callbackParams`: (optional) Additional callback parameters
+  - `atoaSignature`: (optional) Atoa signature for verification
+  - `atoaSignatureHash`: (optional) Atoa signature hash for verification
 
 ###### onUserClose
 
@@ -163,25 +162,9 @@ The SDK supports displaying banks the customer has previously paid with through 
 - Description: Called when the user cancels the payment
 - Parameters:
   - `paymentRequestId`: The payment request ID
-
-### Methods
-
-#### pay()
-
-Shows the payment sheet with the configured options.
-
-```dart
-AtoaSdk.pay();
-```
-
-This method:
-
-- Creates a custom mobile component for the payment sheet
-- Handles all payment flow interactions
-
-**Returns:**
-
-- `TrasnactionDetails`
+  - `callbackParams`: (optional) Additional callback parameters
+  - `atoaSignature`: (optional) Atoa signature for verification
+  - `atoaSignatureHash`: (optional) Atoa signature hash for verification
 
 ### Event Callbacks
 
@@ -214,9 +197,9 @@ Called when the user cancels the payment.
 
 - `paymentRequestId`: The payment request ID
 
-## Handle Redirection (Optional)
+## Handle Redirection
 
-Call the [payment-process](https://docs.atoa.me/api-reference/Payment/process-payment) API to generate a payment. In response, store the `paymentRequestId` on the backend. The `redirectUrl`, which can be passed as body parameters, redirects to your website and then opens your app via deep linking.
+Call the [payment-process](https://docs.atoa.me/api-reference/Payment/process-payment) API to generate a payment. In response, store the `paymentRequestId` on the backend. The `redirectUrl`, which should be passed as body parameters, redirects to your website and then opens your app via deep linking.
 
 #### Resources For deep-linking
 
