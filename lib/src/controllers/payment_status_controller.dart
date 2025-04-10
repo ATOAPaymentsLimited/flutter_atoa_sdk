@@ -37,8 +37,12 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
             details: details,
             exception: null,
           );
-          PaymentUtility.onPaymentStatusChange
-              ?.call(details.status.status ?? '');
+          PaymentUtility.onPaymentStatusChange?.call(
+            details.status.status,
+            details.redirectUrlParams,
+            details.signature,
+            details.signatureHash,
+          );
         } on AtoaException catch (e) {
           PaymentUtility.onError?.call(e);
           state = state.copyWith(

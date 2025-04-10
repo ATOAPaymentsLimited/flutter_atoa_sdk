@@ -51,6 +51,12 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
           ? null
           : StoreDetails.fromJson(json['storeDetails'] as Map<String, dynamic>),
       institutionId: json['institutionId'] as String?,
+      signatureHash: json['signatureHash'] as String?,
+      signature: json['signature'] as String?,
+      redirectUrlParams:
+          (json['redirectUrlParams'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
     );
 
 Map<String, dynamic> _$$TransactionDetailsImplToJson(
@@ -85,4 +91,7 @@ Map<String, dynamic> _$$TransactionDetailsImplToJson(
       'avatar': instance.avatar,
       'storeDetails': instance.storeDetails,
       'institutionId': instance.institutionId,
+      'signatureHash': instance.signatureHash,
+      'signature': instance.signature,
+      'redirectUrlParams': instance.redirectUrlParams,
     };

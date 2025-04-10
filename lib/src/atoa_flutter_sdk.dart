@@ -23,8 +23,9 @@ class AtoaSdk {
     required String paymentId,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
-    void Function(String)? onUserClose,
-    void Function(String)? onPaymentStatusChange,
+    void Function(String?, Map<String, String>?, String?, String?)? onUserClose,
+    void Function(String?, Map<String, String>?, String?, String?)?
+        onPaymentStatusChange,
     void Function(AtoaException)? onError,
     CustomerDetails? customerDetails,
   }) async {

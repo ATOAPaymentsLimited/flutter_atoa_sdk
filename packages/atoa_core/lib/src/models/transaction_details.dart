@@ -93,6 +93,9 @@ class TransactionDetails with _$TransactionDetails {
     String? avatar,
     StoreDetails? storeDetails,
     String? institutionId,
+    String? signatureHash,
+    String? signature,
+    Map<String, String>? redirectUrlParams,
   }) = _TransactionDetails;
 
   TransactionDetails._();

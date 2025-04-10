@@ -1,7 +1,6 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/continue_button.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_payment_works_title_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_to_make_payment_steps.dart';
@@ -65,7 +64,6 @@ class HowToMakePaymentView extends StatelessWidget {
                   Spacing.huge.yBox,
                   const ContinueButton(),
                   Spacing.medium.yBox,
-                  const PoweredByAtoaWidget(),
                 ],
               );
             },

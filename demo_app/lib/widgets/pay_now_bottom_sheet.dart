@@ -46,21 +46,25 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
-      onUserClose: (paymentRequestId) {
+      onUserClose:
+          (paymentRequestId, redirectUrlParams, signature, signatureHash) {
         // handle payment when user close the payment verification bottom sheet
 
         // ScaffoldMessenger.of(context).showSnackBar(
         //   SnackBar(
         //     backgroundColor: RegalColors.darkOrange,
         //     content: Text(
-        //       'User closed the payment for paymentRequestId: $paymentRequestId',
+        //       'User closed the payment for paymentRequestId: $paymentRequestId $redirectUrlParams $signature $signatureHash',
         //     ),
         //   ),
         // );
       },
-      onPaymentStatusChange: (status) {
+      onPaymentStatusChange:
+          (status, redirectUrlParams, signature, signatureHash) {
         // handle payment status
-        // print('Payment Status Changed to $status');
+        //  print(
+        //  'Payment Status Changed to $status $redirectUrlParams $signature, $signatureHash',
+        // );
       },
       onError: (error) {
         // handle Atoa Mobile SDK error

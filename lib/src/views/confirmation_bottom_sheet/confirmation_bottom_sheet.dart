@@ -5,7 +5,6 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/ledger_button.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/powered_by_atoa_widget.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
@@ -234,9 +233,7 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
                           state.selectedBank?.name ?? '',
                         ),
                       ),
-                      Spacing.medium.yBox,
-                      const PoweredByAtoaWidget(),
-                      Spacing.huge.yBox,
+                      Spacing.large.yBox,
                       const AtoaTermAndServiceWidget(),
                     ],
                   ),

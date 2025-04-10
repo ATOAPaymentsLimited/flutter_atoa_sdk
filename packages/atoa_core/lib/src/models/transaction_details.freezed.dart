@@ -97,6 +97,10 @@ mixin _$TransactionDetails {
   String? get avatar => throw _privateConstructorUsedError;
   StoreDetails? get storeDetails => throw _privateConstructorUsedError;
   String? get institutionId => throw _privateConstructorUsedError;
+  String? get signatureHash => throw _privateConstructorUsedError;
+  String? get signature => throw _privateConstructorUsedError;
+  Map<String, String>? get redirectUrlParams =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this TransactionDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -145,7 +149,10 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       String? merchantName,
       String? avatar,
       StoreDetails? storeDetails,
-      String? institutionId});
+      String? institutionId,
+      String? signatureHash,
+      String? signature,
+      Map<String, String>? redirectUrlParams});
 
   $TransactionStatusCopyWith<$Res> get status;
   $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
@@ -198,6 +205,9 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
     Object? avatar = freezed,
     Object? storeDetails = freezed,
     Object? institutionId = freezed,
+    Object? signatureHash = freezed,
+    Object? signature = freezed,
+    Object? redirectUrlParams = freezed,
   }) {
     return _then(_value.copyWith(
       applicationUserId: null == applicationUserId
@@ -320,6 +330,18 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
           ? _value.institutionId
           : institutionId // ignore: cast_nullable_to_non_nullable
               as String?,
+      signatureHash: freezed == signatureHash
+          ? _value.signatureHash
+          : signatureHash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signature: freezed == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirectUrlParams: freezed == redirectUrlParams
+          ? _value.redirectUrlParams
+          : redirectUrlParams // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ) as $Val);
   }
 
@@ -416,7 +438,10 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
       String? merchantName,
       String? avatar,
       StoreDetails? storeDetails,
-      String? institutionId});
+      String? institutionId,
+      String? signatureHash,
+      String? signature,
+      Map<String, String>? redirectUrlParams});
 
   @override
   $TransactionStatusCopyWith<$Res> get status;
@@ -471,6 +496,9 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
     Object? avatar = freezed,
     Object? storeDetails = freezed,
     Object? institutionId = freezed,
+    Object? signatureHash = freezed,
+    Object? signature = freezed,
+    Object? redirectUrlParams = freezed,
   }) {
     return _then(_$TransactionDetailsImpl(
       applicationUserId: null == applicationUserId
@@ -593,6 +621,18 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
           ? _value.institutionId
           : institutionId // ignore: cast_nullable_to_non_nullable
               as String?,
+      signatureHash: freezed == signatureHash
+          ? _value.signatureHash
+          : signatureHash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signature: freezed == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirectUrlParams: freezed == redirectUrlParams
+          ? _value._redirectUrlParams
+          : redirectUrlParams // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ));
   }
 }
@@ -631,8 +671,12 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
       this.merchantName,
       this.avatar,
       this.storeDetails,
-      this.institutionId})
-      : super._();
+      this.institutionId,
+      this.signatureHash,
+      this.signature,
+      final Map<String, String>? redirectUrlParams})
+      : _redirectUrlParams = redirectUrlParams,
+        super._();
 
   factory _$TransactionDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransactionDetailsImplFromJson(json);
@@ -744,10 +788,24 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   final StoreDetails? storeDetails;
   @override
   final String? institutionId;
+  @override
+  final String? signatureHash;
+  @override
+  final String? signature;
+  final Map<String, String>? _redirectUrlParams;
+  @override
+  Map<String, String>? get redirectUrlParams {
+    final value = _redirectUrlParams;
+    if (value == null) return null;
+    if (_redirectUrlParams is EqualUnmodifiableMapView)
+      return _redirectUrlParams;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'TransactionDetails(applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentIdempotencyId: $paymentIdempotencyId, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, paymentRequest: $paymentRequest, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId)';
+    return 'TransactionDetails(applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentIdempotencyId: $paymentIdempotencyId, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, paymentRequest: $paymentRequest, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId, signatureHash: $signatureHash, signature: $signature, redirectUrlParams: $redirectUrlParams)';
   }
 
   @override
@@ -808,7 +866,13 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
             (identical(other.storeDetails, storeDetails) ||
                 other.storeDetails == storeDetails) &&
             (identical(other.institutionId, institutionId) ||
-                other.institutionId == institutionId));
+                other.institutionId == institutionId) &&
+            (identical(other.signatureHash, signatureHash) ||
+                other.signatureHash == signatureHash) &&
+            (identical(other.signature, signature) ||
+                other.signature == signature) &&
+            const DeepCollectionEquality()
+                .equals(other._redirectUrlParams, _redirectUrlParams));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -844,7 +908,10 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         merchantName,
         avatar,
         storeDetails,
-        institutionId
+        institutionId,
+        signatureHash,
+        signature,
+        const DeepCollectionEquality().hash(_redirectUrlParams)
       ]);
 
   /// Create a copy of TransactionDetails
@@ -896,7 +963,10 @@ abstract class _TransactionDetails extends TransactionDetails {
       final String? merchantName,
       final String? avatar,
       final StoreDetails? storeDetails,
-      final String? institutionId}) = _$TransactionDetailsImpl;
+      final String? institutionId,
+      final String? signatureHash,
+      final String? signature,
+      final Map<String, String>? redirectUrlParams}) = _$TransactionDetailsImpl;
   _TransactionDetails._() : super._();
 
   factory _TransactionDetails.fromJson(Map<String, dynamic> json) =
@@ -1008,6 +1078,12 @@ abstract class _TransactionDetails extends TransactionDetails {
   StoreDetails? get storeDetails;
   @override
   String? get institutionId;
+  @override
+  String? get signatureHash;
+  @override
+  String? get signature;
+  @override
+  Map<String, String>? get redirectUrlParams;
 
   /// Create a copy of TransactionDetails
   /// with the given fields replaced by the non-null parameter values.

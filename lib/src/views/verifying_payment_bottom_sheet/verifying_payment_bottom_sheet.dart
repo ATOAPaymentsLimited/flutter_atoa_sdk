@@ -164,6 +164,7 @@ class _VerifyingPaymentBottomSheetState
 
                         return VerifyingPaymentView(
                           bankIcon: bankInstitutionState.selectedBank?.bankIcon,
+                          transactionDetails: paymentState.details,
                         );
                       },
                     ),
