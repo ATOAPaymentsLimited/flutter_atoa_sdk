@@ -309,7 +309,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get note => 'Note';
 
   @override
-  String get paymentFailedDesc => 'Oops, this bank app is down at the moment. Atoa is working fine. Please pay with another bank.';
+  String get paymentFailedDesc => 'Atoa is working fine but your bank\'s network is experiencing issues. Please try the payment using a different bank app.';
 
   @override
   String get all => 'All';
