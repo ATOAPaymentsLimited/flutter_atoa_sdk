@@ -46,7 +46,7 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
           iconBgColor: SemanticsColors.light().error.defaultColor,
           svgAsset: Assets.gifs.processing.path,
           isLottie: true,
-          status: context.l10n.processing,
+          status: context.l10n.pending,
           showCallBank: true,
           desc: _getPaymentPendingStatusDescription(txnDetails, context),
           dateTime:

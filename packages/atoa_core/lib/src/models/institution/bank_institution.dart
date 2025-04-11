@@ -39,5 +39,6 @@ class BankInstitution
       media.firstWhereOrNull((element) => element.type == 'logo')?.source;
 
   @override
-  int compareTo(BankInstitution other) => name.compareTo(other.name);
+  int compareTo(BankInstitution other) =>
+      fullName.toLowerCase().compareTo(other.fullName.toLowerCase());
 }
