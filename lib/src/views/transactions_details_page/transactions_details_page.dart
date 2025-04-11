@@ -39,7 +39,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
   void initState() {
     super.initState();
     _countdownDurationLeft = ValueNotifier(
-      Duration(seconds: widget.paymentDetails.isPending ? 20 : 10),
+      Duration(seconds: widget.paymentDetails.isPending ? 180 : 10),
     );
     startTimer();
   }
@@ -143,29 +143,29 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
             ),
             Padding(
               padding: Spacing.xtraLarge.top,
-              child: Column(
-                children: [
-                  TransactionDetailsStatusContainer(
-                    transactionDetails: widget.paymentDetails,
-                  ),
-                  Padding(
-                    padding: Spacing.medium.top + Spacing.tiny.top,
-                    child: TransactionDetailsInfoUi(
+              child: ValueListenableBuilder(
+                valueListenable: _countdownDurationLeft,
+                builder: (context, durationLeft, child) => Column(
+                  children: [
+                    TransactionDetailsStatusContainer(
                       transactionDetails: widget.paymentDetails,
-                      isExpanded: false,
-                    ),
-                  ),
-                  Spacing.xtraLarge.yBox,
-                  ValueListenableBuilder(
-                    valueListenable: _countdownDurationLeft,
-                    builder: (context, durationLeft, child) =>
-                        RedirectionTimerWidget(
                       durationLeft: durationLeft,
                     ),
-                  ),
-                  Spacing.medium.yBox,
-                  Spacing.huge.yBox,
-                ],
+                    Padding(
+                      padding: Spacing.medium.top + Spacing.tiny.top,
+                      child: TransactionDetailsInfoUi(
+                        transactionDetails: widget.paymentDetails,
+                        isExpanded: false,
+                      ),
+                    ),
+                    Spacing.xtraLarge.yBox,
+                    RedirectionTimerWidget(
+                      durationLeft: durationLeft,
+                    ),
+                    Spacing.medium.yBox,
+                    Spacing.huge.yBox,
+                  ],
+                ),
               ),
             ),
           ],

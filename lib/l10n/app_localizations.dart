@@ -5415,11 +5415,11 @@ abstract class AppLocalizations {
   /// **' Atoa is powered by Yapily Connect Ltd.'**
   String get atoaIsPowered;
 
-  /// No description provided for @youWillRedirectIn.
+  /// No description provided for @popupClosingIn.
   ///
   /// In en, this message translates to:
-  /// **'You will be redirected in '**
-  String get youWillRedirectIn;
+  /// **'We’ll close this pop-up in just '**
+  String get popupClosingIn;
 
   /// No description provided for @seconds.
   ///

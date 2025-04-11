@@ -18,7 +18,7 @@ class RedirectionTimerWidget extends StatelessWidget {
           RichText(
             textAlign: TextAlign.center,
             text: CustomTextSpan.semantics(
-              text: context.l10n.youWillRedirectIn,
+              text: context.l10n.popupClosingIn,
               style: sdkFigTreeTextTheme.bodyLarge,
               children: [
                 CustomTextSpan.semantics(
