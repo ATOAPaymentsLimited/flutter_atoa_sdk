@@ -50,7 +50,7 @@ class BankLogosWidget extends StatelessWidget {
                   child: Padding(
                     padding: Spacing.small.y,
                     child: CustomText.semantics(
-                      '+${context.read<BankInstitutionsState>().bankList.length - 2}',
+                      '+${context.read<BankInstitutionsState>().bankList.length - 3}',
                       textAlign: TextAlign.center,
                     ),
                   ),
