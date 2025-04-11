@@ -34,7 +34,9 @@ class ProductCardWidget extends StatelessWidget {
                   children: [
                     CustomText.semantics(
                       name,
-                      style: Theme.of(context).textTheme.labelSmall!
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelSmall!
                           .copyWith(fontWeight: FontWeight.w600, height: 1.5),
                     ),
                     Spacing.large.xBox * 2,
@@ -48,12 +50,12 @@ class ProductCardWidget extends StatelessWidget {
                 Spacing.mini.yBox,
                 Spacing.tiny.yBox,
                 CustomText.semantics(
-                  '£1.0',
+                  '£1.00',
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    height: 1.5,
-                    color: const Color.fromRGBO(73, 80, 87, 1),
-                  ),
+                        fontWeight: FontWeight.w600,
+                        height: 1.5,
+                        color: const Color.fromRGBO(73, 80, 87, 1),
+                      ),
                 ),
                 Spacing.mini.yBox,
                 Spacing.tiny.yBox,
