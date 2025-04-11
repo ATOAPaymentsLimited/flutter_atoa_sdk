@@ -3059,4 +3059,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seconds => ' seconds';
+
+  @override
+  String get second => ' second';
+
+  @override
+  String get areYouSure => 'Are you sure you want to leave?';
+
+  @override
+  String get areYouSureDesc => 'Clicking continue will close this and take you back.';
+
+  @override
+  String get minute => ' minute ';
+
+  @override
+  String get minutes => ' minutes ';
 }

@@ -5426,6 +5426,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **' seconds'**
   String get seconds;
+
+  /// No description provided for @second.
+  ///
+  /// In en, this message translates to:
+  /// **' second'**
+  String get second;
+
+  /// No description provided for @areYouSure.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to leave?'**
+  String get areYouSure;
+
+  /// No description provided for @areYouSureDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Clicking continue will close this and take you back.'**
+  String get areYouSureDesc;
+
+  /// No description provided for @minute.
+  ///
+  /// In en, this message translates to:
+  /// **' minute '**
+  String get minute;
+
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **' minutes '**
+  String get minutes;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

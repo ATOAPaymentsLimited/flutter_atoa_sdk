@@ -12,6 +12,7 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/string_extensions.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/close_confirmation_bottom_sheet.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/redirection_timer_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/transactions_details_page/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -67,24 +68,32 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
     super.dispose();
   }
 
+  void _updateTimerDuration(TransactionDetails details) {
+    if (!details.isPending && _countdownDurationLeft.value.inSeconds > 10) {
+      _countdownDurationLeft.value = const Duration(seconds: 10);
+    }
+  }
+
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Selector<PaymentStatusState, TransactionDetails?>(
+          selector: (context, state) => state.details,
+          builder: (context, details, _) {
+            final transactionDetails = details ?? widget.paymentDetails;
+            _updateTimerDuration(transactionDetails);
+
+            return Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Opacity(
-                  opacity: 0,
-                  child: EmptyIconPlaceholder(),
-                ),
-                Spacing.mediumlarge.xBox * 2,
-                Selector<PaymentStatusState, TransactionDetails?>(
-                  selector: (context, state) => state.details,
-                  builder: (context, details, _) {
-                    final transactionDetails = details ?? widget.paymentDetails;
-                    return Expanded(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Opacity(
+                      opacity: 0,
+                      child: EmptyIconPlaceholder(),
+                    ),
+                    Spacing.mediumlarge.xBox * 2,
+                    Expanded(
                       child: Column(
                         children: [
                           CustomText.semantics(
@@ -115,60 +124,74 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                             ),
                         ],
                       ),
-                    );
-                  },
+                    ),
+                    Spacing.large.xBox,
+                    BottomSheetAction(
+                      semanticsLabel: 'Close Dialog Sheet Icon',
+                      trackLabel: 'Close Dialog Sheet Icon',
+                      onTap: () => onClose(transactionDetails),
+                      child: Icon(
+                        Icons.close,
+                        size: Spacing.large.value,
+                        color: IntactColors.light().black,
+                      ),
+                    ),
+                  ],
                 ),
-                Spacing.large.xBox,
-                BottomSheetAction(
-                  semanticsLabel: 'Close Dialog Sheet Icon',
-                  trackLabel: 'Close Dialog Sheet Icon',
-                  onTap: () {
-                    context.read<PaymentStatusController>().stop();
-                    Navigator.pop(
-                      context,
-                      context.read<PaymentStatusState>().details,
-                    );
-                  },
-                  child: Icon(
-                    Icons.close,
-                    size: Spacing.large.value,
-                    color: IntactColors.light().black,
+                Spacing.huge.yBox * 2,
+                TransactionDetailsTopCard(
+                  transactionDetails: widget.paymentDetails,
+                ),
+                Padding(
+                  padding: Spacing.xtraLarge.top,
+                  child: ValueListenableBuilder(
+                    valueListenable: _countdownDurationLeft,
+                    builder: (context, durationLeft, child) => Column(
+                      children: [
+                        TransactionDetailsStatusContainer(
+                          transactionDetails: widget.paymentDetails,
+                          durationLeft: durationLeft,
+                        ),
+                        Padding(
+                          padding: Spacing.medium.top + Spacing.tiny.top,
+                          child: TransactionDetailsInfoUi(
+                            transactionDetails: widget.paymentDetails,
+                            isExpanded: false,
+                          ),
+                        ),
+                        Spacing.xtraLarge.yBox,
+                        RedirectionTimerWidget(
+                          durationLeft: durationLeft,
+                        ),
+                        Spacing.medium.yBox,
+                        Spacing.huge.yBox,
+                      ],
+                    ),
                   ),
                 ),
               ],
-            ),
-            Spacing.huge.yBox * 2,
-            TransactionDetailsTopCard(
-              transactionDetails: widget.paymentDetails,
-            ),
-            Padding(
-              padding: Spacing.xtraLarge.top,
-              child: ValueListenableBuilder(
-                valueListenable: _countdownDurationLeft,
-                builder: (context, durationLeft, child) => Column(
-                  children: [
-                    TransactionDetailsStatusContainer(
-                      transactionDetails: widget.paymentDetails,
-                      durationLeft: durationLeft,
-                    ),
-                    Padding(
-                      padding: Spacing.medium.top + Spacing.tiny.top,
-                      child: TransactionDetailsInfoUi(
-                        transactionDetails: widget.paymentDetails,
-                        isExpanded: false,
-                      ),
-                    ),
-                    Spacing.xtraLarge.yBox,
-                    RedirectionTimerWidget(
-                      durationLeft: durationLeft,
-                    ),
-                    Spacing.medium.yBox,
-                    Spacing.huge.yBox,
-                  ],
-                ),
-              ),
-            ),
-          ],
+            );
+          },
         ),
       );
+
+  Future<void> onClose(TransactionDetails transactionDetails) async {
+    if (transactionDetails.isPending) {
+      final res = await CloseConfirmationBottomSheet.show(context);
+      if (!mounted) return;
+      if (res != null && res) {
+        context.read<PaymentStatusController>().stop();
+        Navigator.pop(
+          context,
+          context.read<PaymentStatusState>().details,
+        );
+      }
+    } else {
+      context.read<PaymentStatusController>().stop();
+      Navigator.pop(
+        context,
+        context.read<PaymentStatusState>().details,
+      );
+    }
+  }
 }
