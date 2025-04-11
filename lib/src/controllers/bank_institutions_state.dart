@@ -55,7 +55,8 @@ class BankInstitutionsState with _$BankInstitutionsState {
               .where(
                 (e) => e.popularBank && !e.businessBank,
               )
-              .toList();
+              .toList()
+        ..sort();
 
   List<BankInstitution> get businessBanksDisabled =>
       paymentDetails?.amount.amount != null
@@ -78,7 +79,8 @@ class BankInstitutionsState with _$BankInstitutionsState {
                     e.transactionAmountLimit < paymentDetails!.amount.amount,
               )
               .toList()
-          : [];
+          : []
+        ..sort();
 
   List<BankInstitution> get popularPersonalBanks =>
       paymentDetails?.amount.amount != null
@@ -94,7 +96,8 @@ class BankInstitutionsState with _$BankInstitutionsState {
               .where(
                 (e) => e.popularBank && !e.businessBank,
               )
-              .toList();
+              .toList()
+        ..sort();
 
   List<BankInstitution> get personalBanks =>
       paymentDetails?.amount.amount != null
@@ -109,5 +112,6 @@ class BankInstitutionsState with _$BankInstitutionsState {
               .where(
                 (e) => !e.popularBank && !e.businessBank,
               )
-              .toList();
+              .toList()
+        ..sort();
 }
