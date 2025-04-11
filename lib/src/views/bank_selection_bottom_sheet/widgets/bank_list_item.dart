@@ -67,7 +67,7 @@ class BankListItem extends StatelessWidget {
                   children: [
                     Flexible(
                       child: CustomText.semantics(
-                        bank.name,
+                        bank.fullName,
                         style: sdkFigTreeTextTheme.bodyLarge
                             ?.textColor(
                               enabled

@@ -1,6 +1,6 @@
-import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
+import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/bank_logos_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/continue_button.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_payment_works_title_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_to_make_payment_steps.dart';
@@ -36,27 +36,7 @@ class HowToMakePaymentView extends StatelessWidget {
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Assets.images.redBackAtoaLogo.image(
-                        width: Spacing.huge.value * 2,
-                        height: Spacing.huge.value * 2,
-                      ),
-                      Spacing.medium.xBox,
-                      Assets.gifs.dotLoading.lottie(
-                        width: Spacing.xtraLarge.value * 2 + Spacing.tiny.value,
-                        repeat: false,
-                      ),
-                      Spacing.medium.xBox,
-                      Assets.images.bankLogos.image(
-                        width: Spacing.xtraLarge.value * 6 +
-                            Spacing.small.value +
-                            Spacing.tiny.value,
-                        height: Spacing.huge.value * 2,
-                      ),
-                    ],
-                  ),
+                  const BankLogosWidget(),
                   Spacing.xtraLarge.yBox * 2,
                   const HowToMakePaymentSteps(),
                   Spacing.huge.yBox,

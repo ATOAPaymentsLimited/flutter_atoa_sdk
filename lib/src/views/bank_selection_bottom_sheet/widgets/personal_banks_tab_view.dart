@@ -26,14 +26,12 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
   late ScrollController scrollController;
   late BankInstitutionsState bankInstitutionsState;
   late BankInstitutionsController bankInstitutionsController;
-  List<BankInstitution> allBanks = []; // Full list of banks
 
   @override
   void initState() {
     super.initState();
     bankInstitutionsState = context.read<BankInstitutionsState>();
     bankInstitutionsController = context.read<BankInstitutionsController>();
-    allBanks = bankInstitutionsState.allNormalBanks;
     scrollController = ScrollController();
   }
 
@@ -64,9 +62,9 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                 ),
 
                 itemCount: bankInstitutionsState
-                    .gridBanks.length, // Two rows of 4 items
+                    .popularPersonalBanks.length, // Two rows of 4 items
                 itemBuilder: (context, index) => BankGridItem(
-                  bank: bankInstitutionsState.gridBanks[index],
+                  bank: bankInstitutionsState.popularPersonalBanks[index],
                   onBankSelect: widget.onBankSelect,
                 ),
               ),
@@ -84,9 +82,9 @@ class _PersonalBanksTabViewState extends State<PersonalBanksTabView> {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: allBanks.length,
+                itemCount: bankInstitutionsState.personalBanks.length,
                 itemBuilder: (context, index) => BankListItem(
-                  bank: allBanks[index],
+                  bank: bankInstitutionsState.personalBanks[index],
                   onBankSelect: widget.onBankSelect,
                 ),
               ),

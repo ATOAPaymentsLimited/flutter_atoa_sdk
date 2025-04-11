@@ -25,6 +25,7 @@ mixin _$BankInstitution {
   String get fullName => throw _privateConstructorUsedError;
   List<BankMedia> get media => throw _privateConstructorUsedError;
   List<String> get features => throw _privateConstructorUsedError;
+  num get orderBy => throw _privateConstructorUsedError;
   double get transactionAmountLimit => throw _privateConstructorUsedError;
   bool get businessBank => throw _privateConstructorUsedError;
   bool get popularBank => throw _privateConstructorUsedError;
@@ -52,6 +53,7 @@ abstract class $BankInstitutionCopyWith<$Res> {
       String fullName,
       List<BankMedia> media,
       List<String> features,
+      num orderBy,
       double transactionAmountLimit,
       bool businessBank,
       bool popularBank,
@@ -78,6 +80,7 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
     Object? fullName = null,
     Object? media = null,
     Object? features = null,
+    Object? orderBy = null,
     Object? transactionAmountLimit = null,
     Object? businessBank = null,
     Object? popularBank = null,
@@ -104,6 +107,10 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      orderBy: null == orderBy
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as num,
       transactionAmountLimit: null == transactionAmountLimit
           ? _value.transactionAmountLimit
           : transactionAmountLimit // ignore: cast_nullable_to_non_nullable
@@ -138,6 +145,7 @@ abstract class _$$BankInstitutionsImplCopyWith<$Res>
       String fullName,
       List<BankMedia> media,
       List<String> features,
+      num orderBy,
       double transactionAmountLimit,
       bool businessBank,
       bool popularBank,
@@ -162,6 +170,7 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
     Object? fullName = null,
     Object? media = null,
     Object? features = null,
+    Object? orderBy = null,
     Object? transactionAmountLimit = null,
     Object? businessBank = null,
     Object? popularBank = null,
@@ -188,6 +197,10 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
           ? _value._features
           : features // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      orderBy: null == orderBy
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as num,
       transactionAmountLimit: null == transactionAmountLimit
           ? _value.transactionAmountLimit
           : transactionAmountLimit // ignore: cast_nullable_to_non_nullable
@@ -217,6 +230,7 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       required this.fullName,
       required final List<BankMedia> media,
       required final List<String> features,
+      required this.orderBy,
       this.transactionAmountLimit = 15000,
       this.businessBank = false,
       this.popularBank = true,
@@ -251,6 +265,8 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
   }
 
   @override
+  final num orderBy;
+  @override
   @JsonKey()
   final double transactionAmountLimit;
   @override
@@ -265,7 +281,7 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
 
   @override
   String toString() {
-    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank, popularBank: $popularBank, enabled: $enabled)';
+    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, orderBy: $orderBy, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank, popularBank: $popularBank, enabled: $enabled)';
   }
 
   @override
@@ -279,6 +295,7 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
                 other.fullName == fullName) &&
             const DeepCollectionEquality().equals(other._media, _media) &&
             const DeepCollectionEquality().equals(other._features, _features) &&
+            (identical(other.orderBy, orderBy) || other.orderBy == orderBy) &&
             (identical(other.transactionAmountLimit, transactionAmountLimit) ||
                 other.transactionAmountLimit == transactionAmountLimit) &&
             (identical(other.businessBank, businessBank) ||
@@ -297,6 +314,7 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       fullName,
       const DeepCollectionEquality().hash(_media),
       const DeepCollectionEquality().hash(_features),
+      orderBy,
       transactionAmountLimit,
       businessBank,
       popularBank,
@@ -326,6 +344,7 @@ abstract class _BankInstitutions extends BankInstitution {
       required final String fullName,
       required final List<BankMedia> media,
       required final List<String> features,
+      required final num orderBy,
       final double transactionAmountLimit,
       final bool businessBank,
       final bool popularBank,
@@ -345,6 +364,8 @@ abstract class _BankInstitutions extends BankInstitution {
   List<BankMedia> get media;
   @override
   List<String> get features;
+  @override
+  num get orderBy;
   @override
   double get transactionAmountLimit;
   @override
