@@ -19,11 +19,11 @@ class BankInstitution
     required String fullName,
     required List<BankMedia> media,
     required List<String> features,
+    required num orderBy,
     @Default(15000) double transactionAmountLimit,
     @Default(false) bool businessBank,
     @Default(true) bool popularBank,
     @Default(false) bool enabled,
-    required num orderBy,
   }) = _BankInstitutions;
 
   const BankInstitution._();

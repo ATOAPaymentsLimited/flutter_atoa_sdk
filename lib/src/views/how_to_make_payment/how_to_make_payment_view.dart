@@ -36,7 +36,7 @@ class HowToMakePaymentView extends StatelessWidget {
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  BankLogosWidget(),
+                  const BankLogosWidget(),
                   Spacing.xtraLarge.yBox * 2,
                   const HowToMakePaymentSteps(),
                   Spacing.huge.yBox,

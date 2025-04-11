@@ -25,11 +25,11 @@ mixin _$BankInstitution {
   String get fullName => throw _privateConstructorUsedError;
   List<BankMedia> get media => throw _privateConstructorUsedError;
   List<String> get features => throw _privateConstructorUsedError;
+  num get orderBy => throw _privateConstructorUsedError;
   double get transactionAmountLimit => throw _privateConstructorUsedError;
   bool get businessBank => throw _privateConstructorUsedError;
   bool get popularBank => throw _privateConstructorUsedError;
   bool get enabled => throw _privateConstructorUsedError;
-  num get orderBy => throw _privateConstructorUsedError;
 
   /// Serializes this BankInstitution to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,11 +53,11 @@ abstract class $BankInstitutionCopyWith<$Res> {
       String fullName,
       List<BankMedia> media,
       List<String> features,
+      num orderBy,
       double transactionAmountLimit,
       bool businessBank,
       bool popularBank,
-      bool enabled,
-      num orderBy});
+      bool enabled});
 }
 
 /// @nodoc
@@ -80,11 +80,11 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
     Object? fullName = null,
     Object? media = null,
     Object? features = null,
+    Object? orderBy = null,
     Object? transactionAmountLimit = null,
     Object? businessBank = null,
     Object? popularBank = null,
     Object? enabled = null,
-    Object? orderBy = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,6 +107,10 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      orderBy: null == orderBy
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as num,
       transactionAmountLimit: null == transactionAmountLimit
           ? _value.transactionAmountLimit
           : transactionAmountLimit // ignore: cast_nullable_to_non_nullable
@@ -123,10 +127,6 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      orderBy: null == orderBy
-          ? _value.orderBy
-          : orderBy // ignore: cast_nullable_to_non_nullable
-              as num,
     ) as $Val);
   }
 }
@@ -145,11 +145,11 @@ abstract class _$$BankInstitutionsImplCopyWith<$Res>
       String fullName,
       List<BankMedia> media,
       List<String> features,
+      num orderBy,
       double transactionAmountLimit,
       bool businessBank,
       bool popularBank,
-      bool enabled,
-      num orderBy});
+      bool enabled});
 }
 
 /// @nodoc
@@ -170,11 +170,11 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
     Object? fullName = null,
     Object? media = null,
     Object? features = null,
+    Object? orderBy = null,
     Object? transactionAmountLimit = null,
     Object? businessBank = null,
     Object? popularBank = null,
     Object? enabled = null,
-    Object? orderBy = null,
   }) {
     return _then(_$BankInstitutionsImpl(
       id: null == id
@@ -197,6 +197,10 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
           ? _value._features
           : features // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      orderBy: null == orderBy
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as num,
       transactionAmountLimit: null == transactionAmountLimit
           ? _value.transactionAmountLimit
           : transactionAmountLimit // ignore: cast_nullable_to_non_nullable
@@ -213,10 +217,6 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      orderBy: null == orderBy
-          ? _value.orderBy
-          : orderBy // ignore: cast_nullable_to_non_nullable
-              as num,
     ));
   }
 }
@@ -230,11 +230,11 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       required this.fullName,
       required final List<BankMedia> media,
       required final List<String> features,
+      required this.orderBy,
       this.transactionAmountLimit = 15000,
       this.businessBank = false,
       this.popularBank = true,
-      this.enabled = false,
-      required this.orderBy})
+      this.enabled = false})
       : _media = media,
         _features = features,
         super._();
@@ -265,6 +265,8 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
   }
 
   @override
+  final num orderBy;
+  @override
   @JsonKey()
   final double transactionAmountLimit;
   @override
@@ -276,12 +278,10 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
   @override
   @JsonKey()
   final bool enabled;
-  @override
-  final num orderBy;
 
   @override
   String toString() {
-    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank, popularBank: $popularBank, enabled: $enabled, orderBy: $orderBy)';
+    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, orderBy: $orderBy, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank, popularBank: $popularBank, enabled: $enabled)';
   }
 
   @override
@@ -295,14 +295,14 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
                 other.fullName == fullName) &&
             const DeepCollectionEquality().equals(other._media, _media) &&
             const DeepCollectionEquality().equals(other._features, _features) &&
+            (identical(other.orderBy, orderBy) || other.orderBy == orderBy) &&
             (identical(other.transactionAmountLimit, transactionAmountLimit) ||
                 other.transactionAmountLimit == transactionAmountLimit) &&
             (identical(other.businessBank, businessBank) ||
                 other.businessBank == businessBank) &&
             (identical(other.popularBank, popularBank) ||
                 other.popularBank == popularBank) &&
-            (identical(other.enabled, enabled) || other.enabled == enabled) &&
-            (identical(other.orderBy, orderBy) || other.orderBy == orderBy));
+            (identical(other.enabled, enabled) || other.enabled == enabled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -314,11 +314,11 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       fullName,
       const DeepCollectionEquality().hash(_media),
       const DeepCollectionEquality().hash(_features),
+      orderBy,
       transactionAmountLimit,
       businessBank,
       popularBank,
-      enabled,
-      orderBy);
+      enabled);
 
   /// Create a copy of BankInstitution
   /// with the given fields replaced by the non-null parameter values.
@@ -344,11 +344,11 @@ abstract class _BankInstitutions extends BankInstitution {
       required final String fullName,
       required final List<BankMedia> media,
       required final List<String> features,
+      required final num orderBy,
       final double transactionAmountLimit,
       final bool businessBank,
       final bool popularBank,
-      final bool enabled,
-      required final num orderBy}) = _$BankInstitutionsImpl;
+      final bool enabled}) = _$BankInstitutionsImpl;
   const _BankInstitutions._() : super._();
 
   factory _BankInstitutions.fromJson(Map<String, dynamic> json) =
@@ -365,6 +365,8 @@ abstract class _BankInstitutions extends BankInstitution {
   @override
   List<String> get features;
   @override
+  num get orderBy;
+  @override
   double get transactionAmountLimit;
   @override
   bool get businessBank;
@@ -372,8 +374,6 @@ abstract class _BankInstitutions extends BankInstitution {
   bool get popularBank;
   @override
   bool get enabled;
-  @override
-  num get orderBy;
 
   /// Create a copy of BankInstitution
   /// with the given fields replaced by the non-null parameter values.

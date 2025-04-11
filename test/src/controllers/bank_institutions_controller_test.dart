@@ -56,6 +56,7 @@ void main() {
         features: ['feature1'],
         fullName: 'Test Bank 1',
         media: [],
+        orderBy: 1,
       ),
       BankInstitution(
         id: 'bank2',
@@ -64,6 +65,7 @@ void main() {
         features: ['feature2'],
         fullName: 'Test Bank 2',
         media: [],
+        orderBy: 1,
       ),
     ];
 
@@ -380,6 +382,7 @@ void main() {
             features: [],
             fullName: 'Test Bank',
             media: [],
+            orderBy: 1,
           ),
         );
 
