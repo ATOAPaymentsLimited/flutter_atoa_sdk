@@ -684,7 +684,7 @@ abstract class AppLocalizations {
   /// No description provided for @paymentFailedDesc.
   ///
   /// In en, this message translates to:
-  /// **'Oops, this bank app is down at the moment. Atoa is working fine. Please pay with another bank.'**
+  /// **'Atoa is working fine but your bank\'s network is experiencing issues. Please try the payment using a different bank app.'**
   String get paymentFailedDesc;
 
   /// No description provided for @all.
