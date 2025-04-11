@@ -56,7 +56,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
                 (e) => e.popularBank && !e.businessBank,
               )
               .toList()
-        ..sort();
+        ..sort((a, b) => a.orderBy.compareTo(b.orderBy));
 
   List<BankInstitution> get businessBanksDisabled =>
       paymentDetails?.amount.amount != null
@@ -97,7 +97,7 @@ class BankInstitutionsState with _$BankInstitutionsState {
                 (e) => e.popularBank && !e.businessBank,
               )
               .toList()
-        ..sort();
+        ..sort((a, b) => a.orderBy.compareTo(b.orderBy));
 
   List<BankInstitution> get personalBanks =>
       paymentDetails?.amount.amount != null

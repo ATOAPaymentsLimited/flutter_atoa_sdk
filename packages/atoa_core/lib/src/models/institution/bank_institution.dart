@@ -23,6 +23,7 @@ class BankInstitution
     @Default(false) bool businessBank,
     @Default(true) bool popularBank,
     @Default(false) bool enabled,
+    required num orderBy,
   }) = _BankInstitutions;
 
   const BankInstitution._();

@@ -22,6 +22,7 @@ _$BankInstitutionsImpl _$$BankInstitutionsImplFromJson(
       businessBank: json['businessBank'] as bool? ?? false,
       popularBank: json['popularBank'] as bool? ?? true,
       enabled: json['enabled'] as bool? ?? false,
+      orderBy: json['orderBy'] as num,
     );
 
 Map<String, dynamic> _$$BankInstitutionsImplToJson(
@@ -36,4 +37,5 @@ Map<String, dynamic> _$$BankInstitutionsImplToJson(
       'businessBank': instance.businessBank,
       'popularBank': instance.popularBank,
       'enabled': instance.enabled,
+      'orderBy': instance.orderBy,
     };

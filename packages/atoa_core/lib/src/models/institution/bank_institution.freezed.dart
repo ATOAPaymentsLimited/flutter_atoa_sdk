@@ -29,6 +29,7 @@ mixin _$BankInstitution {
   bool get businessBank => throw _privateConstructorUsedError;
   bool get popularBank => throw _privateConstructorUsedError;
   bool get enabled => throw _privateConstructorUsedError;
+  num get orderBy => throw _privateConstructorUsedError;
 
   /// Serializes this BankInstitution to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +56,8 @@ abstract class $BankInstitutionCopyWith<$Res> {
       double transactionAmountLimit,
       bool businessBank,
       bool popularBank,
-      bool enabled});
+      bool enabled,
+      num orderBy});
 }
 
 /// @nodoc
@@ -82,6 +84,7 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
     Object? businessBank = null,
     Object? popularBank = null,
     Object? enabled = null,
+    Object? orderBy = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -120,6 +123,10 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      orderBy: null == orderBy
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as num,
     ) as $Val);
   }
 }
@@ -141,7 +148,8 @@ abstract class _$$BankInstitutionsImplCopyWith<$Res>
       double transactionAmountLimit,
       bool businessBank,
       bool popularBank,
-      bool enabled});
+      bool enabled,
+      num orderBy});
 }
 
 /// @nodoc
@@ -166,6 +174,7 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
     Object? businessBank = null,
     Object? popularBank = null,
     Object? enabled = null,
+    Object? orderBy = null,
   }) {
     return _then(_$BankInstitutionsImpl(
       id: null == id
@@ -204,6 +213,10 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      orderBy: null == orderBy
+          ? _value.orderBy
+          : orderBy // ignore: cast_nullable_to_non_nullable
+              as num,
     ));
   }
 }
@@ -220,7 +233,8 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       this.transactionAmountLimit = 15000,
       this.businessBank = false,
       this.popularBank = true,
-      this.enabled = false})
+      this.enabled = false,
+      required this.orderBy})
       : _media = media,
         _features = features,
         super._();
@@ -262,10 +276,12 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
   @override
   @JsonKey()
   final bool enabled;
+  @override
+  final num orderBy;
 
   @override
   String toString() {
-    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank, popularBank: $popularBank, enabled: $enabled)';
+    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank, popularBank: $popularBank, enabled: $enabled, orderBy: $orderBy)';
   }
 
   @override
@@ -285,7 +301,8 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
                 other.businessBank == businessBank) &&
             (identical(other.popularBank, popularBank) ||
                 other.popularBank == popularBank) &&
-            (identical(other.enabled, enabled) || other.enabled == enabled));
+            (identical(other.enabled, enabled) || other.enabled == enabled) &&
+            (identical(other.orderBy, orderBy) || other.orderBy == orderBy));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -300,7 +317,8 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       transactionAmountLimit,
       businessBank,
       popularBank,
-      enabled);
+      enabled,
+      orderBy);
 
   /// Create a copy of BankInstitution
   /// with the given fields replaced by the non-null parameter values.
@@ -329,7 +347,8 @@ abstract class _BankInstitutions extends BankInstitution {
       final double transactionAmountLimit,
       final bool businessBank,
       final bool popularBank,
-      final bool enabled}) = _$BankInstitutionsImpl;
+      final bool enabled,
+      required final num orderBy}) = _$BankInstitutionsImpl;
   const _BankInstitutions._() : super._();
 
   factory _BankInstitutions.fromJson(Map<String, dynamic> json) =
@@ -353,6 +372,8 @@ abstract class _BankInstitutions extends BankInstitution {
   bool get popularBank;
   @override
   bool get enabled;
+  @override
+  num get orderBy;
 
   /// Create a copy of BankInstitution
   /// with the given fields replaced by the non-null parameter values.
