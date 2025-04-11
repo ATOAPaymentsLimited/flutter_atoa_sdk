@@ -40,5 +40,5 @@ class BankInstitution
 
   @override
   int compareTo(BankInstitution other) =>
-      name.toLowerCase().compareTo(other.name.toLowerCase());
+      fullName.toLowerCase().compareTo(other.fullName.toLowerCase());
 }
