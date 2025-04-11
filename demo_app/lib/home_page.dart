@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
     super.key,
   });
 
-  final totalAmountNotifier = 2.00;
+  final totalAmountNotifier = '2.00';
 
   @override
   Widget build(BuildContext context) {

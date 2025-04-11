@@ -16,7 +16,7 @@ class PayNowBottomSheet extends StatefulWidget {
     super.key,
     required this.totalAmount,
   });
-  final double totalAmount;
+  final String totalAmount;
 
   @override
   State<PayNowBottomSheet> createState() => _PayNowBottomSheetState();
@@ -111,7 +111,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
                         ),
                   ),
                   Text(
-                    '£ ${widget.totalAmount.toString()}',
+                    '£ ${widget.totalAmount}',
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
