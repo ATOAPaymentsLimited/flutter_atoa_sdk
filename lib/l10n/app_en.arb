@@ -151,7 +151,6 @@
     "connectYourBankAccountDesc": "Add your account details\nto receive cashback",
     "connect": "Connect",
     "sendReceivePaymentWithAtoa": "To send and receive payments using Atoa",
-    "selectYourBank": "Select your Bank",
     "continuingAgree": "By Continuing you agree to the",
     "atoa": "Atoa",
     "terms": "Terms",
@@ -534,7 +533,7 @@
     "requestCancelled": "Request Cancelled",
     "youHaveDeclined": "You’ve Declined",
     "requestDeclined": "Request Declined",
-    "requestExpired": "Request Expired",
+    "requestExpired": "Request expired",
     "internalReward": "Internal Reward",
     "requested": "Requested",
     "waitingForPayment": "Waiting for payment",
@@ -552,7 +551,7 @@
         }
     },
     "monthlyReward": "You have won the prize for using Atoa for a month",
-    "settlementInProcessInfoText": "It is taking longer than normal, Please be patient while we check for updated status, in case of discrepancy payment will be refunded",
+    "settlementInProcessInfoText": "Payment processing is taking longer than usual but your money is safe with the bank. Please wait for this transaction to complete before making another payment.",
     "dateOfBirth": "Date of Birth",
     "ago": "ago",
     "now": "now",
@@ -875,7 +874,7 @@
     "confirmHashIdTitle": "Please confirm your\nAtoa ID",
     "confirmHashIdDesc": "This ID will be permanent and\ncannot be changed later",
     "enterYourMobile": "Enter your mobile number",
-    "termsOfService": "Terms of Service",
+    "termsOfService": "Terms of service",
     "betterLuckNextTime": "Better luck\nnext time",
     "totalCashbackReceived": "Total Cashback Received",
     "bySigningUp": "By Continuing you agree to the",
@@ -1059,16 +1058,16 @@
     "great": "Great",
     "amazing": "Amazing",
     "custom": "Custom",
-    "newRequest":"New Request",
-    "newRequestDescription":"Invite friends and send funds to their bank",
-    "searchBarHintText":"Search by contact or #ID",
-    "exploreChallengesCapital":"EXPLORE CHALLENGES",
-    "exploreAtoaCapital":"EXPLORE ATOA",
-    "appUnderMaintenance":"App Under Maintenance",
-    "appUnderMaintenanceDesc":"We're sprucing things up to bring you a smoother experience. We'll be back before you know it.",
-    "appUnderMaintenanceThankyou":"Thank you for your understanding.",
-    "somethingWentWrong":"Oops! Something Went Wrong",
-    "lowConnectivityError":"We're having trouble connecting to the server at the moment. Please ensure you have a stable internet connection and try reopening the app.",
+    "newRequest": "New Request",
+    "newRequestDescription": "Invite friends and send funds to their bank",
+    "searchBarHintText": "Search by contact or #ID",
+    "exploreChallengesCapital": "EXPLORE CHALLENGES",
+    "exploreAtoaCapital": "EXPLORE ATOA",
+    "appUnderMaintenance": "App Under Maintenance",
+    "appUnderMaintenanceDesc": "We're sprucing things up to bring you a smoother experience. We'll be back before you know it.",
+    "appUnderMaintenanceThankyou": "Thank you for your understanding.",
+    "somethingWentWrong": "Oops! Something Went Wrong",
+    "lowConnectivityError": "We're having trouble connecting to the server at the moment. Please ensure you have a stable internet connection and try reopening the app.",
     "finish": "Finish",
     "homePageCoachMark1Desc": "No more IOUs! Send instant payments to friends and family across any UK bank account",
     "homePageCoachMark2Desc": "Scan Atoa QR codes to pay in-store and help local businesses save on card fees. You can win rewards too!",
@@ -1262,7 +1261,7 @@
         }
     },
     "paymentWarning": "This person doesn’t seem to be in your phonebook. Make sure you’re sending money to someone you know and trust.",
-    "selectBank": "Select your Bank",
+    "selectYourBank": "Select your bank",
     "paymentWarningDesc": "If you do choose to continue with this payment, Atoa and your Bank will not be able to refund you.",
     "cancelThisPayment": "Cancel This Payment",
     "continueToPay": "Continue to Pay",
@@ -1337,16 +1336,16 @@
     "paymentsMade": "Payments made",
     "itemsPurchased": "Items Purchased",
     "totalDiscount": "Total Discount",
-    "appSolutelyLovingAtoa":"App-solutely loving Atoa?",
-    "notReally":"Not really",
-    "yes":"Yes!",
-    "negativeReviewSorryMessage":"Oh dear, we’re sorry!\nHow can we make the app better for you?",
-    "typeYourFeedbackHere":"Type your feedback here...",
-    "submit":"Submit",
-    "submitWithoutDetails":"Submit Without Details",
-    "appReviewSubmittedSheetTitle":"We love hearing from you!",
-    "appReviewSubmittedSheetDesc":"Thanks for your feedback – it helps us to make Atoa bigger and better.",
-    "loading":"Loading",
+    "appSolutelyLovingAtoa": "App-solutely loving Atoa?",
+    "notReally": "Not really",
+    "yes": "Yes!",
+    "negativeReviewSorryMessage": "Oh dear, we’re sorry!\nHow can we make the app better for you?",
+    "typeYourFeedbackHere": "Type your feedback here...",
+    "submit": "Submit",
+    "submitWithoutDetails": "Submit Without Details",
+    "appReviewSubmittedSheetTitle": "We love hearing from you!",
+    "appReviewSubmittedSheetDesc": "Thanks for your feedback – it helps us to make Atoa bigger and better.",
+    "loading": "Loading",
     "timeIn12Hour": "{time}",
     "@timeIn12Hour": {
         "placeholders": {
@@ -1359,12 +1358,12 @@
             }
         }
     },
-    "nationality":"Nationality",
-    "occupation":"Occupation",
-    "sourceOfIncome":"Primary Source of income",
-    "homeAddress":"Home address",
-    "extraDetails":"Extra Details",
-    "extraDetailsDesc":"We’re required under law to collect some basic details from you for any payments that exceed {amount}",
+    "nationality": "Nationality",
+    "occupation": "Occupation",
+    "sourceOfIncome": "Primary Source of income",
+    "homeAddress": "Home address",
+    "extraDetails": "Extra Details",
+    "extraDetailsDesc": "We’re required under law to collect some basic details from you for any payments that exceed {amount}",
     "@extraDetailsDesc": {
         "placeholders": {
             "amount": {
@@ -1379,13 +1378,13 @@
                 }
             }
         }
-    },   
-    "extraDetailsMsg":"For amounts over £15,000, provide extra details in the next step.",
-    "selectNationality":"Select Nationality",
-    "searchNationality":"Search for your nationality",
-    "selectOccupation":"Select Occupation",
-    "selectSourceOfWealth":"Select Source of Wealth",
-    "required":"{field} *",
+    },
+    "extraDetailsMsg": "For amounts over £15,000, provide extra details in the next step.",
+    "selectNationality": "Select Nationality",
+    "searchNationality": "Search for your nationality",
+    "selectOccupation": "Select Occupation",
+    "selectSourceOfWealth": "Select Source of Wealth",
+    "required": "{field} *",
     "@required": {
         "placeholders": {
             "field": {
@@ -1394,7 +1393,7 @@
             }
         }
     },
-    "bankPaymentAmountLimitErrMsg":"{name}'s payment limit is {amount} – please select another bank to pay from.",
+    "bankPaymentAmountLimitErrMsg": "{name}'s payment limit is {amount} – please select another bank to pay from.",
     "@bankPaymentAmountLimitErrMsg": {
         "placeholders": {
             "name": {
@@ -1508,9 +1507,9 @@
             }
         }
     },
-    "dismiss":"Dismiss",
-    "removePhoto":"Remove Photo",
-    "paidOn":"Paid on {date}",
+    "dismiss": "Dismiss",
+    "removePhoto": "Remove Photo",
+    "paidOn": "Paid on {date}",
     "@paidOn": {
         "placeholders": {
             "date": {
@@ -1531,7 +1530,154 @@
             }
         }
     },
-    "bankTabBar":"Bank Tab Bar",
-    "personalBanks":"Personal Banks",
-    "businessBanks":"Business Banks"
+    "bankTabBar": "Bank Tab Bar",
+    "personalBanks": "Personal Banks",
+    "businessBanks": "Business Banks",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "howToPayWithBankApp": "How to pay with bank app?",
+    "iUnderstandContinue": "I understand, continue  →",
+    "poweredBy": "Powered by ",
+    "trustedByBusinesses": "Trusted by thousands of businesses in the UK",
+    "makePaymentStep3Text1": "Once the payment’s ",
+    "makePaymentStep3Text2": "confirmed, ",
+    "makePaymentStep3Text3": "we’ll redirect you to the success page.",
+    "makePaymentStep2Text1": "You can ",
+    "makePaymentStep2Text2": "login securely ",
+    "makePaymentStep2Text3": "and approve your payment. Your details stay confidential.",
+    "makePaymentStep1Text1": "Your ",
+    "makePaymentStep1Text2": "Bank app ",
+    "makePaymentStep1Text3": "will open on selection automatically if it’s installed.",
+    "ensureBankAppInstalled": "Ensure the selected bank’s app is installed on your phone.",
+    "allBanks": "ALL BANKS",
+    "noResults": "No results",
+    "noResultsDesc": "No results for ”ashwin ahmed” in banks. Try using different keywords.",
+    "somethingWentWrongDesc": "An unknown error occurred. We track these errors automatically, Please try again.",
+    "oopsSomethingWentWrong": "Oops! Something went wrong",
+    "searchYour": "Search your ",
+    "payingTo": "Paying to",
+    "goToBank": "Go to {bankName}  →",
+    "@goToBanak": {
+        "placeholders": {
+            "bankName": {
+                "type": "String",
+                "example": "name"
+            }
+        }
+    },
+    "atoaTerms": "Atoa Terms ",
+    "verifyingYourPayment": "Verifying payment status\nwith your bank.",
+    "noteWithColon": "Note: ",
+    "doNotCloseWarning": "Do not press back or close this screen until the transaction is complete",
+    "couldNotCompletePayment": "Could not complete payment? ",
+    "cancelPaymentTitle": "Do you want to cancel the payment?",
+    "cancelPaymentReason1": "Help us improve by telling us why!",
+    "cancelPaymentReason2": "It’s taking too long to load",
+    "cancelPaymentReason3": "I’m facing issues with my bank",
+    "cancelPaymentReason4": "I don’t trust this method",
+    "cancelPaymentReason5": "Other (please specify)",
+    "yesCanclePayment": "Yes, cancel payment",
+    "recommendingAppInstallPart1": "For a smoother payment, we recommend downloading the ",
+    "recommendingAppInstallPart2": " Or, continue using internet banking if that works better for you.",
+    "bankApp": "{bankName} app",
+    "@bankApp": {
+        "placeholders": {
+            "bankName": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    },
+    "noDismiss": "No, dismiss",
+    "tip": "Tip",
+    "valueCopiedToClipboard": "{label} copied to clipboard",
+    "@valueCopiedToClipboard": {
+        "placeholders": {
+            "label": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    },
+    "callBank": "Call Bank →",
+    "viewTransactionDetails": "View Transaction Details",
+    "referenceId": "Reference ID",
+    "orderId": "Order ID",
+    "awaitAuthDesc": "Payment under processing.",
+    "paymentSuccessful": "Payment Successful",
+    "receivedSuccessfully": "Received Successfully",
+    "paymentReceivedDesc": "Payment has been received successfully.",
+    "paymentRefundedDesc": "Funds have been credited back to your bank account.",
+    "paymentCancelledDesc": "You cancelled the payment.",
+    "paymentExpiredDesc": "The payment you're trying to make has expired.",
+    "unknownStatusDesc": "Unknown error",
+    "writeYourReason": "Write your reason...",
+    "termsAndPolicy": "Terms and policy",
+    "howWeProtectData": "How we protect your data.",
+    "rulesForService": "Rules for using our service.",
+    "atoaYapilyText": "Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority",
+    "review": "Review",
+    "downTime": "Downtime",
+    "okay": "Okay",
+    "bankDown": " bank is currently down for maintenance. Please select a different bank and try again.",
+    "atoaTermsAndPolicy": "Atoa Terms and Privacy Policy",
+    "bankReviewInfoText": "We’ll send you to your bank’s app or website to confirm this payment.",
+    "paymentInProgress": "Payment in progress",
+    "noResultFound": "No results for ”{search}” in banks. Try using different keywords.",
+    "@noResultFound": {
+        "placeholders": {
+            "search": {
+                "type": "String",
+                "example": "Name"
+            }
+        }
+    },
+    "results": "RESULTS",
+    "change": "Change",
+    "cancelThePayment": "Cancel the payment?",
+    "cancelThePaymentDesc": "Are you sure you want to cancel this payment? This action cannot be undone.",
+    "debitedFrom": "Debited from",
+    "transactionDateAndTime": "{time} on {date}",
+    "@transactionDateAndTime": {
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "example": "time"
+            },
+            "date": {
+                "type": "String",
+                "example": "date"
+            }
+        }
+    },
+    "noInternetConnection": "Oops! No internet connection",
+    "serverNotReachable": "Server is not reachable. Please check your internet connection and try again",
+    "poweredByAtoa": "Powered by Atoa",
+    "payBy": "Pay by {name}",
+    "@payBy": {
+        "placeholders": {
+            "name": {
+                "type": "String",
+                "example": "time"
+            }
+        }
+    },
+    "bankAppText": "bank app",
+    "bankLimitText": "Some banks listed below might not handle the payments of ",
+    "bankFetchErrorTitle": "We couldn’t fetch banks!",
+    "bankFetchErrorDesc": "Something went wrong while fetching bank list. Please check your internet connection and try again.",
+    "errorProcessingPayment": "Error processing payment",
+    "bankDownError": "Oops, this bank app is down at the moment. This happens when the bank is upgrading its app or has maintenance underway. Atoa is working fine. Please pay with another bank.",
+    "requestExpiredError": "This payment request has been expired, please go back and retry the payment again.",
+    "requiredExpiredErrorDesc": "Please reach out to the business for a new link and attempt to pay again",
+    "linkPaidMsg": "This link is already paid",
+    "paymentAlreadyPaid": "This payment is already paid",
+    "linkExpired": "Link expired, ",
+    "toTryAgain": " to try again",
+    "byContinuingYouAccept": "By continuing you accept Yapily's ",
+    "atoas": "Atoa’s",
+    "atoaIsPowered": " Atoa is powered by Yapily Connect Ltd.",
+    "youWillRedirectIn": "You will be redirected in ",
+    "seconds": " seconds"
 }

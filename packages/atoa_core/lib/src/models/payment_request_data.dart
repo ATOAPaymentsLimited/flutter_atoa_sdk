@@ -43,6 +43,8 @@ class PaymentRequestData with _$PaymentRequestData {
     bool? allowSdkRetry,
     @Default(false) bool splitBill,
     @JsonKey(includeIfNull: false) Map<String, dynamic>? options,
+    @JsonKey(includeIfNull: false) MerchantThemeDetails? merchantThemeDetails,
+    @JsonKey(includeIfNull: false) SavedBankDetails? lastPaymentBankDetails,
   }) = _PaymentRequestData;
 
   const PaymentRequestData._();
@@ -70,7 +72,7 @@ extension PaymentRequestDataX on PaymentRequestData {
         taxPercentage: taxPercentage,
         servicePercentage: servicePercentage,
         features: features,
-        deviceOrigin: 'DESKTOP',
+        deviceOrigin: 'SDK_MOBILE_APP',
         totalAmountDue: amount.amount,
         employeeId: employeeId,
         callbackParams: callbackParams,
@@ -79,7 +81,7 @@ extension PaymentRequestDataX on PaymentRequestData {
         encryptedNotesDetails: encryptedNotesDetails,
         paymentSourceType: 3,
         paymentDevice: DeviceInfo(
-          platform: 'DESKTOP',
+          platform: 'MOBILE',
         ),
         paymentRequestSource: PaymentRequestWithSource(
           requestCreatedAt: requestCreatedAt,

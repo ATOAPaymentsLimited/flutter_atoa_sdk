@@ -27,6 +27,8 @@ mixin _$BankInstitution {
   List<String> get features => throw _privateConstructorUsedError;
   double get transactionAmountLimit => throw _privateConstructorUsedError;
   bool get businessBank => throw _privateConstructorUsedError;
+  bool get popularBank => throw _privateConstructorUsedError;
+  bool get enabled => throw _privateConstructorUsedError;
 
   /// Serializes this BankInstitution to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +53,9 @@ abstract class $BankInstitutionCopyWith<$Res> {
       List<BankMedia> media,
       List<String> features,
       double transactionAmountLimit,
-      bool businessBank});
+      bool businessBank,
+      bool popularBank,
+      bool enabled});
 }
 
 /// @nodoc
@@ -76,6 +80,8 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
     Object? features = null,
     Object? transactionAmountLimit = null,
     Object? businessBank = null,
+    Object? popularBank = null,
+    Object? enabled = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,6 +112,14 @@ class _$BankInstitutionCopyWithImpl<$Res, $Val extends BankInstitution>
           ? _value.businessBank
           : businessBank // ignore: cast_nullable_to_non_nullable
               as bool,
+      popularBank: null == popularBank
+          ? _value.popularBank
+          : popularBank // ignore: cast_nullable_to_non_nullable
+              as bool,
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -125,7 +139,9 @@ abstract class _$$BankInstitutionsImplCopyWith<$Res>
       List<BankMedia> media,
       List<String> features,
       double transactionAmountLimit,
-      bool businessBank});
+      bool businessBank,
+      bool popularBank,
+      bool enabled});
 }
 
 /// @nodoc
@@ -148,6 +164,8 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
     Object? features = null,
     Object? transactionAmountLimit = null,
     Object? businessBank = null,
+    Object? popularBank = null,
+    Object? enabled = null,
   }) {
     return _then(_$BankInstitutionsImpl(
       id: null == id
@@ -178,6 +196,14 @@ class __$$BankInstitutionsImplCopyWithImpl<$Res>
           ? _value.businessBank
           : businessBank // ignore: cast_nullable_to_non_nullable
               as bool,
+      popularBank: null == popularBank
+          ? _value.popularBank
+          : popularBank // ignore: cast_nullable_to_non_nullable
+              as bool,
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -192,7 +218,9 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       required final List<BankMedia> media,
       required final List<String> features,
       this.transactionAmountLimit = 15000,
-      this.businessBank = false})
+      this.businessBank = false,
+      this.popularBank = true,
+      this.enabled = false})
       : _media = media,
         _features = features,
         super._();
@@ -228,10 +256,16 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
   @override
   @JsonKey()
   final bool businessBank;
+  @override
+  @JsonKey()
+  final bool popularBank;
+  @override
+  @JsonKey()
+  final bool enabled;
 
   @override
   String toString() {
-    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank)';
+    return 'BankInstitution(id: $id, name: $name, fullName: $fullName, media: $media, features: $features, transactionAmountLimit: $transactionAmountLimit, businessBank: $businessBank, popularBank: $popularBank, enabled: $enabled)';
   }
 
   @override
@@ -248,7 +282,10 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
             (identical(other.transactionAmountLimit, transactionAmountLimit) ||
                 other.transactionAmountLimit == transactionAmountLimit) &&
             (identical(other.businessBank, businessBank) ||
-                other.businessBank == businessBank));
+                other.businessBank == businessBank) &&
+            (identical(other.popularBank, popularBank) ||
+                other.popularBank == popularBank) &&
+            (identical(other.enabled, enabled) || other.enabled == enabled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -261,7 +298,9 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       const DeepCollectionEquality().hash(_media),
       const DeepCollectionEquality().hash(_features),
       transactionAmountLimit,
-      businessBank);
+      businessBank,
+      popularBank,
+      enabled);
 
   /// Create a copy of BankInstitution
   /// with the given fields replaced by the non-null parameter values.
@@ -288,7 +327,9 @@ abstract class _BankInstitutions extends BankInstitution {
       required final List<BankMedia> media,
       required final List<String> features,
       final double transactionAmountLimit,
-      final bool businessBank}) = _$BankInstitutionsImpl;
+      final bool businessBank,
+      final bool popularBank,
+      final bool enabled}) = _$BankInstitutionsImpl;
   const _BankInstitutions._() : super._();
 
   factory _BankInstitutions.fromJson(Map<String, dynamic> json) =
@@ -308,6 +349,10 @@ abstract class _BankInstitutions extends BankInstitution {
   double get transactionAmountLimit;
   @override
   bool get businessBank;
+  @override
+  bool get popularBank;
+  @override
+  bool get enabled;
 
   /// Create a copy of BankInstitution
   /// with the given fields replaced by the non-null parameter values.

@@ -14,6 +14,7 @@ class UserAvatar extends StatelessWidget {
     this.userName,
     this.textStyle,
     this.imageFile,
+    this.borderRadius,
     this.isGroup = false,
   });
   final String? url;
@@ -23,6 +24,7 @@ class UserAvatar extends StatelessWidget {
   final TextStyle? textStyle;
   final File? imageFile;
   final bool isGroup;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class UserAvatar extends StatelessWidget {
     }
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(size ?? 100.sp),
+      borderRadius: borderRadius ?? BorderRadius.circular(size ?? 100.sp),
       child: CachedNetworkImage(
         imageUrl: url!,
         height: size ?? 100.sp,

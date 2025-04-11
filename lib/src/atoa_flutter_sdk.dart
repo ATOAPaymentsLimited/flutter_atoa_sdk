@@ -1,109 +1,119 @@
-import 'dart:convert';
-import 'dart:io';
+import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/views/connect_bank_page/connect_bank_page.dart';
+import 'package:atoa_flutter_sdk/src/di/injection.dart';
+import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
+import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
+import 'package:regal/regal.dart';
 
 /// {@template atoa_flutter_sdk}
 /// Atoa Flutter SDK
 /// {@endtemplate}
 class AtoaSdk {
-  /// {@macro atoa_flutter_sdk}
   const AtoaSdk();
 
-  static Future<TransactionDetails?> show(
+  static Future<TransactionDetails?> pay(
     BuildContext context, {
     required String paymentId,
     required AtoaEnv env,
-
-    /// payment status polling interval
-    Duration interval = const Duration(seconds: 5),
+    required bool showHowPaymentWorks,
+    void Function(String?, Map<String, String>?, String?, String?)? onUserClose,
+    void Function(String?, Map<String, String>?, String?, String?)?
+        onPaymentStatusChange,
+    void Function(AtoaException)? onError,
+    CustomerDetails? customerDetails,
   }) async {
-    final atoa = Atoa();
+    WidgetsFlutterBinding.ensureInitialized();
 
     Atoa.env = env;
+    PaymentUtility.paymentId = paymentId;
 
-    atoa.initialize();
+    if (onUserClose != null) PaymentUtility.onUserClose = onUserClose;
 
-    return showDialog<TransactionDetails>(
-      context: context,
-      useRootNavigator: false,
-      builder: (_) => MultiProvider(
-        providers: [
-          StateNotifierProvider<BankInstitutionsController,
-              BankInstitutionsState>(
-            create: (_) => BankInstitutionsController(
-              atoa: atoa,
-              paymentId: paymentId,
-            ),
+    if (onPaymentStatusChange != null) {
+      PaymentUtility.onPaymentStatusChange = onPaymentStatusChange;
+    }
+
+    if (customerDetails != null) {
+      PaymentUtility.customerDetails = customerDetails;
+    }
+
+    await AtoaSdkConfig.initialize(
+      environment: AtoaEnvironment.production, // or .staging or .production
+    );
+
+    if (onError != null) {
+      PaymentUtility.onError = onError;
+    }
+    Regal.enableTracking = false;
+
+    await configureInjection(env.name);
+    try {
+      getIt.get<Atoa>().initialize();
+    } catch (_) {
+      /// Show a error dialog with message
+      /// Atoa SDK failed to initialize
+      /// Please try again later
+      /// If the problem persists, please contact support
+      /// at support@atoa.me
+
+      unawaited(
+        showDialog<void>(
+          // ignore: use_build_context_synchronously
+          context: context,
+          builder: (context) => const AlertDialog(
+            title: Text('Atoa SDK failed to initialize'),
+            content: Text('Please try again later'),
           ),
-          StateNotifierProvider<PaymentStatusController, PaymentStatusState>(
-            create: (_) => PaymentStatusController(
-              atoa: atoa,
-              interval: interval,
-            ),
-          ),
-        ],
-        builder: (_, child) => child!,
-        child: const ConnectBankPage(),
+        ),
+      );
+    }
+
+    if (!context.mounted) return null;
+    getIt.registerSingleton<Connectivity>(Connectivity());
+
+    final bankInstitutionsController = getIt.get<BankInstitutionsController>();
+    final paymentStatusController = getIt.get<PaymentStatusController>();
+    final connectivityController = getIt.get<ConnectivityController>();
+
+    unawaited(
+      bankInstitutionsController.getPaymentDetailsAndBanks(
+        showHowPaymentWork: showHowPaymentWorks,
       ),
     );
-  }
-
-  static Future<String> getPaymentRequestId({required double amount}) async {
-    // change it to dev url while testing
-    final uri = Uri.parse(
-      'https://api.atoa.me/api/payments/process-payment',
+    if (!context.mounted) return null;
+    final res = await BankSelectionBottomSheet.show(
+      context,
+      showHowPaymentWorks: showHowPaymentWorks,
+      bankInstitutionsController: bankInstitutionsController,
+      paymentStatusController: paymentStatusController,
+      connectivityController: connectivityController,
     );
 
-    final response = await http.post(
-      uri,
-      headers: {
-        HttpHeaders.authorizationHeader: const String.fromEnvironment(
-          'atoa-token',
-          defaultValue: 'Bearer <access-secret>',
-        ),
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(getRequestData(amount)),
-    );
+    if (!context.mounted) return null;
 
-    final resMap = jsonDecode(response.body) as Map<String, dynamic>;
+    TransactionDetails? transactionDetails;
+    if (res != null && res) {
+      final verify = await VerifyingPaymentBottomSheet.show(
+        context,
+        bankInstitutionsController,
+        paymentStatusController,
+        connectivityController,
+      );
 
-    return resMap['paymentRequestId'] as String? ?? '';
+      transactionDetails = verify;
+    }
+
+    bankInstitutionsController.dispose();
+    paymentStatusController.dispose();
+    connectivityController.dispose();
+
+    return transactionDetails;
   }
-
-  static Map<String, dynamic> getRequestData(double amount) => {
-        'customerId': 'abc123',
-        'consumerDetails': {
-          'phoneCountryCode': '44',
-          'phoneNumber': 7857094720,
-          'email': 'john@deo.com',
-          'firstName': 'John',
-          'lastName': 'Deo',
-        },
-        'orderId': '242u9384jfjkw',
-        'currency': 'GBP',
-        'amount': amount,
-        'institutionId': 'modelo-sandbox',
-        'paymentType': 'TRANSACTION',
-        'autoRedirect': false,
-        'callbackParams': {
-          'deviceId': '{deviceId}',
-          'locationId': '{locationId}',
-        },
-        'expiresIn': 60000000,
-        'enableTips': true,
-        'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',
-        'strictExpiry': false,
-        'allowRetry': true,
-        'template': 'RECEIPT_PNG',
-        'splitBill': false,
-      };
 }

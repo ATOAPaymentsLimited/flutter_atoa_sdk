@@ -3,12 +3,24 @@
 /// {@endtemplate}
 class AtoaException implements Exception {
   /// {@macro atoa_exception}
-  const AtoaException(this.type, [this._message]);
+  const AtoaException(
+    this.type, [
+    this._message,
+    this._amount,
+    this._referenceId,
+    this._time,
+  ]);
 
   final AtoaExceptionType type;
   final String? _message;
+  final num? _amount;
+  final String? _referenceId;
+  final String? _time;
 
   String get message => _message ?? type.message;
+  num? get amount => _amount;
+  String? get referenceId => _referenceId;
+  String? get time => _time;
 
   @override
   String toString() => switch (type) {

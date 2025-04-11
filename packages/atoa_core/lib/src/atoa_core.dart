@@ -1,13 +1,12 @@
 // ignore_for_file: avoid_setters_without_getters
 
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_core/src/endpoints/endpoints.dart';
 import 'package:atoa_core/src/http_client/http_client.dart';
-import 'package:atoa_core/src/models/models.dart';
 
 /// {@template atoa_core}
 /// Atoa Flutter SDK
 /// {@endtemplate}
+
 class Atoa {
   /// {@macro atoa_core}
   factory Atoa() => _instance;
@@ -23,6 +22,7 @@ class Atoa {
   AtoaDio? _atoaDio;
 
   void initialize([
+    AtoaDio? dio,
     Duration connectionTimeout = const Duration(seconds: 20),
   ]) {
     if (_atoaEnv == null) {
@@ -30,13 +30,21 @@ class Atoa {
         AtoaExceptionType.environmentNotSet,
       );
     }
-
-    _atoaDio = AtoaDio(connectionTimeout)
-      ..interceptors.add(
-        RequestInterceptor(
-          env: _atoaEnv!,
-        ),
-      );
+    if (dio != null) {
+      _atoaDio = dio
+        ..interceptors.add(
+          RequestInterceptor(
+            env: _atoaEnv!,
+          ),
+        );
+    } else {
+      _atoaDio = AtoaDio(connectionTimeout)
+        ..interceptors.add(
+          RequestInterceptor(
+            env: _atoaEnv!,
+          ),
+        );
+    }
   }
 
   void _dioCheck() {
@@ -45,10 +53,16 @@ class Atoa {
     }
   }
 
-  Future<List<BankInstitution>> fetchInstitutions() async {
+  Future<List<BankInstitution>> fetchInstitutions({String? searchTerm}) async {
     _dioCheck();
 
-    final res = await _atoaDio!.get<List<dynamic>>(Endpoints.institutions);
+    var endPoint = Endpoints.institutions;
+
+    if (searchTerm != null && searchTerm.isNotEmpty) {
+      endPoint = '$endPoint&search=$searchTerm';
+    }
+
+    final res = await _atoaDio!.get<List<dynamic>>(endPoint);
     final data = res.data;
 
     if (data == null) {
@@ -60,7 +74,10 @@ class Atoa {
         .toList();
   }
 
-  Future<PaymentRequestData> getPaymentDetails(String paymentRequestId) async {
+  Future<PaymentRequestData> getPaymentDetails(
+    String paymentRequestId, {
+    CustomerDetails? customerDetails,
+  }) async {
     _dioCheck();
 
     final res = await _atoaDio!.post<Map<String, dynamic>>(
@@ -68,6 +85,8 @@ class Atoa {
       data: {
         'data': paymentRequestId,
         'source': 'EXTERNAL_MERCHANT',
+        if (customerDetails != null)
+          'customerDetails': customerDetails.toJson(),
       },
     );
 
@@ -100,12 +119,12 @@ class Atoa {
   }
 
   Future<TransactionDetails> getPaymentStatus(
-    String paymentIdempotencyId,
+    String paymentId,
   ) async {
     _dioCheck();
 
     final res = await _atoaDio!.get<Map<String, dynamic>>(
-      Endpoints.getPaymentStatus(paymentIdempotencyId),
+      Endpoints.getPaymentStatus(paymentId),
     );
 
     final data = res.data;

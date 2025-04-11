@@ -7,6 +7,8 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of AppLocalizations
 /// returned by `AppLocalizations.of(context)`.
 ///
@@ -59,8 +61,7 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -68,8 +69,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,8 +81,7 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -90,7 +89,9 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en')
+  ];
 
   /// No description provided for @today.
   ///
@@ -269,7 +270,7 @@ abstract class AppLocalizations {
   /// No description provided for @selectBank.
   ///
   /// In en, this message translates to:
-  /// **'Select your Bank'**
+  /// **'Select Bank'**
   String get selectBank;
 
   /// No description provided for @scanQrCode.
@@ -859,12 +860,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'To send and receive payments using Atoa'**
   String get sendReceivePaymentWithAtoa;
-
-  /// No description provided for @selectYourBank.
-  ///
-  /// In en, this message translates to:
-  /// **'Select your Bank'**
-  String get selectYourBank;
 
   /// No description provided for @continuingAgree.
   ///
@@ -1776,8 +1771,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Join me on Atoa Pay! It’s a fast, safe, and free way to pay and get paid for anyone with a UK Bank! Use my referral code: {referralCode} and we’ll both get {referralAmount}! Sign up with this link: {referralLink}'**
-  String inviteMessageWithReferralAmount(
-      String referralCode, double referralAmount, String referralLink);
+  String inviteMessageWithReferralAmount(String referralCode, double referralAmount, String referralLink);
 
   /// No description provided for @noRewards.
   ///
@@ -2250,7 +2244,7 @@ abstract class AppLocalizations {
   /// No description provided for @requestExpired.
   ///
   /// In en, this message translates to:
-  /// **'Request Expired'**
+  /// **'Request expired'**
   String get requestExpired;
 
   /// No description provided for @internalReward.
@@ -2316,7 +2310,7 @@ abstract class AppLocalizations {
   /// No description provided for @settlementInProcessInfoText.
   ///
   /// In en, this message translates to:
-  /// **'It is taking longer than normal, Please be patient while we check for updated status, in case of discrepancy payment will be refunded'**
+  /// **'Payment processing is taking longer than usual but your money is safe with the bank. Please wait for this transaction to complete before making another payment.'**
   String get settlementInProcessInfoText;
 
   /// No description provided for @dateOfBirth.
@@ -3180,7 +3174,7 @@ abstract class AppLocalizations {
   /// No description provided for @termsOfService.
   ///
   /// In en, this message translates to:
-  /// **'Terms of Service'**
+  /// **'Terms of service'**
   String get termsOfService;
 
   /// No description provided for @betterLuckNextTime.
@@ -4437,6 +4431,12 @@ abstract class AppLocalizations {
   /// **'This person doesn’t seem to be in your phonebook. Make sure you’re sending money to someone you know and trust.'**
   String get paymentWarning;
 
+  /// No description provided for @selectYourBank.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your bank'**
+  String get selectYourBank;
+
   /// No description provided for @paymentWarningDesc.
   ///
   /// In en, this message translates to:
@@ -4856,10 +4856,579 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Business Banks'**
   String get businessBanks;
+
+  /// No description provided for @one.
+  ///
+  /// In en, this message translates to:
+  /// **'1'**
+  String get one;
+
+  /// No description provided for @two.
+  ///
+  /// In en, this message translates to:
+  /// **'2'**
+  String get two;
+
+  /// No description provided for @three.
+  ///
+  /// In en, this message translates to:
+  /// **'3'**
+  String get three;
+
+  /// No description provided for @howToPayWithBankApp.
+  ///
+  /// In en, this message translates to:
+  /// **'How to pay with bank app?'**
+  String get howToPayWithBankApp;
+
+  /// No description provided for @iUnderstandContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'I understand, continue  →'**
+  String get iUnderstandContinue;
+
+  /// No description provided for @poweredBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Powered by '**
+  String get poweredBy;
+
+  /// No description provided for @trustedByBusinesses.
+  ///
+  /// In en, this message translates to:
+  /// **'Trusted by thousands of businesses in the UK'**
+  String get trustedByBusinesses;
+
+  /// No description provided for @makePaymentStep3Text1.
+  ///
+  /// In en, this message translates to:
+  /// **'Once the payment’s '**
+  String get makePaymentStep3Text1;
+
+  /// No description provided for @makePaymentStep3Text2.
+  ///
+  /// In en, this message translates to:
+  /// **'confirmed, '**
+  String get makePaymentStep3Text2;
+
+  /// No description provided for @makePaymentStep3Text3.
+  ///
+  /// In en, this message translates to:
+  /// **'we’ll redirect you to the success page.'**
+  String get makePaymentStep3Text3;
+
+  /// No description provided for @makePaymentStep2Text1.
+  ///
+  /// In en, this message translates to:
+  /// **'You can '**
+  String get makePaymentStep2Text1;
+
+  /// No description provided for @makePaymentStep2Text2.
+  ///
+  /// In en, this message translates to:
+  /// **'login securely '**
+  String get makePaymentStep2Text2;
+
+  /// No description provided for @makePaymentStep2Text3.
+  ///
+  /// In en, this message translates to:
+  /// **'and approve your payment. Your details stay confidential.'**
+  String get makePaymentStep2Text3;
+
+  /// No description provided for @makePaymentStep1Text1.
+  ///
+  /// In en, this message translates to:
+  /// **'Your '**
+  String get makePaymentStep1Text1;
+
+  /// No description provided for @makePaymentStep1Text2.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank app '**
+  String get makePaymentStep1Text2;
+
+  /// No description provided for @makePaymentStep1Text3.
+  ///
+  /// In en, this message translates to:
+  /// **'will open on selection automatically if it’s installed.'**
+  String get makePaymentStep1Text3;
+
+  /// No description provided for @ensureBankAppInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure the selected bank’s app is installed on your phone.'**
+  String get ensureBankAppInstalled;
+
+  /// No description provided for @allBanks.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL BANKS'**
+  String get allBanks;
+
+  /// No description provided for @noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results'**
+  String get noResults;
+
+  /// No description provided for @noResultsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for ”ashwin ahmed” in banks. Try using different keywords.'**
+  String get noResultsDesc;
+
+  /// No description provided for @somethingWentWrongDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred. We track these errors automatically, Please try again.'**
+  String get somethingWentWrongDesc;
+
+  /// No description provided for @oopsSomethingWentWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong'**
+  String get oopsSomethingWentWrong;
+
+  /// No description provided for @searchYour.
+  ///
+  /// In en, this message translates to:
+  /// **'Search your '**
+  String get searchYour;
+
+  /// No description provided for @payingTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Paying to'**
+  String get payingTo;
+
+  /// No description provided for @goToBank.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to {bankName}  →'**
+  String goToBank(Object bankName);
+
+  /// No description provided for @atoaTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa Terms '**
+  String get atoaTerms;
+
+  /// No description provided for @verifyingYourPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Verifying payment status\nwith your bank.'**
+  String get verifyingYourPayment;
+
+  /// No description provided for @noteWithColon.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: '**
+  String get noteWithColon;
+
+  /// No description provided for @doNotCloseWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not press back or close this screen until the transaction is complete'**
+  String get doNotCloseWarning;
+
+  /// No description provided for @couldNotCompletePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not complete payment? '**
+  String get couldNotCompletePayment;
+
+  /// No description provided for @cancelPaymentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to cancel the payment?'**
+  String get cancelPaymentTitle;
+
+  /// No description provided for @cancelPaymentReason1.
+  ///
+  /// In en, this message translates to:
+  /// **'Help us improve by telling us why!'**
+  String get cancelPaymentReason1;
+
+  /// No description provided for @cancelPaymentReason2.
+  ///
+  /// In en, this message translates to:
+  /// **'It’s taking too long to load'**
+  String get cancelPaymentReason2;
+
+  /// No description provided for @cancelPaymentReason3.
+  ///
+  /// In en, this message translates to:
+  /// **'I’m facing issues with my bank'**
+  String get cancelPaymentReason3;
+
+  /// No description provided for @cancelPaymentReason4.
+  ///
+  /// In en, this message translates to:
+  /// **'I don’t trust this method'**
+  String get cancelPaymentReason4;
+
+  /// No description provided for @cancelPaymentReason5.
+  ///
+  /// In en, this message translates to:
+  /// **'Other (please specify)'**
+  String get cancelPaymentReason5;
+
+  /// No description provided for @yesCanclePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, cancel payment'**
+  String get yesCanclePayment;
+
+  /// No description provided for @recommendingAppInstallPart1.
+  ///
+  /// In en, this message translates to:
+  /// **'For a smoother payment, we recommend downloading the '**
+  String get recommendingAppInstallPart1;
+
+  /// No description provided for @recommendingAppInstallPart2.
+  ///
+  /// In en, this message translates to:
+  /// **' Or, continue using internet banking if that works better for you.'**
+  String get recommendingAppInstallPart2;
+
+  /// No description provided for @bankApp.
+  ///
+  /// In en, this message translates to:
+  /// **'{bankName} app'**
+  String bankApp(String bankName);
+
+  /// No description provided for @noDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'No, dismiss'**
+  String get noDismiss;
+
+  /// No description provided for @tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip'**
+  String get tip;
+
+  /// No description provided for @valueCopiedToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} copied to clipboard'**
+  String valueCopiedToClipboard(String label);
+
+  /// No description provided for @callBank.
+  ///
+  /// In en, this message translates to:
+  /// **'Call Bank →'**
+  String get callBank;
+
+  /// No description provided for @viewTransactionDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View Transaction Details'**
+  String get viewTransactionDetails;
+
+  /// No description provided for @referenceId.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference ID'**
+  String get referenceId;
+
+  /// No description provided for @orderId.
+  ///
+  /// In en, this message translates to:
+  /// **'Order ID'**
+  String get orderId;
+
+  /// No description provided for @awaitAuthDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment under processing.'**
+  String get awaitAuthDesc;
+
+  /// No description provided for @paymentSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Successful'**
+  String get paymentSuccessful;
+
+  /// No description provided for @receivedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Received Successfully'**
+  String get receivedSuccessfully;
+
+  /// No description provided for @paymentReceivedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment has been received successfully.'**
+  String get paymentReceivedDesc;
+
+  /// No description provided for @paymentRefundedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Funds have been credited back to your bank account.'**
+  String get paymentRefundedDesc;
+
+  /// No description provided for @paymentCancelledDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You cancelled the payment.'**
+  String get paymentCancelledDesc;
+
+  /// No description provided for @paymentExpiredDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The payment you\'re trying to make has expired.'**
+  String get paymentExpiredDesc;
+
+  /// No description provided for @unknownStatusDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown error'**
+  String get unknownStatusDesc;
+
+  /// No description provided for @writeYourReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your reason...'**
+  String get writeYourReason;
+
+  /// No description provided for @termsAndPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms and policy'**
+  String get termsAndPolicy;
+
+  /// No description provided for @howWeProtectData.
+  ///
+  /// In en, this message translates to:
+  /// **'How we protect your data.'**
+  String get howWeProtectData;
+
+  /// No description provided for @rulesForService.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules for using our service.'**
+  String get rulesForService;
+
+  /// No description provided for @atoaYapilyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority'**
+  String get atoaYapilyText;
+
+  /// No description provided for @review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get review;
+
+  /// No description provided for @downTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Downtime'**
+  String get downTime;
+
+  /// No description provided for @okay.
+  ///
+  /// In en, this message translates to:
+  /// **'Okay'**
+  String get okay;
+
+  /// No description provided for @bankDown.
+  ///
+  /// In en, this message translates to:
+  /// **' bank is currently down for maintenance. Please select a different bank and try again.'**
+  String get bankDown;
+
+  /// No description provided for @atoaTermsAndPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa Terms and Privacy Policy'**
+  String get atoaTermsAndPolicy;
+
+  /// No description provided for @bankReviewInfoText.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll send you to your bank’s app or website to confirm this payment.'**
+  String get bankReviewInfoText;
+
+  /// No description provided for @paymentInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment in progress'**
+  String get paymentInProgress;
+
+  /// No description provided for @noResultFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for ”{search}” in banks. Try using different keywords.'**
+  String noResultFound(String search);
+
+  /// No description provided for @results.
+  ///
+  /// In en, this message translates to:
+  /// **'RESULTS'**
+  String get results;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @cancelThePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel the payment?'**
+  String get cancelThePayment;
+
+  /// No description provided for @cancelThePaymentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to cancel this payment? This action cannot be undone.'**
+  String get cancelThePaymentDesc;
+
+  /// No description provided for @debitedFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Debited from'**
+  String get debitedFrom;
+
+  /// No description provided for @transactionDateAndTime.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} on {date}'**
+  String transactionDateAndTime(String time, String date);
+
+  /// No description provided for @noInternetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! No internet connection'**
+  String get noInternetConnection;
+
+  /// No description provided for @serverNotReachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Server is not reachable. Please check your internet connection and try again'**
+  String get serverNotReachable;
+
+  /// No description provided for @poweredByAtoa.
+  ///
+  /// In en, this message translates to:
+  /// **'Powered by Atoa'**
+  String get poweredByAtoa;
+
+  /// No description provided for @payBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay by {name}'**
+  String payBy(String name);
+
+  /// No description provided for @bankAppText.
+  ///
+  /// In en, this message translates to:
+  /// **'bank app'**
+  String get bankAppText;
+
+  /// No description provided for @bankLimitText.
+  ///
+  /// In en, this message translates to:
+  /// **'Some banks listed below might not handle the payments of '**
+  String get bankLimitText;
+
+  /// No description provided for @bankFetchErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t fetch banks!'**
+  String get bankFetchErrorTitle;
+
+  /// No description provided for @bankFetchErrorDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while fetching bank list. Please check your internet connection and try again.'**
+  String get bankFetchErrorDesc;
+
+  /// No description provided for @errorProcessingPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Error processing payment'**
+  String get errorProcessingPayment;
+
+  /// No description provided for @bankDownError.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops, this bank app is down at the moment. This happens when the bank is upgrading its app or has maintenance underway. Atoa is working fine. Please pay with another bank.'**
+  String get bankDownError;
+
+  /// No description provided for @requestExpiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'This payment request has been expired, please go back and retry the payment again.'**
+  String get requestExpiredError;
+
+  /// No description provided for @requiredExpiredErrorDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Please reach out to the business for a new link and attempt to pay again'**
+  String get requiredExpiredErrorDesc;
+
+  /// No description provided for @linkPaidMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'This link is already paid'**
+  String get linkPaidMsg;
+
+  /// No description provided for @paymentAlreadyPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'This payment is already paid'**
+  String get paymentAlreadyPaid;
+
+  /// No description provided for @linkExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Link expired, '**
+  String get linkExpired;
+
+  /// No description provided for @toTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **' to try again'**
+  String get toTryAgain;
+
+  /// No description provided for @byContinuingYouAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing you accept Yapily\'s '**
+  String get byContinuingYouAccept;
+
+  /// No description provided for @atoas.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa’s'**
+  String get atoas;
+
+  /// No description provided for @atoaIsPowered.
+  ///
+  /// In en, this message translates to:
+  /// **' Atoa is powered by Yapily Connect Ltd.'**
+  String get atoaIsPowered;
+
+  /// No description provided for @youWillRedirectIn.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be redirected in '**
+  String get youWillRedirectIn;
+
+  /// No description provided for @seconds.
+  ///
+  /// In en, this message translates to:
+  /// **' seconds'**
+  String get seconds;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -4868,23 +5437,24 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return AppLocalizationsEn();
+    case 'en': return AppLocalizationsEn();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

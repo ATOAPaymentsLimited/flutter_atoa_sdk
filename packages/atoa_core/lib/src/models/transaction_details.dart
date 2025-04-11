@@ -1,5 +1,10 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:atoa_core/src/models/enums/iso_code_status_enum.dart';
+import 'package:atoa_core/src/models/models.dart';
+import 'package:atoa_core/src/models/payment_request/payment_request.dart';
+import 'package:atoa_core/src/models/transaction_status_details/transaction_status_details.dart';
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction_details.freezed.dart';
@@ -8,13 +13,11 @@ part 'transaction_details.g.dart';
 /// {@template transaction_details}
 /// Transaction Details
 /// {@endtemplate}
+
 @freezed
 class TransactionDetails with _$TransactionDetails {
   /// {@macro transaction_details}
   factory TransactionDetails({
-    /// Unique identifier for the payment request.
-    required String paymentIdempotencyId,
-
     /// Unique identifier for the application user initiating the transaction.
     required String applicationUserId,
 
@@ -25,10 +28,13 @@ class TransactionDetails with _$TransactionDetails {
     required String currency,
 
     /// Current status of the transaction.
-    required String status,
-
-    /// The date and time when the transaction was created.
+    @JsonKey(
+      fromJson: TransactionStatus.fromJson,
+      includeToJson: false,
+    )
+    required TransactionStatus status,
     required String createdAt,
+    required String paymentIdempotencyId,
 
     /// Optional: Unique identifier for the payment, if available.
     String? paymentId,
@@ -80,6 +86,16 @@ class TransactionDetails with _$TransactionDetails {
 
     /// Optional: Unique identifier for the order associated with the transaction.
     String? orderId,
+    TransactionStatusDetails? statusDetails,
+    String? merchantId,
+    PaymentRequest? paymentRequest,
+    String? merchantName,
+    String? avatar,
+    StoreDetails? storeDetails,
+    String? institutionId,
+    String? signatureHash,
+    String? signature,
+    Map<String, String>? redirectUrlParams,
   }) = _TransactionDetails;
 
   TransactionDetails._();
@@ -96,19 +112,56 @@ class TransactionDetails with _$TransactionDetails {
 
   /// Checks if the transaction is currently processing.
   bool get isProcessing =>
-      status == 'PENDING' && pendingTrasactionError != null;
+      status.status == 'PENDING' && pendingTrasactionError != null;
 
   /// Checks if the transaction has been refunded.
-  bool get isRefunded => status == 'REFUNDED';
+  bool get isRefunded => status.status == 'REFUNDED';
 
   /// Checks if the transaction has failed.
-  bool get isFailed => status == 'FAILED';
+  bool get isFailed => status.status == 'FAILED';
 
   /// Checks if the transaction is pending.
-  bool get isPending => status == 'PENDING';
+  bool get isPending => status.status == 'PENDING';
 
   /// Checks if the transaction is completed.
-  bool get isCompleted => status == 'COMPLETED';
+  bool get isCompleted => status.status == 'COMPLETED';
+
+  bool get isAwaitingAuth => status.status == 'AWAITING_AUTHORIZATION';
+
+  bool get notIntitated => status.status == 'PAYMENT_NOT_INITIATED';
+
+  bool get isSettlementInProcess {
+    if (statusDetails?.status is! TransactionStatusCompleted) {
+      return false;
+    }
+
+    final isoCode = statusDetails?.isoStatus?.code;
+    if (isoCode == IsoCodeStatusEnum.ACWP.name ||
+        isoCode == IsoCodeStatusEnum.ACSC.name ||
+        isoCode == IsoCodeStatusEnum.ACCC.name) {
+      return false;
+    }
+    return true;
+  }
+
+  TransactionStatus get txnPaymentStatus => status;
+
+  String? get errorMessage =>
+      errorDescription != null && errorDescription!.trim().isNotEmpty
+          ? errorDescription!.trim()
+          : null;
+
+  String? get payerBankAccountNo {
+    final accNum = paymentRequest?.payee?.accountIdentifications
+        ?.firstWhereOrNull(
+          (element) => element.type.toUpperCase() == 'ACCOUNT_NUMBER',
+        )
+        ?.identification;
+    if (accNum != null && !accNum.contains('***')) {
+      return accNum;
+    }
+    return null;
+  }
 }
 
 /// Parses dynamic amount value into a double.

@@ -19,7 +19,7 @@ class RequestInterceptor extends QueuedInterceptor {
       headers: {...options.headers},
       path: isPaymentStatus
           ? switch (_env) {
-              AtoaEnv.sandbox => '${options.path}?env=SANDBOX',
+              AtoaEnv.sandbox => '${options.path}?env=sandbox',
               AtoaEnv.prod => null,
             }
           : null,
