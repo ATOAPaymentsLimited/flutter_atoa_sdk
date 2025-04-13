@@ -29,18 +29,6 @@ class BankInstitutionsState with _$BankInstitutionsState {
 
   bool get isBankSelected => selectedBank != null;
 
-  List<BankInstitution> get businessBanks =>
-      paymentDetails?.amount.amount != null
-          ? bankList
-              .where(
-                (e) =>
-                    e.businessBank &&
-                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
-              )
-              .toList()
-          : bankList.where((e) => e.businessBank).toList()
-        ..sort();
-
   List<BankInstitution> get popularBusinessBanks =>
       paymentDetails?.amount.amount != null
           ? bankList
@@ -57,30 +45,6 @@ class BankInstitutionsState with _$BankInstitutionsState {
               )
               .toList()
         ..sort((a, b) => a.orderBy.compareTo(b.orderBy));
-
-  List<BankInstitution> get businessBanksDisabled =>
-      paymentDetails?.amount.amount != null
-          ? bankList
-              .where(
-                (e) =>
-                    e.businessBank &&
-                    e.transactionAmountLimit < paymentDetails!.amount.amount,
-              )
-              .toList()
-          : []
-        ..sort();
-
-  List<BankInstitution> get personalBankDiabled =>
-      paymentDetails?.amount.amount != null
-          ? bankList
-              .where(
-                (e) =>
-                    !e.businessBank &&
-                    e.transactionAmountLimit < paymentDetails!.amount.amount,
-              )
-              .toList()
-          : []
-        ..sort();
 
   List<BankInstitution> get popularPersonalBanks =>
       paymentDetails?.amount.amount != null
@@ -99,19 +63,22 @@ class BankInstitutionsState with _$BankInstitutionsState {
               .toList()
         ..sort((a, b) => a.orderBy.compareTo(b.orderBy));
 
-  List<BankInstitution> get personalBanks =>
+  List<BankInstitution> get allBanks => paymentDetails?.amount.amount != null
+      ? bankList
+          .where(
+            (e) => e.transactionAmountLimit >= paymentDetails!.amount.amount,
+          )
+          .toList()
+      : bankList
+    ..sort();
+
+  List<BankInstitution> get allBankDisabled =>
       paymentDetails?.amount.amount != null
           ? bankList
               .where(
-                (e) =>
-                    !e.businessBank &&
-                    e.transactionAmountLimit >= paymentDetails!.amount.amount,
+                (e) => e.transactionAmountLimit < paymentDetails!.amount.amount,
               )
               .toList()
-          : bankList
-              .where(
-                (e) => !e.popularBank && !e.businessBank,
-              )
-              .toList()
+          : []
         ..sort();
 }
