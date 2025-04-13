@@ -104,7 +104,8 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
               e.fullName.toLowerCase().contains(searchTerm) ||
               e.name.toLowerCase().contains(searchTerm),
         )
-        .toList();
+        .toList()
+      ..sort();
     return res;
   }
 
