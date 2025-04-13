@@ -5,11 +5,11 @@ import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:atoa_flutter_sdk/src/shared_widgets/info_widget.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/animated_search_field.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_list_item.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_title_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_tab_bar.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/business_bank_tab_view.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/error_widget.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/filtred_banks_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/no_result_found_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/personal_banks_tab_view.dart';
 import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/payment_paid_widget.dart';
@@ -174,21 +174,7 @@ class _BankSelectionViewState extends State<BankSelectionView> {
                           fontSize: 11.sp,
                         ),
                         Spacing.xtraLarge.yBox,
-                        CustomText.semantics(
-                          context.l10n.results,
-                          style: sdkFigTreeTextTheme.bodyMedium?.w700.textColor(
-                            NeutralColors.light().grey.shade500,
-                          ),
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: widget.state.bankList.length,
-                            itemBuilder: (context, index) => BankListItem(
-                              bank: widget.state.bankList[index],
-                              onBankSelect: onTap,
-                            ),
-                          ),
-                        ),
+                        FliteredBanksWidget(onBankSelect: onTap),
                       ],
                     ],
                   ],
