@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
+import 'package:atoa_flutter_sdk/src/static/bank_list_dev.dart';
 import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
 import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
 import 'package:collection/collection.dart';
@@ -74,11 +75,14 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
     state = state.copyWith(isLoadingFilterBanks: true);
 
     try {
-      final res = await callServer<List<BankInstitution>>(
-        () => atoa.fetchInstitutions(
-          searchTerm: searchTerm,
-        ),
-      );
+      final res =
+          AtoaSdkConfig.currentEnvironment == AtoaEnvironment.development
+              ? fetchfiteredBanksDev(searchTerm)
+              : await callServer<List<BankInstitution>>(
+                  () => atoa.fetchInstitutions(
+                    searchTerm: searchTerm,
+                  ),
+                );
 
       state = state.copyWith(bankList: res);
     } on AtoaException catch (e) {
@@ -90,6 +94,23 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       state = state.copyWith(isLoadingFilterBanks: false);
     }
   }
+
+  List<BankInstitution> fetchfiteredBanksDev(
+    String searchTerm,
+  ) {
+    final res = banksDev
+        .where(
+          (e) =>
+              e.fullName.toLowerCase().contains(searchTerm) ||
+              e.name.toLowerCase().contains(searchTerm),
+        )
+        .toList();
+    return res;
+  }
+
+  final banksDev = bankListDev
+      .map((e) => BankInstitution.fromJson(e as Map<String, dynamic>))
+      .toList();
 
   Future<void> getPaymentDetails() async {
     state = state.copyWith(isLoadingDetails: true);
@@ -135,7 +156,9 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
 
     try {
       final res =
-          await callServer<List<BankInstitution>>(atoa.fetchInstitutions);
+          AtoaSdkConfig.currentEnvironment == AtoaEnvironment.development
+              ? banksDev
+              : await callServer<List<BankInstitution>>(atoa.fetchInstitutions);
       final lastPaymentBank = state.paymentDetails?.lastPaymentBankDetails;
       final lastBankDetails = res.firstWhereOrNull(
         (element) => element.id == lastPaymentBank?.institutionId,
