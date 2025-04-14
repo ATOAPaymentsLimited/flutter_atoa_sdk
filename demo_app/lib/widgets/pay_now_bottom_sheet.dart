@@ -228,10 +228,8 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         },
         'redirectUrl': 'https://devapp.atoa.me/demopay',
         'expiresIn': 60000000,
-        'enableTips': true,
         'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',
         'strictExpiry': false,
-        'allowRetry': true,
         'splitBill': false,
       };
 }
