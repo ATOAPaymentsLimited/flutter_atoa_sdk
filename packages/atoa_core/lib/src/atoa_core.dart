@@ -62,6 +62,12 @@ class Atoa {
       endPoint = '$endPoint&search=$searchTerm';
     }
 
+    if (_atoaEnv == AtoaEnv.sandbox) {
+      endPoint = '$endPoint&env=SANDBOX';
+    } else {
+      endPoint = '$endPoint&env=PRODUCTION';
+    }
+
     final res = await _atoaDio!.get<List<dynamic>>(endPoint);
     final data = res.data;
 
