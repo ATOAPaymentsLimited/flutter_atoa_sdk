@@ -79,168 +79,177 @@ class _ConfirmationBottomSheetState extends State<ConfirmationBottomSheet>
   @override
   Widget build(BuildContext context) => Theme(
         data: sdkLedgerTheme,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Opacity(
-                  opacity: 0,
-                  child: EmptyIconPlaceholder(),
-                ),
-                Spacing.large.xBox,
-                Expanded(
-                  child: CustomText.semantics(
-                    context.l10n.review,
-                    textAlign: TextAlign.center,
-                    style: sdkFigTreeTextTheme.labelMedium?.w700.height130,
+        child: Consumer<BankInstitutionsState>(
+          builder: (context, state, child) => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Opacity(
+                    opacity: 0,
+                    child: EmptyIconPlaceholder(),
                   ),
-                ),
-                Spacing.large.xBox,
-                BottomSheetAction(
-                  semanticsLabel: 'Close Dialog Sheet Icon',
-                  trackLabel: 'Close Dialog Sheet Icon',
-                  onTap: () => context.read<BankInstitutionsController>()
-                    ..resetSelectBank()
-                    ..showConfirmation = false,
-                  child: Icon(
-                    Icons.close,
-                    size: Spacing.large.value,
-                    color: IntactColors.light().black,
-                  ),
-                ),
-              ],
-            ),
-            Spacing.xtraLarge.yBox,
-            Consumer<BankInstitutionsState>(
-              builder: (context, state, child) {
-                if (state.isLoadingAuth || widget.bank == null) {
-                  return SizedBox(
-                    height: 0.50.sh,
-                    child: const Center(
-                      child: AtoaLoader(),
+                  Spacing.large.xBox,
+                  Expanded(
+                    child: CustomText.semantics(
+                      context.l10n.review,
+                      textAlign: TextAlign.center,
+                      style: sdkFigTreeTextTheme.labelMedium?.w700.height130,
                     ),
-                  );
-                }
+                  ),
+                  Spacing.large.xBox,
+                  BottomSheetAction(
+                    semanticsLabel: 'Close Dialog Sheet Icon',
+                    trackLabel: 'Close Dialog Sheet Icon',
+                    onTap: () {
+                      if (state.bankAuthError != null) {
+                        Navigator.pop(context);
+                        return;
+                      }
+                      context.read<BankInstitutionsController>()
+                        ..resetSelectBank()
+                        ..showConfirmation = false;
+                    },
+                    child: Icon(
+                      Icons.close,
+                      size: Spacing.large.value,
+                      color: IntactColors.light().black,
+                    ),
+                  ),
+                ],
+              ),
+              Spacing.xtraLarge.yBox,
+              Builder(
+                builder: (context) {
+                  if (state.isLoadingAuth || widget.bank == null) {
+                    return SizedBox(
+                      height: 0.50.sh,
+                      child: const Center(
+                        child: AtoaLoader(),
+                      ),
+                    );
+                  }
 
-                if (state.bankAuthError != null) {
-                  return Center(
-                    child: _getErrorWidget(state.bankAuthError!),
-                  );
-                }
+                  if (state.bankAuthError != null) {
+                    return Center(
+                      child: _getErrorWidget(state.bankAuthError!),
+                    );
+                  }
 
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      InfoWidget(
-                        text: context.l10n.bankReviewInfoText,
-                      ),
-                      Spacing.large.yBox,
-                      ReviewDetailsTile(
-                        isBankInfo: false,
-                        bankInstitutionController: bankInstitutionController,
-                        state: state,
-                      ),
-                      Spacing.large.yBox,
-                      ReviewDetailsTile(
-                        bankInstitutionController: bankInstitutionController,
-                        state: state,
-                      ),
-                      Spacing.large.yBox,
-                      if (!state.isAppInstalled) ...[
-                        AppNotInstalledWidget(
-                          name: state.selectedBank?.name ?? '',
-                          paymentAuth: state.paymentAuth,
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        InfoWidget(
+                          text: context.l10n.bankReviewInfoText,
                         ),
                         Spacing.large.yBox,
-                      ],
-                      if (state.showLinkExpired) ...[
-                        RichText(
-                          text: CustomTextSpan.semantics(
-                            text: context.l10n.linkExpired,
-                            style: sdkFigTreeTextTheme.bodyLarge
-                                ?.textColor(
-                                  SemanticsColors.light().error.darker,
-                                )
-                                .w500
-                                .copyWith(
-                              shadows: [
-                                Shadow(
-                                  color: SemanticsColors.light().error.darker,
-                                  offset: Offset(0, -Spacing.mini.value),
+                        ReviewDetailsTile(
+                          isBankInfo: false,
+                          bankInstitutionController: bankInstitutionController,
+                          state: state,
+                        ),
+                        Spacing.large.yBox,
+                        ReviewDetailsTile(
+                          bankInstitutionController: bankInstitutionController,
+                          state: state,
+                        ),
+                        Spacing.large.yBox,
+                        if (!state.isAppInstalled) ...[
+                          AppNotInstalledWidget(
+                            name: state.selectedBank?.name ?? '',
+                            paymentAuth: state.paymentAuth,
+                          ),
+                          Spacing.large.yBox,
+                        ],
+                        if (state.showLinkExpired) ...[
+                          RichText(
+                            text: CustomTextSpan.semantics(
+                              text: context.l10n.linkExpired,
+                              style: sdkFigTreeTextTheme.bodyLarge
+                                  ?.textColor(
+                                    SemanticsColors.light().error.darker,
+                                  )
+                                  .w500
+                                  .copyWith(
+                                shadows: [
+                                  Shadow(
+                                    color: SemanticsColors.light().error.darker,
+                                    offset: Offset(0, -Spacing.mini.value),
+                                  ),
+                                ],
+                                color: Colors.transparent,
+                              ),
+                              children: [
+                                CustomTextSpan.semantics(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      bankInstitutionController
+                                        ..showLinkExpired = false
+                                        ..selectBank(state.selectedBank);
+                                    },
+                                  text: context.l10n.refresh,
+                                  style: sdkFigTreeTextTheme.bodyMedium?.w700
+                                      .textColor(
+                                    SemanticsColors.light().error.darker,
+                                  )
+                                      .copyWith(
+                                    shadows: [
+                                      Shadow(
+                                        color: SemanticsColors.light()
+                                            .error
+                                            .darker,
+                                        offset: Offset(0, -Spacing.mini.value),
+                                      ),
+                                    ],
+                                    color: Colors.transparent,
+                                    decoration: TextDecoration.underline,
+                                    decorationStyle: TextDecorationStyle.dotted,
+                                    decorationColor:
+                                        SemanticsColors.light().error.darker,
+                                    decorationThickness: Spacing.tiny.value,
+                                  ),
+                                ),
+                                CustomTextSpan.semantics(
+                                  text: context.l10n.toTryAgain,
                                 ),
                               ],
-                              color: Colors.transparent,
                             ),
-                            children: [
-                              CustomTextSpan.semantics(
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    bankInstitutionController
-                                      ..showLinkExpired = false
-                                      ..selectBank(state.selectedBank);
-                                  },
-                                text: context.l10n.refresh,
-                                style: sdkFigTreeTextTheme.bodyMedium?.w700
-                                    .textColor(
-                                  SemanticsColors.light().error.darker,
-                                )
-                                    .copyWith(
-                                  shadows: [
-                                    Shadow(
-                                      color:
-                                          SemanticsColors.light().error.darker,
-                                      offset: Offset(0, -Spacing.mini.value),
-                                    ),
-                                  ],
-                                  color: Colors.transparent,
-                                  decoration: TextDecoration.underline,
-                                  decorationStyle: TextDecorationStyle.dotted,
-                                  decorationColor:
-                                      SemanticsColors.light().error.darker,
-                                  decorationThickness: Spacing.tiny.value,
-                                ),
-                              ),
-                              CustomTextSpan.semantics(
-                                text: context.l10n.toTryAgain,
-                              ),
-                            ],
+                          ),
+                        ],
+                        Spacing.small.yBox,
+                        LedgerButton.primary2(
+                          style: ElevatedButton.styleFrom(
+                            textStyle: sdkFigTreeTextTheme.bodyLarge?.w700,
+                          ),
+                          size: LedgerButtonSize.xtraLarge,
+                          semanticsLabel: context.l10n
+                              .goToBank(state.selectedBank?.name ?? ''),
+                          backgroundColor:
+                              BrandingColorUtility.brandingBackgroundColor,
+                          foregroundColor:
+                              BrandingColorUtility.brandingForegroundColor,
+                          onPressed: state.paymentAuth == null
+                              ? null
+                              : () => Navigator.pop(context, true),
+                          trackLabel: 'Go To ${state.selectedBank?.name}',
+                          loading: state.isLoadingAuth,
+                          enable: !state.showLinkExpired,
+                          loadingIndicatorColor:
+                              BrandingColorUtility.brandingForegroundColor,
+                          label: context.l10n.goToBank(
+                            state.selectedBank?.name ?? '',
                           ),
                         ),
+                        Spacing.large.yBox,
+                        const AtoaTermAndServiceWidget(),
                       ],
-                      Spacing.small.yBox,
-                      LedgerButton.primary2(
-                        style: ElevatedButton.styleFrom(
-                          textStyle: sdkFigTreeTextTheme.bodyLarge?.w700,
-                        ),
-                        size: LedgerButtonSize.xtraLarge,
-                        semanticsLabel: context.l10n
-                            .goToBank(state.selectedBank?.name ?? ''),
-                        backgroundColor:
-                            BrandingColorUtility.brandingBackgroundColor,
-                        foregroundColor:
-                            BrandingColorUtility.brandingForegroundColor,
-                        onPressed: state.paymentAuth == null
-                            ? null
-                            : () => Navigator.pop(context, true),
-                        trackLabel: 'Go To ${state.selectedBank?.name}',
-                        loading: state.isLoadingAuth,
-                        enable: !state.showLinkExpired,
-                        loadingIndicatorColor:
-                            BrandingColorUtility.brandingForegroundColor,
-                        label: context.l10n.goToBank(
-                          state.selectedBank?.name ?? '',
-                        ),
-                      ),
-                      Spacing.large.yBox,
-                      const AtoaTermAndServiceWidget(),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ],
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       );
 

@@ -1,10 +1,12 @@
 import 'package:atoa_core/atoa_core.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/transaction_details_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
@@ -33,107 +35,115 @@ class CustomStatusContainer extends StatelessWidget {
   final bool? showCallBank;
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          color: TransactionDetailsUtility.getBackgroundColor(
-            transactionDetails,
-            context,
-          ),
-          borderRadius: BorderRadius.circular(Spacing.medium.value),
-        ),
-        padding: Spacing.large.x + Spacing.medium.y + Spacing.tiny.y,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
+  Widget build(BuildContext context) =>
+      Selector<PaymentStatusState, TransactionDetails?>(
+        selector: (context, state) => state.details,
+        builder: (context, details, _) {
+          final paymentDetails = details ?? transactionDetails;
+          return Container(
+            decoration: BoxDecoration(
+              color: TransactionDetailsUtility.getBackgroundColor(
+                paymentDetails,
+                context,
+              ),
+              borderRadius: BorderRadius.circular(Spacing.medium.value),
+            ),
+            padding: Spacing.large.x + Spacing.medium.y + Spacing.tiny.y,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  height: Spacing.xtraLarge.value * 2,
-                  width: Spacing.xtraLarge.value * 2,
-                  decoration: BoxDecoration(
-                    color: iconBgColor,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: isLottie ?? false
-                        ? Padding(
-                            padding: Spacing.mini.all,
-                            child: Lottie.asset(
-                              svgAsset,
-                              package: 'atoa_flutter_sdk',
-                            ),
-                          )
-                        : Padding(
-                            padding: Spacing.small.all,
-                            child: SvgPicture.asset(
-                              svgAsset,
-                              colorFilter: ColorFilter.mode(
-                                IntactColors.light().white,
-                                BlendMode.srcIn,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      height: Spacing.xtraLarge.value * 2,
+                      width: Spacing.xtraLarge.value * 2,
+                      decoration: BoxDecoration(
+                        color: iconBgColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: isLottie ?? false
+                            ? Padding(
+                                padding: Spacing.mini.all,
+                                child: Lottie.asset(
+                                  svgAsset,
+                                  package: 'atoa_flutter_sdk',
+                                ),
+                              )
+                            : Padding(
+                                padding: Spacing.small.all,
+                                child: SvgPicture.asset(
+                                  svgAsset,
+                                  colorFilter: ColorFilter.mode(
+                                    IntactColors.light().white,
+                                    BlendMode.srcIn,
+                                  ),
+                                  height: size,
+                                  width: size,
+                                  package: 'atoa_flutter_sdk',
+                                ),
                               ),
-                              height: size,
-                              width: size,
-                              package: 'atoa_flutter_sdk',
-                            ),
-                          ),
-                  ),
-                ),
-                Spacing.medium.xBox,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
+                      ),
+                    ),
+                    Spacing.medium.xBox,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Expanded(
-                            child: CustomText.semantics(
-                              status,
-                              style: sdkFigTreeTextTheme.bodyLarge?.w700,
-                            ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomText.semantics(
+                                  status,
+                                  style: sdkFigTreeTextTheme.bodyLarge?.w700,
+                                ),
+                              ),
+                            ],
                           ),
+                          if (desc != null) ...[
+                            _getDescWidget(context, paymentDetails, desc!),
+                          ],
+                          if (desc != null &&
+                              bankPhoneNumber != null &&
+                              (showCallBank ?? false)) ...[
+                            Spacing.small.yBox,
+                            CustomGestureDetector(
+                              context: context,
+                              enableTracking: false,
+                              trackLabel: 'Call Bank Button',
+                              semanticsLabel: context.l10n.callBank,
+                              onTap: () => url_launcher.launchUrl(
+                                Uri.parse('tel:$bankPhoneNumber'),
+                              ),
+                              child: CustomText.semantics(
+                                context.l10n.callBank,
+                                style: sdkFigTreeTextTheme
+                                    .bodyLarge?.w700.height150
+                                    .copyWith(
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(0, -Spacing.mini.value),
+                                    ),
+                                  ],
+                                  color: Colors.transparent,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ],
                         ],
                       ),
-                      if (desc != null) ...[
-                        _getDescWidget(context, transactionDetails, desc!),
-                      ],
-                      if (desc != null &&
-                          bankPhoneNumber != null &&
-                          (showCallBank ?? false)) ...[
-                        Spacing.small.yBox,
-                        CustomGestureDetector(
-                          context: context,
-                          enableTracking: false,
-                          trackLabel: 'Call Bank Button',
-                          semanticsLabel: context.l10n.callBank,
-                          onTap: () => url_launcher.launchUrl(
-                            Uri.parse('tel:$bankPhoneNumber'),
-                          ),
-                          child: CustomText.semantics(
-                            context.l10n.callBank,
-                            style: sdkFigTreeTextTheme.bodyLarge?.w700.height150
-                                .copyWith(
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0, -Spacing.mini.value),
-                                ),
-                              ],
-                              color: Colors.transparent,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          );
+        },
       );
 
   String? get bankPhoneNumber => RegExp(r'\b\d{10,11}\b').stringMatch(desc!);

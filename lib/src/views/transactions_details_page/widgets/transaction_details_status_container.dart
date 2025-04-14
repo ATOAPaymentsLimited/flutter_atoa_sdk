@@ -10,10 +10,12 @@ import 'package:regal/regal.dart';
 class TransactionDetailsStatusContainer extends StatelessWidget {
   const TransactionDetailsStatusContainer({
     required this.transactionDetails,
+    required this.durationLeft,
     super.key,
   });
 
   final TransactionDetails transactionDetails;
+  final Duration durationLeft;
 
   @override
   Widget build(BuildContext context) =>
@@ -113,9 +115,13 @@ class TransactionDetailsStatusContainer extends StatelessWidget {
     TransactionDetails txnDetails,
     BuildContext context,
   ) {
-    if (txnDetails.pendingTrasactionError != null &&
-        txnDetails.pendingTrasactionError!.isNotEmpty) {
-      return txnDetails.pendingTrasactionError!;
+    if (durationLeft.inSeconds < 60) {
+      if (txnDetails.pendingTrasactionError != null &&
+          txnDetails.pendingTrasactionError!.isNotEmpty) {
+        return txnDetails.pendingTrasactionError!;
+      } else {
+        return context.l10n.settlementInProcessInfoText;
+      }
     } else {
       return context.l10n.settlementInProcessInfoText;
     }

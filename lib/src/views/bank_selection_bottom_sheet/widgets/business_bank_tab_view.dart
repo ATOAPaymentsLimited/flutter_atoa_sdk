@@ -1,10 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/l10n/l10n.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/theme/theme.dart';
+import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/all_banks_widget.dart';
 import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_grid_item.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_limit_card.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
@@ -61,44 +58,9 @@ class _BusinessBanksTabViewState extends State<BusinessBanksTabView> {
             Spacing.huge.yBox,
 
             // Scrollable List
-            CustomText.semantics(
-              context.l10n.allBanks.toUpperCase(),
-              style: sdkFigTreeTextTheme.bodyMedium?.w700.textColor(
-                NeutralColors.light().grey.shade500,
-              ),
+            AllBanksWidget(
+              onBankSelect: widget.onBankSelect,
             ),
-            Spacing.medium.yBox,
-            ListView.builder(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: bankInstitutionsState.businessBanks.length,
-              itemBuilder: (context, index) => BankListItem(
-                bank: bankInstitutionsState.businessBanks[index],
-                onBankSelect: widget.onBankSelect,
-              ),
-            ),
-            if (bankInstitutionsState.businessBanksDisabled.isNotEmpty &&
-                bankInstitutionsState.paymentDetails?.amount.amount !=
-                    null) ...[
-              Spacing.small.yBox,
-              BankLimitCard(
-                amount: bankInstitutionsState.paymentDetails!.amount.amount,
-              ),
-              Spacing.medium.yBox,
-              ListView.builder(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: bankInstitutionsState.businessBanksDisabled.length,
-                itemBuilder: (context, index) => BankListItem(
-                  bank: bankInstitutionsState.businessBanksDisabled[index],
-                  onBankSelect: (_) async {},
-                  enabled: false,
-                ),
-              ),
-              Spacing.huge.yBox,
-            ],
           ],
         ),
       );

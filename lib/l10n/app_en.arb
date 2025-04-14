@@ -1678,6 +1678,11 @@
     "byContinuingYouAccept": "By continuing you accept Yapily's ",
     "atoas": "Atoa’s",
     "atoaIsPowered": " Atoa is powered by Yapily Connect Ltd.",
-    "youWillRedirectIn": "You will be redirected in ",
-    "seconds": " seconds"
+    "popupClosingIn": "We’ll close this pop-up in just ",
+    "seconds": " seconds",
+    "second": " second",
+    "areYouSure": "Are you sure you want to leave?",
+    "areYouSureDesc": "Clicking continue will close this and take you back.",
+    "minute": " minute ",
+    "minutes": " minutes "
 }
