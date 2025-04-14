@@ -1,11 +1,13 @@
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/snackbar_extension.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/snackbar_type.dart';
 import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:regal/regal.dart';
+import 'package:regal/regal.dart' hide SnackbarType;
 
 class PaymentDetailsRow extends StatelessWidget {
   const PaymentDetailsRow({
@@ -42,7 +44,8 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (label.isNotEmpty)
                     CustomText.semantics(
                       label,
-                      style: sdkFigTreeTextTheme.bodyMedium?.height150.textColor(
+                      style:
+                          sdkFigTreeTextTheme.bodyMedium?.height150.textColor(
                         NeutralColors.light().grey.shade600,
                       ),
                     ),
@@ -81,8 +84,9 @@ class PaymentDetailsRow extends StatelessWidget {
                   if (!context.mounted) {
                     return;
                   }
-                  context.showSnackbar(
-                    titleTextStyle: sdkFigTreeTextTheme.bodyLarge?.w700.textColor(
+                  context.showSnackBar(
+                    titleTextStyle:
+                        sdkFigTreeTextTheme.bodyLarge?.w700.textColor(
                       IntactColors.light().white,
                     ),
                     SnackbarType.success(
