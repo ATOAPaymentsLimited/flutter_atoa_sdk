@@ -83,6 +83,16 @@
 				<key>CFBundleURLName</key>
 				<string>devapp.atoa.me</string>
 			</dict>
+			<dict>
+			    <key>CFBundleTypeRole</key>
+			  	<string>Editor</string> 
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>atoa</string>
+				</array>
+				<key>CFBundleURLName</key>
+				<string>demopay.atoa.me</string>
+			</dict>
 		</array>
 	</dict>
 </plist>
