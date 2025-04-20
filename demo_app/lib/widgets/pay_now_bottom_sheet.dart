@@ -226,7 +226,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
           'deviceId': '35356478',
           'locationId': '8956545',
         },
-        'redirectUrl': 'https://devapp.atoa.me/sdk-redirect',
+        'redirectUrl': 'atoa://devapp.atoa.me/sdk-redirect',
         'expiresIn': 60000000,
         'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',
         'strictExpiry': false,
