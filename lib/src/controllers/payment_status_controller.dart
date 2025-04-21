@@ -38,7 +38,7 @@ class PaymentStatusController extends StateNotifier<PaymentStatusState> {
             exception: null,
           );
           PaymentUtility.onPaymentStatusChange?.call(
-            details.status.status,
+            details.status.status ?? '',
             details.redirectUrlParams,
             details.signature,
             details.signatureHash,

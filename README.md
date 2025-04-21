@@ -165,6 +165,24 @@ The SDK supports displaying banks the customer has previously paid with through 
   - `atoaSignature`: (optional) Atoa signature for verification
   - `atoaSignatureHash`: (optional) Atoa signature hash for verification
 
+## Handle Response
+
+You can handle the payment success, failure, pending and other statuses based on payment response
+
+```dart
+if (paymentDetails != null) {
+  if(paymentDetails.isCompleted) {
+    // handle success
+  } else {
+    // handle failure / pending statuses
+  }
+} else {
+// Bottom sheet was dismissed or encountered an error
+}
+```
+
+Sample response can be seen [here](https://docs.atoa.me/introduction#step-3-handle-payment-status).
+
 ## Handle Redirection
 
 While calling [payment-process](https://docs.atoa.me/api-reference/Payment/process-payment) API to generate a payment, you can specify a `redirectUrl` in your request body. The `redirectUrl`, which should be passed as body parameters, redirects to your website and then opens your app via deep linking. This enables users to open your application after payment.
