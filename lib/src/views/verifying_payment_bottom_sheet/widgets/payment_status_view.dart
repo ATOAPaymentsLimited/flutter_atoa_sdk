@@ -29,7 +29,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
     bankState = context.read<BankInstitutionsState>();
 
     Future<void>.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
       () {
         if (!mounted) return;
         Navigator.pop(context, paymentStatusState.details);
@@ -41,7 +41,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
   Widget build(BuildContext context) => AnimatedSwitcher(
         duration: kAnimationDuration,
         child: SizedBox(
-          height: 0.60.sh,
+          height: 0.65.sh,
           width: 1.sw,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
