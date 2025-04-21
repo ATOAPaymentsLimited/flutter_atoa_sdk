@@ -15,7 +15,7 @@ The Atoa Mobile Client SDK allows merchants to easily integrate Atoa Payments in
 - [Complete Demo App](demo_app/lib/main.dart)
 - [Handle Redirection](#handle-redirection-optional)
 
-| Please refer our official flutter documentation [here](https://docs.atoa.me/).
+| Please refer our official flutter documentation [here](https://docs.atoa.me/flutter-sdk).
 
 ## Installation
 
@@ -54,7 +54,7 @@ final paymentDetails = AtoaSdk.pay(
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
-      onUserClose: (paymentRequestId) {
+      onUserClose: (paymentRequestId,redirectUrlParams, signature, signatureHash) {
         // handle payment when user close the payment verification bottom sheet
 
          ScaffoldMessenger.of(context).showSnackBar(
@@ -66,7 +66,7 @@ final paymentDetails = AtoaSdk.pay(
           ),
         );
       },
-      onPaymentStatusChange: (status) {
+      onPaymentStatusChange: (status, redirectUrlParams, signature, signatureHash) {
         // handle payment status
          print('Payment Status Changed to $status');
       },
