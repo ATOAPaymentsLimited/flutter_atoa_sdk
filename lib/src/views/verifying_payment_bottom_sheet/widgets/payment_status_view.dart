@@ -1,6 +1,7 @@
 import 'package:atoa_flutter_sdk/constants/constant.dart';
 import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
 import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
+import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
     bankState = context.read<BankInstitutionsState>();
 
     Future<void>.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
       () {
         if (!mounted) return;
         Navigator.pop(context, paymentStatusState.details);
@@ -46,10 +47,13 @@ class _PaymentStatusViewState extends State<PaymentStatusView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Assets.gifs.tickMark.lottie(
-                height: Spacing.xtraLarge.value * 3,
-                width: Spacing.xtraLarge.value * 3,
-              ),
+              if (widget.isCompleted)
+                Assets.gifs.tickMark.lottie(
+                  height: Spacing.xtraLarge.value * 3,
+                  width: Spacing.xtraLarge.value * 3,
+                )
+              else
+                const FetchingBankLoader(),
             ],
           ),
         ),

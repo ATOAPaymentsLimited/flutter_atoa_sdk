@@ -32,7 +32,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       return;
     }
 
-    AtoaSdk.pay(
+    final transactionDetails = await AtoaSdk.pay(
       context,
       paymentId: paymentId,
       showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
@@ -71,8 +71,51 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         // print('Error in Atoa Mobile SDK ${error.message}');
       },
     );
-
     prefs.setBool('showHowPaymentWorks', false);
+    if (!context.mounted) return;
+    if (transactionDetails != null) {
+      showStatus(transactionDetails);
+    }
+  }
+
+  showStatus(TransactionDetails transactionDetails) {
+    if (transactionDetails.isCompleted) {
+      showSnackbar(
+        text: 'Payment Successful',
+        color: RegalColors.darkCyan,
+      );
+    } else if (transactionDetails.isPending) {
+      showSnackbar(
+        text: 'Payment Pending',
+        color: RegalColors.darkOrange,
+      );
+    } else if (transactionDetails.isFailed) {
+      showSnackbar(
+        text: 'Payment Failed',
+        color: RegalColors.darkVividRed,
+      );
+    } else if (!transactionDetails.isAwaitingAuth &&
+        !transactionDetails.notIntitated) {
+      showSnackbar(
+        text: 'Payment ${transactionDetails.status.status}',
+        color: RegalColors.grey.shade40,
+      );
+    }
+  }
+
+  void showSnackbar({required String text, required Color color}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: color,
+        content: Text(text,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            )),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(24),
+      ),
+    );
   }
 
   @override
