@@ -205,6 +205,8 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 - [Flutter Docs](https://docs.flutter.dev/ui/navigation/deep-linking)
 - [Code With Andrea](https://codewithandrea.com/articles/flutter-deep-links/)
+- [Set up App links for Android](https://docs.flutter.dev/cookbook/navigation/set-up-app-links)
+- [Set up Universal links for iOS](https://docs.flutter.dev/cookbook/navigation/set-up-universal-links)
 
 For any issues or inquiries, please contact hello@paywithatoa.co.uk.
 
