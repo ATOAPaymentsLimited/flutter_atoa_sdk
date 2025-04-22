@@ -13,9 +13,9 @@ The Atoa Mobile Client SDK allows merchants to easily integrate Atoa Payments in
 - [Installation](#installation)
 - [Usage](#usage)
 - [Complete Demo App](demo_app/lib/main.dart)
-- [Handle Redirection](#handle-redirection-optional) (Optional)
+- [Handle Redirection](#handle-redirection-optional)
 
-| Please refer our official flutter documentation [here](https://docs.atoa.me/).
+| Please refer our official flutter documentation [here](https://docs.atoa.me/flutter-sdk).
 
 ## Installation
 
@@ -54,7 +54,7 @@ final paymentDetails = AtoaSdk.pay(
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
-      onUserClose: (paymentRequestId) {
+      onUserClose: (paymentRequestId,redirectUrlParams, signature, signatureHash) {
         // handle payment when user close the payment verification bottom sheet
 
          ScaffoldMessenger.of(context).showSnackBar(
@@ -66,7 +66,7 @@ final paymentDetails = AtoaSdk.pay(
           ),
         );
       },
-      onPaymentStatusChange: (status) {
+      onPaymentStatusChange: (status, redirectUrlParams, signature, signatureHash) {
         // handle payment status
          print('Payment Status Changed to $status');
       },
@@ -144,67 +144,69 @@ The SDK supports displaying banks the customer has previously paid with through 
 - Parameters:
   - `error`: Error object containing:
     - `message`: Error message
-    - `details`: Additional error details (if available)
 
 ###### onPaymentStatusChange
 
-- Type: `(data: { status: string; paymentRequestId: string; paymentIdempotencyId?: string }) => void`
+- Type: `(status: String; redirectUrlParams: Map<String,String>?; atoaSignature: String?; atoaSignatureHash String?) => void`
 - Description: Called when the payment status changes
 - Parameters:
   - `status`: Current payment status
-  - `callbackParams`: (optional) Additional callback parameters
+  - `redirectUrlParams`: (optional) Additional callback parameters
   - `atoaSignature`: (optional) Atoa signature for verification
   - `atoaSignatureHash`: (optional) Atoa signature hash for verification
 
 ###### onUserClose
 
-- Type: `(paymentRequestId: string) => void`
+- Type: `(paymentRequestId: String,redirectUrlParams: Map<String,String>?; atoaSignature: String?; atoaSignatureHash String?) => void`
 - Description: Called when the user cancels the payment
 - Parameters:
   - `paymentRequestId`: The payment request ID
-  - `callbackParams`: (optional) Additional callback parameters
+  - `redirectUrlParams`: (optional) Additional callback parameters
   - `atoaSignature`: (optional) Atoa signature for verification
   - `atoaSignatureHash`: (optional) Atoa signature hash for verification
 
-### Event Callbacks
+## Handle Response
 
-#### onError(error)
+You can handle the payment success, failure, pending and other statuses based on payment response
 
-Called when an error occurs during the payment process.
+```dart
+if (paymentDetails != null) {
+  if(paymentDetails.isCompleted) {
+    // handle success
+  } else {
+    // handle failure / pending statuses
+  }
+} else {
+// Bottom sheet was dismissed or encountered an error
+}
+```
 
-**Parameters:**
-
-- `error`: Error object with:
-  - `message`: Error message
-  - `details`: Additional error details (if available)
-
-#### onPaymentStatusChange(data)
-
-Called when the payment status changes.
-
-**Parameters:**
-
-- `data`: Status data object with:
-  - `status`: Current payment status
-  - `paymentRequestId`: The payment request ID
-  - `paymentIdempotencyId`: (optional) Payment idempotency ID
-
-#### onUserClose(paymentRequestId)
-
-Called when the user cancels the payment.
-
-**Parameters:**
-
-- `paymentRequestId`: The payment request ID
+Sample response can be seen [here](https://docs.atoa.me/introduction#step-3-handle-payment-status).
 
 ## Handle Redirection
 
-Call the [payment-process](https://docs.atoa.me/api-reference/Payment/process-payment) API to generate a payment. In response, store the `paymentRequestId` on the backend. The `redirectUrl`, which should be passed as body parameters, redirects to your website and then opens your app via deep linking.
+While calling [payment-process](https://docs.atoa.me/api-reference/Payment/process-payment) API to generate a payment, you can specify a `redirectUrl` in your request body. The `redirectUrl`, which should be passed as body parameters, redirects to your website and then opens your app via deep linking. This enables users to open your application after payment.
+
+For journeys including web and mobile, you can use App Links for Android and Universal Links for iOS.
+
+Both are special types of deep links that you can set as your redirect URL, but these must must use either the http or https URI schemes.
+
+Note: When a deep link has a custom URI scheme (not http or https) it will link to content that can only be accessed if the application is installed on the device.
+
+There are 3 cases, after redirection to a given redirect URL
+
+1. If you handled the deep links and works, then user redirected to app,
+2. If not handled deep links, user will redirect to web browser .
+3. If deep links is handled and fails to redirect to app, user will redirect to web browser to given redirect url.
+
+Note: If deep links is handled and fails to redirect to app, you can add a 'Return to app' UI in your redirect page, so that you can manually click and redirect to app. If not, user can manually switch to app after payment.
 
 #### Resources For deep-linking
 
 - [Flutter Docs](https://docs.flutter.dev/ui/navigation/deep-linking)
 - [Code With Andrea](https://codewithandrea.com/articles/flutter-deep-links/)
+- [Set up App links for Android](https://docs.flutter.dev/cookbook/navigation/set-up-app-links)
+- [Set up Universal links for iOS](https://docs.flutter.dev/cookbook/navigation/set-up-universal-links)
 
 For any issues or inquiries, please contact hello@paywithatoa.co.uk.
 

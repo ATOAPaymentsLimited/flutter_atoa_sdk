@@ -2914,7 +2914,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get awaitAuthDesc => 'Payment under processing.';
 
   @override
-  String get paymentSuccessful => 'Payment Successful';
+  String get paymentSuccessful => 'Payment successful';
 
   @override
   String get receivedSuccessfully => 'Received Successfully';
