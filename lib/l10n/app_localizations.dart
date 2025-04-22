@@ -5148,7 +5148,7 @@ abstract class AppLocalizations {
   /// No description provided for @paymentSuccessful.
   ///
   /// In en, this message translates to:
-  /// **'Payment Successful'**
+  /// **'Payment successful'**
   String get paymentSuccessful;
 
   /// No description provided for @receivedSuccessfully.
