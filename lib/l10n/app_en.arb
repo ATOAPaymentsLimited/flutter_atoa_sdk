@@ -1605,7 +1605,7 @@
     "referenceId": "Reference ID",
     "orderId": "Order ID",
     "awaitAuthDesc": "Payment under processing.",
-    "paymentSuccessful": "Payment Successful",
+    "paymentSuccessful": "Payment successful",
     "receivedSuccessfully": "Received Successfully",
     "paymentReceivedDesc": "Payment has been received successfully.",
     "paymentRefundedDesc": "Funds have been credited back to your bank account.",
