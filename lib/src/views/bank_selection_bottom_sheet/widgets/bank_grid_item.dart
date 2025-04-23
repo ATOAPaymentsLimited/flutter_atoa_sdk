@@ -64,7 +64,7 @@ class BankGridItem extends StatelessWidget {
                           Spacing.medium.value +
                           Spacing.tiny.value,
                       height: Spacing.xtraLarge.value * 3,
-                      padding: Spacing.medium.y + Spacing.xtraLarge.x,
+                      padding: Spacing.medium.all,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: isSelectedBank
@@ -77,12 +77,14 @@ class BankGridItem extends StatelessWidget {
                       child: bank.bankIcon != null
                           ? CachedNetworkImage(
                               imageUrl: bank.bankIcon!,
-                              height: Spacing.xtraLarge.value,
-                              width: Spacing.xtraLarge.value,
+                              height: Spacing.mediumlarge.value * 2 +
+                                  Spacing.tiny.value,
+                              width: Spacing.mediumlarge.value * 2 +
+                                  Spacing.tiny.value,
                             )
                           : Icon(
                               Icons.account_balance_outlined,
-                              size: Spacing.xtraLarge.value * 2,
+                              size: Spacing.large.value * 2,
                               color: IntactColors.light().black,
                             ),
                     ),
