@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttersdk/utils/connectivity_controller.dart';
 import 'package:fluttersdk/utils/connectivity_wrapper.dart';
 import 'package:fluttersdk/widgets/pay_now_bottom_sheet.dart';
@@ -6,12 +7,19 @@ import 'package:fluttersdk/widgets/product_card_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({
-    super.key,
-  });
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-  final totalAmountNotifier = '2.00';
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String totalAmountNotifier = '0';
+  String storeId = '';
+  String token = '';
+  String reqId = '';
+  bool isSandbox = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,13 +100,156 @@ class HomePage extends StatelessWidget {
                   ),
                   Spacing.small.yBox,
                   Spacing.tiny.yBox,
-                  Image.asset('assets/images/atoa.png'),
+                  InkWell(
+                    child: Image.asset('assets/images/atoa.png'),
+                    onTap: () async {
+                      final (
+                        newAmount,
+                        newToken,
+                        newStoreId,
+                        newPaymentReqId,
+                        newIsSandbox
+                      ) = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AutomationForm(),
+                        ),
+                      );
+                      setState(() {
+                        if (newAmount != null && newAmount.isNotEmpty) {
+                          totalAmountNotifier = newAmount;
+                        }
+                        if (newToken != null && newToken.isNotEmpty) {
+                          token = newToken;
+                        }
+                        if (newStoreId != null && newStoreId.isNotEmpty) {
+                          storeId = newStoreId;
+                        }
+                        if (newPaymentReqId != null &&
+                            newPaymentReqId.isNotEmpty) {
+                          reqId = newPaymentReqId;
+                        }
+                        if (newIsSandbox != null) {
+                          isSandbox = newIsSandbox;
+                        }
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
           ),
           bottomSheet: PayNowBottomSheet(
             totalAmount: totalAmountNotifier,
+            token: token,
+            storeId: storeId,
+            paymentRequestId: reqId,
+            isSandbox: isSandbox,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AutomationForm extends StatefulWidget {
+  const AutomationForm({super.key});
+
+  @override
+  State<AutomationForm> createState() => _AutomationFormState();
+}
+
+class _AutomationFormState extends State<AutomationForm> {
+  final token = TextEditingController();
+  final storeId = TextEditingController();
+  final amount = TextEditingController();
+  final paymnetReq = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool isSandbox = false;
+  @override
+  Widget build(BuildContext context) {
+    return PopScope(
+      canPop: formKey.currentState?.validate() == true,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const CustomText.semantics("Automation Form"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: token,
+                  decoration: const InputDecoration(
+                    labelText: 'Token',
+                  ),
+                ),
+                Spacing.medium.yBox,
+                TextField(
+                  controller: storeId,
+                  decoration: const InputDecoration(
+                    labelText: 'Store Id (Optional)',
+                  ),
+                ),
+                Spacing.medium.yBox,
+                TextField(
+                  controller: amount,
+                  decoration: const InputDecoration(
+                    labelText: 'Amount',
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  keyboardType: TextInputType.number,
+                ),
+                Spacing.medium.yBox,
+                TextField(
+                  controller: paymnetReq,
+                  decoration: const InputDecoration(
+                    labelText: 'Payment Req Id (Optional)',
+                  ),
+                ),
+                Spacing.medium.yBox,
+                Row(
+                  children: [
+                    Checkbox(
+                        value: isSandbox,
+                        onChanged: (onChanged) {
+                          setState(() {
+                            isSandbox = onChanged!;
+                          });
+                        }),
+                    Spacing.medium.xBox,
+                    CustomText.semantics(
+                      'is Sandbox?',
+                      style: context.bodyLarge!,
+                    )
+                  ],
+                ),
+                RegalButton.primary(
+                  label: 'Save',
+                  trackLabel: 'Save',
+                  enableTracking: false,
+                  onPressed: () {
+                    formKey.currentState?.save();
+                    Navigator.pop(
+                      context,
+                      (
+                        amount.text,
+                        token.text,
+                        storeId.text,
+                        paymnetReq.text,
+                        isSandbox
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

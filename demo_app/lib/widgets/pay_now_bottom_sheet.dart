@@ -15,8 +15,17 @@ class PayNowBottomSheet extends StatefulWidget {
   const PayNowBottomSheet({
     super.key,
     required this.totalAmount,
+    required this.storeId,
+    required this.paymentRequestId,
+    required this.token,
+    this.isSandbox = false,
   });
   final String totalAmount;
+  final String storeId;
+  final String paymentRequestId;
+  final String token;
+  final bool isSandbox;
+
 
   @override
   State<PayNowBottomSheet> createState() => _PayNowBottomSheetState();
@@ -43,7 +52,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         phoneNumber: '8788899999',
         email: 'aaa@gmail.com',
       ),
-      env: AtoaEnv.prod,
+      env: widget.isSandbox ? AtoaEnv.sandbox : AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
       onUserClose:
@@ -204,8 +213,9 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
 
   Future<void> _getPaymentId(BuildContext context, totalAmount) async {
     isLoading.value = true;
-    final paymentRequestId =
-        await _getPaymentRequestId(amount: double.parse(totalAmount));
+    final paymentRequestId = widget.paymentRequestId.isNotEmpty
+        ? widget.paymentRequestId
+        : await _getPaymentRequestId(amount: double.parse(totalAmount));
     if (context.mounted) {
       if (paymentRequestId.isNotEmpty) {
         isLoading.value = false;
@@ -237,7 +247,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       'https://api.atoa.me/api/payments/process-payment',
     );
 
-    const atoaToken = String.fromEnvironment('atoa-token');
+    final atoaToken = widget.token.isNotEmpty ? widget.token : const String.fromEnvironment('atoa-token');
 
     final response = await http.post(
       uri,
@@ -271,7 +281,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         },
         'redirectUrl': 'atoa://devapp.atoa.me/sdk-redirect',
         'expiresIn': 60000000,
-        'storeId': 'ee39ecfa-e336-461c-a957-1adc76ac087c',
+        'storeId': widget.storeId,
         'strictExpiry': false,
         'splitBill': false,
       };
