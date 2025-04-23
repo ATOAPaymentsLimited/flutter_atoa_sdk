@@ -84,7 +84,8 @@ class BankGridItem extends StatelessWidget {
                             )
                           : Icon(
                               Icons.account_balance_outlined,
-                              size: Spacing.large.value * 2,
+                              size: Spacing.mediumlarge.value * 2 +
+                                  Spacing.tiny.value,
                               color: IntactColors.light().black,
                             ),
                     ),
