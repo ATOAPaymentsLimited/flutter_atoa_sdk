@@ -9,8 +9,7 @@ environment:
   flutter: ">=3.24.3"
 
 dependencies:
-  atoa_core:
-    path: packages/atoa_core
+  atoa_core: ^1.0.6
   bot_toast: ^4.0.1
   cached_network_image: ^3.4.1
   collection: ^1.18.0
