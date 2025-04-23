@@ -41,30 +41,12 @@ class BankGridItem extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    if (!bank.enabled) ...[
-                      Positioned(
-                        right: Spacing.mini.value,
-                        top: Spacing.mini.value,
-                        child: BankDownIcon(bank: bank),
-                      ),
-                    ] else if (isSelectedBank)
-                      Positioned(
-                        right: Spacing.mini.value,
-                        top: Spacing.mini.value,
-                        child: CircleAvatar(
-                          radius: Spacing.small.value,
-                          backgroundColor: IntactColors.light().black,
-                          child: Assets.icons.iconTick.svg(
-                            height: Spacing.mini.value + Spacing.tiny.value,
-                          ),
-                        ),
-                      ),
                     Container(
                       width: Spacing.xtraLarge.value * 3 +
                           Spacing.medium.value +
                           Spacing.tiny.value,
                       height: Spacing.xtraLarge.value * 3,
-                      padding: Spacing.medium.all,
+                      padding: Spacing.small.all,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: isSelectedBank
@@ -89,6 +71,24 @@ class BankGridItem extends StatelessWidget {
                               color: IntactColors.light().black,
                             ),
                     ),
+                    if (!bank.enabled) ...[
+                      Positioned(
+                        right: Spacing.mini.value,
+                        top: Spacing.mini.value,
+                        child: BankDownIcon(bank: bank),
+                      ),
+                    ] else if (isSelectedBank)
+                      Positioned(
+                        right: Spacing.mini.value,
+                        top: Spacing.mini.value,
+                        child: CircleAvatar(
+                          radius: Spacing.small.value,
+                          backgroundColor: IntactColors.light().black,
+                          child: Assets.icons.iconTick.svg(
+                            height: Spacing.mini.value + Spacing.tiny.value,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
                 Spacing.small.yBox,
