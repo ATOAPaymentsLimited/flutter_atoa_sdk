@@ -2,7 +2,7 @@ import 'package:atoa_core/src/config/environment.dart';
 
 class AtoaSdkConfig {
   static Future<void> initialize({
-    required AtoaEnvironment environment,
+    AtoaEnvironment environment = AtoaEnvironment.production,
   }) async {
     // Initialize with environment-specific values if not provided
 

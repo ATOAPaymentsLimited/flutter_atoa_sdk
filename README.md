@@ -54,7 +54,11 @@ final paymentDetails = await AtoaSdk.pay(
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
-      onUserClose: (paymentRequestId,redirectUrlParams, signature, signatureHash) {
+      onUserClose: (
+          {required String paymentRequestId,
+          Map<String, String>? redirectUrlParams,
+          String? signature,
+          String? signatureHash}) {
         // handle payment when user close the payment verification bottom sheet
 
          ScaffoldMessenger.of(context).showSnackBar(
@@ -66,7 +70,11 @@ final paymentDetails = await AtoaSdk.pay(
           ),
         );
       },
-      onPaymentStatusChange: (status, redirectUrlParams, signature, signatureHash) {
+      onPaymentStatusChange: (
+          {required String status,
+          Map<String, String>? redirectUrlParams,
+          String? signature,
+          String? signatureHash}) {
         // handle payment status
          print('Payment Status Changed to $status');
       },
@@ -252,9 +260,9 @@ Runner.entitlements: Add key 'com.apple.developer.associated-domains'and Replace
 
 ### Checking bank app is installed or not
 
-Our mobile SDK checks if the bank(using for making payments) app is installed or not. For that, you need to add '<queries>' tag for android and 'LSApplicationQueriesSchemes' key for iOS
+Our mobile SDK checks if the bank(using for making payments) app is installed or not. For that, you need to add 'queries' tag for android and 'LSApplicationQueriesSchemes' key for iOS
 
-- In Android, you need to add '<queries>' tag
+- In Android, you need to add 'queries' tag
 
 ```xml
  <queries>
@@ -287,28 +295,29 @@ Our mobile SDK checks if the bank(using for making payments) app is installed or
 - In iOS, you need to add 'LSApplicationQueriesSchemes' key
 
 ```xml
+  <key>LSApplicationQueriesSchemes</key>
   <array>
-			<string>pulsesecure</string>
-			<string>launchbmb</string>
-			<string>lloyds-retail</string>
-			<string>hsbc-pwnwguti5z</string>
-			<string>uk.co.santander.santanderUK</string>
-			<string>fb894703657238109</string>
-			<string>bos-retail</string>
-			<string>halifax-retail</string>
-			<string>monzo</string>
-			<string>starlingbank</string>
-			<string>tsbmobile</string>
-			<string>comfirstdirectbankingonthego</string>
-			<string>launchFT</string>
-			<string>virginmoneyimport</string>
-			<string>ybssavings</string>
-			<string>transferwise</string>
-			<string>tg</string>
-			<string>BOIOneAPP</string>
-			<string>ie.aib.mobilebanking</string>
-			<string>bos-commercial</string>
-			<string>chase-international</string>
+		<string>pulsesecure</string>
+		<string>launchbmb</string>
+		<string>lloyds-retail</string>
+		<string>hsbc-pwnwguti5z</string>
+		<string>uk.co.santander.santanderUK</string>
+		<string>fb894703657238109</string>
+		<string>bos-retail</string>
+		<string>halifax-retail</string>
+		<string>monzo</string>
+		<string>starlingbank</string>
+		<string>tsbmobile</string>
+		<string>comfirstdirectbankingonthego</string>
+		<string>launchFT</string>
+		<string>virginmoneyimport</string>
+		<string>ybssavings</string>
+		<string>transferwise</string>
+		<string>tg</string>
+		<string>BOIOneAPP</string>
+		<string>ie.aib.mobilebanking</string>
+		<string>bos-commercial</string>
+		<string>chase-international</string>
 	</array>
 ```
 

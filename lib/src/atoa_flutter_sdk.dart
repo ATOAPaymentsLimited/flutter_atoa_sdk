@@ -53,9 +53,7 @@ class AtoaSdk {
       PaymentUtility.customerDetails = customerDetails;
     }
 
-    await AtoaSdkConfig.initialize(
-      environment: AtoaEnvironment.production, // or .staging or .production
-    );
+    await AtoaSdkConfig.initialize();
 
     if (onError != null) {
       PaymentUtility.onError = onError;

@@ -238,7 +238,6 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
   }
 
   Future<String> _getPaymentRequestId({required double amount}) async {
-    // change it to dev url while testing
     final uri = Uri.parse(
       'https://api.atoa.me/api/payments/process-payment',
     );
