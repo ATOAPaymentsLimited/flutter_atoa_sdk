@@ -220,7 +220,7 @@ Replace 'devapp.atoa.me' with your own web domain and '/sdk-redirect' with your 
 
 Info.plist: Replace 'devapp.atoa.me' with your own web domain.
 
-```xml
+<pre lang="xml">```xml
 	<dict>
 		<key>CFBundleTypeRole</key>
 		<string>Editor</string>
@@ -231,7 +231,7 @@ Info.plist: Replace 'devapp.atoa.me' with your own web domain.
 		<key>CFBundleURLName</key>
 		<string>devapp.atoa.me</string>
 	</dict>
-```
+```</pre>
 
 Runner.entitlements: Add key 'com.apple.developer.associated-domains'and Replace 'devapp.atoa.me' with your own web domain in array tag
 
@@ -286,7 +286,7 @@ Our mobile SDK checks if the bank(using for making payments) app is installed or
 
 - In iOS, you need to add 'LSApplicationQueriesSchemes' key
 
-```xml
+<pre lang="xml">```xml
   <array>
 			<string>pulsesecure</string>
 			<string>launchbmb</string>
@@ -310,7 +310,7 @@ Our mobile SDK checks if the bank(using for making payments) app is installed or
 			<string>bos-commercial</string>
 			<string>chase-international</string>
 	</array>
-```
+```</pre>
 
 #### Resources For deep-linking
 
