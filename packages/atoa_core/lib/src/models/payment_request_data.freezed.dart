@@ -618,7 +618,7 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PaymentRequestDataImpl extends _PaymentRequestData {
-  _$PaymentRequestDataImpl(
+  const _$PaymentRequestDataImpl(
       {required this.merchantBusinessName,
       required this.merchantId,
       required this.amount,
@@ -856,7 +856,7 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
 }
 
 abstract class _PaymentRequestData extends PaymentRequestData {
-  factory _PaymentRequestData(
+  const factory _PaymentRequestData(
           {required final String merchantBusinessName,
           required final String merchantId,
           required final Amount amount,
@@ -891,7 +891,7 @@ abstract class _PaymentRequestData extends PaymentRequestData {
           @JsonKey(includeIfNull: false)
           final SavedBankDetails? lastPaymentBankDetails}) =
       _$PaymentRequestDataImpl;
-  _PaymentRequestData._() : super._();
+  const _PaymentRequestData._() : super._();
 
   factory _PaymentRequestData.fromJson(Map<String, dynamic> json) =
       _$PaymentRequestDataImpl.fromJson;

@@ -13,7 +13,7 @@ part 'payment_request_data.g.dart';
 @freezed
 class PaymentRequestData with _$PaymentRequestData {
   /// {@macro payment_request_data}
-  factory PaymentRequestData({
+  const factory PaymentRequestData({
     required String merchantBusinessName,
     required String merchantId,
     required Amount amount,

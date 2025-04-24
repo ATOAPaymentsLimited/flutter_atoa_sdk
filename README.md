@@ -203,7 +203,7 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 - In Android, add intent-filters tag to handle deeplinks
 
-```
+```xml
   <intent-filter android:autoVerify="true">
     <action android:name="android.intent.action.VIEW" />
     <category android:name="android.intent.category.DEFAULT" />
@@ -216,7 +216,7 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 - In iOS, add dict tag to handle deeplinks in Info.plist and update Runner.entitlements
 
-```
+```xml
 	<dict>
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
@@ -229,7 +229,7 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 	</dict>
 ```
 
-```
+```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
   <plist version="1.0">
@@ -248,7 +248,7 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 - In Android, you need to add '<queries>' tag
 
-```
+```xml
  <queries>
         <package android:name="com.barclays.android.barclaysmobilebanking" />
         <package android:name="com.starlingbank.android" />
@@ -278,7 +278,7 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 - In iOS, you need to add 'LSApplicationQueriesSchemes' key
 
-```
+```xml
   <array>
 			<string>pulsesecure</string>
 			<string>launchbmb</string>
