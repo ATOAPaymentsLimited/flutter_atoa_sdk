@@ -62,9 +62,9 @@ class AtoaSdk {
     }
     Regal.enableTracking = false;
 
-    getIt.get<Atoa>().initialize();
-
     await configureInjection(env.name);
+
+    getIt.get<Atoa>().initialize();
 
     if (!context.mounted) return null;
     getIt.registerSingleton<Connectivity>(Connectivity());
