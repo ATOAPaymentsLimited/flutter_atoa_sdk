@@ -41,6 +41,36 @@ class BankGridItem extends StatelessWidget {
               children: [
                 Stack(
                   children: [
+                    Container(
+                      width: Spacing.xtraLarge.value * 3 +
+                          Spacing.medium.value +
+                          Spacing.tiny.value,
+                      height: Spacing.xtraLarge.value * 3,
+                      padding: Spacing.small.all,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: isSelectedBank
+                              ? IntactColors.light().black
+                              : NeutralColors.light().grey.shade100,
+                          width: isSelectedBank ? 2 : 1.5,
+                        ),
+                        borderRadius: Spacing.medium.brAll,
+                      ),
+                      child: bank.bankIcon != null
+                          ? CachedNetworkImage(
+                              imageUrl: bank.bankIcon!,
+                              height: Spacing.mediumlarge.value * 2 +
+                                  Spacing.tiny.value,
+                              width: Spacing.mediumlarge.value * 2 +
+                                  Spacing.tiny.value,
+                            )
+                          : Icon(
+                              Icons.account_balance_outlined,
+                              size: Spacing.mediumlarge.value * 2 +
+                                  Spacing.tiny.value,
+                              color: IntactColors.light().black,
+                            ),
+                    ),
                     if (!bank.enabled) ...[
                       Positioned(
                         right: Spacing.mini.value,
@@ -59,33 +89,6 @@ class BankGridItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                    Container(
-                      width: Spacing.xtraLarge.value * 3 +
-                          Spacing.medium.value +
-                          Spacing.tiny.value,
-                      height: Spacing.xtraLarge.value * 3,
-                      padding: Spacing.medium.y + Spacing.xtraLarge.x,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: isSelectedBank
-                              ? IntactColors.light().black
-                              : NeutralColors.light().grey.shade100,
-                          width: isSelectedBank ? 2 : 1.5,
-                        ),
-                        borderRadius: Spacing.medium.brAll,
-                      ),
-                      child: bank.bankIcon != null
-                          ? CachedNetworkImage(
-                              imageUrl: bank.bankIcon!,
-                              height: Spacing.xtraLarge.value,
-                              width: Spacing.xtraLarge.value,
-                            )
-                          : Icon(
-                              Icons.account_balance_outlined,
-                              size: Spacing.xtraLarge.value * 2,
-                              color: IntactColors.light().black,
-                            ),
-                    ),
                   ],
                 ),
                 Spacing.small.yBox,
