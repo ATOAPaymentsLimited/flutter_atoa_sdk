@@ -1,28 +1,28 @@
-# 1.0.0
+# 1.0.6
 
-- first release
+- fix: Atoa core revamp
 
-# 1.0.1
+# 1.0.5
 
-- regular
+- fix: Payment APIs
 
-# 1.0.2
+# 1.0.4
 
-- release workflow
+- fix: base url
 
 # 1.0.3
 
 - documentation
 - status getters
 
-# 1.0.4
+# 1.0.2
 
-- fix: base url
+- release workflow
 
-# 1.0.5
+# 1.0.1
 
-- fix: Payment APIs
+- regular
 
-# 1.0.6
+# 1.0.0
 
-- fix: Atoa core revamp
+- first release
