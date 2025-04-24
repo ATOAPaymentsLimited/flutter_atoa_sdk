@@ -201,6 +201,109 @@ There are 3 cases, after redirection to a given redirect URL
 
 Note: If deep links is handled and fails to redirect to app, you can add a 'Return to app' UI in your redirect page, so that you can manually click and redirect to app. If not, user can manually switch to app after payment.
 
+- In Android, add intent-filters tag to handle deeplinks
+
+```
+  <intent-filter android:autoVerify="true">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="https" />
+    <data android:host="devapp.atoa.me" />
+    <data android:path="/sdk-redirect" />
+  </intent-filter>
+```
+
+- In iOS, add dict tag to handle deeplinks in Info.plist and update Runner.entitlements
+
+```
+	<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>atoa</string>
+				</array>
+				<key>CFBundleURLName</key>
+				<string>devapp.atoa.me</string>
+	</dict>
+```
+
+```
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+  <plist version="1.0">
+    <dict>
+      <key>aps-environment</key>
+      <string>development</string>
+      <key>com.apple.developer.associated-domains</key>
+      <array>
+        <string>applinks:devapp.atoa.me</string>
+      </array>
+    </dict>
+  </plist>
+```
+
+### Checking bank app is installed or not
+
+- In Android, you need to add '<queries>' tag
+
+```
+ <queries>
+        <package android:name="com.barclays.android.barclaysmobilebanking" />
+        <package android:name="com.starlingbank.android" />
+        <package android:name="com.grppl.android.shell.CMBlloydsTSB73" />
+        <package android:name="uk.co.hsbc.hsbcukmobilebanking" />
+        <package android:name="com.rbs.mobile.android.natwest" />
+        <package android:name="co.uk.Nationwide.Mobile" />
+        <package android:name="com.grppl.android.shell.halifax" />
+        <package android:name="com.rbs.mobile.android.rbs" />
+        <package android:name="uk.co.santander.santanderUK" />
+        <package android:name="com.revolut.revolut" />
+        <package android:name="co.uk.getmondo" />
+        <package android:name="com.grppl.android.shell.BOS" />
+        <package android:name="ftb.ibank.android" />
+        <package android:name="uk.co.tsb.newmobilebank" />
+        <package android:name="com.firstdirect.bankingonthego" />
+        <package android:name="com.virginmoney.uk.mobile.android" />
+        <package android:name="uk.co.ybs.savings.external" />
+        <package android:name="com.transferwise.android" />
+        <package android:name="com.nearform.ptsb" />
+        <package android:name="com.bankofireland.mobilebanking" />
+        <package android:name="aib.ibank.android" />
+        <package android:name="uk.co.bankofscotland.businessbank" />
+        <package android:name="com.chase.intl" />
+  </queries>
+```
+
+- In iOS, you need to add 'LSApplicationQueriesSchemes' key
+
+```
+  <array>
+			<string>pulsesecure</string>
+			<string>launchbmb</string>
+			<string>lloyds-retail</string>
+			<string>hsbc-pwnwguti5z</string>
+			<string>uk.co.santander.santanderUK</string>
+			<string>fb894703657238109</string>
+			<string>bos-retail</string>
+			<string>halifax-retail</string>
+			<string>monzo</string>
+			<string>starlingbank</string>
+			<string>tsbmobile</string>
+			<string>comfirstdirectbankingonthego</string>
+			<string>launchFT</string>
+			<string>virginmoneyimport</string>
+			<string>ybssavings</string>
+			<string>transferwise</string>
+			<string>tg</string>
+			<string>BOIOneAPP</string>
+			<string>ie.aib.mobilebanking</string>
+			<string>bos-commercial</string>
+			<string>chase-international</string>
+	</array>
+```
+
 #### Resources For deep-linking
 
 - [Flutter Docs](https://docs.flutter.dev/ui/navigation/deep-linking)
