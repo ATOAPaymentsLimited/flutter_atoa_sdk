@@ -14,10 +14,11 @@ class RequestInterceptor extends QueuedInterceptor {
     RequestInterceptorHandler handler,
   ) async {
     final isPaymentStatus = options.path.contains('payments/payment-status');
+    final isFetchBanks = options.path.contains('institutions/customer');
 
     final newOptions = options.copyWith(
       headers: {...options.headers},
-      path: isPaymentStatus
+      path: isPaymentStatus || isFetchBanks
           ? switch (_env) {
               AtoaEnv.sandbox => '${options.path}?env=sandbox',
               AtoaEnv.prod => null,

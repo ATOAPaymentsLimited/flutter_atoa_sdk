@@ -7,11 +7,6 @@ class AtoaSdkConfig {
     // Initialize with environment-specific values if not provided
 
     AtoaConfig.env = environment;
-
-    // Additional environment-specific setup can be done here
-    if (environment.isDevelopment) {
-      // Enable debug logging, etc.
-    }
   }
 
   static set currentEnvironment(AtoaEnvironment environment) {

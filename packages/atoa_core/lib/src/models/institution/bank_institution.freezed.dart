@@ -233,7 +233,7 @@ class _$BankInstitutionsImpl extends _BankInstitutions {
       required this.orderBy,
       this.transactionAmountLimit = 15000,
       this.businessBank = false,
-      this.popularBank = true,
+      this.popularBank = false,
       this.enabled = false})
       : _media = media,
         _features = features,

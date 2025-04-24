@@ -40,7 +40,7 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 It's a full screen sheet which shows all the available bank list then once user selects the bank. They can confirm the bank details and redirected to their bank app or website.
 
 ```dart
-final paymentDetails = AtoaSdk.pay(
+final paymentDetails = await AtoaSdk.pay(
       context,
       paymentId: 'your-payment-request-id',
       showHowPaymentWorks: false,

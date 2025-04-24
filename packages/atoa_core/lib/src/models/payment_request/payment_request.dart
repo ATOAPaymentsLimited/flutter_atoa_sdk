@@ -8,7 +8,7 @@ part 'payment_request.g.dart';
 
 @freezed
 class PaymentRequest with _$PaymentRequest {
-  const factory PaymentRequest({
+  factory PaymentRequest({
     PayerBankDetails? payee,
   }) = _PaymentRequest;
 

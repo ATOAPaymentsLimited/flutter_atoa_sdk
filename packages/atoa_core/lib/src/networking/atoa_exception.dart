@@ -11,10 +11,19 @@ class AtoaException implements Exception {
     this._time,
   ]);
 
+  /// Atoa Exception Type
   final AtoaExceptionType type;
+
+  /// Error message
   final String? _message;
+
+  /// Amount paid, if payment already completed
   final num? _amount;
+
+  /// Payment Id, if payment already completed
   final String? _referenceId;
+
+  /// Time of payment, if payment already completed
   final String? _time;
 
   String get message => _message ?? type.message;

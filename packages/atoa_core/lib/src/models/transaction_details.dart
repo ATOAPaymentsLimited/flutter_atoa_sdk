@@ -33,7 +33,11 @@ class TransactionDetails with _$TransactionDetails {
       includeToJson: false,
     )
     required TransactionStatus status,
+
+    /// Created timestamp
     required String createdAt,
+
+    /// Unique payment id
     required String paymentIdempotencyId,
 
     /// Optional: Unique identifier for the payment, if available.
@@ -86,15 +90,35 @@ class TransactionDetails with _$TransactionDetails {
 
     /// Optional: Unique identifier for the order associated with the transaction.
     String? orderId,
+
+    /// Optional: Payment Status details
     TransactionStatusDetails? statusDetails,
+
+    /// Optional:Receiver Id
     String? merchantId,
+
+    /// Optional: Payment Details with payee details
     PaymentRequest? paymentRequest,
+
+    /// Optional: Receiver name
     String? merchantName,
+
+    /// Optional: Receiver image
     String? avatar,
+
+    /// Optional: The store which the transaction happend
     StoreDetails? storeDetails,
+
+    /// Optional: Institution Id of merchant bank
     String? institutionId,
+
+    /// Optional: Atoa signature Hash
     String? signatureHash,
+
+    /// Optional: Atoa signature
     String? signature,
+
+    /// Optional: Merchant callback params
     Map<String, String>? redirectUrlParams,
   }) = _TransactionDetails;
 
@@ -126,10 +150,13 @@ class TransactionDetails with _$TransactionDetails {
   /// Checks if the transaction is completed.
   bool get isCompleted => status.status == 'COMPLETED';
 
+  /// Checks if the transaction is awaiting authorisation.
   bool get isAwaitingAuth => status.status == 'AWAITING_AUTHORIZATION';
 
+  /// Checks if the transaction is payment not initiated.
   bool get notIntitated => status.status == 'PAYMENT_NOT_INITIATED';
 
+  /// Check if the statis is still in processing
   bool get isSettlementInProcess {
     if (statusDetails?.status is! TransactionStatusCompleted) {
       return false;
@@ -144,13 +171,16 @@ class TransactionDetails with _$TransactionDetails {
     return true;
   }
 
+  /// transaction status
   TransactionStatus get txnPaymentStatus => status;
 
+  /// error message if the status is failed
   String? get errorMessage =>
       errorDescription != null && errorDescription!.trim().isNotEmpty
           ? errorDescription!.trim()
           : null;
 
+  /// payer bank account number
   String? get payerBankAccountNo {
     final accNum = paymentRequest?.payee?.accountIdentifications
         ?.firstWhereOrNull(
