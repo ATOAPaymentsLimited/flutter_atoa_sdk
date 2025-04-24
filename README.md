@@ -292,30 +292,30 @@ Our mobile SDK checks if the bank(using for making payments) app is installed or
 
 - In iOS, you need to add 'LSApplicationQueriesSchemes' key in `Info.plist`
 
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-  <string>pulsesecure</string>
-  <string>launchbmb</string>
-  <string>lloyds-retail</string>
-  <string>hsbc-pwnwguti5z</string>
-  <string>uk.co.santander.santanderUK</string>
-  <string>fb894703657238109</string>
-  <string>bos-retail</string>
-  <string>halifax-retail</string>
-  <string>monzo</string>
-  <string>starlingbank</string>
-  <string>tsbmobile</string>
-  <string>comfirstdirectbankingonthego</string>
-  <string>launchFT</string>
-  <string>virginmoneyimport</string>
-  <string>ybssavings</string>
-  <string>transferwise</string>
-  <string>tg</string>
-  <string>BOIOneAPP</string>
-  <string>ie.aib.mobilebanking</string>
-  <string>bos-commercial</string>
-  <string>chase-international</string>
-  </array>
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+        <string>pulsesecure</string>
+        <string>launchbmb</string>
+        <string>lloyds-retail</string>
+        <string>hsbc-pwnwguti5z</string>
+        <string>uk.co.santander.santanderUK</string>
+        <string>fb894703657238109</string>
+        <string>bos-retail</string>
+        <string>halifax-retail</string>
+        <string>monzo</string>
+        <string>starlingbank</string>
+        <string>tsbmobile</string>
+        <string>comfirstdirectbankingonthego</string>
+        <string>launchFT</string>
+        <string>virginmoneyimport</string>
+        <string>ybssavings</string>
+        <string>transferwise</string>
+        <string>tg</string>
+        <string>BOIOneAPP</string>
+        <string>ie.aib.mobilebanking</string>
+        <string>bos-commercial</string>
+        <string>chase-international</string>
+        </array>
 
 #### Resources For deep-linking
 
