@@ -203,6 +203,8 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 - In Android, add intent-filters tag to handle deeplinks
 
+Replace 'devapp.atoa.me' with your own web domain and '/sdk-redirect' with your path.
+
 ```xml
   <intent-filter android:autoVerify="true">
     <action android:name="android.intent.action.VIEW" />
@@ -216,18 +218,22 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 - In iOS, add dict tag to handle deeplinks in Info.plist and update Runner.entitlements
 
+Info.plist: Replace 'devapp.atoa.me' with your own web domain.
+
 ```xml
 	<dict>
-				<key>CFBundleTypeRole</key>
-				<string>Editor</string>
-				<key>CFBundleURLSchemes</key>
-				<array>
-					<string>atoa</string>
-				</array>
-				<key>CFBundleURLName</key>
-				<string>devapp.atoa.me</string>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>https</string>
+		</array>
+		<key>CFBundleURLName</key>
+		<string>devapp.atoa.me</string>
 	</dict>
 ```
+
+Runner.entitlements: Add key 'com.apple.developer.associated-domains'and Replace 'devapp.atoa.me' with your own web domain in array tag
 
 ```xml
   <?xml version="1.0" encoding="UTF-8"?>
@@ -246,33 +252,35 @@ Note: If deep links is handled and fails to redirect to app, you can add a 'Retu
 
 ### Checking bank app is installed or not
 
+Our mobile SDK checks if the bank(using for making payments) app is installed or not. For that, you need to add '<queries>' tag for android and 'LSApplicationQueriesSchemes' key for iOS
+
 - In Android, you need to add '<queries>' tag
 
 ```xml
  <queries>
-        <package android:name="com.barclays.android.barclaysmobilebanking" />
-        <package android:name="com.starlingbank.android" />
-        <package android:name="com.grppl.android.shell.CMBlloydsTSB73" />
-        <package android:name="uk.co.hsbc.hsbcukmobilebanking" />
-        <package android:name="com.rbs.mobile.android.natwest" />
-        <package android:name="co.uk.Nationwide.Mobile" />
-        <package android:name="com.grppl.android.shell.halifax" />
-        <package android:name="com.rbs.mobile.android.rbs" />
-        <package android:name="uk.co.santander.santanderUK" />
-        <package android:name="com.revolut.revolut" />
-        <package android:name="co.uk.getmondo" />
-        <package android:name="com.grppl.android.shell.BOS" />
-        <package android:name="ftb.ibank.android" />
-        <package android:name="uk.co.tsb.newmobilebank" />
-        <package android:name="com.firstdirect.bankingonthego" />
-        <package android:name="com.virginmoney.uk.mobile.android" />
-        <package android:name="uk.co.ybs.savings.external" />
-        <package android:name="com.transferwise.android" />
-        <package android:name="com.nearform.ptsb" />
-        <package android:name="com.bankofireland.mobilebanking" />
-        <package android:name="aib.ibank.android" />
-        <package android:name="uk.co.bankofscotland.businessbank" />
-        <package android:name="com.chase.intl" />
+    <package android:name="com.barclays.android.barclaysmobilebanking" />
+    <package android:name="com.starlingbank.android" />
+    <package android:name="com.grppl.android.shell.CMBlloydsTSB73" />
+    <package android:name="uk.co.hsbc.hsbcukmobilebanking" />
+    <package android:name="com.rbs.mobile.android.natwest" />
+    <package android:name="co.uk.Nationwide.Mobile" />
+    <package android:name="com.grppl.android.shell.halifax" />
+    <package android:name="com.rbs.mobile.android.rbs" />
+    <package android:name="uk.co.santander.santanderUK" />
+    <package android:name="com.revolut.revolut" />
+    <package android:name="co.uk.getmondo" />
+    <package android:name="com.grppl.android.shell.BOS" />
+    <package android:name="ftb.ibank.android" />
+    <package android:name="uk.co.tsb.newmobilebank" />
+    <package android:name="com.firstdirect.bankingonthego" />
+    <package android:name="com.virginmoney.uk.mobile.android" />
+    <package android:name="uk.co.ybs.savings.external" />
+    <package android:name="com.transferwise.android" />
+    <package android:name="com.nearform.ptsb" />
+    <package android:name="com.bankofireland.mobilebanking" />
+    <package android:name="aib.ibank.android" />
+    <package android:name="uk.co.bankofscotland.businessbank" />
+    <package android:name="com.chase.intl" />
   </queries>
 ```
 
