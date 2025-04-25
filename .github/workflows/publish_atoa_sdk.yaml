@@ -1,4 +1,4 @@
-name: Publish Regal Package
+name: Publish Atoa Sdk Package
 
 concurrency:
   group: $-$
@@ -10,11 +10,10 @@ on:
       - main
 jobs:
   publish:
-
     runs-on: ubuntu-latest
 
     timeout-minutes: 5
-    
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v4
@@ -22,7 +21,7 @@ jobs:
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
 
       - name: 📦 Install Dependencies
