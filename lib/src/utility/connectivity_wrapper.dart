@@ -1,9 +1,9 @@
-import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
-import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
-import 'package:atoa_flutter_sdk/src/di/injection.dart';
-import 'package:atoa_flutter_sdk/src/theme/theme.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_back_button.dart';
+import 'package:atoa_sdk/gen/assets.gen.dart';
+import 'package:atoa_sdk/l10n/l10n.dart';
+import 'package:atoa_sdk/src/controllers/connectivity_controller.dart';
+import 'package:atoa_sdk/src/di/injection.dart';
+import 'package:atoa_sdk/src/theme/theme.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';

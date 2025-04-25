@@ -9,13 +9,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:atoa_core/atoa_core.dart' as _i182;
-import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart'
+import 'package:atoa_sdk/src/controllers/bank_institutions_controller.dart'
     as _i493;
-import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart'
+import 'package:atoa_sdk/src/controllers/connectivity_controller.dart'
     as _i630;
-import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart'
+import 'package:atoa_sdk/src/controllers/payment_status_controller.dart'
     as _i333;
-import 'package:atoa_flutter_sdk/src/di/modules/app_module.dart' as _i80;
+import 'package:atoa_sdk/src/di/modules/app_module.dart' as _i80;
 import 'package:connectivity_plus/connectivity_plus.dart' as _i895;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;

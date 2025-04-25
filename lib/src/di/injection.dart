@@ -1,4 +1,4 @@
-import 'package:atoa_flutter_sdk/src/di/injection.config.dart';
+import 'package:atoa_sdk/src/di/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 

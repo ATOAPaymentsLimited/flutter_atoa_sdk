@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
-import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
+import 'package:atoa_sdk/src/utility/branding_color_utility.dart';
+import 'package:atoa_sdk/src/utility/payment_utility.dart';
 import 'package:collection/collection.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/foundation.dart';

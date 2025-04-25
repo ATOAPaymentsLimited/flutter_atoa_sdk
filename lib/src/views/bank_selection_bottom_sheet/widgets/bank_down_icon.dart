@@ -1,6 +1,6 @@
-import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
-import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
+import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/gen/assets.gen.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 

@@ -1,8 +1,8 @@
-import 'package:atoa_flutter_sdk/constants/constant.dart';
-import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/theme/theme.dart';
-import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_tile.dart';
+import 'package:atoa_sdk/constants/constant.dart';
+import 'package:atoa_sdk/l10n/l10n.dart';
+import 'package:atoa_sdk/src/shared_widgets/sdk_bottom_sheet.dart';
+import 'package:atoa_sdk/src/theme/theme.dart';
+import 'package:atoa_sdk/src/views/confirmation_bottom_sheet/widgets/atoa_term_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 

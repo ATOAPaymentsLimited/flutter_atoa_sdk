@@ -1,7 +1,7 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
-import 'package:atoa_flutter_sdk/l10n/l10n.dart';
-import 'package:atoa_flutter_sdk/src/theme/theme.dart';
+import 'package:atoa_sdk/gen/assets.gen.dart';
+import 'package:atoa_sdk/l10n/l10n.dart';
+import 'package:atoa_sdk/src/theme/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

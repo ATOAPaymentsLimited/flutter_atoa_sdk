@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
+import 'package:atoa_sdk/src/utility/payment_utility.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
