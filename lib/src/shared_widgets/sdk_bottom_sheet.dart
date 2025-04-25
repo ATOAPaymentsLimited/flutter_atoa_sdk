@@ -1,6 +1,6 @@
-import 'package:atoa_flutter_sdk/constants/constant.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/bottom_sheet_actions.dart';
-import 'package:atoa_flutter_sdk/src/theme/theme.dart';
+import 'package:atoa_sdk/constants/constant.dart';
+import 'package:atoa_sdk/src/shared_widgets/bottom_sheet_actions.dart';
+import 'package:atoa_sdk/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 

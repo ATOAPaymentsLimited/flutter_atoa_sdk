@@ -1,9 +1,9 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/gen/assets.gen.dart';
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/theme/theme.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
+import 'package:atoa_sdk/gen/assets.gen.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
+import 'package:atoa_sdk/src/theme/theme.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_bottom_sheet.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_down_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

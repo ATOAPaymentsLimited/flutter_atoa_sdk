@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
-import 'package:atoa_flutter_sdk/src/di/injection.dart';
+import 'package:atoa_sdk/src/controllers/connectivity_controller.dart';
+import 'package:atoa_sdk/src/di/injection.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
