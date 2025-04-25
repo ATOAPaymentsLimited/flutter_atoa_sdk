@@ -12,7 +12,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
-/// {@template atoa_flutter_sdk}
+/// {@template atoa_sdk}
 /// Atoa Flutter SDK
 /// {@endtemplate}
 class AtoaSdk {
