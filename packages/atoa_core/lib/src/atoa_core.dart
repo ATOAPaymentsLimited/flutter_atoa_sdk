@@ -62,12 +62,6 @@ class Atoa {
       endPoint = '$endPoint&search=$searchTerm';
     }
 
-    if (_atoaEnv == AtoaEnv.sandbox) {
-      endPoint = '$endPoint&env=SANDBOX';
-    } else {
-      endPoint = '$endPoint&env=PRODUCTION';
-    }
-
     final res = await _atoaDio!.get<List<dynamic>>(endPoint);
     final data = res.data;
 
@@ -125,12 +119,12 @@ class Atoa {
   }
 
   Future<TransactionDetails> getPaymentStatus(
-    String paymentId,
+    String paymentIdempotencyId,
   ) async {
     _dioCheck();
 
     final res = await _atoaDio!.get<Map<String, dynamic>>(
-      Endpoints.getPaymentStatus(paymentId),
+      Endpoints.getPaymentStatus(paymentIdempotencyId),
     );
 
     final data = res.data;

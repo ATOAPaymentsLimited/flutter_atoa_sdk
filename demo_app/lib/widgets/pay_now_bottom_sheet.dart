@@ -46,8 +46,11 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
-      onUserClose:
-          (paymentRequestId, redirectUrlParams, signature, signatureHash) {
+      onUserClose: (
+          {required String paymentRequestId,
+          Map<String, String>? redirectUrlParams,
+          String? signature,
+          String? signatureHash}) {
         // handle payment when user close the payment verification bottom sheet
 
         // ScaffoldMessenger.of(context).showSnackBar(
@@ -59,8 +62,11 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
         //   ),
         // );
       },
-      onPaymentStatusChange:
-          (status, redirectUrlParams, signature, signatureHash) {
+      onPaymentStatusChange: (
+          {required String status,
+          Map<String, String>? redirectUrlParams,
+          String? signature,
+          String? signatureHash}) {
         // handle payment status
         //  print(
         //  'Payment Status Changed to $status $redirectUrlParams $signature, $signatureHash',
@@ -232,7 +238,6 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
   }
 
   Future<String> _getPaymentRequestId({required double amount}) async {
-    // change it to dev url while testing
     final uri = Uri.parse(
       'https://api.atoa.me/api/payments/process-payment',
     );

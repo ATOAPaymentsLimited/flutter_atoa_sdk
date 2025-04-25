@@ -24,10 +24,10 @@ class VerifyingPaymentView extends StatelessWidget {
   Widget build(BuildContext context) => PopScope(
         onPopInvokedWithResult: (_, __) {
           PaymentUtility.onUserClose?.call(
-            PaymentUtility.paymentId,
-            transactionDetails?.redirectUrlParams,
-            transactionDetails?.signature,
-            transactionDetails?.signatureHash,
+            paymentRequestId: PaymentUtility.paymentId,
+            redirectUrlParams: transactionDetails?.redirectUrlParams,
+            signature: transactionDetails?.signature,
+            signatureHash: transactionDetails?.signatureHash,
           );
           context.read<PaymentStatusController>().stop();
         },
