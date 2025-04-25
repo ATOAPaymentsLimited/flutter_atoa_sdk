@@ -1,3 +1,7 @@
+# 2.0.0
+
+- feat: Atoa SDK
+
 # 1.0.7
 
 - feat: Demo App and Atoa SDK
