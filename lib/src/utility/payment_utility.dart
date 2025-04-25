@@ -7,11 +7,19 @@ class PaymentUtility {
   /// default is 1 seconds
   static Duration interval = const Duration(seconds: 1);
 
-  static void Function(String, Map<String, String>?, String?, String?)?
-      onUserClose;
+  static void Function({
+    required String paymentRequestId,
+    Map<String, String>? redirectUrlParams,
+    String? signature,
+    String? signatureHash,
+  })? onUserClose;
 
-  static void Function(String, Map<String, String>?, String?, String?)?
-      onPaymentStatusChange;
+  static void Function({
+    required String status,
+    Map<String, String>? redirectUrlParams,
+    String? signature,
+    String? signatureHash,
+  })? onPaymentStatusChange;
 
   static void Function(AtoaException)? onError;
 

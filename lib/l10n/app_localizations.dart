@@ -5400,8 +5400,14 @@ abstract class AppLocalizations {
   /// No description provided for @byContinuingYouAccept.
   ///
   /// In en, this message translates to:
-  /// **'By continuing you accept Yapily\'s '**
+  /// **'By continuing, you trust this merchant and accept '**
   String get byContinuingYouAccept;
+
+  /// No description provided for @atoasTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Atoa’s terms'**
+  String get atoasTerms;
 
   /// No description provided for @atoas.
   ///

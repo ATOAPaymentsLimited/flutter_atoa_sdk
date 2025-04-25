@@ -22,7 +22,7 @@ class BankInstitution
     required num orderBy,
     @Default(15000) double transactionAmountLimit,
     @Default(false) bool businessBank,
-    @Default(true) bool popularBank,
+    @Default(false) bool popularBank,
     @Default(false) bool enabled,
   }) = _BankInstitutions;
 
