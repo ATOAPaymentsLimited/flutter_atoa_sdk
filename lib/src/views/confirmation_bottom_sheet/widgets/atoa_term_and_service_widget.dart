@@ -21,54 +21,7 @@ class AtoaTermAndServiceWidget extends StatelessWidget {
           ),
           children: [
             CustomTextSpan.semantics(
-              text: context.l10n.terms,
-              style: sdkFigTreeTextTheme.bodySmall
-                  ?.textColor(
-                    NeutralColors.light().grey.shade500,
-                  )
-                  .w700,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () => launchUrl(
-                      Uri.parse(yapilyUserTermsUrl),
-                    ),
-            ),
-            const CustomTextSpan.semantics(text: ' '),
-            CustomTextSpan.semantics(
-              text: context.l10n.and,
-              style: sdkFigTreeTextTheme.bodySmall?.textColor(
-                NeutralColors.light().grey.shade500,
-              ),
-            ),
-            const CustomTextSpan.semantics(text: ' '),
-            CustomTextSpan.semantics(
-              text: context.l10n.privacyPolicy,
-              style: sdkFigTreeTextTheme.bodySmall
-                  ?.textColor(
-                    NeutralColors.light().grey.shade500,
-                  )
-                  .w700,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () => launchUrl(
-                      Uri.parse(yapilyPrivacyPolicyUrl),
-                    ),
-            ),
-            const CustomTextSpan.semantics(text: ' '),
-            CustomTextSpan.semantics(
-              text: context.l10n.and,
-              style: sdkFigTreeTextTheme.bodySmall?.textColor(
-                NeutralColors.light().grey.shade500,
-              ),
-            ),
-            const CustomTextSpan.semantics(text: ' '),
-            CustomTextSpan.semantics(
-              text: context.l10n.atoas,
-              style: sdkFigTreeTextTheme.bodySmall?.textColor(
-                NeutralColors.light().grey.shade500,
-              ),
-            ),
-            const CustomTextSpan.semantics(text: ' '),
-            CustomTextSpan.semantics(
-              text: context.l10n.termsOfService,
+              text: context.l10n.atoasTerms,
               style: sdkFigTreeTextTheme.bodySmall
                   ?.textColor(
                     NeutralColors.light().grey.shade500,
@@ -78,13 +31,6 @@ class AtoaTermAndServiceWidget extends StatelessWidget {
                 ..onTap = () => launchUrl(
                       Uri.parse(atoaTermsOfService),
                     ),
-            ),
-            const CustomTextSpan.semantics(text: '.'),
-            CustomTextSpan.semantics(
-              text: context.l10n.atoaIsPowered,
-              style: sdkFigTreeTextTheme.bodySmall?.textColor(
-                NeutralColors.light().grey.shade500,
-              ),
             ),
           ],
         ),

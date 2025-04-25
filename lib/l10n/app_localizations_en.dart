@@ -3046,7 +3046,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get toTryAgain => ' to try again';
 
   @override
-  String get byContinuingYouAccept => 'By continuing you accept Yapily\'s ';
+  String get byContinuingYouAccept => 'By continuing, you trust this merchant and accept ';
+
+  @override
+  String get atoasTerms => 'Atoa’s terms';
 
   @override
   String get atoas => 'Atoa’s';
