@@ -40,7 +40,7 @@ import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
 It's a full screen sheet which shows all the available bank list then once user selects the bank. They can confirm the bank details and redirected to their bank app or website.
 
 ```dart
-final paymentDetails = AtoaSdk.pay(
+final paymentDetails = await AtoaSdk.pay(
       context,
       paymentId: 'your-payment-request-id',
       showHowPaymentWorks: false,
@@ -54,7 +54,11 @@ final paymentDetails = AtoaSdk.pay(
       env: AtoaEnv.prod,
       // or AtoaEnv.sandbox
 
-      onUserClose: (paymentRequestId,redirectUrlParams, signature, signatureHash) {
+      onUserClose: (
+          {required String paymentRequestId,
+          Map<String, String>? redirectUrlParams,
+          String? signature,
+          String? signatureHash}) {
         // handle payment when user close the payment verification bottom sheet
 
          ScaffoldMessenger.of(context).showSnackBar(
@@ -66,7 +70,11 @@ final paymentDetails = AtoaSdk.pay(
           ),
         );
       },
-      onPaymentStatusChange: (status, redirectUrlParams, signature, signatureHash) {
+      onPaymentStatusChange: (
+          {required String status,
+          Map<String, String>? redirectUrlParams,
+          String? signature,
+          String? signatureHash}) {
         // handle payment status
          print('Payment Status Changed to $status');
       },
@@ -200,6 +208,114 @@ There are 3 cases, after redirection to a given redirect URL
 3. If deep links is handled and fails to redirect to app, user will redirect to web browser to given redirect url.
 
 Note: If deep links is handled and fails to redirect to app, you can add a 'Return to app' UI in your redirect page, so that you can manually click and redirect to app. If not, user can manually switch to app after payment.
+
+- In Android, add intent-filters tag to handle deeplinks in `AndroidManifest.xml`
+
+Replace 'devapp.atoa.me' with your own web domain and '/sdk-redirect' with your path.
+
+```xml
+  <intent-filter android:autoVerify="true">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="https" />
+    <data android:host="devapp.atoa.me" />
+    <data android:path="/sdk-redirect" />
+  </intent-filter>
+```
+
+- In iOS, add dict tag to handle deeplinks in `Info.plist` and update `Runner.entitlements`
+
+Info.plist: Replace 'devapp.atoa.me' with your own web domain.
+
+    <dict>
+    	<key>CFBundleTypeRole</key>
+    	<string>Editor</string>
+    	<key>CFBundleURLSchemes</key>
+    	<array>
+    		<string>https</string>
+    	</array>
+    	<key>CFBundleURLName</key>
+    	<string>devapp.atoa.me</string>
+    </dict>
+
+Runner.entitlements: Add key 'com.apple.developer.associated-domains'and Replace 'devapp.atoa.me' with your own web domain in array tag
+
+```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+  <plist version="1.0">
+    <dict>
+      <key>aps-environment</key>
+      <string>development</string>
+      <key>com.apple.developer.associated-domains</key>
+      <array>
+        <string>applinks:devapp.atoa.me</string>
+      </array>
+    </dict>
+  </plist>
+```
+
+### Checking bank app is installed or not
+
+Our mobile SDK checks if the bank(using for making payments) app is installed or not. For that, you need to add 'queries' tag for android and 'LSApplicationQueriesSchemes' key for iOS
+
+- In Android, you need to add 'queries' tag in `AndroidManifest.xml`
+
+```xml
+ <queries>
+    <package android:name="com.barclays.android.barclaysmobilebanking" />
+    <package android:name="com.starlingbank.android" />
+    <package android:name="com.grppl.android.shell.CMBlloydsTSB73" />
+    <package android:name="uk.co.hsbc.hsbcukmobilebanking" />
+    <package android:name="com.rbs.mobile.android.natwest" />
+    <package android:name="co.uk.Nationwide.Mobile" />
+    <package android:name="com.grppl.android.shell.halifax" />
+    <package android:name="com.rbs.mobile.android.rbs" />
+    <package android:name="uk.co.santander.santanderUK" />
+    <package android:name="com.revolut.revolut" />
+    <package android:name="co.uk.getmondo" />
+    <package android:name="com.grppl.android.shell.BOS" />
+    <package android:name="ftb.ibank.android" />
+    <package android:name="uk.co.tsb.newmobilebank" />
+    <package android:name="com.firstdirect.bankingonthego" />
+    <package android:name="com.virginmoney.uk.mobile.android" />
+    <package android:name="uk.co.ybs.savings.external" />
+    <package android:name="com.transferwise.android" />
+    <package android:name="com.nearform.ptsb" />
+    <package android:name="com.bankofireland.mobilebanking" />
+    <package android:name="aib.ibank.android" />
+    <package android:name="uk.co.bankofscotland.businessbank" />
+    <package android:name="com.chase.intl" />
+  </queries>
+```
+
+- In iOS, you need to add 'LSApplicationQueriesSchemes' key in `Info.plist`
+
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+        <string>pulsesecure</string>
+        <string>launchbmb</string>
+        <string>lloyds-retail</string>
+        <string>hsbc-pwnwguti5z</string>
+        <string>uk.co.santander.santanderUK</string>
+        <string>fb894703657238109</string>
+        <string>bos-retail</string>
+        <string>halifax-retail</string>
+        <string>monzo</string>
+        <string>starlingbank</string>
+        <string>tsbmobile</string>
+        <string>comfirstdirectbankingonthego</string>
+        <string>launchFT</string>
+        <string>virginmoneyimport</string>
+        <string>ybssavings</string>
+        <string>transferwise</string>
+        <string>tg</string>
+        <string>BOIOneAPP</string>
+        <string>ie.aib.mobilebanking</string>
+        <string>bos-commercial</string>
+        <string>chase-international</string>
+        </array>
 
 #### Resources For deep-linking
 

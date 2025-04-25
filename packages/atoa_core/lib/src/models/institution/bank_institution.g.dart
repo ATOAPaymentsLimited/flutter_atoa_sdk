@@ -21,7 +21,7 @@ _$BankInstitutionsImpl _$$BankInstitutionsImplFromJson(
       transactionAmountLimit:
           (json['transactionAmountLimit'] as num?)?.toDouble() ?? 15000,
       businessBank: json['businessBank'] as bool? ?? false,
-      popularBank: json['popularBank'] as bool? ?? true,
+      popularBank: json['popularBank'] as bool? ?? false,
       enabled: json['enabled'] as bool? ?? false,
     );
 

@@ -33,7 +33,11 @@ mixin _$TransactionDetails {
   /// Current status of the transaction.
   @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
   TransactionStatus get status => throw _privateConstructorUsedError;
+
+  /// Created timestamp
   String get createdAt => throw _privateConstructorUsedError;
+
+  /// Unique payment id
   String get paymentIdempotencyId => throw _privateConstructorUsedError;
 
   /// Optional: Unique identifier for the payment, if available.
@@ -89,16 +93,36 @@ mixin _$TransactionDetails {
 
   /// Optional: Unique identifier for the order associated with the transaction.
   String? get orderId => throw _privateConstructorUsedError;
+
+  /// Optional: Payment Status details
   TransactionStatusDetails? get statusDetails =>
       throw _privateConstructorUsedError;
+
+  /// Optional:Receiver Id
   String? get merchantId => throw _privateConstructorUsedError;
+
+  /// Optional: Payment Details with payee details
   PaymentRequest? get paymentRequest => throw _privateConstructorUsedError;
+
+  /// Optional: Receiver name
   String? get merchantName => throw _privateConstructorUsedError;
+
+  /// Optional: Receiver image
   String? get avatar => throw _privateConstructorUsedError;
+
+  /// Optional: The store which the transaction happend
   StoreDetails? get storeDetails => throw _privateConstructorUsedError;
+
+  /// Optional: Institution Id of merchant bank
   String? get institutionId => throw _privateConstructorUsedError;
+
+  /// Optional: Atoa signature Hash
   String? get signatureHash => throw _privateConstructorUsedError;
+
+  /// Optional: Atoa signature
   String? get signature => throw _privateConstructorUsedError;
+
+  /// Optional: Merchant callback params
   Map<String, String>? get redirectUrlParams =>
       throw _privateConstructorUsedError;
 
@@ -698,8 +722,12 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   @override
   @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
   final TransactionStatus status;
+
+  /// Created timestamp
   @override
   final String createdAt;
+
+  /// Unique payment id
   @override
   final String paymentIdempotencyId;
 
@@ -774,25 +802,47 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   @override
   final String? orderId;
+
+  /// Optional: Payment Status details
   @override
   final TransactionStatusDetails? statusDetails;
+
+  /// Optional:Receiver Id
   @override
   final String? merchantId;
+
+  /// Optional: Payment Details with payee details
   @override
   final PaymentRequest? paymentRequest;
+
+  /// Optional: Receiver name
   @override
   final String? merchantName;
+
+  /// Optional: Receiver image
   @override
   final String? avatar;
+
+  /// Optional: The store which the transaction happend
   @override
   final StoreDetails? storeDetails;
+
+  /// Optional: Institution Id of merchant bank
   @override
   final String? institutionId;
+
+  /// Optional: Atoa signature Hash
   @override
   final String? signatureHash;
+
+  /// Optional: Atoa signature
   @override
   final String? signature;
+
+  /// Optional: Merchant callback params
   final Map<String, String>? _redirectUrlParams;
+
+  /// Optional: Merchant callback params
   @override
   Map<String, String>? get redirectUrlParams {
     final value = _redirectUrlParams;
@@ -989,8 +1039,12 @@ abstract class _TransactionDetails extends TransactionDetails {
   @override
   @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
   TransactionStatus get status;
+
+  /// Created timestamp
   @override
   String get createdAt;
+
+  /// Unique payment id
   @override
   String get paymentIdempotencyId;
 
@@ -1064,24 +1118,44 @@ abstract class _TransactionDetails extends TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   @override
   String? get orderId;
+
+  /// Optional: Payment Status details
   @override
   TransactionStatusDetails? get statusDetails;
+
+  /// Optional:Receiver Id
   @override
   String? get merchantId;
+
+  /// Optional: Payment Details with payee details
   @override
   PaymentRequest? get paymentRequest;
+
+  /// Optional: Receiver name
   @override
   String? get merchantName;
+
+  /// Optional: Receiver image
   @override
   String? get avatar;
+
+  /// Optional: The store which the transaction happend
   @override
   StoreDetails? get storeDetails;
+
+  /// Optional: Institution Id of merchant bank
   @override
   String? get institutionId;
+
+  /// Optional: Atoa signature Hash
   @override
   String? get signatureHash;
+
+  /// Optional: Atoa signature
   @override
   String? get signature;
+
+  /// Optional: Merchant callback params
   @override
   Map<String, String>? get redirectUrlParams;
 

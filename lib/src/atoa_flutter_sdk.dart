@@ -23,9 +23,18 @@ class AtoaSdk {
     required String paymentId,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
-    void Function(String, Map<String, String>?, String?, String?)? onUserClose,
-    void Function(String, Map<String, String>?, String?, String?)?
-        onPaymentStatusChange,
+    void Function({
+      required String paymentRequestId,
+      Map<String, String>? redirectUrlParams,
+      String? signature,
+      String? signatureHash,
+    })? onUserClose,
+    void Function({
+      required String status,
+      Map<String, String>? redirectUrlParams,
+      String? signature,
+      String? signatureHash,
+    })? onPaymentStatusChange,
     void Function(AtoaException)? onError,
     CustomerDetails? customerDetails,
   }) async {
@@ -44,9 +53,7 @@ class AtoaSdk {
       PaymentUtility.customerDetails = customerDetails;
     }
 
-    await AtoaSdkConfig.initialize(
-      environment: AtoaEnvironment.production, // or .staging or .production
-    );
+    await AtoaSdkConfig.initialize();
 
     if (onError != null) {
       PaymentUtility.onError = onError;
@@ -54,26 +61,8 @@ class AtoaSdk {
     Regal.enableTracking = false;
 
     await configureInjection(env.name);
-    try {
-      getIt.get<Atoa>().initialize();
-    } catch (_) {
-      /// Show a error dialog with message
-      /// Atoa SDK failed to initialize
-      /// Please try again later
-      /// If the problem persists, please contact support
-      /// at support@atoa.me
 
-      unawaited(
-        showDialog<void>(
-          // ignore: use_build_context_synchronously
-          context: context,
-          builder: (context) => const AlertDialog(
-            title: Text('Atoa SDK failed to initialize'),
-            content: Text('Please try again later'),
-          ),
-        ),
-      );
-    }
+    getIt.get<Atoa>().initialize();
 
     if (!context.mounted) return null;
     getIt.registerSingleton<Connectivity>(Connectivity());
