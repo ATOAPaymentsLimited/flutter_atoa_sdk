@@ -6,6 +6,8 @@ import 'package:regal/regal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MainApp());
 }
 
@@ -27,7 +29,6 @@ class _MainAppState extends State<MainApp> {
 
   MaterialApp getApp(BuildContext context) {
     return MaterialApp(
-      theme: kThemeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: Builder(
@@ -112,9 +113,10 @@ class ActionButton extends StatelessWidget {
   final AtoaEnv env;
 
   void _showSheet(BuildContext context) {
-    AtoaSdk.show(
+    AtoaSdk.pay(
       context,
       paymentId: controller.text.trim(),
+      showHowPaymentWorks: false,
       env: env,
     );
   }
@@ -124,15 +126,26 @@ class ActionButton extends StatelessWidget {
         valueListenable: controller,
         child: Text(
           'Initiate Payment',
-          style: context.montserrat.headlineSmall.copyWith(
-            color: RegalColors.snowWhite,
-          ),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: IntactColors.light().white,
+              ),
         ),
         builder: (context, value, child) {
-          return ElevatedButton(
-            onPressed:
-                value.text.trim().isEmpty ? null : () => _showSheet(context),
-            child: child!,
+          return Padding(
+            padding: Spacing.huge.bottom,
+            child: ElevatedButton(
+              onPressed:
+                  value.text.trim().isEmpty ? null : () => _showSheet(context),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(Spacing.medium.value),
+                ),
+                padding: Spacing.medium.all + Spacing.medium.x,
+              ),
+              child: child!,
+            ),
           );
         },
       );

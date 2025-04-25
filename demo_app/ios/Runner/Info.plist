@@ -34,6 +34,32 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>https</string>
+			<string>http</string>
+			<string>pulsesecure</string>
+			<string>launchbmb</string>
+			<string>lloyds-retail</string>
+			<string>hsbc-pwnwguti5z</string>
+			<string>uk.co.santander.santanderUK</string>
+			<string>fb894703657238109</string>
+			<string>bos-retail</string>
+			<string>halifax-retail</string>
+			<string>monzo</string>
+			<string>starlingbank</string>
+			<string>tsbmobile</string>
+			<string>comfirstdirectbankingonthego</string>
+			<string>launchFT</string>
+			<string>virginmoneyimport</string>
+			<string>ybssavings</string>
+			<string>transferwise</string>
+			<string>tg</string>
+			<string>BOIOneAPP</string>
+			<string>ie.aib.mobilebanking</string>
+			<string>bos-commercial</string>
+			<string>chase-international</string>
+		</array>
 		<key>UISupportedInterfaceOrientations~ipad</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
@@ -45,5 +71,28 @@
 		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>https</string>
+				</array>
+				<key>CFBundleURLName</key>
+				<string>devapp.atoa.me</string>
+			</dict>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>atoa</string>
+				</array>
+				<key>CFBundleURLName</key>
+				<string>devapp.atoa.me</string>
+			</dict>
+		</array>
 	</dict>
 </plist>

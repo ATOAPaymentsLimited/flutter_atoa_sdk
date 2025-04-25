@@ -20,6 +20,7 @@ class PaymentAuthResponse with _$PaymentAuthResponse {
     String? deepLinkAndroidAuthorisationUrl,
     String? deepLinkAuthorisationUrlIOS,
     String? appStoreLink,
+    String? playStoreLink,
     String? androidPackageName,
     String? iOSPackageName,
   }) = _PaymentAuthResponse;

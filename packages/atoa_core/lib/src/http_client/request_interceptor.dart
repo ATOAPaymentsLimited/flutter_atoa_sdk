@@ -13,18 +13,23 @@ class RequestInterceptor extends QueuedInterceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final isPaymentStatus = options.path.contains('payments/payment-status');
-
     final newOptions = options.copyWith(
       headers: {...options.headers},
-      path: isPaymentStatus
-          ? switch (_env) {
-              AtoaEnv.sandbox => '${options.path}?env=SANDBOX',
-              AtoaEnv.prod => null,
-            }
-          : null,
+      path: _getPath(options),
     );
 
     return handler.next(newOptions);
+  }
+
+  String? _getPath(RequestOptions options) {
+    final isPaymentStatus = options.path.contains('payments/payment-status');
+    final isFetchBanks = options.path.contains('institutions/customer');
+
+    if (isPaymentStatus && _env == AtoaEnv.sandbox) {
+      return '${options.path}?env=sandbox';
+    } else if (isFetchBanks && _env == AtoaEnv.sandbox) {
+      return '${options.path}&env=sandbox';
+    }
+    return null;
   }
 }

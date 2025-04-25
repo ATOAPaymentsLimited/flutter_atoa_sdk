@@ -17,9 +17,12 @@ _$BankInstitutionsImpl _$$BankInstitutionsImplFromJson(
           .toList(),
       features:
           (json['features'] as List<dynamic>).map((e) => e as String).toList(),
+      orderBy: json['orderBy'] as num,
       transactionAmountLimit:
           (json['transactionAmountLimit'] as num?)?.toDouble() ?? 15000,
       businessBank: json['businessBank'] as bool? ?? false,
+      popularBank: json['popularBank'] as bool? ?? false,
+      enabled: json['enabled'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$BankInstitutionsImplToJson(
@@ -30,6 +33,9 @@ Map<String, dynamic> _$$BankInstitutionsImplToJson(
       'fullName': instance.fullName,
       'media': instance.media,
       'features': instance.features,
+      'orderBy': instance.orderBy,
       'transactionAmountLimit': instance.transactionAmountLimit,
       'businessBank': instance.businessBank,
+      'popularBank': instance.popularBank,
+      'enabled': instance.enabled,
     };

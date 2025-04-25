@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:atoa_core/src/models/bank_account_identifications/bank_account_identifications.dart';
+import 'package:atoa_core/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payer_bank_details.freezed.dart';

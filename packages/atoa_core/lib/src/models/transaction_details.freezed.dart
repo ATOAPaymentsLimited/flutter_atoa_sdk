@@ -20,9 +20,6 @@ TransactionDetails _$TransactionDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TransactionDetails {
-  /// Unique identifier for the payment request.
-  String get paymentIdempotencyId => throw _privateConstructorUsedError;
-
   /// Unique identifier for the application user initiating the transaction.
   String get applicationUserId => throw _privateConstructorUsedError;
 
@@ -34,10 +31,14 @@ mixin _$TransactionDetails {
   String get currency => throw _privateConstructorUsedError;
 
   /// Current status of the transaction.
-  String get status => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+  TransactionStatus get status => throw _privateConstructorUsedError;
 
-  /// The date and time when the transaction was created.
+  /// Created timestamp
   String get createdAt => throw _privateConstructorUsedError;
+
+  /// Unique payment id
+  String get paymentIdempotencyId => throw _privateConstructorUsedError;
 
   /// Optional: Unique identifier for the payment, if available.
   String? get paymentId => throw _privateConstructorUsedError;
@@ -93,6 +94,38 @@ mixin _$TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   String? get orderId => throw _privateConstructorUsedError;
 
+  /// Optional: Payment Status details
+  TransactionStatusDetails? get statusDetails =>
+      throw _privateConstructorUsedError;
+
+  /// Optional:Receiver Id
+  String? get merchantId => throw _privateConstructorUsedError;
+
+  /// Optional: Payment Details with payee details
+  PaymentRequest? get paymentRequest => throw _privateConstructorUsedError;
+
+  /// Optional: Receiver name
+  String? get merchantName => throw _privateConstructorUsedError;
+
+  /// Optional: Receiver image
+  String? get avatar => throw _privateConstructorUsedError;
+
+  /// Optional: The store which the transaction happend
+  StoreDetails? get storeDetails => throw _privateConstructorUsedError;
+
+  /// Optional: Institution Id of merchant bank
+  String? get institutionId => throw _privateConstructorUsedError;
+
+  /// Optional: Atoa signature Hash
+  String? get signatureHash => throw _privateConstructorUsedError;
+
+  /// Optional: Atoa signature
+  String? get signature => throw _privateConstructorUsedError;
+
+  /// Optional: Merchant callback params
+  Map<String, String>? get redirectUrlParams =>
+      throw _privateConstructorUsedError;
+
   /// Serializes this TransactionDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
@@ -110,12 +143,13 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       _$TransactionDetailsCopyWithImpl<$Res, TransactionDetails>;
   @useResult
   $Res call(
-      {String paymentIdempotencyId,
-      String applicationUserId,
+      {String applicationUserId,
       @JsonKey(fromJson: _parseAmount) double paidAmount,
       String currency,
-      String status,
+      @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+      TransactionStatus status,
       String createdAt,
+      String paymentIdempotencyId,
       String? paymentId,
       String? updatedAt,
       String? bankName,
@@ -132,7 +166,22 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       String? paymentLinkId,
       String? employeeId,
       String? pendingTrasactionError,
-      String? orderId});
+      String? orderId,
+      TransactionStatusDetails? statusDetails,
+      String? merchantId,
+      PaymentRequest? paymentRequest,
+      String? merchantName,
+      String? avatar,
+      StoreDetails? storeDetails,
+      String? institutionId,
+      String? signatureHash,
+      String? signature,
+      Map<String, String>? redirectUrlParams});
+
+  $TransactionStatusCopyWith<$Res> get status;
+  $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
+  $PaymentRequestCopyWith<$Res>? get paymentRequest;
+  $StoreDetailsCopyWith<$Res>? get storeDetails;
 }
 
 /// @nodoc
@@ -150,12 +199,12 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? paymentIdempotencyId = null,
     Object? applicationUserId = null,
     Object? paidAmount = null,
     Object? currency = null,
     Object? status = null,
     Object? createdAt = null,
+    Object? paymentIdempotencyId = null,
     Object? paymentId = freezed,
     Object? updatedAt = freezed,
     Object? bankName = freezed,
@@ -173,12 +222,18 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
     Object? employeeId = freezed,
     Object? pendingTrasactionError = freezed,
     Object? orderId = freezed,
+    Object? statusDetails = freezed,
+    Object? merchantId = freezed,
+    Object? paymentRequest = freezed,
+    Object? merchantName = freezed,
+    Object? avatar = freezed,
+    Object? storeDetails = freezed,
+    Object? institutionId = freezed,
+    Object? signatureHash = freezed,
+    Object? signature = freezed,
+    Object? redirectUrlParams = freezed,
   }) {
     return _then(_value.copyWith(
-      paymentIdempotencyId: null == paymentIdempotencyId
-          ? _value.paymentIdempotencyId
-          : paymentIdempotencyId // ignore: cast_nullable_to_non_nullable
-              as String,
       applicationUserId: null == applicationUserId
           ? _value.applicationUserId
           : applicationUserId // ignore: cast_nullable_to_non_nullable
@@ -194,10 +249,14 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TransactionStatus,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymentIdempotencyId: null == paymentIdempotencyId
+          ? _value.paymentIdempotencyId
+          : paymentIdempotencyId // ignore: cast_nullable_to_non_nullable
               as String,
       paymentId: freezed == paymentId
           ? _value.paymentId
@@ -267,7 +326,100 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String?,
+      statusDetails: freezed == statusDetails
+          ? _value.statusDetails
+          : statusDetails // ignore: cast_nullable_to_non_nullable
+              as TransactionStatusDetails?,
+      merchantId: freezed == merchantId
+          ? _value.merchantId
+          : merchantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentRequest: freezed == paymentRequest
+          ? _value.paymentRequest
+          : paymentRequest // ignore: cast_nullable_to_non_nullable
+              as PaymentRequest?,
+      merchantName: freezed == merchantName
+          ? _value.merchantName
+          : merchantName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      storeDetails: freezed == storeDetails
+          ? _value.storeDetails
+          : storeDetails // ignore: cast_nullable_to_non_nullable
+              as StoreDetails?,
+      institutionId: freezed == institutionId
+          ? _value.institutionId
+          : institutionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signatureHash: freezed == signatureHash
+          ? _value.signatureHash
+          : signatureHash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signature: freezed == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirectUrlParams: freezed == redirectUrlParams
+          ? _value.redirectUrlParams
+          : redirectUrlParams // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ) as $Val);
+  }
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionStatusCopyWith<$Res> get status {
+    return $TransactionStatusCopyWith<$Res>(_value.status, (value) {
+      return _then(_value.copyWith(status: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionStatusDetailsCopyWith<$Res>? get statusDetails {
+    if (_value.statusDetails == null) {
+      return null;
+    }
+
+    return $TransactionStatusDetailsCopyWith<$Res>(_value.statusDetails!,
+        (value) {
+      return _then(_value.copyWith(statusDetails: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaymentRequestCopyWith<$Res>? get paymentRequest {
+    if (_value.paymentRequest == null) {
+      return null;
+    }
+
+    return $PaymentRequestCopyWith<$Res>(_value.paymentRequest!, (value) {
+      return _then(_value.copyWith(paymentRequest: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TransactionDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StoreDetailsCopyWith<$Res>? get storeDetails {
+    if (_value.storeDetails == null) {
+      return null;
+    }
+
+    return $StoreDetailsCopyWith<$Res>(_value.storeDetails!, (value) {
+      return _then(_value.copyWith(storeDetails: value) as $Val);
+    });
   }
 }
 
@@ -280,12 +432,13 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String paymentIdempotencyId,
-      String applicationUserId,
+      {String applicationUserId,
       @JsonKey(fromJson: _parseAmount) double paidAmount,
       String currency,
-      String status,
+      @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+      TransactionStatus status,
       String createdAt,
+      String paymentIdempotencyId,
       String? paymentId,
       String? updatedAt,
       String? bankName,
@@ -302,7 +455,26 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
       String? paymentLinkId,
       String? employeeId,
       String? pendingTrasactionError,
-      String? orderId});
+      String? orderId,
+      TransactionStatusDetails? statusDetails,
+      String? merchantId,
+      PaymentRequest? paymentRequest,
+      String? merchantName,
+      String? avatar,
+      StoreDetails? storeDetails,
+      String? institutionId,
+      String? signatureHash,
+      String? signature,
+      Map<String, String>? redirectUrlParams});
+
+  @override
+  $TransactionStatusCopyWith<$Res> get status;
+  @override
+  $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
+  @override
+  $PaymentRequestCopyWith<$Res>? get paymentRequest;
+  @override
+  $StoreDetailsCopyWith<$Res>? get storeDetails;
 }
 
 /// @nodoc
@@ -318,12 +490,12 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? paymentIdempotencyId = null,
     Object? applicationUserId = null,
     Object? paidAmount = null,
     Object? currency = null,
     Object? status = null,
     Object? createdAt = null,
+    Object? paymentIdempotencyId = null,
     Object? paymentId = freezed,
     Object? updatedAt = freezed,
     Object? bankName = freezed,
@@ -341,12 +513,18 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
     Object? employeeId = freezed,
     Object? pendingTrasactionError = freezed,
     Object? orderId = freezed,
+    Object? statusDetails = freezed,
+    Object? merchantId = freezed,
+    Object? paymentRequest = freezed,
+    Object? merchantName = freezed,
+    Object? avatar = freezed,
+    Object? storeDetails = freezed,
+    Object? institutionId = freezed,
+    Object? signatureHash = freezed,
+    Object? signature = freezed,
+    Object? redirectUrlParams = freezed,
   }) {
     return _then(_$TransactionDetailsImpl(
-      paymentIdempotencyId: null == paymentIdempotencyId
-          ? _value.paymentIdempotencyId
-          : paymentIdempotencyId // ignore: cast_nullable_to_non_nullable
-              as String,
       applicationUserId: null == applicationUserId
           ? _value.applicationUserId
           : applicationUserId // ignore: cast_nullable_to_non_nullable
@@ -362,10 +540,14 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TransactionStatus,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      paymentIdempotencyId: null == paymentIdempotencyId
+          ? _value.paymentIdempotencyId
+          : paymentIdempotencyId // ignore: cast_nullable_to_non_nullable
               as String,
       paymentId: freezed == paymentId
           ? _value.paymentId
@@ -435,6 +617,46 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String?,
+      statusDetails: freezed == statusDetails
+          ? _value.statusDetails
+          : statusDetails // ignore: cast_nullable_to_non_nullable
+              as TransactionStatusDetails?,
+      merchantId: freezed == merchantId
+          ? _value.merchantId
+          : merchantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentRequest: freezed == paymentRequest
+          ? _value.paymentRequest
+          : paymentRequest // ignore: cast_nullable_to_non_nullable
+              as PaymentRequest?,
+      merchantName: freezed == merchantName
+          ? _value.merchantName
+          : merchantName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      storeDetails: freezed == storeDetails
+          ? _value.storeDetails
+          : storeDetails // ignore: cast_nullable_to_non_nullable
+              as StoreDetails?,
+      institutionId: freezed == institutionId
+          ? _value.institutionId
+          : institutionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signatureHash: freezed == signatureHash
+          ? _value.signatureHash
+          : signatureHash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      signature: freezed == signature
+          ? _value.signature
+          : signature // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirectUrlParams: freezed == redirectUrlParams
+          ? _value._redirectUrlParams
+          : redirectUrlParams // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ));
   }
 }
@@ -443,12 +665,13 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TransactionDetailsImpl extends _TransactionDetails {
   _$TransactionDetailsImpl(
-      {required this.paymentIdempotencyId,
-      required this.applicationUserId,
+      {required this.applicationUserId,
       @JsonKey(fromJson: _parseAmount) required this.paidAmount,
       required this.currency,
+      @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
       required this.status,
       required this.createdAt,
+      required this.paymentIdempotencyId,
       this.paymentId,
       this.updatedAt,
       this.bankName,
@@ -465,15 +688,22 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
       this.paymentLinkId,
       this.employeeId,
       this.pendingTrasactionError,
-      this.orderId})
-      : super._();
+      this.orderId,
+      this.statusDetails,
+      this.merchantId,
+      this.paymentRequest,
+      this.merchantName,
+      this.avatar,
+      this.storeDetails,
+      this.institutionId,
+      this.signatureHash,
+      this.signature,
+      final Map<String, String>? redirectUrlParams})
+      : _redirectUrlParams = redirectUrlParams,
+        super._();
 
   factory _$TransactionDetailsImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransactionDetailsImplFromJson(json);
-
-  /// Unique identifier for the payment request.
-  @override
-  final String paymentIdempotencyId;
 
   /// Unique identifier for the application user initiating the transaction.
   @override
@@ -490,11 +720,16 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
 
   /// Current status of the transaction.
   @override
-  final String status;
+  @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+  final TransactionStatus status;
 
-  /// The date and time when the transaction was created.
+  /// Created timestamp
   @override
   final String createdAt;
+
+  /// Unique payment id
+  @override
+  final String paymentIdempotencyId;
 
   /// Optional: Unique identifier for the payment, if available.
   @override
@@ -568,9 +803,59 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   @override
   final String? orderId;
 
+  /// Optional: Payment Status details
+  @override
+  final TransactionStatusDetails? statusDetails;
+
+  /// Optional:Receiver Id
+  @override
+  final String? merchantId;
+
+  /// Optional: Payment Details with payee details
+  @override
+  final PaymentRequest? paymentRequest;
+
+  /// Optional: Receiver name
+  @override
+  final String? merchantName;
+
+  /// Optional: Receiver image
+  @override
+  final String? avatar;
+
+  /// Optional: The store which the transaction happend
+  @override
+  final StoreDetails? storeDetails;
+
+  /// Optional: Institution Id of merchant bank
+  @override
+  final String? institutionId;
+
+  /// Optional: Atoa signature Hash
+  @override
+  final String? signatureHash;
+
+  /// Optional: Atoa signature
+  @override
+  final String? signature;
+
+  /// Optional: Merchant callback params
+  final Map<String, String>? _redirectUrlParams;
+
+  /// Optional: Merchant callback params
+  @override
+  Map<String, String>? get redirectUrlParams {
+    final value = _redirectUrlParams;
+    if (value == null) return null;
+    if (_redirectUrlParams is EqualUnmodifiableMapView)
+      return _redirectUrlParams;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @override
   String toString() {
-    return 'TransactionDetails(paymentIdempotencyId: $paymentIdempotencyId, applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId)';
+    return 'TransactionDetails(applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentIdempotencyId: $paymentIdempotencyId, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, paymentRequest: $paymentRequest, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId, signatureHash: $signatureHash, signature: $signature, redirectUrlParams: $redirectUrlParams)';
   }
 
   @override
@@ -578,8 +863,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionDetailsImpl &&
-            (identical(other.paymentIdempotencyId, paymentIdempotencyId) ||
-                other.paymentIdempotencyId == paymentIdempotencyId) &&
             (identical(other.applicationUserId, applicationUserId) ||
                 other.applicationUserId == applicationUserId) &&
             (identical(other.paidAmount, paidAmount) ||
@@ -589,6 +872,8 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
+            (identical(other.paymentIdempotencyId, paymentIdempotencyId) ||
+                other.paymentIdempotencyId == paymentIdempotencyId) &&
             (identical(other.paymentId, paymentId) ||
                 other.paymentId == paymentId) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -618,19 +903,38 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
                 other.employeeId == employeeId) &&
             (identical(other.pendingTrasactionError, pendingTrasactionError) ||
                 other.pendingTrasactionError == pendingTrasactionError) &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.statusDetails, statusDetails) ||
+                other.statusDetails == statusDetails) &&
+            (identical(other.merchantId, merchantId) ||
+                other.merchantId == merchantId) &&
+            (identical(other.paymentRequest, paymentRequest) ||
+                other.paymentRequest == paymentRequest) &&
+            (identical(other.merchantName, merchantName) ||
+                other.merchantName == merchantName) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.storeDetails, storeDetails) ||
+                other.storeDetails == storeDetails) &&
+            (identical(other.institutionId, institutionId) ||
+                other.institutionId == institutionId) &&
+            (identical(other.signatureHash, signatureHash) ||
+                other.signatureHash == signatureHash) &&
+            (identical(other.signature, signature) ||
+                other.signature == signature) &&
+            const DeepCollectionEquality()
+                .equals(other._redirectUrlParams, _redirectUrlParams));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        paymentIdempotencyId,
         applicationUserId,
         paidAmount,
         currency,
         status,
         createdAt,
+        paymentIdempotencyId,
         paymentId,
         updatedAt,
         bankName,
@@ -647,7 +951,17 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         paymentLinkId,
         employeeId,
         pendingTrasactionError,
-        orderId
+        orderId,
+        statusDetails,
+        merchantId,
+        paymentRequest,
+        merchantName,
+        avatar,
+        storeDetails,
+        institutionId,
+        signatureHash,
+        signature,
+        const DeepCollectionEquality().hash(_redirectUrlParams)
       ]);
 
   /// Create a copy of TransactionDetails
@@ -669,12 +983,13 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
 
 abstract class _TransactionDetails extends TransactionDetails {
   factory _TransactionDetails(
-      {required final String paymentIdempotencyId,
-      required final String applicationUserId,
+      {required final String applicationUserId,
       @JsonKey(fromJson: _parseAmount) required final double paidAmount,
       required final String currency,
-      required final String status,
+      @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+      required final TransactionStatus status,
       required final String createdAt,
+      required final String paymentIdempotencyId,
       final String? paymentId,
       final String? updatedAt,
       final String? bankName,
@@ -691,15 +1006,21 @@ abstract class _TransactionDetails extends TransactionDetails {
       final String? paymentLinkId,
       final String? employeeId,
       final String? pendingTrasactionError,
-      final String? orderId}) = _$TransactionDetailsImpl;
+      final String? orderId,
+      final TransactionStatusDetails? statusDetails,
+      final String? merchantId,
+      final PaymentRequest? paymentRequest,
+      final String? merchantName,
+      final String? avatar,
+      final StoreDetails? storeDetails,
+      final String? institutionId,
+      final String? signatureHash,
+      final String? signature,
+      final Map<String, String>? redirectUrlParams}) = _$TransactionDetailsImpl;
   _TransactionDetails._() : super._();
 
   factory _TransactionDetails.fromJson(Map<String, dynamic> json) =
       _$TransactionDetailsImpl.fromJson;
-
-  /// Unique identifier for the payment request.
-  @override
-  String get paymentIdempotencyId;
 
   /// Unique identifier for the application user initiating the transaction.
   @override
@@ -716,11 +1037,16 @@ abstract class _TransactionDetails extends TransactionDetails {
 
   /// Current status of the transaction.
   @override
-  String get status;
+  @JsonKey(fromJson: TransactionStatus.fromJson, includeToJson: false)
+  TransactionStatus get status;
 
-  /// The date and time when the transaction was created.
+  /// Created timestamp
   @override
   String get createdAt;
+
+  /// Unique payment id
+  @override
+  String get paymentIdempotencyId;
 
   /// Optional: Unique identifier for the payment, if available.
   @override
@@ -792,6 +1118,46 @@ abstract class _TransactionDetails extends TransactionDetails {
   /// Optional: Unique identifier for the order associated with the transaction.
   @override
   String? get orderId;
+
+  /// Optional: Payment Status details
+  @override
+  TransactionStatusDetails? get statusDetails;
+
+  /// Optional:Receiver Id
+  @override
+  String? get merchantId;
+
+  /// Optional: Payment Details with payee details
+  @override
+  PaymentRequest? get paymentRequest;
+
+  /// Optional: Receiver name
+  @override
+  String? get merchantName;
+
+  /// Optional: Receiver image
+  @override
+  String? get avatar;
+
+  /// Optional: The store which the transaction happend
+  @override
+  StoreDetails? get storeDetails;
+
+  /// Optional: Institution Id of merchant bank
+  @override
+  String? get institutionId;
+
+  /// Optional: Atoa signature Hash
+  @override
+  String? get signatureHash;
+
+  /// Optional: Atoa signature
+  @override
+  String? get signature;
+
+  /// Optional: Merchant callback params
+  @override
+  Map<String, String>? get redirectUrlParams;
 
   /// Create a copy of TransactionDetails
   /// with the given fields replaced by the non-null parameter values.

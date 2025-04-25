@@ -1,3 +1,4 @@
+import 'package:atoa_flutter_sdk/src/theme/theme.dart';
 import 'package:atoa_flutter_sdk/src/utility/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
@@ -21,12 +22,12 @@ class DefaultAvatar extends StatelessWidget {
     final initials = userName?.getInitials() ?? '';
     return CircleAvatar(
       radius: size / 2,
-      backgroundColor: context.vividRed.tint10,
+      backgroundColor: const VividRed().tint10,
       child: Center(
         child: initials.isNotEmpty
             ? CustomText.semantics(
                 initials,
-                style: textStyle ?? context.displayLarge,
+                style: textStyle ?? sdkFigTreeTextTheme.displayLarge,
               )
             : Icon(
                 isGroup ? Icons.group_outlined : Icons.person_outline,
