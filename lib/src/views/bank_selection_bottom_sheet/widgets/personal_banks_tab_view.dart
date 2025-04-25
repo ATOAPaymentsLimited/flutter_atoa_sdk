@@ -1,8 +1,8 @@
 import 'package:atoa_core/atoa_core.dart';
 
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/all_banks_widget.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_grid_item.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/widgets/all_banks_widget.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_grid_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:regal/regal.dart';

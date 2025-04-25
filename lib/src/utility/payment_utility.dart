@@ -1,4 +1,4 @@
-import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_sdk/atoa_sdk.dart';
 
 class PaymentUtility {
   static String paymentId = '';

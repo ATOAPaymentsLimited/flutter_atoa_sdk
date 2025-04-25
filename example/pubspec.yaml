@@ -7,7 +7,7 @@ environment:
   sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
-  atoa_flutter_sdk:
+  atoa_sdk:
     path: ../
   flutter:
     sdk: flutter

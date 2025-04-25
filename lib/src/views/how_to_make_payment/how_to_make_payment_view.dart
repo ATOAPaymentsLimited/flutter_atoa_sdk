@@ -1,10 +1,10 @@
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
-import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/bank_logos_widget.dart';
-import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/continue_button.dart';
-import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_payment_works_title_widget.dart';
-import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/how_to_make_payment_steps.dart';
-import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/widgets/trust_atoa_widget.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
+import 'package:atoa_sdk/src/shared_widgets/atoa_loader.dart';
+import 'package:atoa_sdk/src/views/how_to_make_payment/widgets/bank_logos_widget.dart';
+import 'package:atoa_sdk/src/views/how_to_make_payment/widgets/continue_button.dart';
+import 'package:atoa_sdk/src/views/how_to_make_payment/widgets/how_payment_works_title_widget.dart';
+import 'package:atoa_sdk/src/views/how_to_make_payment/widgets/how_to_make_payment_steps.dart';
+import 'package:atoa_sdk/src/views/how_to_make_payment/widgets/trust_atoa_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

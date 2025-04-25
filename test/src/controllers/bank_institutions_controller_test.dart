@@ -1,6 +1,6 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/src/controllers/bank_institutions_controller.dart';
-import 'package:atoa_flutter_sdk/src/utility/branding_color_utility.dart';
+import 'package:atoa_sdk/src/controllers/bank_institutions_controller.dart';
+import 'package:atoa_sdk/src/utility/branding_color_utility.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

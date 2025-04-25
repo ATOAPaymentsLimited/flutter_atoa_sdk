@@ -1,5 +1,5 @@
-import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
-import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:regal/regal.dart';
