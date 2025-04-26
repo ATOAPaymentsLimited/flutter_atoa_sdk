@@ -163,7 +163,7 @@ class $AssetsImagesGen {
 class Assets {
   const Assets._();
 
-  static const String package = 'atoa_flutter_sdk';
+  static const String package = 'atoa_sdk';
 
   static const $AssetsGifsGen gifs = $AssetsGifsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
@@ -179,7 +179,7 @@ class AssetGenImage {
 
   final String _assetName;
 
-  static const String package = 'atoa_flutter_sdk';
+  static const String package = 'atoa_sdk';
 
   final Size? size;
   final Set<String> flavors;
@@ -252,7 +252,7 @@ class AssetGenImage {
 
   String get path => _assetName;
 
-  String get keyName => 'packages/atoa_flutter_sdk/$_assetName';
+  String get keyName => 'packages/atoa_sdk/$_assetName';
 }
 
 class SvgGenImage {
@@ -273,7 +273,7 @@ class SvgGenImage {
   final Set<String> flavors;
   final bool _isVecFormat;
 
-  static const String package = 'atoa_flutter_sdk';
+  static const String package = 'atoa_sdk';
 
   _svg.SvgPicture svg({
     Key? key,
@@ -332,7 +332,7 @@ class SvgGenImage {
 
   String get path => _assetName;
 
-  String get keyName => 'packages/atoa_flutter_sdk/$_assetName';
+  String get keyName => 'packages/atoa_sdk/$_assetName';
 }
 
 class LottieGenImage {
@@ -344,7 +344,7 @@ class LottieGenImage {
   final String _assetName;
   final Set<String> flavors;
 
-  static const String package = 'atoa_flutter_sdk';
+  static const String package = 'atoa_sdk';
 
   _lottie.LottieBuilder lottie({
     Animation<double>? controller,
@@ -408,5 +408,5 @@ class LottieGenImage {
 
   String get path => _assetName;
 
-  String get keyName => 'packages/atoa_flutter_sdk/$_assetName';
+  String get keyName => 'packages/atoa_sdk/$_assetName';
 }
