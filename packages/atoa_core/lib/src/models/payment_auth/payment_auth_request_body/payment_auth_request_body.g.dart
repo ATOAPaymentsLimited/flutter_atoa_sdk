@@ -57,6 +57,7 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
       encryptedRefundPaymentDetails:
           json['encryptedRefundPaymentDetails'] as String?,
       encryptedQrDetails: json['encryptedQrDetails'] as String?,
+      redirectOnCompleted: json['redirectOnCompleted'] as bool?,
     );
 
 Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
@@ -94,4 +95,5 @@ Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
       'encrptedPaymentDetails': instance.encrptedPaymentDetails,
       'encryptedRefundPaymentDetails': instance.encryptedRefundPaymentDetails,
       'encryptedQrDetails': instance.encryptedQrDetails,
+      'redirectOnCompleted': instance.redirectOnCompleted,
     };

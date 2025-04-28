@@ -105,6 +105,7 @@ extension PaymentRequestDataX on PaymentRequestData {
         expiresIn: expiresIn?.toString(),
         paymentRequestId: paymentRequestId,
       ),
+      redirectOnCompleted: redirectOnCompleted,
       qrCodeDetails: qrDetails,
       fraudDetails: fraudDetails,
       encrptedPaymentDetails: encryptedPaymentDetails,

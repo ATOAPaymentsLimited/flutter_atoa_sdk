@@ -45,6 +45,7 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
     String? encrptedPaymentDetails,
     String? encryptedRefundPaymentDetails,
     String? encryptedQrDetails,
+    bool? redirectOnCompleted,
   }) = _PaymentAuthRequestBody;
   const PaymentAuthRequestBody._();
 

@@ -1,6 +1,6 @@
-# 2.0.0
+# 2.0.1
 
-- feat: Atoa SDK
+- feat: fix payment request body
 
 # 1.0.7
 

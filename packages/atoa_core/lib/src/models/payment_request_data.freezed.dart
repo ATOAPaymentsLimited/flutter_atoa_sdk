@@ -701,7 +701,8 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PaymentRequestDataImpl extends _PaymentRequestData {
+class _$PaymentRequestDataImpl extends _PaymentRequestData
+    with DiagnosticableTreeMixin {
   const _$PaymentRequestDataImpl(
       {required this.merchantBusinessName,
       required this.merchantId,
@@ -836,8 +837,54 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
   final bool? redirectOnCompleted;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, options: $options, merchantThemeDetails: $merchantThemeDetails, lastPaymentBankDetails: $lastPaymentBankDetails, encryptedPaymentDetails: $encryptedPaymentDetails, encryptedRefundPaymentDetails: $encryptedRefundPaymentDetails, qrDetails: $qrDetails, paymentSourceType: $paymentSourceType, redirectOnCompleted: $redirectOnCompleted)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PaymentRequestData'))
+      ..add(DiagnosticsProperty('merchantBusinessName', merchantBusinessName))
+      ..add(DiagnosticsProperty('merchantId', merchantId))
+      ..add(DiagnosticsProperty('amount', amount))
+      ..add(DiagnosticsProperty('taxPercentage', taxPercentage))
+      ..add(DiagnosticsProperty('servicePercentage', servicePercentage))
+      ..add(DiagnosticsProperty('employeeId', employeeId))
+      ..add(DiagnosticsProperty('customerId', customerId))
+      ..add(DiagnosticsProperty('consumerId', consumerId))
+      ..add(DiagnosticsProperty('env', env))
+      ..add(DiagnosticsProperty('encryptedNotesDetails', encryptedNotesDetails))
+      ..add(DiagnosticsProperty('encryptedQrDetails', encryptedQrDetails))
+      ..add(DiagnosticsProperty('merchantNotes', merchantNotes))
+      ..add(
+          DiagnosticsProperty('splitOutstandingAmount', splitOutstandingAmount))
+      ..add(DiagnosticsProperty('callbackParams', callbackParams))
+      ..add(DiagnosticsProperty('paymentRequestSource', paymentRequestSource))
+      ..add(DiagnosticsProperty('notes', notes))
+      ..add(DiagnosticsProperty('storeImg', storeImg))
+      ..add(DiagnosticsProperty('contextType', contextType))
+      ..add(DiagnosticsProperty('fraudDetails', fraudDetails))
+      ..add(DiagnosticsProperty('storeDetails', storeDetails))
+      ..add(DiagnosticsProperty('address', address))
+      ..add(DiagnosticsProperty('paymentType', paymentType))
+      ..add(DiagnosticsProperty('expiresIn', expiresIn))
+      ..add(DiagnosticsProperty('requestCreatedAt', requestCreatedAt))
+      ..add(DiagnosticsProperty('strictExpiry', strictExpiry))
+      ..add(DiagnosticsProperty('allowSdkRetry', allowSdkRetry))
+      ..add(DiagnosticsProperty('splitBill', splitBill))
+      ..add(DiagnosticsProperty('options', options))
+      ..add(DiagnosticsProperty('merchantThemeDetails', merchantThemeDetails))
+      ..add(
+          DiagnosticsProperty('lastPaymentBankDetails', lastPaymentBankDetails))
+      ..add(DiagnosticsProperty(
+          'encryptedPaymentDetails', encryptedPaymentDetails))
+      ..add(DiagnosticsProperty(
+          'encryptedRefundPaymentDetails', encryptedRefundPaymentDetails))
+      ..add(DiagnosticsProperty('qrDetails', qrDetails))
+      ..add(DiagnosticsProperty('paymentSourceType', paymentSourceType))
+      ..add(DiagnosticsProperty('redirectOnCompleted', redirectOnCompleted));
   }
 
   @override
