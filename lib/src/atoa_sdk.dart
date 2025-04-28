@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
-import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/di/injection.dart';
-import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
+import 'package:atoa_sdk/atoa_sdk.dart';
+import 'package:atoa_sdk/src/controllers/connectivity_controller.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
+import 'package:atoa_sdk/src/di/injection.dart';
+import 'package:atoa_sdk/src/utility/payment_utility.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/bank_selection_bottom_sheet.dart';
+import 'package:atoa_sdk/src/views/verifying_payment_bottom_sheet/verifying_payment_bottom_sheet.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:regal/regal.dart';
 
-/// {@template atoa_flutter_sdk}
+/// {@template atoa_sdk}
 /// Atoa Flutter SDK
 /// {@endtemplate}
 class AtoaSdk {

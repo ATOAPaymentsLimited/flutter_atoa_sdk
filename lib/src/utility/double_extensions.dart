@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_this
 
-import 'package:atoa_flutter_sdk/l10n/l10n.dart';
+import 'package:atoa_sdk/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

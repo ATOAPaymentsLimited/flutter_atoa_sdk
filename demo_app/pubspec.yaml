@@ -6,7 +6,7 @@ environment:
   sdk: ">=3.2.3 <4.0.0"
 
 dependencies:
-  atoa_flutter_sdk:
+  atoa_sdk:
     path: ../
   connectivity_plus: ^4.0.1
   dio: ^5.8.0+1

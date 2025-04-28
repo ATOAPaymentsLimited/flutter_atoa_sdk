@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_sdk/atoa_sdk.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/animation.dart';

@@ -13,7 +13,7 @@ final sdkLedgerTheme = ThemeData.light().copyWith(
           elevation: 0,
           textStyle: TextStyle(
             fontFamily: 'FigTree',
-            package: 'atoa_flutter_sdk',
+            package: 'atoa_sdk',
             color: IntactColors.light().white,
             fontSize: 14.sp,
             fontVariations: const [
@@ -159,5 +159,5 @@ final sdkFigTreeTextTheme = TextTheme(
   bodyColor: IntactColors.light().black,
   displayColor: IntactColors.light().black,
   fontFamily: 'FigTree',
-  package: 'atoa_flutter_sdk',
+  package: 'atoa_sdk',
 );

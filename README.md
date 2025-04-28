@@ -22,7 +22,7 @@ The Atoa Mobile Client SDK allows merchants to easily integrate Atoa Payments in
 Run following to add Atoa SDK to your flutter project
 
 ```sh
-flutter pub add atoa_flutter_sdk
+flutter pub add atoa_sdk
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ Sample code to integrate can be found in [demo_app\lib\widgets\pay_now_bottom_sh
 #### Import package
 
 ```dart
-import 'package:atoa_flutter_sdk/atoa_flutter_sdk.dart';
+import 'package:atoa_sdk/atoa_sdk.dart';
 ```
 
 #### Show Payment Sheet

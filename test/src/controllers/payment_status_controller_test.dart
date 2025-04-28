@@ -1,6 +1,6 @@
 import 'package:atoa_core/atoa_core.dart';
-import 'package:atoa_flutter_sdk/src/controllers/payment_status_controller.dart';
-import 'package:atoa_flutter_sdk/src/utility/payment_utility.dart';
+import 'package:atoa_sdk/src/controllers/payment_status_controller.dart';
+import 'package:atoa_sdk/src/utility/payment_utility.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

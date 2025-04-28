@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:atoa_flutter_sdk/constants/constant.dart';
-import 'package:atoa_flutter_sdk/src/controllers/connectivity_controller.dart';
-import 'package:atoa_flutter_sdk/src/controllers/controllers.dart';
-import 'package:atoa_flutter_sdk/src/shared_widgets/atoa_loader.dart';
-import 'package:atoa_flutter_sdk/src/theme/theme.dart';
-import 'package:atoa_flutter_sdk/src/utility/connectivity_wrapper.dart';
-import 'package:atoa_flutter_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
-import 'package:atoa_flutter_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
-import 'package:atoa_flutter_sdk/src/views/how_to_make_payment/how_to_make_payment_view.dart';
+import 'package:atoa_sdk/constants/constant.dart';
+import 'package:atoa_sdk/src/controllers/connectivity_controller.dart';
+import 'package:atoa_sdk/src/controllers/controllers.dart';
+import 'package:atoa_sdk/src/shared_widgets/atoa_loader.dart';
+import 'package:atoa_sdk/src/theme/theme.dart';
+import 'package:atoa_sdk/src/utility/connectivity_wrapper.dart';
+import 'package:atoa_sdk/src/views/bank_selection_bottom_sheet/widgets/bank_selection_view.dart';
+import 'package:atoa_sdk/src/views/confirmation_bottom_sheet/confirmation_bottom_sheet.dart';
+import 'package:atoa_sdk/src/views/how_to_make_payment/how_to_make_payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
