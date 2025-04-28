@@ -43,6 +43,7 @@ class _PayNowBottomSheetState extends State<PayNowBottomSheet> {
 
     final transactionDetails = await AtoaSdk.pay(
       context,
+      branch: AtoaEnvironment.development,
       paymentId: paymentId,
       showHowPaymentWorks: prefs.getBool('showHowPaymentWorks') ?? false,
       customerDetails:

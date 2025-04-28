@@ -23,7 +23,12 @@ class _MainAppState extends State<MainApp> {
 
   final _envNotifier = ValueNotifier(AtoaEnv.sandbox);
 
+  final branchNotifier =
+      ValueNotifier<AtoaEnvironment>(AtoaEnvironment.development);
+
   AtoaEnv get env => _envNotifier.value;
+
+  AtoaEnvironment get branch => branchNotifier.value;
 
   set env(AtoaEnv value) => _envNotifier.value = value;
 
@@ -58,6 +63,31 @@ class _MainAppState extends State<MainApp> {
                     ),
                   ),
                 ),
+                Spacing.medium.yBox,
+                ValueListenableBuilder(
+                  valueListenable: branchNotifier,
+                  builder: (context, value, __) {
+                    return Semantics(
+                      container: true,
+                      label: 'Select Branch',
+                      child: DropdownButton<AtoaEnvironment>(
+                        hint: const CustomText.semantics('Select Branch'),
+                        value: value,
+                        items: AtoaEnvironment.values
+                            .map(
+                              (e) => DropdownMenuItem<AtoaEnvironment>(
+                                value: e,
+                                child: CustomText.semantics(e.name),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          if (value != null) branchNotifier.value = value;
+                        },
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -68,6 +98,7 @@ class _MainAppState extends State<MainApp> {
             builder: (_, value, Widget? child) => ActionButton(
               controller: textController,
               env: value,
+              branch: branch,
             ),
           ),
         ),
@@ -107,14 +138,17 @@ class ActionButton extends StatelessWidget {
     super.key,
     required this.controller,
     required this.env,
+    required this.branch,
   });
 
   final TextEditingController controller;
   final AtoaEnv env;
+  final AtoaEnvironment branch;
 
   void _showSheet(BuildContext context) {
     AtoaSdk.pay(
       context,
+      branch: branch,
       paymentId: controller.text.trim(),
       showHowPaymentWorks: false,
       env: env,

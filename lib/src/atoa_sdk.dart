@@ -20,6 +20,7 @@ class AtoaSdk {
 
   static Future<TransactionDetails?> pay(
     BuildContext context, {
+    required AtoaEnvironment branch,
     required String paymentId,
     required AtoaEnv env,
     required bool showHowPaymentWorks,
@@ -53,7 +54,7 @@ class AtoaSdk {
       PaymentUtility.customerDetails = customerDetails;
     }
 
-    await AtoaSdkConfig.initialize();
+    await AtoaSdkConfig.initialize(environment: branch);
 
     if (onError != null) {
       PaymentUtility.onError = onError;
