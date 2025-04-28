@@ -62,6 +62,13 @@ mixin _$PaymentRequestData {
   @JsonKey(includeIfNull: false)
   SavedBankDetails? get lastPaymentBankDetails =>
       throw _privateConstructorUsedError;
+  String? get encryptedPaymentDetails => throw _privateConstructorUsedError;
+  String? get encryptedRefundPaymentDetails =>
+      throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  QrDetails? get qrDetails => throw _privateConstructorUsedError;
+  int? get paymentSourceType => throw _privateConstructorUsedError;
+  bool? get redirectOnCompleted => throw _privateConstructorUsedError;
 
   /// Serializes this PaymentRequestData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -110,7 +117,12 @@ abstract class $PaymentRequestDataCopyWith<$Res> {
       bool splitBill,
       @JsonKey(includeIfNull: false) Map<String, dynamic>? options,
       @JsonKey(includeIfNull: false) MerchantThemeDetails? merchantThemeDetails,
-      @JsonKey(includeIfNull: false) SavedBankDetails? lastPaymentBankDetails});
+      @JsonKey(includeIfNull: false) SavedBankDetails? lastPaymentBankDetails,
+      String? encryptedPaymentDetails,
+      String? encryptedRefundPaymentDetails,
+      @JsonKey(includeIfNull: false) QrDetails? qrDetails,
+      int? paymentSourceType,
+      bool? redirectOnCompleted});
 
   $AmountCopyWith<$Res> get amount;
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
@@ -119,6 +131,7 @@ abstract class $PaymentRequestDataCopyWith<$Res> {
   $MerchantPayeeAddressCopyWith<$Res>? get address;
   $MerchantThemeDetailsCopyWith<$Res>? get merchantThemeDetails;
   $SavedBankDetailsCopyWith<$Res>? get lastPaymentBankDetails;
+  $QrDetailsCopyWith<$Res>? get qrDetails;
 }
 
 /// @nodoc
@@ -166,6 +179,11 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
     Object? options = freezed,
     Object? merchantThemeDetails = freezed,
     Object? lastPaymentBankDetails = freezed,
+    Object? encryptedPaymentDetails = freezed,
+    Object? encryptedRefundPaymentDetails = freezed,
+    Object? qrDetails = freezed,
+    Object? paymentSourceType = freezed,
+    Object? redirectOnCompleted = freezed,
   }) {
     return _then(_value.copyWith(
       merchantBusinessName: null == merchantBusinessName
@@ -288,6 +306,26 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
           ? _value.lastPaymentBankDetails
           : lastPaymentBankDetails // ignore: cast_nullable_to_non_nullable
               as SavedBankDetails?,
+      encryptedPaymentDetails: freezed == encryptedPaymentDetails
+          ? _value.encryptedPaymentDetails
+          : encryptedPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      encryptedRefundPaymentDetails: freezed == encryptedRefundPaymentDetails
+          ? _value.encryptedRefundPaymentDetails
+          : encryptedRefundPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qrDetails: freezed == qrDetails
+          ? _value.qrDetails
+          : qrDetails // ignore: cast_nullable_to_non_nullable
+              as QrDetails?,
+      paymentSourceType: freezed == paymentSourceType
+          ? _value.paymentSourceType
+          : paymentSourceType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      redirectOnCompleted: freezed == redirectOnCompleted
+          ? _value.redirectOnCompleted
+          : redirectOnCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -387,6 +425,20 @@ class _$PaymentRequestDataCopyWithImpl<$Res, $Val extends PaymentRequestData>
       return _then(_value.copyWith(lastPaymentBankDetails: value) as $Val);
     });
   }
+
+  /// Create a copy of PaymentRequestData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $QrDetailsCopyWith<$Res>? get qrDetails {
+    if (_value.qrDetails == null) {
+      return null;
+    }
+
+    return $QrDetailsCopyWith<$Res>(_value.qrDetails!, (value) {
+      return _then(_value.copyWith(qrDetails: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -428,7 +480,12 @@ abstract class _$$PaymentRequestDataImplCopyWith<$Res>
       bool splitBill,
       @JsonKey(includeIfNull: false) Map<String, dynamic>? options,
       @JsonKey(includeIfNull: false) MerchantThemeDetails? merchantThemeDetails,
-      @JsonKey(includeIfNull: false) SavedBankDetails? lastPaymentBankDetails});
+      @JsonKey(includeIfNull: false) SavedBankDetails? lastPaymentBankDetails,
+      String? encryptedPaymentDetails,
+      String? encryptedRefundPaymentDetails,
+      @JsonKey(includeIfNull: false) QrDetails? qrDetails,
+      int? paymentSourceType,
+      bool? redirectOnCompleted});
 
   @override
   $AmountCopyWith<$Res> get amount;
@@ -444,6 +501,8 @@ abstract class _$$PaymentRequestDataImplCopyWith<$Res>
   $MerchantThemeDetailsCopyWith<$Res>? get merchantThemeDetails;
   @override
   $SavedBankDetailsCopyWith<$Res>? get lastPaymentBankDetails;
+  @override
+  $QrDetailsCopyWith<$Res>? get qrDetails;
 }
 
 /// @nodoc
@@ -489,6 +548,11 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
     Object? options = freezed,
     Object? merchantThemeDetails = freezed,
     Object? lastPaymentBankDetails = freezed,
+    Object? encryptedPaymentDetails = freezed,
+    Object? encryptedRefundPaymentDetails = freezed,
+    Object? qrDetails = freezed,
+    Object? paymentSourceType = freezed,
+    Object? redirectOnCompleted = freezed,
   }) {
     return _then(_$PaymentRequestDataImpl(
       merchantBusinessName: null == merchantBusinessName
@@ -611,6 +675,26 @@ class __$$PaymentRequestDataImplCopyWithImpl<$Res>
           ? _value.lastPaymentBankDetails
           : lastPaymentBankDetails // ignore: cast_nullable_to_non_nullable
               as SavedBankDetails?,
+      encryptedPaymentDetails: freezed == encryptedPaymentDetails
+          ? _value.encryptedPaymentDetails
+          : encryptedPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      encryptedRefundPaymentDetails: freezed == encryptedRefundPaymentDetails
+          ? _value.encryptedRefundPaymentDetails
+          : encryptedRefundPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qrDetails: freezed == qrDetails
+          ? _value.qrDetails
+          : qrDetails // ignore: cast_nullable_to_non_nullable
+              as QrDetails?,
+      paymentSourceType: freezed == paymentSourceType
+          ? _value.paymentSourceType
+          : paymentSourceType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      redirectOnCompleted: freezed == redirectOnCompleted
+          ? _value.redirectOnCompleted
+          : redirectOnCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -649,7 +733,12 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
       this.splitBill = false,
       @JsonKey(includeIfNull: false) final Map<String, dynamic>? options,
       @JsonKey(includeIfNull: false) this.merchantThemeDetails,
-      @JsonKey(includeIfNull: false) this.lastPaymentBankDetails})
+      @JsonKey(includeIfNull: false) this.lastPaymentBankDetails,
+      this.encryptedPaymentDetails,
+      this.encryptedRefundPaymentDetails,
+      @JsonKey(includeIfNull: false) this.qrDetails,
+      this.paymentSourceType,
+      this.redirectOnCompleted})
       : _options = options,
         super._();
 
@@ -734,10 +823,21 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
   @override
   @JsonKey(includeIfNull: false)
   final SavedBankDetails? lastPaymentBankDetails;
+  @override
+  final String? encryptedPaymentDetails;
+  @override
+  final String? encryptedRefundPaymentDetails;
+  @override
+  @JsonKey(includeIfNull: false)
+  final QrDetails? qrDetails;
+  @override
+  final int? paymentSourceType;
+  @override
+  final bool? redirectOnCompleted;
 
   @override
   String toString() {
-    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, options: $options, merchantThemeDetails: $merchantThemeDetails, lastPaymentBankDetails: $lastPaymentBankDetails)';
+    return 'PaymentRequestData(merchantBusinessName: $merchantBusinessName, merchantId: $merchantId, amount: $amount, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, employeeId: $employeeId, customerId: $customerId, consumerId: $consumerId, env: $env, encryptedNotesDetails: $encryptedNotesDetails, encryptedQrDetails: $encryptedQrDetails, merchantNotes: $merchantNotes, splitOutstandingAmount: $splitOutstandingAmount, callbackParams: $callbackParams, paymentRequestSource: $paymentRequestSource, notes: $notes, storeImg: $storeImg, contextType: $contextType, fraudDetails: $fraudDetails, storeDetails: $storeDetails, address: $address, paymentType: $paymentType, expiresIn: $expiresIn, requestCreatedAt: $requestCreatedAt, strictExpiry: $strictExpiry, allowSdkRetry: $allowSdkRetry, splitBill: $splitBill, options: $options, merchantThemeDetails: $merchantThemeDetails, lastPaymentBankDetails: $lastPaymentBankDetails, encryptedPaymentDetails: $encryptedPaymentDetails, encryptedRefundPaymentDetails: $encryptedRefundPaymentDetails, qrDetails: $qrDetails, paymentSourceType: $paymentSourceType, redirectOnCompleted: $redirectOnCompleted)';
   }
 
   @override
@@ -799,7 +899,20 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
             (identical(other.merchantThemeDetails, merchantThemeDetails) ||
                 other.merchantThemeDetails == merchantThemeDetails) &&
             (identical(other.lastPaymentBankDetails, lastPaymentBankDetails) ||
-                other.lastPaymentBankDetails == lastPaymentBankDetails));
+                other.lastPaymentBankDetails == lastPaymentBankDetails) &&
+            (identical(
+                    other.encryptedPaymentDetails, encryptedPaymentDetails) ||
+                other.encryptedPaymentDetails == encryptedPaymentDetails) &&
+            (identical(other.encryptedRefundPaymentDetails,
+                    encryptedRefundPaymentDetails) ||
+                other.encryptedRefundPaymentDetails ==
+                    encryptedRefundPaymentDetails) &&
+            (identical(other.qrDetails, qrDetails) ||
+                other.qrDetails == qrDetails) &&
+            (identical(other.paymentSourceType, paymentSourceType) ||
+                other.paymentSourceType == paymentSourceType) &&
+            (identical(other.redirectOnCompleted, redirectOnCompleted) ||
+                other.redirectOnCompleted == redirectOnCompleted));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -835,7 +948,12 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
         splitBill,
         const DeepCollectionEquality().hash(_options),
         merchantThemeDetails,
-        lastPaymentBankDetails
+        lastPaymentBankDetails,
+        encryptedPaymentDetails,
+        encryptedRefundPaymentDetails,
+        qrDetails,
+        paymentSourceType,
+        redirectOnCompleted
       ]);
 
   /// Create a copy of PaymentRequestData
@@ -857,40 +975,44 @@ class _$PaymentRequestDataImpl extends _PaymentRequestData {
 
 abstract class _PaymentRequestData extends PaymentRequestData {
   const factory _PaymentRequestData(
-          {required final String merchantBusinessName,
-          required final String merchantId,
-          required final Amount amount,
-          required final double taxPercentage,
-          required final double servicePercentage,
-          final String? employeeId,
-          final String? customerId,
-          final String? consumerId,
-          final String? env,
-          final String? encryptedNotesDetails,
-          final String? encryptedQrDetails,
-          final String? merchantNotes,
-          final double? splitOutstandingAmount,
-          final String? callbackParams,
-          @JsonKey(includeFromJson: false, includeToJson: false)
-          final PaymentRequestWithSource? paymentRequestSource,
-          final String? notes,
-          final String? storeImg,
-          final String? contextType,
-          @JsonKey(includeIfNull: false) final FraudDetails? fraudDetails,
-          @JsonKey(includeIfNull: false) final StoreDetails? storeDetails,
-          @JsonKey(includeIfNull: false) final MerchantPayeeAddress? address,
-          @JsonKey(includeIfNull: false) final String? paymentType,
-          @parseToNumNull final num? expiresIn,
-          final String? requestCreatedAt,
-          final bool? strictExpiry,
-          final bool? allowSdkRetry,
-          final bool splitBill,
-          @JsonKey(includeIfNull: false) final Map<String, dynamic>? options,
-          @JsonKey(includeIfNull: false)
-          final MerchantThemeDetails? merchantThemeDetails,
-          @JsonKey(includeIfNull: false)
-          final SavedBankDetails? lastPaymentBankDetails}) =
-      _$PaymentRequestDataImpl;
+      {required final String merchantBusinessName,
+      required final String merchantId,
+      required final Amount amount,
+      required final double taxPercentage,
+      required final double servicePercentage,
+      final String? employeeId,
+      final String? customerId,
+      final String? consumerId,
+      final String? env,
+      final String? encryptedNotesDetails,
+      final String? encryptedQrDetails,
+      final String? merchantNotes,
+      final double? splitOutstandingAmount,
+      final String? callbackParams,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final PaymentRequestWithSource? paymentRequestSource,
+      final String? notes,
+      final String? storeImg,
+      final String? contextType,
+      @JsonKey(includeIfNull: false) final FraudDetails? fraudDetails,
+      @JsonKey(includeIfNull: false) final StoreDetails? storeDetails,
+      @JsonKey(includeIfNull: false) final MerchantPayeeAddress? address,
+      @JsonKey(includeIfNull: false) final String? paymentType,
+      @parseToNumNull final num? expiresIn,
+      final String? requestCreatedAt,
+      final bool? strictExpiry,
+      final bool? allowSdkRetry,
+      final bool splitBill,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? options,
+      @JsonKey(includeIfNull: false)
+      final MerchantThemeDetails? merchantThemeDetails,
+      @JsonKey(includeIfNull: false)
+      final SavedBankDetails? lastPaymentBankDetails,
+      final String? encryptedPaymentDetails,
+      final String? encryptedRefundPaymentDetails,
+      @JsonKey(includeIfNull: false) final QrDetails? qrDetails,
+      final int? paymentSourceType,
+      final bool? redirectOnCompleted}) = _$PaymentRequestDataImpl;
   const _PaymentRequestData._() : super._();
 
   factory _PaymentRequestData.fromJson(Map<String, dynamic> json) =
@@ -965,6 +1087,17 @@ abstract class _PaymentRequestData extends PaymentRequestData {
   @override
   @JsonKey(includeIfNull: false)
   SavedBankDetails? get lastPaymentBankDetails;
+  @override
+  String? get encryptedPaymentDetails;
+  @override
+  String? get encryptedRefundPaymentDetails;
+  @override
+  @JsonKey(includeIfNull: false)
+  QrDetails? get qrDetails;
+  @override
+  int? get paymentSourceType;
+  @override
+  bool? get redirectOnCompleted;
 
   /// Create a copy of PaymentRequestData
   /// with the given fields replaced by the non-null parameter values.

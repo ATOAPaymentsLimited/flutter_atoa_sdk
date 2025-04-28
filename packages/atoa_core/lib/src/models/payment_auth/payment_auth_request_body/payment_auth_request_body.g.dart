@@ -47,6 +47,16 @@ _$PaymentAuthRequestBodyImpl _$$PaymentAuthRequestBodyImplFromJson(
       orderId: json['orderId'] as String?,
       merchantPaymentOptions:
           json['merchantPaymentOptions'] as Map<String, dynamic>?,
+      fraudDetails: json['fraudDetails'] == null
+          ? null
+          : FraudDetails.fromJson(json['fraudDetails'] as Map<String, dynamic>),
+      qrCodeDetails: json['qrCodeDetails'] == null
+          ? null
+          : QrDetails.fromJson(json['qrCodeDetails'] as Map<String, dynamic>),
+      encrptedPaymentDetails: json['encrptedPaymentDetails'] as String?,
+      encryptedRefundPaymentDetails:
+          json['encryptedRefundPaymentDetails'] as String?,
+      encryptedQrDetails: json['encryptedQrDetails'] as String?,
     );
 
 Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
@@ -79,4 +89,9 @@ Map<String, dynamic> _$$PaymentAuthRequestBodyImplToJson(
       if (instance.orderId case final value?) 'orderId': value,
       if (instance.merchantPaymentOptions case final value?)
         'merchantPaymentOptions': value,
+      if (instance.fraudDetails case final value?) 'fraudDetails': value,
+      if (instance.qrCodeDetails case final value?) 'qrCodeDetails': value,
+      'encrptedPaymentDetails': instance.encrptedPaymentDetails,
+      'encryptedRefundPaymentDetails': instance.encryptedRefundPaymentDetails,
+      'encryptedQrDetails': instance.encryptedQrDetails,
     };

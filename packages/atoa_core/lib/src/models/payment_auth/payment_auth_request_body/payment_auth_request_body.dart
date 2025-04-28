@@ -2,6 +2,7 @@
 
 import 'package:atoa_core/src/models/device_info.dart';
 import 'package:atoa_core/src/models/models.dart';
+import 'package:atoa_core/src/models/qr_details/qr_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'payment_auth_request_body.freezed.dart';
@@ -39,6 +40,11 @@ class PaymentAuthRequestBody with _$PaymentAuthRequestBody {
     String? contextType,
     @JsonKey(includeIfNull: false) String? orderId,
     @JsonKey(includeIfNull: false) Map<String, dynamic>? merchantPaymentOptions,
+    @JsonKey(includeIfNull: false) FraudDetails? fraudDetails,
+    @JsonKey(includeIfNull: false) QrDetails? qrCodeDetails,
+    String? encrptedPaymentDetails,
+    String? encryptedRefundPaymentDetails,
+    String? encryptedQrDetails,
   }) = _PaymentAuthRequestBody;
   const PaymentAuthRequestBody._();
 
