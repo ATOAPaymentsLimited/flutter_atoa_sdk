@@ -52,6 +52,14 @@ _$PaymentRequestDataImpl _$$PaymentRequestDataImplFromJson(
           ? null
           : SavedBankDetails.fromJson(
               json['lastPaymentBankDetails'] as Map<String, dynamic>),
+      encryptedPaymentDetails: json['encryptedPaymentDetails'] as String?,
+      encryptedRefundPaymentDetails:
+          json['encryptedRefundPaymentDetails'] as String?,
+      qrDetails: json['qrDetails'] == null
+          ? null
+          : QrDetails.fromJson(json['qrDetails'] as Map<String, dynamic>),
+      paymentSourceType: (json['paymentSourceType'] as num?)?.toInt(),
+      redirectOnCompleted: json['redirectOnCompleted'] as bool?,
     );
 
 Map<String, dynamic> _$$PaymentRequestDataImplToJson(
@@ -88,4 +96,9 @@ Map<String, dynamic> _$$PaymentRequestDataImplToJson(
         'merchantThemeDetails': value,
       if (instance.lastPaymentBankDetails case final value?)
         'lastPaymentBankDetails': value,
+      'encryptedPaymentDetails': instance.encryptedPaymentDetails,
+      'encryptedRefundPaymentDetails': instance.encryptedRefundPaymentDetails,
+      if (instance.qrDetails case final value?) 'qrDetails': value,
+      'paymentSourceType': instance.paymentSourceType,
+      'redirectOnCompleted': instance.redirectOnCompleted,
     };

@@ -253,7 +253,7 @@ class BankInstitutionsController extends StateNotifier<BankInstitutionsState> {
       return;
     }
 
-    final body = paymentDetails.toBody(
+    final body = await paymentDetails.toBody(
       institutionId: selectedBank.id,
       paymentRequestId: PaymentUtility.paymentId,
       features: selectedBank.features,

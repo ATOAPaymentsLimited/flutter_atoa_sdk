@@ -59,6 +59,15 @@ mixin _$PaymentAuthRequestBody {
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get merchantPaymentOptions =>
       throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  FraudDetails? get fraudDetails => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  QrDetails? get qrCodeDetails => throw _privateConstructorUsedError;
+  String? get encrptedPaymentDetails => throw _privateConstructorUsedError;
+  String? get encryptedRefundPaymentDetails =>
+      throw _privateConstructorUsedError;
+  String? get encryptedQrDetails => throw _privateConstructorUsedError;
+  bool? get redirectOnCompleted => throw _privateConstructorUsedError;
 
   /// Serializes this PaymentAuthRequestBody to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -103,13 +112,21 @@ abstract class $PaymentAuthRequestBodyCopyWith<$Res> {
       String? contextType,
       @JsonKey(includeIfNull: false) String? orderId,
       @JsonKey(includeIfNull: false)
-      Map<String, dynamic>? merchantPaymentOptions});
+      Map<String, dynamic>? merchantPaymentOptions,
+      @JsonKey(includeIfNull: false) FraudDetails? fraudDetails,
+      @JsonKey(includeIfNull: false) QrDetails? qrCodeDetails,
+      String? encrptedPaymentDetails,
+      String? encryptedRefundPaymentDetails,
+      String? encryptedQrDetails,
+      bool? redirectOnCompleted});
 
   $AmountCopyWith<$Res> get amount;
   $DeviceInfoCopyWith<$Res> get paymentDevice;
   $PaymentAuthPaymentRequestCopyWith<$Res> get paymentRequest;
   $StoreDetailsCopyWith<$Res>? get storeDetails;
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
+  $FraudDetailsCopyWith<$Res>? get fraudDetails;
+  $QrDetailsCopyWith<$Res>? get qrCodeDetails;
 }
 
 /// @nodoc
@@ -154,6 +171,12 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
     Object? contextType = freezed,
     Object? orderId = freezed,
     Object? merchantPaymentOptions = freezed,
+    Object? fraudDetails = freezed,
+    Object? qrCodeDetails = freezed,
+    Object? encrptedPaymentDetails = freezed,
+    Object? encryptedRefundPaymentDetails = freezed,
+    Object? encryptedQrDetails = freezed,
+    Object? redirectOnCompleted = freezed,
   }) {
     return _then(_value.copyWith(
       merchantId: null == merchantId
@@ -260,6 +283,30 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
           ? _value.merchantPaymentOptions
           : merchantPaymentOptions // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      fraudDetails: freezed == fraudDetails
+          ? _value.fraudDetails
+          : fraudDetails // ignore: cast_nullable_to_non_nullable
+              as FraudDetails?,
+      qrCodeDetails: freezed == qrCodeDetails
+          ? _value.qrCodeDetails
+          : qrCodeDetails // ignore: cast_nullable_to_non_nullable
+              as QrDetails?,
+      encrptedPaymentDetails: freezed == encrptedPaymentDetails
+          ? _value.encrptedPaymentDetails
+          : encrptedPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      encryptedRefundPaymentDetails: freezed == encryptedRefundPaymentDetails
+          ? _value.encryptedRefundPaymentDetails
+          : encryptedRefundPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      encryptedQrDetails: freezed == encryptedQrDetails
+          ? _value.encryptedQrDetails
+          : encryptedQrDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirectOnCompleted: freezed == redirectOnCompleted
+          ? _value.redirectOnCompleted
+          : redirectOnCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -322,6 +369,34 @@ class _$PaymentAuthRequestBodyCopyWithImpl<$Res,
       return _then(_value.copyWith(paymentRequestSource: value) as $Val);
     });
   }
+
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FraudDetailsCopyWith<$Res>? get fraudDetails {
+    if (_value.fraudDetails == null) {
+      return null;
+    }
+
+    return $FraudDetailsCopyWith<$Res>(_value.fraudDetails!, (value) {
+      return _then(_value.copyWith(fraudDetails: value) as $Val);
+    });
+  }
+
+  /// Create a copy of PaymentAuthRequestBody
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $QrDetailsCopyWith<$Res>? get qrCodeDetails {
+    if (_value.qrCodeDetails == null) {
+      return null;
+    }
+
+    return $QrDetailsCopyWith<$Res>(_value.qrCodeDetails!, (value) {
+      return _then(_value.copyWith(qrCodeDetails: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -360,7 +435,13 @@ abstract class _$$PaymentAuthRequestBodyImplCopyWith<$Res>
       String? contextType,
       @JsonKey(includeIfNull: false) String? orderId,
       @JsonKey(includeIfNull: false)
-      Map<String, dynamic>? merchantPaymentOptions});
+      Map<String, dynamic>? merchantPaymentOptions,
+      @JsonKey(includeIfNull: false) FraudDetails? fraudDetails,
+      @JsonKey(includeIfNull: false) QrDetails? qrCodeDetails,
+      String? encrptedPaymentDetails,
+      String? encryptedRefundPaymentDetails,
+      String? encryptedQrDetails,
+      bool? redirectOnCompleted});
 
   @override
   $AmountCopyWith<$Res> get amount;
@@ -372,6 +453,10 @@ abstract class _$$PaymentAuthRequestBodyImplCopyWith<$Res>
   $StoreDetailsCopyWith<$Res>? get storeDetails;
   @override
   $PaymentRequestWithSourceCopyWith<$Res>? get paymentRequestSource;
+  @override
+  $FraudDetailsCopyWith<$Res>? get fraudDetails;
+  @override
+  $QrDetailsCopyWith<$Res>? get qrCodeDetails;
 }
 
 /// @nodoc
@@ -415,6 +500,12 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
     Object? contextType = freezed,
     Object? orderId = freezed,
     Object? merchantPaymentOptions = freezed,
+    Object? fraudDetails = freezed,
+    Object? qrCodeDetails = freezed,
+    Object? encrptedPaymentDetails = freezed,
+    Object? encryptedRefundPaymentDetails = freezed,
+    Object? encryptedQrDetails = freezed,
+    Object? redirectOnCompleted = freezed,
   }) {
     return _then(_$PaymentAuthRequestBodyImpl(
       merchantId: null == merchantId
@@ -521,6 +612,30 @@ class __$$PaymentAuthRequestBodyImplCopyWithImpl<$Res>
           ? _value._merchantPaymentOptions
           : merchantPaymentOptions // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      fraudDetails: freezed == fraudDetails
+          ? _value.fraudDetails
+          : fraudDetails // ignore: cast_nullable_to_non_nullable
+              as FraudDetails?,
+      qrCodeDetails: freezed == qrCodeDetails
+          ? _value.qrCodeDetails
+          : qrCodeDetails // ignore: cast_nullable_to_non_nullable
+              as QrDetails?,
+      encrptedPaymentDetails: freezed == encrptedPaymentDetails
+          ? _value.encrptedPaymentDetails
+          : encrptedPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      encryptedRefundPaymentDetails: freezed == encryptedRefundPaymentDetails
+          ? _value.encryptedRefundPaymentDetails
+          : encryptedRefundPaymentDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      encryptedQrDetails: freezed == encryptedQrDetails
+          ? _value.encryptedQrDetails
+          : encryptedQrDetails // ignore: cast_nullable_to_non_nullable
+              as String?,
+      redirectOnCompleted: freezed == redirectOnCompleted
+          ? _value.redirectOnCompleted
+          : redirectOnCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -556,7 +671,13 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
       this.contextType,
       @JsonKey(includeIfNull: false) this.orderId,
       @JsonKey(includeIfNull: false)
-      final Map<String, dynamic>? merchantPaymentOptions})
+      final Map<String, dynamic>? merchantPaymentOptions,
+      @JsonKey(includeIfNull: false) this.fraudDetails,
+      @JsonKey(includeIfNull: false) this.qrCodeDetails,
+      this.encrptedPaymentDetails,
+      this.encryptedRefundPaymentDetails,
+      this.encryptedQrDetails,
+      this.redirectOnCompleted})
       : _features = features,
         _merchantPaymentOptions = merchantPaymentOptions,
         super._();
@@ -644,8 +765,23 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
   }
 
   @override
+  @JsonKey(includeIfNull: false)
+  final FraudDetails? fraudDetails;
+  @override
+  @JsonKey(includeIfNull: false)
+  final QrDetails? qrCodeDetails;
+  @override
+  final String? encrptedPaymentDetails;
+  @override
+  final String? encryptedRefundPaymentDetails;
+  @override
+  final String? encryptedQrDetails;
+  @override
+  final bool? redirectOnCompleted;
+
+  @override
   String toString() {
-    return 'PaymentAuthRequestBody(merchantId: $merchantId, uniqueUserId: $uniqueUserId, merchantName: $merchantName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, totalAmountDue: $totalAmountDue, paymentDevice: $paymentDevice, userName: $userName, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, storeDetails: $storeDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions)';
+    return 'PaymentAuthRequestBody(merchantId: $merchantId, uniqueUserId: $uniqueUserId, merchantName: $merchantName, amount: $amount, applicationUserId: $applicationUserId, institutionId: $institutionId, taxPercentage: $taxPercentage, servicePercentage: $servicePercentage, features: $features, deviceOrigin: $deviceOrigin, totalAmountDue: $totalAmountDue, paymentDevice: $paymentDevice, userName: $userName, paymentRequest: $paymentRequest, employeeId: $employeeId, encryptedNotesDetails: $encryptedNotesDetails, storeDetails: $storeDetails, callbackParams: $callbackParams, paymentLinkId: $paymentLinkId, paymentRequestSource: $paymentRequestSource, paymentSourceType: $paymentSourceType, tipAmount: $tipAmount, notes: $notes, contextType: $contextType, orderId: $orderId, merchantPaymentOptions: $merchantPaymentOptions, fraudDetails: $fraudDetails, qrCodeDetails: $qrCodeDetails, encrptedPaymentDetails: $encrptedPaymentDetails, encryptedRefundPaymentDetails: $encryptedRefundPaymentDetails, encryptedQrDetails: $encryptedQrDetails, redirectOnCompleted: $redirectOnCompleted)';
   }
 
   @override
@@ -700,7 +836,21 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
                 other.contextType == contextType) &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             const DeepCollectionEquality().equals(
-                other._merchantPaymentOptions, _merchantPaymentOptions));
+                other._merchantPaymentOptions, _merchantPaymentOptions) &&
+            (identical(other.fraudDetails, fraudDetails) ||
+                other.fraudDetails == fraudDetails) &&
+            (identical(other.qrCodeDetails, qrCodeDetails) ||
+                other.qrCodeDetails == qrCodeDetails) &&
+            (identical(other.encrptedPaymentDetails, encrptedPaymentDetails) ||
+                other.encrptedPaymentDetails == encrptedPaymentDetails) &&
+            (identical(other.encryptedRefundPaymentDetails,
+                    encryptedRefundPaymentDetails) ||
+                other.encryptedRefundPaymentDetails ==
+                    encryptedRefundPaymentDetails) &&
+            (identical(other.encryptedQrDetails, encryptedQrDetails) ||
+                other.encryptedQrDetails == encryptedQrDetails) &&
+            (identical(other.redirectOnCompleted, redirectOnCompleted) ||
+                other.redirectOnCompleted == redirectOnCompleted));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -732,7 +882,13 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
         notes,
         contextType,
         orderId,
-        const DeepCollectionEquality().hash(_merchantPaymentOptions)
+        const DeepCollectionEquality().hash(_merchantPaymentOptions),
+        fraudDetails,
+        qrCodeDetails,
+        encrptedPaymentDetails,
+        encryptedRefundPaymentDetails,
+        encryptedQrDetails,
+        redirectOnCompleted
       ]);
 
   /// Create a copy of PaymentAuthRequestBody
@@ -754,34 +910,39 @@ class _$PaymentAuthRequestBodyImpl extends _PaymentAuthRequestBody {
 
 abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   factory _PaymentAuthRequestBody(
-          {required final String merchantId,
-          @JsonKey(name: 'consumerId') required final String uniqueUserId,
-          required final String merchantName,
-          required final Amount amount,
-          required final String applicationUserId,
-          required final String institutionId,
-          required final double taxPercentage,
-          required final double servicePercentage,
-          required final List<String>? features,
-          required final String deviceOrigin,
-          required final num totalAmountDue,
-          required final DeviceInfo paymentDevice,
-          @JsonKey(name: 'consumerName') final String userName,
-          final PaymentAuthPaymentRequest paymentRequest,
-          final String? employeeId,
-          final String? encryptedNotesDetails,
-          @JsonKey(includeIfNull: false) final StoreDetails? storeDetails,
-          final String? callbackParams,
-          @JsonKey(includeIfNull: false) final String? paymentLinkId,
-          final PaymentRequestWithSource? paymentRequestSource,
-          final int? paymentSourceType,
-          final double? tipAmount,
-          @JsonKey(includeIfNull: false) final String? notes,
-          final String? contextType,
-          @JsonKey(includeIfNull: false) final String? orderId,
-          @JsonKey(includeIfNull: false)
-          final Map<String, dynamic>? merchantPaymentOptions}) =
-      _$PaymentAuthRequestBodyImpl;
+      {required final String merchantId,
+      @JsonKey(name: 'consumerId') required final String uniqueUserId,
+      required final String merchantName,
+      required final Amount amount,
+      required final String applicationUserId,
+      required final String institutionId,
+      required final double taxPercentage,
+      required final double servicePercentage,
+      required final List<String>? features,
+      required final String deviceOrigin,
+      required final num totalAmountDue,
+      required final DeviceInfo paymentDevice,
+      @JsonKey(name: 'consumerName') final String userName,
+      final PaymentAuthPaymentRequest paymentRequest,
+      final String? employeeId,
+      final String? encryptedNotesDetails,
+      @JsonKey(includeIfNull: false) final StoreDetails? storeDetails,
+      final String? callbackParams,
+      @JsonKey(includeIfNull: false) final String? paymentLinkId,
+      final PaymentRequestWithSource? paymentRequestSource,
+      final int? paymentSourceType,
+      final double? tipAmount,
+      @JsonKey(includeIfNull: false) final String? notes,
+      final String? contextType,
+      @JsonKey(includeIfNull: false) final String? orderId,
+      @JsonKey(includeIfNull: false)
+      final Map<String, dynamic>? merchantPaymentOptions,
+      @JsonKey(includeIfNull: false) final FraudDetails? fraudDetails,
+      @JsonKey(includeIfNull: false) final QrDetails? qrCodeDetails,
+      final String? encrptedPaymentDetails,
+      final String? encryptedRefundPaymentDetails,
+      final String? encryptedQrDetails,
+      final bool? redirectOnCompleted}) = _$PaymentAuthRequestBodyImpl;
   _PaymentAuthRequestBody._() : super._();
 
   factory _PaymentAuthRequestBody.fromJson(Map<String, dynamic> json) =
@@ -847,6 +1008,20 @@ abstract class _PaymentAuthRequestBody extends PaymentAuthRequestBody {
   @override
   @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get merchantPaymentOptions;
+  @override
+  @JsonKey(includeIfNull: false)
+  FraudDetails? get fraudDetails;
+  @override
+  @JsonKey(includeIfNull: false)
+  QrDetails? get qrCodeDetails;
+  @override
+  String? get encrptedPaymentDetails;
+  @override
+  String? get encryptedRefundPaymentDetails;
+  @override
+  String? get encryptedQrDetails;
+  @override
+  bool? get redirectOnCompleted;
 
   /// Create a copy of PaymentAuthRequestBody
   /// with the given fields replaced by the non-null parameter values.

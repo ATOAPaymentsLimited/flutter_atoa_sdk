@@ -50,7 +50,7 @@ class PaymentDetailsCommand extends Command<int> {
 
       _logger.progress('Getting payment auth...');
 
-      final body = res.toBody(
+      final body = await res.toBody(
         institutionId: 'lloyds-sandbox',
         features: [
           'ACCOUNTS',
