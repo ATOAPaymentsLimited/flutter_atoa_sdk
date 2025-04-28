@@ -28,8 +28,6 @@ class _MainAppState extends State<MainApp> {
 
   AtoaEnv get env => _envNotifier.value;
 
-  AtoaEnvironment get branch => branchNotifier.value;
-
   set env(AtoaEnv value) => _envNotifier.value = value;
 
   MaterialApp getApp(BuildContext context) {
@@ -95,10 +93,15 @@ class _MainAppState extends State<MainApp> {
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: ValueListenableBuilder(
             valueListenable: _envNotifier,
-            builder: (_, value, Widget? child) => ActionButton(
-              controller: textController,
-              env: value,
-              branch: branch,
+            builder: (_, value, Widget? child) => ValueListenableBuilder(
+              valueListenable: branchNotifier,
+              builder: (context, branch, __) {
+                return ActionButton(
+                  controller: textController,
+                  env: value,
+                  branch: branch,
+                );
+              }
             ),
           ),
         ),
