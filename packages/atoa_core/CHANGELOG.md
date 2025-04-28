@@ -1,5 +1,9 @@
 # 1.0.7
 
+- fix: Atoa Payment request body
+
+# 1.0.7
+
 - fix: Atoa Environment
 
 # 1.0.6
