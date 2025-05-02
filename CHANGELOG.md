@@ -1,3 +1,7 @@
+# 2.0.2
+
+- chore: update readme
+
 # 2.0.1
 
 - feat: fix payment request body
