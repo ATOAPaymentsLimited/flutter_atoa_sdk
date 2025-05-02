@@ -330,7 +330,7 @@ For any issues or inquiries, please contact hello@paywithatoa.co.uk.
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
-[atoa_banner]: /assets/images/atoa_sdk.png
+[atoa_banner]: https://raw.githubusercontent.com/ATOAPaymentsLimited/flutter_atoa_sdk/main/assets/atoa_sdk.png
 [example]: https://github.com/ATOAPaymentsLimited/flutter_atoa_sdk/tree/main/example
 
 ## License
