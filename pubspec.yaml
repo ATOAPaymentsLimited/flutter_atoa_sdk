@@ -13,7 +13,7 @@ dependencies:
   bot_toast: ^4.0.1
   cached_network_image: ^3.4.1
   collection: ^1.18.0
-  connectivity_plus: ^4.0.1
+  connectivity_plus: ">=4.0.1 <6.0.0"
   custom_sliding_segmented_control: ^1.8.1
   dio: ^5.8.0+1
   dotted_border: ^2.1.0
