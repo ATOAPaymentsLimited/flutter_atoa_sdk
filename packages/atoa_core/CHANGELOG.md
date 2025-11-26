@@ -1,3 +1,7 @@
+# 1.0.9
+
+- fix: Add 'Default' location name for store
+
 # 1.0.8
 
 - fix: Atoa Payment request body

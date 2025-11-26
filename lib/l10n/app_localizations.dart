@@ -561,12 +561,6 @@ abstract class AppLocalizations {
   /// **'Oops, An Error Occurred'**
   String get defaultError;
 
-  /// No description provided for @applicationLegaseeText.
-  ///
-  /// In en, this message translates to:
-  /// **'©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001) and under a commercial agreement with Yapily Ltd (#10842280). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.'**
-  String get applicationLegaseeText;
-
   /// No description provided for @instantBankPay.
   ///
   /// In en, this message translates to:
@@ -584,12 +578,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Mobile Number'**
   String get phoneNumberHint;
-
-  /// No description provided for @atoaFooterTextHomePage.
-  ///
-  /// In en, this message translates to:
-  /// **'©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.'**
-  String get atoaFooterTextHomePage;
 
   /// No description provided for @splitBills.
   ///
@@ -884,12 +872,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'and'**
   String get and;
-
-  /// No description provided for @atoaPoweredByYapily.
-  ///
-  /// In en, this message translates to:
-  /// **'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority'**
-  String get atoaPoweredByYapily;
 
   /// No description provided for @legalNameExample.
   ///
@@ -5211,12 +5193,6 @@ abstract class AppLocalizations {
   /// **'Rules for using our service.'**
   String get rulesForService;
 
-  /// No description provided for @atoaYapilyText.
-  ///
-  /// In en, this message translates to:
-  /// **'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority'**
-  String get atoaYapilyText;
-
   /// No description provided for @review.
   ///
   /// In en, this message translates to:
@@ -5414,12 +5390,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Atoa’s'**
   String get atoas;
-
-  /// No description provided for @atoaIsPowered.
-  ///
-  /// In en, this message translates to:
-  /// **' Atoa is powered by Yapily Connect Ltd.'**
-  String get atoaIsPowered;
 
   /// No description provided for @popupClosingIn.
   ///

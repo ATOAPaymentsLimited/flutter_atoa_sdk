@@ -21,7 +21,7 @@ class StoreDetails with _$StoreDetails {
 }
 
 String? _locationNameFromJson(String? value) {
-  if (value == null || value == 'DEFAULT') {
+  if (value == null) {
     return null;
   }
 
