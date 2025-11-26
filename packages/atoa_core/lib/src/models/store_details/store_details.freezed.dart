@@ -21,7 +21,7 @@ StoreDetails _$StoreDetailsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StoreDetails {
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
+  @JsonKey(includeIfNull: false)
   String? get locationName => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
 
@@ -43,8 +43,7 @@ abstract class $StoreDetailsCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
-      String? locationName,
+      @JsonKey(includeIfNull: false) String? locationName,
       String? address});
 }
 
@@ -94,8 +93,7 @@ abstract class _$$StoreDetailsImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
-      String? locationName,
+      @JsonKey(includeIfNull: false) String? locationName,
       String? address});
 }
 
@@ -138,8 +136,7 @@ class __$$StoreDetailsImplCopyWithImpl<$Res>
 class _$StoreDetailsImpl extends _StoreDetails {
   const _$StoreDetailsImpl(
       {required this.id,
-      @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
-      this.locationName,
+      @JsonKey(includeIfNull: false) this.locationName,
       this.address})
       : super._();
 
@@ -149,7 +146,7 @@ class _$StoreDetailsImpl extends _StoreDetails {
   @override
   final String id;
   @override
-  @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
+  @JsonKey(includeIfNull: false)
   final String? locationName;
   @override
   final String? address;
@@ -193,8 +190,7 @@ class _$StoreDetailsImpl extends _StoreDetails {
 abstract class _StoreDetails extends StoreDetails {
   const factory _StoreDetails(
       {required final String id,
-      @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
-      final String? locationName,
+      @JsonKey(includeIfNull: false) final String? locationName,
       final String? address}) = _$StoreDetailsImpl;
   const _StoreDetails._() : super._();
 
@@ -204,7 +200,7 @@ abstract class _StoreDetails extends StoreDetails {
   @override
   String get id;
   @override
-  @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
+  @JsonKey(includeIfNull: false)
   String? get locationName;
   @override
   String? get address;

@@ -9,7 +9,7 @@ part of 'store_details.dart';
 _$StoreDetailsImpl _$$StoreDetailsImplFromJson(Map<String, dynamic> json) =>
     _$StoreDetailsImpl(
       id: json['id'] as String,
-      locationName: _locationNameFromJson(json['locationName'] as String?),
+      locationName: json['locationName'] as String?,
       address: json['address'] as String?,
     );
 

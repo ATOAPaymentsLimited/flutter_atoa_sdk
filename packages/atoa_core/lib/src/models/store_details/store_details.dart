@@ -9,8 +9,7 @@ part 'store_details.g.dart';
 class StoreDetails with _$StoreDetails {
   const factory StoreDetails({
     required String id,
-    @JsonKey(includeIfNull: false, fromJson: _locationNameFromJson)
-    String? locationName,
+    @JsonKey(includeIfNull: false) String? locationName,
     String? address,
   }) = _StoreDetails;
 
@@ -18,12 +17,4 @@ class StoreDetails with _$StoreDetails {
 
   factory StoreDetails.fromJson(Map<String, dynamic> json) =>
       _$StoreDetailsFromJson(json);
-}
-
-String? _locationNameFromJson(String? value) {
-  if (value == null) {
-    return null;
-  }
-
-  return value;
 }
