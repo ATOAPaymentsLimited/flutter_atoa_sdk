@@ -1,6 +1,6 @@
 # 1.0.9
 
-- fix: Add 'Default' location name for store
+- feat: Update payment status API endpoint
 
 # 1.0.8
 
