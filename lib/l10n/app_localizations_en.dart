@@ -249,9 +249,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get defaultError => 'Oops, An Error Occurred';
 
   @override
-  String get applicationLegaseeText => '©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001) and under a commercial agreement with Yapily Ltd (#10842280). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.';
-
-  @override
   String get instantBankPay => 'Instant Bank Pay';
 
   @override
@@ -259,9 +256,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get phoneNumberHint => 'Mobile Number';
-
-  @override
-  String get atoaFooterTextHomePage => '©2023 Atoa Payments Limited. Atoa Payments Limited operates under a license issued to Yapily Connect Limited (#827001). Yapily Connect Ltd is regulated by the UK Financial Conduct Authority under the Payment Services Regulations 2017 as an Authorised Payment Institutions to provide account information services and payment initiation services. Visit www.paywithatoa.co.uk/terms for details.';
 
   @override
   String get splitBills => 'Split Bills';
@@ -409,9 +403,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get and => 'and';
-
-  @override
-  String get atoaPoweredByYapily => 'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority';
 
   @override
   String get legalNameExample => 'eg. John Doe';
@@ -2947,9 +2938,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rulesForService => 'Rules for using our service.';
 
   @override
-  String get atoaYapilyText => 'Atoa is powered by Yapily Connect Ltd, a company regulated and authorised by the UK Financial Conduct Authority';
-
-  @override
   String get review => 'Review';
 
   @override
@@ -3053,9 +3041,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get atoas => 'Atoa’s';
-
-  @override
-  String get atoaIsPowered => ' Atoa is powered by Yapily Connect Ltd.';
 
   @override
   String get popupClosingIn => 'We’ll close this pop-up in just ';

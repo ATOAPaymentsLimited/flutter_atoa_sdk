@@ -1,3 +1,7 @@
+# 2.0.3
+
+- chore: update atoa_core package version
+
 # 2.0.2
 
 - chore: update readme
