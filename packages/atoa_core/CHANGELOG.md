@@ -1,3 +1,7 @@
+# 1.0.9
+
+- feat: Update payment status API endpoint
+
 # 1.0.8
 
 - fix: Atoa Payment request body

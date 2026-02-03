@@ -22,7 +22,8 @@ class RequestInterceptor extends QueuedInterceptor {
   }
 
   String? _getPath(RequestOptions options) {
-    final isPaymentStatus = options.path.contains('payments/payment-status');
+    final isPaymentStatus = options.path.contains('payments/v2/payment/') &&
+        options.path.contains('/status');
     final isFetchBanks = options.path.contains('institutions/customer');
 
     if (isPaymentStatus && _env == AtoaEnv.sandbox) {

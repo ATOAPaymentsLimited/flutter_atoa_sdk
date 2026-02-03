@@ -101,9 +101,6 @@ mixin _$TransactionDetails {
   /// Optional:Receiver Id
   String? get merchantId => throw _privateConstructorUsedError;
 
-  /// Optional: Payment Details with payee details
-  PaymentRequest? get paymentRequest => throw _privateConstructorUsedError;
-
   /// Optional: Receiver name
   String? get merchantName => throw _privateConstructorUsedError;
 
@@ -169,7 +166,6 @@ abstract class $TransactionDetailsCopyWith<$Res> {
       String? orderId,
       TransactionStatusDetails? statusDetails,
       String? merchantId,
-      PaymentRequest? paymentRequest,
       String? merchantName,
       String? avatar,
       StoreDetails? storeDetails,
@@ -180,7 +176,6 @@ abstract class $TransactionDetailsCopyWith<$Res> {
 
   $TransactionStatusCopyWith<$Res> get status;
   $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
-  $PaymentRequestCopyWith<$Res>? get paymentRequest;
   $StoreDetailsCopyWith<$Res>? get storeDetails;
 }
 
@@ -224,7 +219,6 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
     Object? orderId = freezed,
     Object? statusDetails = freezed,
     Object? merchantId = freezed,
-    Object? paymentRequest = freezed,
     Object? merchantName = freezed,
     Object? avatar = freezed,
     Object? storeDetails = freezed,
@@ -334,10 +328,6 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      paymentRequest: freezed == paymentRequest
-          ? _value.paymentRequest
-          : paymentRequest // ignore: cast_nullable_to_non_nullable
-              as PaymentRequest?,
       merchantName: freezed == merchantName
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
@@ -398,20 +388,6 @@ class _$TransactionDetailsCopyWithImpl<$Res, $Val extends TransactionDetails>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $PaymentRequestCopyWith<$Res>? get paymentRequest {
-    if (_value.paymentRequest == null) {
-      return null;
-    }
-
-    return $PaymentRequestCopyWith<$Res>(_value.paymentRequest!, (value) {
-      return _then(_value.copyWith(paymentRequest: value) as $Val);
-    });
-  }
-
-  /// Create a copy of TransactionDetails
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $StoreDetailsCopyWith<$Res>? get storeDetails {
     if (_value.storeDetails == null) {
       return null;
@@ -458,7 +434,6 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
       String? orderId,
       TransactionStatusDetails? statusDetails,
       String? merchantId,
-      PaymentRequest? paymentRequest,
       String? merchantName,
       String? avatar,
       StoreDetails? storeDetails,
@@ -471,8 +446,6 @@ abstract class _$$TransactionDetailsImplCopyWith<$Res>
   $TransactionStatusCopyWith<$Res> get status;
   @override
   $TransactionStatusDetailsCopyWith<$Res>? get statusDetails;
-  @override
-  $PaymentRequestCopyWith<$Res>? get paymentRequest;
   @override
   $StoreDetailsCopyWith<$Res>? get storeDetails;
 }
@@ -515,7 +488,6 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
     Object? orderId = freezed,
     Object? statusDetails = freezed,
     Object? merchantId = freezed,
-    Object? paymentRequest = freezed,
     Object? merchantName = freezed,
     Object? avatar = freezed,
     Object? storeDetails = freezed,
@@ -625,10 +597,6 @@ class __$$TransactionDetailsImplCopyWithImpl<$Res>
           ? _value.merchantId
           : merchantId // ignore: cast_nullable_to_non_nullable
               as String?,
-      paymentRequest: freezed == paymentRequest
-          ? _value.paymentRequest
-          : paymentRequest // ignore: cast_nullable_to_non_nullable
-              as PaymentRequest?,
       merchantName: freezed == merchantName
           ? _value.merchantName
           : merchantName // ignore: cast_nullable_to_non_nullable
@@ -691,7 +659,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
       this.orderId,
       this.statusDetails,
       this.merchantId,
-      this.paymentRequest,
       this.merchantName,
       this.avatar,
       this.storeDetails,
@@ -811,10 +778,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
   @override
   final String? merchantId;
 
-  /// Optional: Payment Details with payee details
-  @override
-  final PaymentRequest? paymentRequest;
-
   /// Optional: Receiver name
   @override
   final String? merchantName;
@@ -855,7 +818,7 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
 
   @override
   String toString() {
-    return 'TransactionDetails(applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentIdempotencyId: $paymentIdempotencyId, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, paymentRequest: $paymentRequest, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId, signatureHash: $signatureHash, signature: $signature, redirectUrlParams: $redirectUrlParams)';
+    return 'TransactionDetails(applicationUserId: $applicationUserId, paidAmount: $paidAmount, currency: $currency, status: $status, createdAt: $createdAt, paymentIdempotencyId: $paymentIdempotencyId, paymentId: $paymentId, updatedAt: $updatedAt, bankName: $bankName, bankAccountNo: $bankAccountNo, notes: $notes, taxAmount: $taxAmount, serviceAmount: $serviceAmount, tipAmount: $tipAmount, qrId: $qrId, storeId: $storeId, qrNickName: $qrNickName, errorDescription: $errorDescription, paymentSourceType: $paymentSourceType, paymentLinkId: $paymentLinkId, employeeId: $employeeId, pendingTrasactionError: $pendingTrasactionError, orderId: $orderId, statusDetails: $statusDetails, merchantId: $merchantId, merchantName: $merchantName, avatar: $avatar, storeDetails: $storeDetails, institutionId: $institutionId, signatureHash: $signatureHash, signature: $signature, redirectUrlParams: $redirectUrlParams)';
   }
 
   @override
@@ -908,8 +871,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
                 other.statusDetails == statusDetails) &&
             (identical(other.merchantId, merchantId) ||
                 other.merchantId == merchantId) &&
-            (identical(other.paymentRequest, paymentRequest) ||
-                other.paymentRequest == paymentRequest) &&
             (identical(other.merchantName, merchantName) ||
                 other.merchantName == merchantName) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
@@ -954,7 +915,6 @@ class _$TransactionDetailsImpl extends _TransactionDetails {
         orderId,
         statusDetails,
         merchantId,
-        paymentRequest,
         merchantName,
         avatar,
         storeDetails,
@@ -1009,7 +969,6 @@ abstract class _TransactionDetails extends TransactionDetails {
       final String? orderId,
       final TransactionStatusDetails? statusDetails,
       final String? merchantId,
-      final PaymentRequest? paymentRequest,
       final String? merchantName,
       final String? avatar,
       final StoreDetails? storeDetails,
@@ -1126,10 +1085,6 @@ abstract class _TransactionDetails extends TransactionDetails {
   /// Optional:Receiver Id
   @override
   String? get merchantId;
-
-  /// Optional: Payment Details with payee details
-  @override
-  PaymentRequest? get paymentRequest;
 
   /// Optional: Receiver name
   @override

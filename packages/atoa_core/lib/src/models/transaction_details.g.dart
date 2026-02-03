@@ -41,10 +41,6 @@ _$TransactionDetailsImpl _$$TransactionDetailsImplFromJson(
           : TransactionStatusDetails.fromJson(
               json['statusDetails'] as Map<String, dynamic>),
       merchantId: json['merchantId'] as String?,
-      paymentRequest: json['paymentRequest'] == null
-          ? null
-          : PaymentRequest.fromJson(
-              json['paymentRequest'] as Map<String, dynamic>),
       merchantName: json['merchantName'] as String?,
       avatar: json['avatar'] as String?,
       storeDetails: json['storeDetails'] == null
@@ -86,7 +82,6 @@ Map<String, dynamic> _$$TransactionDetailsImplToJson(
       'orderId': instance.orderId,
       'statusDetails': instance.statusDetails,
       'merchantId': instance.merchantId,
-      'paymentRequest': instance.paymentRequest,
       'merchantName': instance.merchantName,
       'avatar': instance.avatar,
       'storeDetails': instance.storeDetails,
